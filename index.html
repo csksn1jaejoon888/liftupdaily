@@ -264,12 +264,15 @@ let videoDatabaseEN = [];
 let videoDatabaseID = [];
 
 async function loadDatabases() {
+
   const [resEN, resID] = await Promise.all([
-    fetch('db-en.json'),
-    fetch('db-id.json')
+    fetch('./db-en.json'),
+    fetch('./db-id.json')
   ]);
+
   videoDatabaseEN = await resEN.json();
   videoDatabaseID = await resID.json();
+
 }
 
 
