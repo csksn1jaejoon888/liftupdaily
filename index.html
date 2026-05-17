@@ -214,10 +214,21 @@ function changeLang(lang) {
   if (currentSlug) {
     const dbTarget = lang === 'id' ? videoDatabaseID : videoDatabaseEN;
     const dbSource = lang === 'id' ? videoDatabaseEN : videoDatabaseID;
-    const videoSource = dbSource.find(v => v.slug === currentSlug);
+
+    // Cari video sumber — coba cocokkan slug angka ATAU slug SEO (judul panjang)
+    const videoSource = dbSource.find(v =>
+      v.slug === currentSlug || seoUrl(v.title) === currentSlug
+    );
+
     if (videoSource) {
+      // Cari versi bahasa target berdasarkan youtubeId yang sama
       const videoTarget = dbTarget.find(v => v.youtubeId === videoSource.youtubeId);
-      targetSlug = videoTarget ? videoTarget.slug : currentSlug;
+      if (videoTarget) {
+        targetSlug = seoUrl(videoTarget.title);
+      } else {
+        // Tidak ada versi bahasa target, tetap tampilkan video yang sama
+        targetSlug = seoUrl(videoSource.title);
+      }
     } else {
       targetSlug = currentSlug;
     }
@@ -226,7 +237,7 @@ function changeLang(lang) {
   let url = window.location.pathname + '?lang=' + lang;
   if (targetSlug) url += '&v=' + targetSlug;
   history.pushState({}, '', url);
-  router(targetSlug);
+  router();
 }
 
 /* =========================================
@@ -360,7 +371,10 @@ function renderVideo(container, v) {
   container.className = 'main-content video-page-container';
 
   const db = currentLang === 'id' ? videoDatabaseID : videoDatabaseEN;
-  const related = db.filter(item => item.slug !== v.slug).slice(0, 8);
+  const related = db
+    .filter(item => item.slug !== v.slug)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 8);
 
   container.innerHTML =
     '<div class="player-container" id="player-box">' +
