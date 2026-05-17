@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html lang='id' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  
+      <meta charset='UTF-8'/>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+    <title>Trend4GenZ - Streaming</title>
+    
+        
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'/>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'/>
+    
+    <style>
+        body { background-color: #212122; color: #f1f1f1; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
+        .navbar-custom { background-color: #000; padding: 12px 15px; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; border-bottom: 1.5px solid #98FB98; }
+        .brand-logo { color: #98FB98; font-weight: 900; font-size: 1.5rem; cursor: pointer; text-decoration: none; text-transform: uppercase; }
+        
+        /* Tombol Ganti Bahasa */
+        .lang-switch { display: flex; gap: 5px; margin-right: 10px; }
+        .btn-lang { background: #222; color: #fff; border: 1px solid #8ad62d; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-lang.active { background: #98FB98; color: #000; }
+
+        .search-container { display: flex; align-items: center; background: #1a1a1a; border-radius: 20px; padding: 5px 12px; border: 1px solid #98FB98; }
+        .search-container input { background: transparent; border: none; color: #fff; outline: none; font-size: 0.85rem; width: 100px; transition: 0.3s; }
+        .search-container input:focus { width: 150px; }
+      
+      /* TAMBAHKAN DI BAWAHNYA */
+@media (max-width: 480px) {
+    .navbar-custom {
+        padding: 8px 10px; /* Mempersempit ruang kosong atas-bawah */
+    }
+    .brand-logo {
+        font-size: 1.1rem; /* Mengecilkan ukuran logo agar muat di samping tombol */
+    }
+    .lang-switch {
+        gap: 3px; /* Merapatkan jarak antara tombol ID dan EN */
+        margin-right: 5px;
+    }
+    .btn-lang {
+        padding: 1px 5px; /* Memperkecil tombol bahasa */
+    }
+    .search-container {
+        padding: 1.5px 4px; /* Memperkecil kotak pencarian */
+    }
+    .search-container input {
+        width: 60px; /* Memaksa input search lebih pendek di mobile */
+    }
+    .search-container input:focus {
+        width: 80px; /* Lebar saat diklik di mobile tidak terlalu panjang */
+    }
+}
+
+        .main-content { padding: 15px; max-width: 1150px; margin: auto; }
+        .video-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+        @media (min-width: 992px) { .video-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+
+        .video-card { background: #1a1a1a; border-radius: 8px; overflow: hidden; cursor: pointer; transition: 0.3s; border: 1px solid transparent; }
+        .video-card:hover { border-color: #98FB98; transform: translateY(-3px); }
+        .video-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+        .video-card-title { padding: 8px; font-size: 0.8rem; font-weight: 600; line-height: 1.3; height: 45px; overflow: hidden; }
+
+        @media (max-width: 600px) {
+            .video-page-container { padding: 0 !important; }
+            .info-section { padding: 15px !important; }
+            .player-container { border-radius: 0 !important; }
+        }
+
+        .player-container { position: relative; width: 100%; background: #000; border-radius: 14px; overflow: hidden; aspect-ratio: 16/9; }
+        .player-container iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:none;
+    z-index:1;
+}
+
+.video-mask{
+    z-index:99999;
+}
+        
+        /* --- SETTING MASKER FIX --- */
+        .video-mask{
+    position:absolute;
+    z-index:99999;
+    background:transparant;
+    pointer-events:all;
+    touch-action:none;
+}
+
+/* MASKER ATAS */
+.mask-top{
+    top:0;
+    left:0;
+
+    width:65%;
+    height:55px;
+}
+
+/* MASKER BAWAH */
+.mask-bottom{
+    bottom:0;
+    left:40%;
+
+    width:100%;
+    height:43px;
+}
+
+        /* Muncul hanya saat Fullscreen / Putar */
+        #player-box:fullscreen .video-mask, 
+        #player-box:-webkit-full-screen .video-mask { display: block !important; }
+
+        /* Tombol Fullscreen Bulat Hijau Stabilo */
+        .btn-fs-custom {
+            position: absolute; bottom: 18px; right: 18px; 
+            z-index: 2147483647; cursor: pointer;
+            background: transparant; color: #fff;
+            width: 23px; height: 23px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; font-size: 12px;
+            box-shadow: 0 0 20px #98FB98;
+            border: 2px solid #98FB98;
+        }
+
+        .play-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; cursor: pointer; }
+        .play-overlay i { font-size: 4rem; color: #ff032d; }
+        
+        .btn-action { 
+            width: 100%; border: none; padding: 12px; border-radius: 8px; font-weight: bold; background: #98FB98; /* Warna hijau terang solid */ color: #000; /* Tulisan hitam agar kontras dan mudah dibaca */ font-size: 1rem; transition: 0.3s; text-transform: uppercase; /* Membuat tulisan jadi HURUF BESAR semua agar tegas */
+        }
+
+        .btn-action:hover {
+            background: #ff032d; /* Warna hijau yang lebih muda saat tombol disentuh */ color: #000; transform: scale(1.02); /* Efek sedikit membesar saat disentuh */
+        }
+      .dual-action-wrap {
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.home-split-btn {
+    width:50%;
+    border:none;
+    padding:4px;
+    border-radius:8px;
+    font-weight:bold;
+    background:#98FB98;
+    color:#000;
+    font-size:0.8rem;
+    text-transform:uppercase;
+}
+
+.offer-split-btn {
+    width:33.33%;
+    border:none;
+    padding:4px;
+    border-radius:8px;
+    font-weight:bold;
+    background:#ffb07c;
+    color:#000;
+    font-size:0.8rem;
+    text-transform:uppercase;
+}
+      
+        .summary-box { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border-left: 4px solid #98FB98; }
+        .summary-text { 
+    white-space: pre-wrap; /* Ini yang menjaga baris baru/paragraf tetap ada */
+    font-size: 0.9rem; 
+    line-height: 1.4;      /* Jarak antar baris dalam satu paragraf (Rapat) */
+    margin-bottom: 15px;   /* Jarak antar paragraf (Tetap ada jeda) */
+    letter-spacing: -0.2px; 
+    color: #ddd; 
+    text-align: left; 
+}
+        .native-ads-slot { margin: 20px 0; padding: 10px; background: #111; border: 1px dashed #98FB98; text-align: center; border-radius: 8px; min-height: 100px; }
+
+        .recommendation-slider { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 15px; scrollbar-width: none; }
+        .slider-item { min-width: 160px; background: #1a1a1a; border-radius: 8px; overflow: hidden; cursor: pointer; }
+        .slider-item img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+        .slider-item p { font-size: 0.75rem; padding: 8px; margin: 0; height: 38px; overflow: hidden; }
+      
+      
+    </style>
+</head>
+<body>
+
+
+    <nav class='navbar-custom'>
+        <div class='brand-logo' onclick='handleBrandClick()'>Trend4GenZ</div>
+        <div style='display: flex; align-items: center;'>
+            <div class='lang-switch'>
+                <button class='btn-lang' id='btn-id' onclick="changeLang('id')">ID</button>
+
+<button class='btn-lang' id='btn-en' onclick="changeLang('en')">EN</button>
+            <div class='search-container'>
+    <input id='searchInput' placeholder='Cari...' type='text'/>
+    
+    <i class='fas fa-search' id='searchBtn' style='color:#98FB98; font-size:0.8rem; cursor:pointer;'/>
+</div>
+        </div>
+    </nav>
+
+    <div class='main-content' id='app'/>
+
+    
+
+
+<script type='text/javascript'>
+//<![CDATA[
+
+const AD_CONFIG = {
+    allAds: false,
+    useDirect: true,
+    usePopunder: true,
+    useNative: true,
+
+    links: {
+
+    direct: "https://google.translate.com",
+
+    popunder: "https://google.com",
+
+    nativeCode: `
+            <div style="display: flex; background: #111; padding: 15px; border-radius: 8px; gap: 15px; text-align: left; align-items: center; border: 1px solid #98FB98;">
+                <div style="flex-shrink: 0;">
+                    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" style="width: 100px; height: auto; background: white; padding: 10px; border-radius: 4px;">
+                </div>
+                <div style="flex-grow: 1;">
+                    <h4 style="margin: 0; color: #98FB98; font-size: 16px;">Contoh Iklan Native - Google Search</h4>
+                    <p style="margin: 5px 0; color: #ccc; font-size: 13px;">Ini adalah simulasi tampilan iklan native bar yang akan muncul tepat di bawah deskripsi video Anda.</p>
+                    <a href="https://google.com" target="_blank" style="color: #fff; background: #00cc44; padding: 5px 15px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: bold;">KUNJUNGI SITUS</a>
+                </div>
+            </div>
+        `
+            }
+        };
+
+
+const PLAYER_CONFIG = {
+
+    enablePlayButtonDirectAds: false
+
+};
+
+
+const SEO_CONFIG = {
+
+    autoGeoLanguage: true
+
+};
+
+
+let currentLang = 'id';
+let playCounter = 0;
+
+
+
+/* =========================================
+   DATABASE
+========================================= */
+
+let videoDatabaseEN = [];
+let videoDatabaseID = [];
+
+async function loadDatabases() {
+
+  const basePath = window.location.origin + '/trend4genz/';
+
+  const [resEN, resID] = await Promise.all([
+    fetch(basePath + 'db-en.json'),
+    fetch(basePath + 'db-id.json')
+  ]);
+
+  videoDatabaseEN = await resEN.json();
+  videoDatabaseID = await resID.json();
+
+}
+
+
+
+/* =========================================
+   ROUTING SYSTEM
+========================================= */
+
+function getUrlParams() {
+
+    return new URLSearchParams(
+        window.location.search
+    );
+}
+
+
+function getCurrentSlug() {
+
+    return getUrlParams().get('v');
+}
+
+function getCurrentLangParam() {
+
+    return getUrlParams().get('lang');
+}
+
+
+async function detectGeoLanguage() {
+
+    try {
+
+        const response = await fetch(
+            'https://ipapi.co/json/'
+        );
+
+        const data = await response.json();
+
+        return data.country_code === 'ID'
+            ? 'id'
+            : 'en';
+
+    } catch (e) {
+
+        return 'en';
+    }
+}
+
+
+function updateCanonical(slug, lang) {
+
+    let canonical = document.getElementById(
+        'dynamic-canonical'
+    );
+
+    if (!canonical) {
+
+        canonical = document.createElement('link');
+
+        canonical.id = 'dynamic-canonical';
+
+        canonical.rel = 'canonical';
+
+        document.head.appendChild(canonical);
+    }
+
+    canonical.href =
+        window.location.origin +
+        window.location.pathname +
+        '?v=' + slug +
+        '&lang=' + lang;
+}
+
+
+function seoUrl(text) {
+    return text
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/--+/g, '-')
+        .substring(0, 70)
+        .replace(/-$/, '');
+}
+
+function navigateTo(slug) {
+
+    const db =
+        currentLang === 'id'
+            ? videoDatabaseID
+            : videoDatabaseEN;
+
+    const video = db.find(v => v.slug === slug);
+
+    if (!video) return;
+
+    const seoSlug = seoUrl(video.title);
+
+    const url =
+        window.location.pathname +
+        '?lang=' + currentLang +
+        '&v=' + seoSlug;
+
+    history.pushState({}, '', url);
+
+    router();
+}
+
+
+
+/* =========================================
+   ADS
+========================================= */
+
+function runAd(type) {
+
+    if (!AD_CONFIG.allAds) return;
+
+    if (
+        type === 'pop' &&
+        AD_CONFIG.usePopunder
+    ) {
+
+        window.open(
+            AD_CONFIG.links.popunder,
+            '_blank'
+        );
+    }
+
+
+    if (
+        type === 'direct' &&
+        AD_CONFIG.useDirect
+    ) {
+
+        window.open(
+            AD_CONFIG.links.direct,
+            '_blank'
+        );
+    }
+}
+
+
+
+/* =========================================
+   LANGUAGE
+========================================= */
+
+function changeLang(lang) {
+    currentLang = lang;
+
+    const currentSlug = getCurrentSlug(); // slug saat ini
+    let targetSlug = null;
+
+    if (currentSlug) {
+        // pilih database target dan source
+        const dbTarget = lang === 'id' ? videoDatabaseID : videoDatabaseEN;
+        const dbSource = lang === 'id' ? videoDatabaseEN : videoDatabaseID;
+
+        // cari video asal berdasarkan slug
+        const videoSource = dbSource.find(v => v.slug === currentSlug);
+
+        if (videoSource) {
+            // cari versi target berdasarkan youtubeId
+            const videoTarget = dbTarget.find(v => v.youtubeId === videoSource.youtubeId);
+            if (videoTarget) {
+                targetSlug = videoTarget.slug;
+            } else {
+                // fallback: pakai slug asal supaya video tetap muncul
+                targetSlug = currentSlug;
+                console.warn(`⚠ Video target bahasa ${lang} tidak ditemukan, fallback ke slug asal.`);
+            }
+        } else {
+            // fallback: pakai slug asal
+            targetSlug = currentSlug;
+            console.warn(`⚠ Video asal tidak ditemukan, fallback ke slug.`);
+        }
+    }
+
+    // bangun URL
+    let url = window.location.pathname + '?lang=' + lang;
+    if (targetSlug) url += '&v=' + targetSlug;
+
+    history.pushState({}, '', url);
+
+    // panggil router dengan targetSlug
+    router(targetSlug);
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+function handleBrandClick() {
+
+    runAd('pop');
+
+    const url =
+        window.location.pathname +
+        '?lang=' + currentLang;
+
+    history.pushState({}, '', url);
+
+    router();
+}
+
+
+function handleSpecialOffer() {
+
+    if (
+        AD_CONFIG.allAds &&
+        AD_CONFIG.useDirect
+    ) {
+
+        window.open(
+            AD_CONFIG.links.direct,
+            '_blank'
+        );
+    }
+}
+
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+
+// Panggil search saat Enter
+searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        doSearch();
+    }
+});
+
+// Panggil search saat klik icon
+searchBtn.addEventListener('click', doSearch);
+
+// Fungsi search
+function doSearch() {
+    const val = searchInput.value.toLowerCase();
+
+    // Pilih database sesuai bahasa
+    const db = (typeof currentLang !== 'undefined' && currentLang === 'id')
+        ? videoDatabaseID
+        : videoDatabaseEN;
+
+    if (!db || !Array.isArray(db)) {
+        console.warn("Database video belum tersedia!");
+        return;
+    }
+
+    // Filter video
+    const filtered = db.filter(v => v.title.toLowerCase().includes(val));
+
+    // Render hasil
+    renderGrid(document.getElementById('app'), filtered);
+}
+
+/* =========================================
+   PLAYER
+========================================= */
+
+function handlePlay(id) {
+
+    playCounter++;
+
+    if (
+        PLAYER_CONFIG.enablePlayButtonDirectAds &&
+        playCounter === 1 &&
+        AD_CONFIG.allAds &&
+        AD_CONFIG.useDirect
+    ) {
+
+        runAd('direct');
+
+        document.getElementById(
+            'play-msg'
+        ).innerText = '';
+
+        return;
+    }
+
+
+    document.getElementById(
+        'player-box'
+    ).innerHTML =
+
+    '<iframe src="https://www.youtube.com/embed/' +
+    id +
+    '?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1" allow="autoplay; encrypted-media; fullscreen" allowfullscreen webkitallowfullscreen mozallowfullscreen style="width:100%; height:100%; border:none;"></iframe>' +
+
+    '<div class="video-mask mask-top"></div>' +
+
+    '<div class="video-mask mask-bottom"></div>' +
+
+    '<div id="fs-btn" class="btn-fs-custom" onclick="toggleFullScreen()"><i class="fas fa-expand"></i></div>';
+}
+
+
+function toggleFullScreen() {
+
+    const elem = document.getElementById(
+        'player-box'
+    );
+
+    const icon = document.querySelector(
+        '#fs-btn i'
+    );
+
+    if (
+        !document.fullscreenElement &&
+        !document.webkitFullscreenElement
+    ) {
+
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        }
+
+        else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        }
+
+        icon.className = 'fas fa-compress';
+
+    } else {
+
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+
+        else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+
+        icon.className = 'fas fa-expand';
+    }
+}
+
+
+
+/* =========================================
+   GRID
+========================================= */
+
+function renderGrid(container, data) {
+    container.className = 'main-content';
+    container.innerHTML =
+    '<h5 class="mb-3" style="color:#98FB98">🔥 TRENDING VIDEO</h5>' +
+    '<div class="video-grid">' +
+    data.map(v =>
+        // Perubahan: Menambahkan tag <a> agar Googlebot bisa merayapi URL ini
+        '<a href="/?v=' + v.slug + '" class="video-card-link" style="text-decoration:none; color:inherit;" onclick="handleNavigation(event, \'' + v.slug + '\')">' +
+        '<div class="video-card">' +
+        '<img src="https://img.youtube.com/vi/' + v.youtubeId + '/mqdefault.jpg" alt="' + v.title + '"/>' +
+        '<div class="video-card-title">' + v.title + '</div>' +
+        '</div>' +
+        '</a>'
+    ).join('') +
+    '</div>';
+}
+
+// WAJIB DISALIN: Fungsi ini agar navigasi tetap smooth (Single Page)
+function handleNavigation(event, slug) {
+    event.preventDefault(); // Mencegah browser reload halaman
+    navigateTo(slug);       // Pastikan nama fungsi ini sama dengan fungsi navigasi asli Anda
+}
+
+
+/* =========================================
+   VIDEO PAGE
+========================================= */
+
+function renderVideo(container, v) {
+
+    document.title = v.title + " | Trend4GenZ";
+
+setOGTag('og:title', v.title);
+
+setOGTag(
+    'og:description',
+    v.summary || v.title
+);
+
+setOGTag(
+    'og:image',
+    'https://img.youtube.com/vi/' +
+    v.youtubeId +
+    '/maxresdefault.jpg'
+);
+
+setOGTag(
+    'og:url',
+    window.location.href
+);
+
+setOGTag(
+    'og:type',
+    'video.other'
+);
+
+    let descTag =
+        document.querySelector('meta[name="description"]');
+
+    if (!descTag) {
+
+        descTag = document.createElement('meta');
+
+        descTag.name = 'description';
+
+        document.head.appendChild(descTag);
+    }
+
+    descTag.content =
+        v.summary || v.title;
+
+    playCounter = 0;
+    container.className =
+        'main-content video-page-container';
+
+    const db =
+        currentLang === 'id'
+            ? videoDatabaseID
+            : videoDatabaseEN;
+
+
+    const related = db
+        .filter(item => item.slug !== v.slug)
+        .slice(0, 8);
+
+
+    container.innerHTML =
+
+    '<div class="player-container" id="player-box">' +
+
+    '<div class="play-overlay" onclick="handlePlay(\'' + v.youtubeId + '\')">' +
+
+    '<i class="fas fa-play-circle"></i>' +
+
+    '<div id="play-msg" style="margin-top:10px; font-weight:bold;">TAP TO WATCH</div>' +
+
+    '</div>' +
+
+    '<img src="https://img.youtube.com/vi/' + v.youtubeId + '/maxresdefault.jpg" style="width:100%; height:100%; object-fit:cover;"/>' +
+
+    '</div>' +
+
+
+    '<div class="info-section">' +
+
+    '<h1 style="font-size:1.2rem; font-weight:800; margin:15px 0;">' + v.title + '</h1>' +
+
+
+    '<div class="dual-action-wrap">' +
+
+    '<button class="home-split-btn" onclick="handleBrandClick()">HOME</button>' +
+
+    '<button class="offer-split-btn" onclick="handleSpecialOffer()">SPECIAL OFFER</button>' +
+
+    '</div>' +
+
+
+    (
+        AD_CONFIG.useNative &&
+        AD_CONFIG.allAds
+
+        ?
+
+        '<div class="native-ads-slot" style="margin-bottom:15px;">' +
+        AD_CONFIG.links.nativeCode +
+        '</div>'
+
+        : ''
+    ) +
+
+
+    '<div class="summary-box">' +
+
+    '<div class="summary-text">' + v.summary + '</div>' +
+
+    '</div>' +
+
+
+    '<div style="display:none;">' +
+
+    (v.tags ? v.tags.join(', ') : '') +
+
+    '</div>' +
+
+
+    '<h6 class="mt-4 mb-3" style="color:#98FB98">MORE VIDEOS</h6>' +
+
+    '<div class="recommendation-slider">' +
+
+    related.map(r =>
+
+        '<div class="slider-item" onclick="navigateTo(\'' + r.slug + '\')">' +
+
+        '<img src="https://img.youtube.com/vi/' + r.youtubeId + '/mqdefault.jpg"/>' +
+
+        '<p>' + r.title + '</p>' +
+
+        '</div>'
+
+    ).join('') +
+
+    '</div>' +
+
+    '</div>';
+}
+
+function setOGTag(property, content) {
+
+    let tag = document.querySelector(
+        'meta[property="' + property + '"]'
+    );
+
+    if (!tag) {
+
+        tag = document.createElement('meta');
+
+        tag.setAttribute(
+            'property',
+            property
+        );
+
+        document.head.appendChild(tag);
+    }
+
+    tag.setAttribute(
+        'content',
+        content
+    );
+}
+
+
+
+function updateMetaTags(video) {
+
+    document.title =
+        video.title + " | Trend4GenZ";
+
+    let descTag =
+        document.querySelector(
+            'meta[name="description"]'
+        );
+
+    if (!descTag) {
+
+        descTag = document.createElement('meta');
+
+        descTag.setAttribute(
+            'name',
+            'description'
+        );
+
+        document.head.appendChild(descTag);
+    }
+
+    descTag.setAttribute(
+        'content',
+        video.summary || video.title
+    );
+}
+
+/* =========================================
+   ROUTER
+========================================= */
+
+async function router() {
+
+    const app = document.getElementById('app');
+
+    let slug = getCurrentSlug();
+
+    let lang = getCurrentLangParam();
+
+
+    if (!lang) {
+
+        if (SEO_CONFIG.autoGeoLanguage) {
+
+            lang = await detectGeoLanguage();
+
+        } else {
+
+            lang = 'id';
+        }
+    }
+
+
+    currentLang = lang;
+
+
+    document.getElementById('btn-id').className =
+        lang === 'id'
+            ? 'btn-lang active'
+            : 'btn-lang';
+
+
+    document.getElementById('btn-en').className =
+        lang === 'en'
+            ? 'btn-lang active'
+            : 'btn-lang';
+
+
+    const db =
+        lang === 'id'
+            ? videoDatabaseID
+            : videoDatabaseEN;
+
+
+    if (!slug || slug === 'home') {
+
+        renderGrid(
+            app,
+            [...db].sort(() => 0.5 - Math.random())
+        );
+
+        updateCanonical('home', lang);
+
+    } else {
+
+        const video = db.find(
+    v =>
+        v.slug === slug ||
+        seoUrl(v.title) === slug
+);
+
+        if (video) {
+
+    console.log(video);
+
+    renderVideo(app, video);
+
+    updateCanonical(video.slug, lang);
+
+    updateMetaTags(video);
+
+} else {
+
+    document.title = "Trend4GenZ - Streaming";
+
+    renderGrid(app, db);
+
+    updateCanonical('home', lang);
+}
+    }
+
+
+    window.scrollTo(0,0);
+}
+
+
+
+/* =========================================
+   EVENTS
+========================================= */
+
+window.addEventListener(
+    'popstate',
+    router
+);
+
+window.addEventListener('load', async () => {
+  await loadDatabases();
+  router();
+});
+//]]>
+</script>
+
+</body>
+</html>
