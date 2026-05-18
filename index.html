@@ -83,9 +83,38 @@
     .btn-action { width: 100%; border: none; padding: 12px; border-radius: 8px; font-weight: bold; background: #98FB98; color: #000; font-size: 1rem; transition: 0.3s; text-transform: uppercase; }
     .btn-action:hover { background: #ff032d; color: #000; transform: scale(1.02); }
 
-    .dual-action-wrap { display: flex; gap: 10px; margin-bottom: 15px; }
-    .home-split-btn { width: 50%; border: none; padding: 4px; border-radius: 8px; font-weight: bold; background: #98FB98; color: #000; font-size: 0.8rem; text-transform: uppercase; cursor: pointer; }
-    .offer-split-btn { width: 33.33%; border: none; padding: 4px; border-radius: 8px; font-weight: bold; background: #ffb07c; color: #000; font-size: 0.8rem; text-transform: uppercase; cursor: pointer; }
+    .dual-action-wrap { display: flex; gap: 10px; margin-bottom: 18px; }
+
+    /* Tombol HOME */
+    .home-split-btn {
+      width: 50%; border: none; padding: 10px 6px; border-radius: 10px;
+      font-weight: 800; background: #98FB98; color: #000;
+      font-size: 0.8rem; text-transform: uppercase; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      box-shadow: 0 0 12px rgba(152,251,152,0.4);
+      transition: all 0.2s ease; letter-spacing: 0.5px;
+    }
+    .home-split-btn:hover { background: #7ddb7d; transform: translateY(-2px); box-shadow: 0 0 20px rgba(152,251,152,0.6); }
+    .home-split-btn:active { transform: scale(0.97); }
+
+    /* Tombol SPECIAL OFFER — dibuat eye-catching */
+    .offer-split-btn {
+      width: 50%; border: none; padding: 10px 6px; border-radius: 10px;
+      font-weight: 800; color: #fff; font-size: 0.8rem;
+      text-transform: uppercase; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      box-shadow: 0 0 14px rgba(255,65,108,0.5);
+      transition: all 0.2s ease; letter-spacing: 0.5px;
+      animation: pulse-offer 2s infinite;
+    }
+    .offer-split-btn:hover { background: linear-gradient(135deg, #ff4b2b, #ff416c); transform: translateY(-2px); box-shadow: 0 0 24px rgba(255,65,108,0.7); }
+    .offer-split-btn:active { transform: scale(0.97); }
+
+    @keyframes pulse-offer {
+      0%, 100% { box-shadow: 0 0 14px rgba(255,65,108,0.5); }
+      50% { box-shadow: 0 0 24px rgba(255,65,108,0.85); }
+    }
 
     .summary-box { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border-left: 4px solid #98FB98; }
     .summary-text { white-space: pre-wrap; font-size: 0.9rem; line-height: 1.4; margin-bottom: 15px; letter-spacing: -0.2px; color: #ddd; text-align: left; }
@@ -413,6 +442,31 @@ function updateMetaTags(video) {
   setTwitterTag('twitter:title', title);
   setTwitterTag('twitter:description', description);
   setTwitterTag('twitter:image', image);
+
+  // Schema Markup VideoObject untuk Google Rich Results
+  const existingSchema = document.getElementById('schema-video');
+  if (existingSchema) existingSchema.remove();
+  const schema = document.createElement('script');
+  schema.id = 'schema-video';
+  schema.type = 'application/ld+json';
+  schema.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": video.title,
+    "description": description,
+    "thumbnailUrl": [
+      "https://img.youtube.com/vi/" + video.youtubeId + "/maxresdefault.jpg",
+      "https://img.youtube.com/vi/" + video.youtubeId + "/hqdefault.jpg"
+    ],
+    "embedUrl": "https://www.youtube.com/embed/" + video.youtubeId,
+    "url": url,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Trend4GenZ",
+      "url": "https://www.trend4genz.fun"
+    }
+  });
+  document.head.appendChild(schema);
 }
 
 function renderVideo(container, v) {
@@ -439,8 +493,8 @@ function renderVideo(container, v) {
     '<div class="info-section" style="padding:15px;">' +
     '<h1 style="font-size:1.2rem; font-weight:800; margin:15px 0;">' + v.title + '</h1>' +
     '<div class="dual-action-wrap">' +
-    '<button class="home-split-btn" onclick="handleBrandClick()">HOME</button>' +
-    '<button class="offer-split-btn" onclick="handleSpecialOffer()">SPECIAL OFFER</button>' +
+    '<button class="home-split-btn" onclick="handleBrandClick()"><i class="fas fa-home"></i> HOME</button>' +
+    '<button class="offer-split-btn" onclick="handleSpecialOffer()"><i class="fas fa-bolt"></i> SPECIAL OFFER 🔥</button>' +
     '</div>' +
     (AD_CONFIG.useNative && AD_CONFIG.allAds ? '<div class="native-ads-slot" style="margin-bottom:15px;">' + AD_CONFIG.links.nativeCode + '</div>' : '') +
     '<div class="summary-box"><div class="summary-text">' + v.summary + '</div></div>' +
