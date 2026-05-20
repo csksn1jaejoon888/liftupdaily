@@ -154,6 +154,25 @@
   </div>
 
 <script>
+  // Deteksi bot sosmed → redirect ke proxy
+(function() {
+  const ua = navigator.userAgent.toLowerCase();
+  const isBot =
+    ua.includes('facebookexternalhit') ||
+    ua.includes('twitterbot') ||
+    ua.includes('whatsapp') ||
+    ua.includes('linkedinbot') ||
+    ua.includes('telegrambot');
+
+  if (isBot) {
+    const params = new URLSearchParams(window.location.search);
+    const v    = params.get('v') || '';
+    const lang = params.get('lang') || 'id';
+    window.location.replace(
+      'https://og.trend4genz.fun/api/proxy?v=' + v + '&lang=' + lang
+    );
+  }
+})();
 
 const AD_CONFIG = {
   allAds: false,
