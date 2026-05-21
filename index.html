@@ -31,38 +31,95 @@
   <style>
     body { background-color: #212122; color: #f1f1f1; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
 
+    /* =============================================
+       NAVBAR SETTINGS — EDIT NILAI DI SINI
+    ============================================= */
+
+    /* — HOME navbar — */
+    :root {
+      --nav-home-bg:           #000000;       /* warna background navbar home */
+      --nav-home-border-color: #98FB98;       /* warna garis bawah */
+      --nav-home-border-show:  1.5px;         /* tebal garis (0px = hilang) */
+      --nav-home-padding:      12px 15px;     /* padding navbar home */
+      --nav-home-logo-color:   #98FB98;       /* warna teks logo */
+      --nav-home-logo-size:    1.5rem;        /* ukuran teks logo */
+      --nav-home-logo-show:    block;         /* block = tampil, none = hilang */
+      --nav-home-lang-show:    flex;          /* flex = tampil, none = hilang */
+      --nav-home-search-width: 100px;         /* lebar input search */
+      --nav-home-search-focus: 150px;         /* lebar input search saat fokus */
+
+      /* — VIDEO navbar — */
+      --nav-video-bg:           #000000;      /* warna background navbar video */
+      --nav-video-border-show:  0px;          /* tebal garis bawah (0px = hilang) */
+      --nav-video-border-color: #98FB98;      /* warna garis bawah (jika aktif) */
+      --nav-video-padding:      8px 15px;     /* padding navbar video */
+      --nav-video-logo-color:   #98FB98;      /* warna teks logo */
+      --nav-video-logo-size:    1.5rem;       /* ukuran teks logo */
+      --nav-video-logo-show:    none;         /* block = tampil, none = hilang */
+      --nav-video-lang-show:    none;         /* flex = tampil, none = hilang */
+      --nav-video-search-width: 50px;         /* lebar input search */
+      --nav-video-search-focus: 90px;         /* lebar input search saat fokus */
+    }
+
     /* ============================================
-       NAVBAR — MODE GRID (normal, tampil logo & border)
+       NAVBAR — MODE HOME/GRID
     ============================================ */
     .navbar-custom {
-      background-color: #000;
-      padding: 12px 15px;
+      background-color: var(--nav-home-bg);
+      padding: var(--nav-home-padding);
       position: sticky; top: 0; z-index: 1000;
       display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 1.5px solid #98FB98;
-      transition: all 0.3s ease;
+      border-bottom: var(--nav-home-border-show) solid var(--nav-home-border-color);
+      transition: background 0.3s, border 0.3s, padding 0.3s;
     }
-    /* MODE VIDEO — logo & border bawah hilang, search mengecil */
+
+    /* ============================================
+       NAVBAR — MODE VIDEO
+    ============================================ */
     .navbar-custom.video-mode {
-      border-bottom: none;
-      padding: 8px 15px;
+      background-color: var(--nav-video-bg);
+      padding: var(--nav-video-padding);
+      border-bottom: var(--nav-video-border-show) solid var(--nav-video-border-color);
     }
-    .navbar-custom.video-mode .brand-logo { display: none; }
-    .navbar-custom.video-mode .search-container input { width: 50px; }
-    .navbar-custom.video-mode .search-container input:focus { width: 90px; }
+    /* Logo */
+    .navbar-custom.video-mode .brand-logo {
+      display: var(--nav-video-logo-show);
+      color: var(--nav-video-logo-color);
+      font-size: var(--nav-video-logo-size);
+    }
+    /* Tombol ID/EN */
+    .navbar-custom.video-mode .lang-switch {
+      display: var(--nav-video-lang-show);
+    }
+    /* Search — selalu di kanan, ukuran mengecil */
     .navbar-custom.video-mode .search-container {
       padding: 3px 8px;
       border-radius: 14px;
     }
+    .navbar-custom.video-mode .search-container input {
+      width: var(--nav-video-search-width);
+    }
+    .navbar-custom.video-mode .search-container input:focus {
+      width: var(--nav-video-search-focus);
+    }
     .navbar-custom.video-mode .fa-search { font-size: 0.7rem !important; }
 
-    .brand-logo { color: #98FB98; font-weight: 900; font-size: 1.5rem; cursor: pointer; text-decoration: none; text-transform: uppercase; }
+    /* ── Home mode base styles ── */
+    .brand-logo {
+      color: var(--nav-home-logo-color);
+      font-weight: 900;
+      font-size: var(--nav-home-logo-size);
+      cursor: pointer; text-decoration: none; text-transform: uppercase;
+    }
     .lang-switch { display: flex; gap: 5px; margin-right: 10px; }
     .btn-lang { background: #222; color: #fff; border: 1px solid #8ad62d; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-weight: bold; }
     .btn-lang.active { background: #98FB98; color: #000; }
     .search-container { display: flex; align-items: center; background: #1a1a1a; border-radius: 20px; padding: 5px 12px; border: 1px solid #98FB98; }
-    .search-container input { background: transparent; border: none; color: #fff; outline: none; font-size: 0.85rem; width: 100px; transition: 0.3s; }
-    .search-container input:focus { width: 150px; }
+    .search-container input { background: transparent; border: none; color: #fff; outline: none; font-size: 0.85rem; width: var(--nav-home-search-width); transition: 0.3s; }
+    .search-container input:focus { width: var(--nav-home-search-focus); }
+
+    /* Pastikan grup kanan navbar selalu rata kanan */
+    .navbar-right-group { display: flex; align-items: center; margin-left: auto; }
 
     @media (max-width: 480px) {
       .navbar-custom { padding: 8px 10px; }
@@ -72,8 +129,6 @@
       .search-container { padding: 1.5px 4px; }
       .search-container input { width: 60px; }
       .search-container input:focus { width: 80px; }
-      .navbar-custom.video-mode .search-container input { width: 40px; }
-      .navbar-custom.video-mode .search-container input:focus { width: 70px; }
     }
 
     .main-content { padding: 15px; max-width: 1150px; margin: auto; }
@@ -184,7 +239,8 @@
 
   <nav class="navbar-custom" id="main-navbar">
     <div class="brand-logo" onclick="handleBrandClick()">Trend4GenZ</div>
-    <div style="display: flex; align-items: center;">
+    <!-- grup kanan: lang-switch + search — selalu rata kanan, search tidak berpindah -->
+    <div class="navbar-right-group">
       <div class="lang-switch">
         <button class="btn-lang" id="btn-id" onclick="changeLang('id')">ID</button>
         <button class="btn-lang" id="btn-en" onclick="changeLang('en')">EN</button>
