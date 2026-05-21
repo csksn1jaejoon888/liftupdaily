@@ -27,6 +27,7 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
 
   <style>
     body { background-color: #212122; color: #f1f1f1; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
@@ -52,7 +53,7 @@
       --nav-video-bg:           #000000;      /* warna background navbar video */
       --nav-video-border-show:  0px;          /* tebal garis bawah (0px = hilang) */
       --nav-video-border-color: #98FB98;      /* warna garis bawah (jika aktif) */
-      --nav-video-padding:      2px 10px;     /* UBAH: Diperkecil agar iframe naik ke atas */
+      --nav-video-padding:      8px 15px;     /* padding navbar video */
       --nav-video-logo-color:   #98FB98;      /* warna teks logo */
       --nav-video-logo-size:    1.5rem;       /* ukuran teks logo */
       --nav-video-logo-show:    none;         /* block = tampil, none = hilang */
@@ -97,10 +98,10 @@
       border-radius: 14px;
     }
     .navbar-custom.video-mode .search-container input {
-      width: var(--nav-video-search-width);
+      width: var(--nav-video-search-width) !important;
     }
     .navbar-custom.video-mode .search-container input:focus {
-      width: var(--nav-video-search-focus);
+      width: var(--nav-video-search-focus) !important;
     }
     .navbar-custom.video-mode .fa-search { font-size: 0.7rem !important; }
 
@@ -121,14 +122,44 @@
     /* Pastikan grup kanan navbar selalu rata kanan */
     .navbar-right-group { display: flex; align-items: center; margin-left: auto; }
 
-    @media (max-width: 480px) {
+    /* ============================================
+        KHUSUS SETTINGAN LAYAR MOBILE (HP)
+    ============================================ */
+    @media (max-width: 768px) {
       .navbar-custom { padding: 8px 10px; }
       .brand-logo { font-size: 1.1rem; }
       .lang-switch { gap: 3px; margin-right: 5px; }
       .btn-lang { padding: 1px 5px; }
-      .search-container { padding: 1.5px 4px; }
-      .search-container input { width: 60px; }
-      .search-container input:focus { width: 80px; }
+      
+      /* Pembatasan Ukuran Search Khusus di HP agar tidak merusak PC */
+      .search-container { padding: 2px 6px !important; }
+      .search-container input { width: 60px !important; }
+      .search-container input:focus { width: 80px !important; }
+
+      .navbar-custom.video-mode .search-container input { width: 45px !important; }
+      .navbar-custom.video-mode .search-container input:focus { width: 65px !important; }
+
+      /* Tampilan Banner Notice Khusus Mobile */
+      .mobile-only-notice {
+        display: block !important;
+        background-color: #ff003c;
+        color: #ffffff;
+        text-align: center;
+        padding: 5px 8px !important; /* Padding tipis agar tidak tebal */
+        font-size: 11px !important;   /* Ukuran font kompak pas 1 baris */
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: bold;
+        white-space: nowrap;          /* Paksa text jadi 1 baris */
+        overflow: hidden;
+        text-overflow: ellipsis;      /* Potong anggun jika terlalu panjang */
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+
+    /* Default Banner disembunyikan di Desktop/PC */
+    .mobile-only-notice {
+      display: none;
     }
 
     .main-content { padding: 15px; max-width: 1150px; margin: auto; }
@@ -253,34 +284,21 @@
       <i class="fas fa-spinner fa-spin" style="font-size:2rem; color:#98FB98;"></i>
       <p>Memuat video...</p>
     </div>
-  </div >
+  </div>
 
 <script>
-/* =============================================
-    KONFIGURASI IKLAN — EDIT DI SINI
-    true  = AKTIF / false = NONAKTIF
-============================================= */
 const AD_CONFIG = {
   allAds: true,
-
-  gridPageAds: {
-    nativeBanner: true,   
-  },
-  videoPageAds: {
-    nativeBanner: true,   
-  },
-
+  gridPageAds: { nativeBanner: true },
+  videoPageAds: { nativeBanner: true },
   useDirect:   false,
   usePopunder: false,
-
-  gridBannerAfterRow: 1,   
+  gridBannerAfterRow: 1, 
   gridColumnsOnMobile: 2,  
-
   links: {
     direct:   "https://google.translate.com",
     popunder: "https://google.com",
   },
-
   nativeBannerHTML: `
     <div style="
       display:flex; align-items:center; gap:14px;
@@ -306,8 +324,6 @@ const AD_CONFIG = {
     </div>
   `
 };
-
-/* ─────────────────────────────────────────── */
 
 const PLAYER_CONFIG = { enablePlayButtonDirectAds: false };
 const SEO_CONFIG    = { autoGeoLanguage: true };
@@ -351,7 +367,7 @@ async function loadDatabases() {
   }
 }
 
-function getUrlParams()      { return new URLSearchParams(window.location.search); }
+function getUrlParams()       { return new URLSearchParams(window.location.search); }
 function getCurrentSlug()    { return getUrlParams().get('v'); }
 function getCurrentLangParam(){ return getUrlParams().get('lang'); }
 
@@ -366,13 +382,16 @@ function updateCanonical(slug, lang) {
   c.href = window.location.origin + window.location.pathname + '?v=' + slug + '&lang=' + lang;
 }
 
+// Menghindari konversi string ganda jika slug sudah berformat SEO URL
 function seoUrl(text) {
+  if (!text) return '';
+  if (text.includes('-')) return text;
   return text.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/--+/g,'-').substring(0,70).replace(/-$/,'');
 }
 
 function navigateTo(slug) {
   const db = currentLang === 'id' ? videoDatabaseID : videoDatabaseEN;
-  const video = db.find(v => v.slug === slug);
+  const video = db.find(v => v.slug === slug || seoUrl(v.title) === slug);
   if (!video) return;
   const url = window.location.pathname + '?lang=' + currentLang + '&v=' + seoUrl(video.title);
   history.pushState({}, '', url);
@@ -504,7 +523,6 @@ function setTwitterTag(name, content) {
   tag.setAttribute('content', content);
 }
 
-// Deteksi otomatis penulisan schema microdata / meta tags seo
 function updateMetaTags(video) {
   const title = video.title + " | Trend4GenZ";
   const description = video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,160) : video.title;
@@ -550,11 +568,6 @@ function renderVideo(container, v) {
 
   const showVideoBanner = AD_CONFIG.allAds && AD_CONFIG.videoPageAds.nativeBanner;
 
-  // PENYESUAIAN: Kalimat text banner dipisahkan & disesuaikan otomatis mengikuti file json db aktif
-  const bypassMessage = currentLang === 'id' 
-    ? '📱 Layar Miring/Lebar: Klik [⋮] di atas ↗️ lalu pilih Buka di Browser'
-    : '📱 Full Screen Wide? Click [⋮] at the top ↗️ then select Open in Browser';
-
   container.innerHTML =
     '<div class="player-container" id="player-box">' +
     '<div class="play-overlay" onclick="handlePlay(\'' + v.youtubeId + '\')">' +
@@ -563,15 +576,16 @@ function renderVideo(container, v) {
     '</div>' +
     '<img src="https://img.youtube.com/vi/' + v.youtubeId + '/maxresdefault.jpg" style="width:100%; height:100%; object-fit:cover;"/>' +
     '</div>' +
-    // PENYESUAIAN: Menyisipkan bar banner tipis full-width tepat di posisi antara iframe dan judul
-    '<div style="background:#ff032d; color:#fff; text-align:center; padding:5px 10px; font-size:0.75rem; font-weight:bold; letter-spacing:0.3px; margin-top:2px; margin-bottom:2px;">' + bypassMessage + '</div>' +
+    
+    /* POSISI BANNER NOTICE BARU: Tepat di bawah player, tipis, padat 1 baris, & Font Roboto (Hanya aktif di Mobile) */
+    '<div class="mobile-only-notice">📱 Full Screen Wide? Click [:] at the top ↗️ then select Open in Browser</div>' +
+
     '<div class="info-section" style="padding:15px;">' +
     '<h1 style="font-size:1.2rem; font-weight:800; margin:15px 0;">' + v.title + '</h1>' +
     '<div class="dual-action-wrap">' +
     '<button class="home-split-btn" onclick="handleBrandClick()"><i class="fas fa-home"></i> HOME</button>' +
     '<button class="offer-split-btn" onclick="handleSpecialOffer()"><i class="fas fa-bolt"></i> SPECIAL OFFER 🔥</button>' +
     '</div>' +
-    /* ── Native banner video page ── */
     (showVideoBanner ? buildNativeBanner() : '') +
     '<div class="summary-box"><div class="summary-text">' + v.summary + '</div></div>' +
     '<div style="display:none;">' + (v.tags ? v.tags.join(', ') : '') + '</div>' +
@@ -587,7 +601,6 @@ function renderVideo(container, v) {
     '</div>';
 }
 
-/* ─── Router ─── */
 async function router() {
   const app    = document.getElementById('app');
   const navbar = document.getElementById('main-navbar');
@@ -623,7 +636,6 @@ async function router() {
   window.scrollTo(0, 0);
 }
 
-/* ─── Events ─── */
 window.addEventListener('popstate', router);
 window.addEventListener('load', async () => {
   await loadDatabases();
