@@ -32,7 +32,7 @@
     body { background-color: #212122; color: #f1f1f1; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
 
     /* =============================================
-       NAVBAR SETTINGS — EDIT NILAI DI SINI
+        NAVBAR SETTINGS — EDIT NILAI DI SINI
     ============================================= */
 
     /* — HOME navbar — */
@@ -52,7 +52,7 @@
       --nav-video-bg:           #000000;      /* warna background navbar video */
       --nav-video-border-show:  0px;          /* tebal garis bawah (0px = hilang) */
       --nav-video-border-color: #98FB98;      /* warna garis bawah (jika aktif) */
-      --nav-video-padding:      8px 15px;     /* padding navbar video */
+      --nav-video-padding:      2px 10px;     /* UBAH: Diperkecil agar iframe naik ke atas */
       --nav-video-logo-color:   #98FB98;      /* warna teks logo */
       --nav-video-logo-size:    1.5rem;       /* ukuran teks logo */
       --nav-video-logo-show:    none;         /* block = tampil, none = hilang */
@@ -62,7 +62,7 @@
     }
 
     /* ============================================
-       NAVBAR — MODE HOME/GRID
+        NAVBAR — MODE HOME/GRID
     ============================================ */
     .navbar-custom {
       background-color: var(--nav-home-bg);
@@ -74,7 +74,7 @@
     }
 
     /* ============================================
-       NAVBAR — MODE VIDEO
+        NAVBAR — MODE VIDEO
     ============================================ */
     .navbar-custom.video-mode {
       background-color: var(--nav-video-bg);
@@ -102,7 +102,7 @@
     .navbar-custom.video-mode .search-container input:focus {
       width: var(--nav-video-search-focus);
     }
-    .navbar-custom.video-mode .fa-search { font-size: 0.6rem !important; }
+    .navbar-custom.video-mode .fa-search { font-size: 0.7rem !important; }
 
     /* ── Home mode base styles ── */
     .brand-logo {
@@ -203,7 +203,7 @@
     .loading-screen p { color: #98FB98; font-size: 0.9rem; }
 
     /* ============================================
-       NATIVE BANNER AD
+        NATIVE BANNER AD
     ============================================ */
     .native-banner-wrap {
       position: relative;
@@ -213,7 +213,6 @@
       overflow: hidden;
       background: #e00;
       min-height: 90px;
-      /* Ukuran auto & responsive */
     }
     .native-banner-wrap .close-btn {
       position: absolute; top: 6px; right: 6px;
@@ -225,13 +224,11 @@
       line-height: 1;
     }
     .native-banner-wrap .close-btn:hover { background: rgba(0,0,0,0.9); }
-    /* Isi iklan native bisa diganti kode asli dari jaringan iklan */
     .native-banner-inner {
       width: 100%; padding: 18px 40px 18px 18px;
       display: flex; flex-direction: column; justify-content: center;
       min-height: 90px;
     }
-    /* Grid span full width untuk banner di tengah grid */
     .grid-full-span { grid-column: 1 / -1; }
   </style>
 </head>
@@ -239,7 +236,6 @@
 
   <nav class="navbar-custom" id="main-navbar">
     <div class="brand-logo" onclick="handleBrandClick()">Trend4GenZ</div>
-    <!-- grup kanan: lang-switch + search — selalu rata kanan, search tidak berpindah -->
     <div class="navbar-right-group">
       <div class="lang-switch">
         <button class="btn-lang" id="btn-id" onclick="changeLang('id')">ID</button>
@@ -257,44 +253,34 @@
       <i class="fas fa-spinner fa-spin" style="font-size:2rem; color:#98FB98;"></i>
       <p>Memuat video...</p>
     </div>
-  </div>
+  </div >
 
 <script>
 /* =============================================
-   KONFIGURASI IKLAN — EDIT DI SINI
-   true  = AKTIF / false = NONAKTIF
+    KONFIGURASI IKLAN — EDIT DI SINI
+    true  = AKTIF / false = NONAKTIF
 ============================================= */
 const AD_CONFIG = {
-  // ── Master switch — jika false, semua iklan mati ──
   allAds: true,
 
-  // ── Per-halaman switch ──
   gridPageAds: {
-    nativeBanner: true,   // Banner native di halaman GRID (home)
+    nativeBanner: true,   
   },
   videoPageAds: {
-    nativeBanner: true,   // Banner native di halaman VIDEO
+    nativeBanner: true,   
   },
 
-  // ── Switch lain ──
-  useDirect:   true,
-  usePopunder: true,
+  useDirect:   false,
+  usePopunder: false,
 
-  // ── Posisi banner di grid: setelah baris ke-berapa (0-indexed row) ──
-  // Karena 2 kolom, baris ke-2 = setelah item ke-4
-  gridBannerAfterRow: 1,   // 0 = baris pertama, 1 = baris kedua, dst.
-  gridColumnsOnMobile: 2,  // sesuai grid-template-columns mobile
+  gridBannerAfterRow: 1,   
+  gridColumnsOnMobile: 2,  
 
   links: {
     direct:   "https://google.translate.com",
     popunder: "https://google.com",
   },
 
-  /* ── HTML IKLAN NATIVE ──────────────────────────────────────
-     Ganti isi di bawah ini dengan kode dari jaringan iklan Anda
-     (Google AdSense native, Media.net, PropellerAds, dll.)
-     Contoh di bawah adalah SIMULASI tampilan iklan native.
-  ─────────────────────────────────────────────────────────── */
   nativeBannerHTML: `
     <div style="
       display:flex; align-items:center; gap:14px;
@@ -331,7 +317,6 @@ let playCounter = 0;
 let videoDatabaseEN = [];
 let videoDatabaseID = [];
 
-/* ─── Helper: render native banner ─── */
 function buildNativeBanner(extraClass) {
   if (!AD_CONFIG.allAds) return '';
   return `
@@ -344,7 +329,6 @@ function buildNativeBanner(extraClass) {
   `;
 }
 
-/* ─── Bot redirect ─── */
 (function() {
   const ua = navigator.userAgent.toLowerCase();
   const isBot = ua.includes('facebookexternalhit') || ua.includes('twitterbot') ||
@@ -355,7 +339,6 @@ function buildNativeBanner(extraClass) {
   }
 })();
 
-/* ─── Load DB ─── */
 async function loadDatabases() {
   try {
     const [resEN, resID] = await Promise.all([fetch('./db-en.json'), fetch('./db-id.json')]);
@@ -368,7 +351,6 @@ async function loadDatabases() {
   }
 }
 
-/* ─── URL helpers ─── */
 function getUrlParams()      { return new URLSearchParams(window.location.search); }
 function getCurrentSlug()    { return getUrlParams().get('v'); }
 function getCurrentLangParam(){ return getUrlParams().get('lang'); }
@@ -397,14 +379,12 @@ function navigateTo(slug) {
   router();
 }
 
-/* ─── Ads ─── */
 function runAd(type) {
   if (!AD_CONFIG.allAds) return;
   if (type === 'pop' && AD_CONFIG.usePopunder) window.open(AD_CONFIG.links.popunder, '_blank');
   if (type === 'direct' && AD_CONFIG.useDirect) window.open(AD_CONFIG.links.direct, '_blank');
 }
 
-/* ─── Language ─── */
 function changeLang(lang) {
   currentLang = lang;
   const currentSlug = getCurrentSlug();
@@ -434,7 +414,6 @@ function handleSpecialOffer() {
   if (AD_CONFIG.allAds && AD_CONFIG.useDirect) window.open(AD_CONFIG.links.direct, '_blank');
 }
 
-/* ─── Search ─── */
 function initSearch() {
   const si = document.getElementById('searchInput');
   const sb = document.getElementById('searchBtn');
@@ -452,7 +431,6 @@ function doSearch() {
   renderGrid(document.getElementById('app'), db.filter(v => v.title.toLowerCase().includes(val)));
 }
 
-/* ─── Player ─── */
 function handlePlay(id) {
   playCounter++;
   if (PLAYER_CONFIG.enablePlayButtonDirectAds && playCounter === 1 && AD_CONFIG.allAds && AD_CONFIG.useDirect) {
@@ -482,18 +460,13 @@ function toggleFullScreen() {
   }
 }
 
-/* ─── Grid ─── */
 function renderGrid(container, data) {
-  /* Hitung posisi insert banner: setelah row ke-N
-     Mobile = 2 kolom → row N = setelah item index (N+1)*2 - 1
-  */
   const cols  = window.innerWidth >= 992 ? 4 : AD_CONFIG.gridColumnsOnMobile;
   const afterRow = AD_CONFIG.gridBannerAfterRow;
-  const insertAfterIndex = (afterRow + 1) * cols - 1; // 0-based index item terakhir di baris tsb
+  const insertAfterIndex = (afterRow + 1) * cols - 1; 
 
   const showGridBanner = AD_CONFIG.allAds && AD_CONFIG.gridPageAds.nativeBanner;
 
-  // Bangun item grid
   let gridItems = data.map((v, i) => {
     let html = `
       <a href="?v=${v.slug}&lang=${currentLang}" class="video-card-link" style="text-decoration:none; color:inherit;"
@@ -503,7 +476,6 @@ function renderGrid(container, data) {
           <div class="video-card-title">${v.title}</div>
         </div>
       </a>`;
-    // Sisipkan banner SETELAH item ke-insertAfterIndex (full-width, span all cols)
     if (showGridBanner && i === insertAfterIndex) {
       html += `<div class="grid-full-span">${buildNativeBanner()}</div>`;
     }
@@ -521,7 +493,6 @@ function handleNavigation(event, slug) {
   navigateTo(slug);
 }
 
-/* ─── SEO helpers ─── */
 function setOGTag(property, content) {
   let tag = document.querySelector('meta[property="' + property + '"]');
   if (!tag) { tag = document.createElement('meta'); tag.setAttribute('property', property); document.head.appendChild(tag); }
@@ -533,6 +504,7 @@ function setTwitterTag(name, content) {
   tag.setAttribute('content', content);
 }
 
+// Deteksi otomatis penulisan schema microdata / meta tags seo
 function updateMetaTags(video) {
   const title = video.title + " | Trend4GenZ";
   const description = video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,160) : video.title;
@@ -578,6 +550,11 @@ function renderVideo(container, v) {
 
   const showVideoBanner = AD_CONFIG.allAds && AD_CONFIG.videoPageAds.nativeBanner;
 
+  // PENYESUAIAN: Kalimat text banner dipisahkan & disesuaikan otomatis mengikuti file json db aktif
+  const bypassMessage = currentLang === 'id' 
+    ? '📱 Layar Miring/Lebar: Klik [⋮] di atas ↗️ lalu pilih Buka di Browser'
+    : '📱 Full Screen Wide? Click [⋮] at the top ↗️ then select Open in Browser';
+
   container.innerHTML =
     '<div class="player-container" id="player-box">' +
     '<div class="play-overlay" onclick="handlePlay(\'' + v.youtubeId + '\')">' +
@@ -586,6 +563,8 @@ function renderVideo(container, v) {
     '</div>' +
     '<img src="https://img.youtube.com/vi/' + v.youtubeId + '/maxresdefault.jpg" style="width:100%; height:100%; object-fit:cover;"/>' +
     '</div>' +
+    // PENYESUAIAN: Menyisipkan bar banner tipis full-width tepat di posisi antara iframe dan judul
+    '<div style="background:#ff032d; color:#fff; text-align:center; padding:5px 10px; font-size:0.75rem; font-weight:bold; letter-spacing:0.3px; margin-top:2px; margin-bottom:2px;">' + bypassMessage + '</div>' +
     '<div class="info-section" style="padding:15px;">' +
     '<h1 style="font-size:1.2rem; font-weight:800; margin:15px 0;">' + v.title + '</h1>' +
     '<div class="dual-action-wrap">' +
@@ -624,14 +603,12 @@ async function router() {
   const db = lang === 'id' ? videoDatabaseID : videoDatabaseEN;
 
   if (!slug || slug === 'home') {
-    /* GRID mode — navbar normal */
     navbar.classList.remove('video-mode');
     renderGrid(app, [...db].sort(() => 0.5 - Math.random()));
     updateCanonical('home', lang);
   } else {
     const video = db.find(v => v.slug === slug || seoUrl(v.title) === slug);
     if (video) {
-      /* VIDEO mode — navbar: logo hilang, border hilang, search kecil */
       navbar.classList.add('video-mode');
       renderVideo(app, video);
       updateCanonical(video.slug, lang);
