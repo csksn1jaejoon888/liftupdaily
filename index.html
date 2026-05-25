@@ -701,6 +701,18 @@ async function router() {
   if (!lang) lang = SEO_CONFIG.autoGeoLanguage ? await detectGeoLanguage() : 'id';
   currentLang = lang;
 
+  let robotsTag = document.querySelector('meta[name="robots"]');
+if (!robotsTag) {
+  robotsTag = document.createElement('meta');
+  robotsTag.setAttribute('name', 'robots');
+  document.head.appendChild(robotsTag);
+}
+if (lang === 'id') {
+  robotsTag.setAttribute('content', 'noindex, nofollow');
+} else {
+  robotsTag.setAttribute('content', 'index, follow');
+}
+
   document.getElementById('btn-id').className = lang === 'id' ? 'btn-lang active' : 'btn-lang';
   document.getElementById('btn-en').className = lang === 'en' ? 'btn-lang active' : 'btn-lang';
 
