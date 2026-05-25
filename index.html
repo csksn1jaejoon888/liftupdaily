@@ -381,6 +381,33 @@ function updateCanonical(slug, lang) {
   if (!c) { c = document.createElement('link'); c.id='dynamic-canonical'; c.rel='canonical'; document.head.appendChild(c); }
   c.href = window.location.origin + window.location.pathname + '?v=' + slug + '&lang=' + lang;
 }
+  function updateHreflang(video) {
+  // Bersihkan tag hreflang lama saat berganti video agar tidak menumpuk
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
+
+  if (!video) return; 
+
+  const baseUrl = window.location.origin + window.location.pathname;
+  
+  // Ambil data cross-language menggunakan identitas youtubeId yang sama
+  const videoID = videoDatabaseID.find(v => v.youtubeId === video.youtubeId) || video;
+  const videoEN = videoDatabaseEN.find(v => v.youtubeId === video.youtubeId) || video;
+
+  const urlID = baseUrl + '?v=' + videoID.slug + '&lang=id';
+  const urlEN = baseUrl + '?v=' + videoEN.slug + '&lang=en';
+
+  const createLinkTag = (hreflang, href) => {
+    const link = document.createElement('link');
+    link.rel = 'alternate';
+    link.hreflang = hreflang;
+    link.href = href;
+    document.head.appendChild(link);
+  };
+
+  createLinkTag('id', urlID);
+  createLinkTag('en', urlEN);
+  createLinkTag('x-default', urlEN); // Default disetel ke bahasa Inggris
+}
 
 // Menghindari konversi string ganda jika slug sudah berformat SEO URL
 function seoUrl(text) {
@@ -393,7 +420,9 @@ function navigateTo(slug) {
   const db = currentLang === 'id' ? videoDatabaseID : videoDatabaseEN;
   const video = db.find(v => v.slug === slug || seoUrl(v.title) === slug);
   if (!video) return;
-  const url = window.location.pathname + '?lang=' + currentLang + '&v=' + seoUrl(video.title);
+  
+  // Menggunakan video.slug secara langsung, bukan seoUrl(video.title)
+  const url = window.location.pathname + '?lang=' + currentLang + '&v=' + video.slug;
   history.pushState({}, '', url);
   router();
 }
@@ -408,15 +437,21 @@ function changeLang(lang) {
   currentLang = lang;
   const currentSlug = getCurrentSlug();
   let targetSlug = null;
+  
   if (currentSlug) {
     const dbTarget = lang === 'id' ? videoDatabaseID : videoDatabaseEN;
     const dbSource = lang === 'id' ? videoDatabaseEN : videoDatabaseID;
     const videoSource = dbSource.find(v => v.slug === currentSlug || seoUrl(v.title) === currentSlug);
+    
     if (videoSource) {
       const videoTarget = dbTarget.find(v => v.youtubeId === videoSource.youtubeId);
-      targetSlug = videoTarget ? seoUrl(videoTarget.title) : seoUrl(videoSource.title);
-    } else { targetSlug = currentSlug; }
+      // Memanggil langsung dari properti slug target
+      targetSlug = videoTarget ? videoTarget.slug : videoSource.slug;
+    } else { 
+      targetSlug = currentSlug; 
+    }
   }
+  
   let url = window.location.pathname + '?lang=' + lang;
   if (targetSlug) url += '&v=' + targetSlug;
   history.pushState({}, '', url);
@@ -560,6 +595,7 @@ function updateMetaTags(video) {
 function renderVideo(container, v) {
   updateMetaTags(v);
   updateCanonical(v.slug, currentLang);
+  updateHreflang(v);
   playCounter = 0;
   container.className = 'main-content video-page-container';
 
