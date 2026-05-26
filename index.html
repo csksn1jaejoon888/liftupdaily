@@ -212,6 +212,88 @@
     .native-banner-wrap .close-btn:hover { background: rgba(0,0,0,0.9); }
     .native-banner-inner { width: 100%; padding: 18px 40px 18px 18px; display: flex; flex-direction: column; justify-content: center; min-height: 90px; }
     .grid-full-span { grid-column: 1 / -1; }
+    .search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Dropdown suggestion ── */
+.search-suggestions {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 280px;
+  background: #1a1a1a;
+  border: 1px solid #98FB98;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 99999;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  display: none; /* default hidden */
+}
+
+.search-suggestions.show {
+  display: block;
+}
+
+/* ── Tiap item suggestion ── */
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.suggestion-item:last-child { border-bottom: none; }
+.suggestion-item:hover, .suggestion-item.active {
+  background: rgba(152,251,152,0.12);
+}
+
+/* Thumbnail kecil */
+.suggestion-item img {
+  width: 52px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* Judul suggestion */
+.suggestion-item span {
+  font-size: 0.75rem;
+  color: #f1f1f1;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Highlight kata yang cocok */
+.suggestion-item span em {
+  color: #98FB98;
+  font-style: normal;
+  font-weight: bold;
+}
+
+/* Teks "tidak ada hasil" */
+.suggestion-empty {
+  padding: 12px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #888;
+}
+
+/* Mobile: lebar penuh */
+@media (max-width: 768px) {
+  .search-suggestions {
+    width: 240px;
+    right: 0;
+  }
+}
   </style>
 </head>
 <body>
@@ -223,10 +305,14 @@
         <button class="btn-lang" id="btn-id" onclick="changeLang('id')">ID</button>
         <button class="btn-lang" id="btn-en" onclick="changeLang('en')">EN</button>
       </div>
-      <div class="search-container">
-        <input id="searchInput" placeholder="Cari..." type="text"/>
-        <i class="fas fa-search" id="searchBtn" style="color:#98FB98; font-size:0.8rem; cursor:pointer;"></i>
-      </div>
+      <div class="search-wrapper">
+  <div class="search-container">
+    <input id="searchInput" placeholder="Cari..." type="text" autocomplete="off"/>
+    <i class="fas fa-search" id="searchBtn" style="color:#98FB98; font-size:0.8rem; cursor:pointer;"></i>
+  </div>
+  <!-- Dropdown suggestion -->
+  <div class="search-suggestions" id="searchSuggestions"></div>
+</div>
     </div>
   </nav>
 
@@ -466,22 +552,132 @@ function handleSpecialOffer() {
 }
 
 function initSearch() {
-  const si = document.getElementById('searchInput');
-  const sb = document.getElementById('searchBtn');
-  if (!si || !sb) return;
-  si.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
-  sb.addEventListener('click', doSearch);
+  const input       = document.getElementById('searchInput');
+  const searchBtn   = document.getElementById('searchBtn');
+  const suggestions = document.getElementById('searchSuggestions');
+  if (!input || !searchBtn || !suggestions) return;
+
+  let activeIndex = -1;  // untuk navigasi keyboard ↑↓
+
+  // ── Tampilkan suggestion saat mengetik ──────────────────────────
+  input.addEventListener('input', () => {
+    const val = input.value.trim().toLowerCase();
+    activeIndex = -1;
+
+    if (val.length < 1) {
+      hideSuggestions();
+      return;
+    }
+
+    const db      = currentLang === 'id' ? videoDatabaseID : videoDatabaseEN;
+    const matches = db
+      .filter(v => v.title.toLowerCase().includes(val))
+      .slice(0, 7);  // max 7 suggestion
+
+    if (matches.length === 0) {
+      suggestions.innerHTML = `<div class="suggestion-empty">Tidak ada hasil untuk "<b>${val}</b>"</div>`;
+      suggestions.classList.add('show');
+      return;
+    }
+
+    // Highlight kata yang cocok
+    function highlight(text, query) {
+      const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      return text.replace(regex, '<em>$1</em>');
+    }
+
+    suggestions.innerHTML = matches.map((v, i) => `
+      <div class="suggestion-item" data-slug="${v.slug}" data-index="${i}">
+        <img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg"
+             loading="lazy" alt="${v.title}"/>
+        <span>${highlight(v.title, val)}</span>
+      </div>
+    `).join('');
+
+    suggestions.classList.add('show');
+
+    // Klik pada suggestion
+    suggestions.querySelectorAll('.suggestion-item').forEach(item => {
+      item.addEventListener('mousedown', e => {
+        e.preventDefault(); // cegah blur dulu
+        const slug = item.getAttribute('data-slug');
+        input.value = '';
+        hideSuggestions();
+        navigateTo(slug);
+      });
+    });
+  });
+
+  // ── Navigasi keyboard ↑ ↓ Enter Escape ─────────────────────────
+  input.addEventListener('keydown', e => {
+    const items = suggestions.querySelectorAll('.suggestion-item');
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      activeIndex = Math.min(activeIndex + 1, items.length - 1);
+      updateActive(items);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      activeIndex = Math.max(activeIndex - 1, -1);
+      updateActive(items);
+    } else if (e.key === 'Enter') {
+      if (activeIndex >= 0 && items[activeIndex]) {
+        const slug = items[activeIndex].getAttribute('data-slug');
+        input.value = '';
+        hideSuggestions();
+        navigateTo(slug);
+      } else {
+        doSearch();
+      }
+    } else if (e.key === 'Escape') {
+      hideSuggestions();
+      input.blur();
+    }
+  });
+
+  function updateActive(items) {
+    items.forEach((item, i) => {
+      item.classList.toggle('active', i === activeIndex);
+    });
+  }
+
+  // ── Klik di luar → tutup suggestion ────────────────────────────
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.search-wrapper')) {
+      hideSuggestions();
+    }
+  });
+
+  // ── Klik icon search → doSearch ────────────────────────────────
+  searchBtn.addEventListener('click', doSearch);
+
+  function hideSuggestions() {
+    suggestions.classList.remove('show');
+    suggestions.innerHTML = '';
+    activeIndex = -1;
+  }
 }
 
 function doSearch() {
-  const si  = document.getElementById('searchInput');
-  if (!si) return;
-  const val = si.value.toLowerCase();
-  const db  = currentLang === 'id' ? videoDatabaseID : videoDatabaseEN;
-  if (!db || !Array.isArray(db)) return;
-  renderGrid(document.getElementById('app'), db.filter(v => v.title.toLowerCase().includes(val)));
-}
+  const input = document.getElementById('searchInput');
+  const suggestions = document.getElementById('searchSuggestions');
+  if (!input) return;
+  const val = input.value.trim().toLowerCase();
+  if (!val) return;
 
+  // Tutup suggestion
+  if (suggestions) {
+    suggestions.classList.remove('show');
+    suggestions.innerHTML = '';
+  }
+
+  const db = currentLang === 'id' ? videoDatabaseID : videoDatabaseEN;
+  const results = db.filter(v => v.title.toLowerCase().includes(val));
+  renderGrid(document.getElementById('app'), results);
+
+  // Kembali ke home mode
+  document.getElementById('main-navbar').classList.remove('video-mode');
+}
 // ═══════════════════════════════════════════════════════
 //  HANDLE PLAY — iklan mulai dari video ke-N
 // ═══════════════════════════════════════════════════════
