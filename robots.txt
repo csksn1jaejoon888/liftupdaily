@@ -1,8 +1,5 @@
 User-agent: *
-Disallow: /?lang=id
-Disallow: /?v=*&lang=id
 Allow: /
-Allow: /?lang=en
-Allow: /?v=*&lang=en
+Disallow: /?v=*
 
 Sitemap: https://www.trend4genz.fun/sitemap.xml
