@@ -26,7 +26,7 @@ const baseUrl = 'https://www.trend4genz.fun';
 let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>${baseUrl}/?lang=en</loc>
+    <loc>${baseUrl}/</loc>
     <priority>1.0</priority>
   </url>`;
 
@@ -35,7 +35,7 @@ dbEN.forEach(video => {
   if (video && video.slug) {
     xml += `
   <url>
-    <loc>${baseUrl}/?v=${video.slug}&amp;lang=en</loc>
+    <loc>${baseUrl}/?v=${video.slug}</loc>
     <priority>0.8</priority>
   </url>`;
   }
