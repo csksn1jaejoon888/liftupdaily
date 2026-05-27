@@ -21,7 +21,7 @@
     "youtubeId": "-5Drsq6ve7w",
     "tags": [
       "Answer Engine Optimization (AEO)",
-      "AI business recommendations 2026",
+      "AI Business recommendations 2026",
       "HubSpot AEO tool",
       "B2B2C marketing strategy",
       "AI citations and sources",
@@ -41,7 +41,7 @@
       "Twitter HomeMixer Rust migration",
       "AI replacing hand-engineered features",
       "Grok transformer vs microservices",
-      "Thunder in-memory store Rust",
+      "Thunder in memory store Rust",
       "Phoenix Python recommendation pipeline"
     ],
     "summary": "XAI’s recent open-source release of its recommendation algorithm has sent shockwaves through the tech community by eliminating Java and Scala entirely in favor of Rust and Python. The move wasn’t just a refactor—it was a complete architectural overhaul that reduced a sprawling microservices-based system into just four core components. This isn’t just another language migration; it’s a paradigm shift where AI models now absorb the logic that once required thousands of lines of hand-tuned code.\n\n\nThe video reveals how XAI’s new system replaces Twitter’s legacy Scala framework, Product Mixer, and its interconnected microservices like SimClusters and RealGraph with a streamlined pipeline. Rust powers Thunder, an in-memory post store designed for sub-millisecond latency, while Python’s Phoenix handles retrieval and a Grok-based transformer ranks posts based on learned engagement patterns. The old system relied on explicit weights like \"reply to comments +75\" or \"report a post -369,\" painstakingly tuned over years of meetings. The new approach lets the model learn these patterns directly from user behavior, eliminating the need for manual heuristics. This transition reflects a broader industry trend, with Discord, Cloudflare, and even the Linux kernel increasingly adopting Rust for performance-critical systems.\n\n\nDive deeper into how AI is reshaping recommendation algorithms and why Rust is becoming the glue for these modern systems. Explore our full library of AI architecture breakdowns and performance optimization guides.",
