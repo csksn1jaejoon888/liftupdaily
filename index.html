@@ -48,10 +48,7 @@
     "publisher": {
       "@type": "Organization",
       "name": "Trend4GenZ",
-      "url": "https://www.trend4genz.fun/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://og.trend4genz.fun/api/og?title=Trend4GenZ&summary=Tech+News&tags=TECH,AI"
+      "url": "https://www.trend4genz.fun/"
       }
     },
     "potentialAction": {
@@ -385,16 +382,6 @@ let videoDatabaseALL = [];
 // ═══════════════════════════════════════════════════════
 //  BOT REDIRECT
 // ═══════════════════════════════════════════════════════
-(function() {
-  const ua = navigator.userAgent.toLowerCase();
-  const isBot = ua.includes('facebookexternalhit') || ua.includes('twitterbot') ||
-    ua.includes('whatsapp') || ua.includes('linkedinbot') || ua.includes('telegrambot');
-  if (isBot) {
-    const params = new URLSearchParams(window.location.search);
-    window.location.replace('https://og.trend4genz.fun/api/proxy?v=' + (params.get('v')||''));
-  }
-})();
-
 // ═══════════════════════════════════════════════════════
 //  HTML LANG — selalu EN (homepage unified, SEO utama EN)
 // ═══════════════════════════════════════════════════════
@@ -737,9 +724,8 @@ function updateMetaTags(video) {
   const description = video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,160) : video.title;
   const summaryClean= video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,150) : video.title;
   const tags        = video.tags ? video.tags.slice(0,5).join(',') : '';
-  const image       = 'https://og.trend4genz.fun/api/og?title=' + encodeURIComponent(video.title) +
-    '&summary=' + encodeURIComponent(summaryClean) + '&tags=' + encodeURIComponent(tags);
   const url = window.location.href;
+  const image       = 'https://img.youtube.com/vi/' + video.youtubeId + '/maxresdefault.jpg';
 
   document.title = title;
   setTwitterTag('description', description);
@@ -774,11 +760,8 @@ function updateMetaTags(video) {
     "publisher"  : {
       "@type": "Organization",
       "name" : "Trend4GenZ",
-      "url"  : "https://www.trend4genz.fun",
-      "logo" : {
-        "@type": "ImageObject",
-        "url"  : "https://og.trend4genz.fun/api/og?title=Trend4GenZ&summary=Tech+News&tags=TECH,AI"
-      }
+      "url"  : "https://www.trend4genz.fun"
+            }
     }
   });
   document.head.appendChild(schema);
