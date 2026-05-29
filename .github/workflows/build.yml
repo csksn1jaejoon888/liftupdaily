@@ -2,40 +2,34 @@
 #  GitHub Actions — Auto Build
 #  Trigger: setiap push yang mengubah db-en.json atau db-id.json
 #  Yang dikerjakan otomatis:
-#    1. Bersihkan hashtag dari db-en.json dan db-id.json
+#    1. Cek video mati + hapus duplikat + bersihkan hashtag
 #    2. Generate sitemap.xml baru dari db-en.json
 #    3. Commit + push hasilnya balik ke GitHub
 # ══════════════════════════════════════════════════════════════════
-
 name: Auto Clean DB & Generate Sitemap
-
 on:
   push:
     paths:
       - 'db-en.json'
       - 'db-id.json'
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Clean hashtag dari db-en.json dan db-id.json
+      - name: Clean DB — hapus video mati + dedup + hashtag
         run: node clean-db.js
-
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
       - name: Generate sitemap.xml
         run: node generate-sitemap.js
-
       - name: Commit & push hasil
         run: |
           git config user.name  "github-actions[bot]"
