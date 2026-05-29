@@ -735,6 +735,7 @@ async function router() {
       renderVideo(app, video);
       updateMetaTags(video);
     } else {
+      history.replaceState({}, '', window.location.pathname);
       navbar.classList.remove('video-mode');
       document.title = "Trend4GenZ - Streaming";
       renderGrid(app, videoDatabaseALL);
