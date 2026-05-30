@@ -3,8 +3,9 @@
 #  Trigger: setiap push yang mengubah db-en.json atau db-id.json
 #  Yang dikerjakan otomatis:
 #    1. Cek video mati + hapus duplikat + bersihkan hashtag
-#    2. Generate sitemap.xml baru dari db-en.json
-#    3. Commit + push hasilnya balik ke GitHub
+#    2. Generate featured.json (20 video untuk first paint cepat)
+#    3. Generate sitemap.xml baru dari db-en.json
+#    4. Commit + push hasilnya balik ke GitHub
 # ══════════════════════════════════════════════════════════════════
 name: Auto Clean DB & Generate Sitemap
 on:
@@ -28,12 +29,14 @@ jobs:
         run: node clean-db.js
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      - name: Generate featured.json
+        run: node generate-featured.js
       - name: Generate sitemap.xml
         run: node generate-sitemap.js
       - name: Commit & push hasil
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add db-en.json db-id.json sitemap.xml
-          git diff --staged --quiet || git commit -m "auto: clean hashtag + update sitemap [skip ci]"
+          git add db-en.json db-id.json featured.json sitemap.xml
+          git diff --staged --quiet || git commit -m "auto: clean + featured + sitemap [skip ci]"
           git push
