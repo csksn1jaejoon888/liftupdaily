@@ -503,6 +503,14 @@ function renderVideo(container, v) {
   const related=videoDatabaseALL.filter(i=>i.slug!==v.slug).sort(()=>0.5-Math.random()).slice(0,8);
   const showBanner=AD_CONFIG.allAds&&AD_CONFIG.videoPageAds.nativeBanner;
 
+  // 1. LOGIKA BARU: Ambil array tags dan bentuk menjadi elemen HTML Badge yang SEO-Friendly
+  const videoTags = v.tags || [];
+  const tagsHTML = videoTags.length > 0 
+    ? '<div class="seo-tags-container" style="margin-top:15px;padding-top:15px;border-top:1px solid #222;display:flex;flex-wrap:wrap;gap:6px;">' +
+      videoTags.map(tag => '<span class="seo-tag-badge" style="background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:0.8rem;font-weight:500;">#' + tag + '</span>').join('') +
+      '</div>'
+    : '';
+
   container.innerHTML=
     '<div class="player-container" id="player-box">'+
     '<div class="play-overlay" onclick="handlePlay(\''+v.youtubeId+'\')">'+
@@ -518,14 +526,15 @@ function renderVideo(container, v) {
     '<button class="offer-split-btn" onclick="handleSpecialOffer()"><i class="fas fa-bolt"></i> More Info 🔥</button>'+
     '</div>'+
     (showBanner?buildNativeBanner():'')+
-    '<div class="summary-box"><div class="summary-text">'+v.summary+'</div></div>'+
-    '<div style="display:none">'+(v.tags?v.tags.join(', '):'')+'</div>'+
+    
+    // 2. PERUBAHAN DI SINI: Memasukkan tagsHTML ke dalam summary-box dan MENGHAPUS baris display:none
+    '<div class="summary-box"><div class="summary-text">'+v.summary+'</div>'+tagsHTML+'</div>'+
+    
     '<h6 style="color:#98FB98;margin:24px 0 12px">MORE VIDEOS</h6>'+
     '<div class="recommendation-slider">'+
     related.map(r=>'<div class="slider-item" onclick="navigateTo(\''+r.slug+'\')"><img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" width="160" height="90" alt="'+r.title+'"/><p>'+r.title+'</p></div>').join('')+
     '</div></div>';
 }
-
 // ════════════════════════════════════════════════════════
 //  ROUTER
 // ════════════════════════════════════════════════════════
