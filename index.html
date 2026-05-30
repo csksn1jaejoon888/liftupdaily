@@ -3,656 +3,512 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="/logo.png" sizes="96x96" type="image/png"/>
 
-  <!-- FAVICON -->
-  <link rel="icon" href="https://www.trend4genz.fun/logo.png" sizes="96x96" type="image/png"/>
-
-  <!-- PRIMARY SEO META TAGS -->
   <title>Trend4GenZ – Latest Tech News, AI Trends & Digital Innovation</title>
-  <meta name="description" content="Trend4GenZ covers the latest in technology, artificial intelligence, software development, and digital innovation. Stay ahead with daily tech insights, AI breakthroughs, and trending video content."/>
-  <meta name="keywords" content="technology news, artificial intelligence, AI trends, software development, digital innovation, tech videos, machine learning, coding tutorials, startup news, future technology"/>
+  <meta name="description" content="Trend4GenZ covers the latest in technology, artificial intelligence, software development, and digital innovation. Stay ahead with daily tech insights and AI breakthroughs."/>
+  <meta name="keywords" content="technology news, artificial intelligence, AI trends, software development, digital innovation, tech videos, machine learning"/>
   <meta name="robots" content="index, follow"/>
   <meta name="author" content="Trend4GenZ"/>
   <meta name="theme-color" content="#000000"/>
   <meta name="google" content="notranslate"/>
   <meta name="p:domain_verify" content="a5a54b6c36ce5bbe00c8202b5ac26070"/>
 
-  <!-- CANONICAL -->
   <link rel="canonical" id="dynamic-canonical" href="https://www.trend4genz.fun/"/>
   <meta http-equiv="content-language" content="en" id="meta-content-language"/>
 
-  <!-- OPEN GRAPH -->
-  <meta property="og:site_name"     content="Trend4GenZ"/>
-  <meta property="og:locale"        content="en_US"/>
-  <meta property="og:type"          content="website"                                    id="og-type"/>
-  <meta property="og:title"         content="Trend4GenZ – Latest Tech News &amp; AI Trends" id="og-title"/>
-  <meta property="og:description"   content="Discover the videos everyone is talking about. AI &amp; Technology, Viral Entertainment, Money Making Ideas &amp; Life-changing Tutorials." id="og-description"/>
-  <meta property="og:url"           content="https://www.trend4genz.fun/"                id="og-url"/>
-  <meta property="og:image"         content="https://www.trend4genz.fun/logo.png"        id="og-image"/>
-  <meta property="og:image:width"   content="1280"                                       id="og-image-width"/>
-  <meta property="og:image:height"  content="720"                                        id="og-image-height"/>
-  <meta property="og:image:alt"     content="Trend4GenZ - Tech &amp; Entertainment Videos" id="og-image-alt"/>
+  <meta property="og:site_name"    content="Trend4GenZ"/>
+  <meta property="og:locale"       content="en_US"/>
+  <meta property="og:type"         content="website"                                     id="og-type"/>
+  <meta property="og:title"        content="Trend4GenZ – Latest Tech News &amp; AI Trends" id="og-title"/>
+  <meta property="og:description"  content="Discover the videos everyone is talking about. AI &amp; Technology, Viral Entertainment, Money Making Ideas &amp; Tutorials." id="og-description"/>
+  <meta property="og:url"          content="https://www.trend4genz.fun/"                 id="og-url"/>
+  <meta property="og:image"        content="https://www.trend4genz.fun/logo.png"         id="og-image"/>
+  <meta property="og:image:width"  content="1280"                                        id="og-image-width"/>
+  <meta property="og:image:height" content="720"                                         id="og-image-height"/>
+  <meta property="og:image:alt"    content="Trend4GenZ - Tech &amp; Entertainment Videos" id="og-image-alt"/>
 
-  <!-- SCHEMA.ORG -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite","name":"Trend4GenZ","url":"https://www.trend4genz.fun/","description":"Latest technology news, AI trends, and digital innovation video content for the next generation.","inLanguage":"en","publisher":{"@type":"Organization","name":"Trend4GenZ","url":"https://www.trend4genz.fun/","logo":{"@type":"ImageObject","url":"https://www.trend4genz.fun/logo.png"}},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.trend4genz.fun/?search={search_term_string}"},"query-input":"required name=search_term_string"}}
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Trend4GenZ","url":"https://www.trend4genz.fun/","description":"Latest technology news, AI trends, and digital innovation.","inLanguage":"en","publisher":{"@type":"Organization","name":"Trend4GenZ","url":"https://www.trend4genz.fun/","logo":{"@type":"ImageObject","url":"https://www.trend4genz.fun/logo.png"}},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.trend4genz.fun/?search={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
 
-  <!-- ════════════════════════════════════════════════════════
-       CRITICAL CSS — INLINE (no render blocking)
-       Hanya berisi CSS yang dibutuhkan above-the-fold
-  ═════════════════════════════════════════════════════════ -->
+  <!-- Preconnect ke CDN thumbnail YouTube agar koneksi siap sebelum gambar diminta -->
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin/>
+  <link rel="dns-prefetch" href="//i.ytimg.com"/>
+
   <style>
-    /* ── Reset & Base ── */
+    /* ══════════════════════════════════════════════════
+       CRITICAL CSS — inline, zero render-blocking
+    ══════════════════════════════════════════════════ */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-
-    /* ── CSS Variables ── */
-    :root{
-      --green:#98FB98;--red:#ff032d;--dark:#1a1a1a;--bg:#212122;
-      --nav-h:52px;
-    }
+    body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    :root{--g:#98FB98;--r:#ff032d;--dark:#1a1a1a}
 
     /* ── Navbar ── */
-    #main-navbar{
-      background:#000;padding:10px 15px;position:sticky;top:0;z-index:1000;
-      display:flex;align-items:center;justify-content:space-between;
-      border-bottom:1.5px solid var(--green);
-      transition:border 0.3s,padding 0.3s;
-    }
+    #main-navbar{background:#000;padding:10px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:1.5px solid var(--g);contain:layout style}
     #main-navbar.video-mode{border-bottom:0;padding:6px 15px}
     #main-navbar.video-mode .brand-logo{display:none}
-    #main-navbar.video-mode .search-container input{width:45px}
-    #main-navbar.video-mode .search-container input:focus{width:85px}
-
-    .brand-logo{color:var(--green);font-weight:900;font-size:1.5rem;cursor:pointer;text-decoration:none;text-transform:uppercase;letter-spacing:-0.5px}
+    #main-navbar.video-mode .sc-input{width:45px!important}
+    #main-navbar.video-mode .sc-input:focus{width:85px!important}
+    .brand-logo{color:var(--g);font-weight:900;font-size:1.5rem;cursor:pointer;text-transform:uppercase;letter-spacing:-0.5px;text-decoration:none}
     .navbar-right{display:flex;align-items:center;margin-left:auto}
-
-    /* ── Search ── */
     .search-wrapper{position:relative;display:flex;align-items:center;z-index:9999}
-    .search-container{display:flex;align-items:center;background:#1a1a1a;border-radius:20px;padding:5px 12px;border:1px solid var(--green)}
-    .search-container input{background:transparent;border:none;color:#fff;outline:none;font-size:0.85rem;width:100px;transition:width 0.3s}
-    .search-container input:focus{width:150px}
-    .search-icon{color:var(--green);font-size:0.8rem;cursor:pointer;width:14px;height:14px;flex-shrink:0}
+    .search-container{display:flex;align-items:center;background:#1a1a1a;border-radius:20px;padding:5px 12px;border:1px solid var(--g)}
+    .sc-input{background:transparent;border:none;color:#fff;outline:none;font-size:0.85rem;width:100px;transition:width 0.3s}
+    .sc-input:focus{width:150px}
+    .search-icon{color:var(--g);cursor:pointer;width:14px;height:14px;flex-shrink:0}
+    @media(max-width:768px){
+      .sc-input{width:60px!important}
+      .sc-input:focus{width:80px!important}
+    }
 
-    /* ── Main layout ── */
-    #app{padding:15px;max-width:1150px;margin:auto}
+    /* ── App container ── */
+    #app{padding:15px;max-width:1150px;margin:auto;min-height:100vh}
 
-    /* ── Loading ── */
-    .loading-screen{display:flex;align-items:center;justify-content:center;height:60vh;flex-direction:column;gap:15px}
-    .loading-screen p{color:var(--green);font-size:0.9rem}
-    .spinner{width:32px;height:32px;border:3px solid rgba(152,251,152,0.2);border-top-color:var(--green);border-radius:50%;animation:spin 0.8s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    /* ── Video Grid ── */
-    .section-title{color:var(--green);font-size:1rem;font-weight:700;margin-bottom:12px}
-    .video-grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+    /* ── Grid skeleton (tampil sebelum DB selesai load) ── */
+    .section-title{color:var(--g);font-size:1rem;font-weight:700;margin-bottom:12px}
+    .video-grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr);contain:layout}
     @media(min-width:992px){.video-grid{grid-template-columns:repeat(4,1fr);gap:20px}}
 
-    .video-card{background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;transition:transform 0.2s,border-color 0.2s;border:1px solid transparent;text-decoration:none;color:inherit;display:block}
-    .video-card:hover{border-color:var(--green);transform:translateY(-3px)}
+    /* ── Skeleton card ── */
+    .sk-card{background:var(--dark);border-radius:8px;overflow:hidden;border:1px solid transparent}
+    .sk-thumb{width:100%;aspect-ratio:16/9;background:#252525;position:relative;overflow:hidden}
+    .sk-thumb::after{content:'';position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.05) 50%,transparent 100%);animation:sk-wave 1.4s ease infinite}
+    @keyframes sk-wave{to{transform:translateX(100%)}}
+    .sk-title{height:14px;margin:10px 8px 6px;background:#252525;border-radius:3px}
+    .sk-title2{height:14px;margin:0 8px 10px;width:70%;background:#252525;border-radius:3px}
 
-    /* ── Thumbnail lazy wrapper ── */
-    .thumb-wrap{position:relative;width:100%;aspect-ratio:16/9;background:#111;overflow:hidden}
-    .thumb-wrap img{width:100%;height:100%;object-fit:cover;display:block;opacity:1}
-    /* Shimmer hanya muncul saat data-src masih ada (belum diload) */
-    .thumb-wrap.loading::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#111 25%,#1e1e1e 50%,#111 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;z-index:2;pointer-events:none}
-    @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
+    /* ── Real video card ── */
+    .video-card{background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;border:1px solid transparent;text-decoration:none;color:inherit;display:block;transition:border-color 0.2s,transform 0.2s;contain:layout style}
+    .video-card:hover{border-color:var(--g);transform:translateY(-2px)}
     .video-card-title{padding:7px 8px 8px;font-size:0.78rem;font-weight:600;line-height:1.35;height:44px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-
-    /* ── Grid full span (banner) ── */
     .grid-full-span{grid-column:1/-1}
+
+    /* ── Thumbnail wrapper — no animation, pure dark bg ── */
+    .thumb-wrap{width:100%;aspect-ratio:16/9;background:#1c1c1c;overflow:hidden;display:block;position:relative}
+    .thumb-wrap img{width:100%;height:100%;object-fit:cover;display:block}
 
     /* ── Video page ── */
     .player-container{position:relative;width:100%;background:#000;border-radius:12px;overflow:hidden;aspect-ratio:16/9}
-    @media(max-width:600px){.player-container{border-radius:0}}
+    @media(max-width:600px){.player-container{border-radius:0}#app{padding:0}.info-section{padding:12px}}
     .player-container iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1}
     .video-mask{position:absolute;z-index:99999;background:transparent;pointer-events:all;touch-action:none}
     .mask-top{top:0;left:0;width:65%;height:55px}
     .mask-bottom{bottom:0;left:40%;width:100%;height:43px}
-    #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
-
-    .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
-
-    .play-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;cursor:pointer}
-    .play-icon-svg{width:64px;height:64px;fill:#ff032d;filter:drop-shadow(0 0 12px rgba(255,3,45,0.5))}
-
+    .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--g);border:2px solid var(--g)}
+    .play-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.35);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;cursor:pointer}
+    .play-icon-svg{width:64px;height:64px}
     .info-section{padding:15px}
 
     /* ── Buttons ── */
     .dual-action-wrap{display:flex;gap:10px;margin-bottom:18px}
-    .home-split-btn,.offer-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;font-size:0.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all 0.2s ease;letter-spacing:0.5px}
-    .home-split-btn{background:var(--green);color:#000;box-shadow:0 0 12px rgba(152,251,152,0.4)}
+    .home-split-btn,.offer-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;font-size:0.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;letter-spacing:0.5px}
+    .home-split-btn{background:var(--g);color:#000;transition:background 0.2s,transform 0.2s}
     .home-split-btn:hover{background:#7ddb7d;transform:translateY(-2px)}
-    .offer-split-btn{color:#fff;background:linear-gradient(135deg,#ff416c,#ff4b2b);box-shadow:0 0 14px rgba(255,65,108,0.5);animation:pulse-offer 2s infinite}
-    .offer-split-btn:hover{transform:translateY(-2px);box-shadow:0 0 24px rgba(255,65,108,0.7)}
-    @keyframes pulse-offer{0%,100%{box-shadow:0 0 14px rgba(255,65,108,0.5)}50%{box-shadow:0 0 24px rgba(255,65,108,0.85)}}
+    .offer-split-btn{color:#fff;background:linear-gradient(135deg,#ff416c,#ff4b2b);transition:transform 0.2s}
+    .offer-split-btn:hover{transform:translateY(-2px)}
 
     /* ── Summary ── */
-    .summary-box{background:rgba(255,255,255,0.05);padding:18px;border-radius:12px;border-left:4px solid var(--green)}
+    .summary-box{background:rgba(255,255,255,0.05);padding:18px;border-radius:12px;border-left:4px solid var(--g)}
     .summary-text{white-space:pre-wrap;font-size:0.88rem;line-height:1.5;color:#ddd;text-align:left}
 
     /* ── Recommendation slider ── */
-    .rec-title{color:var(--green);font-weight:700;margin:18px 0 10px;font-size:0.9rem}
+    .rec-title{color:var(--g);font-weight:700;margin:18px 0 10px;font-size:0.9rem}
     .recommendation-slider{display:flex;overflow-x:auto;gap:12px;padding-bottom:12px;scrollbar-width:none}
     .recommendation-slider::-webkit-scrollbar{display:none}
     .slider-item{min-width:158px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0}
-    .slider-item .thumb-wrap{aspect-ratio:16/9}
     .slider-item p{font-size:0.72rem;padding:7px 8px;margin:0;height:36px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 
     /* ── Search suggestions ── */
-    .search-suggestions{position:absolute;top:calc(100% + 6px);right:0;width:280px;background:#1a1a1a;border:1px solid var(--green);border-radius:10px;overflow:hidden;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,0.6);display:none}
+    .search-suggestions{position:absolute;top:calc(100% + 6px);right:0;width:280px;background:#1a1a1a;border:1px solid var(--g);border-radius:10px;overflow:hidden;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,0.6);display:none}
     .search-suggestions.show{display:block}
-    .suggestion-item{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;transition:background 0.15s;border-bottom:1px solid rgba(255,255,255,0.05)}
-    .suggestion-item:last-child{border-bottom:none}
-    .suggestion-item:hover,.suggestion-item.active{background:rgba(152,251,152,0.12)}
-    .suggestion-item img{width:52px;height:30px;object-fit:cover;border-radius:4px;flex-shrink:0}
-    .suggestion-item span{font-size:0.75rem;color:#f1f1f1;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-    .suggestion-item span em{color:var(--green);font-style:normal;font-weight:bold}
-    .suggestion-empty{padding:12px;text-align:center;font-size:0.75rem;color:#888}
+    .sug-item{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;transition:background 0.15s;border-bottom:1px solid rgba(255,255,255,0.05)}
+    .sug-item:last-child{border-bottom:none}
+    .sug-item:hover,.sug-item.active{background:rgba(152,251,152,0.1)}
+    .sug-item img{width:52px;height:30px;object-fit:cover;border-radius:4px;flex-shrink:0}
+    .sug-item span{font-size:0.75rem;color:#f1f1f1;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+    .sug-item span em{color:var(--g);font-style:normal;font-weight:bold}
+    .sug-empty{padding:12px;text-align:center;font-size:0.75rem;color:#888}
     @media(max-width:768px){.search-suggestions{width:240px}}
 
     /* ── Native banner ── */
     .native-banner-wrap{position:relative;width:100%;margin:14px 0;border-radius:10px;overflow:hidden;min-height:90px}
-    .native-banner-wrap .close-btn{position:absolute;top:6px;right:6px;width:26px;height:26px;background:rgba(0,0,0,0.65);color:#fff;border:2px solid #fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;cursor:pointer;z-index:10}
-
-    /* ── Mobile notice ── */
-    .mobile-only-notice{display:none}
-    @media(max-width:768px){
-      .mobile-only-notice{display:block;background:#5c0303;color:#fff;text-align:center;padding:5px 8px;font-size:11px;font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
-      .search-container input{width:60px!important}
-      .search-container input:focus{width:80px!important}
-    }
-    @media(max-width:600px){
-      #app{padding:0}
-      .info-section{padding:12px}
-    }
-
+    .close-btn{position:absolute;top:6px;right:6px;width:26px;height:26px;background:rgba(0,0,0,0.65);color:#fff;border:2px solid #fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;cursor:pointer;z-index:10}
   </style>
 </head>
 <body>
 
-  <!-- ── NAVBAR ── -->
-  <nav id="main-navbar">
-    <div class="brand-logo" onclick="handleBrandClick()">Trend4GenZ</div>
-    <div class="navbar-right">
-      <div class="search-wrapper">
-        <div class="search-container">
-          <input id="searchInput" placeholder="Search..." type="search" autocomplete="off" aria-label="Search videos"/>
-          <!-- Inline SVG search icon — no Font Awesome needed above the fold -->
-          <svg class="search-icon" id="searchBtn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-        </div>
-        <div class="search-suggestions" id="searchSuggestions" role="listbox"></div>
+<!-- ── NAVBAR ── -->
+<nav id="main-navbar">
+  <div class="brand-logo" onclick="handleBrandClick()">Trend4GenZ</div>
+  <div class="navbar-right">
+    <div class="search-wrapper">
+      <div class="search-container">
+        <input class="sc-input" id="searchInput" placeholder="Search..." type="search" autocomplete="off" aria-label="Search videos"/>
+        <svg class="search-icon" id="searchBtn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
       </div>
-    </div>
-  </nav>
-
-  <!-- ── APP CONTAINER ── -->
-  <div id="app">
-    <div class="loading-screen">
-      <div class="spinner"></div>
-      <p>Loading videos...</p>
+      <div class="search-suggestions" id="searchSuggestions" role="listbox"></div>
     </div>
   </div>
+</nav>
 
-  <!-- ════════════════════════════════════════════════════════
-       DEFERRED non-critical CSS — load after page paint
-       preload trick: rel=preload as=style → onload swap to stylesheet
-  ═════════════════════════════════════════════════════════ -->
-  <!-- Font Awesome hanya dibutuhkan di video page (fa-expand, fa-home, fa-bolt) -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/></noscript>
+<!-- ── APP: langsung tampilkan skeleton grid ── -->
+<div id="app" style="padding:15px;max-width:1150px;margin:auto">
+  <h5 class="section-title">🔥 TRENDING VIDEO</h5>
+  <div class="video-grid" id="skeleton-grid">
+    <!-- 8 skeleton card — tampil LANGSUNG tanpa tunggu JS/fetch -->
+    <div class="sk-card"><div class="sk-thumb"></div><div class="sk-title"></div><div class="sk-title2"></div></div>
+    <div class="sk-card"><div class="sk-thumb"></div><div class="sk-title"></div><div class="sk-title2"></div></div>
+    <div class="sk-card"><div class="sk-thumb"></div><div class="sk-title"></div><div class="sk-title2"></div></div>
+    <div class="sk-card"><div class="sk-thumb"></div><div class="sk-title"></div><div class="sk-title2"></div></div>
+    <div class="sk-card"><div class="sk-thumb"></div><div class="sk-title"></div><div class="sk-title2"></div></div>
+    <div class="sk-card"><div class="sk-thumb"></div><div class="sk-title"></div><div class="sk-title2"></div></div>
+    <div class="sk-card"><div class="sk-thumb"></div><div class="sk-title"></div><div class="sk-title2"></div></div>
+    <div class="sk-card"><div class="sk-thumb"></div><div class="sk-title"></div><div class="sk-title2"></div></div>
+  </div>
+</div>
 
-  <!-- Google Font — defer load, fallback system font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/></noscript>
+<script>
+/* ══════════════════════════════════════════════════════
+   KONFIGURASI
+══════════════════════════════════════════════════════ */
+const AD_CONFIG = {
+  allAds: false,
+  gridPageAds:  { nativeBanner: true },
+  videoPageAds: { nativeBanner: true },
+  useDirect:    false,
+  usePopunder:  false,
+  gridBannerAfterRow:  1,
+  gridColumnsOnMobile: 2,
+  links: { direct: 'https://mediaindonesia.com', popunder: 'https://google.com' },
+  nativeBannerHTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00 60%,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;box-sizing:border-box;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;text-align:center;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2;">CONTOH<br>IKLAN</div><div style="flex-grow:1;"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase;">IKLAN NATIVE BANNER</div><div style="color:rgba(255,255,255,0.85);font-size:12px;margin-top:4px;">Pasang kode iklan native Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase;white-space:nowrap;">PELAJARI</div></div>`
+};
+const PLAY_AD_CONFIG = { enablePlayButtonDirectAds:false, adUrl:'https://mediaindonesia.com', adStartFromVideo:2 };
 
-  <script>
-  /* ════════════════════════════════════════════════════════
-     KONFIGURASI
-  ═════════════════════════════════════════════════════════ */
-  const AD_CONFIG = {
-    allAds: false,
-    gridPageAds:  { nativeBanner: true },
-    videoPageAds: { nativeBanner: true },
-    useDirect:    false,
-    usePopunder:  false,
-    gridBannerAfterRow:  1,
-    gridColumnsOnMobile: 2,
-    links: {
-      direct:   "https://mediaindonesia.com",
-      popunder: "https://google.com",
-    },
-    nativeBannerHTML: `
-      <div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00 60%,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;font-family:'Segoe UI',sans-serif;cursor:pointer;width:100%;box-sizing:border-box;" onclick="window.open('https://google.com','_blank')">
-        <div style="flex-shrink:0;text-align:center;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2;">CONTOH<br>IKLAN</div>
-        <div style="flex-grow:1;">
-          <div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase;line-height:1.2;">IKLAN NATIVE BANNER</div>
-          <div style="color:rgba(255,255,255,0.85);font-size:12px;margin-top:4px;">Pasang kode iklan native Anda di sini</div>
-        </div>
-        <div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase;white-space:nowrap;">PELAJARI</div>
-      </div>`
-  };
+/* ── State ── */
+let videoWatchCount=0, playCounter=0;
+let videoDatabaseEN=[], videoDatabaseID=[], videoDatabaseALL=[];
+let staticGridSlugs=[], faLoaded=false;
 
-  const PLAY_AD_CONFIG = {
-    enablePlayButtonDirectAds: false,
-    adUrl:            "https://mediaindonesia.com",
-    adStartFromVideo: 2,
-  };
+/* ══════════════════════════════════════════════════════
+   FONT AWESOME — dimuat hanya saat buka video page
+══════════════════════════════════════════════════════ */
+function loadFA() {
+  if (faLoaded) return; faLoaded=true;
+  const l=document.createElement('link');
+  l.rel='stylesheet';
+  l.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+  document.head.appendChild(l);
+}
 
-  /* ════════════════════════════════════════════════════════
-     STATE
-  ═════════════════════════════════════════════════════════ */
-  let videoWatchCount  = 0;
-  let playCounter      = 0;
-  let videoDatabaseEN  = [];
-  let videoDatabaseID  = [];
-  let videoDatabaseALL = [];
-  let staticGridSlugs  = [];   // dari static-grid.json (diisi clean-db.js)
-
-  /* ════════════════════════════════════════════════════════
-     LAZY IMAGE OBSERVER
-  ═════════════════════════════════════════════════════════ */
-  let imgObserver;
-
-  function loadImg(img) {
-    const src = img.getAttribute('data-src');
-    if (!src) return;
-    img.removeAttribute('data-src');
-    img.onload  = () => { if (img.parentNode) img.parentNode.classList.remove('loading'); };
-    img.onerror = () => { if (img.parentNode) img.parentNode.classList.remove('loading'); };
-    img.src = src; // set src SETELAH onload dipasang
-  }
-
-  function initImageObserver() {
-    if (!('IntersectionObserver' in window)) return;
-    imgObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          loadImg(entry.target);
-          imgObserver.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '500px 0px', threshold: 0 });
-  }
-
-  function observeLazyImgs(container) {
-    const lazyImgs = container.querySelectorAll('img[data-src]');
-    if (!imgObserver) {
-      // Fallback: IntersectionObserver tidak ada, load semua langsung
-      lazyImgs.forEach(loadImg);
-      return;
+/* ══════════════════════════════════════════════════════
+   LAZY IMAGE
+   Strategi: data-src + IntersectionObserver
+   Fallback: load langsung jika IO tidak tersedia
+══════════════════════════════════════════════════════ */
+let io;
+function initIO() {
+  if (!('IntersectionObserver' in window)) return;
+  io = new IntersectionObserver(entries => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      const img = e.target, src = img.dataset.src;
+      if (src) { img.src = src; delete img.dataset.src; }
+      io.unobserve(img);
     }
-    lazyImgs.forEach(img => {
-      // Jika sudah dalam viewport saat dipasang, load langsung
-      const rect = img.getBoundingClientRect();
-      if (rect.top < window.innerHeight + 600) {
-        loadImg(img);
-      } else {
-        imgObserver.observe(img);
-      }
+  }, { rootMargin:'500px 0px', threshold:0 });
+}
+
+function observeAll(root) {
+  // Jalankan di rAF supaya DOM sudah final sebelum getBoundingClientRect
+  requestAnimationFrame(() => {
+    const vh = window.innerHeight;
+    root.querySelectorAll('img[data-src]').forEach(img => {
+      if (!io) { img.src=img.dataset.src; delete img.dataset.src; return; }
+      // Gambar sudah dalam viewport + buffer 600px → load langsung (tidak perlu observer)
+      const top = img.getBoundingClientRect().top;
+      if (top < vh + 600) { img.src=img.dataset.src; delete img.dataset.src; }
+      else io.observe(img);
     });
-  }
-
-  /* ════════════════════════════════════════════════════════
-     HELPERS
-  ═════════════════════════════════════════════════════════ */
-  function updateHtmlLang() {
-    document.getElementById('html-root').setAttribute('lang', 'en');
-    const ml = document.getElementById('meta-content-language');
-    if (ml) ml.setAttribute('content', 'en');
-    const og = document.querySelector('meta[property="og:locale"]');
-    if (og) og.setAttribute('content', 'en_US');
-  }
-
-  function updateCanonical(slug, source) {
-    let c = document.getElementById('dynamic-canonical');
-    if (source === 'nofollow') { if (c) c.remove(); return; }
-    if (!c) { c = document.createElement('link'); c.id = 'dynamic-canonical'; c.rel = 'canonical'; document.head.appendChild(c); }
-    c.href = (!slug || slug === 'home') ? 'https://www.trend4genz.fun/' : window.location.origin + window.location.pathname + '?v=' + slug;
-  }
-
-  function updateRobotsBySource(source) {
-    let tag = document.querySelector('meta[name="robots"]');
-    if (!tag) { tag = document.createElement('meta'); tag.setAttribute('name','robots'); document.head.appendChild(tag); }
-    tag.setAttribute('content', source === 'nofollow' ? 'noindex, nofollow' : 'index, follow');
-  }
-
-  function seoUrl(text) {
-    if (!text) return '';
-    if (text.includes('-')) return text;
-    return text.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/--+/g,'-').substring(0,70).replace(/-$/,'');
-  }
-
-  function getCurrentSlug() { return new URLSearchParams(window.location.search).get('v'); }
-
-  function navigateTo(slug) {
-    const video = videoDatabaseALL.find(v => v.slug === slug || seoUrl(v.title) === slug);
-    if (!video) return;
-    history.pushState({}, '', window.location.pathname + '?v=' + video.slug);
-    router();
-  }
-
-  function buildNativeBanner(extraClass) {
-    if (!AD_CONFIG.allAds) return '';
-    return `<div class="native-banner-wrap ${extraClass||''}"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'" title="Tutup">✕</div><div style="width:100%;padding:0;">${AD_CONFIG.nativeBannerHTML}</div></div>`;
-  }
-
-  function runAd(type) {
-    if (!AD_CONFIG.allAds) return;
-    if (type === 'pop'    && AD_CONFIG.usePopunder) window.open(AD_CONFIG.links.popunder,'_blank');
-    if (type === 'direct' && AD_CONFIG.useDirect)   window.open(AD_CONFIG.links.direct,'_blank');
-  }
-
-  function handleBrandClick()   { runAd('pop'); history.pushState({},'',window.location.pathname); router(); }
-  function handleSpecialOffer() { if (AD_CONFIG.allAds && AD_CONFIG.useDirect) window.open(AD_CONFIG.links.direct,'_blank'); }
-
-  /* ════════════════════════════════════════════════════════
-     LOAD DATABASE — paralel + static-grid.json
-  ═════════════════════════════════════════════════════════ */
-  async function loadDatabases() {
-    try {
-      const [resEN, resID, resSG] = await Promise.all([
-        fetch('./db-en.json'),
-        fetch('./db-id.json'),
-        fetch('./static-grid.json').catch(() => null) // optional
-      ]);
-      videoDatabaseEN  = (await resEN.json()).map(v => ({ ...v, source: v.source || 'seo' }));
-      videoDatabaseID  = (await resID.json()).map(v => ({ ...v, source: v.source || 'nofollow' }));
-
-      if (resSG) {
-        try { staticGridSlugs = await resSG.json(); } catch(e) { staticGridSlugs = []; }
-      }
-
-      // ALL = EN + ID, shuffle sekali
-      videoDatabaseALL = [...videoDatabaseEN, ...videoDatabaseID].sort(() => 0.5 - Math.random());
-    } catch(e) {
-      document.getElementById('app').innerHTML =
-        '<div class="loading-screen"><p style="color:#ff032d;">❌ Gagal memuat database. Coba refresh.</p></div>';
-      throw e;
-    }
-  }
-
-  /* ════════════════════════════════════════════════════════
-     RENDER THUMBNAIL (lazy)
-     isEager = true → load langsung (above the fold, ≤4 item pertama)
-  ═════════════════════════════════════════════════════════ */
-  function thumbHTML(youtubeId, title, isEager) {
-    const src = `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`;
-    if (isEager) {
-      // Load langsung, tanpa shimmer
-      return `<div class="thumb-wrap"><img src="${src}" alt="${title}" width="320" height="180" fetchpriority="high" decoding="async"/></div>`;
-    }
-    // .loading = tampilkan shimmer; dihapus JS setelah gambar diload
-    return `<div class="thumb-wrap loading"><img data-src="${src}" alt="${title}" width="320" height="180" decoding="async"/></div>`;
-  }
-
-  /* ════════════════════════════════════════════════════════
-     RENDER GRID — Semua video dirender sekaligus,
-     thumbnail lazy-load satu per satu saat scroll
-  ═════════════════════════════════════════════════════════ */
-  function renderGrid(container, data) {
-    const cols             = window.innerWidth >= 992 ? 4 : AD_CONFIG.gridColumnsOnMobile;
-    const insertAfterIndex = (AD_CONFIG.gridBannerAfterRow + 1) * cols - 1;
-    const showBanner       = AD_CONFIG.allAds && AD_CONFIG.gridPageAds.nativeBanner;
-
-    let gridItems = '';
-    for (let i = 0; i < data.length; i++) {
-      const v            = data[i];
-      const isEager      = i < 4; // hanya 4 card pertama eager (LCP)
-      const nofollowAttr = v.source === 'nofollow' ? ' rel="nofollow"' : '';
-      gridItems += `
-        <a href="?v=${v.slug}"${nofollowAttr} class="video-card" onclick="handleNavigation(event,'${v.slug}')">
-          ${thumbHTML(v.youtubeId, v.title, isEager)}
-          <div class="video-card-title">${v.title}</div>
-        </a>`;
-      if (showBanner && i === insertAfterIndex)
-        gridItems += `<div class="grid-full-span">${buildNativeBanner()}</div>`;
-    }
-
-    container.className = 'main-content';
-    container.innerHTML = `
-      <h5 class="section-title">🔥 TRENDING VIDEO</h5>
-      <div class="video-grid">${gridItems}</div>
-    `;
-
-    observeLazyImgs(container);
-  }
-
-  /* ════════════════════════════════════════════════════════
-     VIDEO PAGE
-  ═════════════════════════════════════════════════════════ */
-  function updateMetaTags(video) {
-    const title       = video.title + ' | Trend4GenZ';
-    const description = video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,160) : video.title;
-    const image       = 'https://img.youtube.com/vi/' + video.youtubeId + '/maxresdefault.jpg';
-    const url         = window.location.href;
-    document.title    = title;
-    const md = document.querySelector('meta[name="description"]');
-    if (md) md.setAttribute('content', description);
-    const ogMap = {
-      'og-type':'video.other','og-title':title,'og-description':description,
-      'og-url':url,'og-image':image,'og-image-width':'1280',
-      'og-image-height':'720','og-image-alt':video.title
-    };
-    Object.entries(ogMap).forEach(([id,val]) => { const el = document.getElementById(id); if (el) el.setAttribute('content',val); });
-    const ex = document.getElementById('schema-video');
-    if (ex) ex.remove();
-    const s = document.createElement('script');
-    s.id = 'schema-video'; s.type = 'application/ld+json';
-    s.textContent = JSON.stringify({
-      "@context":"https://schema.org","@type":"VideoObject","name":video.title,"description":description,
-      "uploadDate":video.uploadDate || new Date().toISOString().substring(0,19)+'+00:00',
-      "thumbnailUrl":[
-        "https://img.youtube.com/vi/"+video.youtubeId+"/maxresdefault.jpg",
-        "https://img.youtube.com/vi/"+video.youtubeId+"/hqdefault.jpg",
-        "https://img.youtube.com/vi/"+video.youtubeId+"/mqdefault.jpg"
-      ],
-      "embedUrl":"https://www.youtube.com/embed/"+video.youtubeId,"url":url,
-      "inLanguage":video.source==='nofollow'?"id":"en",
-      "publisher":{"@type":"Organization","name":"Trend4GenZ","url":"https://www.trend4genz.fun","logo":{"@type":"ImageObject","url":"https://www.trend4genz.fun/logo.png"}}
-    });
-    document.head.appendChild(s);
-  }
-
-  function handlePlay(youtubeId) {
-    playCounter++;
-    const adAktif = PLAY_AD_CONFIG.enablePlayButtonDirectAds && videoWatchCount >= PLAY_AD_CONFIG.adStartFromVideo && playCounter === 1;
-    if (adAktif) window.open(PLAY_AD_CONFIG.adUrl,'_blank');
-    document.getElementById('player-box').innerHTML =
-      '<iframe src="https://www.youtube.com/embed/'+youtubeId+'?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen loading="lazy"></iframe>'+
-      '<div class="video-mask mask-top"></div>'+
-      '<div class="video-mask mask-bottom"></div>'+
-      '<div id="fs-btn" class="btn-fs-custom" onclick="toggleFullScreen()"><i class="fas fa-expand"></i></div>';
-  }
-
-  function toggleFullScreen() {
-    const elem = document.getElementById('player-box');
-    const icon = document.querySelector('#fs-btn i');
-    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-      if (elem.requestFullscreen) elem.requestFullscreen(); else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
-      if (icon) icon.className = 'fas fa-compress';
-    } else {
-      if (document.exitFullscreen) document.exitFullscreen(); else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-      if (icon) icon.className = 'fas fa-expand';
-    }
-  }
-
-  function renderVideo(container, v) {
-    updateMetaTags(v);
-    updateRobotsBySource(v.source);
-    updateCanonical(v.slug, v.source);
-    document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
-    videoWatchCount++; playCounter = 0;
-
-    const related = videoDatabaseALL.filter(item => item.slug !== v.slug).sort(() => 0.5 - Math.random()).slice(0,8);
-    const showVideoBanner = AD_CONFIG.allAds && AD_CONFIG.videoPageAds.nativeBanner;
-
-    // Thumbnail maxresdefault untuk video page (hero) — eager load
-    const heroSrc = `https://img.youtube.com/vi/${v.youtubeId}/maxresdefault.jpg`;
-
-    container.className = 'main-content video-page-container';
-    container.style.padding = '0';
-    container.innerHTML = `
-      <div class="player-container" id="player-box">
-        <div class="play-overlay" onclick="handlePlay('${v.youtubeId}')">
-          <svg class="play-icon-svg" viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg"><circle cx="42" cy="42" r="42" fill="rgba(0,0,0,0.5)"/><polygon points="34,26 62,42 34,58" fill="#ff032d"/></svg>
-          <div style="margin-top:10px;font-weight:bold;font-size:0.85rem;">TAP TO WATCH</div>
-        </div>
-        <img src="${heroSrc}" style="width:100%;height:100%;object-fit:cover;" alt="${v.title}" fetchpriority="high"/>
-      </div>
-      <div class="info-section">
-        <h1 style="font-size:1.15rem;font-weight:800;margin:14px 0 14px;">${v.title}</h1>
-        <div class="dual-action-wrap">
-          <button class="home-split-btn" onclick="handleBrandClick()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            HOME
-          </button>
-          <button class="offer-split-btn" onclick="handleSpecialOffer()">⚡ More Info 🔥</button>
-        </div>
-        ${showVideoBanner ? buildNativeBanner() : ''}
-        <div class="summary-box"><div class="summary-text">${v.summary}</div></div>
-        <div style="display:none;">${v.tags ? v.tags.join(', ') : ''}</div>
-        <div class="rec-title">MORE VIDEOS</div>
-        <div class="recommendation-slider" id="rec-slider">
-          ${related.map((r,i) => `
-            <div class="slider-item" onclick="navigateTo('${r.slug}')">
-              ${thumbHTML(r.youtubeId, r.title, i < 3)}
-              <p>${r.title}</p>
-            </div>`).join('')}
-        </div>
-      </div>`;
-
-    observeLazyImgs(container);
-  }
-
-  /* ════════════════════════════════════════════════════════
-     SEARCH
-  ═════════════════════════════════════════════════════════ */
-  function initSearch() {
-    const input       = document.getElementById('searchInput');
-    const searchBtn   = document.getElementById('searchBtn');
-    const suggestions = document.getElementById('searchSuggestions');
-    if (!input || !searchBtn || !suggestions) return;
-
-    let activeIndex = -1;
-
-    input.addEventListener('input', () => {
-      const val = input.value.trim().toLowerCase();
-      activeIndex = -1;
-      if (val.length < 1) { hideSuggestions(); return; }
-      const matches = videoDatabaseALL.filter(v => v.title.toLowerCase().includes(val)).slice(0,7);
-      if (matches.length === 0) {
-        suggestions.innerHTML = `<div class="suggestion-empty">No results for "<b>${val}</b>"</div>`;
-        suggestions.classList.add('show'); return;
-      }
-      function hl(text, q) {
-        return text.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'), '<em>$1</em>');
-      }
-      suggestions.innerHTML = matches.map((v,i) => `
-        <div class="suggestion-item" data-slug="${v.slug}" data-index="${i}" role="option">
-          <img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" loading="lazy" alt="${v.title}" width="52" height="30"/>
-          <span>${hl(v.title, val)}</span>
-        </div>`).join('');
-      suggestions.classList.add('show');
-      suggestions.querySelectorAll('.suggestion-item').forEach(item => {
-        item.addEventListener('mousedown', e => { e.preventDefault(); const s = item.getAttribute('data-slug'); input.value=''; hideSuggestions(); navigateTo(s); });
-      });
-    });
-
-    input.addEventListener('keydown', e => {
-      const items = suggestions.querySelectorAll('.suggestion-item');
-      if (e.key==='ArrowDown'){e.preventDefault();activeIndex=Math.min(activeIndex+1,items.length-1);updateActive(items);}
-      else if(e.key==='ArrowUp'){e.preventDefault();activeIndex=Math.max(activeIndex-1,-1);updateActive(items);}
-      else if(e.key==='Enter'){if(activeIndex>=0&&items[activeIndex]){const s=items[activeIndex].getAttribute('data-slug');input.value='';hideSuggestions();navigateTo(s);}else doSearch();}
-      else if(e.key==='Escape'){hideSuggestions();input.blur();}
-    });
-
-    function updateActive(items){items.forEach((item,i)=>item.classList.toggle('active',i===activeIndex));}
-    document.addEventListener('click',e=>{if(!e.target.closest('.search-wrapper'))hideSuggestions();});
-    searchBtn.addEventListener('click', doSearch);
-
-    function hideSuggestions(){suggestions.classList.remove('show');suggestions.innerHTML='';activeIndex=-1;}
-  }
-
-  function doSearch() {
-    const input = document.getElementById('searchInput');
-    const suggestions = document.getElementById('searchSuggestions');
-    if (!input) return;
-    const val = input.value.trim().toLowerCase();
-    if (!val) return;
-    if (suggestions){suggestions.classList.remove('show');suggestions.innerHTML='';}
-    const results = videoDatabaseALL.filter(v => v.title.toLowerCase().includes(val));
-    renderGrid(document.getElementById('app'), results);
-    document.getElementById('main-navbar').classList.remove('video-mode');
-  }
-
-  function handleNavigation(event, slug){event.preventDefault();navigateTo(slug);}
-
-  /* ════════════════════════════════════════════════════════
-     ROUTER
-  ═════════════════════════════════════════════════════════ */
-  async function router() {
-    const app    = document.getElementById('app');
-    const navbar = document.getElementById('main-navbar');
-    const slug   = getCurrentSlug();
-
-    updateHtmlLang();
-    updateRobotsBySource('seo');
-
-    if (!slug || slug === 'home') {
-      navbar.classList.remove('video-mode');
-      app.style.padding = '';
-
-      // Pilih dataset untuk grid home:
-      // Jika static-grid.json ada & tidak kosong → gunakan urutan itu
-      // Sehingga thumbnail yang di-render selalu berbeda tiap deploy (di-random oleh clean-db.js)
-      let homeData;
-      if (staticGridSlugs.length > 0) {
-        const slugSet = new Set(staticGridSlugs);
-        // tampilkan static-grid dulu, sisanya di-append
-        const staticVideos  = staticGridSlugs.map(s => videoDatabaseALL.find(v => v.slug === s)).filter(Boolean);
-        const restVideos    = videoDatabaseALL.filter(v => !slugSet.has(v.slug));
-        homeData = [...staticVideos, ...restVideos];
-      } else {
-        homeData = videoDatabaseALL;
-      }
-
-      renderGrid(app, homeData);
-      updateCanonical('home', 'seo');
-    } else {
-      const video = videoDatabaseALL.find(v => v.slug === slug || seoUrl(v.title) === slug);
-      if (video) {
-        navbar.classList.add('video-mode');
-        renderVideo(app, video);
-        updateMetaTags(video);
-      } else {
-        history.replaceState({},'',window.location.pathname);
-        navbar.classList.remove('video-mode');
-        document.title = 'Trend4GenZ - Streaming';
-        renderGrid(app, videoDatabaseALL);
-        updateCanonical('home','seo');
-      }
-    }
-    window.scrollTo(0,0);
-  }
-
-  /* ════════════════════════════════════════════════════════
-     INIT
-  ═════════════════════════════════════════════════════════ */
-  window.addEventListener('popstate', router);
-  window.addEventListener('load', async () => {
-    initImageObserver();
-    await loadDatabases();
-    initSearch();
-    router();
   });
-  </script>
+}
+
+/* ══════════════════════════════════════════════════════
+   HELPERS
+══════════════════════════════════════════════════════ */
+const YT_THUMB = id => `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
+const YT_HQ    = id => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+
+function makeThumb(id, alt, eager) {
+  const src = YT_THUMB(id);
+  if (eager) return `<div class="thumb-wrap"><img src="${src}" alt="${alt}" width="320" height="180" fetchpriority="high" decoding="async"/></div>`;
+  return `<div class="thumb-wrap"><img data-src="${src}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'/%3E" alt="${alt}" width="320" height="180" decoding="async"/></div>`;
+}
+
+function seoUrl(t) {
+  if (!t) return '';
+  if (t.includes('-')) return t;
+  return t.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/--+/g,'-').substring(0,70).replace(/-$/,'');
+}
+
+function slug2video(slug) { return videoDatabaseALL.find(v=>v.slug===slug||seoUrl(v.title)===slug); }
+function getSlug()        { return new URLSearchParams(location.search).get('v'); }
+
+function go(slug) {
+  const v = slug2video(slug);
+  if (!v) return;
+  history.pushState({},'',location.pathname+'?v='+v.slug);
+  router();
+}
+
+function nav(e, slug) { e.preventDefault(); go(slug); }
+
+function banner(cls) {
+  if (!AD_CONFIG.allAds) return '';
+  return `<div class="native-banner-wrap ${cls||''}"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div>${AD_CONFIG.nativeBannerHTML}</div></div>`;
+}
+
+function runAd(t) {
+  if (!AD_CONFIG.allAds) return;
+  if (t==='pop'&&AD_CONFIG.usePopunder) window.open(AD_CONFIG.links.popunder,'_blank');
+  if (t==='direct'&&AD_CONFIG.useDirect) window.open(AD_CONFIG.links.direct,'_blank');
+}
+
+function handleBrandClick()   { runAd('pop'); history.pushState({},'',location.pathname); router(); }
+function handleSpecialOffer() { if (AD_CONFIG.allAds&&AD_CONFIG.useDirect) window.open(AD_CONFIG.links.direct,'_blank'); }
+
+function updateCanonical(slug,source) {
+  let c=document.getElementById('dynamic-canonical');
+  if (source==='nofollow'){if(c)c.remove();return;}
+  if(!c){c=document.createElement('link');c.id='dynamic-canonical';c.rel='canonical';document.head.appendChild(c);}
+  c.href=(!slug||slug==='home')?'https://www.trend4genz.fun/':location.origin+location.pathname+'?v='+slug;
+}
+
+function updateRobots(s) {
+  let t=document.querySelector('meta[name="robots"]');
+  if(!t){t=document.createElement('meta');t.setAttribute('name','robots');document.head.appendChild(t);}
+  t.setAttribute('content',s==='nofollow'?'noindex,nofollow':'index,follow');
+}
+
+function updateLang() {
+  document.getElementById('html-root').setAttribute('lang','en');
+  const ml=document.getElementById('meta-content-language'); if(ml) ml.setAttribute('content','en');
+  const og=document.querySelector('meta[property="og:locale"]'); if(og) og.setAttribute('content','en_US');
+}
+
+/* ══════════════════════════════════════════════════════
+   LOAD DATABASE — paralel fetch, tidak blocking render
+   Skeleton grid sudah tampil di HTML sebelum ini jalan
+══════════════════════════════════════════════════════ */
+async function loadDatabases() {
+  const [resEN, resID, resSG] = await Promise.all([
+    fetch('./db-en.json'),
+    fetch('./db-id.json'),
+    fetch('./static-grid.json').catch(()=>null)
+  ]);
+
+  [videoDatabaseEN, videoDatabaseID] = await Promise.all([
+    resEN.json().then(d=>d.map(v=>({...v,source:v.source||'seo'}))),
+    resID.json().then(d=>d.map(v=>({...v,source:v.source||'nofollow'})))
+  ]);
+
+  if (resSG) { try { staticGridSlugs=await resSG.json(); } catch(_){} }
+
+  videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
+}
+
+/* ══════════════════════════════════════════════════════
+   RENDER GRID — 1 innerHTML assignment = 1 reflow
+══════════════════════════════════════════════════════ */
+function renderGrid(container, data) {
+  const cols  = innerWidth>=992 ? 4 : AD_CONFIG.gridColumnsOnMobile;
+  const bIdx  = (AD_CONFIG.gridBannerAfterRow+1)*cols-1;
+  const showB = AD_CONFIG.allAds && AD_CONFIG.gridPageAds.nativeBanner;
+
+  const p = ['<h5 class="section-title">🔥 TRENDING VIDEO</h5><div class="video-grid">'];
+  for (let i=0; i<data.length; i++) {
+    const v=data[i], nr=v.source==='nofollow'?' rel="nofollow"':'';
+    p.push(`<a href="?v=${v.slug}"${nr} class="video-card" onclick="nav(event,'${v.slug}')">${makeThumb(v.youtubeId,v.title,i<4)}<div class="video-card-title">${v.title}</div></a>`);
+    if (showB&&i===bIdx) p.push(`<div class="grid-full-span">${banner()}</div>`);
+  }
+  p.push('</div>');
+
+  container.style.padding='15px';
+  container.innerHTML=p.join('');
+  observeAll(container);
+}
+
+/* ══════════════════════════════════════════════════════
+   VIDEO PAGE
+══════════════════════════════════════════════════════ */
+function updateMeta(video) {
+  const title = video.title+' | Trend4GenZ';
+  const desc  = video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,160) : video.title;
+  const img   = `https://i.ytimg.com/vi/${video.youtubeId}/maxresdefault.jpg`;
+  const url   = location.href;
+  document.title=title;
+  const md=document.querySelector('meta[name="description"]'); if(md) md.setAttribute('content',desc);
+  const map={'og-type':'video.other','og-title':title,'og-description':desc,'og-url':url,'og-image':img,'og-image-width':'1280','og-image-height':'720','og-image-alt':video.title};
+  for(const [id,val] of Object.entries(map)){const el=document.getElementById(id);if(el) el.setAttribute('content',val);}
+  const ex=document.getElementById('schema-video'); if(ex) ex.remove();
+  const s=document.createElement('script'); s.id='schema-video'; s.type='application/ld+json';
+  s.textContent=JSON.stringify({"@context":"https://schema.org","@type":"VideoObject","name":video.title,"description":desc,"uploadDate":video.uploadDate||new Date().toISOString().slice(0,19)+'+00:00',"thumbnailUrl":[`https://i.ytimg.com/vi/${video.youtubeId}/maxresdefault.jpg`,`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`,`https://i.ytimg.com/vi/${video.youtubeId}/mqdefault.jpg`],"embedUrl":`https://www.youtube.com/embed/${video.youtubeId}`,"url":url,"inLanguage":video.source==='nofollow'?'id':'en',"publisher":{"@type":"Organization","name":"Trend4GenZ","url":"https://www.trend4genz.fun","logo":{"@type":"ImageObject","url":"https://www.trend4genz.fun/logo.png"}}});
+  document.head.appendChild(s);
+}
+
+function handlePlay(id) {
+  playCounter++;
+  if(PLAY_AD_CONFIG.enablePlayButtonDirectAds&&videoWatchCount>=PLAY_AD_CONFIG.adStartFromVideo&&playCounter===1) window.open(PLAY_AD_CONFIG.adUrl,'_blank');
+  document.getElementById('player-box').innerHTML=`<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe><div class="video-mask mask-top"></div><div class="video-mask mask-bottom"></div><div id="fs-btn" class="btn-fs-custom" onclick="toggleFS()"><i class="fas fa-expand"></i></div>`;
+}
+
+function toggleFS() {
+  const el=document.getElementById('player-box'), ic=document.querySelector('#fs-btn i');
+  if(!document.fullscreenElement&&!document.webkitFullscreenElement){
+    (el.requestFullscreen||el.webkitRequestFullscreen).call(el);
+    if(ic) ic.className='fas fa-compress';
+  } else {
+    (document.exitFullscreen||document.webkitExitFullscreen).call(document);
+    if(ic) ic.className='fas fa-expand';
+  }
+}
+
+function renderVideo(container, v) {
+  loadFA();
+  updateMeta(v);
+  updateRobots(v.source);
+  updateCanonical(v.slug,v.source);
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el=>el.remove());
+  videoWatchCount++; playCounter=0;
+
+  const rel = videoDatabaseALL.filter(x=>x.slug!==v.slug).sort(()=>0.5-Math.random()).slice(0,8);
+  const showB = AD_CONFIG.allAds&&AD_CONFIG.videoPageAds.nativeBanner;
+
+  container.style.padding='0';
+  container.innerHTML=`
+    <div class="player-container" id="player-box">
+      <div class="play-overlay" onclick="handlePlay('${v.youtubeId}')">
+        <svg class="play-icon-svg" viewBox="0 0 84 84"><circle cx="42" cy="42" r="42" fill="rgba(0,0,0,0.5)"/><polygon points="34,26 62,42 34,58" fill="#ff032d"/></svg>
+        <div style="margin-top:10px;font-weight:bold;font-size:0.85rem;">TAP TO WATCH</div>
+      </div>
+      <img src="${YT_HQ(v.youtubeId)}" style="width:100%;height:100%;object-fit:cover;" alt="${v.title}" fetchpriority="high" decoding="async"/>
+    </div>
+    <div class="info-section">
+      <h1 style="font-size:1.15rem;font-weight:800;margin:14px 0;">${v.title}</h1>
+      <div class="dual-action-wrap">
+        <button class="home-split-btn" onclick="handleBrandClick()"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> HOME</button>
+        <button class="offer-split-btn" onclick="handleSpecialOffer()">⚡ More Info 🔥</button>
+      </div>
+      ${showB?banner():''}
+      <div class="summary-box"><div class="summary-text">${v.summary||''}</div></div>
+      <div style="display:none">${v.tags?v.tags.join(', '):''}</div>
+      <div class="rec-title">MORE VIDEOS</div>
+      <div class="recommendation-slider">${rel.map((r,i)=>`<div class="slider-item" onclick="go('${r.slug}')">${makeThumb(r.youtubeId,r.title,i<3)}<p>${r.title}</p></div>`).join('')}</div>
+    </div>`;
+  observeAll(container);
+}
+
+/* ══════════════════════════════════════════════════════
+   SEARCH
+══════════════════════════════════════════════════════ */
+function initSearch() {
+  const inp=document.getElementById('searchInput'), btn=document.getElementById('searchBtn'), sg=document.getElementById('searchSuggestions');
+  if(!inp||!btn||!sg) return;
+  let ai=-1;
+  const hl=(t,q)=>t.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi'),'<em>$1</em>');
+  const hide=()=>{sg.classList.remove('show');sg.innerHTML='';ai=-1;};
+  const setA=its=>its.forEach((e,i)=>e.classList.toggle('active',i===ai));
+
+  inp.addEventListener('input',()=>{
+    const v=inp.value.trim().toLowerCase(); ai=-1;
+    if(!v){hide();return;}
+    const hits=videoDatabaseALL.filter(x=>x.title.toLowerCase().includes(v)).slice(0,7);
+    if(!hits.length){sg.innerHTML=`<div class="sug-empty">No results for "<b>${v}</b>"</div>`;sg.classList.add('show');return;}
+    sg.innerHTML=hits.map(x=>`<div class="sug-item" data-slug="${x.slug}"><img src="${YT_THUMB(x.youtubeId)}" loading="lazy" alt="${x.title}" width="52" height="30"/><span>${hl(x.title,v)}</span></div>`).join('');
+    sg.classList.add('show');
+    sg.querySelectorAll('.sug-item').forEach(el=>el.addEventListener('mousedown',e=>{e.preventDefault();inp.value='';hide();go(el.dataset.slug);}));
+  });
+
+  inp.addEventListener('keydown',e=>{
+    const its=sg.querySelectorAll('.sug-item');
+    if(e.key==='ArrowDown'){e.preventDefault();ai=Math.min(ai+1,its.length-1);setA(its);}
+    else if(e.key==='ArrowUp'){e.preventDefault();ai=Math.max(ai-1,-1);setA(its);}
+    else if(e.key==='Enter'){if(ai>=0&&its[ai]){inp.value='';hide();go(its[ai].dataset.slug);}else doSearch();}
+    else if(e.key==='Escape'){hide();inp.blur();}
+  });
+
+  document.addEventListener('click',e=>{if(!e.target.closest('.search-wrapper'))hide();});
+  btn.addEventListener('click',doSearch);
+}
+
+function doSearch() {
+  const inp=document.getElementById('searchInput'), sg=document.getElementById('searchSuggestions');
+  if(!inp) return;
+  const v=inp.value.trim().toLowerCase(); if(!v) return;
+  if(sg){sg.classList.remove('show');sg.innerHTML='';}
+  renderGrid(document.getElementById('app'),videoDatabaseALL.filter(x=>x.title.toLowerCase().includes(v)));
+  document.getElementById('main-navbar').classList.remove('video-mode');
+}
+
+/* ══════════════════════════════════════════════════════
+   ROUTER
+══════════════════════════════════════════════════════ */
+async function router() {
+  const app=document.getElementById('app'), nav=document.getElementById('main-navbar'), slug=getSlug();
+  updateLang(); updateRobots('seo');
+
+  if (!slug||slug==='home') {
+    nav.classList.remove('video-mode');
+    let data;
+    if (staticGridSlugs.length) {
+      const ss=new Set(staticGridSlugs);
+      data=[...staticGridSlugs.map(s=>videoDatabaseALL.find(v=>v.slug===s)).filter(Boolean),...videoDatabaseALL.filter(v=>!ss.has(v.slug))];
+    } else { data=videoDatabaseALL; }
+    renderGrid(app, data);
+    updateCanonical('home','seo');
+  } else {
+    const video=slug2video(slug);
+    if(video){ nav.classList.add('video-mode'); renderVideo(app,video); }
+    else{
+      history.replaceState({},'',location.pathname);
+      nav.classList.remove('video-mode');
+      document.title='Trend4GenZ - Streaming';
+      renderGrid(app,videoDatabaseALL);
+      updateCanonical('home','seo');
+    }
+  }
+  scrollTo(0,0);
+}
+
+/* ══════════════════════════════════════════════════════
+   INIT — skeleton sudah tampil, fetch DB di background
+══════════════════════════════════════════════════════ */
+window.addEventListener('popstate', router);
+
+(async () => {
+  initIO();
+  // Cek dulu apakah ini video page — kalau iya, langsung tampilkan skeleton video
+  const slug = getSlug();
+  if (slug) {
+    // Video page: ganti skeleton grid dengan skeleton player
+    document.getElementById('app').innerHTML=`
+      <div style="width:100%;aspect-ratio:16/9;background:#111;border-radius:12px;overflow:hidden;">
+        <div class="sk-thumb" style="width:100%;height:100%;border-radius:0"></div>
+      </div>
+      <div style="padding:15px">
+        <div class="sk-title" style="height:20px;margin:14px 0 8px;max-width:80%"></div>
+        <div class="sk-title2" style="height:16px;margin-bottom:18px;max-width:60%"></div>
+      </div>`;
+  }
+  // Fetch DB (tidak blocking — skeleton sudah tampil)
+  try { await loadDatabases(); } catch(e) {
+    document.getElementById('app').innerHTML='<div style="padding:30px;text-align:center;color:#ff032d;">❌ Gagal memuat database. Coba refresh.</div>';
+    return;
+  }
+  initSearch();
+  router();
+})();
+</script>
 </body>
 </html>
