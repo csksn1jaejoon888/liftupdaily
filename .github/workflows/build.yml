@@ -3,8 +3,9 @@
 #  Trigger: setiap push yang mengubah db-en.json atau db-id.json
 #  Yang dikerjakan otomatis:
 #    1. Cek video mati + hapus duplikat + bersihkan hashtag
-#    2. Generate sitemap.xml baru dari db-en.json
-#    3. Commit + push hasilnya balik ke GitHub
+#    2. Generate static-grid.json (40 slug acak untuk homepage)
+#    3. Generate sitemap.xml baru dari db-en.json
+#    4. Commit + push hasilnya balik ke GitHub
 # ══════════════════════════════════════════════════════════════════
 name: Auto Clean DB & Generate Sitemap
 on:
@@ -24,7 +25,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Clean DB — hapus video mati + dedup + hashtag
+      - name: Clean DB — hapus video mati + dedup + hashtag + generate static-grid
         run: node clean-db.js
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
@@ -34,6 +35,6 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add db-en.json db-id.json sitemap.xml
-          git diff --staged --quiet || git commit -m "auto: clean hashtag + update sitemap [skip ci]"
+          git add db-en.json db-id.json sitemap.xml static-grid.json
+          git diff --staged --quiet || git commit -m "auto: clean + static-grid + sitemap [skip ci]"
           git push
