@@ -14,6 +14,9 @@
   <meta name="author" content="Trend4GenZ"/>
   <meta name="theme-color" content="#000000"/>
 
+  <link rel="preconnect" href="https://img.youtube.com"/>
+  <link rel="dns-prefetch" href="https://img.youtube.com"/>
+
   <link rel="canonical" id="dynamic-canonical" href="https://www.trend4genz.fun/"/>
   <meta http-equiv="content-language" content="en" id="meta-content-language"/>
 
@@ -46,8 +49,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <!-- Font Awesome async -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css"/></noscript>
   <!-- Google Fonts async -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/></noscript>
@@ -506,7 +509,7 @@ function renderVideo(container, v) {
     '<i class="fas fa-play-circle"></i>'+
     '<div style="margin-top:10px;font-weight:bold">TAP TO WATCH</div></div>'+
     // Thumbnail dengan width/height eksplisit — cegah CLS
-    '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/maxresdefault.jpg" width="1280" height="720" style="width:100%;height:100%;object-fit:cover" loading="eager" decoding="async" alt="'+v.title+'"/>'+
+    '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/hqdefault.jpg" width="480" height="360" style="width:100%;height:100%;object-fit:cover" loading="eager" decoding="async" alt="'+v.title+'"/>'+
     '</div>'+
     '<div class="info-section" style="padding:15px">'+
     '<h1 style="font-size:1.2rem;font-weight:800;margin:15px 0">'+v.title+'</h1>'+
