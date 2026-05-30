@@ -98,9 +98,13 @@
     .thumb-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity 0.3s}
     .thumb-wrap img.lazy{opacity:0}
     .thumb-wrap img.loaded{opacity:1}
-    /* Placeholder shimmer */
-    .thumb-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#111 25%,#1e1e1e 50%,#111 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;z-index:0}
-    .thumb-wrap img.loaded~*,.thumb-wrap img.loaded{z-index:1}
+    /* Placeholder shimmer — hanya aktif saat gambar belum loaded */
+    .thumb-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#111 25%,#1e1e1e 50%,#111 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;z-index:0;transition:opacity 0.3s}
+    .thumb-wrap img.loaded{z-index:1;position:relative}
+    /* Sembunyikan shimmer setelah gambar loaded */
+    .thumb-wrap:has(img.loaded)::before{display:none}
+    /* Fallback untuk browser tanpa :has() */
+    .thumb-nowrap::before{display:none}
     @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
     .video-card-title{padding:7px 8px 8px;font-size:0.78rem;font-weight:600;line-height:1.35;height:44px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
@@ -263,28 +267,45 @@
      LAZY IMAGE OBSERVER
   ═════════════════════════════════════════════════════════ */
   let imgObserver;
+
+  function loadImg(img) {
+    const src = img.getAttribute('data-src');
+    if (!src) return;
+    img.src = src;
+    img.removeAttribute('data-src');
+    img.classList.remove('lazy');
+    img.onload  = () => img.classList.add('loaded');
+    img.onerror = () => img.classList.add('loaded');
+  }
+
   function initImageObserver() {
     if (!('IntersectionObserver' in window)) return;
     imgObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const img = entry.target;
-          const src = img.getAttribute('data-src');
-          if (src) {
-            img.src = src;
-            img.removeAttribute('data-src');
-            img.onload  = () => img.classList.add('loaded');
-            img.onerror = () => img.classList.add('loaded'); // still remove shimmer
-          }
-          imgObserver.unobserve(img);
+          loadImg(entry.target);
+          imgObserver.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '200px 0px' }); // start loading 200px before visible
+    }, { rootMargin: '500px 0px', threshold: 0 });
   }
 
   function observeLazyImgs(container) {
-    if (!imgObserver) return;
-    container.querySelectorAll('img.lazy').forEach(img => imgObserver.observe(img));
+    const lazyImgs = container.querySelectorAll('img[data-src]');
+    if (!imgObserver) {
+      // Fallback: IntersectionObserver tidak ada, load semua langsung
+      lazyImgs.forEach(loadImg);
+      return;
+    }
+    lazyImgs.forEach(img => {
+      // Jika sudah dalam viewport saat dipasang, load langsung
+      const rect = img.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 600) {
+        loadImg(img);
+      } else {
+        imgObserver.observe(img);
+      }
+    });
   }
 
   /* ════════════════════════════════════════════════════════
@@ -373,10 +394,10 @@
   function thumbHTML(youtubeId, title, isEager) {
     const src = `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`;
     if (isEager) {
-      // 4 card pertama load langsung (tidak lazy) → perbaiki LCP
-      return `<div class="thumb-wrap"><img src="${src}" alt="${title}" width="320" height="180" fetchpriority="high" class="loaded"/></div>`;
+      return `<div class="thumb-wrap"><img src="${src}" alt="${title}" width="320" height="180" fetchpriority="high" decoding="async" class="loaded"/></div>`;
     }
-    return `<div class="thumb-wrap"><img data-src="${src}" alt="${title}" width="320" height="180" class="lazy"/></div>`;
+    // data-src dihandle oleh observeLazyImgs()
+    return `<div class="thumb-wrap"><img data-src="${src}" alt="${title}" width="320" height="180" decoding="async"/></div>`;
   }
 
   /* ════════════════════════════════════════════════════════
