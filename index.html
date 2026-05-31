@@ -325,35 +325,46 @@ function updateRobotsBySource(source) {
 }
 
 // ════════════════════════════════════════════════════════
-//  LOAD DATABASE — parallel fetch, featured.json prioritas
+//  LOAD DATABASE — featured dulu → render → DB lengkap background
 // ════════════════════════════════════════════════════════
 async function loadDatabases() {
-  // Coba load featured.json dulu (20 video pilihan — generate otomatis oleh clean-db.js)
-  // Ini yang tampil pertama kali dengan cepat
+  // STEP 1: Load featured.json saja dulu — kecil, cepat (~5KB)
   let featured = [];
   try {
     const res = await fetch('./featured.json');
     if(res.ok) featured = await res.json();
   } catch(e) {}
 
-  // Load DB lengkap di background
+  // STEP 2: Kalau featured sudah ada → render homepage langsung, jangan tunggu DB besar
+  if(featured.length) {
+    videoDatabaseALL = featured;
+    router(); // render grid dengan featured dulu
+  }
+
+  // STEP 3: Load DB lengkap di background (tidak blokir first paint)
   const [resEN, resID] = await Promise.all([
     fetch('./db-en.json'),
     fetch('./db-id.json')
   ]);
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v, source: v.source||'seo'}));
-  videoDatabaseID  = (await resID.json()).map(v=>({...v, source: v.source||'nofollow'}));
+  videoDatabaseEN = (await resEN.json()).map(v=>({...v, source: v.source||'seo'}));
+  videoDatabaseID = (await resID.json()).map(v=>({...v, source: v.source||'nofollow'}));
 
-  // Shuffle semua
   const shuffled = [...videoDatabaseEN, ...videoDatabaseID].sort(()=>0.5-Math.random());
+  const featuredIds = new Set(featured.map(v=>v.youtubeId));
+  const rest = shuffled.filter(v=>!featuredIds.has(v.youtubeId));
+  videoDatabaseALL = [...featured, ...rest];
 
-  // Kalau featured ada → tampilkan featured dulu di depan, sisanya di belakang
-  if(featured.length) {
-    const featuredIds = new Set(featured.map(v=>v.youtubeId));
-    const rest = shuffled.filter(v=>!featuredIds.has(v.youtubeId));
-    videoDatabaseALL = [...featured, ...rest];
-  } else {
-    videoDatabaseALL = shuffled;
+  // STEP 4: Update grid hanya kalau user masih di homepage (bukan video page)
+  const slug = getCurrentSlug();
+  const tag  = getUrlParams().get('tag');
+  if(!slug && !tag) {
+    // Refresh grid dengan data lengkap — tapi jangan scroll reset
+    const app = document.getElementById('app');
+    if(app && app.classList.contains('main-content')) {
+      const scrollY = window.scrollY;
+      renderGrid(app, videoDatabaseALL);
+      window.scrollTo(0, scrollY); // jaga posisi scroll user
+    }
   }
 }
 
@@ -684,7 +695,10 @@ window.addEventListener('load', async ()=>{
     return;
   }
   initSearch();
-  router();
+  // router sudah dipanggil di loadDatabases kalau featured ada
+  // panggil lagi hanya kalau featured kosong (fallback)
+  if(!videoDatabaseALL.length) router();
+  else initSearch(); // pastikan search init setelah DB lengkap
 });
 </script>
 </body>
