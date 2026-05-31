@@ -1,9 +1,11 @@
 // ══════════════════════════════════════════════════════════════════
-//  generate-pages.js  v4
-//  Yang dikerjakan:
-//    1. Hapus folder /video/ lama seluruhnya + buat ulang
-//    2. Overwrite index.html dari index_base.html (template bersih)
-//       dengan 20 card random hardcoded langsung di HTML
+//  generate-pages.js  v6  (patched)
+//  Fix:
+//    1. Player full-width di desktop (max-width 800px, bukan 600px)
+//    2. Tombol fullscreen custom muncul setelah tap play
+//    3. Path fetch absolut di homepage patch
+//    4. db-id.json DIHAPUS dari semua fetch — hanya db-en.json
+//       (db-id.json adalah noindex/nofollow, tidak perlu halaman statis)
 // ══════════════════════════════════════════════════════════════════
 'use strict';
 
@@ -12,8 +14,8 @@ const path = require('path');
 
 // ── Config ─────────────────────────────────────────────────────
 const DB_FILE      = path.join(__dirname, 'db-en.json');
-const BASE_TMPL    = path.join(__dirname, 'index_base.html');  // template tidak pernah disentuh
-const INDEX_FILE   = path.join(__dirname, 'index.html');       // yang di-overwrite setiap build
+const BASE_TMPL    = path.join(__dirname, 'index_base.html');
+const INDEX_FILE   = path.join(__dirname, 'index.html');
 const VIDEO_DIR    = path.join(__dirname, 'video');
 const BASE_URL     = 'https://trend4genz.fun';
 const SITE_NAME    = 'Trend4GenZ';
@@ -95,9 +97,9 @@ function buildVideoPage(v, allVideos) {
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a}
     body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
-    /* Navbar — sama persis dengan SPA video-mode (no logo, no border) */
+
+    /* ── Navbar sama persis dengan SPA video-mode ── */
     .navbar-custom{background:#000;padding:8px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:0}
-    /* Search — sama dengan SPA */
     .navbar-right-group{display:flex;align-items:center;margin-left:auto}
     .search-wrapper{position:relative;display:flex;align-items:center;z-index:9999}
     .search-container{display:flex;align-items:center;background:var(--dark);border-radius:20px;padding:5px 12px;border:1px solid var(--green)}
@@ -111,8 +113,9 @@ function buildVideoPage(v, allVideos) {
     .suggestion-item img{width:52px;height:30px;object-fit:cover;border-radius:4px;flex-shrink:0}
     .suggestion-item span{font-size:.75rem;color:#f1f1f1;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
     .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
-    /* Player */
-    .video-page-container{padding:15px;max-width:600px;margin:0 auto}
+
+    /* ── FIX #1: Player container full-width, max 800px di desktop ── */
+    .video-page-container{width:100%;max-width:800px;margin:0 auto;padding:15px}
     @media(max-width:600px){.video-page-container{padding:0}}
     .player-container{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
     @media(max-width:600px){.player-container{border-radius:0}}
@@ -125,16 +128,21 @@ function buildVideoPage(v, allVideos) {
     .video-mask{position:absolute;z-index:99999;background:transparent;pointer-events:all;touch-action:none}
     .mask-top{top:0;left:0;width:55%;height:94px}
     .mask-bottom{bottom:0;left:40%;width:100%;height:43px}
-    /* Info */
+
+    /* ── FIX #2: Tombol fullscreen custom ── */
+    .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
+    #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
+
+    /* ── Info section ── */
     .info-section{padding:15px}
     h1{font-size:1.2rem;font-weight:800;line-height:1.4;margin:15px 0}
-    /* Buttons */
     .dual-action-wrap{display:flex;gap:10px;margin-bottom:18px}
     .home-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;background:var(--green);color:#000;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
     .home-split-btn:hover{background:#7ddb7d;transform:translateY(-2px)}
     .offer-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;color:#fff;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#ff416c,#ff4b2b);animation:pulse-offer 2s infinite}
     @keyframes pulse-offer{0%,100%{box-shadow:0 0 14px rgba(255,65,108,.5)}50%{box-shadow:0 0 24px rgba(255,65,108,.85)}}
-    /* Summary */
+
+    /* ── Summary ── */
     .summary-box{background:rgba(255,255,255,.05);padding:20px;border-radius:12px;border-left:4px solid var(--green)}
     .summary-text{font-size:.9rem;line-height:1.5;color:#ddd}
     .summary-text h2{font-size:1.1rem;font-weight:700;margin:20px 0 8px;line-height:1.3;color:#fff}
@@ -143,11 +151,13 @@ function buildVideoPage(v, allVideos) {
     .summary-text ul{margin-bottom:12px;padding-left:20px}
     .summary-text li{font-size:.9rem;line-height:1.4;margin-bottom:5px;color:#ddd}
     .summary-text strong{color:#fff}
-    /* Tags */
+
+    /* ── Tags ── */
     .seo-tags-container{margin-top:15px;padding-top:15px;border-top:1px solid #222;display:flex;flex-wrap:wrap;gap:6px}
     .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;text-decoration:none;transition:.15s;display:inline-block}
     .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
-    /* Slider */
+
+    /* ── Slider ── */
     .recommendation-slider{display:flex;overflow-x:auto;gap:12px;padding-bottom:15px;scrollbar-width:none;-ms-overflow-style:none}
     .recommendation-slider::-webkit-scrollbar{display:none}
     .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent}
@@ -168,6 +178,7 @@ function buildVideoPage(v, allVideos) {
     </div>
   </div>
 </nav>
+
 <div class="video-page-container">
   <div class="player-container" id="player-box">
     <img src="${thumb}" alt="${esc(v.title)}" width="480" height="270"
@@ -202,50 +213,85 @@ function buildVideoPage(v, allVideos) {
     <div class="recommendation-slider" id="rec-slider">${relatedHtml}</div>
   </div>
 </div>
+
 <script>
-function startPlay(){
-  var pb=document.getElementById('player-box');
-  pb.innerHTML='<iframe src="https://www.youtube.com/embed/${v.youtubeId}?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1"></iframe>'+
-  '<div class="video-mask mask-top"></div><div class="video-mask mask-bottom"></div>';
+// ── FIX #2: startPlay dengan tombol fullscreen custom ────────────
+function startPlay() {
+  var pb = document.getElementById('player-box');
+  pb.innerHTML =
+    '<iframe src="https://www.youtube.com/embed/${v.youtubeId}?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +
+    ' allow="autoplay;encrypted-media;fullscreen" allowfullscreen' +
+    ' style="position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1"></iframe>' +
+    '<div class="video-mask mask-top"></div>' +
+    '<div class="video-mask mask-bottom"></div>' +
+    '<div id="fs-btn" class="btn-fs-custom" onclick="toggleFS()" title="Fullscreen">' +
+    '<svg id="fs-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+    '<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/>' +
+    '<polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>' +
+    '</svg></div>';
 }
 
-// Search — redirect ke homepage dengan query
-(function(){
-  var inp=document.getElementById('searchInput');
-  var btn=document.getElementById('searchBtn');
-  var sug=document.getElementById('searchSuggestions');
-  function doSearch(){
-    var q=inp.value.trim();
-    if(q) window.location.href='${BASE_URL}/?search='+encodeURIComponent(q);
+function toggleFS() {
+  var el  = document.getElementById('player-box');
+  var svg = document.getElementById('fs-icon');
+  if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+    (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+    if (svg) svg.innerHTML =
+      '<polyline points="8 3 3 3 3 8"/><line x1="3" y1="3" x2="10" y2="10"/>' +
+      '<polyline points="21 8 21 3 16 3"/><line x1="21" y1="3" x2="14" y2="10"/>' +
+      '<polyline points="3 16 3 21 8 21"/><line x1="3" y1="21" x2="10" y2="14"/>' +
+      '<polyline points="16 21 21 21 21 16"/><line x1="21" y1="21" x2="14" y2="14"/>';
+  } else {
+    (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    if (svg) svg.innerHTML =
+      '<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/>' +
+      '<polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>';
   }
-  inp.addEventListener('keydown',function(e){ if(e.key==='Enter') doSearch(); });
+}
+
+// ── Search: redirect ke homepage dengan query ────────────────────
+(function(){
+  var inp = document.getElementById('searchInput');
+  var btn = document.getElementById('searchBtn');
+  var sug = document.getElementById('searchSuggestions');
+  function doSearch() {
+    var q = inp.value.trim();
+    if (q) window.location.href = '${BASE_URL}/?search=' + encodeURIComponent(q);
+  }
+  inp.addEventListener('keydown', function(e){ if(e.key==='Enter') doSearch(); });
   btn.addEventListener('click', doSearch);
-  // Placeholder suggestions saat mengetik
-  inp.addEventListener('input',function(){
-    var q=inp.value.trim();
-    if(!q){ sug.classList.remove('show'); return; }
-    sug.innerHTML='<div class="suggestion-empty">Tekan Enter untuk cari: <b>'+q+'</b></div>';
+  inp.addEventListener('input', function(){
+    var q = inp.value.trim();
+    if (!q) { sug.classList.remove('show'); return; }
+    sug.innerHTML = '<div class="suggestion-empty">Tekan Enter untuk cari: <b>' + q + '</b></div>';
     sug.classList.add('show');
   });
-  document.addEventListener('click',function(e){
-    if(!e.target.closest('.search-wrapper')){ sug.classList.remove('show'); }
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.search-wrapper')) sug.classList.remove('show');
   });
 })();
-var _all=${sliderDataJson};
-var _loaded=8;
-document.getElementById('rec-slider').addEventListener('scroll',function(){
-  if(this.scrollLeft+this.clientWidth>=this.scrollWidth-120){
-    var next=_all.slice(_loaded,_loaded+8);
-    if(!next.length){_loaded=0;next=_all.slice(0,8);}
+
+// ── Infinite scroll slider ───────────────────────────────────────
+var _all = ${sliderDataJson};
+var _loaded = 8;
+document.getElementById('rec-slider').addEventListener('scroll', function(){
+  if (this.scrollLeft + this.clientWidth >= this.scrollWidth - 120) {
+    var next = _all.slice(_loaded, _loaded + 8);
+    if (!next.length) { _loaded = 0; next = _all.slice(0, 8); }
     next.forEach(function(r){
-      var a=document.createElement('a');
-      a.className='slider-item';
-      a.href='${BASE_URL}/video/'+r.slug+'/';
-      a.style.cssText='text-decoration:none;color:inherit;display:block';
-      a.innerHTML='<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" width="160" height="90" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><p>'+r.title.replace(/</g,'&lt;')+'</p>';
+      var a = document.createElement('a');
+      a.className = 'slider-item';
+      a.href = '${BASE_URL}/video/' + r.slug + '/';
+      a.style.cssText = 'text-decoration:none;color:inherit;display:block';
+      a.innerHTML =
+        '<img src="https://img.youtube.com/vi/' + r.youtubeId + '/mqdefault.jpg"' +
+        ' loading="lazy" width="160" height="90"' +
+        ' onload="this.style.opacity=1"' +
+        ' style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>' +
+        '<p>' + r.title.replace(/</g,'&lt;') + '</p>';
       document.getElementById('rec-slider').appendChild(a);
     });
-    _loaded+=next.length;
+    _loaded += next.length;
   }
 });
 </script>
@@ -254,18 +300,13 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
 }
 
 // ════════════════════════════════════════════════════════════════
-//  HOMEPAGE STATIS — dari index_base.html (template bersih)
-//  STRATEGI AMAN: hanya ganti konten #app di HTML
-//  Semua JS dibiarkan utuh — tidak ada regex replace JS
+//  HOMEPAGE STATIS
 // ════════════════════════════════════════════════════════════════
 function buildHomepage(db) {
   const featured = shuffle(db).slice(0, HOMEPAGE_CARDS);
 
-  // Baca template bersih — normalisasi line endings (Windows CRLF → LF)
   let html = fs.readFileSync(BASE_TMPL, 'utf8').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
-  // ── 1. Ganti konten #app: skeleton → 20 card hardcoded ──────────
-  // Cari anchor yang pasti ada di index_base.html
   const APP_START = '  <div class="main-content" id="app">';
   const APP_END   = '  </div>\n\n<script>';
   const startIdx  = html.indexOf(APP_START);
@@ -275,6 +316,7 @@ function buildHomepage(db) {
     console.error('❌ Tidak bisa menemukan #app block di template! Cek index_base.html');
     process.exit(1);
   }
+
   function cardHtml(v, idx) {
     const loading = idx < 4 ? 'eager' : 'lazy';
     const fp      = idx < 4 ? ' fetchpriority="high"' : '';
@@ -291,7 +333,7 @@ function buildHomepage(db) {
 </a>`;
   }
 
-  const cardsHtml = featured.map((v,i) => cardHtml(v,i)).join('\n');
+  const cardsHtml      = featured.map((v,i) => cardHtml(v,i)).join('\n');
   const hardcodedSlugs = JSON.stringify(featured.map(v => v.slug));
 
   const newApp = `${APP_START}
@@ -304,27 +346,21 @@ ${cardsHtml}
 
   html = html.slice(0, startIdx) + newApp + html.slice(endIdx + APP_END.length);
 
-  // ── 2. Sisipkan script kecil SEBELUM </script> penutup ──────────
-  //    Hanya override 2 hal: loadDatabases + router
-  //    Tidak sentuh initSearch, renderGrid, renderCards, dll
+  // ── FIX #3: path fetch absolut (/db-en.json bukan ./db-en.json) ──
   const patchScript = `
 // ── PATCH: homepage statis ──────────────────────────────────────
-// Override loadDatabases — tidak perlu featured.json
+// Hanya load db-en.json — db-id.json noindex/nofollow, tidak ditampilkan
 async function loadDatabases() {
-  const [resEN, resID] = await Promise.all([
-    fetch('./db-en.json'),
-    fetch('./db-id.json')
-  ]);
+  const ROOT = location.origin + '/';
+  const resEN = await fetch(ROOT + 'db-en.json');
   videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
-  videoDatabaseID  = (await resID.json()).map(v=>({...v,source:v.source||'nofollow'}));
-  videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
-  // load more mulai dari video yang belum tampil di 20 card hardcoded
+  videoDatabaseID  = [];
+  videoDatabaseALL = [...videoDatabaseEN].sort(()=>0.5-Math.random());
   const shown = new Set(${hardcodedSlugs});
   currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
   currentPage = 1;
 }
 
-// Override router — homepage tidak render ulang dari JS
 async function router() {
   const app    = document.getElementById('app');
   const navbar = document.getElementById('main-navbar');
@@ -353,11 +389,9 @@ async function router() {
     const h = app.querySelector('h5');
     if (h) h.textContent = res.length ? '🔍 "'+search+'" ('+res.length+' video)' : '🔥 TRENDING VIDEO';
   } else if (!slug || slug==='home') {
-    // Homepage — 20 card sudah ada di HTML, tidak render ulang
     navbar.classList.remove('video-mode');
     updateCanonical('home','seo');
   } else {
-    // ?v=slug → redirect ke halaman statis
     window.location.replace('/video/'+slug+'/');
     return;
   }
@@ -366,9 +400,7 @@ async function router() {
 // ── END PATCH ───────────────────────────────────────────────────
 `;
 
-  // Sisipkan patch SEBELUM </script> terakhir
   html = html.replace('</script>\n</body>', patchScript + '</script>\n</body>');
-
   return html;
 }
 
@@ -378,7 +410,6 @@ async function router() {
 function main() {
   if (!fs.existsSync(DB_FILE)) { console.error('❌ db-en.json tidak ditemukan!'); process.exit(1); }
 
-  // Kalau index_base.html belum ada → buat otomatis dari index.html yang ada sekarang
   if (!fs.existsSync(BASE_TMPL)) {
     if (!fs.existsSync(INDEX_FILE)) { console.error('❌ index.html dan index_base.html keduanya tidak ada!'); process.exit(1); }
     console.log('⚠️  index_base.html tidak ada → membuat dari index.html saat ini...');
@@ -387,27 +418,25 @@ function main() {
   }
 
   const rawDb = JSON.parse(fs.readFileSync(DB_FILE,'utf8'));
-  const db    = rawDb.filter(v=>v.source==='seo'&&v.slug&&v.youtubeId&&v.title);
-  console.log(`📦 ${rawDb.length} total → ${db.length} seo valid`);
+  // Hanya proses db-en.json — db-id.json noindex/nofollow, tidak di-generate
+  const db    = rawDb.filter(v=>v.slug&&v.youtubeId&&v.title);
+  console.log(`📦 ${rawDb.length} total → ${db.length} valid (db-en only)`);
 
-  // STEP 1: Hapus /video/ lama, buat ulang
   console.log('🗑️  Hapus /video/ lama...');
   rmDir(VIDEO_DIR);
   fs.mkdirSync(VIDEO_DIR,{recursive:true});
 
-  // STEP 2: Generate halaman video statis
   console.log('📄 Generate halaman video...');
-  let created=0;
+  let created = 0;
   db.forEach(v=>{
-    const dir=path.join(VIDEO_DIR,v.slug);
-    fs.mkdirSync(dir,{recursive:true});
-    fs.writeFileSync(path.join(dir,'index.html'), buildVideoPage(v,db),'utf8');
+    const dir = path.join(VIDEO_DIR, v.slug);
+    fs.mkdirSync(dir, {recursive:true});
+    fs.writeFileSync(path.join(dir,'index.html'), buildVideoPage(v,db), 'utf8');
     created++;
-    if(created%50===0) console.log(`  ✅ ${created}/${db.length}`);
+    if (created%50===0) console.log(`  ✅ ${created}/${db.length}`);
   });
   console.log(`✅ ${created} halaman video selesai`);
 
-  // STEP 3: Overwrite index.html dari template bersih
   console.log('🏠 Update index.html dari index_base.html...');
   const newIndex = buildHomepage(db);
   fs.writeFileSync(INDEX_FILE, newIndex, 'utf8');
