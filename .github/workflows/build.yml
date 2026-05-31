@@ -33,13 +33,10 @@ jobs:
         run: node generate-featured.js
       - name: Generate sitemap.xml
         run: node generate-sitemap.js
-      - name: Generate Static Pages (SSG)
-        run: node generate-pages.js
       - name: Commit & push hasil
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Pastikan semua hasil build di-add
-          git add db-en.json db-id.json featured.json sitemap.xml video/
-          git diff --staged --quiet || git commit -m "auto: clean + featured + sitemap + SSG [skip ci]"
+          git add db-en.json db-id.json featured.json sitemap.xml
+          git diff --staged --quiet || git commit -m "auto: clean + featured + sitemap [skip ci]"
           git push
