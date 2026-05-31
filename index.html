@@ -131,7 +131,7 @@
     .player-container{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
     .player-container iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1}
     .video-mask{position:absolute;z-index:99999;background:transparent;pointer-events:all;touch-action:none}
-    .mask-top{top:0;left:0;width:55%;height:94px}
+    .mask-top{top:0;left:0;width:65%;height:55px}
     .mask-bottom{bottom:0;left:40%;width:100%;height:43px}
     #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
     .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
@@ -469,7 +469,8 @@ function renderCards(items, startIndex, insertAfterIndex, showBanner) {
     const idx = startIndex + i;
     const nf  = v.source==='nofollow' ? ' rel="nofollow"' : '';
     const loading = idx < 4 ? 'eager' : 'lazy';
-    let html = `<a href="?v=${v.slug}"${nf} class="video-card-link" style="text-decoration:none;color:inherit" onclick="handleNavigation(event,'${v.slug}')"><div class="video-card"><div class="thumb-wrap"><img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" alt="${v.title.replace(/"/g,'&quot;')}" loading="${loading}" decoding="async" width="320" height="180" onload="this.classList.add('loaded')" onerror="this.src='https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg';this.classList.add('loaded')"/></div><div class="video-card-title">${v.title}</div></div></a>`;
+    // href langsung ke /video/{slug}/ — static page, SEO-friendly, LCP cepat
+    let html = `<a href="/video/${v.slug}/"${nf} class="video-card-link" style="text-decoration:none;color:inherit"><div class="video-card"><div class="thumb-wrap"><img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" alt="${v.title.replace(/"/g,'&quot;')}" loading="${loading}" decoding="async" width="320" height="180" onload="this.classList.add('loaded')" onerror="this.src='https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg';this.classList.add('loaded')"/></div><div class="video-card-title">${v.title}</div></div></a>`;
     if(showBanner && idx===insertAfterIndex) html += `<div class="grid-full-span">${buildNativeBanner()}</div>`;
     return html;
   }).join('');
@@ -540,7 +541,7 @@ function toggleFullScreen() {
 // ════════════════════════════════════════════════════════
 function updateMetaTags(video) {
   const title = video.title+' | Trend4GenZ';
-  const desc = video.meta_description ? video.meta_description : (video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,160) + '...' : video.title);
+  const desc  = video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,160) : video.title;
   const img   = 'https://img.youtube.com/vi/'+video.youtubeId+'/maxresdefault.jpg';
   const url   = location.href;
 
@@ -666,17 +667,10 @@ async function router() {
     updateCanonical('home','seo');
     const og=document.getElementById('og-type'); if(og) og.setAttribute('content','website');
   } else {
-    const video=videoDatabaseALL.find(v=>v.slug===slug||seoUrl(v.title)===slug);
-    if(video) {
-      navbar.classList.add('video-mode');
-      renderVideo(app, video);
-    } else {
-      history.replaceState({},'',location.pathname);
-      navbar.classList.remove('video-mode');
-      document.title='Trend4GenZ - Streaming';
-      renderGrid(app, videoDatabaseALL);
-      updateCanonical('home','seo');
-    }
+    // Redirect ke halaman statis — SEO-friendly, LCP langsung
+    // Halaman statis ada di /video/{slug}/
+    window.location.replace('/video/' + slug + '/');
+    return; // stop eksekusi, browser akan pindah
   }
   window.scrollTo(0,0);
 }
