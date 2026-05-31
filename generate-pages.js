@@ -95,10 +95,22 @@ function buildVideoPage(v, allVideos) {
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a}
     body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
-    /* Navbar */
-    .navbar-custom{background:#000;padding:12px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:1.5px solid var(--green)}
-    .brand-logo{color:var(--green);font-weight:900;font-size:1.5rem;text-transform:uppercase;text-decoration:none}
-    .nav-home-btn{background:transparent;border:1.5px solid var(--green);color:var(--green);padding:6px 16px;border-radius:6px;font-size:.8rem;font-weight:700;text-decoration:none;cursor:pointer}
+    /* Navbar — sama persis dengan SPA video-mode (no logo, no border) */
+    .navbar-custom{background:#000;padding:8px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:0}
+    /* Search — sama dengan SPA */
+    .navbar-right-group{display:flex;align-items:center;margin-left:auto}
+    .search-wrapper{position:relative;display:flex;align-items:center;z-index:9999}
+    .search-container{display:flex;align-items:center;background:var(--dark);border-radius:20px;padding:5px 12px;border:1px solid var(--green)}
+    .search-container input{background:transparent;border:none;color:#fff;outline:none;font-size:.85rem;width:45px;transition:.3s}
+    .search-container input:focus{width:65px}
+    .search-suggestions{position:absolute;top:calc(100% + 6px);right:0;width:240px;background:var(--dark);border:1px solid var(--green);border-radius:10px;overflow:hidden;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.6);display:none}
+    .search-suggestions.show{display:block}
+    .suggestion-item{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(255,255,255,.05)}
+    .suggestion-item:last-child{border-bottom:none}
+    .suggestion-item:hover{background:rgba(152,251,152,.12)}
+    .suggestion-item img{width:52px;height:30px;object-fit:cover;border-radius:4px;flex-shrink:0}
+    .suggestion-item span{font-size:.75rem;color:#f1f1f1;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+    .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
     /* Player */
     .video-page-container{padding:15px;max-width:600px;margin:0 auto}
     @media(max-width:600px){.video-page-container{padding:0}}
@@ -146,8 +158,15 @@ function buildVideoPage(v, allVideos) {
 </head>
 <body>
 <nav class="navbar-custom">
-  <a href="${BASE_URL}/" class="brand-logo">${SITE_NAME}</a>
-  <a href="${BASE_URL}/" class="nav-home-btn">⌂ HOME</a>
+  <div class="navbar-right-group">
+    <div class="search-wrapper">
+      <div class="search-container">
+        <input id="searchInput" placeholder="Cari..." type="text" autocomplete="off"/>
+        <svg id="searchBtn" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="cursor:pointer;flex-shrink:0"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+  </div>
 </nav>
 <div class="video-page-container">
   <div class="player-container" id="player-box">
@@ -189,6 +208,29 @@ function startPlay(){
   pb.innerHTML='<iframe src="https://www.youtube.com/embed/${v.youtubeId}?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1"></iframe>'+
   '<div class="video-mask mask-top"></div><div class="video-mask mask-bottom"></div>';
 }
+
+// Search — redirect ke homepage dengan query
+(function(){
+  var inp=document.getElementById('searchInput');
+  var btn=document.getElementById('searchBtn');
+  var sug=document.getElementById('searchSuggestions');
+  function doSearch(){
+    var q=inp.value.trim();
+    if(q) window.location.href='${BASE_URL}/?search='+encodeURIComponent(q);
+  }
+  inp.addEventListener('keydown',function(e){ if(e.key==='Enter') doSearch(); });
+  btn.addEventListener('click', doSearch);
+  // Placeholder suggestions saat mengetik
+  inp.addEventListener('input',function(){
+    var q=inp.value.trim();
+    if(!q){ sug.classList.remove('show'); return; }
+    sug.innerHTML='<div class="suggestion-empty">Tekan Enter untuk cari: <b>'+q+'</b></div>';
+    sug.classList.add('show');
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.search-wrapper')){ sug.classList.remove('show'); }
+  });
+})();
 var _all=${sliderDataJson};
 var _loaded=8;
 document.getElementById('rec-slider').addEventListener('scroll',function(){
@@ -256,6 +298,16 @@ function buildHomepage(db) {
     updateCanonical('home','seo');
     const h=app.querySelector('h5');
     if(h&&results.length) h.textContent='🏷️ Tag: #'+tag+' ('+results.length+' videos)';
+  } else if(getUrlParams().get('search')) {
+    // Dari search di halaman statis video
+    navbar.classList.remove('video-mode');
+    if(!videoDatabaseALL.length) await loadDatabases();
+    const q=getUrlParams().get('search').toLowerCase();
+    const results=videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(q));
+    renderGrid(app, results.length?results:videoDatabaseALL);
+    updateCanonical('home','seo');
+    const h=app.querySelector('h5');
+    if(h) h.textContent=(results.length?'🔍 Hasil: "'+getUrlParams().get('search')+'" ('+results.length+' video)':'🔥 TRENDING VIDEO');
   } else if(!slug||slug==='home') {
     // Homepage — card sudah ada di HTML, tidak perlu render ulang
     navbar.classList.remove('video-mode');
