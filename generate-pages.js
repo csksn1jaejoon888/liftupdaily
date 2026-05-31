@@ -255,101 +255,20 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
 
 // ════════════════════════════════════════════════════════════════
 //  HOMEPAGE STATIS — dari index_base.html (template bersih)
+//  STRATEGI AMAN: hanya ganti konten #app di HTML
+//  Semua JS dibiarkan utuh — tidak ada regex replace JS
 // ════════════════════════════════════════════════════════════════
 function buildHomepage(db) {
   const featured = shuffle(db).slice(0, HOMEPAGE_CARDS);
 
-  // Baca template bersih — tidak pernah dimodifikasi langsung
+  // Baca template bersih
   let html = fs.readFileSync(BASE_TMPL, 'utf8');
 
-  // Ganti loadDatabases() — hapus featured.json, DB tetap di-fetch untuk search
-  const newLoadDB = `async function loadDatabases() {
-  // Homepage sudah hardcoded — DB fetch hanya untuk search & load more
-  const [resEN, resID] = await Promise.all([
-    fetch('./db-en.json'),
-    fetch('./db-id.json')
-  ]);
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
-  videoDatabaseID  = (await resID.json()).map(v=>({...v,source:v.source||'nofollow'}));
-  videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
-  // currentData untuk load more = semua kecuali 20 yang sudah hardcoded
-  const hardcoded = new Set(${JSON.stringify(featured.map(v=>v.slug))});
-  currentData = videoDatabaseALL.filter(v=>!hardcoded.has(v.slug));
-  currentPage = 1;
-}`;
-
-  html = html.replace(/async function loadDatabases\(\)\s*\{[\s\S]*?\n\}/, newLoadDB);
-
-  // Ganti router() — homepage tidak perlu render dari JS lagi
-  const newRouter = `async function router() {
-  const app    = document.getElementById('app');
-  const navbar = document.getElementById('main-navbar');
-  const slug   = getCurrentSlug();
-  const tag    = getUrlParams().get('tag');
-
-  updateHtmlLang();
-  updateRobotsBySource('seo');
-
-  if(tag) {
-    navbar.classList.remove('video-mode');
-    if(!videoDatabaseALL.length) await loadDatabases();
-    const results = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    renderGrid(app, results.length?results:videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h=app.querySelector('h5');
-    if(h&&results.length) h.textContent='🏷️ Tag: #'+tag+' ('+results.length+' videos)';
-  } else if(getUrlParams().get('search')) {
-    // Dari search di halaman statis video
-    navbar.classList.remove('video-mode');
-    if(!videoDatabaseALL.length) await loadDatabases();
-    const q=getUrlParams().get('search').toLowerCase();
-    const results=videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(q));
-    renderGrid(app, results.length?results:videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h=app.querySelector('h5');
-    if(h) h.textContent=(results.length?'🔍 Hasil: "'+getUrlParams().get('search')+'" ('+results.length+' video)':'🔥 TRENDING VIDEO');
-  } else if(!slug||slug==='home') {
-    // Homepage — card sudah ada di HTML, tidak perlu render ulang
-    navbar.classList.remove('video-mode');
-    updateCanonical('home','seo');
-  } else {
-    // Redirect ke halaman statis video
-    window.location.replace('/video/'+slug+'/');
-    return;
-  }
-  window.scrollTo(0,0);
-}`;
-
-  html = html.replace(/async function router\(\)\s*\{[\s\S]*?\n\}/, newRouter);
-
-  // Ganti load event
-  const newLoad = `window.addEventListener('load', async ()=>{
-  try {
-    // DB fetch background — homepage sudah tampil dari HTML
-    loadDatabases().then(()=>{ initSearch(); });
-  } catch(e) { console.warn('DB load error:',e); }
-  initSearch();
-  router();
-});`;
-
-  html = html.replace(/window\.addEventListener\('load'[\s\S]*?\}\);/, newLoad);
-
-  // Ganti renderCards — href ke /video/slug/ bukan ?v=slug
-  html = html.replace(
-    /let html = `<a href="\?v=\$\{v\.slug\}"/g,
-    'let html = `<a href="/video/${v.slug}/"'
-  );
-  // Fallback kalau format sedikit beda
-  html = html.replace(
-    /href="\?v=\$\{v\.slug\}"/g,
-    'href="/video/${v.slug}/"'
-  );
-
-  // Ganti konten #app skeleton → 20 card hardcoded
+  // ── 1. Ganti konten #app: skeleton → 20 card hardcoded ──────────
   function cardHtml(v, idx) {
     const loading = idx < 4 ? 'eager' : 'lazy';
     const fp      = idx < 4 ? ' fetchpriority="high"' : '';
-    return `<a href="${BASE_URL}/video/${v.slug}/" class="video-card-link" style="text-decoration:none;color:inherit">
+    return `<a href="/video/${v.slug}/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
       <img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg"
@@ -362,20 +281,85 @@ function buildHomepage(db) {
 </a>`;
   }
 
-  const cardsHtml = featured.map((v,i)=>cardHtml(v,i)).join('\n');
+  const cardsHtml = featured.map((v,i) => cardHtml(v,i)).join('\n');
+  const hardcodedSlugs = JSON.stringify(featured.map(v => v.slug));
 
+  // Ganti blok #app (dari <div class="main-content" id="app"> sampai </div> penutupnya)
   html = html.replace(
-    /<div class="main-content" id="app">[\s\S]*?<\/div>\s*\n\s*<script>/,
+    /<div class="main-content" id="app">[\s\S]*?<\/div>(\s*\n\s*<script>)/,
     `<div class="main-content" id="app">
     <h5 style="color:#98FB98;margin-bottom:12px">🔥 TRENDING VIDEO</h5>
     <div class="video-grid" id="video-grid-inner">
 ${cardsHtml}
     </div>
     <div class="load-more-wrap"><button class="btn-load-more" id="btn-load-more" onclick="loadMore()">Load More</button></div>
-  </div>
-
-<script>`
+  </div>$1`
   );
+
+  // ── 2. Sisipkan script kecil SEBELUM </script> penutup ──────────
+  //    Hanya override 2 hal: loadDatabases + router
+  //    Tidak sentuh initSearch, renderGrid, renderCards, dll
+  const patchScript = `
+// ── PATCH: homepage statis ──────────────────────────────────────
+// Override loadDatabases — tidak perlu featured.json
+async function loadDatabases() {
+  const [resEN, resID] = await Promise.all([
+    fetch('./db-en.json'),
+    fetch('./db-id.json')
+  ]);
+  videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
+  videoDatabaseID  = (await resID.json()).map(v=>({...v,source:v.source||'nofollow'}));
+  videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
+  // load more mulai dari video yang belum tampil di 20 card hardcoded
+  const shown = new Set(${hardcodedSlugs});
+  currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
+  currentPage = 1;
+}
+
+// Override router — homepage tidak render ulang dari JS
+async function router() {
+  const app    = document.getElementById('app');
+  const navbar = document.getElementById('main-navbar');
+  const slug   = getCurrentSlug();
+  const tag    = getUrlParams().get('tag');
+  const search = getUrlParams().get('search');
+
+  updateHtmlLang();
+  updateRobotsBySource('seo');
+
+  if (tag) {
+    navbar.classList.remove('video-mode');
+    if (!videoDatabaseALL.length) await loadDatabases();
+    const res = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+    renderGrid(app, res.length ? res : videoDatabaseALL);
+    updateCanonical('home','seo');
+    const h = app.querySelector('h5');
+    if (h && res.length) h.textContent = '🏷️ Tag: #'+tag+' ('+res.length+' videos)';
+  } else if (search) {
+    navbar.classList.remove('video-mode');
+    if (!videoDatabaseALL.length) await loadDatabases();
+    const q   = search.toLowerCase();
+    const res = videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(q));
+    renderGrid(app, res.length ? res : videoDatabaseALL);
+    updateCanonical('home','seo');
+    const h = app.querySelector('h5');
+    if (h) h.textContent = res.length ? '🔍 "'+search+'" ('+res.length+' video)' : '🔥 TRENDING VIDEO';
+  } else if (!slug || slug==='home') {
+    // Homepage — 20 card sudah ada di HTML, tidak render ulang
+    navbar.classList.remove('video-mode');
+    updateCanonical('home','seo');
+  } else {
+    // ?v=slug → redirect ke halaman statis
+    window.location.replace('/video/'+slug+'/');
+    return;
+  }
+  window.scrollTo(0,0);
+}
+// ── END PATCH ───────────────────────────────────────────────────
+`;
+
+  // Sisipkan patch SEBELUM </script> terakhir
+  html = html.replace('</script>\n</body>', patchScript + '</script>\n</body>');
 
   return html;
 }
