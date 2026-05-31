@@ -261,10 +261,20 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
 function buildHomepage(db) {
   const featured = shuffle(db).slice(0, HOMEPAGE_CARDS);
 
-  // Baca template bersih
-  let html = fs.readFileSync(BASE_TMPL, 'utf8');
+  // Baca template bersih — normalisasi line endings (Windows CRLF → LF)
+  let html = fs.readFileSync(BASE_TMPL, 'utf8').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
   // ── 1. Ganti konten #app: skeleton → 20 card hardcoded ──────────
+  // Cari anchor yang pasti ada di index_base.html
+  const APP_START = '  <div class="main-content" id="app">';
+  const APP_END   = '  </div>\n\n<script>';
+  const startIdx  = html.indexOf(APP_START);
+  const endIdx    = html.indexOf(APP_END);
+
+  if (startIdx === -1 || endIdx === -1) {
+    console.error('❌ Tidak bisa menemukan #app block di template! Cek index_base.html');
+    process.exit(1);
+  }
   function cardHtml(v, idx) {
     const loading = idx < 4 ? 'eager' : 'lazy';
     const fp      = idx < 4 ? ' fetchpriority="high"' : '';
@@ -284,17 +294,15 @@ function buildHomepage(db) {
   const cardsHtml = featured.map((v,i) => cardHtml(v,i)).join('\n');
   const hardcodedSlugs = JSON.stringify(featured.map(v => v.slug));
 
-  // Ganti blok #app (dari <div class="main-content" id="app"> sampai </div> penutupnya)
-  html = html.replace(
-    /<div class="main-content" id="app">[\s\S]*?<\/div>(\s*\n\s*<script>)/,
-    `<div class="main-content" id="app">
+  const newApp = `${APP_START}
     <h5 style="color:#98FB98;margin-bottom:12px">🔥 TRENDING VIDEO</h5>
     <div class="video-grid" id="video-grid-inner">
 ${cardsHtml}
     </div>
     <div class="load-more-wrap"><button class="btn-load-more" id="btn-load-more" onclick="loadMore()">Load More</button></div>
-  </div>$1`
-  );
+  </div>\n\n<script>`;
+
+  html = html.slice(0, startIdx) + newApp + html.slice(endIdx + APP_END.length);
 
   // ── 2. Sisipkan script kecil SEBELUM </script> penutup ──────────
   //    Hanya override 2 hal: loadDatabases + router
