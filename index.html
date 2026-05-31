@@ -540,7 +540,7 @@ function toggleFullScreen() {
 // ════════════════════════════════════════════════════════
 function updateMetaTags(video) {
   const title = video.title+' | Trend4GenZ';
-  const desc  = video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,160) : video.title;
+  const desc = video.meta_description ? video.meta_description : (video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,160) + '...' : video.title);
   const img   = 'https://img.youtube.com/vi/'+video.youtubeId+'/maxresdefault.jpg';
   const url   = location.href;
 
