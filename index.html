@@ -135,8 +135,12 @@
     .mask-bottom{bottom:0;left:40%;width:100%;height:43px}
     #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
     .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
-    .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;cursor:pointer}
+    .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;cursor:pointer;gap:10px}
     .play-overlay i{font-size:4rem;color:var(--red)}
+    /* SVG play button — tidak bergantung Font Awesome */
+    .play-btn-svg{width:72px;height:72px;filter:drop-shadow(0 0 12px rgba(255,3,45,.7));transition:transform .15s}
+    .play-overlay:hover .play-btn-svg{transform:scale(1.1)}
+    .play-overlay-label{font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.08em;text-shadow:0 2px 8px rgba(0,0,0,.8)}
     /* Fix: img harus di bawah overlay */
     .player-container>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
 
@@ -238,7 +242,7 @@
       <div class="search-wrapper">
         <div class="search-container">
           <input id="searchInput" placeholder="Cari..." type="text" autocomplete="off"/>
-          <i class="fas fa-search" id="searchBtn" style="color:var(--green,#98FB98);font-size:.8rem;cursor:pointer"></i>
+          <svg id="searchBtn" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="cursor:pointer;flex-shrink:0"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </div>
         <div class="search-suggestions" id="searchSuggestions"></div>
       </div>
@@ -502,7 +506,7 @@ function handlePlay(youtubeId) {
   document.getElementById('player-box').innerHTML =
     '<iframe src="https://www.youtube.com/embed/'+youtubeId+'?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe>' +
     '<div class="video-mask mask-top"></div><div class="video-mask mask-bottom"></div>' +
-    '<div id="fs-btn" class="btn-fs-custom" onclick="toggleFullScreen()"><i class="fas fa-expand"></i></div>';
+    '<div id="fs-btn" class="btn-fs-custom" onclick="toggleFullScreen()" title="Fullscreen"><svg id="fs-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/><polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/></svg></div>';
 }
 
 function filterByTag(tag) {
@@ -521,13 +525,13 @@ function filterByTag(tag) {
 
 function toggleFullScreen() {
   const el=document.getElementById('player-box');
-  const ic=document.querySelector('#fs-btn i');
+  const svg=document.getElementById('fs-icon');
   if(!document.fullscreenElement&&!document.webkitFullscreenElement){
     (el.requestFullscreen||el.webkitRequestFullscreen).call(el);
-    ic.className='fas fa-compress';
+    if(svg) svg.innerHTML='<polyline points="8 3 3 3 3 8"/><line x1="3" y1="3" x2="10" y2="10"/><polyline points="21 8 21 3 16 3"/><line x1="21" y1="3" x2="14" y2="10"/><polyline points="3 16 3 21 8 21"/><line x1="3" y1="21" x2="10" y2="14"/><polyline points="16 21 21 21 21 16"/><line x1="21" y1="21" x2="14" y2="14"/>';
   } else {
     (document.exitFullscreen||document.webkitExitFullscreen).call(document);
-    ic.className='fas fa-expand';
+    if(svg) svg.innerHTML='<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/><polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>';
   }
 }
 
@@ -603,14 +607,17 @@ function renderVideo(container, v) {
     '<div class="player-container" id="player-box">'+
     '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/hqdefault.jpg" width="480" height="360" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2" loading="eager" decoding="async" alt="'+v.title.replace(/"/g,'&quot;')+'"/>'+
     '<div class="play-overlay" onclick="handlePlay(\''+v.youtubeId+'\')" style="z-index:20">'+
-    '<i class="fas fa-play-circle"></i>'+
-    '<div style="margin-top:10px;font-weight:bold">TAP TO WATCH</div></div>'+
+    '<svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">'+
+    '<circle cx="40" cy="40" r="38" fill="rgba(0,0,0,0.55)" stroke="#ff032d" stroke-width="3"/>'+
+    '<polygon points="32,24 60,40 32,56" fill="#ff032d"/>'+
+    '</svg>'+
+    '<div class="play-overlay-label">TAP TO WATCH</div></div>'+
     '</div>'+
     '<div class="info-section" style="padding:15px">'+
     '<h1 style="font-size:1.2rem;font-weight:800;margin:15px 0">'+v.title+'</h1>'+
     '<div class="dual-action-wrap">'+
-    '<button class="home-split-btn" onclick="handleBrandClick()"><i class="fas fa-home"></i> HOME</button>'+
-    '<button class="offer-split-btn" onclick="handleSpecialOffer()"><i class="fas fa-bolt"></i> More Info 🔥</button>'+
+    '<button class="home-split-btn" onclick="handleBrandClick()"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME</button>'+
+    '<button class="offer-split-btn" onclick="handleSpecialOffer()"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="margin-right:5px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> More Info 🔥</button>'+
     '</div>'+
     (showBanner?buildNativeBanner():'')+
     '<div class="summary-box"><div class="summary-text">'+v.summary+'</div>'+tagsHTML+'</div>'+
