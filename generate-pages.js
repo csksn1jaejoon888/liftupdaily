@@ -332,8 +332,15 @@ ${cardsHtml}
 //  MAIN
 // ════════════════════════════════════════════════════════════════
 function main() {
-  if (!fs.existsSync(DB_FILE))   { console.error('❌ db-en.json tidak ditemukan!'); process.exit(1); }
-  if (!fs.existsSync(BASE_TMPL)) { console.error('❌ index_base.html tidak ditemukan! Simpan file template asli sebagai index_base.html di root repo.'); process.exit(1); }
+  if (!fs.existsSync(DB_FILE)) { console.error('❌ db-en.json tidak ditemukan!'); process.exit(1); }
+
+  // Kalau index_base.html belum ada → buat otomatis dari index.html yang ada sekarang
+  if (!fs.existsSync(BASE_TMPL)) {
+    if (!fs.existsSync(INDEX_FILE)) { console.error('❌ index.html dan index_base.html keduanya tidak ada!'); process.exit(1); }
+    console.log('⚠️  index_base.html tidak ada → membuat dari index.html saat ini...');
+    fs.copyFileSync(INDEX_FILE, BASE_TMPL);
+    console.log('✅ index_base.html dibuat otomatis dari index.html');
+  }
 
   const rawDb = JSON.parse(fs.readFileSync(DB_FILE,'utf8'));
   const db    = rawDb.filter(v=>v.source==='seo'&&v.slug&&v.youtubeId&&v.title);
