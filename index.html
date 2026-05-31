@@ -469,7 +469,7 @@ function renderCards(items, startIndex, insertAfterIndex, showBanner) {
     const idx = startIndex + i;
     const nf  = v.source==='nofollow' ? ' rel="nofollow"' : '';
     const loading = idx < 4 ? 'eager' : 'lazy';
-    let html = `<a href="?v=${v.slug}"${nf} class="video-card-link" style="text-decoration:none;color:inherit" onclick="handleNavigation(event,'${v.slug}')"><div class="video-card"><div class="thumb-wrap"><img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" alt="${v.title.replace(/"/g,'&quot;')}" loading="${loading}" decoding="async" width="320" height="180" onload="this.classList.add('loaded')" onerror="this.src='https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg';this.classList.add('loaded')"/></div><div class="video-card-title">${v.title}</div></div></a>`;
+    let html = `<a href="/video/${v.slug}/"${nf} class="video-card-link" style="text-decoration:none;color:inherit" ><div class="video-card"><div class="thumb-wrap"><img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" alt="${v.title.replace(/"/g,'&quot;')}" loading="${loading}" decoding="async" width="320" height="180" onload="this.classList.add('loaded')" onerror="this.src='https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg';this.classList.add('loaded')"/></div><div class="video-card-title">${v.title}</div></div></a>`;
     if(showBanner && idx===insertAfterIndex) html += `<div class="grid-full-span">${buildNativeBanner()}</div>`;
     return html;
   }).join('');
