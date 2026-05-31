@@ -1,54 +1,46 @@
 // ══════════════════════════════════════════════════════════════════
-//  generate-pages.js  v3
+//  generate-pages.js  v4
 //  Yang dikerjakan:
-//    1. Hapus folder /video/ lama seluruhnya
-//    2. Buat ulang /video/{slug}/index.html untuk setiap video seo
-//    3. Overwrite index.html homepage dengan 20 video random hardcoded
-//       (tidak perlu featured.json, tidak perlu fetch saat first paint)
+//    1. Hapus folder /video/ lama seluruhnya + buat ulang
+//    2. Overwrite index.html dari index_base.html (template bersih)
+//       dengan 20 card random hardcoded langsung di HTML
 // ══════════════════════════════════════════════════════════════════
 'use strict';
 
 const fs   = require('fs');
 const path = require('path');
 
-// ── Config ────────────────────────────────────────────────────────
-const DB_FILE    = path.join(__dirname, 'db-en.json');
-const VIDEO_DIR  = path.join(__dirname, 'video');
-const INDEX_FILE = path.join(__dirname, 'index.html');
-const BASE_URL   = 'https://trend4genz.fun';
-const SITE_NAME  = 'Trend4GenZ';
-const DESC_DEF   = 'Streaming video terbaru — teknologi, AI, lifestyle, dan tren global.';
-const HOMEPAGE_CARDS = 20;   // jumlah card hardcoded di homepage
-const PAGE_SIZE  = 24;       // load-more batch size (sama dengan SPA)
+// ── Config ─────────────────────────────────────────────────────
+const DB_FILE      = path.join(__dirname, 'db-en.json');
+const BASE_TMPL    = path.join(__dirname, 'index_base.html');  // template tidak pernah disentuh
+const INDEX_FILE   = path.join(__dirname, 'index.html');       // yang di-overwrite setiap build
+const VIDEO_DIR    = path.join(__dirname, 'video');
+const BASE_URL     = 'https://trend4genz.fun';
+const SITE_NAME    = 'Trend4GenZ';
+const DESC_DEF     = 'Streaming video terbaru — teknologi, AI, lifestyle, dan tren global.';
+const HOMEPAGE_CARDS = 20;
 
-// ── Helpers ───────────────────────────────────────────────────────
-function esc(s = '') {
+// ── Helpers ────────────────────────────────────────────────────
+function esc(s='') {
   return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;')
                   .replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
-function stripHtml(s = '') { return s.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim(); }
-function trunc(s, n = 160)  { const t = stripHtml(s); return t.length<=n ? t : t.slice(0,n-1)+'…'; }
-
-function rmDir(dir) {
-  if (!fs.existsSync(dir)) return;
-  fs.rmSync(dir, { recursive: true, force: true });
-}
-
-// ── Shuffle ───────────────────────────────────────────────────────
-function shuffle(arr) { return [...arr].sort(() => 0.5 - Math.random()); }
+function stripHtml(s='') { return s.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim(); }
+function trunc(s,n=160)  { const t=stripHtml(s); return t.length<=n?t:t.slice(0,n-1)+'…'; }
+function rmDir(dir)      { if(fs.existsSync(dir)) fs.rmSync(dir,{recursive:true,force:true}); }
+function shuffle(arr)    { return [...arr].sort(()=>0.5-Math.random()); }
 
 // ════════════════════════════════════════════════════════════════
-//  BUILD HALAMAN VIDEO STATIS
+//  HALAMAN VIDEO STATIS
 // ════════════════════════════════════════════════════════════════
 function buildVideoPage(v, allVideos) {
   const canonical  = `${BASE_URL}/video/${v.slug}/`;
   const thumb      = `https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg`;
   const thumbOg    = `https://img.youtube.com/vi/${v.youtubeId}/maxresdefault.jpg`;
-  const desc       = trunc(v.summary || DESC_DEF, 160);
-  const uploadDate = v.uploadDate || new Date().toISOString();
-  const tags       = v.tags || [];
-
-  const related = shuffle(allVideos.filter(r => r.slug !== v.slug)).slice(0, 8);
+  const desc       = trunc(v.summary||DESC_DEF, 160);
+  const uploadDate = v.uploadDate||new Date().toISOString();
+  const tags       = v.tags||[];
+  const related    = shuffle(allVideos.filter(r=>r.slug!==v.slug)).slice(0,8);
 
   const jsonLd = JSON.stringify({
     '@context':'https://schema.org','@type':'VideoObject',
@@ -60,20 +52,18 @@ function buildVideoPage(v, allVideos) {
   });
 
   const tagsHtml = tags.length
-    ? `<div class="tags-wrap">${tags.map(t=>
-        `<a href="${BASE_URL}/?tag=${encodeURIComponent(t)}" class="tag-badge">#${esc(t)}</a>`
-      ).join('')}</div>`
-    : '';
+    ? `<div class="seo-tags-container">${tags.map(t=>
+        `<a href="${BASE_URL}/?tag=${encodeURIComponent(t)}" class="seo-tag-badge">#${esc(t)}</a>`
+      ).join('')}</div>` : '';
 
-  const relatedHtml = related.map(r => `
-    <a href="${BASE_URL}/video/${r.slug}/" class="rel-card">
+  const relatedHtml = related.map(r=>`
+    <a href="${BASE_URL}/video/${r.slug}/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg"
            alt="${esc(r.title)}" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s"/>
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>${esc(r.title)}</p>
     </a>`).join('');
 
-  // data untuk infinite slider JS
   const sliderDataJson = JSON.stringify(
     allVideos.filter(r=>r.slug!==v.slug).map(r=>({slug:r.slug,youtubeId:r.youtubeId,title:r.title}))
   );
@@ -102,115 +92,116 @@ function buildVideoPage(v, allVideos) {
   <link rel="preload" as="image" href="${thumb}" fetchpriority="high"/>
   <link rel="preconnect" href="https://img.youtube.com"/>
   <style>
-    :root{--bg:#0a0a0a;--dark:#1a1a1a;--green:#98FB98;--red:#ff032d;--text:#f1f1f1}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif}
-    nav{background:#000;border-bottom:1.5px solid var(--green);position:sticky;top:0;z-index:100}
-    .nav-inner{max-width:520px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 14px}
-    .nav-logo{color:var(--green);font-size:1.1rem;font-weight:900;text-decoration:none;letter-spacing:.05em;text-transform:uppercase}
-    .nav-home{background:transparent;border:1.5px solid var(--green);color:var(--green);padding:5px 14px;border-radius:4px;font-size:.75rem;font-weight:700;text-decoration:none}
-    .page-wrap{max-width:520px;margin:0 auto}
-    .player-wrap{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}
-    .player-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;display:block}
-    .play-overlay{position:absolute;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;background:rgba(0,0,0,.3)}
-    .play-overlay:hover .play-svg{transform:scale(1.1)}
-    .play-svg{width:68px;height:68px;filter:drop-shadow(0 0 12px rgba(255,3,45,.7));transition:transform .15s}
-    .play-label{font-size:.9rem;font-weight:800;letter-spacing:.1em;text-shadow:0 2px 8px rgba(0,0,0,.9)}
-    iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:30;display:none}
-    iframe.active{display:block}
-    .mask{position:absolute;z-index:25;background:var(--bg);pointer-events:none}
-    .mask-top{top:0;left:0;width:65%;height:52px}
-    .mask-bot{bottom:0;left:40%;width:100%;height:42px}
-    .info{padding:14px}
-    h1{font-size:1.15rem;font-weight:800;line-height:1.4;margin:12px 0 14px}
-    .btn-row{display:flex;gap:10px;margin-bottom:16px}
-    .btn-home{flex:1;padding:11px;background:#98FB98;color:#000;font-weight:700;font-size:.85rem;border:none;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
-    .btn-more{flex:1;padding:11px;background:linear-gradient(90deg,#e53935,#ff6f00);color:#fff;font-weight:700;font-size:.85rem;border:none;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;animation:pulse 2s infinite}
-    @keyframes pulse{0%,100%{box-shadow:0 0 14px rgba(255,65,108,.5)}50%{box-shadow:0 0 24px rgba(255,65,108,.85)}}
-    .summary-box{background:rgba(255,255,255,.05);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:16px;margin-bottom:16px;font-size:.88rem;line-height:1.7}
-    .summary-box h2{font-size:1.0rem;font-weight:700;color:var(--green);margin:14px 0 6px}
-    .summary-box h3{font-size:.95rem;font-weight:600;color:var(--green);margin:12px 0 5px}
-    .summary-box p{margin-bottom:10px;color:#ddd}
-    .summary-box ul{padding-left:18px;margin:6px 0}
-    .summary-box li{margin-bottom:5px;color:#ddd}
-    .summary-box strong{color:#fff}
-    .tags-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;padding-top:14px;border-top:1px solid #222}
-    .tag-badge{background:#111;color:var(--green);border:1px solid #2a2a2a;padding:4px 10px;border-radius:4px;font-size:.78rem;font-weight:500;text-decoration:none;transition:.15s;display:inline-block}
-    .tag-badge:hover{border-color:var(--green);color:#fff;background:#1a1a1a}
-    .related-title{color:var(--green);font-size:.85rem;font-weight:700;margin-bottom:10px}
-    .related-slider{display:flex;overflow-x:auto;gap:10px;padding-bottom:14px;scrollbar-width:none}
-    .related-slider::-webkit-scrollbar{display:none}
-    .rel-card{min-width:158px;max-width:158px;flex-shrink:0;background:var(--dark);border-radius:7px;overflow:hidden;text-decoration:none;color:var(--text);border:1px solid transparent;transition:.2s}
-    .rel-card:hover{border-color:var(--green);transform:translateY(-2px)}
-    .rel-card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
-    .rel-card p{font-size:.72rem;padding:6px 8px 8px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-    footer{padding:20px 14px;text-align:center;font-size:.72rem;color:#555;border-top:1px solid #1a1a1a;margin-top:10px}
-    footer a{color:#555;text-decoration:none}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a}
+    body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
+    /* Navbar */
+    .navbar-custom{background:#000;padding:12px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:1.5px solid var(--green)}
+    .brand-logo{color:var(--green);font-weight:900;font-size:1.5rem;text-transform:uppercase;text-decoration:none}
+    .nav-home-btn{background:transparent;border:1.5px solid var(--green);color:var(--green);padding:6px 16px;border-radius:6px;font-size:.8rem;font-weight:700;text-decoration:none;cursor:pointer}
+    /* Player */
+    .video-page-container{padding:15px;max-width:600px;margin:0 auto}
+    @media(max-width:600px){.video-page-container{padding:0}}
+    .player-container{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
+    @media(max-width:600px){.player-container{border-radius:0}}
+    .player-container iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1}
+    .player-container>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+    .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;cursor:pointer;gap:10px}
+    .play-btn-svg{width:72px;height:72px;filter:drop-shadow(0 0 12px rgba(255,3,45,.7));transition:transform .15s}
+    .play-overlay:hover .play-btn-svg{transform:scale(1.1)}
+    .play-overlay-label{font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.08em;text-shadow:0 2px 8px rgba(0,0,0,.8)}
+    .video-mask{position:absolute;z-index:99999;background:transparent;pointer-events:all;touch-action:none}
+    .mask-top{top:0;left:0;width:55%;height:94px}
+    .mask-bottom{bottom:0;left:40%;width:100%;height:43px}
+    /* Info */
+    .info-section{padding:15px}
+    h1{font-size:1.2rem;font-weight:800;line-height:1.4;margin:15px 0}
+    /* Buttons */
+    .dual-action-wrap{display:flex;gap:10px;margin-bottom:18px}
+    .home-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;background:var(--green);color:#000;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
+    .home-split-btn:hover{background:#7ddb7d;transform:translateY(-2px)}
+    .offer-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;color:#fff;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#ff416c,#ff4b2b);animation:pulse-offer 2s infinite}
+    @keyframes pulse-offer{0%,100%{box-shadow:0 0 14px rgba(255,65,108,.5)}50%{box-shadow:0 0 24px rgba(255,65,108,.85)}}
+    /* Summary */
+    .summary-box{background:rgba(255,255,255,.05);padding:20px;border-radius:12px;border-left:4px solid var(--green)}
+    .summary-text{font-size:.9rem;line-height:1.5;color:#ddd}
+    .summary-text h2{font-size:1.1rem;font-weight:700;margin:20px 0 8px;line-height:1.3;color:#fff}
+    .summary-text h3{font-size:1.0rem;font-weight:600;margin:16px 0 6px;line-height:1.3;color:#fff}
+    .summary-text p{font-size:.9rem;line-height:1.5;margin-bottom:12px;color:#ddd}
+    .summary-text ul{margin-bottom:12px;padding-left:20px}
+    .summary-text li{font-size:.9rem;line-height:1.4;margin-bottom:5px;color:#ddd}
+    .summary-text strong{color:#fff}
+    /* Tags */
+    .seo-tags-container{margin-top:15px;padding-top:15px;border-top:1px solid #222;display:flex;flex-wrap:wrap;gap:6px}
+    .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;text-decoration:none;transition:.15s;display:inline-block}
+    .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
+    /* Slider */
+    .recommendation-slider{display:flex;overflow-x:auto;gap:12px;padding-bottom:15px;scrollbar-width:none;-ms-overflow-style:none}
+    .recommendation-slider::-webkit-scrollbar{display:none}
+    .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent}
+    .slider-item:hover{border-color:var(--green);transform:translateY(-2px)}
+    .slider-item img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+    .slider-item p{font-size:.72rem;padding:6px 8px 8px;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35;min-height:42px;color:#f1f1f1}
   </style>
 </head>
 <body>
-<nav><div class="nav-inner">
-  <a href="${BASE_URL}/" class="nav-logo">${SITE_NAME}</a>
-  <a href="${BASE_URL}/" class="nav-home">⌂ HOME</a>
-</div></nav>
-<div class="page-wrap">
-  <div class="player-wrap" id="player-box">
-    <img id="thumb-img" src="${thumb}" alt="${esc(v.title)}"
-         width="480" height="270" fetchpriority="high" decoding="sync"/>
-    <div class="play-overlay" id="play-overlay" onclick="startPlay()">
-      <svg class="play-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+<nav class="navbar-custom">
+  <a href="${BASE_URL}/" class="brand-logo">${SITE_NAME}</a>
+  <a href="${BASE_URL}/" class="nav-home-btn">⌂ HOME</a>
+</nav>
+<div class="video-page-container">
+  <div class="player-container" id="player-box">
+    <img src="${thumb}" alt="${esc(v.title)}" width="480" height="270"
+         fetchpriority="high" decoding="sync"/>
+    <div class="play-overlay" onclick="startPlay()">
+      <svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
         <circle cx="40" cy="40" r="38" fill="rgba(0,0,0,.55)" stroke="#ff032d" stroke-width="3"/>
         <polygon points="32,24 60,40 32,56" fill="#ff032d"/>
       </svg>
-      <span class="play-label">TAP TO WATCH</span>
+      <div class="play-overlay-label">TAP TO WATCH</div>
     </div>
-    <iframe id="yt-frame" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe>
-    <div class="mask mask-top"></div>
-    <div class="mask mask-bot"></div>
+    <div class="video-mask mask-top"></div>
+    <div class="video-mask mask-bottom"></div>
   </div>
-  <div class="info">
+  <div class="info-section">
     <h1>${esc(v.title)}</h1>
-    <div class="btn-row">
-      <a href="${BASE_URL}/" class="btn-home">
+    <div class="dual-action-wrap">
+      <button class="home-split-btn" onclick="location.href='${BASE_URL}/'">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
-      </a>
-      <button class="btn-more" onclick="window.open('${BASE_URL}/?ref=moreinfo','_blank')">
+      </button>
+      <button class="offer-split-btn" onclick="window.open('${BASE_URL}/?ref=moreinfo','_blank')">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
     </div>
     <div class="summary-box">
-      ${v.summary || '<p>'+esc(desc)+'</p>'}
+      <div class="summary-text">${v.summary||'<p>'+esc(desc)+'</p>'}</div>
       ${tagsHtml}
     </div>
-    <p class="related-title">MORE VIDEOS</p>
-    <div class="related-slider" id="rel-slider">${relatedHtml}</div>
+    <h6 style="color:#98FB98;margin:24px 0 12px">MORE VIDEOS</h6>
+    <div class="recommendation-slider" id="rec-slider">${relatedHtml}</div>
   </div>
 </div>
-<footer><a href="${BASE_URL}/">${SITE_NAME}</a> &nbsp;·&nbsp; <a href="${BASE_URL}/sitemap.xml">Sitemap</a></footer>
 <script>
-var YT_ID='${v.youtubeId}';
 function startPlay(){
-  document.getElementById('play-overlay').style.display='none';
-  document.getElementById('thumb-img').style.display='none';
-  var f=document.getElementById('yt-frame');
-  f.src='https://www.youtube.com/embed/'+YT_ID+'?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1';
-  f.classList.add('active');
+  var pb=document.getElementById('player-box');
+  pb.innerHTML='<iframe src="https://www.youtube.com/embed/${v.youtubeId}?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1"></iframe>'+
+  '<div class="video-mask mask-top"></div><div class="video-mask mask-bottom"></div>';
 }
-// Infinite scroll slider
 var _all=${sliderDataJson};
-var _loaded=_all.slice(0,8).length;
-document.getElementById('rel-slider').addEventListener('scroll',function(){
+var _loaded=8;
+document.getElementById('rec-slider').addEventListener('scroll',function(){
   if(this.scrollLeft+this.clientWidth>=this.scrollWidth-120){
     var next=_all.slice(_loaded,_loaded+8);
     if(!next.length){_loaded=0;next=_all.slice(0,8);}
     next.forEach(function(r){
       var a=document.createElement('a');
-      a.className='rel-card';
+      a.className='slider-item';
       a.href='${BASE_URL}/video/'+r.slug+'/';
-      a.innerHTML='<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" alt="" loading="lazy" width="160" height="90" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s"/><p>'+r.title.replace(/</g,'&lt;')+'</p>';
-      document.getElementById('rel-slider').appendChild(a);
+      a.style.cssText='text-decoration:none;color:inherit;display:block';
+      a.innerHTML='<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" width="160" height="90" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><p>'+r.title.replace(/</g,'&lt;')+'</p>';
+      document.getElementById('rec-slider').appendChild(a);
     });
     _loaded+=next.length;
   }
@@ -221,23 +212,96 @@ document.getElementById('rel-slider').addEventListener('scroll',function(){
 }
 
 // ════════════════════════════════════════════════════════════════
-//  BUILD HOMEPAGE STATIS
-//  - 20 video random hardcoded langsung di HTML (tidak perlu fetch)
-//  - DB lengkap tetap di-fetch background untuk search + load more
+//  HOMEPAGE STATIS — dari index_base.html (template bersih)
 // ════════════════════════════════════════════════════════════════
 function buildHomepage(db) {
   const featured = shuffle(db).slice(0, HOMEPAGE_CARDS);
 
-  // 4 card pertama: eager load (LCP), sisanya lazy
+  // Baca template bersih — tidak pernah dimodifikasi langsung
+  let html = fs.readFileSync(BASE_TMPL, 'utf8');
+
+  // Ganti loadDatabases() — hapus featured.json, DB tetap di-fetch untuk search
+  const newLoadDB = `async function loadDatabases() {
+  // Homepage sudah hardcoded — DB fetch hanya untuk search & load more
+  const [resEN, resID] = await Promise.all([
+    fetch('./db-en.json'),
+    fetch('./db-id.json')
+  ]);
+  videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
+  videoDatabaseID  = (await resID.json()).map(v=>({...v,source:v.source||'nofollow'}));
+  videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
+  // currentData untuk load more = semua kecuali 20 yang sudah hardcoded
+  const hardcoded = new Set(${JSON.stringify(featured.map(v=>v.slug))});
+  currentData = videoDatabaseALL.filter(v=>!hardcoded.has(v.slug));
+  currentPage = 1;
+}`;
+
+  html = html.replace(/async function loadDatabases\(\)\s*\{[\s\S]*?\n\}/, newLoadDB);
+
+  // Ganti router() — homepage tidak perlu render dari JS lagi
+  const newRouter = `async function router() {
+  const app    = document.getElementById('app');
+  const navbar = document.getElementById('main-navbar');
+  const slug   = getCurrentSlug();
+  const tag    = getUrlParams().get('tag');
+
+  updateHtmlLang();
+  updateRobotsBySource('seo');
+
+  if(tag) {
+    navbar.classList.remove('video-mode');
+    if(!videoDatabaseALL.length) await loadDatabases();
+    const results = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+    renderGrid(app, results.length?results:videoDatabaseALL);
+    updateCanonical('home','seo');
+    const h=app.querySelector('h5');
+    if(h&&results.length) h.textContent='🏷️ Tag: #'+tag+' ('+results.length+' videos)';
+  } else if(!slug||slug==='home') {
+    // Homepage — card sudah ada di HTML, tidak perlu render ulang
+    navbar.classList.remove('video-mode');
+    updateCanonical('home','seo');
+  } else {
+    // Redirect ke halaman statis video
+    window.location.replace('/video/'+slug+'/');
+    return;
+  }
+  window.scrollTo(0,0);
+}`;
+
+  html = html.replace(/async function router\(\)\s*\{[\s\S]*?\n\}/, newRouter);
+
+  // Ganti load event
+  const newLoad = `window.addEventListener('load', async ()=>{
+  try {
+    // DB fetch background — homepage sudah tampil dari HTML
+    loadDatabases().then(()=>{ initSearch(); });
+  } catch(e) { console.warn('DB load error:',e); }
+  initSearch();
+  router();
+});`;
+
+  html = html.replace(/window\.addEventListener\('load'[\s\S]*?\}\);/, newLoad);
+
+  // Ganti renderCards — href ke /video/slug/ bukan ?v=slug
+  html = html.replace(
+    /let html = `<a href="\?v=\$\{v\.slug\}"/g,
+    'let html = `<a href="/video/${v.slug}/"'
+  );
+  // Fallback kalau format sedikit beda
+  html = html.replace(
+    /href="\?v=\$\{v\.slug\}"/g,
+    'href="/video/${v.slug}/"'
+  );
+
+  // Ganti konten #app skeleton → 20 card hardcoded
   function cardHtml(v, idx) {
     const loading = idx < 4 ? 'eager' : 'lazy';
     const fp      = idx < 4 ? ' fetchpriority="high"' : '';
-    return `<a href="${BASE_URL}/video/${v.slug}/" class="video-card-link">
+    return `<a href="${BASE_URL}/video/${v.slug}/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
       <img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg"
-           alt="${esc(v.title)}" loading="${loading}"${fp}
-           decoding="async" width="320" height="180"
+           alt="${esc(v.title)}" loading="${loading}"${fp} decoding="async" width="320" height="180"
            onload="this.classList.add('loaded')"
            onerror="this.src='https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg';this.classList.add('loaded')"/>
     </div>
@@ -246,13 +310,8 @@ function buildHomepage(db) {
 </a>`;
   }
 
-  const cardsHtml = featured.map((v,i) => cardHtml(v,i)).join('\n');
+  const cardsHtml = featured.map((v,i)=>cardHtml(v,i)).join('\n');
 
-  // Baca index.html lama untuk ambil semua CSS + JS config yang sudah ada
-  // Kita hanya ganti bagian <div id="app"> dan loadDatabases()
-  let html = fs.readFileSync(INDEX_FILE, 'utf8');
-
-  // 1. Ganti konten #app skeleton → card hardcoded
   html = html.replace(
     /<div class="main-content" id="app">[\s\S]*?<\/div>\s*\n\s*<script>/,
     `<div class="main-content" id="app">
@@ -266,84 +325,6 @@ ${cardsHtml}
 <script>`
   );
 
-  // 2. Ganti loadDatabases() — tidak perlu featured.json lagi
-  //    Hanya fetch db-en + db-id untuk search & load more
-  const newLoadDB = `async function loadDatabases() {
-  // Tidak fetch featured.json — homepage sudah hardcoded di HTML
-  // Fetch DB lengkap hanya untuk search dan load more
-  const [resEN, resID] = await Promise.all([
-    fetch('./db-en.json'),
-    fetch('./db-id.json')
-  ]);
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v, source: v.source||'seo'}));
-  videoDatabaseID  = (await resID.json()).map(v=>({...v, source: v.source||'nofollow'}));
-  const shuffled   = [...videoDatabaseEN, ...videoDatabaseID].sort(()=>0.5-Math.random());
-  videoDatabaseALL = shuffled;
-
-  // Isi currentData untuk load more (lanjutan dari 20 card hardcoded)
-  const hardcodedSlugs = new Set(${JSON.stringify(featured.map(v=>v.slug))});
-  const rest = videoDatabaseALL.filter(v => !hardcodedSlugs.has(v.slug));
-  currentData  = rest;
-  currentPage  = 1; // halaman pertama sudah ada dari HTML
-}`;
-
-  html = html.replace(
-    /\/\/ ═+\s*\/\/\s*LOAD DATABASE[\s\S]*?^}/m,
-    newLoadDB
-  );
-
-  // 3. Ganti router() — tidak perlu render homepage dari JS lagi
-  //    Cukup init search dan handle tag/video navigation
-  const newRouter = `async function router() {
-  const app   = document.getElementById('app');
-  const navbar= document.getElementById('main-navbar');
-  const slug  = getCurrentSlug();
-  const tag   = getUrlParams().get('tag');
-
-  updateHtmlLang();
-  updateRobotsBySource('seo');
-
-  if(tag) {
-    navbar.classList.remove('video-mode');
-    // DB mungkin belum load saat tag diklik dari halaman video statis
-    if(!videoDatabaseALL.length) await loadDatabases();
-    const results = videoDatabaseALL.filter(v => v.tags && v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    renderGrid(app, results.length ? results : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if(h && results.length) h.textContent = '🏷️ Tag: #' + tag + ' (' + results.length + ' videos)';
-  } else if(!slug || slug==='home') {
-    // Homepage — card sudah ada di HTML, tidak perlu render ulang
-    navbar.classList.remove('video-mode');
-    updateCanonical('home','seo');
-  } else {
-    // Redirect ke halaman statis video
-    window.location.replace('/video/' + slug + '/');
-    return;
-  }
-  window.scrollTo(0,0);
-}`;
-
-  html = html.replace(
-    /async function router\(\)[\s\S]*?^}/m,
-    newRouter
-  );
-
-  // 4. Ganti load event — tidak perlu render homepage dari JS
-  html = html.replace(
-    /window\.addEventListener\('load'[\s\S]*?\}\);/,
-    `window.addEventListener('load', async ()=>{
-  try {
-    // DB fetch di background — homepage sudah tampil dari HTML
-    loadDatabases().then(()=>{ initSearch(); });
-  } catch(e) {
-    console.warn('DB load error:', e);
-  }
-  initSearch();
-  router();
-});`
-  );
-
   return html;
 }
 
@@ -351,46 +332,37 @@ ${cardsHtml}
 //  MAIN
 // ════════════════════════════════════════════════════════════════
 function main() {
-  if (!fs.existsSync(DB_FILE)) {
-    console.error('❌ db-en.json tidak ditemukan!');
-    process.exit(1);
-  }
-  if (!fs.existsSync(INDEX_FILE)) {
-    console.error('❌ index.html tidak ditemukan!');
-    process.exit(1);
-  }
+  if (!fs.existsSync(DB_FILE))   { console.error('❌ db-en.json tidak ditemukan!'); process.exit(1); }
+  if (!fs.existsSync(BASE_TMPL)) { console.error('❌ index_base.html tidak ditemukan! Simpan file template asli sebagai index_base.html di root repo.'); process.exit(1); }
 
-  const rawDb = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
-  const db    = rawDb.filter(v => v.source === 'seo' && v.slug && v.youtubeId && v.title);
-  const skipped = rawDb.length - db.length;
-  console.log(`📦 Database: ${rawDb.length} total → ${db.length} seo, ${skipped} dilewati`);
+  const rawDb = JSON.parse(fs.readFileSync(DB_FILE,'utf8'));
+  const db    = rawDb.filter(v=>v.source==='seo'&&v.slug&&v.youtubeId&&v.title);
+  console.log(`📦 ${rawDb.length} total → ${db.length} seo valid`);
 
-  // ── STEP 1: Hapus folder /video/ lama ──────────────────────────
-  console.log('🗑️  Menghapus folder /video/ lama...');
+  // STEP 1: Hapus /video/ lama, buat ulang
+  console.log('🗑️  Hapus /video/ lama...');
   rmDir(VIDEO_DIR);
-  fs.mkdirSync(VIDEO_DIR, { recursive: true });
-  console.log('✅ /video/ bersih');
+  fs.mkdirSync(VIDEO_DIR,{recursive:true});
 
-  // ── STEP 2: Generate halaman statis per video ───────────────────
-  console.log('📄 Membuat halaman video statis...');
-  let created = 0;
-  db.forEach((v, i) => {
-    const dir  = path.join(VIDEO_DIR, v.slug);
-    const file = path.join(dir, 'index.html');
-    fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(file, buildVideoPage(v, db), 'utf8');
+  // STEP 2: Generate halaman video statis
+  console.log('📄 Generate halaman video...');
+  let created=0;
+  db.forEach(v=>{
+    const dir=path.join(VIDEO_DIR,v.slug);
+    fs.mkdirSync(dir,{recursive:true});
+    fs.writeFileSync(path.join(dir,'index.html'), buildVideoPage(v,db),'utf8');
     created++;
-    if (created % 50 === 0) console.log(`  ✅ ${created}/${db.length} halaman dibuat...`);
+    if(created%50===0) console.log(`  ✅ ${created}/${db.length}`);
   });
-  console.log(`✅ ${created} halaman video statis selesai`);
+  console.log(`✅ ${created} halaman video selesai`);
 
-  // ── STEP 3: Overwrite index.html dengan 20 card hardcoded ───────
-  console.log('🏠 Memperbarui index.html homepage...');
+  // STEP 3: Overwrite index.html dari template bersih
+  console.log('🏠 Update index.html dari index_base.html...');
   const newIndex = buildHomepage(db);
   fs.writeFileSync(INDEX_FILE, newIndex, 'utf8');
-  console.log('✅ index.html diperbarui dengan 20 video random hardcoded');
+  console.log('✅ index.html diperbarui dengan 20 card random hardcoded');
 
-  console.log(`\n🎉 Selesai! ${created} halaman video + 1 homepage statis`);
+  console.log(`\n🎉 Selesai! ${created} video + homepage statis`);
 }
 
 main();
