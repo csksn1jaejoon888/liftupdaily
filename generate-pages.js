@@ -117,12 +117,21 @@ function buildVideoPage(v, allVideos) {
   <style>
     :root{--bg:#0a0a0a;--dark:#111;--green:#98FB98;--red:#ff032d;--text:#eee}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;max-width:480px;margin:0 auto}
+    body{background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;max-width:1100px;margin:0 auto}
 
     /* Navbar */
-    nav{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#000;position:sticky;top:0;z-index:100;border-bottom:1px solid #1a1a1a}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#000;position:sticky;top:0;z-index:100;border-bottom:1px solid #1a1a1a}
     .nav-logo{color:var(--green);font-size:1.1rem;font-weight:900;text-decoration:none;letter-spacing:.05em}
     .nav-home{background:transparent;border:1.5px solid var(--green);color:var(--green);padding:5px 14px;border-radius:4px;font-size:.75rem;font-weight:700;cursor:pointer;text-decoration:none}
+
+    /* Desktop layout: player kiri, info kanan */
+    .page-body{display:flex;flex-direction:column}
+    @media(min-width:768px){
+      .page-body{flex-direction:row;align-items:flex-start;gap:28px;padding:24px 20px}
+      .player-col{flex:0 0 55%;max-width:55%}
+      .info-col{flex:1;min-width:0}
+      .info{padding:0}
+    }
 
     /* Player */
     .player-wrap{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}
@@ -140,8 +149,9 @@ function buildVideoPage(v, allVideos) {
     .mask-bot{bottom:0;left:40%;width:100%;height:42px}
 
     /* Info */
-    .info{padding:14px}
-    h1{font-size:1.15rem;font-weight:800;line-height:1.4;margin-bottom:14px}
+    .info{padding:14px 20px}
+    h1{font-size:1.25rem;font-weight:800;line-height:1.4;margin-bottom:14px}
+    @media(min-width:768px){h1{font-size:1.45rem}}
     .btn-row{display:flex;gap:10px;margin-bottom:16px}
     .btn-home{flex:1;padding:11px;background:#98FB98;color:#000;font-weight:700;font-size:.85rem;border:none;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
     .btn-more{flex:1;padding:11px;background:linear-gradient(90deg,#e53935,#ff6f00);color:#fff;font-weight:700;font-size:.85rem;border:none;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
@@ -155,7 +165,7 @@ function buildVideoPage(v, allVideos) {
 
     /* Tags */
     .tags-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;padding-top:14px;border-top:1px solid #1e1e1e}
-    .tag-badge{background:#111;color:var(--green);border:1px solid #2a2a2a;padding:4px 10px;border-radius:4px;font-size:.78rem;font-weight:500;text-decoration:none;transition:.15s}
+    .tag-badge{background:#111;color:var(--green);border:1px solid #2a2a2a;padding:4px 10px;border-radius:4px;font-size:.78rem;font-weight:500;text-decoration:none;transition:.15s;display:inline-block}
     .tag-badge:hover{border-color:var(--green);color:#fff;background:#1a1a1a}
 
     /* Related */
@@ -166,6 +176,12 @@ function buildVideoPage(v, allVideos) {
     .rel-card:hover{border-color:var(--green);transform:translateY(-2px)}
     .rel-card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
     .rel-card p{font-size:.72rem;padding:6px 8px 8px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+    /* Mobile: info di bawah player */
+    @media(max-width:767px){
+      .player-col,.info-col{width:100%}
+      .page-body{padding:0}
+    }
 
     footer{padding:20px 14px;text-align:center;font-size:.72rem;color:#555;border-top:1px solid #1a1a1a;margin-top:10px}
     footer a{color:#555;text-decoration:none}
@@ -178,50 +194,57 @@ function buildVideoPage(v, allVideos) {
   <a href="${BASE_URL}/" class="nav-home">⌂ HOME</a>
 </nav>
 
-<!-- Player: thumbnail hardcoded di HTML → LCP langsung terpenuhi -->
-<div class="player-wrap" id="player-box">
-  <img id="thumb-img"
-       src="${thumb}"
-       alt="${escHtml(v.title)}"
-       width="480" height="270"
-       fetchpriority="high"
-       decoding="sync"/>
-  <div class="play-overlay" id="play-overlay" onclick="startPlay()">
-    <svg class="play-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="38" fill="rgba(0,0,0,.55)" stroke="#ff032d" stroke-width="3"/>
-      <polygon points="32,24 60,40 32,56" fill="#ff032d"/>
-    </svg>
-    <span class="play-label">TAP TO WATCH</span>
-  </div>
-  <iframe id="yt-frame"
-          allow="autoplay;encrypted-media;fullscreen"
-          allowfullscreen></iframe>
-  <div class="mask mask-top"></div>
-  <div class="mask mask-bot"></div>
-</div>
-
-<div class="info">
-  <h1>${escHtml(v.title)}</h1>
-
-  <div class="btn-row">
-    <a href="${BASE_URL}/" class="btn-home">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      HOME
-    </a>
-    <button class="btn-more" onclick="window.open('${BASE_URL}/?ref=moreinfo','_blank')">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      More Info 🔥
-    </button>
+<div class="page-body">
+  <!-- Kolom kiri: Player -->
+  <div class="player-col">
+    <div class="player-wrap" id="player-box">
+      <img id="thumb-img"
+           src="${thumb}"
+           alt="${escHtml(v.title)}"
+           width="480" height="270"
+           fetchpriority="high"
+           decoding="sync"/>
+      <div class="play-overlay" id="play-overlay" onclick="startPlay()">
+        <svg class="play-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="40" r="38" fill="rgba(0,0,0,.55)" stroke="#ff032d" stroke-width="3"/>
+          <polygon points="32,24 60,40 32,56" fill="#ff032d"/>
+        </svg>
+        <span class="play-label">TAP TO WATCH</span>
+      </div>
+      <iframe id="yt-frame"
+              allow="autoplay;encrypted-media;fullscreen"
+              allowfullscreen></iframe>
+      <div class="mask mask-top"></div>
+      <div class="mask mask-bot"></div>
+    </div>
   </div>
 
-  <div class="summary-box">
-    ${v.summary || '<p>' + escHtml(desc) + '</p>'}
-    ${tagsHtml}
-  </div>
+  <!-- Kolom kanan: Info -->
+  <div class="info-col">
+    <div class="info">
+      <h1>${escHtml(v.title)}</h1>
 
-  <p class="related-title">MORE VIDEOS</p>
-  <div class="related-slider" id="rel-slider">
-    ${relatedHtml}
+      <div class="btn-row">
+        <a href="${BASE_URL}/" class="btn-home">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          HOME
+        </a>
+        <button class="btn-more" onclick="window.open('${BASE_URL}/?ref=moreinfo','_blank')">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          More Info 🔥
+        </button>
+      </div>
+
+      <div class="summary-box">
+        ${v.summary || '<p>' + escHtml(desc) + '</p>'}
+        ${tagsHtml}
+      </div>
+
+      <p class="related-title">MORE VIDEOS</p>
+      <div class="related-slider" id="rel-slider">
+        ${relatedHtml}
+      </div>
+    </div>
   </div>
 </div>
 
