@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ For investors, analysts, and tech enthusiasts, this quarter’s rankings highlig
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/oracle-mcp-server-ai-database-automation-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-Nf3dvj0498/mqdefault.jpg"
-           alt="How Oracle's MCP Server Transforms Database Development with AI" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/13-car-gadgets-2026-upgrade-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/yGcJoueESyE/mqdefault.jpg"
+           alt="13 Must-Have Car Gadgets for 2026 That Actually Improve Your Drive" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Oracle's MCP Server Transforms Database Development with AI</p>
+      <p>13 Must-Have Car Gadgets for 2026 That Actually Improve Your Drive</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-i-built-a-30m-business-by-age-27-with-no-savings/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/SQeVgpoZ0bM/mqdefault.jpg"
-           alt="How I Went from $0 to $30M at 27 Without a Safety Net" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ancient-walking-whales-how-land-mammals-evolved-back-to-the-sea/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/i0-TDxqkub4/mqdefault.jpg"
+           alt="Ancient Walking Whales: How Land Mammals Evolved Back to the Sea" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How I Went from $0 to $30M at 27 Without a Safety Net</p>
+      <p>Ancient Walking Whales: How Land Mammals Evolved Back to the Sea</p>
     </a>
-    <a href="https://trend4genz.fun/video/apple-macbook-neo-iphone-18-rumors-ai-supply-chain-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/TKYaj5ZTi3o/mqdefault.jpg"
-           alt="Apple Supply Chain Crisis: MacBook Neo Sales Surge, iPhone 18 Rumors &amp; AI Impact" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/mo-gawdat-ai-strategy-2026-2027-survival-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/E0Q96IKXx6Q/mqdefault.jpg"
+           alt="Former Google X Exec Reveals How to Thrive in the AI-Driven 2026–2027 Job Market" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Apple Supply Chain Crisis: MacBook Neo Sales Surge, iPhone 18 Rumors &amp; AI Impact</p>
+      <p>Former Google X Exec Reveals How to Thrive in the AI-Driven 2026–2027 Job Market</p>
     </a>
-    <a href="https://trend4genz.fun/video/oppo-k15-pro-plus-review-dimensity-9500s-8000mah-165hz/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/UEUWbNocsik/mqdefault.jpg"
-           alt="OPPO K15 Pro+ Review: Dimensity 9500S, 8000mAh Battery &amp; 165Hz Display" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-top-creators-use-youtube-consultants-to-hit-mrbeast-level-views/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/4agDpr9obcs/mqdefault.jpg"
+           alt="How Top Creators Use YouTube Consultants to Hit MrBeast-Level Views" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>OPPO K15 Pro+ Review: Dimensity 9500S, 8000mAh Battery &amp; 165Hz Display</p>
+      <p>How Top Creators Use YouTube Consultants to Hit MrBeast-Level Views</p>
     </a>
-    <a href="https://trend4genz.fun/video/openai-chatgpt-ai-smartphone-2027-launch/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/wyJl6x7e3iw/mqdefault.jpg"
-           alt="OpenAI’s AI-Powered Smartphone: A 2027 Game-Changer?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/youtube-monetization-truth-how-to-earn-100x-more-than-adsense-alone/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Dk3nooGF7Eo/mqdefault.jpg"
+           alt="YouTube Monetization Truth: How to Earn 100x More Than AdSense Alone" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>OpenAI’s AI-Powered Smartphone: A 2027 Game-Changer?</p>
+      <p>YouTube Monetization Truth: How to Earn 100x More Than AdSense Alone</p>
     </a>
-    <a href="https://trend4genz.fun/video/congress-investigates-insider-trading-on-prediction-markets/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/WhcPqFw7PQA/mqdefault.jpg"
-           alt="Congress Launches Probe into Insider Trading on Prediction Markets" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/the-8-tier-investing-ladder-from-safe-savings-to-high-risk-ventures/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/aWNQZGsVsn4/mqdefault.jpg"
+           alt="The 8-Tier Investing Ladder: From Safe Savings to High-Risk Ventures" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Congress Launches Probe into Insider Trading on Prediction Markets</p>
+      <p>The 8-Tier Investing Ladder: From Safe Savings to High-Risk Ventures</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-antigravity-2-0-agent-first-development-platform/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/T_fnhr5lVBw/mqdefault.jpg"
-           alt="Google Antigravity 2.0: The Agent-First IDE Revolutionizing Development" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/git-github-beginners-guide-2026-version-control-collaboration/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/e9D7nnoCbQ0/mqdefault.jpg"
+           alt="Git &amp; GitHub for Beginners 2026: Master Version Control &amp; Collaboration in 2 Hours" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google Antigravity 2.0: The Agent-First IDE Revolutionizing Development</p>
+      <p>Git &amp; GitHub for Beginners 2026: Master Version Control &amp; Collaboration in 2 Hours</p>
     </a>
-    <a href="https://trend4genz.fun/video/gpt-image-2-0-vs-nano-banana-comparison-results/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/twIW3pzBUCc/mqdefault.jpg"
-           alt="GPT-Image 2.0 Outperforms Nano Banana in AI Image Generation Tests" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/from-broke-to-51k-month-selling-digital-products/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/dQz4T2_OTUM/mqdefault.jpg"
+           alt="How to go from broke to $51K/month with digital products (real story)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>GPT-Image 2.0 Outperforms Nano Banana in AI Image Generation Tests</p>
+      <p>How to go from broke to $51K/month with digital products (real story)</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/fkIxF4l8oFE?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

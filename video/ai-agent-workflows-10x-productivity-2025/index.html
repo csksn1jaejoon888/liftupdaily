@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to stop manually resetting your AI tools every time? Miller’s team uses 
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/stress-resets-mental-health-hack-dr-jenny-taitz-ted-summary/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/wnM-6D2LGdg/mqdefault.jpg"
-           alt="Stress Resets: The Science-Backed Mental Health Hack You Can Use Today" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/affordable-family-smart-home-automation-jonathan-canada/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5SUCahWX1QE/mqdefault.jpg"
+           alt="How One Canadian Family Built a 300+ Automation Smart Home on a Budget" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Stress Resets: The Science-Backed Mental Health Hack You Can Use Today</p>
+      <p>How One Canadian Family Built a 300+ Automation Smart Home on a Budget</p>
     </a>
-    <a href="https://trend4genz.fun/video/6-laptop-upgrades-2026-fix-common-problems/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/OxpeiE0nND4/mqdefault.jpg"
-           alt="6 Must-Have Laptop Upgrades to Fix 6 Common Problems in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-trust-calibration-guide-human-ai-alignment/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7UBmLXP_LKw/mqdefault.jpg"
+           alt="How to Align AI Capabilities with User Intent for Trustworthy AI Systems" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>6 Must-Have Laptop Upgrades to Fix 6 Common Problems in 2026</p>
+      <p>How to Align AI Capabilities with User Intent for Trustworthy AI Systems</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-ai-cant-replace-software-engineers-insights-from-c-and-typescript-creator/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/CPrePbvbbic/mqdefault.jpg"
-           alt="Why AI Can't Replace Software Engineers: Insights from C# and TypeScript Creator" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/antarctica-seal-colony-weddell-seals-pupping-season/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/A2_WrsmeFz8/mqdefault.jpg"
+           alt="Weddell Seals in Antarctica: A Rare Look at Pupping Season on the Ice" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why AI Can't Replace Software Engineers: Insights from C# and TypeScript Creator</p>
+      <p>Weddell Seals in Antarctica: A Rare Look at Pupping Season on the Ice</p>
     </a>
-    <a href="https://trend4genz.fun/video/antarctica-extreme-science-expedition-nova-pbs/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/OKQXOwe2PCA/mqdefault.jpg"
-           alt="NOVA’s Antarctic Expedition: Extreme Science in Earth’s Most Remote Lab" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-maps-ask-maps-with-ai-should-you-let-ai-plan-your-day/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/9GyxhZ3MLW0/mqdefault.jpg"
+           alt="Google Maps Ask Maps with AI: Should You Let AI Plan Your Day?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>NOVA’s Antarctic Expedition: Extreme Science in Earth’s Most Remote Lab</p>
+      <p>Google Maps Ask Maps with AI: Should You Let AI Plan Your Day?</p>
     </a>
-    <a href="https://trend4genz.fun/video/10-enduring-tech-innovations-that-will-surpass-ai-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/PBN0YYRtAtA/mqdefault.jpg"
-           alt="10 Technologies That Will Outlast AI in 2025: The Future Beyond Machine Learning" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-meta-s-ex-distinguished-engineer-outperformed-99-of-developers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/9iIiKh3pdPs/mqdefault.jpg"
+           alt="How Meta’s Ex-Distinguished Engineer Outperformed 99% of Developers" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>10 Technologies That Will Outlast AI in 2025: The Future Beyond Machine Learning</p>
+      <p>How Meta’s Ex-Distinguished Engineer Outperformed 99% of Developers</p>
     </a>
-    <a href="https://trend4genz.fun/video/github-outages-2026-microsoft-failure-100m-devs-affected/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/d53Zk28esmU/mqdefault.jpg"
-           alt="GitHub Outages in 2026: Why Microsoft’s Platform is Failing 100M Developers" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-i-o-2026-how-gemini-spark-automates-your-daily-tasks/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/amnhF6BwzZQ/mqdefault.jpg"
+           alt="Google I/O 2026: How Gemini Spark Automates Your Daily Tasks" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>GitHub Outages in 2026: Why Microsoft’s Platform is Failing 100M Developers</p>
+      <p>Google I/O 2026: How Gemini Spark Automates Your Daily Tasks</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-starting-a-business-in-your-20s-might-keep-you-poor/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/CK5vefrBVqs/mqdefault.jpg"
-           alt="Why Starting a Business in Your 20s Often Fails (And What to Do Instead)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-2026-macbook-neo-air-pro-ipad-air-iphone-17e-review/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/AZJRvpOtSys/mqdefault.jpg"
+           alt="Apple 2026 MacBook Neo vs Air vs Pro: Which Laptop Should You Buy?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why Starting a Business in Your 20s Often Fails (And What to Do Instead)</p>
+      <p>Apple 2026 MacBook Neo vs Air vs Pro: Which Laptop Should You Buy?</p>
     </a>
-    <a href="https://trend4genz.fun/video/8852-smart-home-creator-moves-to-new-house-for-better-content/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/r7aX-uAV8TA/mqdefault.jpg"
-           alt="Why This Smart Home Creator Moved Houses to Improve Your Videos" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-burnout-real-impact-tech-jobs-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/dbMXi9q78Tk/mqdefault.jpg"
+           alt="Why AI Burnout Is Killing Tech Careers in 2026 (And What to Do)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why This Smart Home Creator Moved Houses to Improve Your Videos</p>
+      <p>Why AI Burnout Is Killing Tech Careers in 2026 (And What to Do)</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/YfRkj9kmQf0?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

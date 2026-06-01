@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to build apps that actually work? Explore our full library of AI developme
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/kim-joo-ae-north-koreas-potential-heir-apparent/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/xnitCuH-OGo/mqdefault.jpg"
-           alt="Is Kim Joo-ae North Korea’s future leader? Fashion, clues, and speculation" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-stand-out-as-a-software-engineer-in-the-ai-era-kubernetes-insights/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ekOh45Mw7EY/mqdefault.jpg"
+           alt="How to Stand Out as a Software Engineer in the AI Era (Kubernetes Insights)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Is Kim Joo-ae North Korea’s future leader? Fashion, clues, and speculation</p>
+      <p>How to Stand Out as a Software Engineer in the AI Era (Kubernetes Insights)</p>
     </a>
-    <a href="https://trend4genz.fun/video/android-17-ai-revolution-features-release-date/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/3wj0MxHz6Z4/mqdefault.jpg"
-           alt="Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-replace-developers-2026-reality-check/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/HelNHDcMRpM/mqdefault.jpg"
+           alt="Why AI Won’t Replace Developers in 2026 (And What Will)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features</p>
+      <p>Why AI Won’t Replace Developers in 2026 (And What Will)</p>
     </a>
-    <a href="https://trend4genz.fun/video/make-10k-as-student-side-hustle-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/5rhHm6WWOIs/mqdefault.jpg"
-           alt="How to Make $10,000 as a Student (3-Step Side Hustle Guide)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-make-money-online-real-strategies-that-work/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/gTZSVThRWF8/mqdefault.jpg"
+           alt="How to Make Money Online: Proven Strategies That Actually Work" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Make $10,000 as a Student (3-Step Side Hustle Guide)</p>
+      <p>How to Make Money Online: Proven Strategies That Actually Work</p>
     </a>
-    <a href="https://trend4genz.fun/video/sony-wf-1000xm6-vs-airpods-pro-3-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/THl9fGnQW94/mqdefault.jpg"
-           alt="Sony WF-1000XM6 vs AirPods Pro 3: Which Flagship Earbuds Win in 2026?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/tim-cook-legacy-apple-succession-john-ternus-analysis/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Fc_xlNodaWc/mqdefault.jpg"
+           alt="Tim Cook’s Apple Legacy: AirPods, Touch Bars, and the Rise of John Ternus" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Sony WF-1000XM6 vs AirPods Pro 3: Which Flagship Earbuds Win in 2026?</p>
+      <p>Tim Cook’s Apple Legacy: AirPods, Touch Bars, and the Rise of John Ternus</p>
     </a>
-    <a href="https://trend4genz.fun/video/500-hours-ai-programming-lessons-developers-must-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/91B_v-wOaws/mqdefault.jpg"
-           alt="500+ Hours of AI-Assisted Programming: What Every Developer Should Know" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-one-woman-overcame-fear-to-win-miss-india-and-become-an-actor/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/I5VCFvO15xE/mqdefault.jpg"
+           alt="How One Woman Overcame Fear to Win Miss India and Become an Actor" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>500+ Hours of AI-Assisted Programming: What Every Developer Should Know</p>
+      <p>How One Woman Overcame Fear to Win Miss India and Become an Actor</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-no-code-digital-product-business-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/bVksP4haTXM/mqdefault.jpg"
-           alt="Build a $500K/Month AI Digital Product in 11 Minutes (No Code)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/smart-project-development-strategies-for-developers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Fuzvl32N6sg/mqdefault.jpg"
+           alt="How Top Developers Build Projects 10x Faster with AI and Templates" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Build a $500K/Month AI Digital Product in 11 Minutes (No Code)</p>
+      <p>How Top Developers Build Projects 10x Faster with AI and Templates</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-amazon-gadgets-2026-smart-tech/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/UpmihdDasyk/mqdefault.jpg"
-           alt="20 Must-Have Amazon Gadgets for 2026: Smart Tech That Upgrades Daily Life" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ios-27-features-siri-ai-photos-ultra-release/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/laIYOAKogPs/mqdefault.jpg"
+           alt="iOS 27: Apple’s Biggest Siri AI Upgrade and Foldable iPhone Support" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>20 Must-Have Amazon Gadgets for 2026: Smart Tech That Upgrades Daily Life</p>
+      <p>iOS 27: Apple’s Biggest Siri AI Upgrade and Foldable iPhone Support</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-io-2026-ai-breakthroughs-omni-flash-spark-explained/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/uO3R0Xlun-Q/mqdefault.jpg"
-           alt="Google I/O 2026: How AI Breakthroughs Will Disrupt Every Industry" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/wine-complexity-science-behind-tasting-perception/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/rweUKs3vBV4/mqdefault.jpg"
+           alt="The Hidden Science Behind Wine Complexity and Why It Matters" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google I/O 2026: How AI Breakthroughs Will Disrupt Every Industry</p>
+      <p>The Hidden Science Behind Wine Complexity and Why It Matters</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/kVGCc0eSxhc?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

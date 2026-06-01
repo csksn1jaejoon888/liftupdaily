@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to audit your business and identify your growth bottlenecks? Download the 
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/cloud-code-ai-development-course-production-grade-apps/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-vqGZaThouQ/mqdefault.jpg"
-           alt="Build Production AI Apps with Cloud Code in Days, Not Weeks" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-ai-now-generates-images-videos-setup-guide-use-cases/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/rrylSizvnSg/mqdefault.jpg"
+           alt="Claude AI Now Generates Images &amp; Videos : Setup Guide &amp; Use Cases" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Build Production AI Apps with Cloud Code in Days, Not Weeks</p>
+      <p>Claude AI Now Generates Images &amp; Videos : Setup Guide &amp; Use Cases</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-programming-productivity-tools-augment-code/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/V1EeXcqnGec/mqdefault.jpg"
-           alt="How AI Transforms Coding: Boost Productivity with Augment Code" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/neal-katyal-ai-supreme-court-tariffs-case-breakdown/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/g3M3WaixeOw/mqdefault.jpg"
+           alt="How AI Helped a Lawyer Win a $4 Trillion Supreme Court Case in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI Transforms Coding: Boost Productivity with Augment Code</p>
+      <p>How AI Helped a Lawyer Win a $4 Trillion Supreme Court Case in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/amd-ryzen-ai-pro-laptops-2026-business-ai-revolution/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Ch-vMy6WeQs/mqdefault.jpg"
-           alt="AMD Ryzen AI Pro Laptops in 2026: The Business AI Revolution You Can’t Ignore" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-critical-digital-product-mistakes-that-kill-sales/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JDJCEOkgsM8/mqdefault.jpg"
+           alt="5 Digital Product Mistakes That Destroy Sales (And How to Fix Them)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AMD Ryzen AI Pro Laptops in 2026: The Business AI Revolution You Can’t Ignore</p>
+      <p>5 Digital Product Mistakes That Destroy Sales (And How to Fix Them)</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-smartphones-for-productivity-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/A5UyHq6YQJc/mqdefault.jpg"
-           alt="7 Best Smartphones for Maximum Productivity in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/51-must-have-gadgets-that-actually-improve-daily-life-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/GCHUlw1LHbg/mqdefault.jpg"
+           alt="51 Must-Have Gadgets That Actually Improve Daily Life in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>7 Best Smartphones for Maximum Productivity in 2025</p>
+      <p>51 Must-Have Gadgets That Actually Improve Daily Life in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/open-source-ai-2026-guide-build-agents-no-code/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/1uCE0uoKXL8/mqdefault.jpg"
-           alt="How to Build Open Source AI Agents in 2026: No-Code &amp; Code Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ancient-walking-whales-how-land-mammals-evolved-back-to-the-sea/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/i0-TDxqkub4/mqdefault.jpg"
+           alt="Ancient Walking Whales: How Land Mammals Evolved Back to the Sea" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build Open Source AI Agents in 2026: No-Code &amp; Code Guide</p>
+      <p>Ancient Walking Whales: How Land Mammals Evolved Back to the Sea</p>
     </a>
-    <a href="https://trend4genz.fun/video/iphone-17e-vs-17-pro-max-is-the-500-savings-worth-it/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/BL9UE9_m-1Y/mqdefault.jpg"
-           alt="iPhone 17E vs 17 Pro Max: Is the $500 Savings Worth It?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/meta-engineer-solves-google-coding-interview-valid-parentheses-algorithm/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/c6zu897JVQY/mqdefault.jpg"
+           alt="Meta Engineer Solves Google Coding Interview: Valid Parentheses Algorithm" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>iPhone 17E vs 17 Pro Max: Is the $500 Savings Worth It?</p>
+      <p>Meta Engineer Solves Google Coding Interview: Valid Parentheses Algorithm</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-driven-scientific-discovery-2025-breakthroughs-that-outpace-human-cognition/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/dyx-JJgzJi4/mqdefault.jpg"
-           alt="How AI is Accelerating Scientific Discovery Beyond Human Limits in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/sundar-pichai-google-io-2026-agents-cybersecurity-compute/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/9C20esBUf-Q/mqdefault.jpg"
+           alt="Sundar Pichai Reveals Google’s AI Agents, Cybersecurity &amp; Compute Bottlenecks at I/O 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI is Accelerating Scientific Discovery Beyond Human Limits in 2025</p>
+      <p>Sundar Pichai Reveals Google’s AI Agents, Cybersecurity &amp; Compute Bottlenecks at I/O 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/19463-month-side-hustle-guide-multi-passionate-creators/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/dO1b6JeVFas/mqdefault.jpg"
-           alt="How to turn multiple passions into a $19,463/month side hustle" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-vision-pro-rumors-ai-ios-27-ternus-ceo-transition/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-YB1nbeRaSc/mqdefault.jpg"
+           alt="Apple Vision Pro Rumors Debunked: AI, iOS 27, and CEO Transition Explained" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to turn multiple passions into a $19,463/month side hustle</p>
+      <p>Apple Vision Pro Rumors Debunked: AI, iOS 27, and CEO Transition Explained</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/ibPRMNxbbNk?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

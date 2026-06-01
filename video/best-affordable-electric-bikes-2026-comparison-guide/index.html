@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to upgrade your ride? Explore our full library of e-bike reviews and buyin
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/mortal-kombat-2-cast-reveal-50-google-searched-questions/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/q1dA3ffbO3E/mqdefault.jpg"
-           alt="Mortal Kombat 2 Cast Reveals 50 Most Googled MK Questions" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/notebooklm-2026-guide-ai-research-deliverables/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/_uXnyhrqmsU/mqdefault.jpg"
+           alt="NotebookLM in 2026: The Ultimate AI Tool for Research &amp; Deliverables (No Hallucinations)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Mortal Kombat 2 Cast Reveals 50 Most Googled MK Questions</p>
+      <p>NotebookLM in 2026: The Ultimate AI Tool for Research &amp; Deliverables (No Hallucinations)</p>
     </a>
-    <a href="https://trend4genz.fun/video/14-proven-ai-money-making-strategies-for-2026-ranked-by-expert/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/K8Ros5RhJW4/mqdefault.jpg"
-           alt="14 Proven AI Money-Making Strategies for 2026 (Ranked by Expert)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-critical-digital-product-mistakes-that-kill-sales/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JDJCEOkgsM8/mqdefault.jpg"
+           alt="5 Digital Product Mistakes That Destroy Sales (And How to Fix Them)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>14 Proven AI Money-Making Strategies for 2026 (Ranked by Expert)</p>
+      <p>5 Digital Product Mistakes That Destroy Sales (And How to Fix Them)</p>
     </a>
-    <a href="https://trend4genz.fun/video/6-best-claude-code-skills-in-2024-full-setup-expert-tutorial/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
-           alt="6 Best Claude Code Skills : Full Setup &amp; Expert Tutorial" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/7-high-paying-remote-jobs-no-one-talks-about-2026-edition/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JEZyQYbB55Y/mqdefault.jpg"
+           alt="7 High-Paying Remote Jobs No One Talks About (2026 Edition)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>6 Best Claude Code Skills : Full Setup &amp; Expert Tutorial</p>
+      <p>7 High-Paying Remote Jobs No One Talks About (2026 Edition)</p>
     </a>
-    <a href="https://trend4genz.fun/video/cutting-edge-future-transport-2025-innovations/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/YoP0EBr6c0Y/mqdefault.jpg"
-           alt="15 Mind-Blowing Future Transport Technologies to Watch in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-starting-a-business-in-your-20s-might-keep-you-poor/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/CK5vefrBVqs/mqdefault.jpg"
+           alt="Why Starting a Business in Your 20s Often Fails (And What to Do Instead)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>15 Mind-Blowing Future Transport Technologies to Watch in 2025</p>
+      <p>Why Starting a Business in Your 20s Often Fails (And What to Do Instead)</p>
     </a>
-    <a href="https://trend4genz.fun/video/ios-27-features-siri-ai-photos-ultra-release/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/laIYOAKogPs/mqdefault.jpg"
-           alt="iOS 27: Apple’s Biggest Siri AI Upgrade and Foldable iPhone Support" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-model-types-guide-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/DsKZpgoy830/mqdefault.jpg"
+           alt="How to Choose the Right AI Model in 2025: A Complete Guide" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>iOS 27: Apple’s Biggest Siri AI Upgrade and Foldable iPhone Support</p>
+      <p>How to Choose the Right AI Model in 2025: A Complete Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/esoteric-programming-languages-you-never-knew-existed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/lD3Z3d9zEP8/mqdefault.jpg"
-           alt="7 Bizarre Programming Languages That Defy Logic (And Why They Matter)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/start-your-online-business-today-without-perfect-preparation/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/gkGFRV_rxWA/mqdefault.jpg"
+           alt="Start Your Online Business Today Without Waiting for Perfection" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>7 Bizarre Programming Languages That Defy Logic (And Why They Matter)</p>
+      <p>Start Your Online Business Today Without Waiting for Perfection</p>
     </a>
-    <a href="https://trend4genz.fun/video/trump-era-market-volatility-ai-and-fomo-drive-stock-recovery/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/_vhDblAOLnY/mqdefault.jpg"
-           alt="Trump’s Market Moves: How AI, FOMO, and Tariffs Shape Stock Swings" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-code-tutorial-build-production-grade-apps-10x-faster/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/IuyVVtr1uhY/mqdefault.jpg"
+           alt="Claude Code Tutorial: Build Production-Grade Apps 10x Faster with AI" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Trump’s Market Moves: How AI, FOMO, and Tariffs Shape Stock Swings</p>
+      <p>Claude Code Tutorial: Build Production-Grade Apps 10x Faster with AI</p>
     </a>
-    <a href="https://trend4genz.fun/video/android-17-gemini-intelligence-2025-smartphone-revolution/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Px3668r1tbU/mqdefault.jpg"
-           alt="Android 17 with Gemini Intelligence: How Your Smartphone Will Change in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-police-are-disrupting-the-global-scammers-ecosystem/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/gaZd1LVhDps/mqdefault.jpg"
+           alt="UK Police Disrupt £80K Scam Ring Targeting Dating Fraud Victims" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Android 17 with Gemini Intelligence: How Your Smartphone Will Change in 2025</p>
+      <p>UK Police Disrupt £80K Scam Ring Targeting Dating Fraud Victims</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/5K06S-uDVes?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

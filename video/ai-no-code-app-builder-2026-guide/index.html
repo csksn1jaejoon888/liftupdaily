@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to turn this knowledge into action? Explore our full library of AI-powered
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/luxury-outdoor-furniture-upgrades-transform-backyard-resort/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/nt4GD_bAAOY/mqdefault.jpg"
-           alt="15 Must-Have Outdoor Furniture Upgrades for a Luxury Backyard Retreat" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/youtube-growth-strategy-that-works-in-2025-for-busy-business-owners/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-dQtZkGMfOE/mqdefault.jpg"
+           alt="YouTube Growth Strategy That Works in 2025 for Busy Business Owners" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>15 Must-Have Outdoor Furniture Upgrades for a Luxury Backyard Retreat</p>
+      <p>YouTube Growth Strategy That Works in 2025 for Busy Business Owners</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-lungs-work-breathing-asthma-COPD-lung-transplant/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/CSfY2rxpmBY/mqdefault.jpg"
-           alt="How Your Lungs Work: Breathing, Asthma, COPD &amp; Lung Transplants Explained" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/samsung-one-ui-9-release-date-features-beta-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/lFloWdgMnQI/mqdefault.jpg"
+           alt="Samsung One UI 9: Release Date, AI Features &amp; Beta Guide 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Your Lungs Work: Breathing, Asthma, COPD &amp; Lung Transplants Explained</p>
+      <p>Samsung One UI 9: Release Date, AI Features &amp; Beta Guide 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/samsung-galaxy-s26-ultra-review-innovation-vs-expectations/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/AmNVQQ-YOoE/mqdefault.jpg"
-           alt="Samsung Galaxy S26 Ultra Review: Is It Still Worth It in 2025?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/affordable-family-smart-home-automation-jonathan-canada/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5SUCahWX1QE/mqdefault.jpg"
+           alt="How One Canadian Family Built a 300+ Automation Smart Home on a Budget" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Samsung Galaxy S26 Ultra Review: Is It Still Worth It in 2025?</p>
+      <p>How One Canadian Family Built a 300+ Automation Smart Home on a Budget</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-i-o-2026-keynote-ai-updates-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7Z5Vy9JBANs/mqdefault.jpg"
-           alt="Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/15-mind-blowing-gadgets-coming-in-2026-that-will-change-your-life/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/at5EeK-hd3s/mqdefault.jpg"
+           alt="15 Mind-Blowing Gadgets Coming in 2026 That Will Change Your Life" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents</p>
+      <p>15 Mind-Blowing Gadgets Coming in 2026 That Will Change Your Life</p>
     </a>
-    <a href="https://trend4genz.fun/video/re-retirement-how-to-design-your-next-life-chapter-before-65/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/asW-G5hubwE/mqdefault.jpg"
-           alt="Re-Retirement: How to Design Your Next Life Chapter Before 65" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/android-17-ai-revolution-features-release-date/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/3wj0MxHz6Z4/mqdefault.jpg"
+           alt="Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Re-Retirement: How to Design Your Next Life Chapter Before 65</p>
+      <p>Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-no-code-digital-product-business-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/bVksP4haTXM/mqdefault.jpg"
-           alt="Build a $500K/Month AI Digital Product in 11 Minutes (No Code)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-app-builder-no-code-2025-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-FA7WTHdvjQ/mqdefault.jpg"
+           alt="How to Build Profitable AI Apps Without Coding in 2025 (Step-by-Step Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Build a $500K/Month AI Digital Product in 11 Minutes (No Code)</p>
+      <p>How to Build Profitable AI Apps Without Coding in 2025 (Step-by-Step Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/apple-2026-macbook-neo-air-pro-ipad-air-iphone-17e-review/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/AZJRvpOtSys/mqdefault.jpg"
-           alt="Apple 2026 MacBook Neo vs Air vs Pro: Which Laptop Should You Buy?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/9175-secret-to-top-1-percent-software-engineer-jobs/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/4B5t_IK9HSA/mqdefault.jpg"
+           alt="How to Land Top 1% Tech Jobs: Ex-Google Recruiter’s Hidden Interview Tricks" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Apple 2026 MacBook Neo vs Air vs Pro: Which Laptop Should You Buy?</p>
+      <p>How to Land Top 1% Tech Jobs: Ex-Google Recruiter’s Hidden Interview Tricks</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-comfort-vs-human-understanding-mental-health-trend/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/xxUV070yA2M/mqdefault.jpg"
-           alt="Why AI Comfort Can’t Replace Human Understanding in Mental Health" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/make-10k-as-student-side-hustle-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5rhHm6WWOIs/mqdefault.jpg"
+           alt="How to Make $10,000 as a Student (3-Step Side Hustle Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why AI Comfort Can’t Replace Human Understanding in Mental Health</p>
+      <p>How to Make $10,000 as a Student (3-Step Side Hustle Guide)</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/WF_TQFPsCAQ?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

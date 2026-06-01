@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Discover more about digital conservation models and how technology is revolution
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/xiaomi-17t-oppo-reno-16-vivo-x500-pro-max-latest-tech-launches/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/KjOdJk8nYxo/mqdefault.jpg"
-           alt="Xiaomi 17T, OPPO Reno 16, Vivo X500 Pro Max: Latest Tech Launches &amp; AI Breakthroughs" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/open-source-ai-2026-guide-build-agents-no-code/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/1uCE0uoKXL8/mqdefault.jpg"
+           alt="How to Build Open Source AI Agents in 2026: No-Code &amp; Code Guide" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Xiaomi 17T, OPPO Reno 16, Vivo X500 Pro Max: Latest Tech Launches &amp; AI Breakthroughs</p>
+      <p>How to Build Open Source AI Agents in 2026: No-Code &amp; Code Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-proven-strategies-to-take-control-of-your-life-and-build-lasting-success/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/a4sq1CKPl0E/mqdefault.jpg"
-           alt="5 Science-Backed Ways to Take Control of Your Life and Build Lasting Success" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-i-o-2025-how-agentic-ai-is-redefining-coding-search-and-productivity/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/bc4QwDd5jB0/mqdefault.jpg"
+           alt="Google I/O 2025: How Agentic AI is Redefining Coding, Search, and Productivity" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Science-Backed Ways to Take Control of Your Life and Build Lasting Success</p>
+      <p>Google I/O 2025: How Agentic AI is Redefining Coding, Search, and Productivity</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-coding-best-practices-strategic-development-not-vibe-coding/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/5fhcklZe-qE/mqdefault.jpg"
-           alt="How to Code with AI Strategically: Avoid Vibe Coding Disasters" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-app-builder-no-code-2025-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-FA7WTHdvjQ/mqdefault.jpg"
+           alt="How to Build Profitable AI Apps Without Coding in 2025 (Step-by-Step Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Code with AI Strategically: Avoid Vibe Coding Disasters</p>
+      <p>How to Build Profitable AI Apps Without Coding in 2025 (Step-by-Step Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/antony-starr-homelander-boys-interview-insights/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/6u8-bioNK9E/mqdefault.jpg"
-           alt="Antony Starr Reveals Homelanders Darkest Secrets in Viral Interview" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-microchips-work-ibm-cto-explains-transistors-ai-chips/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/83F1GSUsmzo/mqdefault.jpg"
+           alt="How Microchips Work: IBM CTO Explains Transistors, AI Chips &amp; More" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Antony Starr Reveals Homelanders Darkest Secrets in Viral Interview</p>
+      <p>How Microchips Work: IBM CTO Explains Transistors, AI Chips &amp; More</p>
     </a>
-    <a href="https://trend4genz.fun/video/tim-cook-legacy-apple-succession-john-ternus-analysis/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Fc_xlNodaWc/mqdefault.jpg"
-           alt="Tim Cook’s Apple Legacy: AirPods, Touch Bars, and the Rise of John Ternus" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-cowork-complete-beginner-guide-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/AxN7wkYRexQ/mqdefault.jpg"
+           alt="Claude Cowork Tutorial: Automate Tasks &amp; Boost Productivity in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Tim Cook’s Apple Legacy: AirPods, Touch Bars, and the Rise of John Ternus</p>
+      <p>Claude Cowork Tutorial: Automate Tasks &amp; Boost Productivity in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/axios-supply-chain-attack-2026-explained/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/eGSsoSEppNU/mqdefault.jpg"
-           alt="How the Axios Supply Chain Attack Compromised 100M+ Systems in 1.1 Seconds" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/rust-programming-lessons-transform-developer-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/3lvofS5vktc/mqdefault.jpg"
+           alt="How Rust Transformed My Approach to Java and TypeScript Development" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How the Axios Supply Chain Attack Compromised 100M+ Systems in 1.1 Seconds</p>
+      <p>How Rust Transformed My Approach to Java and TypeScript Development</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-one-woman-overcame-fear-to-win-miss-india-and-become-an-actor/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/I5VCFvO15xE/mqdefault.jpg"
-           alt="How One Woman Overcame Fear to Win Miss India and Become an Actor" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ibm-think-2026-ai-operating-models-vc-funding-surge-the-rise-of-the-caio-role/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/YHKXflgkHak/mqdefault.jpg"
+           alt="IBM Think 2026: AI Operating Models, VC Funding Surge &amp; the Rise of the CAIO Role" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How One Woman Overcame Fear to Win Miss India and Become an Actor</p>
+      <p>IBM Think 2026: AI Operating Models, VC Funding Surge &amp; the Rise of the CAIO Role</p>
     </a>
-    <a href="https://trend4genz.fun/video/git-github-beginners-guide-2026-version-control-collaboration/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/e9D7nnoCbQ0/mqdefault.jpg"
-           alt="Git &amp; GitHub for Beginners 2026: Master Version Control &amp; Collaboration in 2 Hours" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/wordpress-plugin-supply-chain-attack-2026-cloudflare-mdash-alternative/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/piah4fV_o2Q/mqdefault.jpg"
+           alt="WordPress Plugin Supply Chain Attack Hits 31 Plugins: How MDash by Cloudflare Could Replace It" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Git &amp; GitHub for Beginners 2026: Master Version Control &amp; Collaboration in 2 Hours</p>
+      <p>WordPress Plugin Supply Chain Attack Hits 31 Plugins: How MDash by Cloudflare Could Replace It</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/-YwzCOVeLEE?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

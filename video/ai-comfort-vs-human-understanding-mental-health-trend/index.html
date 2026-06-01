@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Use AI for quick relief when needed, but don’t let it replace the hard, beauti
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/oppo-find-x9-ultra-peak-smartphone-2025-review/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/c347oYQO57A/mqdefault.jpg"
-           alt="Oppo Find X9 Ultra: Is This the Ultimate Smartphone in 2025?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/samsung-galaxy-s26-ultra-review-real-world-performance/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/aqRwCwkXPpQ/mqdefault.jpg"
+           alt="Samsung Galaxy S26 Ultra Review: Is It Worth Upgrading in 2025?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Oppo Find X9 Ultra: Is This the Ultimate Smartphone in 2025?</p>
+      <p>Samsung Galaxy S26 Ultra Review: Is It Worth Upgrading in 2025?</p>
     </a>
-    <a href="https://trend4genz.fun/video/east-african-cosmic-trap-music-fusion-akoth-jumadi-mr-lu-ted/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/4Ba-OKPbqJU/mqdefault.jpg"
-           alt="How East African Sounds Are Redefining Global Trap Music | Akoth Jumadi &amp; Mr. Lu" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/gemini-api-agents-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/OdrOmc_RX8A/mqdefault.jpg"
+           alt="How to Build Real-Time AI Agents with Google's Gemini API in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How East African Sounds Are Redefining Global Trap Music | Akoth Jumadi &amp; Mr. Lu</p>
+      <p>How to Build Real-Time AI Agents with Google's Gemini API in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-driven-scientific-discovery-2025-breakthroughs-that-outpace-human-cognition/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/dyx-JJgzJi4/mqdefault.jpg"
-           alt="How AI is Accelerating Scientific Discovery Beyond Human Limits in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-ai-cant-replace-software-engineers-insights-from-c-and-typescript-creator/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/CPrePbvbbic/mqdefault.jpg"
+           alt="Why AI Can't Replace Software Engineers: Insights from C# and TypeScript Creator" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI is Accelerating Scientific Discovery Beyond Human Limits in 2025</p>
+      <p>Why AI Can't Replace Software Engineers: Insights from C# and TypeScript Creator</p>
     </a>
-    <a href="https://trend4genz.fun/video/10-futuristic-vehicles-you-never-knew-existed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/etgCBD6QgQU/mqdefault.jpg"
-           alt="10 Futuristic Vehicles That Will Blow Your Mind in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-lidar-revolution-12-hidden-civilizations-discovered-beneath-our-feet/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ApKEt0RRMY8/mqdefault.jpg"
+           alt="AI &amp; LIDAR Just Revealed 12 Lost Civilizations Hidden Beneath Our Feet" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>10 Futuristic Vehicles That Will Blow Your Mind in 2025</p>
+      <p>AI &amp; LIDAR Just Revealed 12 Lost Civilizations Hidden Beneath Our Feet</p>
     </a>
-    <a href="https://trend4genz.fun/video/2026-amazon-tech-gadgets-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/fF938dYwB60/mqdefault.jpg"
-           alt="20 Must-Have Tech Gadgets on Amazon in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/samsung-galaxy-s26-ultra-review-innovation-vs-expectations/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/AmNVQQ-YOoE/mqdefault.jpg"
+           alt="Samsung Galaxy S26 Ultra Review: Is It Still Worth It in 2025?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>20 Must-Have Tech Gadgets on Amazon in 2026</p>
+      <p>Samsung Galaxy S26 Ultra Review: Is It Still Worth It in 2025?</p>
     </a>
-    <a href="https://trend4genz.fun/video/meaning-vs-happiness-why-pursuing-happiness-can-backfire/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/76_9x4YyFyQ/mqdefault.jpg"
-           alt="Why Chasing Happiness Can Make You Less Happy (Backed by Science)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/top-6-ai-trends-2026-data-backed-expert-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/B23W1gRT9eY/mqdefault.jpg"
+           alt="6 AI Trends That Will Dominate 2026: Data-Backed Expert Predictions" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why Chasing Happiness Can Make You Less Happy (Backed by Science)</p>
+      <p>6 AI Trends That Will Dominate 2026: Data-Backed Expert Predictions</p>
     </a>
-    <a href="https://trend4genz.fun/video/trump-trade-war-stock-market-crash-2025-expert-analysis/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/1E9T6Ze0GL4/mqdefault.jpg"
-           alt="Is Trump Crashing the Stock Market on Purpose? 3 Key Triggers Explained" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/gemini-i-o-2026-keynote-ai-updates-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7Z5Vy9JBANs/mqdefault.jpg"
+           alt="Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Is Trump Crashing the Stock Market on Purpose? 3 Key Triggers Explained</p>
+      <p>Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents</p>
     </a>
-    <a href="https://trend4genz.fun/video/apple-macbook-neo-iphone-18-rumors-ai-supply-chain-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/TKYaj5ZTi3o/mqdefault.jpg"
-           alt="Apple Supply Chain Crisis: MacBook Neo Sales Surge, iPhone 18 Rumors &amp; AI Impact" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/digital-architect-method-students-10k-month/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/BvDAUqLQ-uc/mqdefault.jpg"
+           alt="How to Make $10,000/Month as a Student (No Degree Needed)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Apple Supply Chain Crisis: MacBook Neo Sales Surge, iPhone 18 Rumors &amp; AI Impact</p>
+      <p>How to Make $10,000/Month as a Student (No Degree Needed)</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/xxUV070yA2M?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

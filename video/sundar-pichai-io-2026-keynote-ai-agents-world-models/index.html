@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ This is the future of AI—where agents don’t just assist but act. Explore our
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/top-5-ai-engineering-courses-for-2026-expert-reviewed-ranked/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/HFmoNVx6vTA/mqdefault.jpg"
-           alt="Top 5 AI Engineering Courses for 2026: Expert Reviewed &amp; Ranked" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/trump-era-market-volatility-ai-and-fomo-drive-stock-recovery/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/_vhDblAOLnY/mqdefault.jpg"
+           alt="Trump’s Market Moves: How AI, FOMO, and Tariffs Shape Stock Swings" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Top 5 AI Engineering Courses for 2026: Expert Reviewed &amp; Ranked</p>
+      <p>Trump’s Market Moves: How AI, FOMO, and Tariffs Shape Stock Swings</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-ai-is-redefining-senior-engineering-roles-in-2025-insights-from-google-and-i/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/VTYx7Ex-0bA/mqdefault.jpg"
-           alt="How AI is Redefining Senior Engineering Roles in 2025: Insights from Google and IBM Experts" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/india-smartphone-market-q1-2026-rankings-vivo-samsung-oppo-apple/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/fkIxF4l8oFE/mqdefault.jpg"
+           alt="India Smartphone Market Q1 2026: Vivo Leads, Samsung Stable, Apple Rises" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI is Redefining Senior Engineering Roles in 2025: Insights from Google and IBM Experts</p>
+      <p>India Smartphone Market Q1 2026: Vivo Leads, Samsung Stable, Apple Rises</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-i-o-2026-keynote-ai-updates-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7Z5Vy9JBANs/mqdefault.jpg"
-           alt="Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-boring-youtube-niches-are-secretly-generating-six-figure-incomes/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/bFk8bgPBfJg/mqdefault.jpg"
+           alt="How Boring YouTube Niches Are Secretly Generating Six-Figure Incomes" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents</p>
+      <p>How Boring YouTube Niches Are Secretly Generating Six-Figure Incomes</p>
     </a>
-    <a href="https://trend4genz.fun/video/samsung-smartphone-deals-flipkart-amazon-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/az3qEQbQaE0/mqdefault.jpg"
-           alt="Best Samsung Smartphones Under ₹60,000 in 2025: Flipkart &amp; Amazon Deals" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/youtube-growth-strategy-that-works-in-2025-for-busy-business-owners/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-dQtZkGMfOE/mqdefault.jpg"
+           alt="YouTube Growth Strategy That Works in 2025 for Busy Business Owners" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Best Samsung Smartphones Under ₹60,000 in 2025: Flipkart &amp; Amazon Deals</p>
+      <p>YouTube Growth Strategy That Works in 2025 for Busy Business Owners</p>
     </a>
-    <a href="https://trend4genz.fun/video/500-hours-ai-programming-lessons-developers-must-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/91B_v-wOaws/mqdefault.jpg"
-           alt="500+ Hours of AI-Assisted Programming: What Every Developer Should Know" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-unlock-80-of-notion-s-power-with-the-relations-feature/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/4Fu23_l9F_o/mqdefault.jpg"
+           alt="How to Unlock 80% of Notion’s Power with the Relations Feature" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>500+ Hours of AI-Assisted Programming: What Every Developer Should Know</p>
+      <p>How to Unlock 80% of Notion’s Power with the Relations Feature</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-no-code-digital-product-business-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/bVksP4haTXM/mqdefault.jpg"
-           alt="Build a $500K/Month AI Digital Product in 11 Minutes (No Code)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ancient-walking-whales-how-land-mammals-evolved-back-to-the-sea/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/i0-TDxqkub4/mqdefault.jpg"
+           alt="Ancient Walking Whales: How Land Mammals Evolved Back to the Sea" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Build a $500K/Month AI Digital Product in 11 Minutes (No Code)</p>
+      <p>Ancient Walking Whales: How Land Mammals Evolved Back to the Sea</p>
     </a>
-    <a href="https://trend4genz.fun/video/90-day-youtube-growth-challenge-proven-strategy/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/d7WiImDy3TI/mqdefault.jpg"
-           alt="90-Day YouTube Growth Challenge: A Proven 3-Month Plan to 100K Subscribers" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-maya-higa-built-a-virtual-wildlife-sanctuary-that-rescued-7-5m-for-conservat/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-YwzCOVeLEE/mqdefault.jpg"
+           alt="How Maya Higa Built a Virtual Wildlife Sanctuary That Rescued $7.5M for Conservation" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>90-Day YouTube Growth Challenge: A Proven 3-Month Plan to 100K Subscribers</p>
+      <p>How Maya Higa Built a Virtual Wildlife Sanctuary That Rescued $7.5M for Conservation</p>
     </a>
-    <a href="https://trend4genz.fun/video/github-outages-2026-microsoft-failure-100m-devs-affected/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/d53Zk28esmU/mqdefault.jpg"
-           alt="GitHub Outages in 2026: Why Microsoft’s Platform is Failing 100M Developers" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/android-17-ai-revolution-features-release-date/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/3wj0MxHz6Z4/mqdefault.jpg"
+           alt="Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>GitHub Outages in 2026: Why Microsoft’s Platform is Failing 100M Developers</p>
+      <p>Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/duHhImuaZGU?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

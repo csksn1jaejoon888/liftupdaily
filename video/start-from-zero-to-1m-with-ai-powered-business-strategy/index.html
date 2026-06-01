@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to turn your side hustle into a scalable business? Explore our full librar
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/how-to-stay-consistent-the-science-backed-formula-for-long-term-success/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Aq6kt7qaylw/mqdefault.jpg"
-           alt="How to Stay Consistent: The Science-Backed Formula for Long-Term Success" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/top-skills-to-learn-in-2026-personal-finance-ai-and-business/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JHF2t-S2nm0/mqdefault.jpg"
+           alt="Top Skills to Learn in 2026: Finance, AI, and Business Mastery" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Stay Consistent: The Science-Backed Formula for Long-Term Success</p>
+      <p>Top Skills to Learn in 2026: Finance, AI, and Business Mastery</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-native-engineers-2026-career-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/596vkrMPWWM/mqdefault.jpg"
-           alt="AI is Replacing Coders: What Software Engineers Must Learn in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-people-over-40-should-start-a-youtube-channel-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/cPSw3ykx0bs/mqdefault.jpg"
+           alt="Why Starting a YouTube Channel After 40 is a Hidden Goldmine in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI is Replacing Coders: What Software Engineers Must Learn in 2026</p>
+      <p>Why Starting a YouTube Channel After 40 is a Hidden Goldmine in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-engineer-roadmap-2026-salary-claim/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/aAItDrJ8-rE/mqdefault.jpg"
-           alt="AI Engineer Salary in 2026: Fast Track Your Career with This Roadmap" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/oracle-mcp-server-ai-database-automation-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-Nf3dvj0498/mqdefault.jpg"
+           alt="How Oracle's MCP Server Transforms Database Development with AI" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI Engineer Salary in 2026: Fast Track Your Career with This Roadmap</p>
+      <p>How Oracle's MCP Server Transforms Database Development with AI</p>
     </a>
-    <a href="https://trend4genz.fun/video/2026-amazon-tech-gadgets-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/fF938dYwB60/mqdefault.jpg"
-           alt="20 Must-Have Tech Gadgets on Amazon in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-vision-pro-rumors-ai-ios-27-ternus-ceo-transition/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-YB1nbeRaSc/mqdefault.jpg"
+           alt="Apple Vision Pro Rumors Debunked: AI, iOS 27, and CEO Transition Explained" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>20 Must-Have Tech Gadgets on Amazon in 2026</p>
+      <p>Apple Vision Pro Rumors Debunked: AI, iOS 27, and CEO Transition Explained</p>
     </a>
-    <a href="https://trend4genz.fun/video/mo-gawdat-ai-strategy-2026-2027-survival-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/E0Q96IKXx6Q/mqdefault.jpg"
-           alt="Former Google X Exec Reveals How to Thrive in the AI-Driven 2026–2027 Job Market" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-plus-smartphone-india-review-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/1GofQ1ppDSk/mqdefault.jpg"
+           alt="AI+ Smartphone in India: Honest Review &amp; Red Flags Exposed" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Former Google X Exec Reveals How to Thrive in the AI-Driven 2026–2027 Job Market</p>
+      <p>AI+ Smartphone in India: Honest Review &amp; Red Flags Exposed</p>
     </a>
-    <a href="https://trend4genz.fun/video/apple-vision-pro-roadmap-paused-smart-glasses-next-priority/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/btB6-2eb43g/mqdefault.jpg"
-           alt="Apple Vision Pro Future: Roadmap Paused, Smart Glasses Next?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/samsung-tsmc-1nm-chip-race-2025-2030/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/aH3dTgiYr7s/mqdefault.jpg"
+           alt="Samsung vs TSMC: Who Will Win the 1nm Chip Race by 2030?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Apple Vision Pro Future: Roadmap Paused, Smart Glasses Next?</p>
+      <p>Samsung vs TSMC: Who Will Win the 1nm Chip Race by 2030?</p>
     </a>
-    <a href="https://trend4genz.fun/video/accio-work-ai-agents-platform-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/FaondxF4djo/mqdefault.jpg"
-           alt="How to Build AI Agents That Work for You with Accio Work" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-ai-brain-mapping-2026-connectome-mogen/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/CdJjph8-2Oc/mqdefault.jpg"
+           alt="Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build AI Agents That Work for You with Accio Work</p>
+      <p>Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/15-ai-humanoid-robots-transforming-industries-by-2027/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/a1QsFftdN3Y/mqdefault.jpg"
-           alt="15 AI Humanoid Robots That Will Transform Industries by 2027" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/yartsa-gunbu-worlds-most-expensive-fungus/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/R1wW1NHYty8/mqdefault.jpg"
+           alt="Why Yartsa Gunbu Fungus Costs Thousands Per Pound" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>15 AI Humanoid Robots That Will Transform Industries by 2027</p>
+      <p>Why Yartsa Gunbu Fungus Costs Thousands Per Pound</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/dyrr4eAdnhg?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to supercharge your terminal workflow? Watch the full video above to see t
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/100-luxury-home-decor-ideas-to-transform-any-room-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RLnoW2vtJAQ/mqdefault.jpg"
-           alt="100+ Luxury Home Decor Ideas to Transform Any Room in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/n8n-claude-code-integration-automation-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/s96JeuuwLzc/mqdefault.jpg"
+           alt="How to Supercharge n8n with Claude Code for AI Workflows" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>100+ Luxury Home Decor Ideas to Transform Any Room in 2025</p>
+      <p>How to Supercharge n8n with Claude Code for AI Workflows</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-smartphones-for-productivity-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/c7MR6715dG0/mqdefault.jpg"
-           alt="7 Smartphones That Boost Productivity in 2026: Which One Fits Your Workflow?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/openai-s-leadership-crisis-sam-altman-s-controversial-reign-and-the-future-of-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/leuWbaMUieg/mqdefault.jpg"
+           alt="OpenAI’s Leadership Crisis: Sam Altman’s Controversial Reign and the Future of AI" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>7 Smartphones That Boost Productivity in 2026: Which One Fits Your Workflow?</p>
+      <p>OpenAI’s Leadership Crisis: Sam Altman’s Controversial Reign and the Future of AI</p>
     </a>
-    <a href="https://trend4genz.fun/video/netflix-java-ai-migration-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/HhPs2sKlQYg/mqdefault.jpg"
-           alt="How Netflix Uses Java and AI for Massive Migrations in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-proven-patterns-of-top-selling-etsy-digital-product-shops/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/M4LQG9GHJ44/mqdefault.jpg"
+           alt="5 Proven Patterns of Top-Selling Etsy Digital Product Shops" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Netflix Uses Java and AI for Massive Migrations in 2026</p>
+      <p>5 Proven Patterns of Top-Selling Etsy Digital Product Shops</p>
     </a>
-    <a href="https://trend4genz.fun/video/antarctica-seal-colony-weddell-seals-pupping-season/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/A2_WrsmeFz8/mqdefault.jpg"
-           alt="Weddell Seals in Antarctica: A Rare Look at Pupping Season on the Ice" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/trump-era-market-volatility-ai-and-fomo-drive-stock-recovery/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/_vhDblAOLnY/mqdefault.jpg"
+           alt="Trump’s Market Moves: How AI, FOMO, and Tariffs Shape Stock Swings" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Weddell Seals in Antarctica: A Rare Look at Pupping Season on the Ice</p>
+      <p>Trump’s Market Moves: How AI, FOMO, and Tariffs Shape Stock Swings</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-i-o-2026-keynote-ai-updates-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7Z5Vy9JBANs/mqdefault.jpg"
-           alt="Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/spirit-airlines-fleet-repurposed-after-bankruptcy/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/MaXbK4B8wHM/mqdefault.jpg"
+           alt="What Happens to Spirit Airlines' Planes After Bankruptcy?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents</p>
+      <p>What Happens to Spirit Airlines' Planes After Bankruptcy?</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-ai-brain-mapping-2026-connectome-mogen/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/CdJjph8-2Oc/mqdefault.jpg"
-           alt="Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/kevin-hassett-2025-fed-policy-outlook-iran-oil-shock/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/l4Ulcz4HWrM/mqdefault.jpg"
+           alt="Kevin Hassett: Fed Policy, Iran Oil Shock &amp; Future Rate Cuts Explained" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026</p>
+      <p>Kevin Hassett: Fed Policy, Iran Oil Shock &amp; Future Rate Cuts Explained</p>
     </a>
-    <a href="https://trend4genz.fun/video/80k-remote-jobs-2026-no-degree-required/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/a1RNCbnc9l0/mqdefault.jpg"
-           alt="6 High-Paying Remote Jobs That Don’t Require a Degree in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-smartglasses-buyers-guide-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ND0PIidOD-E/mqdefault.jpg"
+           alt="Best AI Smart Glasses in 2026: Ultimate Buyer’s Guide" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>6 High-Paying Remote Jobs That Don’t Require a Degree in 2026</p>
+      <p>Best AI Smart Glasses in 2026: Ultimate Buyer’s Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-gemma-4-open-source-ai-breakthrough-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-01ZCTt-CJw/mqdefault.jpg"
-           alt="Google’s Gemma 4: How a Tiny AI Model is Redefining Open-Source Intelligence in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/anthropic-claude-source-code-leak-2026-what-developers-must-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/mBHRPeg8zPU/mqdefault.jpg"
+           alt="Anthropic’s Claude Source Code Leak: 5 Shocking Secrets Revealed in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google’s Gemma 4: How a Tiny AI Model is Redefining Open-Source Intelligence in 2026</p>
+      <p>Anthropic’s Claude Source Code Leak: 5 Shocking Secrets Revealed in 2026</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/XhLMS47l8Bw?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

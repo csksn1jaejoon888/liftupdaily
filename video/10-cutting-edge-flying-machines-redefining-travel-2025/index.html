@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to explore the future of flight? Watch the full video above to dive deeper
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/6-laptop-upgrades-2026-fix-common-problems/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/OxpeiE0nND4/mqdefault.jpg"
-           alt="6 Must-Have Laptop Upgrades to Fix 6 Common Problems in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/the-1-skill-to-make-more-money-than-sales-marketing-or-ai-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/GTtDEm7Ak8c/mqdefault.jpg"
+           alt="The #1 Skill to Make More Money Than Sales, Marketing, or AI in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>6 Must-Have Laptop Upgrades to Fix 6 Common Problems in 2026</p>
+      <p>The #1 Skill to Make More Money Than Sales, Marketing, or AI in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/cutting-edge-future-transport-2025-innovations/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/YoP0EBr6c0Y/mqdefault.jpg"
-           alt="15 Mind-Blowing Future Transport Technologies to Watch in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/cursor-3-rewrite-vs-code-rust-ai-agents-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
+           alt="Cursor 3.0: AI Agents Replace Coding in VS Code Fork Rewrite" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>15 Mind-Blowing Future Transport Technologies to Watch in 2025</p>
+      <p>Cursor 3.0: AI Agents Replace Coding in VS Code Fork Rewrite</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-api-agents-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/OdrOmc_RX8A/mqdefault.jpg"
-           alt="How to Build Real-Time AI Agents with Google's Gemini API in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/anthropic-claude-design-opus-4-7-ai-prototyping-breakthrough/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/jeA-KBv0b68/mqdefault.jpg"
+           alt="Anthropic’s Claude Design with Opus 4.7: The AI Tool That Could Replace Figma and Adobe" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build Real-Time AI Agents with Google's Gemini API in 2025</p>
+      <p>Anthropic’s Claude Design with Opus 4.7: The AI Tool That Could Replace Figma and Adobe</p>
     </a>
-    <a href="https://trend4genz.fun/video/safest-magsafe-batteries-iphone-2026-solid-state-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RHBeUcDxDxA/mqdefault.jpg"
-           alt="5 Safest MagSafe Batteries for iPhone 2026 (Solid-State Picks)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/top-ai-engineering-jobs-2025-data-centers-robotics/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/EpgY5iE4rhI/mqdefault.jpg"
+           alt="3 AI Jobs Exploding in Demand by 2029 (Backed by IBM CEO)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Safest MagSafe Batteries for iPhone 2026 (Solid-State Picks)</p>
+      <p>3 AI Jobs Exploding in Demand by 2029 (Backed by IBM CEO)</p>
     </a>
-    <a href="https://trend4genz.fun/video/learn-to-code-2026-agentic-engineering-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oshQg1uSRvg/mqdefault.jpg"
-           alt="How to Learn Coding in 2026: AI-Powered Agentic Engineering" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/npm-supply-chain-attack-2026-react-tanstack-exploit/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/gwTQLZSIlsU/mqdefault.jpg"
+           alt="How a Single PR Hijacked 50M NPM Downloads in 6 Minutes (2026 Supply Chain Attack)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Learn Coding in 2026: AI-Powered Agentic Engineering</p>
+      <p>How a Single PR Hijacked 50M NPM Downloads in 6 Minutes (2026 Supply Chain Attack)</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-train-your-brain-for-creativity-in-the-digital-age-a-neuroscientist-s-gui/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/JZ4SHMDI-z0/mqdefault.jpg"
-           alt="How to Train Your Brain for Creativity in the Digital Age: A Neuroscientist’s Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/8906-blooming-into-yourself-how-to-find-your-true-path/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/I4khRDUgGQg/mqdefault.jpg"
+           alt="How to Stop Chasing Others' Expectations and Bloom Into Your True Self" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Train Your Brain for Creativity in the Digital Age: A Neuroscientist’s Guide</p>
+      <p>How to Stop Chasing Others' Expectations and Bloom Into Your True Self</p>
     </a>
-    <a href="https://trend4genz.fun/video/content-creation-changed-my-life/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/laNBdBdRmrI/mqdefault.jpg"
-           alt="Content Creation Changed My Life" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-proven-remote-jobs-paying-250-per-day-no-experience-needed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/E4ZxjKFmXNg/mqdefault.jpg"
+           alt="5 Remote Jobs Paying $250+ Per Day (No Experience Required)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Content Creation Changed My Life</p>
+      <p>5 Remote Jobs Paying $250+ Per Day (No Experience Required)</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-pixel-11-ai-phone-2026-leaks-tensor-g6-chip/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/MTGXQvsF-wo/mqdefault.jpg"
-           alt="Google Pixel 11 AI Phone 2026: Tensor G6 Chip, On-Device AI &amp; More" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/20-futuristic-tech-innovations-reshaping-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/cxvaZtNYFfo/mqdefault.jpg"
+           alt="20 Mind-Blowing Tech Innovations That Will Define 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google Pixel 11 AI Phone 2026: Tensor G6 Chip, On-Device AI &amp; More</p>
+      <p>20 Mind-Blowing Tech Innovations That Will Define 2026</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/5haFsMefhlM?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

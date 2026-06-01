@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to implement these strategies in your own Etsy shop? Explore our full libr
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/best-smartphones-for-productivity-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/c7MR6715dG0/mqdefault.jpg"
-           alt="7 Smartphones That Boost Productivity in 2026: Which One Fits Your Workflow?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/wobble-one-5g-review-india-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/L8Jq2lRDiOo/mqdefault.jpg"
+           alt="Wobble One 5G Review: Should You Buy This ₹22,000 Smartphone in India?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>7 Smartphones That Boost Productivity in 2026: Which One Fits Your Workflow?</p>
+      <p>Wobble One 5G Review: Should You Buy This ₹22,000 Smartphone in India?</p>
     </a>
-    <a href="https://trend4genz.fun/video/game-room-theater-the-ultimate-automated-man-cave-for-sports-movie-lovers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/e5k2mfkU1kQ/mqdefault.jpg"
-           alt="Game Room Theater: The Ultimate Automated Man Cave for Sports &amp; Movie Lovers" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/overcome-procrastination-adhd-entrepreneur-productivity-hacks/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/OqVuu_JpBag/mqdefault.jpg"
+           alt="How to Stop Procrastinating and Build Unstoppable Productivity in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Game Room Theater: The Ultimate Automated Man Cave for Sports &amp; Movie Lovers</p>
+      <p>How to Stop Procrastinating and Build Unstoppable Productivity in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/affordable-family-smart-home-automation-jonathan-canada/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/5SUCahWX1QE/mqdefault.jpg"
-           alt="How One Canadian Family Built a 300+ Automation Smart Home on a Budget" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ios-26-5-new-features-rcs-encryption-maps-ads-pride-wallpaper/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/P2M8nQRuZbs/mqdefault.jpg"
+           alt="iOS 26.5: RCS Encryption, Maps Ads, and Pride Luminance Wallpaper" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How One Canadian Family Built a 300+ Automation Smart Home on a Budget</p>
+      <p>iOS 26.5: RCS Encryption, Maps Ads, and Pride Luminance Wallpaper</p>
     </a>
-    <a href="https://trend4genz.fun/video/top-skills-to-learn-in-2026-personal-finance-ai-and-business/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/JHF2t-S2nm0/mqdefault.jpg"
-           alt="Top Skills to Learn in 2026: Finance, AI, and Business Mastery" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/6-laptop-upgrades-2026-fix-common-problems/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/OxpeiE0nND4/mqdefault.jpg"
+           alt="6 Must-Have Laptop Upgrades to Fix 6 Common Problems in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Top Skills to Learn in 2026: Finance, AI, and Business Mastery</p>
+      <p>6 Must-Have Laptop Upgrades to Fix 6 Common Problems in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/500-hours-ai-programming-lessons-developers-must-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/91B_v-wOaws/mqdefault.jpg"
-           alt="500+ Hours of AI-Assisted Programming: What Every Developer Should Know" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/artemis-ii-mission-timeline-heat-shield-success/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/NnMReiQ9Fkk/mqdefault.jpg"
+           alt="Artemis II Mission: Full Flight Timeline and Critical Heat Shield Test" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>500+ Hours of AI-Assisted Programming: What Every Developer Should Know</p>
+      <p>Artemis II Mission: Full Flight Timeline and Critical Heat Shield Test</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-dating-experiment-reveals-top-match-surprisingly/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/zKzZAtmhnEQ/mqdefault.jpg"
-           alt="AI Dating Experiment: Can AI Really Predict Love Matches?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/hermes-ai-agent-setup-automation-guide-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/r5FrGDTCYSg/mqdefault.jpg"
+           alt="How to Deploy Hermes AI Agent on VPS for UGC Automation in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI Dating Experiment: Can AI Really Predict Love Matches?</p>
+      <p>How to Deploy Hermes AI Agent on VPS for UGC Automation in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/top-ai-remote-jobs-100k-no-degree-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/PuTzFyPm47A/mqdefault.jpg"
-           alt="5 High-Paying AI Remote Jobs That Don’t Require a Tech Degree" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-high-paying-remote-jobs-for-introverts-no-degree-no-interview/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/q2lVnBP5oes/mqdefault.jpg"
+           alt="5 High-Paying Remote Jobs for Introverts (No Degree, No Interview)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 High-Paying AI Remote Jobs That Don’t Require a Tech Degree</p>
+      <p>5 High-Paying Remote Jobs for Introverts (No Degree, No Interview)</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-proven-patterns-of-top-selling-etsy-digital-product-shops/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/M4LQG9GHJ44/mqdefault.jpg"
-           alt="5 Proven Patterns of Top-Selling Etsy Digital Product Shops" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-io-2026-search-shopping-ai-agents-commerce/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/kQQbTYPt7VE/mqdefault.jpg"
+           alt="Google I/O 2026: AI Search, Agents &amp; Agentic Commerce Explained" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Proven Patterns of Top-Selling Etsy Digital Product Shops</p>
+      <p>Google I/O 2026: AI Search, Agents &amp; Agentic Commerce Explained</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/zK7Z4js0hv4?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

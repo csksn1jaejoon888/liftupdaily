@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Discover how Duolingo balances AI adoption with human-centric values and explore
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/best-smartphones-under-30k-india-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Xt9hL9QRllw/mqdefault.jpg"
-           alt="Top Phones Under ₹30,000 in India (2026) – Best Picks for Performance &amp; Camera" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/axios-supply-chain-attack-2026-explained/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/eGSsoSEppNU/mqdefault.jpg"
+           alt="How the Axios Supply Chain Attack Compromised 100M+ Systems in 1.1 Seconds" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Top Phones Under ₹30,000 in India (2026) – Best Picks for Performance &amp; Camera</p>
+      <p>How the Axios Supply Chain Attack Compromised 100M+ Systems in 1.1 Seconds</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-ai-recommendations-will-dominate-business-discovery-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
-           alt="How AI Recommendations Will Dominate Business Discovery by 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-stage-process-to-break-free-from-financial-stagnation/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JMN0XbamRo8/mqdefault.jpg"
+           alt="5 Stages to Escape Financial Stagnation and Build Real Wealth" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI Recommendations Will Dominate Business Discovery by 2026</p>
+      <p>5 Stages to Escape Financial Stagnation and Build Real Wealth</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-gemma-4-open-source-ai-breakthrough-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-01ZCTt-CJw/mqdefault.jpg"
-           alt="Google’s Gemma 4: How a Tiny AI Model is Redefining Open-Source Intelligence in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/esoteric-programming-languages-you-never-knew-existed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/lD3Z3d9zEP8/mqdefault.jpg"
+           alt="7 Bizarre Programming Languages That Defy Logic (And Why They Matter)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google’s Gemma 4: How a Tiny AI Model is Redefining Open-Source Intelligence in 2026</p>
+      <p>7 Bizarre Programming Languages That Defy Logic (And Why They Matter)</p>
     </a>
-    <a href="https://trend4genz.fun/video/meta-engineer-solves-google-coding-interview-valid-parentheses-algorithm/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/c6zu897JVQY/mqdefault.jpg"
-           alt="Meta Engineer Solves Google Coding Interview: Valid Parentheses Algorithm" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-high-value-certifications-that-still-boost-careers-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oMaj3PUv_3U/mqdefault.jpg"
+           alt="5 High-Value Certifications That Still Boost Careers in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Meta Engineer Solves Google Coding Interview: Valid Parentheses Algorithm</p>
+      <p>5 High-Value Certifications That Still Boost Careers in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/8-ai-tools-saving-1000-hours-year-2026-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/6sm6C_ra2ek/mqdefault.jpg"
-           alt="8 AI Tools That Save 1000 Hours Annually in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/openai-chatgpt-ai-smartphone-2027-launch/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/wyJl6x7e3iw/mqdefault.jpg"
+           alt="OpenAI’s AI-Powered Smartphone: A 2027 Game-Changer?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>8 AI Tools That Save 1000 Hours Annually in 2026</p>
+      <p>OpenAI’s AI-Powered Smartphone: A 2027 Game-Changer?</p>
     </a>
-    <a href="https://trend4genz.fun/video/apple-wwdc-2026-siri-ai-chatbot-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7ONbQ-jpl2E/mqdefault.jpg"
-           alt="Apple WWDC 2026: Siri’s AI Chatbot &amp; iOS 27 Features Revealed" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/build-ai-agents-without-coding-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/XASPkhYLtnk/mqdefault.jpg"
+           alt="How to Build AI Agents Faster Than 99% of Developers (No Code Needed)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Apple WWDC 2026: Siri’s AI Chatbot &amp; iOS 27 Features Revealed</p>
+      <p>How to Build AI Agents Faster Than 99% of Developers (No Code Needed)</p>
     </a>
-    <a href="https://trend4genz.fun/video/sony-wf-1000xm6-vs-airpods-pro-3-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/THl9fGnQW94/mqdefault.jpg"
-           alt="Sony WF-1000XM6 vs AirPods Pro 3: Which Flagship Earbuds Win in 2026?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/7-critical-mistakes-blocking-your-ai-engineering-career-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/nvc7xi6vZWw/mqdefault.jpg"
+           alt="7 Critical Mistakes Blocking Your AI Engineering Career" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Sony WF-1000XM6 vs AirPods Pro 3: Which Flagship Earbuds Win in 2026?</p>
+      <p>7 Critical Mistakes Blocking Your AI Engineering Career</p>
     </a>
-    <a href="https://trend4genz.fun/video/mac-vs-windows-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/aJSK3HZlvnU/mqdefault.jpg"
-           alt="Mac vs Windows 2026: Which Laptop Wins in Performance, Build &amp; Value?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/8-life-saving-gadgets-under-50-dollars-for-home-safety/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/DalxCcAmOfw/mqdefault.jpg"
+           alt="8 Must-Have Gadgets Under $50 That Could Save Your Life at Home" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Mac vs Windows 2026: Which Laptop Wins in Performance, Build &amp; Value?</p>
+      <p>8 Must-Have Gadgets Under $50 That Could Save Your Life at Home</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/GDeEATJcbJo?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

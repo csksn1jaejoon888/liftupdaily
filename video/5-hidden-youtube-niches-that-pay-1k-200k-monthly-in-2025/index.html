@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Want to turn your passion into profit? Dive deeper into these strategies by watc
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/how-holly-built-ai-powered-hiring-platform-workonward/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/q-dnq2Fsq2Y/mqdefault.jpg"
-           alt="Holly’s AI Hiring Platform Helps Small Businesses Find Workers Fast" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/xai-replaces-java-scala-with-rust-python-ai-revolution/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-8JOlCvA4Qs/mqdefault.jpg"
+           alt="XAI Dumps Java for Rust: How AI is Rewriting Recommendation Systems" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Holly’s AI Hiring Platform Helps Small Businesses Find Workers Fast</p>
+      <p>XAI Dumps Java for Rust: How AI is Rewriting Recommendation Systems</p>
     </a>
-    <a href="https://trend4genz.fun/video/intelligent-eyewear-google-gemini-samsung-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/xxY0yuzxzLY/mqdefault.jpg"
-           alt="Google’s AI-Powered Eyewear with Gemini: What’s Coming in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/base44-vs-lovable-ai-app-builder-comparison-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/kVGCc0eSxhc/mqdefault.jpg"
+           alt="Why Top Developers Are Ditching Lovable for Base44 in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google’s AI-Powered Eyewear with Gemini: What’s Coming in 2026</p>
+      <p>Why Top Developers Are Ditching Lovable for Base44 in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/2026-smartphone-battery-showdown-samsung-apple-google-vs-chinese-flagships/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RGGHyY2mN7o/mqdefault.jpg"
-           alt="2026 Smartphone Battery Showdown: Samsung, Apple, Google vs Chinese Flagships" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/elogic-aspect-touch-monitor-mac-mini-dock-review/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/tDvRW9NDVbk/mqdefault.jpg"
+           alt="Elogic Aspect Touch Monitor Review: Built-in Mac mini Dock &amp; Touchscreen Features" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>2026 Smartphone Battery Showdown: Samsung, Apple, Google vs Chinese Flagships</p>
+      <p>Elogic Aspect Touch Monitor Review: Built-in Mac mini Dock &amp; Touchscreen Features</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-sell-digital-products-on-etsy-beginner-s-step-by-step-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RAn7R954Xhc/mqdefault.jpg"
-           alt="How to Sell Digital Products on Etsy: Beginner’s Step-by-Step Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-phones-battery-life-2026-silicon-carbon/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/yJ_dliumQRo/mqdefault.jpg"
+           alt="5 Phones That Last 3+ Days on a Charge in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Sell Digital Products on Etsy: Beginner’s Step-by-Step Guide</p>
+      <p>5 Phones That Last 3+ Days on a Charge in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/canva-branding-kit-templates-etsy-sell-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/jLmk6DO3WkM/mqdefault.jpg"
-           alt="How to Create Canva Branding Kits That Sell on Etsy (Step-by-Step Guide)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-gemini-notebooklm-integration-guide-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Vn8NgGgVGCc/mqdefault.jpg"
+           alt="How Google Gemini + NotebookLM Supercharge Your AI Workflow in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Create Canva Branding Kits That Sell on Etsy (Step-by-Step Guide)</p>
+      <p>How Google Gemini + NotebookLM Supercharge Your AI Workflow in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-a-nurse-s-super-smell-detects-parkinson-s-disease-early-joy-milne-s-breakthr/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oCtLmeo56Jo/mqdefault.jpg"
-           alt="How a Nurse’s Super-Smell Detects Parkinson’s Disease Early: Joy Milne’s Breakthrough" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/build-ai-agents-without-coding-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/XASPkhYLtnk/mqdefault.jpg"
+           alt="How to Build AI Agents Faster Than 99% of Developers (No Code Needed)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How a Nurse’s Super-Smell Detects Parkinson’s Disease Early: Joy Milne’s Breakthrough</p>
+      <p>How to Build AI Agents Faster Than 99% of Developers (No Code Needed)</p>
     </a>
-    <a href="https://trend4genz.fun/video/spacex-starship-reusable-rockets-future-space-infrastructure/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oeoRkQ0qaNw/mqdefault.jpg"
-           alt="Why SpaceX Starship is the next industrial revolution in space" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-productivity-system-taught-to-6642-employees/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oO9GLC2iKy8/mqdefault.jpg"
+           alt="The Google Productivity System That Boosted 6,642 Employees' Efficiency" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why SpaceX Starship is the next industrial revolution in space</p>
+      <p>The Google Productivity System That Boosted 6,642 Employees' Efficiency</p>
     </a>
-    <a href="https://trend4genz.fun/video/touchscreen-mac-rumors-2027-release-date-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RZ3F0viyJ0w/mqdefault.jpg"
-           alt="Will Apple’s First Touchscreen Mac Arrive in 2027? Early Hands-On" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/dropshipping-in-2026-the-new-rules-for-building-a-real-brand/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/37ypcHpzqeM/mqdefault.jpg"
+           alt="Dropshipping in 2026: The New Rules for Building a Real Brand" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Will Apple’s First Touchscreen Mac Arrive in 2027? Early Hands-On</p>
+      <p>Dropshipping in 2026: The New Rules for Building a Real Brand</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/54QHjLRqc3M?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

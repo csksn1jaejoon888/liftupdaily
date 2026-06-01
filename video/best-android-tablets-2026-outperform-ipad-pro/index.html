@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ If you’re ready to stop overpaying for Apple’s ecosystem, explore these alte
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/how-tech-brands-manipulate-specs-and-why-you-should-ignore-their-claims/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/JstGCPsj9wg/mqdefault.jpg"
-           alt="How Tech Brands Manipulate Specs and Why You Should Ignore Their Claims" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/6-profitable-ai-business-ideas-to-start-in-2026-without-coding/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/gwsaC3WiCqs/mqdefault.jpg"
+           alt="6 AI Business Ideas You Can Start in 2026 Without Coding Skills" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Tech Brands Manipulate Specs and Why You Should Ignore Their Claims</p>
+      <p>6 AI Business Ideas You Can Start in 2026 Without Coding Skills</p>
     </a>
-    <a href="https://trend4genz.fun/video/9247-edge-70-pro-apple-ceo-tim-cook-john-ternus-ai-smartphone-trends/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/twv6yAhO6do/mqdefault.jpg"
-           alt="Edge 70 Pro Launch, Apple CEO Change, and AI Smartphone Trends 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/start-from-zero-to-1m-with-ai-powered-business-strategy/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/dyrr4eAdnhg/mqdefault.jpg"
+           alt="How to Build a $1M Business Starting with $0 in the AI Era (Step-by-Step Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Edge 70 Pro Launch, Apple CEO Change, and AI Smartphone Trends 2025</p>
+      <p>How to Build a $1M Business Starting with $0 in the AI Era (Step-by-Step Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-build-specialized-ai-agents-for-faster-cheaper-coding-workflows-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/SVz-y-pD6s4/mqdefault.jpg"
-           alt="How to Build Specialized AI Agents for Faster, Cheaper Coding Workflows in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/15-must-have-gadgets-to-transform-your-home-workspace-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/11JpYYDo6-s/mqdefault.jpg"
+           alt="15 Must-Have Gadgets to Transform Your Home Workspace in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build Specialized AI Agents for Faster, Cheaper Coding Workflows in 2025</p>
+      <p>15 Must-Have Gadgets to Transform Your Home Workspace in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/51-must-have-gadgets-for-2026-that-will-transform-your-daily-life/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/vipz8NAZJsU/mqdefault.jpg"
-           alt="51 Must-Have Gadgets for 2026 That Will Transform Your Daily Life" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-ai-stock-pivots-like-allbirds-s-4b-shoe-company-flip-are-failing/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/DTlzvhNb_qY/mqdefault.jpg"
+           alt="Why AI Stock Pivots Like Allbirds’s $4B Shoe Company Flip Are Failing" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>51 Must-Have Gadgets for 2026 That Will Transform Your Daily Life</p>
+      <p>Why AI Stock Pivots Like Allbirds’s $4B Shoe Company Flip Are Failing</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-in-expert-10-year-roadmap/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
-           alt="How to Learn Python Fast in 2026: Expert 10-Year Roadmap" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/make-10k-as-student-side-hustle-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5rhHm6WWOIs/mqdefault.jpg"
+           alt="How to Make $10,000 as a Student (3-Step Side Hustle Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Learn Python Fast in 2026: Expert 10-Year Roadmap</p>
+      <p>How to Make $10,000 as a Student (3-Step Side Hustle Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-programming-productivity-tools-augment-code/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/V1EeXcqnGec/mqdefault.jpg"
-           alt="How AI Transforms Coding: Boost Productivity with Augment Code" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-electric-bikes-under-1000-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ezHrTS-a_z8/mqdefault.jpg"
+           alt="Top 5 Electric Bikes Under $1000 in 2026: Power, Range &amp; Value Compared" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI Transforms Coding: Boost Productivity with Augment Code</p>
+      <p>Top 5 Electric Bikes Under $1000 in 2026: Power, Range &amp; Value Compared</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-setup-guide-build-a-self-improving-ai-assistant/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/1ve4Atbqmoo/mqdefault.jpg"
-           alt="Hermes Agent 2026 Setup Guide: Build a Self-Improving AI Assistant" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-maya-higa-built-a-virtual-wildlife-sanctuary-that-rescued-7-5m-for-conservat/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-YwzCOVeLEE/mqdefault.jpg"
+           alt="How Maya Higa Built a Virtual Wildlife Sanctuary That Rescued $7.5M for Conservation" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Hermes Agent 2026 Setup Guide: Build a Self-Improving AI Assistant</p>
+      <p>How Maya Higa Built a Virtual Wildlife Sanctuary That Rescued $7.5M for Conservation</p>
     </a>
-    <a href="https://trend4genz.fun/video/neurodiversity-self-acceptance-aroush-datta-tedx/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/vkYdQ2cBOdo/mqdefault.jpg"
-           alt="How Neurodiversity Shaped My Journey: Arawush Datta’s Inspiring Story" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-affordable-electric-bikes-2026-comparison-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5K06S-uDVes/mqdefault.jpg"
+           alt="Top 5 Budget E-Bikes for City &amp; Off-Road in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Neurodiversity Shaped My Journey: Arawush Datta’s Inspiring Story</p>
+      <p>Top 5 Budget E-Bikes for City &amp; Off-Road in 2026</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/TY9cSyQneY4?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

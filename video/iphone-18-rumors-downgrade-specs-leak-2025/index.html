@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ If you’re weighing an upgrade, the iPhone 17’s superior specs and affordabil
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/free-phone-calls-with-claude-code-voip-integration-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/cT22fTzotYc/mqdefault.jpg"
-           alt="How to Make Free Phone Calls to Claude Code Using VoIP" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-a-19-year-old-youtuber-found-courage-in-imperfection-and-changed-her-life/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/hM-_6ZGpZ_8/mqdefault.jpg"
+           alt="How a 19-Year-Old YouTuber Found Courage in Imperfection and Changed Her Life" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Make Free Phone Calls to Claude Code Using VoIP</p>
+      <p>How a 19-Year-Old YouTuber Found Courage in Imperfection and Changed Her Life</p>
     </a>
-    <a href="https://trend4genz.fun/video/ibm-think-2026-ai-operating-models-vc-funding-surge-the-rise-of-the-caio-role/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/YHKXflgkHak/mqdefault.jpg"
-           alt="IBM Think 2026: AI Operating Models, VC Funding Surge &amp; the Rise of the CAIO Role" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-i-o-2026-how-gemini-spark-automates-your-daily-tasks/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/amnhF6BwzZQ/mqdefault.jpg"
+           alt="Google I/O 2026: How Gemini Spark Automates Your Daily Tasks" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>IBM Think 2026: AI Operating Models, VC Funding Surge &amp; the Rise of the CAIO Role</p>
+      <p>Google I/O 2026: How Gemini Spark Automates Your Daily Tasks</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-engineer-salaries-junior-to-senior-pay-breakdown-trends/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
-           alt="AI Engineer Salaries 2026: Junior to Senior Pay Breakdown &amp; Trends" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/wine-complexity-science-behind-tasting-perception/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/rweUKs3vBV4/mqdefault.jpg"
+           alt="The Hidden Science Behind Wine Complexity and Why It Matters" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI Engineer Salaries 2026: Junior to Senior Pay Breakdown &amp; Trends</p>
+      <p>The Hidden Science Behind Wine Complexity and Why It Matters</p>
     </a>
-    <a href="https://trend4genz.fun/video/claude-3-opus-vs-github-codex-full-ai-coding-showdown-benchmark/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/E2UgYp2vh5U/mqdefault.jpg"
-           alt="Claude 3 Opus vs GitHub Codex : Full AI Coding Showdown &amp; Benchmark" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-get-rich-before-ai-replaces-your-job-the-last-chance-strategy/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/eYyWFJpVBBI/mqdefault.jpg"
+           alt="How to Get Rich Before AI Replaces Your Job: The Last Chance Strategy" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Claude 3 Opus vs GitHub Codex : Full AI Coding Showdown &amp; Benchmark</p>
+      <p>How to Get Rich Before AI Replaces Your Job: The Last Chance Strategy</p>
     </a>
-    <a href="https://trend4genz.fun/video/41-must-have-gadgets-under-65-for-work-travel-home-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Xn8gmceOT4M/mqdefault.jpg"
-           alt="41 Must-Have Gadgets Under $65 for Work, Travel &amp; Home in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/architectural-engineering-secrets-answered-by-dr-sally-mcarreth/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Druvom03m_A/mqdefault.jpg"
+           alt="Architect Dr. Sally McArreth Answers Your Burning Architecture Questions" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>41 Must-Have Gadgets Under $65 for Work, Travel &amp; Home in 2025</p>
+      <p>Architect Dr. Sally McArreth Answers Your Burning Architecture Questions</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-s-josh-woodward-reveals-how-gemini-spark-transforms-daily-workflows/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ZW87Peh3tWM/mqdefault.jpg"
-           alt="Googles Josh Woodward Reveals How Gemini Spark Transforms Daily Workflows" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/iphone-17e-vs-17-pro-max-is-the-500-savings-worth-it/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/BL9UE9_m-1Y/mqdefault.jpg"
+           alt="iPhone 17E vs 17 Pro Max: Is the $500 Savings Worth It?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Googles Josh Woodward Reveals How Gemini Spark Transforms Daily Workflows</p>
+      <p>iPhone 17E vs 17 Pro Max: Is the $500 Savings Worth It?</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-the-job-market-is-broken-in-2025-and-how-to-win-anyway/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/YuI2x8I8Pgw/mqdefault.jpg"
-           alt="Why the Job Market Is Broken in 2025 (And How to Win Anyway)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-i-o-2025-how-agentic-ai-is-redefining-coding-search-and-productivity/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/bc4QwDd5jB0/mqdefault.jpg"
+           alt="Google I/O 2025: How Agentic AI is Redefining Coding, Search, and Productivity" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why the Job Market Is Broken in 2025 (And How to Win Anyway)</p>
+      <p>Google I/O 2025: How Agentic AI is Redefining Coding, Search, and Productivity</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-phones-battery-life-2026-silicon-carbon/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/yJ_dliumQRo/mqdefault.jpg"
-           alt="5 Phones That Last 3+ Days on a Charge in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/bamboo-labs-h2d-printer-review-3d-printed-shoes-run/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/9LjgqZ2wP0g/mqdefault.jpg"
+           alt="Bamboo Labs H2D Printer Review: Can You Really Run in 3D Printed Shoes?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Phones That Last 3+ Days on a Charge in 2026</p>
+      <p>Bamboo Labs H2D Printer Review: Can You Really Run in 3D Printed Shoes?</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/3H5XrcuzWEI?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

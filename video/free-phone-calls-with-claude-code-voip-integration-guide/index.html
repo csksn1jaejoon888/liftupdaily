@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,11 +138,41 @@ This isn't just a technical curiosity—it's a glimpse into the future of human-
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-in-expert-10-year-roadmap/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
-           alt="How to Learn Python Fast in 2026: Expert 10-Year Roadmap" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-train-your-brain-for-creativity-in-the-digital-age-a-neuroscientist-s-gui/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JZ4SHMDI-z0/mqdefault.jpg"
+           alt="How to Train Your Brain for Creativity in the Digital Age: A Neuroscientist’s Guide" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Learn Python Fast in 2026: Expert 10-Year Roadmap</p>
+      <p>How to Train Your Brain for Creativity in the Digital Age: A Neuroscientist’s Guide</p>
+    </a>
+    <a href="https://trend4genz.fun/video/game-room-theater-the-ultimate-automated-man-cave-for-sports-movie-lovers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/e5k2mfkU1kQ/mqdefault.jpg"
+           alt="Game Room Theater: The Ultimate Automated Man Cave for Sports &amp; Movie Lovers" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Game Room Theater: The Ultimate Automated Man Cave for Sports &amp; Movie Lovers</p>
+    </a>
+    <a href="https://trend4genz.fun/video/19463-month-side-hustle-guide-multi-passionate-creators/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/dO1b6JeVFas/mqdefault.jpg"
+           alt="How to turn multiple passions into a $19,463/month side hustle" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>How to turn multiple passions into a $19,463/month side hustle</p>
+    </a>
+    <a href="https://trend4genz.fun/video/anthropic-s-mythos-ai-why-it-s-too-dangerous-for-public-release-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/d3Qq-rkp_to/mqdefault.jpg"
+           alt="Anthropic’s Mythos AI: Why It’s Too Dangerous for Public Release in 2026" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Anthropic’s Mythos AI: Why It’s Too Dangerous for Public Release in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/15-ai-humanoid-robots-transforming-industries-by-2027/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/a1QsFftdN3Y/mqdefault.jpg"
+           alt="15 AI Humanoid Robots That Will Transform Industries by 2027" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>15 AI Humanoid Robots That Will Transform Industries by 2027</p>
+    </a>
+    <a href="https://trend4genz.fun/video/5-critical-digital-product-mistakes-that-kill-sales/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JDJCEOkgsM8/mqdefault.jpg"
+           alt="5 Digital Product Mistakes That Destroy Sales (And How to Fix Them)" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>5 Digital Product Mistakes That Destroy Sales (And How to Fix Them)</p>
     </a>
     <a href="https://trend4genz.fun/video/5-proven-remote-jobs-paying-250-per-day-no-experience-needed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/E4ZxjKFmXNg/mqdefault.jpg"
@@ -150,49 +180,42 @@ This isn't just a technical curiosity—it's a glimpse into the future of human-
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>5 Remote Jobs Paying $250+ Per Day (No Experience Required)</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-companionships-intimacy-connection-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/BmXvb1UOhgY/mqdefault.jpg"
-           alt="How AI Companions Are Redefining Human Intimacy and Connection in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-gadgets-2025-home-outdoor-tech/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/GFCnh8XSBN0/mqdefault.jpg"
+           alt="15 Must-Have Gadgets in 2025 for Home, Travel &amp; Outdoor Adventures" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI Companions Are Redefining Human Intimacy and Connection in 2025</p>
-    </a>
-    <a href="https://trend4genz.fun/video/6-essential-gadgets-to-maximize-new-laptop-performance/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Euixz8VfmHE/mqdefault.jpg"
-           alt="6 Must-Have Gadgets to Unlock Your New Laptop's Full Potential" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>6 Must-Have Gadgets to Unlock Your New Laptop's Full Potential</p>
-    </a>
-    <a href="https://trend4genz.fun/video/75-hard-digital-products-youtube-side-hustle-plan/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/1genL0kql5I/mqdefault.jpg"
-           alt="75-Hard Side Hustle Plan: Launch Digital Products on YouTube in 75 Days" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>75-Hard Side Hustle Plan: Launch Digital Products on YouTube in 75 Days</p>
-    </a>
-    <a href="https://trend4genz.fun/video/ai-app-builder-no-code-2025-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-FA7WTHdvjQ/mqdefault.jpg"
-           alt="How to Build Profitable AI Apps Without Coding in 2025 (Step-by-Step Guide)" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build Profitable AI Apps Without Coding in 2025 (Step-by-Step Guide)</p>
-    </a>
-    <a href="https://trend4genz.fun/video/ai-no-code-app-business-999-month-recurring-revenue/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/4Qw4kyW8Ux8/mqdefault.jpg"
-           alt="Build a $10K/Month AI App in 10 Minutes Without Coding" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Build a $10K/Month AI App in 10 Minutes Without Coding</p>
-    </a>
-    <a href="https://trend4genz.fun/video/ai-lidar-revolution-12-hidden-civilizations-discovered-beneath-our-feet/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ApKEt0RRMY8/mqdefault.jpg"
-           alt="AI &amp; LIDAR Just Revealed 12 Lost Civilizations Hidden Beneath Our Feet" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI &amp; LIDAR Just Revealed 12 Lost Civilizations Hidden Beneath Our Feet</p>
+      <p>15 Must-Have Gadgets in 2025 for Home, Travel &amp; Outdoor Adventures</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/cT22fTzotYc?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

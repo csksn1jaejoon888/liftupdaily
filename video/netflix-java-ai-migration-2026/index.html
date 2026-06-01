@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Explore our full library of Java performance optimization guides and Spring Boot
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/how-anesthesia-shuts-down-your-brain-and-creates-split-consciousness/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/x0ffvBBuzwg/mqdefault.jpg"
-           alt="How Anesthesia Shuts Down Your Brain and Creates Split Consciousness" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/6-figure-youtube-system/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/cbXJLkp54h4/mqdefault.jpg"
+           alt="6 Figure YouTube System" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Anesthesia Shuts Down Your Brain and Creates Split Consciousness</p>
+      <p>6 Figure YouTube System</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-skills-2026-prompting-agents-coding-open-source/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/jm2jBW462bU/mqdefault.jpg"
-           alt="Top AI Skills You Must Learn in 2026 to Stay Ahead" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/safest-magsafe-batteries-iphone-2026-solid-state-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/RHBeUcDxDxA/mqdefault.jpg"
+           alt="5 Safest MagSafe Batteries for iPhone 2026 (Solid-State Picks)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Top AI Skills You Must Learn in 2026 to Stay Ahead</p>
+      <p>5 Safest MagSafe Batteries for iPhone 2026 (Solid-State Picks)</p>
     </a>
-    <a href="https://trend4genz.fun/video/wordpress-plugin-supply-chain-attack-2026-cloudflare-mdash-alternative/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/piah4fV_o2Q/mqdefault.jpg"
-           alt="WordPress Plugin Supply Chain Attack Hits 31 Plugins: How MDash by Cloudflare Could Replace It" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/india-smartphone-market-q1-2026-rankings-vivo-samsung-oppo-apple/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/fkIxF4l8oFE/mqdefault.jpg"
+           alt="India Smartphone Market Q1 2026: Vivo Leads, Samsung Stable, Apple Rises" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>WordPress Plugin Supply Chain Attack Hits 31 Plugins: How MDash by Cloudflare Could Replace It</p>
+      <p>India Smartphone Market Q1 2026: Vivo Leads, Samsung Stable, Apple Rises</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-io-2026-search-shopping-ai-agents-commerce/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/kQQbTYPt7VE/mqdefault.jpg"
-           alt="Google I/O 2026: AI Search, Agents &amp; Agentic Commerce Explained" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/android-17-ai-revolution-features-release-date/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/3wj0MxHz6Z4/mqdefault.jpg"
+           alt="Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google I/O 2026: AI Search, Agents &amp; Agentic Commerce Explained</p>
+      <p>Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features</p>
     </a>
-    <a href="https://trend4genz.fun/video/yartsa-gunbu-worlds-most-expensive-fungus/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/R1wW1NHYty8/mqdefault.jpg"
-           alt="Why Yartsa Gunbu Fungus Costs Thousands Per Pound" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/bun-ai-powered-rust-port-rewrite-impact/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/2AqwehBu84w/mqdefault.jpg"
+           alt="Bun’s AI-Powered Rust Rewrite: Performance, Safety, and the Future of JavaScript Runtimes" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why Yartsa Gunbu Fungus Costs Thousands Per Pound</p>
+      <p>Bun’s AI-Powered Rust Rewrite: Performance, Safety, and the Future of JavaScript Runtimes</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-ai-smart-glasses-2026-comparison-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/MXWTFb8t5Dk/mqdefault.jpg"
-           alt="20 Best AI Smart Glasses for 2026: The Ultimate Buyer’s Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/open-source-ai-2026-guide-build-agents-no-code/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/1uCE0uoKXL8/mqdefault.jpg"
+           alt="How to Build Open Source AI Agents in 2026: No-Code &amp; Code Guide" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>20 Best AI Smart Glasses for 2026: The Ultimate Buyer’s Guide</p>
+      <p>How to Build Open Source AI Agents in 2026: No-Code &amp; Code Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-pixel-11-ai-phone-2026-leaks-tensor-g6-chip/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/MTGXQvsF-wo/mqdefault.jpg"
-           alt="Google Pixel 11 AI Phone 2026: Tensor G6 Chip, On-Device AI &amp; More" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-vision-pro-roadmap-paused-smart-glasses-next-priority/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/btB6-2eb43g/mqdefault.jpg"
+           alt="Apple Vision Pro Future: Roadmap Paused, Smart Glasses Next?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google Pixel 11 AI Phone 2026: Tensor G6 Chip, On-Device AI &amp; More</p>
+      <p>Apple Vision Pro Future: Roadmap Paused, Smart Glasses Next?</p>
     </a>
-    <a href="https://trend4genz.fun/video/linux-kernel-exploit-cve-2026-copay-fail-732-byte-python-script/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/lkifbWtxxlk/mqdefault.jpg"
-           alt="Critical Linux Kernel Exploit (CVE-2026) Lets Attackers Gain Root Access via 732-Byte Python Script" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/12345-smartphone-glass-shatter-scratch-resistance-truth/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7YrdI7h2XoY/mqdefault.jpg"
+           alt="Why Smartphone Glass Claims Are Misleading (Gorilla Glass &amp; Ceramic Shield)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Critical Linux Kernel Exploit (CVE-2026) Lets Attackers Gain Root Access via 732-Byte Python Script</p>
+      <p>Why Smartphone Glass Claims Are Misleading (Gorilla Glass &amp; Ceramic Shield)</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/HhPs2sKlQYg?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

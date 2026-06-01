@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to dive deeper into the world of next-gen mobility? Explore our full libra
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/ai-driven-hiring-strategy-2026-overseas-talent/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/qgMarkYaK7Q/mqdefault.jpg"
-           alt="How AI is Reshaping Hiring Strategies in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/cloud-code-ai-development-course-production-grade-apps/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-vqGZaThouQ/mqdefault.jpg"
+           alt="Build Production AI Apps with Cloud Code in Days, Not Weeks" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI is Reshaping Hiring Strategies in 2026</p>
+      <p>Build Production AI Apps with Cloud Code in Days, Not Weeks</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-ai-business-ideas-teens-can-launch-in-2026-no-coding-1k-month/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/X_lxuGsFu4M/mqdefault.jpg"
-           alt="5 AI Business Ideas Teens Can Launch in 2026 (No Coding, $1K+/Month)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/51-must-have-gadgets-that-actually-improve-daily-life-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/GCHUlw1LHbg/mqdefault.jpg"
+           alt="51 Must-Have Gadgets That Actually Improve Daily Life in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 AI Business Ideas Teens Can Launch in 2026 (No Coding, $1K+/Month)</p>
+      <p>51 Must-Have Gadgets That Actually Improve Daily Life in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-i-transformed-my-body-in-3-months-for-a-charity-football-match/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/YW-yxS6lUGk/mqdefault.jpg"
-           alt="How I Transformed My Body in 3 Months for a Charity Football Match" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-ai-brain-mapping-2026-connectome-mogen/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/CdJjph8-2Oc/mqdefault.jpg"
+           alt="Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How I Transformed My Body in 3 Months for a Charity Football Match</p>
+      <p>Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-phones-battery-life-2026-silicon-carbon/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/yJ_dliumQRo/mqdefault.jpg"
-           alt="5 Phones That Last 3+ Days on a Charge in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/is-iran-an-arab-country-harvard-expert-explains-iranian-history/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/r5ClTzfCvQ4/mqdefault.jpg"
+           alt="Is Iran an Arab Country? Harvard Professor Explains Iranian Identity and History" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Phones That Last 3+ Days on a Charge in 2026</p>
+      <p>Is Iran an Arab Country? Harvard Professor Explains Iranian Identity and History</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-alphabet-outpaced-rivals-in-the-ai-infrastructure-race/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/_BngA7hLTv4/mqdefault.jpg"
-           alt="How Alphabet Outpaced Rivals in the AI Infrastructure Race" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/demis-hassabis-ai-frontiers-singularity-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/dgBLVm2L1P4/mqdefault.jpg"
+           alt="Demis Hassabis: AI’s Path to AGI, the Singularity, and Google’s Edge in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Alphabet Outpaced Rivals in the AI Infrastructure Race</p>
+      <p>Demis Hassabis: AI’s Path to AGI, the Singularity, and Google’s Edge in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/15-futuristic-human-powered-electric-cars-that-redefine-mobility/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ZqPqmskKlCA/mqdefault.jpg"
-           alt="15 Futuristic Human-Powered &amp; Electric Cars That Redefine Mobility" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/90-day-body-transformation-sidemen-football-challenge/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/cFglt-qLmv0/mqdefault.jpg"
+           alt="How I Lost 12kg in 90 Days for Charity Football Without Starving" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>15 Futuristic Human-Powered &amp; Electric Cars That Redefine Mobility</p>
+      <p>How I Lost 12kg in 90 Days for Charity Football Without Starving</p>
     </a>
-    <a href="https://trend4genz.fun/video/trump-era-market-volatility-ai-and-fomo-drive-stock-recovery/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/_vhDblAOLnY/mqdefault.jpg"
-           alt="Trump’s Market Moves: How AI, FOMO, and Tariffs Shape Stock Swings" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/oppo-find-x9-ultra-review-specs-price-india-launch/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Dh0Gc6-iPtM/mqdefault.jpg"
+           alt="OPPO Find X9 Ultra Review: Snapdragon 8 Gen 5, 200MP Camera &amp; Price in India" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Trump’s Market Moves: How AI, FOMO, and Tariffs Shape Stock Swings</p>
+      <p>OPPO Find X9 Ultra Review: Snapdragon 8 Gen 5, 200MP Camera &amp; Price in India</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-in-expert-10-year-roadmap/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
-           alt="How to Learn Python Fast in 2026: Expert 10-Year Roadmap" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-people-over-40-should-start-a-youtube-channel-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/cPSw3ykx0bs/mqdefault.jpg"
+           alt="Why Starting a YouTube Channel After 40 is a Hidden Goldmine in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Learn Python Fast in 2026: Expert 10-Year Roadmap</p>
+      <p>Why Starting a YouTube Channel After 40 is a Hidden Goldmine in 2025</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/etgCBD6QgQU?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

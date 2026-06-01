@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ To implement these strategies, design adaptive interfaces that reveal AI capabil
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/how-holly-built-ai-powered-hiring-platform-workonward/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/q-dnq2Fsq2Y/mqdefault.jpg"
-           alt="Holly’s AI Hiring Platform Helps Small Businesses Find Workers Fast" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/top-6-ai-tools-for-youtube-growth-in-2025-tested-ranked/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/DkyddrXxGpo/mqdefault.jpg"
+           alt="Top 6 AI Tools for YouTube Growth in 2025 (Tested &amp; Ranked)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Holly’s AI Hiring Platform Helps Small Businesses Find Workers Fast</p>
+      <p>Top 6 AI Tools for YouTube Growth in 2025 (Tested &amp; Ranked)</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-agents-2026-mastery-guide-autonomous-workflows/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
-           alt="AI Agents in 2026: The 4-Level Framework to 10X Your Productivity" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/51-cutting-edge-gadgets-you-can-buy-right-now/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/rB3zuJJ8uZA/mqdefault.jpg"
+           alt="51 Must-Have Gadgets That Actually Improve Your Life in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI Agents in 2026: The 4-Level Framework to 10X Your Productivity</p>
+      <p>51 Must-Have Gadgets That Actually Improve Your Life in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/spirit-airlines-fleet-repurposed-after-bankruptcy/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/MaXbK4B8wHM/mqdefault.jpg"
-           alt="What Happens to Spirit Airlines' Planes After Bankruptcy?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-your-wechat-contacts-can-rewrite-your-career-path-a-tedx-speaker-s-journey-t/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Ijz3dHCTj0g/mqdefault.jpg"
+           alt="How Your WeChat Contacts Can Rewrite Your Career Path: A TEDx Speaker’s Journey to the EU" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>What Happens to Spirit Airlines' Planes After Bankruptcy?</p>
+      <p>How Your WeChat Contacts Can Rewrite Your Career Path: A TEDx Speaker’s Journey to the EU</p>
     </a>
-    <a href="https://trend4genz.fun/video/41-must-have-gadgets-under-65-for-work-travel-home-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Xn8gmceOT4M/mqdefault.jpg"
-           alt="41 Must-Have Gadgets Under $65 for Work, Travel &amp; Home in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-membership-business-model-2026-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/fcmwcO7EX1g/mqdefault.jpg"
+           alt="How to Build a $5K/Week AI Membership in 2026 (Step-by-Step)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>41 Must-Have Gadgets Under $65 for Work, Travel &amp; Home in 2025</p>
+      <p>How to Build a $5K/Week AI Membership in 2026 (Step-by-Step)</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-your-etsy-digital-products-fail-and-how-to-fix-them/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/NjhANmJXU-U/mqdefault.jpg"
-           alt="Why Your Etsy Digital Products Aren’t Selling (And How to Fix It)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/github-outages-2026-microsoft-failure-100m-devs-affected/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/d53Zk28esmU/mqdefault.jpg"
+           alt="GitHub Outages in 2026: Why Microsoft’s Platform is Failing 100M Developers" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why Your Etsy Digital Products Aren’t Selling (And How to Fix It)</p>
+      <p>GitHub Outages in 2026: Why Microsoft’s Platform is Failing 100M Developers</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-ai-smart-glasses-2026-comparison-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/MXWTFb8t5Dk/mqdefault.jpg"
-           alt="20 Best AI Smart Glasses for 2026: The Ultimate Buyer’s Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-agents-2026-no-code-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ibFJ--CH3cQ/mqdefault.jpg"
+           alt="How to Build AI Agents in 2026 Without Coding (Step-by-Step)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>20 Best AI Smart Glasses for 2026: The Ultimate Buyer’s Guide</p>
+      <p>How to Build AI Agents in 2026 Without Coding (Step-by-Step)</p>
     </a>
-    <a href="https://trend4genz.fun/video/finneas-inside-billie-eilish-career-ai-music-production/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/K2uWGdXl7MY/mqdefault.jpg"
-           alt="Finneas Reveals Billie Eilishs Rise, AI Music Views &amp; Production Secrets" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-top-10-products-ranked-by-experts/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/IcVZ-TORXlw/mqdefault.jpg"
+           alt="Apple’s 10 Most Iconic Products Ranked by Experts" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Finneas Reveals Billie Eilishs Rise, AI Music Views &amp; Production Secrets</p>
+      <p>Apple’s 10 Most Iconic Products Ranked by Experts</p>
     </a>
-    <a href="https://trend4genz.fun/video/linux-kernel-exploit-cve-2026-copay-fail-732-byte-python-script/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/lkifbWtxxlk/mqdefault.jpg"
-           alt="Critical Linux Kernel Exploit (CVE-2026) Lets Attackers Gain Root Access via 732-Byte Python Script" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-ar-smart-glasses-2026-beyond-meta-ray-ban/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/hRz1GrtoLUI/mqdefault.jpg"
+           alt="7 Best AR Smart Glasses in 2026 That Beat Meta Ray-Ban" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Critical Linux Kernel Exploit (CVE-2026) Lets Attackers Gain Root Access via 732-Byte Python Script</p>
+      <p>7 Best AR Smart Glasses in 2026 That Beat Meta Ray-Ban</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/7UBmLXP_LKw?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to transform your Etsy listings? Watch the full video above to dive deeper
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/2026-smartphone-battery-showdown-samsung-apple-google-vs-chinese-flagships/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RGGHyY2mN7o/mqdefault.jpg"
-           alt="2026 Smartphone Battery Showdown: Samsung, Apple, Google vs Chinese Flagships" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/free-phone-calls-with-claude-code-voip-integration-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/cT22fTzotYc/mqdefault.jpg"
+           alt="How to Make Free Phone Calls to Claude Code Using VoIP" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>2026 Smartphone Battery Showdown: Samsung, Apple, Google vs Chinese Flagships</p>
+      <p>How to Make Free Phone Calls to Claude Code Using VoIP</p>
     </a>
-    <a href="https://trend4genz.fun/video/mac-vs-windows-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/aJSK3HZlvnU/mqdefault.jpg"
-           alt="Mac vs Windows 2026: Which Laptop Wins in Performance, Build &amp; Value?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/android-io-2026-gemini-intelligence-features-google-book/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/u--oAqpIwR0/mqdefault.jpg"
+           alt="Google’s Android I/O 2026: New Gemini Features &amp; Google Book Laptops Revealed" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Mac vs Windows 2026: Which Laptop Wins in Performance, Build &amp; Value?</p>
+      <p>Google’s Android I/O 2026: New Gemini Features &amp; Google Book Laptops Revealed</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-a-slow-start-led-to-success-one-students-journey-from-diploma-to-researcher/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/E4OJKImk3Z8/mqdefault.jpg"
-           alt="How a Slow Start Led to Success: One Student's Journey from Diploma to Researcher" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/neal-katyal-ai-supreme-court-tariffs-case-breakdown/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/g3M3WaixeOw/mqdefault.jpg"
+           alt="How AI Helped a Lawyer Win a $4 Trillion Supreme Court Case in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How a Slow Start Led to Success: One Student's Journey from Diploma to Researcher</p>
+      <p>How AI Helped a Lawyer Win a $4 Trillion Supreme Court Case in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-police-are-disrupting-the-global-scammers-ecosystem/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/gaZd1LVhDps/mqdefault.jpg"
-           alt="UK Police Disrupt £80K Scam Ring Targeting Dating Fraud Victims" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-stand-out-as-a-software-engineer-in-the-ai-era-kubernetes-insights/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ekOh45Mw7EY/mqdefault.jpg"
+           alt="How to Stand Out as a Software Engineer in the AI Era (Kubernetes Insights)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>UK Police Disrupt £80K Scam Ring Targeting Dating Fraud Victims</p>
+      <p>How to Stand Out as a Software Engineer in the AI Era (Kubernetes Insights)</p>
     </a>
-    <a href="https://trend4genz.fun/video/tim-cook-era-ends-apple-ceo-transition-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/GaEhbIjusRI/mqdefault.jpg"
-           alt="Apple CEO Transition 2026: Who Will Succeed Tim Cook?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-top-10-products-ranked-by-experts/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/IcVZ-TORXlw/mqdefault.jpg"
+           alt="Apple’s 10 Most Iconic Products Ranked by Experts" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Apple CEO Transition 2026: Who Will Succeed Tim Cook?</p>
+      <p>Apple’s 10 Most Iconic Products Ranked by Experts</p>
     </a>
-    <a href="https://trend4genz.fun/video/rork-ai-no-code-mobile-app-builder-2026-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/8ahBmkVnnYs/mqdefault.jpg"
-           alt="Rork AI Tutorial 2026: Build &amp; Publish Native Apps Without Coding" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/oppo-find-x9-ultra-review-specs-price-india-launch/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Dh0Gc6-iPtM/mqdefault.jpg"
+           alt="OPPO Find X9 Ultra Review: Snapdragon 8 Gen 5, 200MP Camera &amp; Price in India" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Rork AI Tutorial 2026: Build &amp; Publish Native Apps Without Coding</p>
+      <p>OPPO Find X9 Ultra Review: Snapdragon 8 Gen 5, 200MP Camera &amp; Price in India</p>
     </a>
-    <a href="https://trend4genz.fun/video/android-17-gemini-intelligence-ai-features-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/j7i_4RokEIo/mqdefault.jpg"
-           alt="Android 17’s AI Revolution: How Google’s New Features Outpace Apple" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/top-tech-jobs-2025-high-demand-salaries/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/fZmQ_aPXJAM/mqdefault.jpg"
+           alt="Best Tech Jobs for 2025: High Demand &amp; Six-Figure Salaries" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Android 17’s AI Revolution: How Google’s New Features Outpace Apple</p>
+      <p>Best Tech Jobs for 2025: High Demand &amp; Six-Figure Salaries</p>
     </a>
-    <a href="https://trend4genz.fun/video/sundar-pichai-io-2026-keynote-ai-agents-world-models/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/duHhImuaZGU/mqdefault.jpg"
-           alt="Google I/O 2026: Sundar Pichai Unveils AI Agents, World Models &amp; Agentic Era" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/git-github-beginners-guide-2026-version-control-collaboration/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/e9D7nnoCbQ0/mqdefault.jpg"
+           alt="Git &amp; GitHub for Beginners 2026: Master Version Control &amp; Collaboration in 2 Hours" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google I/O 2026: Sundar Pichai Unveils AI Agents, World Models &amp; Agentic Era</p>
+      <p>Git &amp; GitHub for Beginners 2026: Master Version Control &amp; Collaboration in 2 Hours</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/NjhANmJXU-U?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to fortify your home against unseen dangers? Explore our full library of h
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/boring-youtube-niches-6-figure-income/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/C0MnkRlW1W0/mqdefault.jpg"
-           alt="How a Boring YouTube Niche Can Make You $100K+ Per Month" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-tech-brands-manipulate-specs-and-why-you-should-ignore-their-claims/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JstGCPsj9wg/mqdefault.jpg"
+           alt="How Tech Brands Manipulate Specs and Why You Should Ignore Their Claims" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How a Boring YouTube Niche Can Make You $100K+ Per Month</p>
+      <p>How Tech Brands Manipulate Specs and Why You Should Ignore Their Claims</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-i-o-2026-keynote-ai-updates-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7Z5Vy9JBANs/mqdefault.jpg"
-           alt="Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/digital-architect-method-students-10k-month/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/BvDAUqLQ-uc/mqdefault.jpg"
+           alt="How to Make $10,000/Month as a Student (No Degree Needed)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents</p>
+      <p>How to Make $10,000/Month as a Student (No Degree Needed)</p>
     </a>
-    <a href="https://trend4genz.fun/video/samsung-smartphone-deals-flipkart-amazon-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/az3qEQbQaE0/mqdefault.jpg"
-           alt="Best Samsung Smartphones Under ₹60,000 in 2025: Flipkart &amp; Amazon Deals" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-ai-brain-mapping-2026-connectome-mogen/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/CdJjph8-2Oc/mqdefault.jpg"
+           alt="Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Best Samsung Smartphones Under ₹60,000 in 2025: Flipkart &amp; Amazon Deals</p>
+      <p>Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-boring-youtube-niches-are-secretly-generating-six-figure-incomes/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/bFk8bgPBfJg/mqdefault.jpg"
-           alt="How Boring YouTube Niches Are Secretly Generating Six-Figure Incomes" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/dropshipping-in-2026-the-new-rules-for-building-a-real-brand/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/37ypcHpzqeM/mqdefault.jpg"
+           alt="Dropshipping in 2026: The New Rules for Building a Real Brand" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Boring YouTube Niches Are Secretly Generating Six-Figure Incomes</p>
+      <p>Dropshipping in 2026: The New Rules for Building a Real Brand</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-maps-ask-maps-with-ai-should-you-let-ai-plan-your-day/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/9GyxhZ3MLW0/mqdefault.jpg"
-           alt="Google Maps Ask Maps with AI: Should You Let AI Plan Your Day?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/east-african-cosmic-trap-music-fusion-akoth-jumadi-mr-lu-ted/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/4Ba-OKPbqJU/mqdefault.jpg"
+           alt="How East African Sounds Are Redefining Global Trap Music | Akoth Jumadi &amp; Mr. Lu" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google Maps Ask Maps with AI: Should You Let AI Plan Your Day?</p>
+      <p>How East African Sounds Are Redefining Global Trap Music | Akoth Jumadi &amp; Mr. Lu</p>
     </a>
-    <a href="https://trend4genz.fun/video/start-your-online-business-today-without-perfect-preparation/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/gkGFRV_rxWA/mqdefault.jpg"
-           alt="Start Your Online Business Today Without Waiting for Perfection" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/top-tech-jobs-2025-high-demand-salaries/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/fZmQ_aPXJAM/mqdefault.jpg"
+           alt="Best Tech Jobs for 2025: High Demand &amp; Six-Figure Salaries" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Start Your Online Business Today Without Waiting for Perfection</p>
+      <p>Best Tech Jobs for 2025: High Demand &amp; Six-Figure Salaries</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-critical-digital-product-mistakes-that-kill-sales/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/JDJCEOkgsM8/mqdefault.jpg"
-           alt="5 Digital Product Mistakes That Destroy Sales (And How to Fix Them)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-trust-calibration-guide-human-ai-alignment/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7UBmLXP_LKw/mqdefault.jpg"
+           alt="How to Align AI Capabilities with User Intent for Trustworthy AI Systems" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Digital Product Mistakes That Destroy Sales (And How to Fix Them)</p>
+      <p>How to Align AI Capabilities with User Intent for Trustworthy AI Systems</p>
     </a>
-    <a href="https://trend4genz.fun/video/15-mind-blowing-gadgets-coming-in-2026-that-will-change-your-life/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/at5EeK-hd3s/mqdefault.jpg"
-           alt="15 Mind-Blowing Gadgets Coming in 2026 That Will Change Your Life" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-io-2026-keynote-ai-agents-gemini-omni/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/OMhKgQmeMhI/mqdefault.jpg"
+           alt="Google I/O 2026: AI Agents, Gemini Omni &amp; Next-Gen Search Unveiled" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>15 Mind-Blowing Gadgets Coming in 2026 That Will Change Your Life</p>
+      <p>Google I/O 2026: AI Agents, Gemini Omni &amp; Next-Gen Search Unveiled</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/DalxCcAmOfw?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

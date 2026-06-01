@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Explore our curated selection of Samsung smartphone reviews and buying guides to
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/wine-complexity-science-behind-tasting-perception/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/rweUKs3vBV4/mqdefault.jpg"
-           alt="The Hidden Science Behind Wine Complexity and Why It Matters" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-ai-business-ideas-teens-can-launch-in-2026-no-coding-1k-month/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/X_lxuGsFu4M/mqdefault.jpg"
+           alt="5 AI Business Ideas Teens Can Launch in 2026 (No Coding, $1K+/Month)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>The Hidden Science Behind Wine Complexity and Why It Matters</p>
+      <p>5 AI Business Ideas Teens Can Launch in 2026 (No Coding, $1K+/Month)</p>
     </a>
-    <a href="https://trend4genz.fun/video/xiaomi-17t-oppo-reno-16-vivo-x500-pro-max-latest-tech-launches/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/KjOdJk8nYxo/mqdefault.jpg"
-           alt="Xiaomi 17T, OPPO Reno 16, Vivo X500 Pro Max: Latest Tech Launches &amp; AI Breakthroughs" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/scale-digital-product-sales-from-10k-to-50k-months/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ibPRMNxbbNk/mqdefault.jpg"
+           alt="How to Scale Digital Product Sales from $10K to $50K Months Without Burning Out" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Xiaomi 17T, OPPO Reno 16, Vivo X500 Pro Max: Latest Tech Launches &amp; AI Breakthroughs</p>
+      <p>How to Scale Digital Product Sales from $10K to $50K Months Without Burning Out</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-dating-experiment-reveals-truth-about-online-romance/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/rRqdOICthL0/mqdefault.jpg"
-           alt="AI Dating Experiment Shows How Bots Are Changing Modern Romance" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-user-maturity-7-levels-to-automate-your-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
+           alt="7 AI User Levels: From Basic Prompts to Fully Automated Workflows" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI Dating Experiment Shows How Bots Are Changing Modern Romance</p>
+      <p>7 AI User Levels: From Basic Prompts to Fully Automated Workflows</p>
     </a>
-    <a href="https://trend4genz.fun/video/build-billion-dollar-ai-company-2026-strategy/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/qYs3Hf99BPQ/mqdefault.jpg"
-           alt="How to Build a $1B AI Company in 3 Years: The Martell Ventures Blueprint" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/d-wave-ceo-government-investment-quantum-computing-scaling/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/G5svO94WNL8/mqdefault.jpg"
+           alt="D-Wave CEO: $100M U.S. Investment Accelerates Quantum Scaling by Years" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build a $1B AI Company in 3 Years: The Martell Ventures Blueprint</p>
+      <p>D-Wave CEO: $100M U.S. Investment Accelerates Quantum Scaling by Years</p>
     </a>
-    <a href="https://trend4genz.fun/video/180524-tech-news-iphone-18-pro-oppo-reno16-iqoo-15t-claude-spacex/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/nuDptYrkpbk/mqdefault.jpg"
-           alt="iPhone 18 Pro Leaks, OPPO Reno16 Launch, iQOO 15T Specs &amp; AI Breakthroughs" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/build-deploy-a-full-web-app-with-claude-code-in-2025-beginner-s-step-by-step-gui/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/GUgxx6fMiR8/mqdefault.jpg"
+           alt="Build &amp; Deploy a Full Web App with Claude Code in 2025: Beginner’s Step-by-Step Guide" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>iPhone 18 Pro Leaks, OPPO Reno16 Launch, iQOO 15T Specs &amp; AI Breakthroughs</p>
+      <p>Build &amp; Deploy a Full Web App with Claude Code in 2025: Beginner’s Step-by-Step Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/mortal-kombat-2-cast-reveal-50-google-searched-questions/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/q1dA3ffbO3E/mqdefault.jpg"
-           alt="Mortal Kombat 2 Cast Reveals 50 Most Googled MK Questions" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/india-smartphone-market-q1-2026-rankings-vivo-samsung-oppo-apple/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/fkIxF4l8oFE/mqdefault.jpg"
+           alt="India Smartphone Market Q1 2026: Vivo Leads, Samsung Stable, Apple Rises" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Mortal Kombat 2 Cast Reveals 50 Most Googled MK Questions</p>
+      <p>India Smartphone Market Q1 2026: Vivo Leads, Samsung Stable, Apple Rises</p>
     </a>
-    <a href="https://trend4genz.fun/video/10-enduring-tech-innovations-that-will-surpass-ai-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/PBN0YYRtAtA/mqdefault.jpg"
-           alt="10 Technologies That Will Outlast AI in 2025: The Future Beyond Machine Learning" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/game-room-theater-the-ultimate-automated-man-cave-for-sports-movie-lovers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/e5k2mfkU1kQ/mqdefault.jpg"
+           alt="Game Room Theater: The Ultimate Automated Man Cave for Sports &amp; Movie Lovers" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>10 Technologies That Will Outlast AI in 2025: The Future Beyond Machine Learning</p>
+      <p>Game Room Theater: The Ultimate Automated Man Cave for Sports &amp; Movie Lovers</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-robotics-er-1-6-guide-autonomous-agents/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/kCXQce1dtNE/mqdefault.jpg"
-           alt="Google DeepMind’s Gemini Robotics ER 1.6: Build Autonomous Robots with Spatial Reasoning" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-your-wechat-contacts-can-rewrite-your-career-path-a-tedx-speaker-s-journey-t/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Ijz3dHCTj0g/mqdefault.jpg"
+           alt="How Your WeChat Contacts Can Rewrite Your Career Path: A TEDx Speaker’s Journey to the EU" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google DeepMind’s Gemini Robotics ER 1.6: Build Autonomous Robots with Spatial Reasoning</p>
+      <p>How Your WeChat Contacts Can Rewrite Your Career Path: A TEDx Speaker’s Journey to the EU</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/az3qEQbQaE0?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

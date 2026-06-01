@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Dive deeper into the quantum-AI nexus and IBM’s strategic roadmap by exploring
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/meaning-vs-happiness-why-pursuing-happiness-can-backfire/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/76_9x4YyFyQ/mqdefault.jpg"
-           alt="Why Chasing Happiness Can Make You Less Happy (Backed by Science)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/canva-branding-kit-templates-etsy-sell-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/jLmk6DO3WkM/mqdefault.jpg"
+           alt="How to Create Canva Branding Kits That Sell on Etsy (Step-by-Step Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why Chasing Happiness Can Make You Less Happy (Backed by Science)</p>
+      <p>How to Create Canva Branding Kits That Sell on Etsy (Step-by-Step Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/does-your-smartphone-listen-to-you-the-truth-about-microphone-tracking-how-to-bl/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Ywz87ZcCTxk/mqdefault.jpg"
-           alt="Does Your Smartphone Listen to You? The Truth About Microphone Tracking &amp; How to Block It" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-failed-replace-developers-2026-truth/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/v3tLa5nHz-M/mqdefault.jpg"
+           alt="Why AI Won’t Replace Developers in 2026 (And What Actually Killed Tech Jobs)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Does Your Smartphone Listen to You? The Truth About Microphone Tracking &amp; How to Block It</p>
+      <p>Why AI Won’t Replace Developers in 2026 (And What Actually Killed Tech Jobs)</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-ar-smart-glasses-2026-beyond-meta-ray-ban/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/hRz1GrtoLUI/mqdefault.jpg"
-           alt="7 Best AR Smart Glasses in 2026 That Beat Meta Ray-Ban" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-dating-experiment-reveals-top-match-surprisingly/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/zKzZAtmhnEQ/mqdefault.jpg"
+           alt="AI Dating Experiment: Can AI Really Predict Love Matches?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>7 Best AR Smart Glasses in 2026 That Beat Meta Ray-Ban</p>
+      <p>AI Dating Experiment: Can AI Really Predict Love Matches?</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-mastery-2026-strategic-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/I62CvEwVS58/mqdefault.jpg"
-           alt="How to Dominate AI in 2026: A No-Nonsense Mastery Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-sell-digital-products-8-months-500k/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/VA5gpANZLxg/mqdefault.jpg"
+           alt="How to Sell a Digital Product for $500K in 8 Months (Step-by-Step Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Dominate AI in 2026: A No-Nonsense Mastery Guide</p>
+      <p>How to Sell a Digital Product for $500K in 8 Months (Step-by-Step Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/make-10k-as-student-side-hustle-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/5rhHm6WWOIs/mqdefault.jpg"
-           alt="How to Make $10,000 as a Student (3-Step Side Hustle Guide)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/build-ai-agents-without-coding-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/XASPkhYLtnk/mqdefault.jpg"
+           alt="How to Build AI Agents Faster Than 99% of Developers (No Code Needed)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Make $10,000 as a Student (3-Step Side Hustle Guide)</p>
+      <p>How to Build AI Agents Faster Than 99% of Developers (No Code Needed)</p>
     </a>
-    <a href="https://trend4genz.fun/video/india-smartphone-market-q1-2026-rankings-vivo-samsung-oppo-apple/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/fkIxF4l8oFE/mqdefault.jpg"
-           alt="India Smartphone Market Q1 2026: Vivo Leads, Samsung Stable, Apple Rises" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/35-must-have-car-gadgets-transform-driving-experience/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/TspXY9sh6e4/mqdefault.jpg"
+           alt="35 Must-Have Car Gadgets That Will Transform Your Driving Experience in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>India Smartphone Market Q1 2026: Vivo Leads, Samsung Stable, Apple Rises</p>
+      <p>35 Must-Have Car Gadgets That Will Transform Your Driving Experience in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/smart-project-development-strategies-for-developers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Fuzvl32N6sg/mqdefault.jpg"
-           alt="How Top Developers Build Projects 10x Faster with AI and Templates" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-ai-tools-2026-business-automation/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/uF9wm7BquKQ/mqdefault.jpg"
+           alt="5 AI Tools That Will Transform Your Business in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Top Developers Build Projects 10x Faster with AI and Templates</p>
+      <p>5 AI Tools That Will Transform Your Business in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-model-types-guide-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/DsKZpgoy830/mqdefault.jpg"
-           alt="How to Choose the Right AI Model in 2025: A Complete Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-powered-schools-2h-daily-learning-top-1-percent/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/WOmRB6jNiSU/mqdefault.jpg"
+           alt="How AI Schools Help Kids Learn 2 Hours Daily and Rank in Top 1% Nationally" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Choose the Right AI Model in 2025: A Complete Guide</p>
+      <p>How AI Schools Help Kids Learn 2 Hours Daily and Rank in Top 1% Nationally</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/n3BlIhRs-VI?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

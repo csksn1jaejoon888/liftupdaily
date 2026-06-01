@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ This isn’t just a trend—it’s a paradigm shift. If you’re evaluating smar
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/start-from-zero-to-1m-with-ai-powered-business-strategy/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/dyrr4eAdnhg/mqdefault.jpg"
-           alt="How to Build a $1M Business Starting with $0 in the AI Era (Step-by-Step Guide)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-agent-operating-systems-the-missing-infrastructure-for-scalable-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/IVGjBxqygmI/mqdefault.jpg"
+           alt="Why AI Agents Need an Operating System: The Hidden Backbone of Scalable AI" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build a $1M Business Starting with $0 in the AI Era (Step-by-Step Guide)</p>
+      <p>Why AI Agents Need an Operating System: The Hidden Backbone of Scalable AI</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-robotics-er-1-6-guide-autonomous-agents/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/kCXQce1dtNE/mqdefault.jpg"
-           alt="Google DeepMind’s Gemini Robotics ER 1.6: Build Autonomous Robots with Spatial Reasoning" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-code-nanobanana-2-integration-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/seTDT8Rxryc/mqdefault.jpg"
+           alt="How to Use Claude Code with NanoBanana 2 for AI-Powered Image Generation" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google DeepMind’s Gemini Robotics ER 1.6: Build Autonomous Robots with Spatial Reasoning</p>
+      <p>How to Use Claude Code with NanoBanana 2 for AI-Powered Image Generation</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-maps-ask-maps-with-ai-should-you-let-ai-plan-your-day/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/9GyxhZ3MLW0/mqdefault.jpg"
-           alt="Google Maps Ask Maps with AI: Should You Let AI Plan Your Day?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/jiayue-jin-tedx-tca-youth-redefine-your-glow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/HV7SSO1ku90/mqdefault.jpg"
+           alt="Jiayue Jin on Redefining Success: From CCTV Host to Actress &amp; Creator" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google Maps Ask Maps with AI: Should You Let AI Plan Your Day?</p>
+      <p>Jiayue Jin on Redefining Success: From CCTV Host to Actress &amp; Creator</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-proven-strategies-to-take-control-of-your-life-and-build-lasting-success/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/a4sq1CKPl0E/mqdefault.jpg"
-           alt="5 Science-Backed Ways to Take Control of Your Life and Build Lasting Success" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/openclaw-2026-ai-automation-use-case-printer-support/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/FM5-R4VPArw/mqdefault.jpg"
+           alt="How OpenClaw AI Solves Annoying Printer Problems in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Science-Backed Ways to Take Control of Your Life and Build Lasting Success</p>
+      <p>How OpenClaw AI Solves Annoying Printer Problems in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-dollar-daily-investment-challenge-results-one-year-later/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/hEreQRqY334/mqdefault.jpg"
-           alt="Investing $5 Daily for a Year: Real Results and Lessons Learned" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/axios-supply-chain-attack-2026-explained/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/eGSsoSEppNU/mqdefault.jpg"
+           alt="How the Axios Supply Chain Attack Compromised 100M+ Systems in 1.1 Seconds" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Investing $5 Daily for a Year: Real Results and Lessons Learned</p>
+      <p>How the Axios Supply Chain Attack Compromised 100M+ Systems in 1.1 Seconds</p>
     </a>
-    <a href="https://trend4genz.fun/video/motorola-edge-70-pro-review-unboxing-changes/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/iZtHarUVy3k/mqdefault.jpg"
-           alt="Motorola Edge 70 Pro Review: Key Changes, Specs &amp; Camera Test" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-ai-stock-pivots-like-allbirds-s-4b-shoe-company-flip-are-failing/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/DTlzvhNb_qY/mqdefault.jpg"
+           alt="Why AI Stock Pivots Like Allbirds’s $4B Shoe Company Flip Are Failing" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Motorola Edge 70 Pro Review: Key Changes, Specs &amp; Camera Test</p>
+      <p>Why AI Stock Pivots Like Allbirds’s $4B Shoe Company Flip Are Failing</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-stay-consistent-the-science-backed-formula-for-long-term-success/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Aq6kt7qaylw/mqdefault.jpg"
-           alt="How to Stay Consistent: The Science-Backed Formula for Long-Term Success" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/essential-ui-components-programmers-must-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/cjSpnReY3Xw/mqdefault.jpg"
+           alt="12 Must-Know UI Components Every Developer Should Master" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Stay Consistent: The Science-Backed Formula for Long-Term Success</p>
+      <p>12 Must-Know UI Components Every Developer Should Master</p>
     </a>
-    <a href="https://trend4genz.fun/video/sundar-pichai-io-2026-keynote-ai-agents-world-models/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/duHhImuaZGU/mqdefault.jpg"
-           alt="Google I/O 2026: Sundar Pichai Unveils AI Agents, World Models &amp; Agentic Era" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-your-wechat-contacts-can-rewrite-your-career-path-a-tedx-speaker-s-journey-t/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Ijz3dHCTj0g/mqdefault.jpg"
+           alt="How Your WeChat Contacts Can Rewrite Your Career Path: A TEDx Speaker’s Journey to the EU" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google I/O 2026: Sundar Pichai Unveils AI Agents, World Models &amp; Agentic Era</p>
+      <p>How Your WeChat Contacts Can Rewrite Your Career Path: A TEDx Speaker’s Journey to the EU</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/MXWTFb8t5Dk?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

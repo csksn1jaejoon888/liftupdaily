@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to supercharge your workflow? Watch the full breakdown of Gemini 3.1’s m
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/elogic-aspect-touch-monitor-mac-mini-dock-review/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/tDvRW9NDVbk/mqdefault.jpg"
-           alt="Elogic Aspect Touch Monitor Review: Built-in Mac mini Dock &amp; Touchscreen Features" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/40-amazon-home-gadgets-transform-everyday-life/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/PfO_y8lebHI/mqdefault.jpg"
+           alt="40 Amazon Home Gadgets That Will Revolutionize Your Daily Life" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Elogic Aspect Touch Monitor Review: Built-in Mac mini Dock &amp; Touchscreen Features</p>
+      <p>40 Amazon Home Gadgets That Will Revolutionize Your Daily Life</p>
     </a>
-    <a href="https://trend4genz.fun/video/vivo-x300-ultra-review-india-camera-zoom-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/hM-ab5kH7FA/mqdefault.jpg"
-           alt="vivo X300 Ultra Review: India’s Most Advanced Ultra-Smartphone Camera" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/re-retirement-how-to-design-your-next-life-chapter-before-65/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/asW-G5hubwE/mqdefault.jpg"
+           alt="Re-Retirement: How to Design Your Next Life Chapter Before 65" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>vivo X300 Ultra Review: India’s Most Advanced Ultra-Smartphone Camera</p>
+      <p>Re-Retirement: How to Design Your Next Life Chapter Before 65</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-ai-cant-replace-software-engineers-insights-from-c-and-typescript-creator/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/CPrePbvbbic/mqdefault.jpg"
-           alt="Why AI Can't Replace Software Engineers: Insights from C# and TypeScript Creator" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/gemini-i-o-2026-keynote-ai-updates-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7Z5Vy9JBANs/mqdefault.jpg"
+           alt="Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why AI Can't Replace Software Engineers: Insights from C# and TypeScript Creator</p>
+      <p>Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-gemma-4-open-source-ai-breakthrough-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-01ZCTt-CJw/mqdefault.jpg"
-           alt="Google’s Gemma 4: How a Tiny AI Model is Redefining Open-Source Intelligence in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-i-o-2025-how-agentic-ai-is-redefining-coding-search-and-productivity/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/bc4QwDd5jB0/mqdefault.jpg"
+           alt="Google I/O 2025: How Agentic AI is Redefining Coding, Search, and Productivity" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google’s Gemma 4: How a Tiny AI Model is Redefining Open-Source Intelligence in 2026</p>
+      <p>Google I/O 2025: How Agentic AI is Redefining Coding, Search, and Productivity</p>
     </a>
-    <a href="https://trend4genz.fun/video/9175-secret-to-top-1-percent-software-engineer-jobs/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/4B5t_IK9HSA/mqdefault.jpg"
-           alt="How to Land Top 1% Tech Jobs: Ex-Google Recruiter’s Hidden Interview Tricks" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/samsung-galaxy-s26-ultra-review-innovation-vs-expectations/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/AmNVQQ-YOoE/mqdefault.jpg"
+           alt="Samsung Galaxy S26 Ultra Review: Is It Still Worth It in 2025?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Land Top 1% Tech Jobs: Ex-Google Recruiter’s Hidden Interview Tricks</p>
+      <p>Samsung Galaxy S26 Ultra Review: Is It Still Worth It in 2025?</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-run-local-ai-models-with-ollama-openclaw-save-thousands-monthly/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/73UEJxAWzb0/mqdefault.jpg"
-           alt="How to Run Local AI Models with Ollama &amp; OpenClaw: Save Thousands Monthly" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/the-8-tier-investing-ladder-from-safe-savings-to-high-risk-ventures/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/aWNQZGsVsn4/mqdefault.jpg"
+           alt="The 8-Tier Investing Ladder: From Safe Savings to High-Risk Ventures" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Run Local AI Models with Ollama &amp; OpenClaw: Save Thousands Monthly</p>
+      <p>The 8-Tier Investing Ladder: From Safe Savings to High-Risk Ventures</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-ai-recommendations-will-dominate-business-discovery-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
-           alt="How AI Recommendations Will Dominate Business Discovery by 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-affordable-electric-bikes-2026-comparison-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5K06S-uDVes/mqdefault.jpg"
+           alt="Top 5 Budget E-Bikes for City &amp; Off-Road in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI Recommendations Will Dominate Business Discovery by 2026</p>
+      <p>Top 5 Budget E-Bikes for City &amp; Off-Road in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/51-must-have-gadgets-that-actually-improve-daily-life-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/GCHUlw1LHbg/mqdefault.jpg"
-           alt="51 Must-Have Gadgets That Actually Improve Daily Life in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/black-holes-universe-gravity-mysteries-explained/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/BoZTjwCSBCw/mqdefault.jpg"
+           alt="Black Holes: The Universe’s Most Extreme Gravity Objects Explained" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>51 Must-Have Gadgets That Actually Improve Daily Life in 2025</p>
+      <p>Black Holes: The Universe’s Most Extreme Gravity Objects Explained</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/bTLmt9BKGVc?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

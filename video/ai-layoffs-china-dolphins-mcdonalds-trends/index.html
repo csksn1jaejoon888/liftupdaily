@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Discover how AI is reshaping industries, from Wall Street’s reaction to layoff
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/bamboo-labs-h2d-printer-review-3d-printed-shoes-run/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/9LjgqZ2wP0g/mqdefault.jpg"
-           alt="Bamboo Labs H2D Printer Review: Can You Really Run in 3D Printed Shoes?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-high-value-certifications-that-still-boost-careers-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oMaj3PUv_3U/mqdefault.jpg"
+           alt="5 High-Value Certifications That Still Boost Careers in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Bamboo Labs H2D Printer Review: Can You Really Run in 3D Printed Shoes?</p>
+      <p>5 High-Value Certifications That Still Boost Careers in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-lungs-work-breathing-asthma-COPD-lung-transplant/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/CSfY2rxpmBY/mqdefault.jpg"
-           alt="How Your Lungs Work: Breathing, Asthma, COPD &amp; Lung Transplants Explained" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-skills-2026-prompting-agents-coding-open-source/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/jm2jBW462bU/mqdefault.jpg"
+           alt="Top AI Skills You Must Learn in 2026 to Stay Ahead" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Your Lungs Work: Breathing, Asthma, COPD &amp; Lung Transplants Explained</p>
+      <p>Top AI Skills You Must Learn in 2026 to Stay Ahead</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-gemma-4-open-source-ai-breakthrough-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-01ZCTt-CJw/mqdefault.jpg"
-           alt="Google’s Gemma 4: How a Tiny AI Model is Redefining Open-Source Intelligence in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/canva-branding-kit-templates-etsy-sell-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/jLmk6DO3WkM/mqdefault.jpg"
+           alt="How to Create Canva Branding Kits That Sell on Etsy (Step-by-Step Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google’s Gemma 4: How a Tiny AI Model is Redefining Open-Source Intelligence in 2026</p>
+      <p>How to Create Canva Branding Kits That Sell on Etsy (Step-by-Step Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-economy-career-ladder-skilled-trades-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/hU8mysZaPts/mqdefault.jpg"
-           alt="How AI is Creating High-Paying Skilled Trades Jobs Without a Degree" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/future-aircraft-2026-revolutionizing-travel/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/mZ8SziMSgIs/mqdefault.jpg"
+           alt="15 Cutting-Edge Aircraft &amp; Flying Vehicles Coming in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI is Creating High-Paying Skilled Trades Jobs Without a Degree</p>
+      <p>15 Cutting-Edge Aircraft &amp; Flying Vehicles Coming in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-smart-home-security-gadgets-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/3NADCm4gidA/mqdefault.jpg"
-           alt="10 Must-Have Smart Home Security Gadgets for 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/biggest-loser-weight-loss-myths-debunked-science/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/M0mRMzXh8rk/mqdefault.jpg"
+           alt="Why The Biggest Loser Failed Most Contestants: The Science of Weight Loss" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>10 Must-Have Smart Home Security Gadgets for 2026</p>
+      <p>Why The Biggest Loser Failed Most Contestants: The Science of Weight Loss</p>
     </a>
-    <a href="https://trend4genz.fun/video/android-17-ai-revolution-features-release-date/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/3wj0MxHz6Z4/mqdefault.jpg"
-           alt="Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/top-15-smart-home-gadgets-2026-transforming-modern-living/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/uHk9hsZ-Gpg/mqdefault.jpg"
+           alt="15 Smart Home Gadgets for 2026 That Will Change Your Life" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features</p>
+      <p>15 Smart Home Gadgets for 2026 That Will Change Your Life</p>
     </a>
-    <a href="https://trend4genz.fun/video/19-mind-blowing-gadgets-launching-in-2026-that-actually-work/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/lzWA9cNWiec/mqdefault.jpg"
-           alt="19 Mind-Blowing Gadgets Launching in 2026 That Actually Work" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/spirit-airlines-fleet-repurposed-after-bankruptcy/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/MaXbK4B8wHM/mqdefault.jpg"
+           alt="What Happens to Spirit Airlines' Planes After Bankruptcy?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>19 Mind-Blowing Gadgets Launching in 2026 That Actually Work</p>
+      <p>What Happens to Spirit Airlines' Planes After Bankruptcy?</p>
     </a>
-    <a href="https://trend4genz.fun/video/openai-anthropic-ipo-race-2025-ai-market/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/59mADVHjmVw/mqdefault.jpg"
-           alt="Why OpenAI May IPO Before Anthropic in 2025’s AI Race" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/6-laptop-upgrades-2026-fix-common-problems/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/OxpeiE0nND4/mqdefault.jpg"
+           alt="6 Must-Have Laptop Upgrades to Fix 6 Common Problems in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why OpenAI May IPO Before Anthropic in 2025’s AI Race</p>
+      <p>6 Must-Have Laptop Upgrades to Fix 6 Common Problems in 2026</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/RNplRKey4vE?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to stop wasting mental energy on forgotten tasks? Explore our full library
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/ai-native-engineers-2026-career-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/596vkrMPWWM/mqdefault.jpg"
-           alt="AI is Replacing Coders: What Software Engineers Must Learn in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-pay-yourself-from-an-llc-in-2026-owner-s-draw-vs-payroll/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JMo8z65l0cQ/mqdefault.jpg"
+           alt="How to Pay Yourself from an LLC in 2026: Owner’s Draw vs. Payroll" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI is Replacing Coders: What Software Engineers Must Learn in 2026</p>
+      <p>How to Pay Yourself from an LLC in 2026: Owner’s Draw vs. Payroll</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-gadgets-2026-future-of-smart-living/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/92RaIs0Osvo/mqdefault.jpg"
-           alt="25 AI Gadgets That Will Redefine Smart Living by 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-ai-stock-pivots-like-allbirds-s-4b-shoe-company-flip-are-failing/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/DTlzvhNb_qY/mqdefault.jpg"
+           alt="Why AI Stock Pivots Like Allbirds’s $4B Shoe Company Flip Are Failing" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>25 AI Gadgets That Will Redefine Smart Living by 2026</p>
+      <p>Why AI Stock Pivots Like Allbirds’s $4B Shoe Company Flip Are Failing</p>
     </a>
-    <a href="https://trend4genz.fun/video/intelligent-eyewear-google-gemini-samsung-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/xxY0yuzxzLY/mqdefault.jpg"
-           alt="Google’s AI-Powered Eyewear with Gemini: What’s Coming in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/90-day-body-transformation-sidemen-football-challenge/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/cFglt-qLmv0/mqdefault.jpg"
+           alt="How I Lost 12kg in 90 Days for Charity Football Without Starving" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google’s AI-Powered Eyewear with Gemini: What’s Coming in 2026</p>
+      <p>How I Lost 12kg in 90 Days for Charity Football Without Starving</p>
     </a>
-    <a href="https://trend4genz.fun/video/ancient-walking-whales-how-land-mammals-evolved-back-to-the-sea/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/i0-TDxqkub4/mqdefault.jpg"
-           alt="Ancient Walking Whales: How Land Mammals Evolved Back to the Sea" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/amd-ryzen-ai-pro-laptops-2026-business-ai-revolution/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Ch-vMy6WeQs/mqdefault.jpg"
+           alt="AMD Ryzen AI Pro Laptops in 2026: The Business AI Revolution You Can’t Ignore" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Ancient Walking Whales: How Land Mammals Evolved Back to the Sea</p>
+      <p>AMD Ryzen AI Pro Laptops in 2026: The Business AI Revolution You Can’t Ignore</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-io-2026-generative-media-tools-breakdown/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/FLynjUYg79I/mqdefault.jpg"
-           alt="Google I/O 2026: 3 Breakthrough Generative Media Tools Unveiled" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-a-slow-start-led-to-success-one-students-journey-from-diploma-to-researcher/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/E4OJKImk3Z8/mqdefault.jpg"
+           alt="How a Slow Start Led to Success: One Student's Journey from Diploma to Researcher" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google I/O 2026: 3 Breakthrough Generative Media Tools Unveiled</p>
+      <p>How a Slow Start Led to Success: One Student's Journey from Diploma to Researcher</p>
     </a>
-    <a href="https://trend4genz.fun/video/architectural-engineering-secrets-answered-by-dr-sally-mcarreth/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Druvom03m_A/mqdefault.jpg"
-           alt="Architect Dr. Sally McArreth Answers Your Burning Architecture Questions" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/openclaw-ai-agent-setup-guide-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/dPoIuIvOPo8/mqdefault.jpg"
+           alt="How to Set Up OpenClaw AI Agent in 2026: Free Beginner Tutorial" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Architect Dr. Sally McArreth Answers Your Burning Architecture Questions</p>
+      <p>How to Set Up OpenClaw AI Agent in 2026: Free Beginner Tutorial</p>
     </a>
-    <a href="https://trend4genz.fun/video/8-life-saving-gadgets-under-50-dollars-for-home-safety/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/DalxCcAmOfw/mqdefault.jpg"
-           alt="8 Must-Have Gadgets Under $50 That Could Save Your Life at Home" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/github-outages-2026-microsoft-failure-100m-devs-affected/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/d53Zk28esmU/mqdefault.jpg"
+           alt="GitHub Outages in 2026: Why Microsoft’s Platform is Failing 100M Developers" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>8 Must-Have Gadgets Under $50 That Could Save Your Life at Home</p>
+      <p>GitHub Outages in 2026: Why Microsoft’s Platform is Failing 100M Developers</p>
     </a>
-    <a href="https://trend4genz.fun/video/axios-supply-chain-attack-2026-explained/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/eGSsoSEppNU/mqdefault.jpg"
-           alt="How the Axios Supply Chain Attack Compromised 100M+ Systems in 1.1 Seconds" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/6-essential-gadgets-to-maximize-new-laptop-performance/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Euixz8VfmHE/mqdefault.jpg"
+           alt="6 Must-Have Gadgets to Unlock Your New Laptop's Full Potential" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How the Axios Supply Chain Attack Compromised 100M+ Systems in 1.1 Seconds</p>
+      <p>6 Must-Have Gadgets to Unlock Your New Laptop's Full Potential</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/oO9GLC2iKy8?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

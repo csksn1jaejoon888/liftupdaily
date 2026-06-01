@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Stop waiting for a "big enough" audience to launch—your first 200 email subscr
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/essential-ui-components-programmers-must-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/cjSpnReY3Xw/mqdefault.jpg"
-           alt="12 Must-Know UI Components Every Developer Should Master" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-code-tutorial-no-code-development-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/bqJzIWAEn40/mqdefault.jpg"
+           alt="Build Anything with Claude Code: No-Code AI Development Guide 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>12 Must-Know UI Components Every Developer Should Master</p>
+      <p>Build Anything with Claude Code: No-Code AI Development Guide 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-digital-products-can-cover-your-bills-in-3-hours-week/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Dj4OcTYCA-w/mqdefault.jpg"
-           alt="Digital Products That Pay Your Bills in Just 3 Hours a Week" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-gemini-notebooklm-integration-guide-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Vn8NgGgVGCc/mqdefault.jpg"
+           alt="How Google Gemini + NotebookLM Supercharge Your AI Workflow in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Digital Products That Pay Your Bills in Just 3 Hours a Week</p>
+      <p>How Google Gemini + NotebookLM Supercharge Your AI Workflow in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/free-phone-calls-with-claude-code-voip-integration-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/cT22fTzotYc/mqdefault.jpg"
-           alt="How to Make Free Phone Calls to Claude Code Using VoIP" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/16-game-changing-claude-ai-hacks-to-supercharge-your-productivity-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/wZeOwqmSw84/mqdefault.jpg"
+           alt="16 Game-Changing Claude AI Hacks to Supercharge Your Productivity in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Make Free Phone Calls to Claude Code Using VoIP</p>
+      <p>16 Game-Changing Claude AI Hacks to Supercharge Your Productivity in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/mo-gawdat-ai-strategy-2026-2027-survival-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/E0Q96IKXx6Q/mqdefault.jpg"
-           alt="Former Google X Exec Reveals How to Thrive in the AI-Driven 2026–2027 Job Market" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/proven-study-hacks-to-remember-everything-like-a-genius-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/tIdWQC6Crlc/mqdefault.jpg"
+           alt="Proven Study Hacks to Remember Everything Like a Genius in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Former Google X Exec Reveals How to Thrive in the AI-Driven 2026–2027 Job Market</p>
+      <p>Proven Study Hacks to Remember Everything Like a Genius in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/sundar-pichai-io-2026-keynote-ai-agents-world-models/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/duHhImuaZGU/mqdefault.jpg"
-           alt="Google I/O 2026: Sundar Pichai Unveils AI Agents, World Models &amp; Agentic Era" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/london-youth-unemployment-2026-crisis-data-ai-impact/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/RlvDwhSNJbA/mqdefault.jpg"
+           alt="London Youth Unemployment Hits 25% in 2026: AI and Hiring Crisis Explained" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google I/O 2026: Sundar Pichai Unveils AI Agents, World Models &amp; Agentic Era</p>
+      <p>London Youth Unemployment Hits 25% in 2026: AI and Hiring Crisis Explained</p>
     </a>
-    <a href="https://trend4genz.fun/video/19463-month-side-hustle-guide-multi-passionate-creators/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/dO1b6JeVFas/mqdefault.jpg"
-           alt="How to turn multiple passions into a $19,463/month side hustle" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/cybopal-one-ai-robotic-monitor-ces-2026-review/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/vsctaiLQor8/mqdefault.jpg"
+           alt="Cybopal ONE: The World’s First AI Robotic Monitor Unveiled at CES 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to turn multiple passions into a $19,463/month side hustle</p>
+      <p>Cybopal ONE: The World’s First AI Robotic Monitor Unveiled at CES 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/apple-magsafe-discontinuation-rumor-debunked/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/fp9WTkkpC48/mqdefault.jpg"
-           alt="Will Apple Really Drop MagSafe in Future iPhones?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/spirit-airlines-fleet-repurposed-after-bankruptcy/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/MaXbK4B8wHM/mqdefault.jpg"
+           alt="What Happens to Spirit Airlines' Planes After Bankruptcy?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Will Apple Really Drop MagSafe in Future iPhones?</p>
+      <p>What Happens to Spirit Airlines' Planes After Bankruptcy?</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-ai-cant-replace-software-engineers-insights-from-c-and-typescript-creator/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/CPrePbvbbic/mqdefault.jpg"
-           alt="Why AI Can't Replace Software Engineers: Insights from C# and TypeScript Creator" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/run-open-source-ai-models-guide-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/vehYE1DfkZg/mqdefault.jpg"
+           alt="How to Run Open Source AI Models in 2026: 6 Proven Methods" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why AI Can't Replace Software Engineers: Insights from C# and TypeScript Creator</p>
+      <p>How to Run Open Source AI Models in 2026: 6 Proven Methods</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/JDJCEOkgsM8?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

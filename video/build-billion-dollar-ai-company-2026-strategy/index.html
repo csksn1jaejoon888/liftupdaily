@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to future-proof your business? Explore Martell Ventures’ playbook of 350
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/cursor-3-rewrite-vs-code-rust-ai-agents-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
-           alt="Cursor 3.0: AI Agents Replace Coding in VS Code Fork Rewrite" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-io-2026-ai-innovations-features-subscribers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/qCfARlv74jQ/mqdefault.jpg"
+           alt="Google I/O 2026: 10 AI Breakthroughs You Can’t Miss (Free &amp; Paid)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Cursor 3.0: AI Agents Replace Coding in VS Code Fork Rewrite</p>
+      <p>Google I/O 2026: 10 AI Breakthroughs You Can’t Miss (Free &amp; Paid)</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-ai-brain-mapping-2026-connectome-mogen/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/CdJjph8-2Oc/mqdefault.jpg"
-           alt="Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/gemini-robotics-er-1-6-guide-autonomous-agents/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/kCXQce1dtNE/mqdefault.jpg"
+           alt="Google DeepMind’s Gemini Robotics ER 1.6: Build Autonomous Robots with Spatial Reasoning" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026</p>
+      <p>Google DeepMind’s Gemini Robotics ER 1.6: Build Autonomous Robots with Spatial Reasoning</p>
     </a>
-    <a href="https://trend4genz.fun/video/15-mind-blowing-gadgets-coming-in-2026-that-will-change-your-life/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/at5EeK-hd3s/mqdefault.jpg"
-           alt="15 Mind-Blowing Gadgets Coming in 2026 That Will Change Your Life" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-agents-2026-mastery-guide-autonomous-workflows/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
+           alt="AI Agents in 2026: The 4-Level Framework to 10X Your Productivity" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>15 Mind-Blowing Gadgets Coming in 2026 That Will Change Your Life</p>
+      <p>AI Agents in 2026: The 4-Level Framework to 10X Your Productivity</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-build-ambition-without-burning-out-lessons-from-a-renowned-chef/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/5ICKzlt5dsw/mqdefault.jpg"
-           alt="How to Build Ambition Without Burning Out: Lessons from a Renowned Chef" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-upcoming-jobs-2026-2030-career-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
+           alt="Top 10 Fastest-Growing Jobs for 2026-2030 (Backed by World Economic Forum)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build Ambition Without Burning Out: Lessons from a Renowned Chef</p>
+      <p>Top 10 Fastest-Growing Jobs for 2026-2030 (Backed by World Economic Forum)</p>
     </a>
-    <a href="https://trend4genz.fun/video/xai-replaces-java-scala-with-rust-python-ai-revolution/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-8JOlCvA4Qs/mqdefault.jpg"
-           alt="XAI Dumps Java for Rust: How AI is Rewriting Recommendation Systems" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/is-iran-an-arab-country-harvard-expert-explains-iranian-history/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/r5ClTzfCvQ4/mqdefault.jpg"
+           alt="Is Iran an Arab Country? Harvard Professor Explains Iranian Identity and History" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>XAI Dumps Java for Rust: How AI is Rewriting Recommendation Systems</p>
+      <p>Is Iran an Arab Country? Harvard Professor Explains Iranian Identity and History</p>
     </a>
-    <a href="https://trend4genz.fun/video/youtube-growth-strategy-that-works-in-2025-for-busy-business-owners/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-dQtZkGMfOE/mqdefault.jpg"
-           alt="YouTube Growth Strategy That Works in 2025 for Busy Business Owners" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-macbook-neo-iphone-18-rumors-ai-supply-chain-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/TKYaj5ZTi3o/mqdefault.jpg"
+           alt="Apple Supply Chain Crisis: MacBook Neo Sales Surge, iPhone 18 Rumors &amp; AI Impact" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>YouTube Growth Strategy That Works in 2025 for Busy Business Owners</p>
+      <p>Apple Supply Chain Crisis: MacBook Neo Sales Surge, iPhone 18 Rumors &amp; AI Impact</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-affordable-electric-bikes-2026-comparison-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/5K06S-uDVes/mqdefault.jpg"
-           alt="Top 5 Budget E-Bikes for City &amp; Off-Road in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/linux-kernel-exploit-cve-2026-copay-fail-732-byte-python-script/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/lkifbWtxxlk/mqdefault.jpg"
+           alt="Critical Linux Kernel Exploit (CVE-2026) Lets Attackers Gain Root Access via 732-Byte Python Script" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Top 5 Budget E-Bikes for City &amp; Off-Road in 2026</p>
+      <p>Critical Linux Kernel Exploit (CVE-2026) Lets Attackers Gain Root Access via 732-Byte Python Script</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-app-builder-no-code-2025-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-FA7WTHdvjQ/mqdefault.jpg"
-           alt="How to Build Profitable AI Apps Without Coding in 2025 (Step-by-Step Guide)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-i-built-a-30m-business-by-age-27-with-no-savings/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/SQeVgpoZ0bM/mqdefault.jpg"
+           alt="How I Went from $0 to $30M at 27 Without a Safety Net" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build Profitable AI Apps Without Coding in 2025 (Step-by-Step Guide)</p>
+      <p>How I Went from $0 to $30M at 27 Without a Safety Net</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/qYs3Hf99BPQ?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

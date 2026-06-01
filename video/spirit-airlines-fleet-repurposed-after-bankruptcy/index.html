@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Dive deeper into the aerospace logistics behind airline bankruptcies and discove
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/15-mini-evs-replace-car-2026-urban-mobility-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/xs1n_jc5YIg/mqdefault.jpg"
-           alt="15 Tiny EVs That Could Replace Your Car by 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/london-youth-unemployment-2026-crisis-data-ai-impact/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/RlvDwhSNJbA/mqdefault.jpg"
+           alt="London Youth Unemployment Hits 25% in 2026: AI and Hiring Crisis Explained" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>15 Tiny EVs That Could Replace Your Car by 2026</p>
+      <p>London Youth Unemployment Hits 25% in 2026: AI and Hiring Crisis Explained</p>
     </a>
-    <a href="https://trend4genz.fun/video/d-wave-ceo-government-investment-quantum-computing-scaling/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/G5svO94WNL8/mqdefault.jpg"
-           alt="D-Wave CEO: $100M U.S. Investment Accelerates Quantum Scaling by Years" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/git-github-beginners-guide-2026-version-control-collaboration/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/e9D7nnoCbQ0/mqdefault.jpg"
+           alt="Git &amp; GitHub for Beginners 2026: Master Version Control &amp; Collaboration in 2 Hours" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>D-Wave CEO: $100M U.S. Investment Accelerates Quantum Scaling by Years</p>
+      <p>Git &amp; GitHub for Beginners 2026: Master Version Control &amp; Collaboration in 2 Hours</p>
     </a>
-    <a href="https://trend4genz.fun/video/10-cutting-edge-flying-machines-redefining-travel-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/5haFsMefhlM/mqdefault.jpg"
-           alt="10 Mind-Blowing Flying Machines Changing Travel in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-gemma-4-open-source-ai-breakthrough-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-01ZCTt-CJw/mqdefault.jpg"
+           alt="Google’s Gemma 4: How a Tiny AI Model is Redefining Open-Source Intelligence in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>10 Mind-Blowing Flying Machines Changing Travel in 2025</p>
+      <p>Google’s Gemma 4: How a Tiny AI Model is Redefining Open-Source Intelligence in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/15-mind-blowing-gadgets-coming-in-2026-that-will-change-your-life/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/at5EeK-hd3s/mqdefault.jpg"
-           alt="15 Mind-Blowing Gadgets Coming in 2026 That Will Change Your Life" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/youtube-monetization-truth-how-to-earn-100x-more-than-adsense-alone/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Dk3nooGF7Eo/mqdefault.jpg"
+           alt="YouTube Monetization Truth: How to Earn 100x More Than AdSense Alone" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>15 Mind-Blowing Gadgets Coming in 2026 That Will Change Your Life</p>
+      <p>YouTube Monetization Truth: How to Earn 100x More Than AdSense Alone</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-3-1-ai-work-updates-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/bTLmt9BKGVc/mqdefault.jpg"
-           alt="Gemini 3.1: 5 AI Work Updates That Will Change Your Productivity in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/openclaw-2026-ai-automation-use-case-printer-support/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/FM5-R4VPArw/mqdefault.jpg"
+           alt="How OpenClaw AI Solves Annoying Printer Problems in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Gemini 3.1: 5 AI Work Updates That Will Change Your Productivity in 2026</p>
+      <p>How OpenClaw AI Solves Annoying Printer Problems in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/15-must-have-gadgets-to-transform-your-home-workspace-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/11JpYYDo6-s/mqdefault.jpg"
-           alt="15 Must-Have Gadgets to Transform Your Home Workspace in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-lidar-revolution-12-hidden-civilizations-discovered-beneath-our-feet/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ApKEt0RRMY8/mqdefault.jpg"
+           alt="AI &amp; LIDAR Just Revealed 12 Lost Civilizations Hidden Beneath Our Feet" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>15 Must-Have Gadgets to Transform Your Home Workspace in 2025</p>
+      <p>AI &amp; LIDAR Just Revealed 12 Lost Civilizations Hidden Beneath Our Feet</p>
     </a>
-    <a href="https://trend4genz.fun/video/500-hours-ai-programming-lessons-developers-must-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/91B_v-wOaws/mqdefault.jpg"
-           alt="500+ Hours of AI-Assisted Programming: What Every Developer Should Know" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-gadgets-2026-future-of-smart-living/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/92RaIs0Osvo/mqdefault.jpg"
+           alt="25 AI Gadgets That Will Redefine Smart Living by 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>500+ Hours of AI-Assisted Programming: What Every Developer Should Know</p>
+      <p>25 AI Gadgets That Will Redefine Smart Living by 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/work-life-integration-system-for-busy-executives/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/9w0INwjTYdU/mqdefault.jpg"
-           alt="How High-Performers Design Their Calendar to Fit Everything (No Balance Needed)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/top-6-ai-tools-for-youtube-growth-in-2025-tested-ranked/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/DkyddrXxGpo/mqdefault.jpg"
+           alt="Top 6 AI Tools for YouTube Growth in 2025 (Tested &amp; Ranked)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How High-Performers Design Their Calendar to Fit Everything (No Balance Needed)</p>
+      <p>Top 6 AI Tools for YouTube Growth in 2025 (Tested &amp; Ranked)</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/MaXbK4B8wHM?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

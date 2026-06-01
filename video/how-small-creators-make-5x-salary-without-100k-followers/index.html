@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to transform your content into a revenue stream? Explore our full guide on
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/ted-talk-interrupted-bank-fraud-alert-reveals-digital-life/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/93I_CRPhKFM/mqdefault.jpg"
-           alt="TED Speaker’s Bank Alert Mid-Speech Exposes Digital Vulnerabilities &amp; Loneliness" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/xai-replaces-java-scala-with-rust-python-ai-revolution/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-8JOlCvA4Qs/mqdefault.jpg"
+           alt="XAI Dumps Java for Rust: How AI is Rewriting Recommendation Systems" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>TED Speaker’s Bank Alert Mid-Speech Exposes Digital Vulnerabilities &amp; Loneliness</p>
+      <p>XAI Dumps Java for Rust: How AI is Rewriting Recommendation Systems</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-i-built-a-30m-business-by-age-27-with-no-savings/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/SQeVgpoZ0bM/mqdefault.jpg"
-           alt="How I Went from $0 to $30M at 27 Without a Safety Net" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-s-josh-woodward-reveals-how-gemini-spark-transforms-daily-workflows/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ZW87Peh3tWM/mqdefault.jpg"
+           alt="Googles Josh Woodward Reveals How Gemini Spark Transforms Daily Workflows" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How I Went from $0 to $30M at 27 Without a Safety Net</p>
+      <p>Googles Josh Woodward Reveals How Gemini Spark Transforms Daily Workflows</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-s-gemini-omni-the-next-leap-in-ai-multimodal-creativity-and-agi/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/QhdEJFFaig0/mqdefault.jpg"
-           alt="Googles Gemini Omni: The Next Leap in AI Multimodal Creativity and AGI" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/2026-future-of-mobility-20-revolutionary-vehicles/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/VW5OM7vLVZE/mqdefault.jpg"
+           alt="2026’s Most Mind-Blowing Vehicles: Land, Air &amp; Water Breakthroughs" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Googles Gemini Omni: The Next Leap in AI Multimodal Creativity and AGI</p>
+      <p>2026’s Most Mind-Blowing Vehicles: Land, Air &amp; Water Breakthroughs</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-smart-glasses-2026-comparison-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RK2UeUMqYUM/mqdefault.jpg"
-           alt="5 AI Smart Glasses Launching in 2026: Which One Fits Your Life?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-macbook-neo-iphone-18-rumors-ai-supply-chain-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/TKYaj5ZTi3o/mqdefault.jpg"
+           alt="Apple Supply Chain Crisis: MacBook Neo Sales Surge, iPhone 18 Rumors &amp; AI Impact" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 AI Smart Glasses Launching in 2026: Which One Fits Your Life?</p>
+      <p>Apple Supply Chain Crisis: MacBook Neo Sales Surge, iPhone 18 Rumors &amp; AI Impact</p>
     </a>
-    <a href="https://trend4genz.fun/video/quantum-mechanics-atomic-clocks-redefine-reality/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/5YZYfmAc4wY/mqdefault.jpg"
-           alt="How Atomic Clocks Reveal Quantum Mechanicss Mind-Bending Truths" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/19-mind-blowing-gadgets-launching-in-2026-that-actually-work/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/lzWA9cNWiec/mqdefault.jpg"
+           alt="19 Mind-Blowing Gadgets Launching in 2026 That Actually Work" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Atomic Clocks Reveal Quantum Mechanicss Mind-Bending Truths</p>
+      <p>19 Mind-Blowing Gadgets Launching in 2026 That Actually Work</p>
     </a>
-    <a href="https://trend4genz.fun/video/13-costly-tech-fails-2025-lessons-learned/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Onf4s1U5BoU/mqdefault.jpg"
-           alt="13 Shocking Tech Fails of 2025: $100M+ Mistakes &amp; Lessons for Businesses" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/40-amazon-home-gadgets-transform-everyday-life/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/PfO_y8lebHI/mqdefault.jpg"
+           alt="40 Amazon Home Gadgets That Will Revolutionize Your Daily Life" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>13 Shocking Tech Fails of 2025: $100M+ Mistakes &amp; Lessons for Businesses</p>
+      <p>40 Amazon Home Gadgets That Will Revolutionize Your Daily Life</p>
     </a>
-    <a href="https://trend4genz.fun/video/apple-smart-glasses-2025-rumors-ai-features-release-date/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/6AqF1AdLvAc/mqdefault.jpg"
-           alt="Apple Smart Glasses 2025: AI Features, Release Date &amp; Meta Showdown" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/spacex-starship-reusable-rockets-future-space-infrastructure/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oeoRkQ0qaNw/mqdefault.jpg"
+           alt="Why SpaceX Starship is the next industrial revolution in space" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Apple Smart Glasses 2025: AI Features, Release Date &amp; Meta Showdown</p>
+      <p>Why SpaceX Starship is the next industrial revolution in space</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-ai-recommendations-will-dominate-business-discovery-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
-           alt="How AI Recommendations Will Dominate Business Discovery by 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-agents-2026-mastery-guide-autonomous-workflows/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
+           alt="AI Agents in 2026: The 4-Level Framework to 10X Your Productivity" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI Recommendations Will Dominate Business Discovery by 2026</p>
+      <p>AI Agents in 2026: The 4-Level Framework to 10X Your Productivity</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/eDL5Ca7o_Zg?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

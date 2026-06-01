@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to transform your interview approach? Explore our full library of career-b
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/how-to-build-a-30-million-digital-product-business/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/LU9MvoaySns/mqdefault.jpg"
-           alt="How to Build a $30M Digital Product Business (Step-by-Step 2026 Guide)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/33-cli-tools-devs-must-know-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/XhLMS47l8Bw/mqdefault.jpg"
+           alt="33 Must-Know CLI Tools for Developers in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build a $30M Digital Product Business (Step-by-Step 2026 Guide)</p>
+      <p>33 Must-Know CLI Tools for Developers in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-upcoming-jobs-2026-2030-career-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
-           alt="Top 10 Fastest-Growing Jobs for 2026-2030 (Backed by World Economic Forum)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/axios-npm-supply-chain-attack-2026-remote-access-trojan-discovered/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/o7NYXvYohYk/mqdefault.jpg"
+           alt="Critical Axios NPM Supply Chain Attack Exposes 100M+ JavaScript Developers to RAT" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Top 10 Fastest-Growing Jobs for 2026-2030 (Backed by World Economic Forum)</p>
+      <p>Critical Axios NPM Supply Chain Attack Exposes 100M+ JavaScript Developers to RAT</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-ai-powered-maven-smart-system-is-transforming-modern-warfare-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/nxwkn9Dt9-I/mqdefault.jpg"
-           alt="How AI-Powered Maven Smart System is Transforming Modern Warfare in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/openclaw-full-setup-guide-autonomous-ai-agents/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oOCN30ulVyo/mqdefault.jpg"
+           alt="How to Build a Fully Autonomous OpenClaw AI Agent System" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI-Powered Maven Smart System is Transforming Modern Warfare in 2026</p>
+      <p>How to Build a Fully Autonomous OpenClaw AI Agent System</p>
     </a>
-    <a href="https://trend4genz.fun/video/nikon-z9-ii-z7-iii-zf2-z8-ii-rumors-2026-2027/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/MgwpKfELg_k/mqdefault.jpg"
-           alt="Nikon Z9 II, Z7 III, ZF2, and Z8 II: 4 Leaked Cameras That Could Change Photography" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-selling-ebooks-with-claude-built-a-500k-business/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/nmRWmF2Umes/mqdefault.jpg"
+           alt="How Selling Ebooks with AI Built a $500K Business Without Amazon" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Nikon Z9 II, Z7 III, ZF2, and Z8 II: 4 Leaked Cameras That Could Change Photography</p>
+      <p>How Selling Ebooks with AI Built a $500K Business Without Amazon</p>
     </a>
-    <a href="https://trend4genz.fun/video/samsung-one-ui-9-release-date-features-beta-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/lFloWdgMnQI/mqdefault.jpg"
-           alt="Samsung One UI 9: Release Date, AI Features &amp; Beta Guide 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/13-secret-whatsapp-features-coming-may-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oAM177neS3w/mqdefault.jpg"
+           alt="13 Secret WhatsApp Features Coming in May 2026 You Need to Try" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Samsung One UI 9: Release Date, AI Features &amp; Beta Guide 2025</p>
+      <p>13 Secret WhatsApp Features Coming in May 2026 You Need to Try</p>
     </a>
-    <a href="https://trend4genz.fun/video/openai-s-leadership-crisis-sam-altman-s-controversial-reign-and-the-future-of-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/leuWbaMUieg/mqdefault.jpg"
-           alt="OpenAI’s Leadership Crisis: Sam Altman’s Controversial Reign and the Future of AI" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-proven-patterns-of-top-selling-etsy-digital-product-shops/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/M4LQG9GHJ44/mqdefault.jpg"
+           alt="5 Proven Patterns of Top-Selling Etsy Digital Product Shops" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>OpenAI’s Leadership Crisis: Sam Altman’s Controversial Reign and the Future of AI</p>
+      <p>5 Proven Patterns of Top-Selling Etsy Digital Product Shops</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-ai-smart-glasses-2026-comparison-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/MXWTFb8t5Dk/mqdefault.jpg"
-           alt="20 Best AI Smart Glasses for 2026: The Ultimate Buyer’s Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-tech-brands-manipulate-specs-and-why-you-should-ignore-their-claims/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JstGCPsj9wg/mqdefault.jpg"
+           alt="How Tech Brands Manipulate Specs and Why You Should Ignore Their Claims" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>20 Best AI Smart Glasses for 2026: The Ultimate Buyer’s Guide</p>
+      <p>How Tech Brands Manipulate Specs and Why You Should Ignore Their Claims</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-shift-2026-google-vp-strategies/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/PTZ5iN9nDkY/mqdefault.jpg"
-           alt="Google VP Reveals 6 AI Trends That Will Define 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-io-2026-keynote-ai-agents-gemini-omni/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/OMhKgQmeMhI/mqdefault.jpg"
+           alt="Google I/O 2026: AI Agents, Gemini Omni &amp; Next-Gen Search Unveiled" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google VP Reveals 6 AI Trends That Will Define 2026</p>
+      <p>Google I/O 2026: AI Agents, Gemini Omni &amp; Next-Gen Search Unveiled</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/4B5t_IK9HSA?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

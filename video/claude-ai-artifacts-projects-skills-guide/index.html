@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to supercharge your workflow? Explore our full library of Claude AI tutori
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/google-ai-brain-mapping-2026-connectome-mogen/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/CdJjph8-2Oc/mqdefault.jpg"
-           alt="Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/samsung-galaxy-s26-ultra-review-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ObqHKHoSE5Y/mqdefault.jpg"
+           alt="Samsung Galaxy S26 Ultra Review 2026: Privacy Display, Cameras &amp; AI Features Tested" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026</p>
+      <p>Samsung Galaxy S26 Ultra Review 2026: Privacy Display, Cameras &amp; AI Features Tested</p>
     </a>
-    <a href="https://trend4genz.fun/video/90-day-body-transformation-sidemen-football-challenge/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/cFglt-qLmv0/mqdefault.jpg"
-           alt="How I Lost 12kg in 90 Days for Charity Football Without Starving" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-run-local-ai-models-with-ollama-openclaw-save-thousands-monthly/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/73UEJxAWzb0/mqdefault.jpg"
+           alt="How to Run Local AI Models with Ollama &amp; OpenClaw: Save Thousands Monthly" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How I Lost 12kg in 90 Days for Charity Football Without Starving</p>
+      <p>How to Run Local AI Models with Ollama &amp; OpenClaw: Save Thousands Monthly</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-powered-schools-2h-daily-learning-top-1-percent/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/WOmRB6jNiSU/mqdefault.jpg"
-           alt="How AI Schools Help Kids Learn 2 Hours Daily and Rank in Top 1% Nationally" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/microsoft-windows-k2-update-2026-release-details/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/fz_liHr2_Tg/mqdefault.jpg"
+           alt="Microsoft Windows K2 Update: Major 2026 Fixes for Lag, Bloatware &amp; AI Overload" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI Schools Help Kids Learn 2 Hours Daily and Rank in Top 1% Nationally</p>
+      <p>Microsoft Windows K2 Update: Major 2026 Fixes for Lag, Bloatware &amp; AI Overload</p>
     </a>
-    <a href="https://trend4genz.fun/video/build-ai-agents-without-coding-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/XASPkhYLtnk/mqdefault.jpg"
-           alt="How to Build AI Agents Faster Than 99% of Developers (No Code Needed)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/openclaw-ai-agent-setup-guide-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/dPoIuIvOPo8/mqdefault.jpg"
+           alt="How to Set Up OpenClaw AI Agent in 2026: Free Beginner Tutorial" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build AI Agents Faster Than 99% of Developers (No Code Needed)</p>
+      <p>How to Set Up OpenClaw AI Agent in 2026: Free Beginner Tutorial</p>
     </a>
-    <a href="https://trend4genz.fun/video/claude-ai-now-generates-images-videos-setup-guide-use-cases/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/rrylSizvnSg/mqdefault.jpg"
-           alt="Claude AI Now Generates Images &amp; Videos : Setup Guide &amp; Use Cases" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-maps-ask-maps-with-ai-should-you-let-ai-plan-your-day/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/9GyxhZ3MLW0/mqdefault.jpg"
+           alt="Google Maps Ask Maps with AI: Should You Let AI Plan Your Day?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Claude AI Now Generates Images &amp; Videos : Setup Guide &amp; Use Cases</p>
+      <p>Google Maps Ask Maps with AI: Should You Let AI Plan Your Day?</p>
     </a>
-    <a href="https://trend4genz.fun/video/blockchain-developer-roadmap-10-months-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/gdiao7L9GjE/mqdefault.jpg"
-           alt="How to Become a Blockchain Developer in 10 Months: Step-by-Step Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/the-hidden-design-genius-in-everyday-makeshift-signs/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5CvlKCBrPHI/mqdefault.jpg"
+           alt="Why Makeshift Signs Are Secretly Brilliant Design Solutions (Kate Canales)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Become a Blockchain Developer in 10 Months: Step-by-Step Guide</p>
+      <p>Why Makeshift Signs Are Secretly Brilliant Design Solutions (Kate Canales)</p>
     </a>
-    <a href="https://trend4genz.fun/video/4-ai-resistant-skills-to-future-proof-your-career-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/s_765enJBy8/mqdefault.jpg"
-           alt="4 AI-Resistant Skills to Future-Proof Your Career in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/rork-ai-no-code-mobile-app-builder-2026-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/8ahBmkVnnYs/mqdefault.jpg"
+           alt="Rork AI Tutorial 2026: Build &amp; Publish Native Apps Without Coding" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>4 AI-Resistant Skills to Future-Proof Your Career in 2025</p>
+      <p>Rork AI Tutorial 2026: Build &amp; Publish Native Apps Without Coding</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-small-creators-make-5x-salary-without-100k-followers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/eDL5Ca7o_Zg/mqdefault.jpg"
-           alt="How Small Content Creators Earn $67K/Year Without 100K Followers" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/android-17-ai-revolution-features-release-date/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/3wj0MxHz6Z4/mqdefault.jpg"
+           alt="Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Small Content Creators Earn $67K/Year Without 100K Followers</p>
+      <p>Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/tkpdPvx65A0?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

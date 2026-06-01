@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to build your first digital product or scale an existing one? Explore our 
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/ai-comfort-vs-human-understanding-mental-health-trend/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/xxUV070yA2M/mqdefault.jpg"
-           alt="Why AI Comfort Can’t Replace Human Understanding in Mental Health" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-physical-ai-is-revolutionizing-robotics-in-2026-google-deepmind-boston-dynam/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/jn3iypY-cN4/mqdefault.jpg"
+           alt="How Physical AI is Revolutionizing Robotics in 2026: Google DeepMind &amp; Boston Dynamics Leaders Reveal Breakthroughs" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why AI Comfort Can’t Replace Human Understanding in Mental Health</p>
+      <p>How Physical AI is Revolutionizing Robotics in 2026: Google DeepMind &amp; Boston Dynamics Leaders Reveal Breakthroughs</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-money-laws-to-build-wealth-like-a-100m-ceo/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/FXXhxepEsuA/mqdefault.jpg"
-           alt="5 Money Laws That Separate the Broke from the $100M+ Rich" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-automation-jobs-2026-expert-warning/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/00RHph_eok4/mqdefault.jpg"
+           alt="AI Will Eliminate 99% of Jobs by 2030 — Expert Predicts 2026 Impact" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Money Laws That Separate the Broke from the $100M+ Rich</p>
+      <p>AI Will Eliminate 99% of Jobs by 2030 — Expert Predicts 2026 Impact</p>
     </a>
-    <a href="https://trend4genz.fun/video/anthropic-s-mythos-ai-why-it-s-too-dangerous-for-public-release-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/d3Qq-rkp_to/mqdefault.jpg"
-           alt="Anthropic’s Mythos AI: Why It’s Too Dangerous for Public Release in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/affordable-family-smart-home-automation-jonathan-canada/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5SUCahWX1QE/mqdefault.jpg"
+           alt="How One Canadian Family Built a 300+ Automation Smart Home on a Budget" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Anthropic’s Mythos AI: Why It’s Too Dangerous for Public Release in 2026</p>
+      <p>How One Canadian Family Built a 300+ Automation Smart Home on a Budget</p>
     </a>
-    <a href="https://trend4genz.fun/video/15-mind-blowing-gadgets-robots-coming-in-2026-you-need-to-see/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/fuiJ-3CdU3Q/mqdefault.jpg"
-           alt="15 Mind-Blowing Gadgets &amp; Robots Coming in 2026 You Need to See" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-childhood-trauma-affects-future-generations-the-science-of-epigenetics/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/J9-Ov-_KcWk/mqdefault.jpg"
+           alt="How Childhood Trauma Affects Future Generations: The Science of Epigenetics" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>15 Mind-Blowing Gadgets &amp; Robots Coming in 2026 You Need to See</p>
+      <p>How Childhood Trauma Affects Future Generations: The Science of Epigenetics</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-digital-products-can-cover-your-bills-in-3-hours-week/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Dj4OcTYCA-w/mqdefault.jpg"
-           alt="Digital Products That Pay Your Bills in Just 3 Hours a Week" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/8-life-saving-gadgets-under-50-dollars-for-home-safety/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/DalxCcAmOfw/mqdefault.jpg"
+           alt="8 Must-Have Gadgets Under $50 That Could Save Your Life at Home" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Digital Products That Pay Your Bills in Just 3 Hours a Week</p>
+      <p>8 Must-Have Gadgets Under $50 That Could Save Your Life at Home</p>
     </a>
-    <a href="https://trend4genz.fun/video/claude-cowork-autonomous-workflow-setup-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/gdrPkpXuNks/mqdefault.jpg"
-           alt="How to Build an AI-Powered Autonomous Workflow with Claude Co-Work" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-app-builder-no-code-2025-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-FA7WTHdvjQ/mqdefault.jpg"
+           alt="How to Build Profitable AI Apps Without Coding in 2025 (Step-by-Step Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build an AI-Powered Autonomous Workflow with Claude Co-Work</p>
+      <p>How to Build Profitable AI Apps Without Coding in 2025 (Step-by-Step Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/axios-supply-chain-attack-2026-explained/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/eGSsoSEppNU/mqdefault.jpg"
-           alt="How the Axios Supply Chain Attack Compromised 100M+ Systems in 1.1 Seconds" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/game-room-theater-the-ultimate-automated-man-cave-for-sports-movie-lovers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/e5k2mfkU1kQ/mqdefault.jpg"
+           alt="Game Room Theater: The Ultimate Automated Man Cave for Sports &amp; Movie Lovers" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How the Axios Supply Chain Attack Compromised 100M+ Systems in 1.1 Seconds</p>
+      <p>Game Room Theater: The Ultimate Automated Man Cave for Sports &amp; Movie Lovers</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-driven-software-development-workflow-2025-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/3VQhdXcQ5qI/mqdefault.jpg"
-           alt="How AI is Transforming Software Development in 2025: A Complete Workflow Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-level-javascript-pyramid-fast-track-to-full-stack-mastery/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/GxW1Ei8yvSQ/mqdefault.jpg"
+           alt="Learn JavaScript Fast in 2026: The 5-Level Pyramid Roadmap" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI is Transforming Software Development in 2025: A Complete Workflow Guide</p>
+      <p>Learn JavaScript Fast in 2026: The 5-Level Pyramid Roadmap</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/LU9MvoaySns?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

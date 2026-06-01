@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -134,61 +134,84 @@
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/100-luxury-home-decor-ideas-to-transform-any-room-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RLnoW2vtJAQ/mqdefault.jpg"
-           alt="100+ Luxury Home Decor Ideas to Transform Any Room in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/mo-gawdat-ai-strategy-2026-2027-survival-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/E0Q96IKXx6Q/mqdefault.jpg"
+           alt="Former Google X Exec Reveals How to Thrive in the AI-Driven 2026–2027 Job Market" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>100+ Luxury Home Decor Ideas to Transform Any Room in 2025</p>
-    </a>
-    <a href="https://trend4genz.fun/video/xai-replaces-java-scala-with-rust-python-ai-revolution/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-8JOlCvA4Qs/mqdefault.jpg"
-           alt="XAI Dumps Java for Rust: How AI is Rewriting Recommendation Systems" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>XAI Dumps Java for Rust: How AI is Rewriting Recommendation Systems</p>
-    </a>
-    <a href="https://trend4genz.fun/video/blockchain-developer-roadmap-10-months-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/gdiao7L9GjE/mqdefault.jpg"
-           alt="How to Become a Blockchain Developer in 10 Months: Step-by-Step Guide" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Become a Blockchain Developer in 10 Months: Step-by-Step Guide</p>
-    </a>
-    <a href="https://trend4genz.fun/video/google-io-2026-ai-advances-agi-horizon/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/34q_KjF64E8/mqdefault.jpg"
-           alt="Google I/O 2026: AI Breakthroughs, AGI, and Science Acceleration" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google I/O 2026: AI Breakthroughs, AGI, and Science Acceleration</p>
-    </a>
-    <a href="https://trend4genz.fun/video/google-io-2026-generative-media-tools-breakdown/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/FLynjUYg79I/mqdefault.jpg"
-           alt="Google I/O 2026: 3 Breakthrough Generative Media Tools Unveiled" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google I/O 2026: 3 Breakthrough Generative Media Tools Unveiled</p>
-    </a>
-    <a href="https://trend4genz.fun/video/gemini-i-o-2026-keynote-ai-updates-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7Z5Vy9JBANs/mqdefault.jpg"
-           alt="Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents</p>
-    </a>
-    <a href="https://trend4genz.fun/video/redmi-k90-max-review-specs-price-india-launch/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/50NLXeLfHtg/mqdefault.jpg"
-           alt="Redmi K90 Max Review: 165Hz AMOLED, Dimensity 9500 &amp; Active Cooling at ₹45K" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Redmi K90 Max Review: 165Hz AMOLED, Dimensity 9500 &amp; Active Cooling at ₹45K</p>
+      <p>Former Google X Exec Reveals How to Thrive in the AI-Driven 2026–2027 Job Market</p>
     </a>
     <a href="https://trend4genz.fun/video/how-ai-recommendations-will-dominate-business-discovery-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
            alt="How AI Recommendations Will Dominate Business Discovery by 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>How AI Recommendations Will Dominate Business Discovery by 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/top-15-smart-home-gadgets-2026-transforming-modern-living/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/uHk9hsZ-Gpg/mqdefault.jpg"
+           alt="15 Smart Home Gadgets for 2026 That Will Change Your Life" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>15 Smart Home Gadgets for 2026 That Will Change Your Life</p>
+    </a>
+    <a href="https://trend4genz.fun/video/5-stage-process-to-break-free-from-financial-stagnation/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JMN0XbamRo8/mqdefault.jpg"
+           alt="5 Stages to Escape Financial Stagnation and Build Real Wealth" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>5 Stages to Escape Financial Stagnation and Build Real Wealth</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-layoffs-china-dolphins-mcdonalds-trends/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/RNplRKey4vE/mqdefault.jpg"
+           alt="AI Layoffs, China’s McDonald’s Boom, and Spy Dolphins:Wild Tech Trends" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>AI Layoffs, China’s McDonald’s Boom, and Spy Dolphins:Wild Tech Trends</p>
+    </a>
+    <a href="https://trend4genz.fun/video/how-a-nurse-s-super-smell-detects-parkinson-s-disease-early-joy-milne-s-breakthr/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oCtLmeo56Jo/mqdefault.jpg"
+           alt="How a Nurse’s Super-Smell Detects Parkinson’s Disease Early: Joy Milne’s Breakthrough" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>How a Nurse’s Super-Smell Detects Parkinson’s Disease Early: Joy Milne’s Breakthrough</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-tools-ranked-by-venture-capitalist-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/np6CwvTYTAM/mqdefault.jpg"
+           alt="Top AI Tools Ranked by a Venture Capitalist for 2026: Which Will Make You Rich?" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Top AI Tools Ranked by a Venture Capitalist for 2026: Which Will Make You Rich?</p>
+    </a>
+    <a href="https://trend4genz.fun/video/sundar-pichai-google-io-2026-agents-cybersecurity-compute/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/9C20esBUf-Q/mqdefault.jpg"
+           alt="Sundar Pichai Reveals Google’s AI Agents, Cybersecurity &amp; Compute Bottlenecks at I/O 2026" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Sundar Pichai Reveals Google’s AI Agents, Cybersecurity &amp; Compute Bottlenecks at I/O 2026</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/GAyNvq6Ayps?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

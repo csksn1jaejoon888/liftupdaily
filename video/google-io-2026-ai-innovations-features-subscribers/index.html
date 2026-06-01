@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ This isn’t just another tech showcase—it’s a glimpse into the future of AI
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/12345-things-developers-hate-about-programming/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/VQgKSLkUNvQ/mqdefault.jpg"
-           alt="10 Frustrations Every Developer Faces in Programming" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/samsung-galaxy-s26-ultra-review-real-world-performance/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/aqRwCwkXPpQ/mqdefault.jpg"
+           alt="Samsung Galaxy S26 Ultra Review: Is It Worth Upgrading in 2025?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>10 Frustrations Every Developer Faces in Programming</p>
+      <p>Samsung Galaxy S26 Ultra Review: Is It Worth Upgrading in 2025?</p>
     </a>
-    <a href="https://trend4genz.fun/video/viral-youtube-video-ideas-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/pgjrsqSwYvQ/mqdefault.jpg"
-           alt="How to Find Viral YouTube Video Ideas in 2026 (Step-by-Step Guide)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/top-tech-jobs-2025-high-demand-salaries/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/fZmQ_aPXJAM/mqdefault.jpg"
+           alt="Best Tech Jobs for 2025: High Demand &amp; Six-Figure Salaries" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Find Viral YouTube Video Ideas in 2026 (Step-by-Step Guide)</p>
+      <p>Best Tech Jobs for 2025: High Demand &amp; Six-Figure Salaries</p>
     </a>
-    <a href="https://trend4genz.fun/video/macbook-ultra-2027-leaked-features-release-date/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/r7lmNmUkGEQ/mqdefault.jpg"
-           alt="MacBook Ultra 2027: 6 Leaked Features, Release Date &amp; Price Hike" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ligo-gravitational-wave-black-hole-discovery-2015/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/31he9S8eEzc/mqdefault.jpg"
+           alt="How LIGO Detected Black Holes Merging 1.3 Billion Years Ago" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>MacBook Ultra 2027: 6 Leaked Features, Release Date &amp; Price Hike</p>
+      <p>How LIGO Detected Black Holes Merging 1.3 Billion Years Ago</p>
     </a>
-    <a href="https://trend4genz.fun/video/linux-kernel-exploit-cve-2026-copay-fail-732-byte-python-script/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/lkifbWtxxlk/mqdefault.jpg"
-           alt="Critical Linux Kernel Exploit (CVE-2026) Lets Attackers Gain Root Access via 732-Byte Python Script" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-model-types-guide-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/DsKZpgoy830/mqdefault.jpg"
+           alt="How to Choose the Right AI Model in 2025: A Complete Guide" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Critical Linux Kernel Exploit (CVE-2026) Lets Attackers Gain Root Access via 732-Byte Python Script</p>
+      <p>How to Choose the Right AI Model in 2025: A Complete Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-i-o-2026-keynote-ai-updates-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7Z5Vy9JBANs/mqdefault.jpg"
-           alt="Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/trump-1-8b-fund-house-budget-committee-reconciliation/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/F0Z3SxQRW6M/mqdefault.jpg"
+           alt="House Budget Chair Explains $1.8B Trump Fund and Taxpayer Guardrails" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents</p>
+      <p>House Budget Chair Explains $1.8B Trump Fund and Taxpayer Guardrails</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-robotics-er-1-6-guide-autonomous-agents/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/kCXQce1dtNE/mqdefault.jpg"
-           alt="Google DeepMind’s Gemini Robotics ER 1.6: Build Autonomous Robots with Spatial Reasoning" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/accio-work-ai-agents-platform-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/FaondxF4djo/mqdefault.jpg"
+           alt="How to Build AI Agents That Work for You with Accio Work" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google DeepMind’s Gemini Robotics ER 1.6: Build Autonomous Robots with Spatial Reasoning</p>
+      <p>How to Build AI Agents That Work for You with Accio Work</p>
     </a>
-    <a href="https://trend4genz.fun/video/start-from-zero-to-1m-with-ai-powered-business-strategy/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/dyrr4eAdnhg/mqdefault.jpg"
-           alt="How to Build a $1M Business Starting with $0 in the AI Era (Step-by-Step Guide)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-people-over-40-should-start-a-youtube-channel-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/cPSw3ykx0bs/mqdefault.jpg"
+           alt="Why Starting a YouTube Channel After 40 is a Hidden Goldmine in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build a $1M Business Starting with $0 in the AI Era (Step-by-Step Guide)</p>
+      <p>Why Starting a YouTube Channel After 40 is a Hidden Goldmine in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/mortal-kombat-2-cast-reveal-50-google-searched-questions/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/q1dA3ffbO3E/mqdefault.jpg"
-           alt="Mortal Kombat 2 Cast Reveals 50 Most Googled MK Questions" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-user-maturity-7-levels-to-automate-your-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
+           alt="7 AI User Levels: From Basic Prompts to Fully Automated Workflows" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Mortal Kombat 2 Cast Reveals 50 Most Googled MK Questions</p>
+      <p>7 AI User Levels: From Basic Prompts to Fully Automated Workflows</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/qCfARlv74jQ?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

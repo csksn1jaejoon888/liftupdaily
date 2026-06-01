@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,11 +138,41 @@ Ready to elevate your outdoor space? Explore our curated collection of backyard 
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/how-to-make-150-per-day-in-sales-no-degree/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/BNVmYG1SLa4/mqdefault.jpg"
-           alt="How to Make $150+/Day in Sales Without a Degree (Real Results)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/duolingo-ceo-ai-strategy-surviving-disruption/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/GDeEATJcbJo/mqdefault.jpg"
+           alt="Duolingo CEO Reveals How AI Transforms Employee Productivity" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Make $150+/Day in Sales Without a Degree (Real Results)</p>
+      <p>Duolingo CEO Reveals How AI Transforms Employee Productivity</p>
+    </a>
+    <a href="https://trend4genz.fun/video/top-skills-to-learn-in-2026-personal-finance-ai-and-business/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JHF2t-S2nm0/mqdefault.jpg"
+           alt="Top Skills to Learn in 2026: Finance, AI, and Business Mastery" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Top Skills to Learn in 2026: Finance, AI, and Business Mastery</p>
+    </a>
+    <a href="https://trend4genz.fun/video/apple-2026-macbook-neo-air-pro-ipad-air-iphone-17e-review/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/AZJRvpOtSys/mqdefault.jpg"
+           alt="Apple 2026 MacBook Neo vs Air vs Pro: Which Laptop Should You Buy?" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Apple 2026 MacBook Neo vs Air vs Pro: Which Laptop Should You Buy?</p>
+    </a>
+    <a href="https://trend4genz.fun/video/19463-month-side-hustle-guide-multi-passionate-creators/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/dO1b6JeVFas/mqdefault.jpg"
+           alt="How to turn multiple passions into a $19,463/month side hustle" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>How to turn multiple passions into a $19,463/month side hustle</p>
+    </a>
+    <a href="https://trend4genz.fun/video/how-small-creators-make-5x-salary-without-100k-followers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/eDL5Ca7o_Zg/mqdefault.jpg"
+           alt="How Small Content Creators Earn $67K/Year Without 100K Followers" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>How Small Content Creators Earn $67K/Year Without 100K Followers</p>
+    </a>
+    <a href="https://trend4genz.fun/video/touchscreen-mac-rumors-2027-release-date-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/RZ3F0viyJ0w/mqdefault.jpg"
+           alt="Will Apple’s First Touchscreen Mac Arrive in 2027? Early Hands-On" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Will Apple’s First Touchscreen Mac Arrive in 2027? Early Hands-On</p>
     </a>
     <a href="https://trend4genz.fun/video/4-ai-resistant-skills-to-future-proof-your-career-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/s_765enJBy8/mqdefault.jpg"
@@ -150,49 +180,42 @@ Ready to elevate your outdoor space? Explore our curated collection of backyard 
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>4 AI-Resistant Skills to Future-Proof Your Career in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/spring-boot-3-4-1-beginners-guide-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/gJrjgg1KVL4/mqdefault.jpg"
-           alt="Spring Boot 3.4.1 Tutorial: Build Real-World Apps in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-stage-process-to-break-free-from-financial-stagnation/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JMN0XbamRo8/mqdefault.jpg"
+           alt="5 Stages to Escape Financial Stagnation and Build Real Wealth" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Spring Boot 3.4.1 Tutorial: Build Real-World Apps in 2025</p>
-    </a>
-    <a href="https://trend4genz.fun/video/500-hours-ai-programming-lessons-developers-must-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/91B_v-wOaws/mqdefault.jpg"
-           alt="500+ Hours of AI-Assisted Programming: What Every Developer Should Know" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>500+ Hours of AI-Assisted Programming: What Every Developer Should Know</p>
-    </a>
-    <a href="https://trend4genz.fun/video/d-wave-ceo-government-investment-quantum-computing-scaling/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/G5svO94WNL8/mqdefault.jpg"
-           alt="D-Wave CEO: $100M U.S. Investment Accelerates Quantum Scaling by Years" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>D-Wave CEO: $100M U.S. Investment Accelerates Quantum Scaling by Years</p>
-    </a>
-    <a href="https://trend4genz.fun/video/how-ai-recommendations-will-dominate-business-discovery-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
-           alt="How AI Recommendations Will Dominate Business Discovery by 2026" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI Recommendations Will Dominate Business Discovery by 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/black-holes-universe-gravity-mysteries-explained/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/BoZTjwCSBCw/mqdefault.jpg"
-           alt="Black Holes: The Universe’s Most Extreme Gravity Objects Explained" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Black Holes: The Universe’s Most Extreme Gravity Objects Explained</p>
-    </a>
-    <a href="https://trend4genz.fun/video/tim-cook-era-ends-apple-ceo-transition-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/GaEhbIjusRI/mqdefault.jpg"
-           alt="Apple CEO Transition 2026: Who Will Succeed Tim Cook?" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Apple CEO Transition 2026: Who Will Succeed Tim Cook?</p>
+      <p>5 Stages to Escape Financial Stagnation and Build Real Wealth</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/WiT6pD-wjMI?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

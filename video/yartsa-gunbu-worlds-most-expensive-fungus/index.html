@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Dive deeper into the world of rare and valuable biological phenomena by explorin
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/18-game-changing-workspace-gadgets-2025-reviewed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ahmVCw_Cunk/mqdefault.jpg"
-           alt="18 Must-Have Workspace Gadgets for Maximum Productivity in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-ai-smart-glasses-2026-comparison-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/MXWTFb8t5Dk/mqdefault.jpg"
+           alt="20 Best AI Smart Glasses for 2026: The Ultimate Buyer’s Guide" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>18 Must-Have Workspace Gadgets for Maximum Productivity in 2025</p>
+      <p>20 Best AI Smart Glasses for 2026: The Ultimate Buyer’s Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-tech-brands-manipulate-specs-and-why-you-should-ignore-their-claims/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/JstGCPsj9wg/mqdefault.jpg"
-           alt="How Tech Brands Manipulate Specs and Why You Should Ignore Their Claims" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-3-opus-vs-github-codex-full-ai-coding-showdown-benchmark/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/E2UgYp2vh5U/mqdefault.jpg"
+           alt="Claude 3 Opus vs GitHub Codex : Full AI Coding Showdown &amp; Benchmark" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Tech Brands Manipulate Specs and Why You Should Ignore Their Claims</p>
+      <p>Claude 3 Opus vs GitHub Codex : Full AI Coding Showdown &amp; Benchmark</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-notebook-lm-integration-changes-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/1dB7cZ3siPE/mqdefault.jpg"
-           alt="Gemini Now Integrates Notebook LM: The Ultimate AI Workflow Upgrade" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-holly-built-ai-powered-hiring-platform-workonward/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/q-dnq2Fsq2Y/mqdefault.jpg"
+           alt="Holly’s AI Hiring Platform Helps Small Businesses Find Workers Fast" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Gemini Now Integrates Notebook LM: The Ultimate AI Workflow Upgrade</p>
+      <p>Holly’s AI Hiring Platform Helps Small Businesses Find Workers Fast</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-gemma-4-open-source-ai-breakthrough-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-01ZCTt-CJw/mqdefault.jpg"
-           alt="Google’s Gemma 4: How a Tiny AI Model is Redefining Open-Source Intelligence in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/openai-chatgpt-ai-smartphone-2027-launch/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/wyJl6x7e3iw/mqdefault.jpg"
+           alt="OpenAI’s AI-Powered Smartphone: A 2027 Game-Changer?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google’s Gemma 4: How a Tiny AI Model is Redefining Open-Source Intelligence in 2026</p>
+      <p>OpenAI’s AI-Powered Smartphone: A 2027 Game-Changer?</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-build-ambition-without-burning-out-lessons-from-a-renowned-chef/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/5ICKzlt5dsw/mqdefault.jpg"
-           alt="How to Build Ambition Without Burning Out: Lessons from a Renowned Chef" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/10-enduring-tech-innovations-that-will-surpass-ai-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/PBN0YYRtAtA/mqdefault.jpg"
+           alt="10 Technologies That Will Outlast AI in 2025: The Future Beyond Machine Learning" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build Ambition Without Burning Out: Lessons from a Renowned Chef</p>
+      <p>10 Technologies That Will Outlast AI in 2025: The Future Beyond Machine Learning</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-smart-home-security-gadgets-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/3NADCm4gidA/mqdefault.jpg"
-           alt="10 Must-Have Smart Home Security Gadgets for 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-sell-digital-products-on-etsy-beginner-s-step-by-step-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/RAn7R954Xhc/mqdefault.jpg"
+           alt="How to Sell Digital Products on Etsy: Beginner’s Step-by-Step Guide" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>10 Must-Have Smart Home Security Gadgets for 2026</p>
+      <p>How to Sell Digital Products on Etsy: Beginner’s Step-by-Step Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-driven-outages-how-ai-is-breaking-the-internet-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/44JBZwAsfJI/mqdefault.jpg"
-           alt="AI Outages Are Breaking the Internet: What Developers Must Know in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/neurodiversity-self-acceptance-aroush-datta-tedx/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/vkYdQ2cBOdo/mqdefault.jpg"
+           alt="How Neurodiversity Shaped My Journey: Arawush Datta’s Inspiring Story" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI Outages Are Breaking the Internet: What Developers Must Know in 2025</p>
+      <p>How Neurodiversity Shaped My Journey: Arawush Datta’s Inspiring Story</p>
     </a>
-    <a href="https://trend4genz.fun/video/antony-starr-homelander-boys-interview-insights/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/6u8-bioNK9E/mqdefault.jpg"
-           alt="Antony Starr Reveals Homelanders Darkest Secrets in Viral Interview" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-a-nurse-s-super-smell-detects-parkinson-s-disease-early-joy-milne-s-breakthr/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oCtLmeo56Jo/mqdefault.jpg"
+           alt="How a Nurse’s Super-Smell Detects Parkinson’s Disease Early: Joy Milne’s Breakthrough" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Antony Starr Reveals Homelanders Darkest Secrets in Viral Interview</p>
+      <p>How a Nurse’s Super-Smell Detects Parkinson’s Disease Early: Joy Milne’s Breakthrough</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/R1wW1NHYty8?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

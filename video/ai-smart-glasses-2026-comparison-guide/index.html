@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to find your perfect match? Explore our full library of AI wearables compa
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/intelligent-eyewear-google-gemini-samsung-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/xxY0yuzxzLY/mqdefault.jpg"
-           alt="Google’s AI-Powered Eyewear with Gemini: What’s Coming in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/9-step-ai-app-development-roadmap-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/xEr0hRbK_Xo/mqdefault.jpg"
+           alt="How to Build an AI App in 2026: 9-Step Proven Roadmap for Developers" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google’s AI-Powered Eyewear with Gemini: What’s Coming in 2026</p>
+      <p>How to Build an AI App in 2026: 9-Step Proven Roadmap for Developers</p>
     </a>
-    <a href="https://trend4genz.fun/video/smart-project-development-strategies-for-developers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Fuzvl32N6sg/mqdefault.jpg"
-           alt="How Top Developers Build Projects 10x Faster with AI and Templates" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-high-yield-savings-accounts-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/6IYn_-5673A/mqdefault.jpg"
+           alt="5 Best High-Yield Savings Accounts for 2026 (Earn 4% APY)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Top Developers Build Projects 10x Faster with AI and Templates</p>
+      <p>5 Best High-Yield Savings Accounts for 2026 (Earn 4% APY)</p>
     </a>
-    <a href="https://trend4genz.fun/video/motorola-edge-70-pro-review-unboxing-changes/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/iZtHarUVy3k/mqdefault.jpg"
-           alt="Motorola Edge 70 Pro Review: Key Changes, Specs &amp; Camera Test" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-2026-is-the-golden-age-for-developers-github-coo-s-ai-insights/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/cMubtUs8dvs/mqdefault.jpg"
+           alt="Why 2026 Is the Golden Age for Developers: GitHub COO’s AI Insights" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Motorola Edge 70 Pro Review: Key Changes, Specs &amp; Camera Test</p>
+      <p>Why 2026 Is the Golden Age for Developers: GitHub COO’s AI Insights</p>
     </a>
-    <a href="https://trend4genz.fun/video/the-1-skill-to-make-more-money-than-sales-marketing-or-ai-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/GTtDEm7Ak8c/mqdefault.jpg"
-           alt="The #1 Skill to Make More Money Than Sales, Marketing, or AI in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/vivo-x300-ultra-review-snapdragon-8-elite-gen-5-camera-zoom/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ali4DAtH_ZU/mqdefault.jpg"
+           alt="vivo X300 Ultra Review: Snapdragon 8 Elite Gen 5, 200MP Camera &amp; 400mm Zoom" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>The #1 Skill to Make More Money Than Sales, Marketing, or AI in 2026</p>
+      <p>vivo X300 Ultra Review: Snapdragon 8 Elite Gen 5, 200MP Camera &amp; 400mm Zoom</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-operating-systems-work-from-power-button-to-shutdown/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/MtxP2pyCvYA/mqdefault.jpg"
-           alt="How Operating Systems Work: Boot Process, Memory, Processes &amp; More Explained" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-kosovo-s-president-vjosa-osmani-built-a-democracy-against-all-odds/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5e0ujKe66vM/mqdefault.jpg"
+           alt="How Kosovo’s President Vjosa Osmani Built a Democracy Against All Odds" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Operating Systems Work: Boot Process, Memory, Processes &amp; More Explained</p>
+      <p>How Kosovo’s President Vjosa Osmani Built a Democracy Against All Odds</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-a-nurse-s-super-smell-detects-parkinson-s-disease-early-joy-milne-s-breakthr/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oCtLmeo56Jo/mqdefault.jpg"
-           alt="How a Nurse’s Super-Smell Detects Parkinson’s Disease Early: Joy Milne’s Breakthrough" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/gohighlevel-setup-guide-avoid-costly-mistakes-get-15k-in-free-bonuses/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/AfBeONbSem4/mqdefault.jpg"
+           alt="GoHighLevel Setup Guide: Avoid Costly Mistakes &amp; Get $15K+ in Free Bonuses" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How a Nurse’s Super-Smell Detects Parkinson’s Disease Early: Joy Milne’s Breakthrough</p>
+      <p>GoHighLevel Setup Guide: Avoid Costly Mistakes &amp; Get $15K+ in Free Bonuses</p>
     </a>
-    <a href="https://trend4genz.fun/video/6-laptop-upgrades-2026-fix-common-problems/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/OxpeiE0nND4/mqdefault.jpg"
-           alt="6 Must-Have Laptop Upgrades to Fix 6 Common Problems in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-dollar-daily-investment-challenge-results-one-year-later/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/hEreQRqY334/mqdefault.jpg"
+           alt="Investing $5 Daily for a Year: Real Results and Lessons Learned" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>6 Must-Have Laptop Upgrades to Fix 6 Common Problems in 2026</p>
+      <p>Investing $5 Daily for a Year: Real Results and Lessons Learned</p>
     </a>
-    <a href="https://trend4genz.fun/video/modern-luxury-home-decor-ideas-transform-your-space/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/L4Sk_MvGZ10/mqdefault.jpg"
-           alt="100+ Modern Luxury Home Decor Ideas for a Stylish Lifestyle" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-electric-bikes-under-1000-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ezHrTS-a_z8/mqdefault.jpg"
+           alt="Top 5 Electric Bikes Under $1000 in 2026: Power, Range &amp; Value Compared" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>100+ Modern Luxury Home Decor Ideas for a Stylish Lifestyle</p>
+      <p>Top 5 Electric Bikes Under $1000 in 2026: Power, Range &amp; Value Compared</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/RK2UeUMqYUM?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

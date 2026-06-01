@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ This shift isn’t just about filling jobs—it’s about redefining what career
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/anthropic-s-mythos-ai-why-it-s-too-dangerous-for-public-release-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/d3Qq-rkp_to/mqdefault.jpg"
-           alt="Anthropic’s Mythos AI: Why It’s Too Dangerous for Public Release in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-io-2026-keynote-ai-agents-gemini-omni/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/OMhKgQmeMhI/mqdefault.jpg"
+           alt="Google I/O 2026: AI Agents, Gemini Omni &amp; Next-Gen Search Unveiled" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Anthropic’s Mythos AI: Why It’s Too Dangerous for Public Release in 2026</p>
+      <p>Google I/O 2026: AI Agents, Gemini Omni &amp; Next-Gen Search Unveiled</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-phones-battery-life-2026-silicon-carbon/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/yJ_dliumQRo/mqdefault.jpg"
-           alt="5 Phones That Last 3+ Days on a Charge in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-io-2026-generative-media-tools-breakdown/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/FLynjUYg79I/mqdefault.jpg"
+           alt="Google I/O 2026: 3 Breakthrough Generative Media Tools Unveiled" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Phones That Last 3+ Days on a Charge in 2026</p>
+      <p>Google I/O 2026: 3 Breakthrough Generative Media Tools Unveiled</p>
     </a>
-    <a href="https://trend4genz.fun/video/high-paying-remote-jobs-2026-no-degree-required/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/pKgos-OQjTc/mqdefault.jpg"
-           alt="4 Remote Jobs Paying $6K+/Month in 2026 (No Degree Needed)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/gemini-i-o-2026-keynote-ai-updates-features/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7Z5Vy9JBANs/mqdefault.jpg"
+           alt="Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>4 Remote Jobs Paying $6K+/Month in 2026 (No Degree Needed)</p>
+      <p>Gemini I/O 2026: New AI Features, Neural Expressive Design &amp; Agents</p>
     </a>
-    <a href="https://trend4genz.fun/video/artemis-ii-mission-timeline-heat-shield-success/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/NnMReiQ9Fkk/mqdefault.jpg"
-           alt="Artemis II Mission: Full Flight Timeline and Critical Heat Shield Test" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-make-money-online-real-strategies-that-work/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/gTZSVThRWF8/mqdefault.jpg"
+           alt="How to Make Money Online: Proven Strategies That Actually Work" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Artemis II Mission: Full Flight Timeline and Critical Heat Shield Test</p>
+      <p>How to Make Money Online: Proven Strategies That Actually Work</p>
     </a>
-    <a href="https://trend4genz.fun/video/cursor-3-rewrite-vs-code-rust-ai-agents-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
-           alt="Cursor 3.0: AI Agents Replace Coding in VS Code Fork Rewrite" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/10-common-programming-mistakes-beginners-must-avoid/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/bFaqW5Tz-ag/mqdefault.jpg"
+           alt="10 Programming Mistakes That Can Destroy Your Career" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Cursor 3.0: AI Agents Replace Coding in VS Code Fork Rewrite</p>
+      <p>10 Programming Mistakes That Can Destroy Your Career</p>
     </a>
-    <a href="https://trend4genz.fun/video/us-hantavirus-outbreak-response-2026-analysis/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/mfwntOIhK_c/mqdefault.jpg"
-           alt="U.S. Hantavirus Response Raises Concerns Over Future Pandemic Readiness" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-ai-cant-replace-software-engineers-insights-from-c-and-typescript-creator/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/CPrePbvbbic/mqdefault.jpg"
+           alt="Why AI Can't Replace Software Engineers: Insights from C# and TypeScript Creator" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>U.S. Hantavirus Response Raises Concerns Over Future Pandemic Readiness</p>
+      <p>Why AI Can't Replace Software Engineers: Insights from C# and TypeScript Creator</p>
     </a>
-    <a href="https://trend4genz.fun/video/samsung-galaxy-s26-ultra-review-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ObqHKHoSE5Y/mqdefault.jpg"
-           alt="Samsung Galaxy S26 Ultra Review 2026: Privacy Display, Cameras &amp; AI Features Tested" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/youtube-monetization-truth-how-to-earn-100x-more-than-adsense-alone/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Dk3nooGF7Eo/mqdefault.jpg"
+           alt="YouTube Monetization Truth: How to Earn 100x More Than AdSense Alone" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Samsung Galaxy S26 Ultra Review 2026: Privacy Display, Cameras &amp; AI Features Tested</p>
+      <p>YouTube Monetization Truth: How to Earn 100x More Than AdSense Alone</p>
     </a>
-    <a href="https://trend4genz.fun/video/13-secret-whatsapp-features-coming-may-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oAM177neS3w/mqdefault.jpg"
-           alt="13 Secret WhatsApp Features Coming in May 2026 You Need to Try" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-microchips-work-ibm-cto-explains-transistors-ai-chips/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/83F1GSUsmzo/mqdefault.jpg"
+           alt="How Microchips Work: IBM CTO Explains Transistors, AI Chips &amp; More" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>13 Secret WhatsApp Features Coming in May 2026 You Need to Try</p>
+      <p>How Microchips Work: IBM CTO Explains Transistors, AI Chips &amp; More</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/hU8mysZaPts?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

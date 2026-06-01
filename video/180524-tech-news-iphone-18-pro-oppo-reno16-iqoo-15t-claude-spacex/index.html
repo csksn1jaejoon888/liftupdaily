@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Dive deeper into these developments by exploring our curated guides on Apple’s
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/how-google-maps-grounding-lite-powers-accurate-ai-agents-with-real-world-data/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/e7gFaim6vLs/mqdefault.jpg"
-           alt="How Google Maps Grounding Lite Powers Accurate AI Agents with Real-World Data" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/east-african-cosmic-trap-music-fusion-akoth-jumadi-mr-lu-ted/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/4Ba-OKPbqJU/mqdefault.jpg"
+           alt="How East African Sounds Are Redefining Global Trap Music | Akoth Jumadi &amp; Mr. Lu" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Google Maps Grounding Lite Powers Accurate AI Agents with Real-World Data</p>
+      <p>How East African Sounds Are Redefining Global Trap Music | Akoth Jumadi &amp; Mr. Lu</p>
     </a>
-    <a href="https://trend4genz.fun/video/kim-joo-ae-north-koreas-potential-heir-apparent/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/xnitCuH-OGo/mqdefault.jpg"
-           alt="Is Kim Joo-ae North Korea’s future leader? Fashion, clues, and speculation" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-ai-coding-tools-for-developers-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/rWrw6j6X6Ys/mqdefault.jpg"
+           alt="Top 4 AI Coding Tools for Developers in 2026: Speed, Features &amp; Real-World Testing" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Is Kim Joo-ae North Korea’s future leader? Fashion, clues, and speculation</p>
+      <p>Top 4 AI Coding Tools for Developers in 2026: Speed, Features &amp; Real-World Testing</p>
     </a>
-    <a href="https://trend4genz.fun/video/modern-luxury-home-decor-ideas-transform-your-space/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/L4Sk_MvGZ10/mqdefault.jpg"
-           alt="100+ Modern Luxury Home Decor Ideas for a Stylish Lifestyle" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/build-ai-powered-self-running-business-in-16-minutes/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Baa71rPgxvA/mqdefault.jpg"
+           alt="How to Build a Self-Running AI Business in 16 Minutes (75% Faster Workflow)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>100+ Modern Luxury Home Decor Ideas for a Stylish Lifestyle</p>
+      <p>How to Build a Self-Running AI Business in 16 Minutes (75% Faster Workflow)</p>
     </a>
-    <a href="https://trend4genz.fun/video/top-ai-remote-jobs-100k-no-degree-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/PuTzFyPm47A/mqdefault.jpg"
-           alt="5 High-Paying AI Remote Jobs That Don’t Require a Tech Degree" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/open-source-ai-2026-guide-build-agents-no-code/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/1uCE0uoKXL8/mqdefault.jpg"
+           alt="How to Build Open Source AI Agents in 2026: No-Code &amp; Code Guide" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 High-Paying AI Remote Jobs That Don’t Require a Tech Degree</p>
+      <p>How to Build Open Source AI Agents in 2026: No-Code &amp; Code Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-proven-patterns-of-top-selling-etsy-digital-product-shops/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/M4LQG9GHJ44/mqdefault.jpg"
-           alt="5 Proven Patterns of Top-Selling Etsy Digital Product Shops" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-code-tutorial-build-production-grade-apps-10x-faster/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/IuyVVtr1uhY/mqdefault.jpg"
+           alt="Claude Code Tutorial: Build Production-Grade Apps 10x Faster with AI" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Proven Patterns of Top-Selling Etsy Digital Product Shops</p>
+      <p>Claude Code Tutorial: Build Production-Grade Apps 10x Faster with AI</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-skills-2026-prompting-agents-coding-open-source/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/jm2jBW462bU/mqdefault.jpg"
-           alt="Top AI Skills You Must Learn in 2026 to Stay Ahead" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/top-tech-jobs-2025-high-demand-salaries/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/fZmQ_aPXJAM/mqdefault.jpg"
+           alt="Best Tech Jobs for 2025: High Demand &amp; Six-Figure Salaries" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Top AI Skills You Must Learn in 2026 to Stay Ahead</p>
+      <p>Best Tech Jobs for 2025: High Demand &amp; Six-Figure Salaries</p>
     </a>
-    <a href="https://trend4genz.fun/video/ces-2026-top-tech-innovations-you-cant-miss/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/jYLlOjyLojg/mqdefault.jpg"
-           alt="CES 2026: 20 Mind-Blowing Tech Innovations You Need to See Now" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/openclaw-full-setup-guide-autonomous-ai-agents/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oOCN30ulVyo/mqdefault.jpg"
+           alt="How to Build a Fully Autonomous OpenClaw AI Agent System" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>CES 2026: 20 Mind-Blowing Tech Innovations You Need to See Now</p>
+      <p>How to Build a Fully Autonomous OpenClaw AI Agent System</p>
     </a>
-    <a href="https://trend4genz.fun/video/14-proven-ai-money-making-strategies-for-2026-ranked-by-expert/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/K8Ros5RhJW4/mqdefault.jpg"
-           alt="14 Proven AI Money-Making Strategies for 2026 (Ranked by Expert)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-ai-brain-mapping-2026-connectome-mogen/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/CdJjph8-2Oc/mqdefault.jpg"
+           alt="Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>14 Proven AI Money-Making Strategies for 2026 (Ranked by Expert)</p>
+      <p>Google’s AI Brain Mapping Breakthrough: What It Means for Your Privacy in 2026</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/nuDptYrkpbk?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

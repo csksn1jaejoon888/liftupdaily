@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,11 +138,11 @@ Explore NASA’s Artemis program further with our in-depth guides on the SLS roc
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/5-ai-business-ideas-teens-can-launch-in-2026-no-coding-1k-month/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/X_lxuGsFu4M/mqdefault.jpg"
-           alt="5 AI Business Ideas Teens Can Launch in 2026 (No Coding, $1K+/Month)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/cloud-code-ai-development-course-production-grade-apps/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-vqGZaThouQ/mqdefault.jpg"
+           alt="Build Production AI Apps with Cloud Code in Days, Not Weeks" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 AI Business Ideas Teens Can Launch in 2026 (No Coding, $1K+/Month)</p>
+      <p>Build Production AI Apps with Cloud Code in Days, Not Weeks</p>
     </a>
     <a href="https://trend4genz.fun/video/openai-anthropic-ipo-race-2025-ai-market/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/59mADVHjmVw/mqdefault.jpg"
@@ -150,49 +150,72 @@ Explore NASA’s Artemis program further with our in-depth guides on the SLS roc
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>Why OpenAI May IPO Before Anthropic in 2025’s AI Race</p>
     </a>
-    <a href="https://trend4genz.fun/video/samsung-smartphone-deals-flipkart-amazon-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/az3qEQbQaE0/mqdefault.jpg"
-           alt="Best Samsung Smartphones Under ₹60,000 in 2025: Flipkart &amp; Amazon Deals" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/15-must-have-gadgets-to-transform-your-home-workspace-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/11JpYYDo6-s/mqdefault.jpg"
+           alt="15 Must-Have Gadgets to Transform Your Home Workspace in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Best Samsung Smartphones Under ₹60,000 in 2025: Flipkart &amp; Amazon Deals</p>
+      <p>15 Must-Have Gadgets to Transform Your Home Workspace in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/master-ai-prompting-2025-zero-shot-to-advanced-techniques/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/pwWBcsxEoLk/mqdefault.jpg"
-           alt="AI Prompting Mastery in 2025: From Zero-Shot to Advanced Techniques" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-hidden-youtube-niches-that-pay-1k-200k-monthly-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/54QHjLRqc3M/mqdefault.jpg"
+           alt="5 Hidden YouTube Niches That Pay $1K–$200K Monthly in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI Prompting Mastery in 2025: From Zero-Shot to Advanced Techniques</p>
+      <p>5 Hidden YouTube Niches That Pay $1K–$200K Monthly in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/top-tech-jobs-2025-high-demand-salaries/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/fZmQ_aPXJAM/mqdefault.jpg"
-           alt="Best Tech Jobs for 2025: High Demand &amp; Six-Figure Salaries" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-ai-recommendations-will-dominate-business-discovery-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
+           alt="How AI Recommendations Will Dominate Business Discovery by 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Best Tech Jobs for 2025: High Demand &amp; Six-Figure Salaries</p>
+      <p>How AI Recommendations Will Dominate Business Discovery by 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/linux-kernel-exploit-cve-2026-copay-fail-732-byte-python-script/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/lkifbWtxxlk/mqdefault.jpg"
-           alt="Critical Linux Kernel Exploit (CVE-2026) Lets Attackers Gain Root Access via 732-Byte Python Script" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/8-ai-tools-saving-1000-hours-year-2026-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/6sm6C_ra2ek/mqdefault.jpg"
+           alt="8 AI Tools That Save 1000 Hours Annually in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Critical Linux Kernel Exploit (CVE-2026) Lets Attackers Gain Root Access via 732-Byte Python Script</p>
+      <p>8 AI Tools That Save 1000 Hours Annually in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/xiaomi-17t-oppo-reno-16-vivo-x500-pro-max-latest-tech-launches/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/KjOdJk8nYxo/mqdefault.jpg"
-           alt="Xiaomi 17T, OPPO Reno 16, Vivo X500 Pro Max: Latest Tech Launches &amp; AI Breakthroughs" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/iphone-17e-vs-17-pro-max-is-the-500-savings-worth-it/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/BL9UE9_m-1Y/mqdefault.jpg"
+           alt="iPhone 17E vs 17 Pro Max: Is the $500 Savings Worth It?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Xiaomi 17T, OPPO Reno 16, Vivo X500 Pro Max: Latest Tech Launches &amp; AI Breakthroughs</p>
+      <p>iPhone 17E vs 17 Pro Max: Is the $500 Savings Worth It?</p>
     </a>
-    <a href="https://trend4genz.fun/video/claude-code-source-leak-exposes-ai-agent-architecture/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ESwH-_xFS_M/mqdefault.jpg"
-           alt="Claude Code Source Code Leak Reveals Hidden AI Features and Architecture" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/android-17-ai-revolution-features-release-date/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/3wj0MxHz6Z4/mqdefault.jpg"
+           alt="Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Claude Code Source Code Leak Reveals Hidden AI Features and Architecture</p>
+      <p>Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/NnMReiQ9Fkk?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

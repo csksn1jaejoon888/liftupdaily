@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Dive deeper into the science behind LIGO’s groundbreaking work in our exclusiv
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/ai-agents-2026-no-code-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ibFJ--CH3cQ/mqdefault.jpg"
-           alt="How to Build AI Agents in 2026 Without Coding (Step-by-Step)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/jerome-powell-fed-legacy-inflation-covid-climate/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/yUPJYuH19YM/mqdefault.jpg"
+           alt="Jerome Powell’s Fed Legacy: Inflation, COVID, and Climate Risks" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build AI Agents in 2026 Without Coding (Step-by-Step)</p>
+      <p>Jerome Powell’s Fed Legacy: Inflation, COVID, and Climate Risks</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-affordable-electric-bikes-2026-comparison-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/5K06S-uDVes/mqdefault.jpg"
-           alt="Top 5 Budget E-Bikes for City &amp; Off-Road in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-driven-software-development-workflow-2025-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/3VQhdXcQ5qI/mqdefault.jpg"
+           alt="How AI is Transforming Software Development in 2025: A Complete Workflow Guide" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Top 5 Budget E-Bikes for City &amp; Off-Road in 2026</p>
+      <p>How AI is Transforming Software Development in 2025: A Complete Workflow Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/mac-vs-windows-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/aJSK3HZlvnU/mqdefault.jpg"
-           alt="Mac vs Windows 2026: Which Laptop Wins in Performance, Build &amp; Value?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-pay-yourself-295k-year-selling-digital-products/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/6yzgWMwmzL4/mqdefault.jpg"
+           alt="How to Pay Yourself $295K/Year Selling Digital Products (Step-by-Step Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Mac vs Windows 2026: Which Laptop Wins in Performance, Build &amp; Value?</p>
+      <p>How to Pay Yourself $295K/Year Selling Digital Products (Step-by-Step Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-build-a-brain-rot-wordle-clone-in-react-with-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Z_Z_PKUTLno/mqdefault.jpg"
-           alt="Build a Brain-Rot Wordle Clone in React with AI in Under an Hour" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-top-10-products-ranked-by-experts/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/IcVZ-TORXlw/mqdefault.jpg"
+           alt="Apple’s 10 Most Iconic Products Ranked by Experts" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Build a Brain-Rot Wordle Clone in React with AI in Under an Hour</p>
+      <p>Apple’s 10 Most Iconic Products Ranked by Experts</p>
     </a>
-    <a href="https://trend4genz.fun/video/20-ai-devices-2026-future-tech/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/usiTK0ldBPI/mqdefault.jpg"
-           alt="20 AI Gadgets That Will Redefine Your Life in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/git-github-beginners-guide-2026-version-control-collaboration/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/e9D7nnoCbQ0/mqdefault.jpg"
+           alt="Git &amp; GitHub for Beginners 2026: Master Version Control &amp; Collaboration in 2 Hours" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>20 AI Gadgets That Will Redefine Your Life in 2026</p>
+      <p>Git &amp; GitHub for Beginners 2026: Master Version Control &amp; Collaboration in 2 Hours</p>
     </a>
-    <a href="https://trend4genz.fun/video/iphone-18-pro-leaks-new-chip-camera-and-satellite-browsing-revealed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/tW2Ecn3R7Fk/mqdefault.jpg"
-           alt="iPhone 18 Pro Leaks: New Chip, Camera, and Satellite Browsing Revealed" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-magsafe-discontinuation-rumor-debunked/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/fp9WTkkpC48/mqdefault.jpg"
+           alt="Will Apple Really Drop MagSafe in Future iPhones?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>iPhone 18 Pro Leaks: New Chip, Camera, and Satellite Browsing Revealed</p>
+      <p>Will Apple Really Drop MagSafe in Future iPhones?</p>
     </a>
-    <a href="https://trend4genz.fun/video/sony-wf-1000xm6-vs-airpods-pro-3-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/THl9fGnQW94/mqdefault.jpg"
-           alt="Sony WF-1000XM6 vs AirPods Pro 3: Which Flagship Earbuds Win in 2026?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/canva-branding-kit-templates-etsy-sell-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/jLmk6DO3WkM/mqdefault.jpg"
+           alt="How to Create Canva Branding Kits That Sell on Etsy (Step-by-Step Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Sony WF-1000XM6 vs AirPods Pro 3: Which Flagship Earbuds Win in 2026?</p>
+      <p>How to Create Canva Branding Kits That Sell on Etsy (Step-by-Step Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/agentic-consent-in-ai-how-dynamic-permissions-ensure-safe-responsible-automation/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/V_qJIrvWyRQ/mqdefault.jpg"
-           alt="Agentic Consent in AI: How Dynamic Permissions Ensure Safe, Responsible Automation" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-ai-stock-pivots-like-allbirds-s-4b-shoe-company-flip-are-failing/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/DTlzvhNb_qY/mqdefault.jpg"
+           alt="Why AI Stock Pivots Like Allbirds’s $4B Shoe Company Flip Are Failing" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Agentic Consent in AI: How Dynamic Permissions Ensure Safe, Responsible Automation</p>
+      <p>Why AI Stock Pivots Like Allbirds’s $4B Shoe Company Flip Are Failing</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/31he9S8eEzc?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

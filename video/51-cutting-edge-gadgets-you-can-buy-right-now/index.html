@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to upgrade your toolkit? Watch the full video above to discover which gadg
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/gemini-api-agents-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/OdrOmc_RX8A/mqdefault.jpg"
-           alt="How to Build Real-Time AI Agents with Google's Gemini API in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/artemis-ii-mission-timeline-heat-shield-success/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/NnMReiQ9Fkk/mqdefault.jpg"
+           alt="Artemis II Mission: Full Flight Timeline and Critical Heat Shield Test" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build Real-Time AI Agents with Google's Gemini API in 2025</p>
+      <p>Artemis II Mission: Full Flight Timeline and Critical Heat Shield Test</p>
     </a>
-    <a href="https://trend4genz.fun/video/15-game-changing-car-gadgets-amazon-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/mRTBSJyRG5I/mqdefault.jpg"
-           alt="15 Must-Have Car Gadgets on Amazon in 2026 for Smarter, Safer Driving" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-failed-replace-developers-2026-truth/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/v3tLa5nHz-M/mqdefault.jpg"
+           alt="Why AI Won’t Replace Developers in 2026 (And What Actually Killed Tech Jobs)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>15 Must-Have Car Gadgets on Amazon in 2026 for Smarter, Safer Driving</p>
+      <p>Why AI Won’t Replace Developers in 2026 (And What Actually Killed Tech Jobs)</p>
     </a>
-    <a href="https://trend4genz.fun/video/ibm-quantum-ai-revolution-dan-ives-wedbush/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/n3BlIhRs-VI/mqdefault.jpg"
-           alt="IBM’s Quantum &amp; AI Bet Could Spark a $4T Tech Revolution" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/top-15-smart-home-gadgets-2026-transforming-modern-living/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/uHk9hsZ-Gpg/mqdefault.jpg"
+           alt="15 Smart Home Gadgets for 2026 That Will Change Your Life" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>IBM’s Quantum &amp; AI Bet Could Spark a $4T Tech Revolution</p>
+      <p>15 Smart Home Gadgets for 2026 That Will Change Your Life</p>
     </a>
-    <a href="https://trend4genz.fun/video/yartsa-gunbu-worlds-most-expensive-fungus/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/R1wW1NHYty8/mqdefault.jpg"
-           alt="Why Yartsa Gunbu Fungus Costs Thousands Per Pound" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-amazon-gadgets-2026-smart-tech/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/UpmihdDasyk/mqdefault.jpg"
+           alt="20 Must-Have Amazon Gadgets for 2026: Smart Tech That Upgrades Daily Life" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why Yartsa Gunbu Fungus Costs Thousands Per Pound</p>
+      <p>20 Must-Have Amazon Gadgets for 2026: Smart Tech That Upgrades Daily Life</p>
     </a>
-    <a href="https://trend4genz.fun/video/rarest-limited-edition-tech-2026-reviewed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/UjRWQND6_ro/mqdefault.jpg"
-           alt="2026’s Rarest Tech: 10 Ultra-Limited Edition Gadgets Tested" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/15-mini-evs-replace-car-2026-urban-mobility-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/xs1n_jc5YIg/mqdefault.jpg"
+           alt="15 Tiny EVs That Could Replace Your Car by 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>2026’s Rarest Tech: 10 Ultra-Limited Edition Gadgets Tested</p>
+      <p>15 Tiny EVs That Could Replace Your Car by 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-smartglasses-buyers-guide-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ND0PIidOD-E/mqdefault.jpg"
-           alt="Best AI Smart Glasses in 2026: Ultimate Buyer’s Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-gemini-notebooklm-integration-guide-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Vn8NgGgVGCc/mqdefault.jpg"
+           alt="How Google Gemini + NotebookLM Supercharge Your AI Workflow in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Best AI Smart Glasses in 2026: Ultimate Buyer’s Guide</p>
+      <p>How Google Gemini + NotebookLM Supercharge Your AI Workflow in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/xiaomi-17t-oppo-reno-16-vivo-x500-pro-max-latest-tech-launches/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/KjOdJk8nYxo/mqdefault.jpg"
-           alt="Xiaomi 17T, OPPO Reno 16, Vivo X500 Pro Max: Latest Tech Launches &amp; AI Breakthroughs" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/run-open-source-ai-models-guide-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/vehYE1DfkZg/mqdefault.jpg"
+           alt="How to Run Open Source AI Models in 2026: 6 Proven Methods" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Xiaomi 17T, OPPO Reno 16, Vivo X500 Pro Max: Latest Tech Launches &amp; AI Breakthroughs</p>
+      <p>How to Run Open Source AI Models in 2026: 6 Proven Methods</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-upcoming-jobs-2026-2030-career-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
-           alt="Top 10 Fastest-Growing Jobs for 2026-2030 (Backed by World Economic Forum)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/quantum-lasers-ligo-gravitational-waves-breakthrough/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/wBpgtW2CSm8/mqdefault.jpg"
+           alt="How Quantum Lasers Powered LIGO to Detect Gravitational Waves" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Top 10 Fastest-Growing Jobs for 2026-2030 (Backed by World Economic Forum)</p>
+      <p>How Quantum Lasers Powered LIGO to Detect Gravitational Waves</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/rB3zuJJ8uZA?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

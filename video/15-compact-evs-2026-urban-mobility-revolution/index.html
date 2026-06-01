@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Discover how these pint-sized powerhouses are transforming city driving by explo
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/from-broke-to-51k-month-selling-digital-products/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/dQz4T2_OTUM/mqdefault.jpg"
-           alt="How to go from broke to $51K/month with digital products (real story)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/trump-trade-war-stock-market-crash-2025-expert-analysis/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/1E9T6Ze0GL4/mqdefault.jpg"
+           alt="Is Trump Crashing the Stock Market on Purpose? 3 Key Triggers Explained" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to go from broke to $51K/month with digital products (real story)</p>
+      <p>Is Trump Crashing the Stock Market on Purpose? 3 Key Triggers Explained</p>
     </a>
-    <a href="https://trend4genz.fun/video/android-17-ai-revolution-features-release-date/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/3wj0MxHz6Z4/mqdefault.jpg"
-           alt="Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-productivity-system-taught-to-6642-employees/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oO9GLC2iKy8/mqdefault.jpg"
+           alt="The Google Productivity System That Boosted 6,642 Employees' Efficiency" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features</p>
+      <p>The Google Productivity System That Boosted 6,642 Employees' Efficiency</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-a-nurse-s-super-smell-detects-parkinson-s-disease-early-joy-milne-s-breakthr/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oCtLmeo56Jo/mqdefault.jpg"
-           alt="How a Nurse’s Super-Smell Detects Parkinson’s Disease Early: Joy Milne’s Breakthrough" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/affordable-family-smart-home-automation-jonathan-canada/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5SUCahWX1QE/mqdefault.jpg"
+           alt="How One Canadian Family Built a 300+ Automation Smart Home on a Budget" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How a Nurse’s Super-Smell Detects Parkinson’s Disease Early: Joy Milne’s Breakthrough</p>
+      <p>How One Canadian Family Built a 300+ Automation Smart Home on a Budget</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-agent-operating-systems-the-missing-infrastructure-for-scalable-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/IVGjBxqygmI/mqdefault.jpg"
-           alt="Why AI Agents Need an Operating System: The Hidden Backbone of Scalable AI" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/35-must-have-car-gadgets-transform-driving-experience/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/TspXY9sh6e4/mqdefault.jpg"
+           alt="35 Must-Have Car Gadgets That Will Transform Your Driving Experience in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why AI Agents Need an Operating System: The Hidden Backbone of Scalable AI</p>
+      <p>35 Must-Have Car Gadgets That Will Transform Your Driving Experience in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/smart-project-development-strategies-for-developers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Fuzvl32N6sg/mqdefault.jpg"
-           alt="How Top Developers Build Projects 10x Faster with AI and Templates" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-homepod-mini-2-delayed-strategy-siri-upgrade-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/XgZJIxk6aYw/mqdefault.jpg"
+           alt="Why Apple Delayed HomePod Mini 2 Until 2026 (And What’s Coming)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Top Developers Build Projects 10x Faster with AI and Templates</p>
+      <p>Why Apple Delayed HomePod Mini 2 Until 2026 (And What’s Coming)</p>
     </a>
-    <a href="https://trend4genz.fun/video/apple-macbook-ultra-2025-touchscreen-oled-and-m5-pro-rumors-explained/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/fWAFMMFIF4s/mqdefault.jpg"
-           alt="Apple MacBook Ultra 2025: Touchscreen, OLED, and M5 Pro Rumors Explained" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-smart-home-security-gadgets-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/3NADCm4gidA/mqdefault.jpg"
+           alt="10 Must-Have Smart Home Security Gadgets for 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Apple MacBook Ultra 2025: Touchscreen, OLED, and M5 Pro Rumors Explained</p>
+      <p>10 Must-Have Smart Home Security Gadgets for 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/ancient-walking-whales-how-land-mammals-evolved-back-to-the-sea/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/i0-TDxqkub4/mqdefault.jpg"
-           alt="Ancient Walking Whales: How Land Mammals Evolved Back to the Sea" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-cowork-optimization-tips/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
+           alt="5 Proven Claude Co-Work Tips to Boost Productivity and Cut Token Costs" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Ancient Walking Whales: How Land Mammals Evolved Back to the Sea</p>
+      <p>5 Proven Claude Co-Work Tips to Boost Productivity and Cut Token Costs</p>
     </a>
-    <a href="https://trend4genz.fun/video/blockchain-developer-roadmap-10-months-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/gdiao7L9GjE/mqdefault.jpg"
-           alt="How to Become a Blockchain Developer in 10 Months: Step-by-Step Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-driven-outages-how-ai-is-breaking-the-internet-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/44JBZwAsfJI/mqdefault.jpg"
+           alt="AI Outages Are Breaking the Internet: What Developers Must Know in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Become a Blockchain Developer in 10 Months: Step-by-Step Guide</p>
+      <p>AI Outages Are Breaking the Internet: What Developers Must Know in 2025</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/xXGsSdkuQmM?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

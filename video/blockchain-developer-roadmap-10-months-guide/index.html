@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to start your blockchain journey? Watch the full video above for detailed 
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/how-top-1-professionals-build-ai-powered-presentations-that-actually-persuade/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ZpXN9M0WLQ4/mqdefault.jpg"
-           alt="How Top 1% Professionals Build AI-Powered Presentations That Actually Persuade" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/quantum-mechanics-atomic-clocks-redefine-reality/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5YZYfmAc4wY/mqdefault.jpg"
+           alt="How Atomic Clocks Reveal Quantum Mechanicss Mind-Bending Truths" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Top 1% Professionals Build AI-Powered Presentations That Actually Persuade</p>
+      <p>How Atomic Clocks Reveal Quantum Mechanicss Mind-Bending Truths</p>
     </a>
-    <a href="https://trend4genz.fun/video/does-your-smartphone-listen-to-you-the-truth-about-microphone-tracking-how-to-bl/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Ywz87ZcCTxk/mqdefault.jpg"
-           alt="Does Your Smartphone Listen to You? The Truth About Microphone Tracking &amp; How to Block It" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-trust-calibration-guide-human-ai-alignment/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7UBmLXP_LKw/mqdefault.jpg"
+           alt="How to Align AI Capabilities with User Intent for Trustworthy AI Systems" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Does Your Smartphone Listen to You? The Truth About Microphone Tracking &amp; How to Block It</p>
+      <p>How to Align AI Capabilities with User Intent for Trustworthy AI Systems</p>
     </a>
-    <a href="https://trend4genz.fun/video/6-best-claude-code-skills-in-2024-full-setup-expert-tutorial/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
-           alt="6 Best Claude Code Skills : Full Setup &amp; Expert Tutorial" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/digital-architect-method-students-10k-month/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/BvDAUqLQ-uc/mqdefault.jpg"
+           alt="How to Make $10,000/Month as a Student (No Degree Needed)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>6 Best Claude Code Skills : Full Setup &amp; Expert Tutorial</p>
+      <p>How to Make $10,000/Month as a Student (No Degree Needed)</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-break-into-tech-in-2026-after-ai-layoffs-the-new-rules/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Xt1T2UAEq0Q/mqdefault.jpg"
-           alt="How to Break Into Tech in 2026 After AI Layoffs: The New Rules" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-gadgets-2026-future-of-smart-living/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/92RaIs0Osvo/mqdefault.jpg"
+           alt="25 AI Gadgets That Will Redefine Smart Living by 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Break Into Tech in 2026 After AI Layoffs: The New Rules</p>
+      <p>25 AI Gadgets That Will Redefine Smart Living by 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/trump-era-market-volatility-ai-and-fomo-drive-stock-recovery/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/_vhDblAOLnY/mqdefault.jpg"
-           alt="Trump’s Market Moves: How AI, FOMO, and Tariffs Shape Stock Swings" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-plus-smartphone-india-review-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/1GofQ1ppDSk/mqdefault.jpg"
+           alt="AI+ Smartphone in India: Honest Review &amp; Red Flags Exposed" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Trump’s Market Moves: How AI, FOMO, and Tariffs Shape Stock Swings</p>
+      <p>AI+ Smartphone in India: Honest Review &amp; Red Flags Exposed</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-flow-tools-creators-workshop-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/_qWItNk5a9Q/mqdefault.jpg"
-           alt="How Google Flow Tools Empower Creators with AI-Powered Customization" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/5-proven-strategies-to-take-control-of-your-life-and-build-lasting-success/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/a4sq1CKPl0E/mqdefault.jpg"
+           alt="5 Science-Backed Ways to Take Control of Your Life and Build Lasting Success" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Google Flow Tools Empower Creators with AI-Powered Customization</p>
+      <p>5 Science-Backed Ways to Take Control of Your Life and Build Lasting Success</p>
     </a>
-    <a href="https://trend4genz.fun/video/run-local-llms-with-ollama-mcp-in-free-private-tool-connected/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/GAyNvq6Ayps/mqdefault.jpg"
-           alt="Run Local LLMs with Ollama &amp; MCP : Free, Private &amp; Tool-Connected" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-mac-studio-ai-cluster-rdma-breakthrough/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/bFgTxr5yst0/mqdefault.jpg"
+           alt="Apple’s RDMA Update Makes Mac Studio AI Clustering 100x Faster" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Run Local LLMs with Ollama &amp; MCP : Free, Private &amp; Tool-Connected</p>
+      <p>Apple’s RDMA Update Makes Mac Studio AI Clustering 100x Faster</p>
     </a>
-    <a href="https://trend4genz.fun/video/9-step-ai-app-development-roadmap-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/xEr0hRbK_Xo/mqdefault.jpg"
-           alt="How to Build an AI App in 2026: 9-Step Proven Roadmap for Developers" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/visual-studio-code-beginners-guide-2026-setup-features-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/bj6QSx22zXs/mqdefault.jpg"
+           alt="Visual Studio Code for Beginners 2026: Free Setup, AI Tools &amp; Pro Tips" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build an AI App in 2026: 9-Step Proven Roadmap for Developers</p>
+      <p>Visual Studio Code for Beginners 2026: Free Setup, AI Tools &amp; Pro Tips</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/gdiao7L9GjE?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

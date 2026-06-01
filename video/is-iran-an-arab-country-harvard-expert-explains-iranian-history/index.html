@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Dive deeper into Iran’s history and identity by watching the full discussion w
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/ai-agent-operating-systems-the-missing-infrastructure-for-scalable-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/IVGjBxqygmI/mqdefault.jpg"
-           alt="Why AI Agents Need an Operating System: The Hidden Backbone of Scalable AI" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-the-job-market-is-broken-in-2025-and-how-to-win-anyway/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/YuI2x8I8Pgw/mqdefault.jpg"
+           alt="Why the Job Market Is Broken in 2025 (And How to Win Anyway)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why AI Agents Need an Operating System: The Hidden Backbone of Scalable AI</p>
+      <p>Why the Job Market Is Broken in 2025 (And How to Win Anyway)</p>
     </a>
-    <a href="https://trend4genz.fun/video/18-game-changing-workspace-gadgets-2025-reviewed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ahmVCw_Cunk/mqdefault.jpg"
-           alt="18 Must-Have Workspace Gadgets for Maximum Productivity in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/apple-mac-studio-ai-cluster-rdma-breakthrough/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/bFgTxr5yst0/mqdefault.jpg"
+           alt="Apple’s RDMA Update Makes Mac Studio AI Clustering 100x Faster" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>18 Must-Have Workspace Gadgets for Maximum Productivity in 2025</p>
+      <p>Apple’s RDMA Update Makes Mac Studio AI Clustering 100x Faster</p>
     </a>
-    <a href="https://trend4genz.fun/video/honor-magicpad-4-review-2026-premium-tablet-under-600/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/gMxpssOvz7I/mqdefault.jpg"
-           alt="Honor MagicPad 4 Review: A $600 Tablet That Outperforms iPad Pro" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-driven-software-development-workflow-2025-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/3VQhdXcQ5qI/mqdefault.jpg"
+           alt="How AI is Transforming Software Development in 2025: A Complete Workflow Guide" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Honor MagicPad 4 Review: A $600 Tablet That Outperforms iPad Pro</p>
+      <p>How AI is Transforming Software Development in 2025: A Complete Workflow Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/free-phone-calls-with-claude-code-voip-integration-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/cT22fTzotYc/mqdefault.jpg"
-           alt="How to Make Free Phone Calls to Claude Code Using VoIP" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/meaning-vs-happiness-why-pursuing-happiness-can-backfire/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/76_9x4YyFyQ/mqdefault.jpg"
+           alt="Why Chasing Happiness Can Make You Less Happy (Backed by Science)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Make Free Phone Calls to Claude Code Using VoIP</p>
+      <p>Why Chasing Happiness Can Make You Less Happy (Backed by Science)</p>
     </a>
-    <a href="https://trend4genz.fun/video/microsoft-windows-k2-update-2026-release-details/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/fz_liHr2_Tg/mqdefault.jpg"
-           alt="Microsoft Windows K2 Update: Major 2026 Fixes for Lag, Bloatware &amp; AI Overload" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/smart-project-development-strategies-for-developers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Fuzvl32N6sg/mqdefault.jpg"
+           alt="How Top Developers Build Projects 10x Faster with AI and Templates" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Microsoft Windows K2 Update: Major 2026 Fixes for Lag, Bloatware &amp; AI Overload</p>
+      <p>How Top Developers Build Projects 10x Faster with AI and Templates</p>
     </a>
-    <a href="https://trend4genz.fun/video/android-17-ai-revolution-features-release-date/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/3wj0MxHz6Z4/mqdefault.jpg"
-           alt="Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/xai-replaces-java-scala-with-rust-python-ai-revolution/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-8JOlCvA4Qs/mqdefault.jpg"
+           alt="XAI Dumps Java for Rust: How AI is Rewriting Recommendation Systems" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features</p>
+      <p>XAI Dumps Java for Rust: How AI is Rewriting Recommendation Systems</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-membership-business-model-2026-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/fcmwcO7EX1g/mqdefault.jpg"
-           alt="How to Build a $5K/Week AI Membership in 2026 (Step-by-Step)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-build-ambition-without-burning-out-lessons-from-a-renowned-chef/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5ICKzlt5dsw/mqdefault.jpg"
+           alt="How to Build Ambition Without Burning Out: Lessons from a Renowned Chef" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build a $5K/Week AI Membership in 2026 (Step-by-Step)</p>
+      <p>How to Build Ambition Without Burning Out: Lessons from a Renowned Chef</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-dollar-daily-investment-challenge-results-one-year-later/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/hEreQRqY334/mqdefault.jpg"
-           alt="Investing $5 Daily for a Year: Real Results and Lessons Learned" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/400k-digital-products-from-home-real-life/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/eDMRL9Xsli0/mqdefault.jpg"
+           alt="What running a $400K digital product business from home really looks like" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Investing $5 Daily for a Year: Real Results and Lessons Learned</p>
+      <p>What running a $400K digital product business from home really looks like</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/r5ClTzfCvQ4?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

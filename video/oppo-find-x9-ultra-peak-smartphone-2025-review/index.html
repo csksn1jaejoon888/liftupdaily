@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Curious how the Oppo Find X9 Ultra stacks up against rivals like the Samsung Gal
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/trump-1-8b-fund-house-budget-committee-reconciliation/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/F0Z3SxQRW6M/mqdefault.jpg"
-           alt="House Budget Chair Explains $1.8B Trump Fund and Taxpayer Guardrails" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/oneplus-ace-6-ultra-review-india-launch-specs-price/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/_iPyvRW1zCM/mqdefault.jpg"
+           alt="OnePlus Ace 6 Ultra Review: 165Hz Display, Dimensity 9500 &amp; 8600mAh Battery" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>House Budget Chair Explains $1.8B Trump Fund and Taxpayer Guardrails</p>
+      <p>OnePlus Ace 6 Ultra Review: 165Hz Display, Dimensity 9500 &amp; 8600mAh Battery</p>
     </a>
-    <a href="https://trend4genz.fun/video/git-github-beginners-guide-2026-version-control-collaboration/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/e9D7nnoCbQ0/mqdefault.jpg"
-           alt="Git &amp; GitHub for Beginners 2026: Master Version Control &amp; Collaboration in 2 Hours" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-driven-scientific-discovery-2025-breakthroughs-that-outpace-human-cognition/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/dyx-JJgzJi4/mqdefault.jpg"
+           alt="How AI is Accelerating Scientific Discovery Beyond Human Limits in 2025" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Git &amp; GitHub for Beginners 2026: Master Version Control &amp; Collaboration in 2 Hours</p>
+      <p>How AI is Accelerating Scientific Discovery Beyond Human Limits in 2025</p>
     </a>
-    <a href="https://trend4genz.fun/video/sundar-pichai-google-io-2026-agents-cybersecurity-compute/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/9C20esBUf-Q/mqdefault.jpg"
-           alt="Sundar Pichai Reveals Google’s AI Agents, Cybersecurity &amp; Compute Bottlenecks at I/O 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/work-life-integration-system-for-busy-executives/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/9w0INwjTYdU/mqdefault.jpg"
+           alt="How High-Performers Design Their Calendar to Fit Everything (No Balance Needed)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Sundar Pichai Reveals Google’s AI Agents, Cybersecurity &amp; Compute Bottlenecks at I/O 2026</p>
+      <p>How High-Performers Design Their Calendar to Fit Everything (No Balance Needed)</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-proven-patterns-of-top-selling-etsy-digital-product-shops/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/M4LQG9GHJ44/mqdefault.jpg"
-           alt="5 Proven Patterns of Top-Selling Etsy Digital Product Shops" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-stay-consistent-the-science-backed-formula-for-long-term-success/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Aq6kt7qaylw/mqdefault.jpg"
+           alt="How to Stay Consistent: The Science-Backed Formula for Long-Term Success" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Proven Patterns of Top-Selling Etsy Digital Product Shops</p>
+      <p>How to Stay Consistent: The Science-Backed Formula for Long-Term Success</p>
     </a>
-    <a href="https://trend4genz.fun/video/android-17-ai-revolution-features-release-date/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/3wj0MxHz6Z4/mqdefault.jpg"
-           alt="Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-95-percent-of-youtubers-fail-and-how-the-top-5-survive/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/9iSGi8gaEMw/mqdefault.jpg"
+           alt="Why 95% of YouTubers Fail (And the 5% Secret to Success)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Android 17: Google’s AI-Powered OS with 10+ Game-Changing Features</p>
+      <p>Why 95% of YouTubers Fail (And the 5% Secret to Success)</p>
     </a>
-    <a href="https://trend4genz.fun/video/ios-27-features-siri-ai-photos-ultra-release/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/laIYOAKogPs/mqdefault.jpg"
-           alt="iOS 27: Apple’s Biggest Siri AI Upgrade and Foldable iPhone Support" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/6-essential-gadgets-to-maximize-new-laptop-performance/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Euixz8VfmHE/mqdefault.jpg"
+           alt="6 Must-Have Gadgets to Unlock Your New Laptop's Full Potential" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>iOS 27: Apple’s Biggest Siri AI Upgrade and Foldable iPhone Support</p>
+      <p>6 Must-Have Gadgets to Unlock Your New Laptop's Full Potential</p>
     </a>
-    <a href="https://trend4genz.fun/video/apple-mac-studio-ai-cluster-rdma-breakthrough/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/bFgTxr5yst0/mqdefault.jpg"
-           alt="Apple’s RDMA Update Makes Mac Studio AI Clustering 100x Faster" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/iphone-17e-vs-17-pro-max-is-the-500-savings-worth-it/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/BL9UE9_m-1Y/mqdefault.jpg"
+           alt="iPhone 17E vs 17 Pro Max: Is the $500 Savings Worth It?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Apple’s RDMA Update Makes Mac Studio AI Clustering 100x Faster</p>
+      <p>iPhone 17E vs 17 Pro Max: Is the $500 Savings Worth It?</p>
     </a>
-    <a href="https://trend4genz.fun/video/75-hard-digital-products-youtube-side-hustle-plan/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/1genL0kql5I/mqdefault.jpg"
-           alt="75-Hard Side Hustle Plan: Launch Digital Products on YouTube in 75 Days" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-a-slow-start-led-to-success-one-students-journey-from-diploma-to-researcher/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/E4OJKImk3Z8/mqdefault.jpg"
+           alt="How a Slow Start Led to Success: One Student's Journey from Diploma to Researcher" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>75-Hard Side Hustle Plan: Launch Digital Products on YouTube in 75 Days</p>
+      <p>How a Slow Start Led to Success: One Student's Journey from Diploma to Researcher</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/c347oYQO57A?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ Ready to ditch TikTok and upgrade your study game? Explore our full library of m
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/apple-macbook-neo-iphone-18-rumors-ai-supply-chain-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/TKYaj5ZTi3o/mqdefault.jpg"
-           alt="Apple Supply Chain Crisis: MacBook Neo Sales Surge, iPhone 18 Rumors &amp; AI Impact" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/100k-remote-jobs-no-degree/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Rl0R9MT8c_U/mqdefault.jpg"
+           alt="4 High-Paying Remote Jobs That Pay $100K+ Without a Degree" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Apple Supply Chain Crisis: MacBook Neo Sales Surge, iPhone 18 Rumors &amp; AI Impact</p>
+      <p>4 High-Paying Remote Jobs That Pay $100K+ Without a Degree</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-ai-updates-june-2025-notebooklm-gemini-music/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/aqabuf3zjag/mqdefault.jpg"
-           alt="Google AI Updates June 2025: NotebookLM, Gemini, and Music Generation" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/15-mini-evs-replace-car-2026-urban-mobility-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/xs1n_jc5YIg/mqdefault.jpg"
+           alt="15 Tiny EVs That Could Replace Your Car by 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Google AI Updates June 2025: NotebookLM, Gemini, and Music Generation</p>
+      <p>15 Tiny EVs That Could Replace Your Car by 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-lungs-work-breathing-asthma-COPD-lung-transplant/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/CSfY2rxpmBY/mqdefault.jpg"
-           alt="How Your Lungs Work: Breathing, Asthma, COPD &amp; Lung Transplants Explained" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/rarest-limited-edition-tech-2026-reviewed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/UjRWQND6_ro/mqdefault.jpg"
+           alt="2026’s Rarest Tech: 10 Ultra-Limited Edition Gadgets Tested" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Your Lungs Work: Breathing, Asthma, COPD &amp; Lung Transplants Explained</p>
+      <p>2026’s Rarest Tech: 10 Ultra-Limited Edition Gadgets Tested</p>
     </a>
-    <a href="https://trend4genz.fun/video/75-hard-digital-products-youtube-side-hustle-plan/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/1genL0kql5I/mqdefault.jpg"
-           alt="75-Hard Side Hustle Plan: Launch Digital Products on YouTube in 75 Days" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/sony-wf-1000xm6-vs-airpods-pro-3-2026-comparison/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/THl9fGnQW94/mqdefault.jpg"
+           alt="Sony WF-1000XM6 vs AirPods Pro 3: Which Flagship Earbuds Win in 2026?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>75-Hard Side Hustle Plan: Launch Digital Products on YouTube in 75 Days</p>
+      <p>Sony WF-1000XM6 vs AirPods Pro 3: Which Flagship Earbuds Win in 2026?</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-smartphones-for-productivity-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/A5UyHq6YQJc/mqdefault.jpg"
-           alt="7 Best Smartphones for Maximum Productivity in 2025" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-ai-artifacts-projects-skills-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
+           alt="Claude AI: 3 Hidden Features That Transform Your Workflow" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>7 Best Smartphones for Maximum Productivity in 2025</p>
+      <p>Claude AI: 3 Hidden Features That Transform Your Workflow</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-economy-career-ladder-skilled-trades-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/hU8mysZaPts/mqdefault.jpg"
-           alt="How AI is Creating High-Paying Skilled Trades Jobs Without a Degree" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/12345-things-developers-hate-about-programming/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/VQgKSLkUNvQ/mqdefault.jpg"
+           alt="10 Frustrations Every Developer Faces in Programming" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI is Creating High-Paying Skilled Trades Jobs Without a Degree</p>
+      <p>10 Frustrations Every Developer Faces in Programming</p>
     </a>
-    <a href="https://trend4genz.fun/video/open-source-ai-2026-guide-build-agents-no-code/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/1uCE0uoKXL8/mqdefault.jpg"
-           alt="How to Build Open Source AI Agents in 2026: No-Code &amp; Code Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/android-io-2026-gemini-intelligence-features-google-book/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/u--oAqpIwR0/mqdefault.jpg"
+           alt="Google’s Android I/O 2026: New Gemini Features &amp; Google Book Laptops Revealed" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Build Open Source AI Agents in 2026: No-Code &amp; Code Guide</p>
+      <p>Google’s Android I/O 2026: New Gemini Features &amp; Google Book Laptops Revealed</p>
     </a>
-    <a href="https://trend4genz.fun/video/trump-1-8b-fund-house-budget-committee-reconciliation/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/F0Z3SxQRW6M/mqdefault.jpg"
-           alt="House Budget Chair Explains $1.8B Trump Fund and Taxpayer Guardrails" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/2026-future-of-mobility-20-revolutionary-vehicles/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/VW5OM7vLVZE/mqdefault.jpg"
+           alt="2026’s Most Mind-Blowing Vehicles: Land, Air &amp; Water Breakthroughs" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>House Budget Chair Explains $1.8B Trump Fund and Taxpayer Guardrails</p>
+      <p>2026’s Most Mind-Blowing Vehicles: Land, Air &amp; Water Breakthroughs</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/tIdWQC6Crlc?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +

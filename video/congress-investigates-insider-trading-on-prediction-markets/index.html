@@ -123,7 +123,7 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('https://trend4genz.fun/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -138,61 +138,84 @@ This issue matters now because prediction markets are gaining traction as tools 
     </div>
     <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/ai-gadgets-2026-future-of-smart-living/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/92RaIs0Osvo/mqdefault.jpg"
-           alt="25 AI Gadgets That Will Redefine Smart Living by 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-ai-is-reshaping-software-engineering-in-2026-the-hidden-truth/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/WOPIoZuD1og/mqdefault.jpg"
+           alt="How AI is Reshaping Software Engineering in 2026: The Hidden Truth" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>25 AI Gadgets That Will Redefine Smart Living by 2026</p>
+      <p>How AI is Reshaping Software Engineering in 2026: The Hidden Truth</p>
     </a>
-    <a href="https://trend4genz.fun/video/top-6-ai-tools-for-youtube-growth-in-2025-tested-ranked/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/DkyddrXxGpo/mqdefault.jpg"
-           alt="Top 6 AI Tools for YouTube Growth in 2025 (Tested &amp; Ranked)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-learning-pyramid-5-layers-to-master-ai-in-30-days/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/L-xtvipow_0/mqdefault.jpg"
+           alt="Master AI in 30 Days: The 5-Layer Pyramid for Beginners" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Top 6 AI Tools for YouTube Growth in 2025 (Tested &amp; Ranked)</p>
+      <p>Master AI in 30 Days: The 5-Layer Pyramid for Beginners</p>
     </a>
-    <a href="https://trend4genz.fun/video/mo-gawdat-ai-strategy-2026-2027-survival-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/E0Q96IKXx6Q/mqdefault.jpg"
-           alt="Former Google X Exec Reveals How to Thrive in the AI-Driven 2026–2027 Job Market" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/xiaomi-17t-oppo-reno-16-vivo-x500-pro-max-latest-tech-launches/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/KjOdJk8nYxo/mqdefault.jpg"
+           alt="Xiaomi 17T, OPPO Reno 16, Vivo X500 Pro Max: Latest Tech Launches &amp; AI Breakthroughs" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Former Google X Exec Reveals How to Thrive in the AI-Driven 2026–2027 Job Market</p>
+      <p>Xiaomi 17T, OPPO Reno 16, Vivo X500 Pro Max: Latest Tech Launches &amp; AI Breakthroughs</p>
     </a>
-    <a href="https://trend4genz.fun/video/12345-things-developers-hate-about-programming/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/VQgKSLkUNvQ/mqdefault.jpg"
-           alt="10 Frustrations Every Developer Faces in Programming" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/gemini-robotics-er-1-6-guide-autonomous-agents/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/kCXQce1dtNE/mqdefault.jpg"
+           alt="Google DeepMind’s Gemini Robotics ER 1.6: Build Autonomous Robots with Spatial Reasoning" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>10 Frustrations Every Developer Faces in Programming</p>
+      <p>Google DeepMind’s Gemini Robotics ER 1.6: Build Autonomous Robots with Spatial Reasoning</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-skills-2026-prompting-agents-coding-open-source/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/jm2jBW462bU/mqdefault.jpg"
-           alt="Top AI Skills You Must Learn in 2026 to Stay Ahead" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/electric-buses-africa-sustainable-transport-revolution/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/kRfg5ZISJZ4/mqdefault.jpg"
+           alt="How Africa Is Leading the Electric Bus Revolution for Cleaner Cities" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Top AI Skills You Must Learn in 2026 to Stay Ahead</p>
+      <p>How Africa Is Leading the Electric Bus Revolution for Cleaner Cities</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-train-your-brain-for-creativity-in-the-digital-age-a-neuroscientist-s-gui/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/JZ4SHMDI-z0/mqdefault.jpg"
-           alt="How to Train Your Brain for Creativity in the Digital Age: A Neuroscientist’s Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-time-buy-phone-amazon-flipkart-summer-sale-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JJaDPm7xDJ0/mqdefault.jpg"
+           alt="Best Time to Buy a Smartphone in 2026: Amazon &amp; Flipkart Summer Sale Deals" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Train Your Brain for Creativity in the Digital Age: A Neuroscientist’s Guide</p>
+      <p>Best Time to Buy a Smartphone in 2026: Amazon &amp; Flipkart Summer Sale Deals</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-proven-patterns-of-top-selling-etsy-digital-product-shops/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/M4LQG9GHJ44/mqdefault.jpg"
-           alt="5 Proven Patterns of Top-Selling Etsy Digital Product Shops" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/canva-branding-kit-templates-etsy-sell-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/jLmk6DO3WkM/mqdefault.jpg"
+           alt="How to Create Canva Branding Kits That Sell on Etsy (Step-by-Step Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Proven Patterns of Top-Selling Etsy Digital Product Shops</p>
+      <p>How to Create Canva Branding Kits That Sell on Etsy (Step-by-Step Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-a-nurse-s-super-smell-detects-parkinson-s-disease-early-joy-milne-s-breakthr/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oCtLmeo56Jo/mqdefault.jpg"
-           alt="How a Nurse’s Super-Smell Detects Parkinson’s Disease Early: Joy Milne’s Breakthrough" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/future-aircraft-2026-revolutionizing-travel/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/mZ8SziMSgIs/mqdefault.jpg"
+           alt="15 Cutting-Edge Aircraft &amp; Flying Vehicles Coming in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How a Nurse’s Super-Smell Detects Parkinson’s Disease Early: Joy Milne’s Breakthrough</p>
+      <p>15 Cutting-Edge Aircraft &amp; Flying Vehicles Coming in 2026</p>
     </a></div>
   </div>
 </div>
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/WhcPqFw7PQA?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +
