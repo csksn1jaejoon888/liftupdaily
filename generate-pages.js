@@ -246,7 +246,8 @@ var _db = ${sliderDataJson};  // sudah ada dari slider data, reuse!
   var ai  = -1;
 
   function hl(t,q){
-    return t.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<em>$1</em>');
+    var esc=q.replace(/[.*+?^$\x7B\x7D()|[\]\\]/g,'\\$&');
+    return t.replace(new RegExp('('+esc+')','gi'),'<em>$1</em>');
   }
   function hide(){ sug.classList.remove('show'); sug.innerHTML=''; ai=-1; }
 
