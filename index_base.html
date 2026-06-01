@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link rel="icon" href="https://www.trend4genz.fun/logo.png" sizes="96x96" type="image/png"/>
+
+  <!-- PRIMARY SEO META TAGS -->
+  <title>Trend4GenZ – Latest Tech News, AI Trends & Digital Innovation</title>
+  <meta name="description" content="Trend4GenZ covers the latest in technology, artificial intelligence, software development, and digital innovation. Stay ahead with daily tech insights, AI breakthroughs, and trending video content."/>
+  <meta name="keywords" content="technology news, artificial intelligence, AI trends, software development, digital innovation, tech videos, machine learning, coding tutorials, startup news, future technology"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="author" content="Trend4GenZ"/>
+  <meta name="theme-color" content="#000000"/>
+
+  <link rel="preconnect" href="https://img.youtube.com"/>
+  <link rel="dns-prefetch" href="https://img.youtube.com"/>
+
+  <link rel="canonical" id="dynamic-canonical" href="https://www.trend4genz.fun/"/>
+  <meta http-equiv="content-language" content="en" id="meta-content-language"/>
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:site_name"   content="Trend4GenZ"/>
+  <meta property="og:locale"      content="en_US"/>
+  <meta property="og:type"        content="website"                                     id="og-type"/>
+  <meta property="og:title"       content="Trend4GenZ – Latest Tech News &amp; AI Trends" id="og-title"/>
+  <meta property="og:description" content="Discover the videos everyone is talking about. AI &amp; Technology, trending videos curated daily." id="og-description"/>
+  <meta property="og:url"         content="https://www.trend4genz.fun/"                 id="og-url"/>
+  <meta property="og:image"       content="https://www.trend4genz.fun/logo.png"         id="og-image"/>
+  <meta property="og:image:width" content="1280"                                        id="og-image-width"/>
+  <meta property="og:image:height"content="720"                                         id="og-image-height"/>
+  <meta property="og:image:alt"   content="Trend4GenZ - Tech &amp; AI Videos"           id="og-image-alt"/>
+
+  <!-- PINTEREST -->
+  <meta name="p:domain_verify" content="a5a54b6c36ce5bbe00c8202b5ac26070"/>
+  <meta name="google" content="notranslate"/>
+
+  <!-- SCHEMA.ORG WebSite -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"Trend4GenZ","url":"https://www.trend4genz.fun/","description":"Latest technology news, AI trends, and digital innovation video content.","inLanguage":"en","publisher":{"@type":"Organization","name":"Trend4GenZ","url":"https://www.trend4genz.fun/","logo":{"@type":"ImageObject","url":"https://www.trend4genz.fun/logo.png"}},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.trend4genz.fun/?search={search_term_string}"},"query-input":"required name=search_term_string"}}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css"/></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/></noscript>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
+    :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a;--nav-h:52px}
+
+    /* ── Navbar ── */
+    .navbar-custom{background:#000;padding:12px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:1.5px solid var(--green);transition:padding .3s,border .3s}
+    .navbar-custom.video-mode{padding:8px 15px;border-bottom:0}
+    .navbar-custom.video-mode .brand-logo{display:none}
+    .brand-logo{color:var(--green);font-weight:900;font-size:1.5rem;cursor:pointer;text-transform:uppercase}
+    .navbar-right-group{display:flex;align-items:center;margin-left:auto}
+
+    /* ── Search ── */
+    .search-wrapper{position:relative;display:flex;align-items:center;z-index:9999}
+    .search-container{display:flex;align-items:center;background:var(--dark);border-radius:20px;padding:5px 12px;border:1px solid var(--green)}
+    .search-container input{background:transparent;border:none;color:#fff;outline:none;font-size:.85rem;width:100px;transition:.3s}
+    .search-container input:focus{width:150px}
+    .navbar-custom.video-mode .search-container input{width:50px}
+    .navbar-custom.video-mode .search-container input:focus{width:90px}
+    @media(max-width:768px){.search-container input{width:60px!important}.search-container input:focus{width:80px!important}.navbar-custom.video-mode .search-container input{width:45px!important}.navbar-custom.video-mode .search-container input:focus{width:65px!important}}
+    .search-suggestions{position:absolute;top:calc(100% + 6px);right:0;width:280px;background:var(--dark);border:1px solid var(--green);border-radius:10px;overflow:hidden;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.6);display:none}
+    .search-suggestions.show{display:block}
+    .suggestion-item{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(255,255,255,.05)}
+    .suggestion-item:last-child{border-bottom:none}
+    .suggestion-item:hover,.suggestion-item.active{background:rgba(152,251,152,.12)}
+    .suggestion-item img{width:52px;height:30px;object-fit:cover;border-radius:4px;flex-shrink:0}
+    .suggestion-item span{font-size:.75rem;color:#f1f1f1;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+    .suggestion-item span em{color:var(--green);font-style:normal;font-weight:bold}
+    .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
+    @media(max-width:768px){.search-suggestions{width:240px}}
+
+    /* ── Grid ── */
+    .main-content{padding:15px;max-width:1150px;margin:auto}
+    .video-grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+    @media(min-width:992px){.video-grid{grid-template-columns:repeat(4,1fr);gap:20px}}
+    .video-card{background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;transition:.3s;border:1px solid transparent}
+    .video-card:hover{border-color:var(--green);transform:translateY(-3px)}
+    .video-card .thumb-wrap{position:relative;width:100%;padding-top:56.25%;background:#111;overflow:hidden}
+    .video-card .thumb-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .video-card-title{padding:6px 8px 8px;font-size:.8rem;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:auto;min-height:36px;max-height:38px}
+    .video-card .thumb-wrap{background:#1a1a1a}
+    .video-card .thumb-wrap img{transition:opacity .3s;opacity:0}
+    .video-card .thumb-wrap img.loaded{opacity:1}
+
+    /* ── Load More ── */
+    .load-more-wrap{text-align:center;margin:20px 0}
+    .btn-load-more{background:transparent;border:1.5px solid var(--green);color:var(--green);padding:10px 30px;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer;transition:.3s}
+    .btn-load-more:hover{background:var(--green);color:#000}
+    .btn-load-more:disabled{opacity:.4;cursor:not-allowed}
+
+    /* ── Video Page ── */
+    @media(max-width:600px){.video-page-container{padding:0!important}.info-section{padding:15px!important}.player-container{border-radius:0!important}}
+    .player-container{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
+    .player-container iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1}
+    .video-mask{position:absolute;z-index:99999;background:transparent;pointer-events:all;touch-action:none}
+    .mask-top{top:0;left:0;width:55%;height:94px}
+    .mask-bottom{bottom:0;left:40%;width:100%;height:43px}
+    #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
+    .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
+    .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;cursor:pointer;gap:10px}
+    .play-btn-svg{width:72px;height:72px;filter:drop-shadow(0 0 12px rgba(255,3,45,.7));transition:transform .15s}
+    .play-overlay:hover .play-btn-svg{transform:scale(1.1)}
+    .play-overlay-label{font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.08em;text-shadow:0 2px 8px rgba(0,0,0,.8)}
+    .player-container>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+
+    /* ── Buttons ── */
+    .dual-action-wrap{display:flex;gap:10px;margin-bottom:18px}
+    .home-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;background:var(--green);color:#000;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
+    .home-split-btn:hover{background:#7ddb7d;transform:translateY(-2px)}
+    .offer-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;color:#fff;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#ff416c,#ff4b2b);animation:pulse-offer 2s infinite}
+    .offer-split-btn:hover{transform:translateY(-2px)}
+    @keyframes pulse-offer{0%,100%{box-shadow:0 0 14px rgba(255,65,108,.5)}50%{box-shadow:0 0 24px rgba(255,65,108,.85)}}
+
+    /* ── Summary ── */
+    .summary-box{background:rgba(255,255,255,.05);padding:20px;border-radius:12px;border-left:4px solid var(--green)}
+    .summary-text{white-space:pre-wrap;font-size:.9rem;line-height:1.4;margin-bottom:15px;letter-spacing:-.2px;color:#ddd}
+    .summary-text h2{font-size:1.1rem;font-weight:700;margin-top:20px;margin-bottom:8px;line-height:1.3;color:#fff}
+    .summary-text h3{font-size:1.0rem;font-weight:600;margin-top:16px;margin-bottom:6px;line-height:1.3;color:#fff}
+    .summary-text p{font-size:.9rem;line-height:1.5;margin-bottom:12px;color:#ddd}
+    .summary-text ul{margin-bottom:12px;padding-left:20px}
+    .summary-text li{font-size:.9rem;line-height:1.4;margin-bottom:5px;color:#ddd}
+
+    /* ── Slider ── */
+    .recommendation-slider{display:flex;overflow-x:auto;gap:12px;padding-bottom:15px;scrollbar-width:none;-ms-overflow-style:none}
+    .recommendation-slider::-webkit-scrollbar{display:none}
+    .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent}
+    .slider-item:hover{border-color:var(--green);transform:translateY(-2px)}
+    .slider-item img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+    .slider-item p{font-size:.72rem;padding:6px 8px 8px;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35;min-height:42px}
+
+    /* ── SEO Tags ── */
+    .seo-tags-container{margin-top:15px;padding-top:15px;border-top:1px solid #222;display:flex;flex-wrap:wrap;gap:6px}
+    .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;cursor:pointer;text-decoration:none;transition:.15s;display:inline-block}
+    .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
+
+    /* ── More Videos label (ganti h6 agar heading berurutan) ── */
+    .more-videos-label{color:#98FB98;margin:24px 0 12px;font-size:.85rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+
+    /* ── Loading / Skeleton ── */
+    .loading-screen{display:flex;align-items:center;justify-content:center;height:60vh;flex-direction:column;gap:15px}
+    .loading-screen p{color:var(--green);font-size:.9rem}
+    .skeleton{background:linear-gradient(90deg,#1a1a1a 25%,#2a2a2a 50%,#1a1a1a 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px}
+    @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .skeleton-card{border-radius:8px;overflow:hidden;background:var(--dark)}
+    .skeleton-thumb{width:100%;padding-top:56.25%;position:relative}
+    .skeleton-thumb-inner{position:absolute;inset:0;background:linear-gradient(90deg,#1a1a1a 25%,#2a2a2a 50%,#1a1a1a 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
+    .skeleton-title{height:45px;margin:8px;border-radius:4px;background:linear-gradient(90deg,#1a1a1a 25%,#2a2a2a 50%,#1a1a1a 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
+
+    /* ── Native Banner ── */
+    .native-banner-wrap{position:relative;width:100%;margin:14px 0;border-radius:10px;overflow:hidden;min-height:90px}
+    .native-banner-wrap .close-btn{position:absolute;top:6px;right:6px;width:26px;height:26px;background:rgba(0,0,0,.65);color:#fff;border:2px solid #fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;cursor:pointer;z-index:10}
+    .native-banner-inner{width:100%;padding:18px 40px 18px 18px;display:flex;flex-direction:column;justify-content:center;min-height:90px}
+    .grid-full-span{grid-column:1/-1}
+  </style>
+</head>
+<body>
+
+  <nav class="navbar-custom" id="main-navbar">
+    <div class="brand-logo" onclick="handleBrandClick()">Trend4GenZ</div>
+    <div class="navbar-right-group">
+      <div class="search-wrapper">
+        <div class="search-container">
+          <input id="searchInput" placeholder="Cari..." type="text" autocomplete="off"/>
+          <svg id="searchBtn" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="cursor:pointer;flex-shrink:0"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="search-suggestions" id="searchSuggestions"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- FIX: <main> landmark untuk aksesibilitas & PageSpeed -->
+  <main>
+  <div class="main-content" id="app">
+    <!-- 20 card hardcoded di-inject oleh generate-pages.js saat build -->
+  </div>
+  </main>
+
+<script>
+// ════════════════════════════════════════════════════════
+//  KONFIGURASI
+// ════════════════════════════════════════════════════════
+const AD_CONFIG = {
+  allAds: false,
+  gridPageAds:  { nativeBanner: true },
+  videoPageAds: { nativeBanner: true },
+  useDirect:    false,
+  usePopunder:  false,
+  gridBannerAfterRow:  1,
+  gridColumnsOnMobile: 2,
+  links: { direct: "https://mediaindonesia.com", popunder: "https://google.com" },
+  nativeBannerHTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`
+};
+
+const PLAY_AD_CONFIG = {
+  enablePlayButtonDirectAds: false,
+  adUrl: "https://mediaindonesia.com",
+  adStartFromVideo: 2,
+};
+
+const PAGE_SIZE = 24;
+let currentPage = 0;
+let currentData = [];
+let videoWatchCount = 0;
+let playCounter     = 0;
+let videoDatabaseEN  = [];
+let videoDatabaseID  = [];
+let videoDatabaseALL = [];
+
+(function(){ document.documentElement.setAttribute('translate','no'); document.documentElement.classList.add('notranslate'); })();
+
+// ════════════════════════════════════════════════════════
+//  META & SEO
+// ════════════════════════════════════════════════════════
+function updateHtmlLang() {
+  document.getElementById('html-root').setAttribute('lang','en');
+  const m = document.getElementById('meta-content-language');
+  if(m) m.setAttribute('content','en');
+  const og = document.querySelector('meta[property="og:locale"]');
+  if(og) og.setAttribute('content','en_US');
+}
+
+function updateCanonical(slug, source) {
+  let c = document.getElementById('dynamic-canonical');
+  if(source==='nofollow'){ if(c) c.remove(); return; }
+  if(!c){ c=document.createElement('link'); c.id='dynamic-canonical'; c.rel='canonical'; document.head.appendChild(c); }
+  c.href = (!slug||slug==='home') ? 'https://www.trend4genz.fun/' : 'https://www.trend4genz.fun/?v='+slug;
+}
+
+function updateRobotsBySource(source) {
+  let t = document.querySelector('meta[name="robots"]');
+  if(!t){ t=document.createElement('meta'); t.setAttribute('name','robots'); document.head.appendChild(t); }
+  // db-id.json → noindex,nofollow KETAT — tidak boleh terindex Google
+  t.setAttribute('content', source==='nofollow' ? 'noindex, nofollow, noarchive, noimageindex' : 'index, follow');
+}
+
+// ════════════════════════════════════════════════════════
+//  LOAD DATABASE
+//  db-en.json  → index/follow  (halaman statis SEO)
+//  db-id.json  → noindex/nofollow (hanya tampil di homepage,
+//                TIDAK ada halaman statis, TIDAK terindex Google)
+// ════════════════════════════════════════════════════════
+async function loadDatabases() {
+  const ROOT = location.origin + '/';
+  const [resEN, resID] = await Promise.all([
+    fetch(ROOT + 'db-en.json'),
+    fetch(ROOT + 'db-id.json').catch(()=>({ok:false}))
+  ]);
+  videoDatabaseEN  = (await resEN.json()).map(v=>({...v, source:'seo'}));
+  // db-id.json PAKSA source='nofollow' — tidak bisa di-override dari data
+  videoDatabaseID  = resID.ok
+    ? (await resID.json()).map(v=>({...v, source:'nofollow'}))
+    : [];
+  videoDatabaseALL = [...videoDatabaseEN, ...videoDatabaseID].sort(()=>0.5-Math.random());
+}
+
+// ════════════════════════════════════════════════════════
+//  UTILS
+// ════════════════════════════════════════════════════════
+function getUrlParams()   { return new URLSearchParams(location.search); }
+function getCurrentSlug() {
+  const fromQuery = getUrlParams().get('v');
+  if (fromQuery) return fromQuery;
+  const parts = location.pathname.replace(/\/index\.html$/,'').replace(/\/$/,'').split('/').filter(Boolean);
+  if (!parts.length) return null;
+  const last = parts[parts.length - 1];
+  if (!last || last.length < 3) return null;
+  return last;
+}
+function seoUrl(text) {
+  if(!text) return '';
+  if(text.includes('-')) return text;
+  return text.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/--+/g,'-').substring(0,70).replace(/-$/,'');
+}
+function navigateTo(slug) {
+  const video = videoDatabaseALL.find(v=>v.slug===slug||seoUrl(v.title)===slug);
+  if(!video) return;
+  // db-id.json: tidak ada halaman statis → tampilkan via SPA
+  // db-en.json: arahkan ke halaman statis /video/slug/
+  if(video.source==='nofollow') {
+    history.pushState({},'', location.origin + '/?v=' + video.slug);
+    router();
+  } else {
+    window.location.href = location.origin + '/video/' + video.slug + '/';
+  }
+}
+function buildNativeBanner(extraClass) {
+  if(!AD_CONFIG.allAds) return '';
+  return `<div class="native-banner-wrap ${extraClass||''}" id="nb-${Date.now()}"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner">${AD_CONFIG.nativeBannerHTML}</div></div>`;
+}
+function runAd(type) {
+  if(!AD_CONFIG.allAds) return;
+  if(type==='pop'    && AD_CONFIG.usePopunder) window.open(AD_CONFIG.links.popunder,'_blank');
+  if(type==='direct' && AD_CONFIG.useDirect)   window.open(AD_CONFIG.links.direct,'_blank');
+}
+function handleBrandClick() { runAd('pop'); history.pushState({},'', location.origin + '/'); router(); }
+function handleSpecialOffer() { if(AD_CONFIG.allAds&&AD_CONFIG.useDirect) window.open(AD_CONFIG.links.direct,'_blank'); }
+function handleNavigation(e,slug) { e.preventDefault(); navigateTo(slug); }
+
+// ════════════════════════════════════════════════════════
+//  SEARCH
+// ════════════════════════════════════════════════════════
+function initSearch() {
+  const input=document.getElementById('searchInput');
+  const btn=document.getElementById('searchBtn');
+  const sug=document.getElementById('searchSuggestions');
+  if(!input||!btn||!sug) return;
+  let ai=-1;
+
+  function hide(){ sug.classList.remove('show'); sug.innerHTML=''; ai=-1; }
+  function upA(items){ items.forEach((el,i)=>el.classList.toggle('active',i===ai)); }
+
+  input.addEventListener('input',()=>{
+    const val=input.value.trim().toLowerCase(); ai=-1;
+    if(val.length<1){ hide(); return; }
+    const matches=videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(val)).slice(0,7);
+    if(!matches.length){ sug.innerHTML=`<div class="suggestion-empty">No results for "<b>${val}</b>"</div>`; sug.classList.add('show'); return; }
+    const hl=(t,q)=>t.replace(new RegExp('('+q.replace(/[.*+?^$\x7B\x7D()|[\]\\]/g,'\\$&')+')','gi'),'<em>$1</em>');
+    sug.innerHTML=matches.map(v=>`<div class="suggestion-item" data-slug="${v.slug}"><img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" loading="lazy" alt=""/><span>${hl(v.title,val)}</span></div>`).join('');
+    sug.classList.add('show');
+    sug.querySelectorAll('.suggestion-item').forEach(el=>el.addEventListener('mousedown',e=>{ e.preventDefault(); input.value=''; hide(); navigateTo(el.dataset.slug); }));
+  });
+
+  input.addEventListener('keydown',e=>{
+    const items=sug.querySelectorAll('.suggestion-item');
+    if(e.key==='ArrowDown'){ e.preventDefault(); ai=Math.min(ai+1,items.length-1); upA(items); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); ai=Math.max(ai-1,-1); upA(items); }
+    else if(e.key==='Enter'){ if(ai>=0&&items[ai]){ input.value=''; hide(); navigateTo(items[ai].dataset.slug); } else doSearch(); }
+    else if(e.key==='Escape'){ hide(); input.blur(); }
+  });
+  document.addEventListener('click',e=>{ if(!e.target.closest('.search-wrapper')) hide(); });
+  btn.addEventListener('click', doSearch);
+}
+
+function doSearch() {
+  const input=document.getElementById('searchInput');
+  const sug=document.getElementById('searchSuggestions');
+  if(!input) return;
+  const val=input.value.trim().toLowerCase();
+  if(!val) return;
+  if(sug){ sug.classList.remove('show'); sug.innerHTML=''; }
+  history.pushState({}, '', location.origin + '/?search=' + encodeURIComponent(val));
+  router();
+}
+
+// ════════════════════════════════════════════════════════
+//  RENDER GRID
+// ════════════════════════════════════════════════════════
+function renderGrid(container, data) {
+  currentData = data;
+  currentPage = 0;
+  container.className = 'main-content';
+  const cols = window.innerWidth>=992 ? 4 : AD_CONFIG.gridColumnsOnMobile;
+  const insertAfterIndex = (AD_CONFIG.gridBannerAfterRow+1)*cols-1;
+  const showBanner = AD_CONFIG.allAds && AD_CONFIG.gridPageAds.nativeBanner;
+  const firstBatch = data.slice(0, PAGE_SIZE);
+  const hasMore    = data.length > PAGE_SIZE;
+  container.innerHTML =
+    '<h5 style="color:#98FB98;margin-bottom:12px">🔥 TRENDING VIDEO</h5>' +
+    '<div class="video-grid" id="video-grid-inner">' +
+    renderCards(firstBatch, 0, insertAfterIndex, showBanner) +
+    '</div>' +
+    (hasMore ? '<div class="load-more-wrap"><button class="btn-load-more" id="btn-load-more" onclick="loadMore()">Load More</button></div>' : '');
+  currentPage = 1;
+}
+
+function renderCards(items, startIndex, insertAfterIndex, showBanner) {
+  return items.map((v,i)=>{
+    const idx = startIndex + i;
+    // db-id.json: nofollow + noopener agar Google tidak ikuti link
+    const nf  = v.source==='nofollow' ? ' rel="nofollow noopener"' : '';
+    const loading = idx < 4 ? 'eager' : 'lazy';
+    const href = v.source==='nofollow' ? `/?v=${v.slug}` : `/video/${v.slug}/`;
+    let html = `<a href="${href}"${nf} class="video-card-link" style="text-decoration:none;color:inherit" onclick="handleNavigation(event,'${v.slug}')"><div class="video-card"><div class="thumb-wrap"><img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" alt="${v.title.replace(/"/g,'&quot;')}" loading="${loading}" decoding="async" width="320" height="180" onload="this.classList.add('loaded')" onerror="this.src='https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg';this.classList.add('loaded')"/></div><div class="video-card-title">${v.title}</div></div></a>`;
+    if(showBanner && idx===insertAfterIndex) html += `<div class="grid-full-span">${buildNativeBanner()}</div>`;
+    return html;
+  }).join('');
+}
+
+function loadMore() {
+  const grid = document.getElementById('video-grid-inner');
+  const btn  = document.getElementById('btn-load-more');
+  if(!grid) return;
+  const cols = window.innerWidth>=992 ? 4 : AD_CONFIG.gridColumnsOnMobile;
+  const insertAfterIndex = (AD_CONFIG.gridBannerAfterRow+1)*cols-1;
+  const showBanner = AD_CONFIG.allAds && AD_CONFIG.gridPageAds.nativeBanner;
+  const start = currentPage * PAGE_SIZE;
+  const batch = currentData.slice(start, start + PAGE_SIZE);
+  if(!batch.length){ if(btn) btn.style.display='none'; return; }
+  grid.insertAdjacentHTML('beforeend', renderCards(batch, start, insertAfterIndex, showBanner));
+  currentPage++;
+  if(start + PAGE_SIZE >= currentData.length && btn) btn.style.display='none';
+}
+
+// ════════════════════════════════════════════════════════
+//  HANDLE PLAY
+// ════════════════════════════════════════════════════════
+function handlePlay(youtubeId) {
+  playCounter++;
+  const adAktif = PLAY_AD_CONFIG.enablePlayButtonDirectAds && videoWatchCount>=PLAY_AD_CONFIG.adStartFromVideo && playCounter===1;
+  if(adAktif) window.open(PLAY_AD_CONFIG.adUrl,'_blank');
+  document.getElementById('player-box').innerHTML =
+    '<iframe src="https://www.youtube.com/embed/'+youtubeId+'?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe>' +
+    '<div class="video-mask mask-top"></div><div class="video-mask mask-bottom"></div>' +
+    '<div id="fs-btn" class="btn-fs-custom" onclick="toggleFullScreen()" title="Fullscreen"><svg id="fs-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/><polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/></svg></div>';
+}
+
+function filterByTag(tag) {
+  const rel  = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+  const rest = videoDatabaseALL.filter(v=>!v.tags||!v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+  history.pushState({}, '', location.origin + '/?tag=' + encodeURIComponent(tag));
+  document.getElementById('main-navbar').classList.remove('video-mode');
+  const app = document.getElementById('app');
+  renderGrid(app, rel.length ? [...rel,...rest] : videoDatabaseALL);
+  _insertHomeBtn(app, rel.length ? '🏷️ Tag: #'+tag+' ('+rel.length+' videos)' : '🔥 TRENDING VIDEO');
+  window.scrollTo(0,0);
+}
+
+function toggleFullScreen() {
+  const el=document.getElementById('player-box');
+  const svg=document.getElementById('fs-icon');
+  if(!document.fullscreenElement&&!document.webkitFullscreenElement){
+    (el.requestFullscreen||el.webkitRequestFullscreen).call(el);
+    if(svg) svg.innerHTML='<polyline points="8 3 3 3 3 8"/><line x1="3" y1="3" x2="10" y2="10"/><polyline points="21 8 21 3 16 3"/><line x1="21" y1="3" x2="14" y2="10"/><polyline points="3 16 3 21 8 21"/><line x1="3" y1="21" x2="10" y2="14"/><polyline points="16 21 21 21 21 16"/><line x1="21" y1="21" x2="14" y2="14"/>';
+  } else {
+    (document.exitFullscreen||document.webkitExitFullscreen).call(document);
+    if(svg) svg.innerHTML='<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/><polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>';
+  }
+}
+
+// ════════════════════════════════════════════════════════
+//  META TAGS UPDATE
+// ════════════════════════════════════════════════════════
+function updateMetaTags(video) {
+  const title = video.title+' | Trend4GenZ';
+  const desc  = video.meta_description ? video.meta_description : (video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,160)+'...' : video.title);
+  const img   = 'https://img.youtube.com/vi/'+video.youtubeId+'/maxresdefault.jpg';
+  const url   = location.href;
+  document.title = title;
+  const md=document.querySelector('meta[name="description"]'); if(md) md.setAttribute('content',desc);
+  const ogMap={'og-type':'video.other','og-title':title,'og-description':desc,'og-url':url,'og-image':img,'og-image-width':'1280','og-image-height':'720','og-image-alt':video.title};
+  Object.entries(ogMap).forEach(([id,val])=>{ const el=document.getElementById(id); if(el) el.setAttribute('content',val); });
+  const es=document.getElementById('schema-video'); if(es) es.remove();
+  const sc=document.createElement('script'); sc.id='schema-video'; sc.type='application/ld+json';
+  sc.textContent=JSON.stringify({
+    "@context":"https://schema.org","@type":"VideoObject",
+    "name":video.title,"description":desc,
+    "uploadDate":video.uploadDate||new Date().toISOString().substring(0,19)+'+00:00',
+    "thumbnailUrl":["https://img.youtube.com/vi/"+video.youtubeId+"/maxresdefault.jpg","https://img.youtube.com/vi/"+video.youtubeId+"/hqdefault.jpg"],
+    "embedUrl":"https://www.youtube.com/embed/"+video.youtubeId,"url":url,
+    "inLanguage":video.source==='nofollow'?"id":"en",
+    "publisher":{"@type":"Organization","name":"Trend4GenZ","url":"https://www.trend4genz.fun","logo":{"@type":"ImageObject","url":"https://www.trend4genz.fun/logo.png"}}
+  });
+  document.head.appendChild(sc);
+}
+
+// ════════════════════════════════════════════════════════
+//  RENDER VIDEO (SPA — untuk db-id.json nofollow)
+// ════════════════════════════════════════════════════════
+function renderVideo(container, v) {
+  updateMetaTags(v);
+  updateRobotsBySource(v.source);   // nofollow → noindex,nofollow,noarchive,noimageindex
+  updateCanonical(v.slug, v.source); // nofollow → canonical dihapus
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el=>el.remove());
+  videoWatchCount++; playCounter=0;
+  container.className='main-content video-page-container';
+  const videoTags = v.tags||[];
+  const tagsHTML  = videoTags.length>0
+    ? '<div class="seo-tags-container">'+videoTags.map(tag=>`<span class="seo-tag-badge" onclick="filterByTag('${tag.replace(/'/g,"\\'")}')">&#35;${tag}</span>`).join('')+'</div>'
+    : '';
+  const showBanner=AD_CONFIG.allAds&&AD_CONFIG.videoPageAds.nativeBanner;
+  const shuffled=videoDatabaseALL.filter(i=>i.slug!==v.slug).sort(()=>0.5-Math.random());
+  const SLIDER_INIT=7; let sliderPage=1;
+  function buildSliderItems(items){
+    return items.map(r=>`<div class="slider-item" onclick="navigateTo('${r.slug}')"><img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg" loading="lazy" width="160" height="90" alt="${r.title.replace(/"/g,'&quot;')}"/><p>${r.title}</p></div>`).join('');
+  }
+  container.innerHTML=
+    '<div class="player-container" id="player-box">'+
+    '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/hqdefault.jpg" width="480" height="360" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2" loading="eager" decoding="async" alt="'+v.title.replace(/"/g,'&quot;')+'"/>'+
+    '<div class="play-overlay" onclick="handlePlay(\''+v.youtubeId+'\')" style="z-index:20">'+
+    '<svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(0,0,0,0.55)" stroke="#ff032d" stroke-width="3"/><polygon points="32,24 60,40 32,56" fill="#ff032d"/></svg>'+
+    '<div class="play-overlay-label">TAP TO WATCH</div></div>'+
+    '</div>'+
+    '<div class="info-section" style="padding:15px">'+
+    '<h1 style="font-size:1.2rem;font-weight:800;margin:15px 0">'+v.title+'</h1>'+
+    '<div class="dual-action-wrap">'+
+    '<button class="home-split-btn" onclick="handleBrandClick()"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME</button>'+
+    '<button class="offer-split-btn" onclick="handleSpecialOffer()"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="margin-right:5px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> More Info 🔥</button>'+
+    '</div>'+
+    (showBanner?buildNativeBanner():'')+
+    '<div class="summary-box"><div class="summary-text">'+v.summary+'</div>'+tagsHTML+'</div>'+
+    '<p class="more-videos-label">MORE VIDEOS</p>'+
+    '<div class="recommendation-slider" id="rec-slider">'+buildSliderItems(shuffled.slice(0,SLIDER_INIT))+'</div></div>';
+  const slider=document.getElementById('rec-slider');
+  if(slider){ slider.addEventListener('scroll',function(){ if(this.scrollLeft+this.clientWidth>=this.scrollWidth-100){ const more=shuffled.slice(sliderPage*SLIDER_INIT,(sliderPage+1)*SLIDER_INIT); if(more.length){ this.insertAdjacentHTML('beforeend',buildSliderItems(more)); sliderPage++; } } }); }
+}
+
+// ════════════════════════════════════════════════════════
+//  HELPER: Tombol HOME kecil di hasil search/tag
+// ════════════════════════════════════════════════════════
+function _insertHomeBtn(app, headingText) {
+  const h = app.querySelector('h5');
+  if(!h) return;
+  if(headingText) h.textContent = headingText;
+  if(!document.getElementById('btn-back-home')) {
+    var btn = document.createElement('button');
+    btn.id = 'btn-back-home';
+    btn.onclick = function(){ history.pushState({},'',location.origin+'/'); router(); };
+    btn.style.cssText = 'background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
+    btn.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
+    h.parentNode.insertBefore(btn, h);
+  }
+}
+
+// ════════════════════════════════════════════════════════
+//  ROUTER
+// ════════════════════════════════════════════════════════
+async function router() {
+  const app   = document.getElementById('app');
+  const navbar= document.getElementById('main-navbar');
+  const slug  = getCurrentSlug();
+  const tag   = getUrlParams().get('tag');
+  const search= getUrlParams().get('search');
+
+  updateHtmlLang();
+  updateRobotsBySource('seo');
+
+  if(tag) {
+    navbar.classList.remove('video-mode');
+    if(!videoDatabaseALL.length) await loadDatabases();
+    const rel  = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+    const rest = videoDatabaseALL.filter(v=>!v.tags||!v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+    renderGrid(app, rel.length ? [...rel,...rest] : videoDatabaseALL);
+    updateCanonical('home','seo');
+    _insertHomeBtn(app, rel.length ? '🏷️ Tag: #'+tag+' ('+rel.length+' videos)' : '🔥 TRENDING VIDEO');
+  } else if(search) {
+    navbar.classList.remove('video-mode');
+    if(!videoDatabaseALL.length) await loadDatabases();
+    const q    = search.toLowerCase();
+    const rel  = videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(q));
+    const rest = videoDatabaseALL.filter(v=>!v.title.toLowerCase().includes(q));
+    renderGrid(app, rel.length ? [...rel,...rest] : videoDatabaseALL);
+    updateCanonical('home','seo');
+    _insertHomeBtn(app, rel.length ? '🔍 "'+search+'" — '+rel.length+' hasil' : '🔥 TRENDING VIDEO');
+  } else if(!slug||slug==='home') {
+    var oldBtn=document.getElementById('btn-back-home'); if(oldBtn) oldBtn.remove();
+    navbar.classList.remove('video-mode');
+    if(!videoDatabaseALL.length) { await loadDatabases(); renderGrid(app, videoDatabaseALL); }
+    updateCanonical('home','seo');
+    const og=document.getElementById('og-type'); if(og) og.setAttribute('content','website');
+  } else {
+    const video=videoDatabaseALL.find(v=>v.slug===slug||seoUrl(v.title)===slug);
+    if(video) {
+      // db-id.json → render SPA (tidak ada halaman statis)
+      // db-en.json → sudah diarahkan ke /video/slug/ via navigateTo
+      navbar.classList.add('video-mode');
+      renderVideo(app, video);
+    } else {
+      history.replaceState({},'', location.origin+'/');
+      navbar.classList.remove('video-mode');
+      document.title='Trend4GenZ - Streaming';
+      if(!videoDatabaseALL.length) await loadDatabases();
+      renderGrid(app, videoDatabaseALL);
+      updateCanonical('home','seo');
+    }
+  }
+  window.scrollTo(0,0);
+}
+
+window.addEventListener('popstate', router);
+window.addEventListener('load', async ()=>{
+  try { await loadDatabases(); } catch(e) {
+    document.getElementById('app').innerHTML='<div class="loading-screen"><p style="color:#ff032d">❌ Gagal memuat database.</p></div>';
+    return;
+  }
+  initSearch();
+  router();
+});
+</script>
+</body>
+</html>
