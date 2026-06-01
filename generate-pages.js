@@ -35,6 +35,22 @@ function rmDir(dir)      { if(fs.existsSync(dir)) fs.rmSync(dir,{recursive:true,
 function shuffle(arr)    { return [...arr].sort(()=>0.5-Math.random()); }
 
 // ════════════════════════════════════════════════════════════════
+//  KONFIGURASI ADS — HALAMAN STATIS
+//  Edit bagian ini untuk mengatur semua ads di /video/slug/
+// ════════════════════════════════════════════════════════════════
+const STATIC_AD = {
+  // ── Direct Link (tombol More Info 🔥) ──────────────────────────
+  useDirect:   false,                          // true = aktifkan direct link
+  directUrl:   'https://linkadsterra-kamu.com', // URL direct link Adsterra
+
+  // ── Play Button Ads (direct link saat tap play) ────────────────
+  // Muncul mulai dari video ke-N yang diputar di sesi yang sama
+  usePlayAds:      false,                      // true = aktifkan play button ads
+  playAdsUrl:      'https://linkadsterra.com', // URL direct link untuk play ads
+  playAdsStartFrom: 2,                         // mulai dari tap play ke berapa
+};
+
+// ════════════════════════════════════════════════════════════════
 //  HALAMAN VIDEO STATIS
 // ════════════════════════════════════════════════════════════════
 function buildVideoPage(v, allVideos) {
@@ -198,7 +214,7 @@ function buildVideoPage(v, allVideos) {
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         HOME
       </button>
-      <button class="offer-split-btn" onclick="window.open('${BASE_URL}/?ref=moreinfo','_blank')">
+      <button class="offer-split-btn" onclick="handleMoreInfo()">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         More Info 🔥
       </button>
@@ -214,8 +230,31 @@ function buildVideoPage(v, allVideos) {
 </main>
 
 <script>
+// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+var STATIC_AD = {
+  useDirect:       \${STATIC_AD.useDirect},
+  directUrl:       '\${STATIC_AD.directUrl}',
+  usePlayAds:      \${STATIC_AD.usePlayAds},
+  playAdsUrl:      '\${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:\${STATIC_AD.playAdsStartFrom}
+};
+// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
+var _playCount = 0; // hitung berapa kali tap play di sesi ini
+
+// ── Tombol More Info 🔥 ──────────────────────────────────────────
+function handleMoreInfo() {
+  if (STATIC_AD.useDirect) {
+    window.open(STATIC_AD.directUrl, '_blank');
+  }
+}
+
 // ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
+  _playCount++;
+  // Play Button Ads: buka direct link mulai dari tap ke-N
+  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl, '_blank');
+  }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
     '<iframe src="https://www.youtube.com/embed/${v.youtubeId}?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +
