@@ -154,7 +154,8 @@ function buildVideoPage(v, allVideos) {
     .seo-tags-container{margin-top:15px;padding-top:15px;border-top:1px solid #222;display:flex;flex-wrap:wrap;gap:6px}
     .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;text-decoration:none;transition:.15s;display:inline-block}
     .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
-    .recommendation-slider{display:flex;overflow-x:auto;gap:12px;padding-bottom:15px;scrollbar-width:none;-ms-overflow-style:none}
+    .more-videos-label{color:#98FB98;margin:24px 0 12px;font-size:.85rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+    .recommendation-slider{display:flex;
     .recommendation-slider::-webkit-scrollbar{display:none}
     .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent}
     .slider-item:hover{border-color:var(--green);transform:translateY(-2px)}
@@ -175,6 +176,7 @@ function buildVideoPage(v, allVideos) {
   </div>
 </nav>
 
+<main>
 <div class="video-page-container">
   <div class="player-container" id="player-box">
     <img src="${thumb}" alt="${esc(v.title)}" width="480" height="270"
@@ -205,10 +207,11 @@ function buildVideoPage(v, allVideos) {
       <div class="summary-text">${v.summary||'<p>'+esc(desc)+'</p>'}</div>
       ${tagsHtml}
     </div>
-    <h6 style="color:#98FB98;margin:24px 0 12px">MORE VIDEOS</h6>
+    <p class="more-videos-label">MORE VIDEOS</p>
     <div class="recommendation-slider" id="rec-slider">${relatedHtml}</div>
   </div>
 </div>
+</main>
 
 <script>
 // ── Player & Fullscreen ──────────────────────────────────────────
