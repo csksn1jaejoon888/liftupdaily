@@ -323,10 +323,16 @@ function buildHomepage(dbEN) {
   let html = fs.readFileSync(BASE_TMPL, 'utf8').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
   const APP_START = '  <div class="main-content" id="app">';
-  const APP_END   = '  </div>\n\n<script>';
+  // APP_END disesuaikan dengan index_base.html baru yang ada <main> landmark
+  const APP_END   = '  </div>\n  </main>\n\n<script>';
   const startIdx  = html.indexOf(APP_START);
-  const endIdx    = html.indexOf(APP_END);
+  let   endIdx    = html.indexOf(APP_END);
 
+  // Fallback pola lama tanpa </main> jika template belum diupdate
+  if (endIdx === -1) {
+    const APP_END_OLD = '  </div>\n\n<script>';
+    endIdx = html.indexOf(APP_END_OLD);
+  }
   if (startIdx === -1 || endIdx === -1) {
     console.error('❌ Tidak bisa menemukan #app block di template! Cek index_base.html');
     process.exit(1);
@@ -357,7 +363,7 @@ function buildHomepage(dbEN) {
 ${cardsHtml}
     </div>
     <div class="load-more-wrap"><button class="btn-load-more" id="btn-load-more" onclick="loadMore()">Load More</button></div>
-  </div>\n\n<script>`;
+  </div>\n  </main>\n\n<script>`;
 
   html = html.slice(0, startIdx) + newApp + html.slice(endIdx + APP_END.length);
 
