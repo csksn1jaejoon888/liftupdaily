@@ -33,9 +33,13 @@ let xml = `<?xml version="1.0" encoding="UTF-8"?>
 // Hanya URL bahasa Inggris (db-en.json) yang masuk sitemap
 dbEN.forEach(video => {
   if (video && video.slug) {
+    // Mengambil tanggal (YYYY-MM-DD) dari uploadDate jika ada
+    const lastmodDate = video.uploadDate ? video.uploadDate.split('T')[0] : new Date().toISOString().split('T')[0];
+    
     xml += `
   <url>
-    <loc>${baseUrl}/?v=${video.slug}</loc>
+    <loc>${baseUrl}/video/${video.slug}/</loc>
+    <lastmod>${lastmodDate}</lastmod>
     <priority>0.8</priority>
   </url>`;
   }
