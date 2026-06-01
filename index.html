@@ -41,41 +41,20 @@
   {"@context":"https://schema.org","@type":"WebSite","name":"Trend4GenZ","url":"https://www.trend4genz.fun/","description":"Latest technology news, AI trends, and digital innovation video content.","inLanguage":"en","publisher":{"@type":"Organization","name":"Trend4GenZ","url":"https://www.trend4genz.fun/","logo":{"@type":"ImageObject","url":"https://www.trend4genz.fun/logo.png"}},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.trend4genz.fun/?search={search_term_string}"},"query-input":"required name=search_term_string"}}
   </script>
 
-  <!-- ══════════════════════════════════════════════════
-       CSS — Font Awesome & Google Fonts ASYNC
-       Bootstrap diganti CSS minimal sendiri
-       Hemat ~53KB blocking request
-  ══════════════════════════════════════════════════ -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <!-- Font Awesome async -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css"/></noscript>
-  <!-- Google Fonts async -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/></noscript>
 
   <style>
-    /* ── Reset & Base ── */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
-
-    /* ── CSS Variables ── */
-    :root{
-      --green:#98FB98;
-      --red:#ff032d;
-      --dark:#1a1a1a;
-      --nav-h:52px;
-    }
+    :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a;--nav-h:52px}
 
     /* ── Navbar ── */
-    .navbar-custom{
-      background:#000;padding:12px 15px;
-      position:sticky;top:0;z-index:1000;
-      display:flex;align-items:center;justify-content:space-between;
-      border-bottom:1.5px solid var(--green);
-      transition:padding .3s,border .3s;
-    }
+    .navbar-custom{background:#000;padding:12px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:1.5px solid var(--green);transition:padding .3s,border .3s}
     .navbar-custom.video-mode{padding:8px 15px;border-bottom:0}
     .navbar-custom.video-mode .brand-logo{display:none}
     .brand-logo{color:var(--green);font-weight:900;font-size:1.5rem;cursor:pointer;text-transform:uppercase}
@@ -88,12 +67,7 @@
     .search-container input:focus{width:150px}
     .navbar-custom.video-mode .search-container input{width:50px}
     .navbar-custom.video-mode .search-container input:focus{width:90px}
-    @media(max-width:768px){
-      .search-container input{width:60px!important}
-      .search-container input:focus{width:80px!important}
-      .navbar-custom.video-mode .search-container input{width:45px!important}
-      .navbar-custom.video-mode .search-container input:focus{width:65px!important}
-    }
+    @media(max-width:768px){.search-container input{width:60px!important}.search-container input:focus{width:80px!important}.navbar-custom.video-mode .search-container input{width:45px!important}.navbar-custom.video-mode .search-container input:focus{width:65px!important}}
     .search-suggestions{position:absolute;top:calc(100% + 6px);right:0;width:280px;background:var(--dark);border:1px solid var(--green);border-radius:10px;overflow:hidden;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.6);display:none}
     .search-suggestions.show{display:block}
     .suggestion-item{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(255,255,255,.05)}
@@ -111,11 +85,9 @@
     @media(min-width:992px){.video-grid{grid-template-columns:repeat(4,1fr);gap:20px}}
     .video-card{background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;transition:.3s;border:1px solid transparent}
     .video-card:hover{border-color:var(--green);transform:translateY(-3px)}
-    /* LCP optimization — aspect ratio placeholder cegah layout shift */
     .video-card .thumb-wrap{position:relative;width:100%;padding-top:56.25%;background:#111;overflow:hidden}
     .video-card .thumb-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
     .video-card-title{padding:6px 8px 8px;font-size:.8rem;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:auto;min-height:36px;max-height:38px}
-    /* Fix image hitam/lambat muncul — force background putih saat load */
     .video-card .thumb-wrap{background:#1a1a1a}
     .video-card .thumb-wrap img{transition:opacity .3s;opacity:0}
     .video-card .thumb-wrap img.loaded{opacity:1}
@@ -136,12 +108,9 @@
     #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
     .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
     .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;cursor:pointer;gap:10px}
-    .play-overlay i{font-size:4rem;color:var(--red)}
-    /* SVG play button — tidak bergantung Font Awesome */
     .play-btn-svg{width:72px;height:72px;filter:drop-shadow(0 0 12px rgba(255,3,45,.7));transition:transform .15s}
     .play-overlay:hover .play-btn-svg{transform:scale(1.1)}
     .play-overlay-label{font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.08em;text-shadow:0 2px 8px rgba(0,0,0,.8)}
-    /* Fix: img harus di bawah overlay */
     .player-container>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
 
     /* ── Buttons ── */
@@ -153,73 +122,33 @@
     @keyframes pulse-offer{0%,100%{box-shadow:0 0 14px rgba(255,65,108,.5)}50%{box-shadow:0 0 24px rgba(255,65,108,.85)}}
 
     /* ── Summary ── */
-.summary-box{background:rgba(255,255,255,.05);padding:20px;border-radius:12px;border-left:4px solid var(--green)}
-.summary-text{white-space:pre-wrap;font-size:.9rem;line-height:1.4;margin-bottom:15px;letter-spacing:-.2px;color:#ddd}
+    .summary-box{background:rgba(255,255,255,.05);padding:20px;border-radius:12px;border-left:4px solid var(--green)}
+    .summary-text{white-space:pre-wrap;font-size:.9rem;line-height:1.4;margin-bottom:15px;letter-spacing:-.2px;color:#ddd}
+    .summary-text h2{font-size:1.1rem;font-weight:700;margin-top:20px;margin-bottom:8px;line-height:1.3;color:#fff}
+    .summary-text h3{font-size:1.0rem;font-weight:600;margin-top:16px;margin-bottom:6px;line-height:1.3;color:#fff}
+    .summary-text p{font-size:.9rem;line-height:1.5;margin-bottom:12px;color:#ddd}
+    .summary-text ul{margin-bottom:12px;padding-left:20px}
+    .summary-text li{font-size:.9rem;line-height:1.4;margin-bottom:5px;color:#ddd}
 
-/* ── Penambahan Khusus Ukuran & Spacing Teks AI (Warna Tetap Putih) ── */
-
-/* Mengatur Judul H2 dari AI */
-.summary-text h2 {
-    font-size: 1.1rem;        /* Sedikit lebih besar & menonjol dari teks normal (.9rem) */
-    font-weight: 700;         /* Tebal */
-    margin-top: 20px;         /* Jarak spasi dengan konten di atasnya */
-    margin-bottom: 8px;       /* Jarak spasi dengan paragraf di bawahnya */
-    line-height: 1.3;         /* Spasi antar baris jika judul terlalu panjang */
-    color: #fff;              /* Tetap putih bersih */
-}
-
-/* Mengatur Judul H3 dari AI */
-.summary-text h3 {
-    font-size: 1.0rem;        /* Ukuran di antara H2 dan teks normal */
-    font-weight: 600;         /* Sedikit lebih tipis dari H2 tapi tetap tebal */
-    margin-top: 16px;         /* Jarak spasi atas */
-    margin-bottom: 6px;       /* Jarak spasi bawah */
-    line-height: 1.3;
-    color: #fff;              /* Tetap putih bersih */
-}
-
-/* Mengatur Paragraf Teks Biasa (<p>) dari AI */
-.summary-text p {
-    font-size: .9rem;         /* Sama dengan ukuran summary normal Anda */
-    line-height: 1.5;         /* Mengatur kerenggangan spasi baris kalimat agar enak dibaca */
-    margin-bottom: 12px;      /* Jarak spasi renggang antar paragraf */
-    color: #ddd;              /* Mengikuti warna default abu-putih Anda */
-}
-
-/* Mengatur Jarak Blok Poin Daftar (<ul>) */
-.summary-text ul {
-    margin-bottom: 12px;      /* Jarak spasi setelah daftar poin selesai */
-    padding-left: 20px;       /* Jarak menjorok ke dalam untuk bulatan list */
-}
-
-/* Mengatur Jarak Antar Poin (<li>) */
-.summary-text li {
-    font-size: .9rem;         /* Sama dengan teks normal */
-    line-height: 1.4;
-    margin-bottom: 5px;       /* Jarak spasi baris antar poin satu ke poin berikutnya */
-    color: #ddd;
-}
-
-    /* ── Slider More Videos ── */
+    /* ── Slider ── */
     .recommendation-slider{display:flex;overflow-x:auto;gap:12px;padding-bottom:15px;scrollbar-width:none;-ms-overflow-style:none}
     .recommendation-slider::-webkit-scrollbar{display:none}
     .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent}
     .slider-item:hover{border-color:var(--green);transform:translateY(-2px)}
     .slider-item img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
     .slider-item p{font-size:.72rem;padding:6px 8px 8px;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35;min-height:42px}
-    /* Load more slider btn */
-    .slider-load-more{min-width:80px;max-width:80px;flex-shrink:0;background:var(--dark);border-radius:8px;border:1.5px dashed var(--green);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--green);font-size:.7rem;font-weight:700;text-align:center;padding:8px 4px;aspect-ratio:16/9;align-self:flex-start;transition:.2s}
-    .slider-load-more:hover{background:rgba(152,251,152,.1)}
-    /* ── SEO Tags → internal link ── */
+
+    /* ── SEO Tags ── */
     .seo-tags-container{margin-top:15px;padding-top:15px;border-top:1px solid #222;display:flex;flex-wrap:wrap;gap:6px}
     .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;cursor:pointer;text-decoration:none;transition:.15s;display:inline-block}
     .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
 
-    /* ── Loading ── */
+    /* ── More Videos label (ganti h6 agar heading berurutan) ── */
+    .more-videos-label{color:#98FB98;margin:24px 0 12px;font-size:.85rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+
+    /* ── Loading / Skeleton ── */
     .loading-screen{display:flex;align-items:center;justify-content:center;height:60vh;flex-direction:column;gap:15px}
     .loading-screen p{color:var(--green);font-size:.9rem}
-
-    /* ── Skeleton loader ── */
     .skeleton{background:linear-gradient(90deg,#1a1a1a 25%,#2a2a2a 50%,#1a1a1a 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px}
     @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
     .skeleton-card{border-radius:8px;overflow:hidden;background:var(--dark)}
@@ -249,232 +178,12 @@
     </div>
   </nav>
 
+  <!-- FIX: <main> landmark untuk aksesibilitas & PageSpeed -->
+  <main>
   <div class="main-content" id="app">
-    <h5 style="color:#98FB98;margin-bottom:12px">🔥 TRENDING VIDEO</h5>
-    <div class="video-grid" id="video-grid-inner">
-<a href="/video/how-to-enable-xbox-mode-in-windows-11-for-console-like-gaming-performance/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/SvTCx8fgcis/mqdefault.jpg"
-           alt="How to Enable Xbox Mode in Windows 11 for Console-Like Gaming Performance" loading="eager" fetchpriority="high" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/SvTCx8fgcis/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">How to Enable Xbox Mode in Windows 11 for Console-Like Gaming Performance</div>
+    <!-- 20 card hardcoded di-inject oleh generate-pages.js saat build -->
   </div>
-</a>
-<a href="/video/top-5-ai-engineering-courses-for-2026-expert-reviewed-ranked/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/HFmoNVx6vTA/mqdefault.jpg"
-           alt="Top 5 AI Engineering Courses for 2026: Expert Reviewed &amp; Ranked" loading="eager" fetchpriority="high" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/HFmoNVx6vTA/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">Top 5 AI Engineering Courses for 2026: Expert Reviewed &amp; Ranked</div>
-  </div>
-</a>
-<a href="/video/neal-katyal-ai-supreme-court-tariffs-case-breakdown/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/g3M3WaixeOw/mqdefault.jpg"
-           alt="How AI Helped a Lawyer Win a $4 Trillion Supreme Court Case in 2025" loading="eager" fetchpriority="high" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/g3M3WaixeOw/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">How AI Helped a Lawyer Win a $4 Trillion Supreme Court Case in 2025</div>
-  </div>
-</a>
-<a href="/video/tim-cook-era-ends-apple-ceo-transition-2026/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/GaEhbIjusRI/mqdefault.jpg"
-           alt="Apple CEO Transition 2026: Who Will Succeed Tim Cook?" loading="eager" fetchpriority="high" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/GaEhbIjusRI/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">Apple CEO Transition 2026: Who Will Succeed Tim Cook?</div>
-  </div>
-</a>
-<a href="/video/india-smartphone-market-q1-2026-rankings-vivo-samsung-oppo-apple/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/fkIxF4l8oFE/mqdefault.jpg"
-           alt="India Smartphone Market Q1 2026: Vivo Leads, Samsung Stable, Apple Rises" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/fkIxF4l8oFE/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">India Smartphone Market Q1 2026: Vivo Leads, Samsung Stable, Apple Rises</div>
-  </div>
-</a>
-<a href="/video/amd-ryzen-ai-pro-laptops-2026-business-ai-revolution/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/Ch-vMy6WeQs/mqdefault.jpg"
-           alt="AMD Ryzen AI Pro Laptops in 2026: The Business AI Revolution You Can’t Ignore" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/Ch-vMy6WeQs/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">AMD Ryzen AI Pro Laptops in 2026: The Business AI Revolution You Can’t Ignore</div>
-  </div>
-</a>
-<a href="/video/ai-user-maturity-7-levels-to-automate-your-workflow/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
-           alt="7 AI User Levels: From Basic Prompts to Fully Automated Workflows" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/JFO9TfZLnT8/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">7 AI User Levels: From Basic Prompts to Fully Automated Workflows</div>
-  </div>
-</a>
-<a href="/video/6-profitable-ai-business-ideas-to-start-in-2026-without-coding/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/gwsaC3WiCqs/mqdefault.jpg"
-           alt="6 AI Business Ideas You Can Start in 2026 Without Coding Skills" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/gwsaC3WiCqs/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">6 AI Business Ideas You Can Start in 2026 Without Coding Skills</div>
-  </div>
-</a>
-<a href="/video/anthropic-claude-design-opus-4-7-ai-prototyping-breakthrough/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/jeA-KBv0b68/mqdefault.jpg"
-           alt="Anthropic’s Claude Design with Opus 4.7: The AI Tool That Could Replace Figma and Adobe" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/jeA-KBv0b68/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">Anthropic’s Claude Design with Opus 4.7: The AI Tool That Could Replace Figma and Adobe</div>
-  </div>
-</a>
-<a href="/video/run-claude-code-on-your-phone-with-a-cloud-terminal-in-10-minutes/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/FEDiAHzS0zw/mqdefault.jpg"
-           alt="Run Claude Code on Your Phone with a Cloud Terminal in 10 Minutes" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/FEDiAHzS0zw/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">Run Claude Code on Your Phone with a Cloud Terminal in 10 Minutes</div>
-  </div>
-</a>
-<a href="/video/cursor-3-rewrite-vs-code-rust-ai-agents-2026/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
-           alt="Cursor 3.0: AI Agents Replace Coding in VS Code Fork Rewrite" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/JSuS-zXMVwE/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">Cursor 3.0: AI Agents Replace Coding in VS Code Fork Rewrite</div>
-  </div>
-</a>
-<a href="/video/why-2026-is-the-golden-age-for-developers-github-coo-s-ai-insights/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/cMubtUs8dvs/mqdefault.jpg"
-           alt="Why 2026 Is the Golden Age for Developers: GitHub COO’s AI Insights" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/cMubtUs8dvs/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">Why 2026 Is the Golden Age for Developers: GitHub COO’s AI Insights</div>
-  </div>
-</a>
-<a href="/video/artemis-ii-mission-timeline-heat-shield-success/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/NnMReiQ9Fkk/mqdefault.jpg"
-           alt="Artemis II Mission: Full Flight Timeline and Critical Heat Shield Test" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/NnMReiQ9Fkk/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">Artemis II Mission: Full Flight Timeline and Critical Heat Shield Test</div>
-  </div>
-</a>
-<a href="/video/safest-magsafe-batteries-iphone-2026-solid-state-guide/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/RHBeUcDxDxA/mqdefault.jpg"
-           alt="5 Safest MagSafe Batteries for iPhone 2026 (Solid-State Picks)" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/RHBeUcDxDxA/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">5 Safest MagSafe Batteries for iPhone 2026 (Solid-State Picks)</div>
-  </div>
-</a>
-<a href="/video/5-proven-remote-jobs-paying-250-per-day-no-experience-needed/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/E4ZxjKFmXNg/mqdefault.jpg"
-           alt="5 Remote Jobs Paying $250+ Per Day (No Experience Required)" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/E4ZxjKFmXNg/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">5 Remote Jobs Paying $250+ Per Day (No Experience Required)</div>
-  </div>
-</a>
-<a href="/video/yartsa-gunbu-worlds-most-expensive-fungus/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/R1wW1NHYty8/mqdefault.jpg"
-           alt="Why Yartsa Gunbu Fungus Costs Thousands Per Pound" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/R1wW1NHYty8/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">Why Yartsa Gunbu Fungus Costs Thousands Per Pound</div>
-  </div>
-</a>
-<a href="/video/180524-tech-news-iphone-18-pro-oppo-reno16-iqoo-15t-claude-spacex/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/nuDptYrkpbk/mqdefault.jpg"
-           alt="iPhone 18 Pro Leaks, OPPO Reno16 Launch, iQOO 15T Specs &amp; AI Breakthroughs" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/nuDptYrkpbk/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">iPhone 18 Pro Leaks, OPPO Reno16 Launch, iQOO 15T Specs &amp; AI Breakthroughs</div>
-  </div>
-</a>
-<a href="/video/is-iran-an-arab-country-harvard-expert-explains-iranian-history/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/r5ClTzfCvQ4/mqdefault.jpg"
-           alt="Is Iran an Arab Country? Harvard Professor Explains Iranian Identity and History" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/r5ClTzfCvQ4/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">Is Iran an Arab Country? Harvard Professor Explains Iranian Identity and History</div>
-  </div>
-</a>
-<a href="/video/modern-luxury-home-decor-ideas-transform-your-space/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/L4Sk_MvGZ10/mqdefault.jpg"
-           alt="100+ Modern Luxury Home Decor Ideas for a Stylish Lifestyle" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/L4Sk_MvGZ10/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">100+ Modern Luxury Home Decor Ideas for a Stylish Lifestyle</div>
-  </div>
-</a>
-<a href="/video/duolingo-ceo-ai-strategy-surviving-disruption/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/GDeEATJcbJo/mqdefault.jpg"
-           alt="Duolingo CEO Reveals How AI Transforms Employee Productivity" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/GDeEATJcbJo/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">Duolingo CEO Reveals How AI Transforms Employee Productivity</div>
-  </div>
-</a>
-    </div>
-    <div class="load-more-wrap"><button class="btn-load-more" id="btn-load-more" onclick="loadMore()">Load More</button></div>
-  </div>
+  </main>
 
 <script>
 // ════════════════════════════════════════════════════════
@@ -498,11 +207,9 @@ const PLAY_AD_CONFIG = {
   adStartFromVideo: 2,
 };
 
-// ── Pagination config ──────────────────────────────────
-const PAGE_SIZE = 24; // video per halaman
+const PAGE_SIZE = 24;
 let currentPage = 0;
 let currentData = [];
-
 let videoWatchCount = 0;
 let playCounter     = 0;
 let videoDatabaseEN  = [];
@@ -526,49 +233,34 @@ function updateCanonical(slug, source) {
   let c = document.getElementById('dynamic-canonical');
   if(source==='nofollow'){ if(c) c.remove(); return; }
   if(!c){ c=document.createElement('link'); c.id='dynamic-canonical'; c.rel='canonical'; document.head.appendChild(c); }
-  // Selalu gunakan URL root agar canonical tidak mengarah ke /slug/?v=slug
   c.href = (!slug||slug==='home') ? 'https://www.trend4genz.fun/' : 'https://www.trend4genz.fun/?v='+slug;
 }
 
 function updateRobotsBySource(source) {
   let t = document.querySelector('meta[name="robots"]');
   if(!t){ t=document.createElement('meta'); t.setAttribute('name','robots'); document.head.appendChild(t); }
-  t.setAttribute('content', source==='nofollow'?'noindex, nofollow':'index, follow');
+  // db-id.json → noindex,nofollow KETAT — tidak boleh terindex Google
+  t.setAttribute('content', source==='nofollow' ? 'noindex, nofollow, noarchive, noimageindex' : 'index, follow');
 }
 
 // ════════════════════════════════════════════════════════
-//  LOAD DATABASE — parallel fetch, featured.json prioritas
+//  LOAD DATABASE
+//  db-en.json  → index/follow  (halaman statis SEO)
+//  db-id.json  → noindex/nofollow (hanya tampil di homepage,
+//                TIDAK ada halaman statis, TIDAK terindex Google)
 // ════════════════════════════════════════════════════════
 async function loadDatabases() {
-  // ── PATH ABSOLUT: agar bekerja baik di root (/) maupun di halaman statis (/slug/) ──
   const ROOT = location.origin + '/';
-
-  // Coba load featured.json dulu (20 video pilihan — generate otomatis oleh clean-db.js)
-  let featured = [];
-  try {
-    const res = await fetch(ROOT + 'featured.json');
-    if(res.ok) featured = await res.json();
-  } catch(e) {}
-
-  // Load DB lengkap di background
   const [resEN, resID] = await Promise.all([
     fetch(ROOT + 'db-en.json'),
-    fetch(ROOT + 'db-id.json')
+    fetch(ROOT + 'db-id.json').catch(()=>({ok:false}))
   ]);
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v, source: v.source||'seo'}));
-  videoDatabaseID  = (await resID.json()).map(v=>({...v, source: v.source||'nofollow'}));
-
-  // Shuffle semua
-  const shuffled = [...videoDatabaseEN, ...videoDatabaseID].sort(()=>0.5-Math.random());
-
-  // Kalau featured ada → tampilkan featured dulu di depan, sisanya di belakang
-  if(featured.length) {
-    const featuredIds = new Set(featured.map(v=>v.youtubeId));
-    const rest = shuffled.filter(v=>!featuredIds.has(v.youtubeId));
-    videoDatabaseALL = [...featured, ...rest];
-  } else {
-    videoDatabaseALL = shuffled;
-  }
+  videoDatabaseEN  = (await resEN.json()).map(v=>({...v, source:'seo'}));
+  // db-id.json PAKSA source='nofollow' — tidak bisa di-override dari data
+  videoDatabaseID  = resID.ok
+    ? (await resID.json()).map(v=>({...v, source:'nofollow'}))
+    : [];
+  videoDatabaseALL = [...videoDatabaseEN, ...videoDatabaseID].sort(()=>0.5-Math.random());
 }
 
 // ════════════════════════════════════════════════════════
@@ -576,42 +268,40 @@ async function loadDatabases() {
 // ════════════════════════════════════════════════════════
 function getUrlParams()   { return new URLSearchParams(location.search); }
 function getCurrentSlug() {
-  // 1) Prioritas: query param ?v=slug (mode SPA dari index.html)
   const fromQuery = getUrlParams().get('v');
   if (fromQuery) return fromQuery;
-  // 2) Fallback: baca dari pathname untuk halaman statis (/slug/ atau /slug/index.html)
-  const parts = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '').split('/').filter(Boolean);
+  const parts = location.pathname.replace(/\/index\.html$/,'').replace(/\/$/,'').split('/').filter(Boolean);
   if (!parts.length) return null;
   const last = parts[parts.length - 1];
   if (!last || last.length < 3) return null;
   return last;
 }
-
 function seoUrl(text) {
   if(!text) return '';
   if(text.includes('-')) return text;
   return text.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/--+/g,'-').substring(0,70).replace(/-$/,'');
 }
-
 function navigateTo(slug) {
   const video = videoDatabaseALL.find(v=>v.slug===slug||seoUrl(v.title)===slug);
   if(!video) return;
-  // Selalu gunakan root origin agar tidak nyasar di subfolder /slug/
-  history.pushState({},'', location.origin + '/?v=' + video.slug);
-  router();
+  // db-id.json: tidak ada halaman statis → tampilkan via SPA
+  // db-en.json: arahkan ke halaman statis /video/slug/
+  if(video.source==='nofollow') {
+    history.pushState({},'', location.origin + '/?v=' + video.slug);
+    router();
+  } else {
+    window.location.href = location.origin + '/video/' + video.slug + '/';
+  }
 }
-
 function buildNativeBanner(extraClass) {
   if(!AD_CONFIG.allAds) return '';
   return `<div class="native-banner-wrap ${extraClass||''}" id="nb-${Date.now()}"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner">${AD_CONFIG.nativeBannerHTML}</div></div>`;
 }
-
 function runAd(type) {
   if(!AD_CONFIG.allAds) return;
   if(type==='pop'    && AD_CONFIG.usePopunder) window.open(AD_CONFIG.links.popunder,'_blank');
   if(type==='direct' && AD_CONFIG.useDirect)   window.open(AD_CONFIG.links.direct,'_blank');
 }
-
 function handleBrandClick() { runAd('pop'); history.pushState({},'', location.origin + '/'); router(); }
 function handleSpecialOffer() { if(AD_CONFIG.allAds&&AD_CONFIG.useDirect) window.open(AD_CONFIG.links.direct,'_blank'); }
 function handleNavigation(e,slug) { e.preventDefault(); navigateTo(slug); }
@@ -626,29 +316,29 @@ function initSearch() {
   if(!input||!btn||!sug) return;
   let ai=-1;
 
+  function hide(){ sug.classList.remove('show'); sug.innerHTML=''; ai=-1; }
+  function upA(items){ items.forEach((el,i)=>el.classList.toggle('active',i===ai)); }
+
   input.addEventListener('input',()=>{
     const val=input.value.trim().toLowerCase(); ai=-1;
-    if(val.length<1){hide();return;}
+    if(val.length<1){ hide(); return; }
     const matches=videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(val)).slice(0,7);
-    if(!matches.length){sug.innerHTML=`<div class="suggestion-empty">No results for "<b>${val}</b>"</div>`;sug.classList.add('show');return;}
-    const hl=(t,q)=>t.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'),'<em>$1</em>');
-    sug.innerHTML=matches.map((v,i)=>`<div class="suggestion-item" data-slug="${v.slug}"><img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" loading="lazy" alt=""/><span>${hl(v.title,val)}</span></div>`).join('');
+    if(!matches.length){ sug.innerHTML=`<div class="suggestion-empty">No results for "<b>${val}</b>"</div>`; sug.classList.add('show'); return; }
+    const hl=(t,q)=>t.replace(new RegExp('('+q.replace(/[.*+?^$\x7B\x7D()|[\]\\]/g,'\\$&')+')','gi'),'<em>$1</em>');
+    sug.innerHTML=matches.map(v=>`<div class="suggestion-item" data-slug="${v.slug}"><img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" loading="lazy" alt=""/><span>${hl(v.title,val)}</span></div>`).join('');
     sug.classList.add('show');
-    sug.querySelectorAll('.suggestion-item').forEach(el=>el.addEventListener('mousedown',e=>{e.preventDefault();input.value='';hide();navigateTo(el.dataset.slug);}));
+    sug.querySelectorAll('.suggestion-item').forEach(el=>el.addEventListener('mousedown',e=>{ e.preventDefault(); input.value=''; hide(); navigateTo(el.dataset.slug); }));
   });
 
   input.addEventListener('keydown',e=>{
     const items=sug.querySelectorAll('.suggestion-item');
-    if(e.key==='ArrowDown'){e.preventDefault();ai=Math.min(ai+1,items.length-1);upA(items);}
-    else if(e.key==='ArrowUp'){e.preventDefault();ai=Math.max(ai-1,-1);upA(items);}
-    else if(e.key==='Enter'){if(ai>=0&&items[ai]){input.value='';hide();navigateTo(items[ai].dataset.slug);}else doSearch();}
-    else if(e.key==='Escape'){hide();input.blur();}
+    if(e.key==='ArrowDown'){ e.preventDefault(); ai=Math.min(ai+1,items.length-1); upA(items); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); ai=Math.max(ai-1,-1); upA(items); }
+    else if(e.key==='Enter'){ if(ai>=0&&items[ai]){ input.value=''; hide(); navigateTo(items[ai].dataset.slug); } else doSearch(); }
+    else if(e.key==='Escape'){ hide(); input.blur(); }
   });
-
-  function upA(items){items.forEach((el,i)=>el.classList.toggle('active',i===ai));}
-  document.addEventListener('click',e=>{if(!e.target.closest('.search-wrapper'))hide();});
-  btn.addEventListener('click',doSearch);
-  function hide(){sug.classList.remove('show');sug.innerHTML='';ai=-1;}
+  document.addEventListener('click',e=>{ if(!e.target.closest('.search-wrapper')) hide(); });
+  btn.addEventListener('click', doSearch);
 }
 
 function doSearch() {
@@ -657,44 +347,40 @@ function doSearch() {
   if(!input) return;
   const val=input.value.trim().toLowerCase();
   if(!val) return;
-  if(sug){sug.classList.remove('show');sug.innerHTML='';}
-  const results=videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(val));
-  renderGrid(document.getElementById('app'), results, true);
-  document.getElementById('main-navbar').classList.remove('video-mode');
+  if(sug){ sug.classList.remove('show'); sug.innerHTML=''; }
+  history.pushState({}, '', location.origin + '/?search=' + encodeURIComponent(val));
+  router();
 }
 
 // ════════════════════════════════════════════════════════
-//  RENDER GRID — dengan pagination
+//  RENDER GRID
 // ════════════════════════════════════════════════════════
-function renderGrid(container, data, isSearch=false) {
+function renderGrid(container, data) {
   currentData = data;
   currentPage = 0;
   container.className = 'main-content';
-
   const cols = window.innerWidth>=992 ? 4 : AD_CONFIG.gridColumnsOnMobile;
   const insertAfterIndex = (AD_CONFIG.gridBannerAfterRow+1)*cols-1;
   const showBanner = AD_CONFIG.allAds && AD_CONFIG.gridPageAds.nativeBanner;
-
-  // Render halaman pertama saja
   const firstBatch = data.slice(0, PAGE_SIZE);
   const hasMore    = data.length > PAGE_SIZE;
-
   container.innerHTML =
     '<h5 style="color:#98FB98;margin-bottom:12px">🔥 TRENDING VIDEO</h5>' +
     '<div class="video-grid" id="video-grid-inner">' +
     renderCards(firstBatch, 0, insertAfterIndex, showBanner) +
     '</div>' +
     (hasMore ? '<div class="load-more-wrap"><button class="btn-load-more" id="btn-load-more" onclick="loadMore()">Load More</button></div>' : '');
-
   currentPage = 1;
 }
 
 function renderCards(items, startIndex, insertAfterIndex, showBanner) {
   return items.map((v,i)=>{
     const idx = startIndex + i;
-    const nf  = v.source==='nofollow' ? ' rel="nofollow"' : '';
+    // db-id.json: nofollow + noopener agar Google tidak ikuti link
+    const nf  = v.source==='nofollow' ? ' rel="nofollow noopener"' : '';
     const loading = idx < 4 ? 'eager' : 'lazy';
-    let html = `<a href="?v=${v.slug}"${nf} class="video-card-link" style="text-decoration:none;color:inherit" onclick="handleNavigation(event,'${v.slug}')"><div class="video-card"><div class="thumb-wrap"><img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" alt="${v.title.replace(/"/g,'&quot;')}" loading="${loading}" decoding="async" width="320" height="180" onload="this.classList.add('loaded')" onerror="this.src='https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg';this.classList.add('loaded')"/></div><div class="video-card-title">${v.title}</div></div></a>`;
+    const href = v.source==='nofollow' ? `/?v=${v.slug}` : `/video/${v.slug}/`;
+    let html = `<a href="${href}"${nf} class="video-card-link" style="text-decoration:none;color:inherit" onclick="handleNavigation(event,'${v.slug}')"><div class="video-card"><div class="thumb-wrap"><img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" alt="${v.title.replace(/"/g,'&quot;')}" loading="${loading}" decoding="async" width="320" height="180" onload="this.classList.add('loaded')" onerror="this.src='https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg';this.classList.add('loaded')"/></div><div class="video-card-title">${v.title}</div></div></a>`;
     if(showBanner && idx===insertAfterIndex) html += `<div class="grid-full-span">${buildNativeBanner()}</div>`;
     return html;
   }).join('');
@@ -704,21 +390,15 @@ function loadMore() {
   const grid = document.getElementById('video-grid-inner');
   const btn  = document.getElementById('btn-load-more');
   if(!grid) return;
-
   const cols = window.innerWidth>=992 ? 4 : AD_CONFIG.gridColumnsOnMobile;
   const insertAfterIndex = (AD_CONFIG.gridBannerAfterRow+1)*cols-1;
   const showBanner = AD_CONFIG.allAds && AD_CONFIG.gridPageAds.nativeBanner;
-
   const start = currentPage * PAGE_SIZE;
-  const end   = start + PAGE_SIZE;
-  const batch = currentData.slice(start, end);
-
-  if(!batch.length) { if(btn) btn.style.display='none'; return; }
-
+  const batch = currentData.slice(start, start + PAGE_SIZE);
+  if(!batch.length){ if(btn) btn.style.display='none'; return; }
   grid.insertAdjacentHTML('beforeend', renderCards(batch, start, insertAfterIndex, showBanner));
   currentPage++;
-
-  if(end >= currentData.length && btn) btn.style.display='none';
+  if(start + PAGE_SIZE >= currentData.length && btn) btn.style.display='none';
 }
 
 // ════════════════════════════════════════════════════════
@@ -735,17 +415,13 @@ function handlePlay(youtubeId) {
 }
 
 function filterByTag(tag) {
-  const results = videoDatabaseALL.filter(v =>
-    v.tags && v.tags.some(t => t.toLowerCase() === tag.toLowerCase())
-  );
-  // Selalu navigasi ke root agar tidak nyasar di /slug/?tag=...
+  const rel  = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+  const rest = videoDatabaseALL.filter(v=>!v.tags||!v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
   history.pushState({}, '', location.origin + '/?tag=' + encodeURIComponent(tag));
   document.getElementById('main-navbar').classList.remove('video-mode');
   const app = document.getElementById('app');
-  renderGrid(app, results.length ? results : videoDatabaseALL);
-  // Update heading
-  const h = app.querySelector('h5');
-  if(h && results.length) h.textContent = '🏷️ Tag: #' + tag + ' (' + results.length + ' videos)';
+  renderGrid(app, rel.length ? [...rel,...rest] : videoDatabaseALL);
+  _insertHomeBtn(app, rel.length ? '🏷️ Tag: #'+tag+' ('+rel.length+' videos)' : '🔥 TRENDING VIDEO');
   window.scrollTo(0,0);
 }
 
@@ -766,24 +442,20 @@ function toggleFullScreen() {
 // ════════════════════════════════════════════════════════
 function updateMetaTags(video) {
   const title = video.title+' | Trend4GenZ';
-  const desc = video.meta_description ? video.meta_description : (video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,160) + '...' : video.title);
+  const desc  = video.meta_description ? video.meta_description : (video.summary ? video.summary.replace(/<[^>]*>/g,'').substring(0,160)+'...' : video.title);
   const img   = 'https://img.youtube.com/vi/'+video.youtubeId+'/maxresdefault.jpg';
   const url   = location.href;
-
   document.title = title;
-  const md = document.querySelector('meta[name="description"]');
-  if(md) md.setAttribute('content', desc);
-
-  const ogMap = {'og-type':'video.other','og-title':title,'og-description':desc,'og-url':url,'og-image':img,'og-image-width':'1280','og-image-height':'720','og-image-alt':video.title};
+  const md=document.querySelector('meta[name="description"]'); if(md) md.setAttribute('content',desc);
+  const ogMap={'og-type':'video.other','og-title':title,'og-description':desc,'og-url':url,'og-image':img,'og-image-width':'1280','og-image-height':'720','og-image-alt':video.title};
   Object.entries(ogMap).forEach(([id,val])=>{ const el=document.getElementById(id); if(el) el.setAttribute('content',val); });
-
   const es=document.getElementById('schema-video'); if(es) es.remove();
   const sc=document.createElement('script'); sc.id='schema-video'; sc.type='application/ld+json';
   sc.textContent=JSON.stringify({
     "@context":"https://schema.org","@type":"VideoObject",
     "name":video.title,"description":desc,
     "uploadDate":video.uploadDate||new Date().toISOString().substring(0,19)+'+00:00',
-    "thumbnailUrl":["https://img.youtube.com/vi/"+video.youtubeId+"/maxresdefault.jpg","https://img.youtube.com/vi/"+video.youtubeId+"/hqdefault.jpg","https://img.youtube.com/vi/"+video.youtubeId+"/mqdefault.jpg"],
+    "thumbnailUrl":["https://img.youtube.com/vi/"+video.youtubeId+"/maxresdefault.jpg","https://img.youtube.com/vi/"+video.youtubeId+"/hqdefault.jpg"],
     "embedUrl":"https://www.youtube.com/embed/"+video.youtubeId,"url":url,
     "inLanguage":video.source==='nofollow'?"id":"en",
     "publisher":{"@type":"Organization","name":"Trend4GenZ","url":"https://www.trend4genz.fun","logo":{"@type":"ImageObject","url":"https://www.trend4genz.fun/logo.png"}}
@@ -792,51 +464,30 @@ function updateMetaTags(video) {
 }
 
 // ════════════════════════════════════════════════════════
-//  RENDER VIDEO
+//  RENDER VIDEO (SPA — untuk db-id.json nofollow)
 // ════════════════════════════════════════════════════════
 function renderVideo(container, v) {
   updateMetaTags(v);
-  updateRobotsBySource(v.source);
-  updateCanonical(v.slug, v.source);
+  updateRobotsBySource(v.source);   // nofollow → noindex,nofollow,noarchive,noimageindex
+  updateCanonical(v.slug, v.source); // nofollow → canonical dihapus
   document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el=>el.remove());
-
   videoWatchCount++; playCounter=0;
   container.className='main-content video-page-container';
-
-  // Tags sebagai internal link (filter by tag)
-  const videoTags = v.tags || [];
-  const tagsHTML = videoTags.length > 0
-    ? '<div class="seo-tags-container">' +
-      videoTags.map(tag =>
-        `<span class="seo-tag-badge" onclick="filterByTag('${tag.replace(/'/g,"\\'")}')">&#35;${tag}</span>`
-      ).join('') +
-      '</div>'
+  const videoTags = v.tags||[];
+  const tagsHTML  = videoTags.length>0
+    ? '<div class="seo-tags-container">'+videoTags.map(tag=>`<span class="seo-tag-badge" onclick="filterByTag('${tag.replace(/'/g,"\\'")}')">&#35;${tag}</span>`).join('')+'</div>'
     : '';
-
   const showBanner=AD_CONFIG.allAds&&AD_CONFIG.videoPageAds.nativeBanner;
-
-  // Slider: tampilkan 7 awal, sisanya di-load saat scroll ke ujung
-  const shuffled = videoDatabaseALL.filter(i=>i.slug!==v.slug).sort(()=>0.5-Math.random());
-  const SLIDER_INIT = 7;
-  let sliderPage = 1;
-  const sliderBatch = shuffled.slice(0, SLIDER_INIT);
-
-  function buildSliderItems(items) {
-    return items.map(r=>
-      `<div class="slider-item" onclick="navigateTo('${r.slug}')">` +
-      `<img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg" loading="lazy" width="160" height="90" alt="${r.title.replace(/"/g,'&quot;')}"/>` +
-      `<p>${r.title}</p></div>`
-    ).join('');
+  const shuffled=videoDatabaseALL.filter(i=>i.slug!==v.slug).sort(()=>0.5-Math.random());
+  const SLIDER_INIT=7; let sliderPage=1;
+  function buildSliderItems(items){
+    return items.map(r=>`<div class="slider-item" onclick="navigateTo('${r.slug}')"><img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg" loading="lazy" width="160" height="90" alt="${r.title.replace(/"/g,'&quot;')}"/><p>${r.title}</p></div>`).join('');
   }
-
   container.innerHTML=
     '<div class="player-container" id="player-box">'+
     '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/hqdefault.jpg" width="480" height="360" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2" loading="eager" decoding="async" alt="'+v.title.replace(/"/g,'&quot;')+'"/>'+
     '<div class="play-overlay" onclick="handlePlay(\''+v.youtubeId+'\')" style="z-index:20">'+
-    '<svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">'+
-    '<circle cx="40" cy="40" r="38" fill="rgba(0,0,0,0.55)" stroke="#ff032d" stroke-width="3"/>'+
-    '<polygon points="32,24 60,40 32,56" fill="#ff032d"/>'+
-    '</svg>'+
+    '<svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(0,0,0,0.55)" stroke="#ff032d" stroke-width="3"/><polygon points="32,24 60,40 32,56" fill="#ff032d"/></svg>'+
     '<div class="play-overlay-label">TAP TO WATCH</div></div>'+
     '</div>'+
     '<div class="info-section" style="padding:15px">'+
@@ -847,59 +498,77 @@ function renderVideo(container, v) {
     '</div>'+
     (showBanner?buildNativeBanner():'')+
     '<div class="summary-box"><div class="summary-text">'+v.summary+'</div>'+tagsHTML+'</div>'+
-    '<h6 style="color:#98FB98;margin:24px 0 12px">MORE VIDEOS</h6>'+
-    '<div class="recommendation-slider" id="rec-slider">'+
-    buildSliderItems(sliderBatch)+
-    '</div></div>';
+    '<p class="more-videos-label">MORE VIDEOS</p>'+
+    '<div class="recommendation-slider" id="rec-slider">'+buildSliderItems(shuffled.slice(0,SLIDER_INIT))+'</div></div>';
+  const slider=document.getElementById('rec-slider');
+  if(slider){ slider.addEventListener('scroll',function(){ if(this.scrollLeft+this.clientWidth>=this.scrollWidth-100){ const more=shuffled.slice(sliderPage*SLIDER_INIT,(sliderPage+1)*SLIDER_INIT); if(more.length){ this.insertAdjacentHTML('beforeend',buildSliderItems(more)); sliderPage++; } } }); }
+}
 
-  // Infinite scroll untuk slider
-  const slider = document.getElementById('rec-slider');
-  if(slider) {
-    slider.addEventListener('scroll', function() {
-      if(this.scrollLeft + this.clientWidth >= this.scrollWidth - 100) {
-        const start = sliderPage * SLIDER_INIT;
-        const more = shuffled.slice(start, start + SLIDER_INIT);
-        if(more.length) {
-          this.insertAdjacentHTML('beforeend', buildSliderItems(more));
-          sliderPage++;
-        }
-      }
-    });
+// ════════════════════════════════════════════════════════
+//  HELPER: Tombol HOME kecil di hasil search/tag
+// ════════════════════════════════════════════════════════
+function _insertHomeBtn(app, headingText) {
+  const h = app.querySelector('h5');
+  if(!h) return;
+  if(headingText) h.textContent = headingText;
+  if(!document.getElementById('btn-back-home')) {
+    var btn = document.createElement('button');
+    btn.id = 'btn-back-home';
+    btn.onclick = function(){ history.pushState({},'',location.origin+'/'); router(); };
+    btn.style.cssText = 'background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
+    btn.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
+    h.parentNode.insertBefore(btn, h);
   }
 }
+
 // ════════════════════════════════════════════════════════
 //  ROUTER
 // ════════════════════════════════════════════════════════
 async function router() {
-  const app   =document.getElementById('app');
-  const navbar=document.getElementById('main-navbar');
-  const slug  =getCurrentSlug();
-  const tag   =getUrlParams().get('tag');
+  const app   = document.getElementById('app');
+  const navbar= document.getElementById('main-navbar');
+  const slug  = getCurrentSlug();
+  const tag   = getUrlParams().get('tag');
+  const search= getUrlParams().get('search');
 
   updateHtmlLang();
   updateRobotsBySource('seo');
 
   if(tag) {
     navbar.classList.remove('video-mode');
-    const results = videoDatabaseALL.filter(v => v.tags && v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    renderGrid(app, results.length ? results : videoDatabaseALL);
+    if(!videoDatabaseALL.length) await loadDatabases();
+    const rel  = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+    const rest = videoDatabaseALL.filter(v=>!v.tags||!v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+    renderGrid(app, rel.length ? [...rel,...rest] : videoDatabaseALL);
     updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if(h && results.length) h.textContent = '🏷️ Tag: #' + tag + ' (' + results.length + ' videos)';
-  } else if(!slug||slug==='home') {
+    _insertHomeBtn(app, rel.length ? '🏷️ Tag: #'+tag+' ('+rel.length+' videos)' : '🔥 TRENDING VIDEO');
+  } else if(search) {
     navbar.classList.remove('video-mode');
-    renderGrid(app, videoDatabaseALL);
+    if(!videoDatabaseALL.length) await loadDatabases();
+    const q    = search.toLowerCase();
+    const rel  = videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(q));
+    const rest = videoDatabaseALL.filter(v=>!v.title.toLowerCase().includes(q));
+    renderGrid(app, rel.length ? [...rel,...rest] : videoDatabaseALL);
+    updateCanonical('home','seo');
+    _insertHomeBtn(app, rel.length ? '🔍 "'+search+'" — '+rel.length+' hasil' : '🔥 TRENDING VIDEO');
+  } else if(!slug||slug==='home') {
+    var oldBtn=document.getElementById('btn-back-home'); if(oldBtn) oldBtn.remove();
+    navbar.classList.remove('video-mode');
+    if(!videoDatabaseALL.length) { await loadDatabases(); renderGrid(app, videoDatabaseALL); }
     updateCanonical('home','seo');
     const og=document.getElementById('og-type'); if(og) og.setAttribute('content','website');
   } else {
     const video=videoDatabaseALL.find(v=>v.slug===slug||seoUrl(v.title)===slug);
     if(video) {
+      // db-id.json → render SPA (tidak ada halaman statis)
+      // db-en.json → sudah diarahkan ke /video/slug/ via navigateTo
       navbar.classList.add('video-mode');
       renderVideo(app, video);
     } else {
-      history.replaceState({},'', location.origin + '/');
+      history.replaceState({},'', location.origin+'/');
       navbar.classList.remove('video-mode');
       document.title='Trend4GenZ - Streaming';
+      if(!videoDatabaseALL.length) await loadDatabases();
       renderGrid(app, videoDatabaseALL);
       updateCanonical('home','seo');
     }
@@ -909,513 +578,13 @@ async function router() {
 
 window.addEventListener('popstate', router);
 window.addEventListener('load', async ()=>{
-  try {
-    await loadDatabases();
-  } catch(e) {
+  try { await loadDatabases(); } catch(e) {
     document.getElementById('app').innerHTML='<div class="loading-screen"><p style="color:#ff032d">❌ Gagal memuat database.</p></div>';
     return;
   }
   initSearch();
   router();
 });
-
-// ── PATCH: homepage statis ──────────────────────────────────────
-// Override loadDatabases — tidak perlu featured.json
-async function loadDatabases() {
-  const [resEN, resID] = await Promise.all([
-    fetch('./db-en.json'),
-    fetch('./db-id.json')
-  ]);
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
-  videoDatabaseID  = (await resID.json()).map(v=>({...v,source:v.source||'nofollow'}));
-  videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
-  // load more mulai dari video yang belum tampil di 20 card hardcoded
-  const shown = new Set(["openai-chatgpt-ai-smartphone-2027-launch","apple-vision-pro-rumors-ai-ios-27-ternus-ceo-transition","how-to-make-150-per-day-in-sales-no-degree","ai-trust-calibration-guide-human-ai-alignment","ai-agents-local-businesses-2026-revenue-guide","netflix-java-ai-migration-2026","iphone-18-rumors-downgrade-specs-leak-2025","ai-automation-jobs-2026-expert-warning","samsung-tsmc-1nm-chip-race-2025-2030","google-io-2026-ai-breakthroughs-omni-flash-spark-explained","35-must-have-car-gadgets-transform-driving-experience","keke-palmer-ted-how-survival-patterns-can-trap-you","8-life-saving-gadgets-under-50-dollars-for-home-safety","java-25-modern-development-reducing-verbosity","android-17-ai-revolution-features-release-date","why-ai-cant-replace-software-engineers-insights-from-c-and-typescript-creator","20-ai-devices-2026-future-tech","cybopal-one-ai-robotic-monitor-ces-2026-review","sundar-pichai-io-2026-keynote-ai-agents-world-models","wine-complexity-science-behind-tasting-perception"]);
-  currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
-  currentPage = 1;
-}
-
-// Override router — homepage tidak render ulang dari JS
-async function router() {
-  const app    = document.getElementById('app');
-  const navbar = document.getElementById('main-navbar');
-  const slug   = getCurrentSlug();
-  const tag    = getUrlParams().get('tag');
-  const search = getUrlParams().get('search');
-
-  updateHtmlLang();
-  updateRobotsBySource('seo');
-
-  if (tag) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const res = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h && res.length) h.textContent = '🏷️ Tag: #'+tag+' ('+res.length+' videos)';
-  } else if (search) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const q   = search.toLowerCase();
-    const res = videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(q));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h) h.textContent = res.length ? '🔍 "'+search+'" ('+res.length+' video)' : '🔥 TRENDING VIDEO';
-  } else if (!slug || slug==='home') {
-    // Homepage — 20 card sudah ada di HTML, tidak render ulang
-    navbar.classList.remove('video-mode');
-    updateCanonical('home','seo');
-  } else {
-    // ?v=slug → redirect ke halaman statis
-    window.location.replace('/video/'+slug+'/');
-    return;
-  }
-  window.scrollTo(0,0);
-}
-// ── END PATCH ───────────────────────────────────────────────────
-
-// ── PATCH: homepage statis ──────────────────────────────────────
-// Hanya load db-en.json — db-id.json noindex/nofollow, tidak ditampilkan
-async function loadDatabases() {
-  const ROOT = location.origin + '/';
-  const resEN = await fetch(ROOT + 'db-en.json');
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
-  videoDatabaseID  = [];
-  videoDatabaseALL = [...videoDatabaseEN].sort(()=>0.5-Math.random());
-  const shown = new Set(["apple-macbook-ultra-2025-touchscreen-oled-and-m5-pro-rumors-explained","5-proven-remote-jobs-paying-250-per-day-no-experience-needed","essential-ui-components-programmers-must-know","90-day-youtube-growth-challenge-proven-strategy","10-futuristic-vehicles-you-never-knew-existed","git-github-beginners-guide-2026-version-control-collaboration","mo-gawdat-ai-strategy-2026-2027-survival-guide","axios-supply-chain-attack-2026-explained","ai-model-types-guide-2025","ai-driven-scientific-discovery-2025-breakthroughs-that-outpace-human-cognition","ai-companionships-intimacy-connection-2025","how-kosovo-s-president-vjosa-osmani-built-a-democracy-against-all-odds","19463-month-side-hustle-guide-multi-passionate-creators","how-microchips-work-ibm-cto-explains-transistors-ai-chips","openclaw-2026-ai-automation-use-case-printer-support","ai-gadgets-2026-future-of-smart-living","start-from-zero-to-1m-with-ai-powered-business-strategy","ai-trust-calibration-guide-human-ai-alignment","400k-digital-products-from-home-real-life","google-gemma-4-open-source-ai-breakthrough-2026"]);
-  currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
-  currentPage = 1;
-}
-
-async function router() {
-  const app    = document.getElementById('app');
-  const navbar = document.getElementById('main-navbar');
-  const slug   = getCurrentSlug();
-  const tag    = getUrlParams().get('tag');
-  const search = getUrlParams().get('search');
-
-  updateHtmlLang();
-  updateRobotsBySource('seo');
-
-  if (tag) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const res = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h && res.length) h.textContent = '🏷️ Tag: #'+tag+' ('+res.length+' videos)';
-  } else if (search) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const q   = search.toLowerCase();
-    const res = videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(q));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h) h.textContent = res.length ? '🔍 "'+search+'" ('+res.length+' video)' : '🔥 TRENDING VIDEO';
-  } else if (!slug || slug==='home') {
-    navbar.classList.remove('video-mode');
-    updateCanonical('home','seo');
-  } else {
-    window.location.replace('/video/'+slug+'/');
-    return;
-  }
-  window.scrollTo(0,0);
-}
-// ── END PATCH ───────────────────────────────────────────────────
-
-// ── PATCH: homepage statis ──────────────────────────────────────
-// Hanya load db-en.json — db-id.json noindex/nofollow, tidak ditampilkan
-async function loadDatabases() {
-  const ROOT = location.origin + '/';
-  const resEN = await fetch(ROOT + 'db-en.json');
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
-  videoDatabaseID  = [];
-  videoDatabaseALL = [...videoDatabaseEN].sort(()=>0.5-Math.random());
-  const shown = new Set(["ai-automation-jobs-2026-expert-warning","claude-code-source-leak-exposes-ai-agent-architecture","top-skills-to-learn-in-2026-personal-finance-ai-and-business","ai-economy-career-ladder-skilled-trades-2025","github-outages-2026-microsoft-failure-100m-devs-affected","how-to-stand-out-as-a-software-engineer-in-the-ai-era-kubernetes-insights","d-wave-ceo-government-investment-quantum-computing-scaling","top-5-ai-engineering-courses-for-2026-expert-reviewed-ranked","best-ar-smart-glasses-2026-beyond-meta-ray-ban","ai-membership-business-model-2026-guide","jiayue-jin-tedx-tca-youth-redefine-your-glow","duolingo-ceo-ai-strategy-surviving-disruption","why-people-over-40-should-start-a-youtube-channel-in-2025","sundar-pichai-io-2026-keynote-ai-agents-world-models","best-electric-bikes-under-1000-2026-comparison","10-futuristic-vehicles-you-never-knew-existed","essential-ui-components-programmers-must-know","3-profitable-digital-products-to-sell-in-1-hour","npm-supply-chain-attack-2026-react-tanstack-exploit","5-level-javascript-pyramid-fast-track-to-full-stack-mastery"]);
-  currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
-  currentPage = 1;
-}
-
-async function router() {
-  const app    = document.getElementById('app');
-  const navbar = document.getElementById('main-navbar');
-  const slug   = getCurrentSlug();
-  const tag    = getUrlParams().get('tag');
-  const search = getUrlParams().get('search');
-
-  updateHtmlLang();
-  updateRobotsBySource('seo');
-
-  if (tag) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const res = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h && res.length) h.textContent = '🏷️ Tag: #'+tag+' ('+res.length+' videos)';
-  } else if (search) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const q   = search.toLowerCase();
-    const res = videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(q));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h) h.textContent = res.length ? '🔍 "'+search+'" ('+res.length+' video)' : '🔥 TRENDING VIDEO';
-  } else if (!slug || slug==='home') {
-    navbar.classList.remove('video-mode');
-    updateCanonical('home','seo');
-  } else {
-    window.location.replace('/video/'+slug+'/');
-    return;
-  }
-  window.scrollTo(0,0);
-}
-// ── END PATCH ───────────────────────────────────────────────────
-
-// ── PATCH: homepage statis ──────────────────────────────────────
-// Hanya load db-en.json — db-id.json noindex/nofollow, tidak ditampilkan
-async function loadDatabases() {
-  const ROOT = location.origin + '/';
-  const resEN = await fetch(ROOT + 'db-en.json');
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
-  videoDatabaseID  = [];
-  videoDatabaseALL = [...videoDatabaseEN].sort(()=>0.5-Math.random());
-  const shown = new Set(["how-kosovo-s-president-vjosa-osmani-built-a-democracy-against-all-odds","smart-project-development-strategies-for-developers","10-cutting-edge-flying-machines-redefining-travel-2025","east-african-cosmic-trap-music-fusion-akoth-jumadi-mr-lu-ted","bamboo-labs-h2d-printer-review-3d-printed-shoes-run","is-iran-an-arab-country-harvard-expert-explains-iranian-history","19-mind-blowing-gadgets-launching-in-2026-that-actually-work","6-essential-gadgets-to-maximize-new-laptop-performance","youtube-growth-strategy-that-works-in-2025-for-busy-business-owners","android-17-ai-revolution-features-release-date","spirit-airlines-fleet-repurposed-after-bankruptcy","git-github-beginners-guide-2026-version-control-collaboration","elogic-aspect-touch-monitor-mac-mini-dock-review","how-physical-ai-is-revolutionizing-robotics-in-2026-google-deepmind-boston-dynam","iphone-17e-vs-17-pro-max-is-the-500-savings-worth-it","5-dollar-daily-investment-challenge-results-one-year-later","luxury-outdoor-furniture-upgrades-transform-backyard-resort","apple-2026-macbook-neo-air-pro-ipad-air-iphone-17e-review","next-3-years-ai-founders-rich","esoteric-programming-languages-you-never-knew-existed"]);
-  currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
-  currentPage = 1;
-}
-
-async function router() {
-  const app    = document.getElementById('app');
-  const navbar = document.getElementById('main-navbar');
-  const slug   = getCurrentSlug();
-  const tag    = getUrlParams().get('tag');
-  const search = getUrlParams().get('search');
-
-  updateHtmlLang();
-  updateRobotsBySource('seo');
-
-  if (tag) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const res = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h && res.length) h.textContent = '🏷️ Tag: #'+tag+' ('+res.length+' videos)';
-  } else if (search) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const q   = search.toLowerCase();
-    const res = videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(q));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h) h.textContent = res.length ? '🔍 "'+search+'" ('+res.length+' video)' : '🔥 TRENDING VIDEO';
-  } else if (!slug || slug==='home') {
-    navbar.classList.remove('video-mode');
-    updateCanonical('home','seo');
-  } else {
-    window.location.replace('/video/'+slug+'/');
-    return;
-  }
-  window.scrollTo(0,0);
-}
-// ── END PATCH ───────────────────────────────────────────────────
-
-// ── PATCH: homepage statis ──────────────────────────────────────
-// Hanya load db-en.json — db-id.json noindex/nofollow, tidak ditampilkan
-async function loadDatabases() {
-  const ROOT = location.origin + '/';
-  const resEN = await fetch(ROOT + 'db-en.json');
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
-  videoDatabaseID  = [];
-  videoDatabaseALL = [...videoDatabaseEN].sort(()=>0.5-Math.random());
-  const shown = new Set(["smart-glasses-price-comparison-2026","jim-cramer-mad-money-stock-picking-methods-2026","18-futuristic-gadgets-2026-transform-everyday-life","google-productivity-system-taught-to-6642-employees","best-ai-smart-glasses-2026-comparison-guide","how-tech-brands-manipulate-specs-and-why-you-should-ignore-their-claims","how-to-make-46k-month-selling-digital-products-with-free-sites","ai-dating-experiment-reveals-truth-about-online-romance","einstein-s-time-dilation-why-earth-s-core-ages-slower-than-its-surface","6-laptop-upgrades-2026-fix-common-problems","why-people-over-40-should-start-a-youtube-channel-in-2025","samsung-flipkart-sasa-lele-sale-2026-best-deals","build-deploy-a-full-web-app-with-claude-code-in-2025-beginner-s-step-by-step-gui","105-amazon-bathroom-gadgets-transform-home-spa","5-stage-process-to-break-free-from-financial-stagnation","why-starting-a-business-in-your-20s-might-keep-you-poor","8-ai-tools-saving-1000-hours-year-2026-guide","7-high-paying-remote-jobs-no-one-talks-about-2026-edition","start-your-online-business-today-without-perfect-preparation","canva-branding-kit-templates-etsy-sell-guide"]);
-  currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
-  currentPage = 1;
-}
-
-async function router() {
-  const app    = document.getElementById('app');
-  const navbar = document.getElementById('main-navbar');
-  const slug   = getCurrentSlug();
-  const tag    = getUrlParams().get('tag');
-  const search = getUrlParams().get('search');
-
-  updateHtmlLang();
-  updateRobotsBySource('seo');
-
-  if (tag) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const res = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h && res.length) h.textContent = '🏷️ Tag: #'+tag+' ('+res.length+' videos)';
-  } else if (search) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const q   = search.toLowerCase();
-    const res = videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(q));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h) h.textContent = res.length ? '🔍 "'+search+'" ('+res.length+' video)' : '🔥 TRENDING VIDEO';
-  } else if (!slug || slug==='home') {
-    navbar.classList.remove('video-mode');
-    updateCanonical('home','seo');
-  } else {
-    window.location.replace('/video/'+slug+'/');
-    return;
-  }
-  window.scrollTo(0,0);
-}
-// ── END PATCH ───────────────────────────────────────────────────
-
-// ── PATCH: homepage statis ──────────────────────────────────────
-// Hanya load db-en.json — db-id.json noindex/nofollow, tidak ditampilkan
-async function loadDatabases() {
-  const ROOT = location.origin + '/';
-  const resEN = await fetch(ROOT + 'db-en.json');
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
-  videoDatabaseID  = [];
-  videoDatabaseALL = [...videoDatabaseEN].sort(()=>0.5-Math.random());
-  const shown = new Set(["kim-joo-ae-north-koreas-potential-heir-apparent","london-youth-unemployment-2026-crisis-data-ai-impact","how-to-pay-yourself-from-an-llc-in-2026-owner-s-draw-vs-payroll","ai-tools-ranked-by-venture-capitalist-2026","ai-layoffs-china-dolphins-mcdonalds-trends","wine-complexity-science-behind-tasting-perception","claude-ai-artifacts-projects-skills-guide","105-amazon-bathroom-gadgets-transform-home-spa","gemini-robotics-er-1-6-guide-autonomous-agents","5-stage-process-to-break-free-from-financial-stagnation","why-ai-will-never-achieve-true-consciousness-neuroscientist-anil-seth-explains","openai-mistral-microsoft-ai-cybersecurity-models-daybreak-mythos-mdash","2026-future-of-mobility-20-revolutionary-vehicles","2026-amazon-tech-gadgets-guide","top-tech-jobs-2025-high-demand-salaries","rarest-limited-edition-tech-2026-reviewed","35-must-have-car-gadgets-transform-driving-experience","how-top-creators-use-youtube-consultants-to-hit-mrbeast-level-views","congress-investigates-insider-trading-on-prediction-markets","apple-top-10-products-ranked-by-experts"]);
-  currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
-  currentPage = 1;
-}
-
-async function router() {
-  const app    = document.getElementById('app');
-  const navbar = document.getElementById('main-navbar');
-  const slug   = getCurrentSlug();
-  const tag    = getUrlParams().get('tag');
-  const search = getUrlParams().get('search');
-
-  updateHtmlLang();
-  updateRobotsBySource('seo');
-
-  if (tag) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const res = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h && res.length) h.textContent = '🏷️ Tag: #'+tag+' ('+res.length+' videos)';
-  } else if (search) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const q   = search.toLowerCase();
-    const res = videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(q));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h) h.textContent = res.length ? '🔍 "'+search+'" ('+res.length+' video)' : '🔥 TRENDING VIDEO';
-  } else if (!slug || slug==='home') {
-    navbar.classList.remove('video-mode');
-    updateCanonical('home','seo');
-  } else {
-    window.location.replace('/video/'+slug+'/');
-    return;
-  }
-  window.scrollTo(0,0);
-}
-// ── END PATCH ───────────────────────────────────────────────────
-
-// ══════════════════════════════════════════════════════════════
-//  PATCH homepage statis v7
-// ══════════════════════════════════════════════════════════════
-
-// FIX #5: db-id.json tetap di-fetch agar muncul di grid & load more
-async function loadDatabases() {
-  const ROOT = location.origin + '/';
-  // Fetch paralel — db-id.json tetap dimuat untuk ditampilkan di homepage
-  const [resEN, resID] = await Promise.all([
-    fetch(ROOT + 'db-en.json'),
-    fetch(ROOT + 'db-id.json').catch(()=>({ok:false}))
-  ]);
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
-  videoDatabaseID  = resID.ok ? (await resID.json()).map(v=>({...v,source:v.source||'nofollow'})) : [];
-  // Shuffle campuran EN+ID — EN & ID berbaur di homepage
-  videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
-  // Load more mulai dari video yang belum tampil di 20 card hardcoded
-  const shown = new Set(["top-ai-engineering-jobs-2025-data-centers-robotics","how-meta-s-ex-distinguished-engineer-outperformed-99-of-developers","openai-s-leadership-crisis-sam-altman-s-controversial-reign-and-the-future-of-ai","make-10k-as-student-side-hustle-guide","youtube-growth-strategy-that-works-in-2025-for-busy-business-owners","apple-wwdc-2026-siri-ai-chatbot-features","ligo-gravitational-wave-black-hole-discovery-2015","google-io-2026-ai-advances-agi-horizon","antony-starr-homelander-boys-interview-insights","how-ai-recommendations-will-dominate-business-discovery-2026","start-from-zero-to-1m-with-ai-powered-business-strategy","oracle-mcp-server-ai-database-automation-guide","xai-replaces-java-scala-with-rust-python-ai-revolution","how-to-unlock-80-of-notion-s-power-with-the-relations-feature","ai-membership-business-model-2026-guide","google-ai-brain-mapping-2026-connectome-mogen","ai-cybersecurity-y2k-moment-2025-crowdstrike-openai-claude","redmi-k90-max-review-specs-price-india-launch","10-futuristic-vehicles-you-never-knew-existed","how-kosovo-s-president-vjosa-osmani-built-a-democracy-against-all-odds"]);
-  currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
-  currentPage = 1;
-}
-
-// FIX #2 & #3: router dengan tombol HOME + hasil search tidak terputus
-async function router() {
-  const app    = document.getElementById('app');
-  const navbar = document.getElementById('main-navbar');
-  const slug   = getCurrentSlug();
-  const tag    = getUrlParams().get('tag');
-  const search = getUrlParams().get('search');
-
-  updateHtmlLang();
-  updateRobotsBySource('seo');
-
-  if (tag) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    // Relevan di atas, sisanya (tidak relevan) tetap muncul di bawah
-    const rel   = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    const rest  = videoDatabaseALL.filter(v=>!v.tags||!v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
-    renderGrid(app, combined);
-    updateCanonical('home','seo');
-    // FIX #2: Tambahkan tombol HOME di bawah heading
-    const h = app.querySelector('h5');
-    if (h) {
-      h.textContent = rel.length ? '🏷️ Tag: #'+tag+' ('+rel.length+' videos)' : '🔥 TRENDING VIDEO';
-      if (!document.getElementById('btn-back-home')) {
-        var btn = document.createElement('button');
-        btn.id='btn-back-home';
-        btn.onclick=function(){ history.pushState({},'',location.origin+'/'); router(); };
-        btn.style.cssText='background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
-        btn.innerHTML='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
-        h.parentNode.insertBefore(btn, h);
-      }
-    }
-  } else if (search) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const q   = search.toLowerCase();
-    // Relevan di atas, sisanya tetap muncul di bawah
-    const rel  = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)!==-1);
-    const rest = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)===-1);
-    const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
-    renderGrid(app, combined);
-    updateCanonical('home','seo');
-    // FIX #2: Tambahkan tombol HOME
-    const h = app.querySelector('h5');
-    if (h) {
-      h.textContent = rel.length ? '🔍 "'+search+'" — '+rel.length+' hasil' : '🔥 TRENDING VIDEO';
-      if (!document.getElementById('btn-back-home')) {
-        var btn = document.createElement('button');
-        btn.id='btn-back-home';
-        btn.onclick=function(){ history.pushState({},'',location.origin+'/'); router(); };
-        btn.style.cssText='background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
-        btn.innerHTML='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
-        h.parentNode.insertBefore(btn, h);
-      }
-    }
-  } else if (!slug || slug==='home') {
-    // Homepage normal — hapus tombol HOME kalau ada
-    var oldBtn = document.getElementById('btn-back-home');
-    if (oldBtn) oldBtn.remove();
-    navbar.classList.remove('video-mode');
-    updateCanonical('home','seo');
-  } else {
-    // ?v=slug → redirect ke halaman statis
-    window.location.replace('/video/'+slug+'/');
-    return;
-  }
-  window.scrollTo(0,0);
-}
-// ── END PATCH ───────────────────────────────────────────────────
-
-// ══════════════════════════════════════════════════════════════
-//  PATCH homepage statis v7
-// ══════════════════════════════════════════════════════════════
-
-// FIX #5: db-id.json tetap di-fetch agar muncul di grid & load more
-async function loadDatabases() {
-  const ROOT = location.origin + '/';
-  // Fetch paralel — db-id.json tetap dimuat untuk ditampilkan di homepage
-  const [resEN, resID] = await Promise.all([
-    fetch(ROOT + 'db-en.json'),
-    fetch(ROOT + 'db-id.json').catch(()=>({ok:false}))
-  ]);
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
-  videoDatabaseID  = resID.ok ? (await resID.json()).map(v=>({...v,source:v.source||'nofollow'})) : [];
-  // Shuffle campuran EN+ID — EN & ID berbaur di homepage
-  videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
-  // Load more mulai dari video yang belum tampil di 20 card hardcoded
-  const shown = new Set(["how-to-enable-xbox-mode-in-windows-11-for-console-like-gaming-performance","top-5-ai-engineering-courses-for-2026-expert-reviewed-ranked","neal-katyal-ai-supreme-court-tariffs-case-breakdown","tim-cook-era-ends-apple-ceo-transition-2026","india-smartphone-market-q1-2026-rankings-vivo-samsung-oppo-apple","amd-ryzen-ai-pro-laptops-2026-business-ai-revolution","ai-user-maturity-7-levels-to-automate-your-workflow","6-profitable-ai-business-ideas-to-start-in-2026-without-coding","anthropic-claude-design-opus-4-7-ai-prototyping-breakthrough","run-claude-code-on-your-phone-with-a-cloud-terminal-in-10-minutes","cursor-3-rewrite-vs-code-rust-ai-agents-2026","why-2026-is-the-golden-age-for-developers-github-coo-s-ai-insights","artemis-ii-mission-timeline-heat-shield-success","safest-magsafe-batteries-iphone-2026-solid-state-guide","5-proven-remote-jobs-paying-250-per-day-no-experience-needed","yartsa-gunbu-worlds-most-expensive-fungus","180524-tech-news-iphone-18-pro-oppo-reno16-iqoo-15t-claude-spacex","is-iran-an-arab-country-harvard-expert-explains-iranian-history","modern-luxury-home-decor-ideas-transform-your-space","duolingo-ceo-ai-strategy-surviving-disruption"]);
-  currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
-  currentPage = 1;
-}
-
-// FIX #2 & #3: router dengan tombol HOME + hasil search tidak terputus
-async function router() {
-  const app    = document.getElementById('app');
-  const navbar = document.getElementById('main-navbar');
-  const slug   = getCurrentSlug();
-  const tag    = getUrlParams().get('tag');
-  const search = getUrlParams().get('search');
-
-  updateHtmlLang();
-  updateRobotsBySource('seo');
-
-  if (tag) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    // Relevan di atas, sisanya (tidak relevan) tetap muncul di bawah
-    const rel   = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    const rest  = videoDatabaseALL.filter(v=>!v.tags||!v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
-    renderGrid(app, combined);
-    updateCanonical('home','seo');
-    // FIX #2: Tambahkan tombol HOME di bawah heading
-    const h = app.querySelector('h5');
-    if (h) {
-      h.textContent = rel.length ? '🏷️ Tag: #'+tag+' ('+rel.length+' videos)' : '🔥 TRENDING VIDEO';
-      if (!document.getElementById('btn-back-home')) {
-        var btn = document.createElement('button');
-        btn.id='btn-back-home';
-        btn.onclick=function(){ history.pushState({},'',location.origin+'/'); router(); };
-        btn.style.cssText='background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
-        btn.innerHTML='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
-        h.parentNode.insertBefore(btn, h);
-      }
-    }
-  } else if (search) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const q   = search.toLowerCase();
-    // Relevan di atas, sisanya tetap muncul di bawah
-    const rel  = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)!==-1);
-    const rest = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)===-1);
-    const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
-    renderGrid(app, combined);
-    updateCanonical('home','seo');
-    // FIX #2: Tambahkan tombol HOME
-    const h = app.querySelector('h5');
-    if (h) {
-      h.textContent = rel.length ? '🔍 "'+search+'" — '+rel.length+' hasil' : '🔥 TRENDING VIDEO';
-      if (!document.getElementById('btn-back-home')) {
-        var btn = document.createElement('button');
-        btn.id='btn-back-home';
-        btn.onclick=function(){ history.pushState({},'',location.origin+'/'); router(); };
-        btn.style.cssText='background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
-        btn.innerHTML='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
-        h.parentNode.insertBefore(btn, h);
-      }
-    }
-  } else if (!slug || slug==='home') {
-    // Homepage normal — hapus tombol HOME kalau ada
-    var oldBtn = document.getElementById('btn-back-home');
-    if (oldBtn) oldBtn.remove();
-    navbar.classList.remove('video-mode');
-    updateCanonical('home','seo');
-  } else {
-    // ?v=slug → redirect ke halaman statis
-    window.location.replace('/video/'+slug+'/');
-    return;
-  }
-  window.scrollTo(0,0);
-}
-// ── END PATCH ───────────────────────────────────────────────────
 </script>
 </body>
 </html>
