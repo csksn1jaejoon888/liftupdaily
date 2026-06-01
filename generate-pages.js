@@ -232,11 +232,11 @@ function buildVideoPage(v, allVideos) {
 <script>
 // ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
 var STATIC_AD = {
-  useDirect:       \${STATIC_AD.useDirect},
-  directUrl:       '\${STATIC_AD.directUrl}',
-  usePlayAds:      \${STATIC_AD.usePlayAds},
-  playAdsUrl:      '\${STATIC_AD.playAdsUrl}',
-  playAdsStartFrom:\${STATIC_AD.playAdsStartFrom}
+  useDirect:       ${STATIC_AD.useDirect},
+  directUrl:       '${STATIC_AD.directUrl}',
+  usePlayAds:      ${STATIC_AD.usePlayAds},
+  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
 };
 // ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
 var _playCount = 0; // hitung berapa kali tap play di sesi ini
