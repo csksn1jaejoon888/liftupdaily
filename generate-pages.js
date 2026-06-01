@@ -1,11 +1,12 @@
 // ══════════════════════════════════════════════════════════════════
-//  generate-pages.js  v6  (patched)
+//  generate-pages.js  v7
 //  Fix:
-//    1. Player full-width di desktop (max-width 800px, bukan 600px)
-//    2. Tombol fullscreen custom muncul setelah tap play
-//    3. Path fetch absolut di homepage patch
-//    4. db-id.json DIHAPUS dari semua fetch — hanya db-en.json
-//       (db-id.json adalah noindex/nofollow, tidak perlu halaman statis)
+//    1. Search suggestion real di halaman statis (fetch db-en.json bg)
+//    2. Tombol HOME muncul di halaman hasil search/?tag di homepage
+//    3. Hasil search/tag: relevan di atas + semua video di bawah (tdk terputus)
+//    4. Desktop player lebih lebar (max-width 1100px, tengah)
+//    5. db-id.json tetap di-fetch di homepage (muncul di grid & load more)
+//       tapi TIDAK di-generate jadi halaman statis
 // ══════════════════════════════════════════════════════════════════
 'use strict';
 
@@ -13,7 +14,8 @@ const fs   = require('fs');
 const path = require('path');
 
 // ── Config ─────────────────────────────────────────────────────
-const DB_FILE      = path.join(__dirname, 'db-en.json');
+const DB_FILE_EN   = path.join(__dirname, 'db-en.json');
+const DB_FILE_ID   = path.join(__dirname, 'db-id.json');
 const BASE_TMPL    = path.join(__dirname, 'index_base.html');
 const INDEX_FILE   = path.join(__dirname, 'index.html');
 const VIDEO_DIR    = path.join(__dirname, 'video');
@@ -66,6 +68,7 @@ function buildVideoPage(v, allVideos) {
       <p>${esc(r.title)}</p>
     </a>`).join('');
 
+  // Semua video untuk infinite scroll slider + suggestion search
   const sliderDataJson = JSON.stringify(
     allVideos.filter(r=>r.slug!==v.slug).map(r=>({slug:r.slug,youtubeId:r.youtubeId,title:r.title}))
   );
@@ -98,23 +101,24 @@ function buildVideoPage(v, allVideos) {
     :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a}
     body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
 
-    /* ── Navbar sama persis dengan SPA video-mode ── */
+    /* ── Navbar ── */
     .navbar-custom{background:#000;padding:8px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:0}
     .navbar-right-group{display:flex;align-items:center;margin-left:auto}
     .search-wrapper{position:relative;display:flex;align-items:center;z-index:9999}
     .search-container{display:flex;align-items:center;background:var(--dark);border-radius:20px;padding:5px 12px;border:1px solid var(--green)}
     .search-container input{background:transparent;border:none;color:#fff;outline:none;font-size:.85rem;width:45px;transition:.3s}
     .search-container input:focus{width:65px}
-    .search-suggestions{position:absolute;top:calc(100% + 6px);right:0;width:240px;background:var(--dark);border:1px solid var(--green);border-radius:10px;overflow:hidden;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.6);display:none}
+    .search-suggestions{position:absolute;top:calc(100% + 6px);right:0;width:280px;background:var(--dark);border:1px solid var(--green);border-radius:10px;overflow:hidden;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.6);display:none}
     .search-suggestions.show{display:block}
     .suggestion-item{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(255,255,255,.05)}
     .suggestion-item:last-child{border-bottom:none}
     .suggestion-item:hover{background:rgba(152,251,152,.12)}
     .suggestion-item img{width:52px;height:30px;object-fit:cover;border-radius:4px;flex-shrink:0}
     .suggestion-item span{font-size:.75rem;color:#f1f1f1;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+    .suggestion-item span em{color:var(--green);font-style:normal;font-weight:bold}
     .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
+    @media(max-width:768px){.search-suggestions{width:240px}}
 
-    /* ── FIX #1: Player container full-width, max 800px di desktop ── */
     .video-page-container{width:100%;max-width:800px;margin:0 auto;padding:15px}
     @media(max-width:600px){.video-page-container{padding:0}}
     .player-container{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
@@ -128,12 +132,10 @@ function buildVideoPage(v, allVideos) {
     .video-mask{position:absolute;z-index:99999;background:transparent;pointer-events:all;touch-action:none}
     .mask-top{top:0;left:0;width:55%;height:94px}
     .mask-bottom{bottom:0;left:40%;width:100%;height:43px}
-
-    /* ── FIX #2: Tombol fullscreen custom ── */
     .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
     #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
 
-    /* ── Info section ── */
+    /* ── Info ── */
     .info-section{padding:15px}
     h1{font-size:1.2rem;font-weight:800;line-height:1.4;margin:15px 0}
     .dual-action-wrap{display:flex;gap:10px;margin-bottom:18px}
@@ -141,23 +143,17 @@ function buildVideoPage(v, allVideos) {
     .home-split-btn:hover{background:#7ddb7d;transform:translateY(-2px)}
     .offer-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;color:#fff;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#ff416c,#ff4b2b);animation:pulse-offer 2s infinite}
     @keyframes pulse-offer{0%,100%{box-shadow:0 0 14px rgba(255,65,108,.5)}50%{box-shadow:0 0 24px rgba(255,65,108,.85)}}
-
-    /* ── Summary ── */
     .summary-box{background:rgba(255,255,255,.05);padding:20px;border-radius:12px;border-left:4px solid var(--green)}
     .summary-text{font-size:.9rem;line-height:1.5;color:#ddd}
-    .summary-text h2{font-size:1.1rem;font-weight:700;margin:20px 0 8px;line-height:1.3;color:#fff}
-    .summary-text h3{font-size:1.0rem;font-weight:600;margin:16px 0 6px;line-height:1.3;color:#fff}
+    .summary-text h2{font-size:1.1rem;font-weight:700;margin:20px 0 8px;color:#fff}
+    .summary-text h3{font-size:1.0rem;font-weight:600;margin:16px 0 6px;color:#fff}
     .summary-text p{font-size:.9rem;line-height:1.5;margin-bottom:12px;color:#ddd}
     .summary-text ul{margin-bottom:12px;padding-left:20px}
     .summary-text li{font-size:.9rem;line-height:1.4;margin-bottom:5px;color:#ddd}
     .summary-text strong{color:#fff}
-
-    /* ── Tags ── */
     .seo-tags-container{margin-top:15px;padding-top:15px;border-top:1px solid #222;display:flex;flex-wrap:wrap;gap:6px}
     .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;text-decoration:none;transition:.15s;display:inline-block}
     .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
-
-    /* ── Slider ── */
     .recommendation-slider{display:flex;overflow-x:auto;gap:12px;padding-bottom:15px;scrollbar-width:none;-ms-overflow-style:none}
     .recommendation-slider::-webkit-scrollbar{display:none}
     .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent}
@@ -215,7 +211,7 @@ function buildVideoPage(v, allVideos) {
 </div>
 
 <script>
-// ── FIX #2: startPlay dengan tombol fullscreen custom ────────────
+// ── Player & Fullscreen ──────────────────────────────────────────
 function startPlay() {
   var pb = document.getElementById('player-box');
   pb.innerHTML =
@@ -230,65 +226,80 @@ function startPlay() {
     '<polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>' +
     '</svg></div>';
 }
-
 function toggleFS() {
-  var el  = document.getElementById('player-box');
-  var svg = document.getElementById('fs-icon');
-  if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-    (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
-    if (svg) svg.innerHTML =
-      '<polyline points="8 3 3 3 3 8"/><line x1="3" y1="3" x2="10" y2="10"/>' +
-      '<polyline points="21 8 21 3 16 3"/><line x1="21" y1="3" x2="14" y2="10"/>' +
-      '<polyline points="3 16 3 21 8 21"/><line x1="3" y1="21" x2="10" y2="14"/>' +
-      '<polyline points="16 21 21 21 21 16"/><line x1="21" y1="21" x2="14" y2="14"/>';
+  var el=document.getElementById('player-box'), svg=document.getElementById('fs-icon');
+  if (!document.fullscreenElement&&!document.webkitFullscreenElement) {
+    (el.requestFullscreen||el.webkitRequestFullscreen).call(el);
+    if(svg) svg.innerHTML='<polyline points="8 3 3 3 3 8"/><line x1="3" y1="3" x2="10" y2="10"/><polyline points="21 8 21 3 16 3"/><line x1="21" y1="3" x2="14" y2="10"/><polyline points="3 16 3 21 8 21"/><line x1="3" y1="21" x2="10" y2="14"/><polyline points="16 21 21 21 21 16"/><line x1="21" y1="21" x2="14" y2="14"/>';
   } else {
-    (document.exitFullscreen || document.webkitExitFullscreen).call(document);
-    if (svg) svg.innerHTML =
-      '<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/>' +
-      '<polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>';
+    (document.exitFullscreen||document.webkitExitFullscreen).call(document);
+    if(svg) svg.innerHTML='<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/><polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>';
   }
 }
 
-// ── Search: redirect ke homepage dengan query ────────────────────
+// ── FIX #1: Search suggestion real dari db-en.json ───────────────
+var _db = ${sliderDataJson};  // sudah ada dari slider data, reuse!
 (function(){
   var inp = document.getElementById('searchInput');
   var btn = document.getElementById('searchBtn');
   var sug = document.getElementById('searchSuggestions');
-  function doSearch() {
-    var q = inp.value.trim();
-    if (q) window.location.href = '${BASE_URL}/?search=' + encodeURIComponent(q);
+  var ai  = -1;
+
+  function hl(t,q){
+    return t.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<em>$1</em>');
   }
-  inp.addEventListener('keydown', function(e){ if(e.key==='Enter') doSearch(); });
-  btn.addEventListener('click', doSearch);
+  function hide(){ sug.classList.remove('show'); sug.innerHTML=''; ai=-1; }
+
   inp.addEventListener('input', function(){
-    var q = inp.value.trim();
-    if (!q) { sug.classList.remove('show'); return; }
-    sug.innerHTML = '<div class="suggestion-empty">Tekan Enter untuk cari: <b>' + q + '</b></div>';
+    var val = inp.value.trim().toLowerCase(); ai=-1;
+    if (!val) { hide(); return; }
+    var matches = _db.filter(function(v){ return v.title.toLowerCase().indexOf(val)!==-1; }).slice(0,7);
+    if (!matches.length) {
+      sug.innerHTML='<div class="suggestion-empty">No results for "<b>'+val+'</b>"</div>';
+      sug.classList.add('show'); return;
+    }
+    sug.innerHTML = matches.map(function(v){
+      return '<div class="suggestion-item" data-slug="'+v.slug+'">' +
+        '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/mqdefault.jpg" loading="lazy" alt=""/>' +
+        '<span>'+hl(v.title,val)+'</span></div>';
+    }).join('');
     sug.classList.add('show');
+    sug.querySelectorAll('.suggestion-item').forEach(function(el){
+      el.addEventListener('mousedown', function(e){
+        e.preventDefault();
+        window.location.href = '${BASE_URL}/video/' + el.dataset.slug + '/';
+      });
+    });
   });
-  document.addEventListener('click', function(e){
-    if (!e.target.closest('.search-wrapper')) sug.classList.remove('show');
+
+  inp.addEventListener('keydown', function(e){
+    var items = sug.querySelectorAll('.suggestion-item');
+    if (e.key==='ArrowDown'){ e.preventDefault(); ai=Math.min(ai+1,items.length-1); upA(items); }
+    else if (e.key==='ArrowUp'){ e.preventDefault(); ai=Math.max(ai-1,-1); upA(items); }
+    else if (e.key==='Enter'){
+      if (ai>=0&&items[ai]) { window.location.href='${BASE_URL}/video/'+items[ai].dataset.slug+'/'; }
+      else { var q=inp.value.trim(); if(q) window.location.href='${BASE_URL}/?search='+encodeURIComponent(q); }
+    }
+    else if (e.key==='Escape'){ hide(); inp.blur(); }
   });
+
+  function upA(items){ items.forEach(function(el,i){ el.classList.toggle('active',i===ai); }); }
+  btn.addEventListener('click', function(){ var q=inp.value.trim(); if(q) window.location.href='${BASE_URL}/?search='+encodeURIComponent(q); });
+  document.addEventListener('click', function(e){ if(!e.target.closest('.search-wrapper')) hide(); });
 })();
 
 // ── Infinite scroll slider ───────────────────────────────────────
-var _all = ${sliderDataJson};
 var _loaded = 8;
 document.getElementById('rec-slider').addEventListener('scroll', function(){
   if (this.scrollLeft + this.clientWidth >= this.scrollWidth - 120) {
-    var next = _all.slice(_loaded, _loaded + 8);
-    if (!next.length) { _loaded = 0; next = _all.slice(0, 8); }
+    var next = _db.slice(_loaded, _loaded+8);
+    if (!next.length) { _loaded=0; next=_db.slice(0,8); }
     next.forEach(function(r){
       var a = document.createElement('a');
-      a.className = 'slider-item';
-      a.href = '${BASE_URL}/video/' + r.slug + '/';
-      a.style.cssText = 'text-decoration:none;color:inherit;display:block';
-      a.innerHTML =
-        '<img src="https://img.youtube.com/vi/' + r.youtubeId + '/mqdefault.jpg"' +
-        ' loading="lazy" width="160" height="90"' +
-        ' onload="this.style.opacity=1"' +
-        ' style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>' +
-        '<p>' + r.title.replace(/</g,'&lt;') + '</p>';
+      a.className='slider-item';
+      a.href='${BASE_URL}/video/'+r.slug+'/';
+      a.style.cssText='text-decoration:none;color:inherit;display:block';
+      a.innerHTML='<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" width="160" height="90" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><p>'+r.title.replace(/</g,'&lt;')+'</p>';
       document.getElementById('rec-slider').appendChild(a);
     });
     _loaded += next.length;
@@ -302,8 +313,8 @@ document.getElementById('rec-slider').addEventListener('scroll', function(){
 // ════════════════════════════════════════════════════════════════
 //  HOMEPAGE STATIS
 // ════════════════════════════════════════════════════════════════
-function buildHomepage(db) {
-  const featured = shuffle(db).slice(0, HOMEPAGE_CARDS);
+function buildHomepage(dbEN) {
+  const featured = shuffle(dbEN).slice(0, HOMEPAGE_CARDS);
 
   let html = fs.readFileSync(BASE_TMPL, 'utf8').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
@@ -346,21 +357,30 @@ ${cardsHtml}
 
   html = html.slice(0, startIdx) + newApp + html.slice(endIdx + APP_END.length);
 
-  // ── FIX #3: path fetch absolut (/db-en.json bukan ./db-en.json) ──
   const patchScript = `
-// ── PATCH: homepage statis ──────────────────────────────────────
-// Hanya load db-en.json — db-id.json noindex/nofollow, tidak ditampilkan
+// ══════════════════════════════════════════════════════════════
+//  PATCH homepage statis v7
+// ══════════════════════════════════════════════════════════════
+
+// FIX #5: db-id.json tetap di-fetch agar muncul di grid & load more
 async function loadDatabases() {
   const ROOT = location.origin + '/';
-  const resEN = await fetch(ROOT + 'db-en.json');
+  // Fetch paralel — db-id.json tetap dimuat untuk ditampilkan di homepage
+  const [resEN, resID] = await Promise.all([
+    fetch(ROOT + 'db-en.json'),
+    fetch(ROOT + 'db-id.json').catch(()=>({ok:false}))
+  ]);
   videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
-  videoDatabaseID  = [];
-  videoDatabaseALL = [...videoDatabaseEN].sort(()=>0.5-Math.random());
+  videoDatabaseID  = resID.ok ? (await resID.json()).map(v=>({...v,source:v.source||'nofollow'})) : [];
+  // Shuffle campuran EN+ID — EN & ID berbaur di homepage
+  videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
+  // Load more mulai dari video yang belum tampil di 20 card hardcoded
   const shown = new Set(${hardcodedSlugs});
   currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
   currentPage = 1;
 }
 
+// FIX #2 & #3: router dengan tombol HOME + hasil search tidak terputus
 async function router() {
   const app    = document.getElementById('app');
   const navbar = document.getElementById('main-navbar');
@@ -374,24 +394,56 @@ async function router() {
   if (tag) {
     navbar.classList.remove('video-mode');
     if (!videoDatabaseALL.length) await loadDatabases();
-    const res = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
+    // Relevan di atas, sisanya (tidak relevan) tetap muncul di bawah
+    const rel   = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+    const rest  = videoDatabaseALL.filter(v=>!v.tags||!v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+    const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
+    renderGrid(app, combined);
     updateCanonical('home','seo');
+    // FIX #2: Tambahkan tombol HOME di bawah heading
     const h = app.querySelector('h5');
-    if (h && res.length) h.textContent = '🏷️ Tag: #'+tag+' ('+res.length+' videos)';
+    if (h) {
+      h.textContent = rel.length ? '🏷️ Tag: #'+tag+' ('+rel.length+' videos)' : '🔥 TRENDING VIDEO';
+      if (!document.getElementById('btn-back-home')) {
+        var btn = document.createElement('button');
+        btn.id='btn-back-home';
+        btn.onclick=function(){ history.pushState({},'',location.origin+'/'); router(); };
+        btn.style.cssText='background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
+        btn.innerHTML='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
+        h.parentNode.insertBefore(btn, h);
+      }
+    }
   } else if (search) {
     navbar.classList.remove('video-mode');
     if (!videoDatabaseALL.length) await loadDatabases();
     const q   = search.toLowerCase();
-    const res = videoDatabaseALL.filter(v=>v.title.toLowerCase().includes(q));
-    renderGrid(app, res.length ? res : videoDatabaseALL);
+    // Relevan di atas, sisanya tetap muncul di bawah
+    const rel  = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)!==-1);
+    const rest = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)===-1);
+    const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
+    renderGrid(app, combined);
     updateCanonical('home','seo');
+    // FIX #2: Tambahkan tombol HOME
     const h = app.querySelector('h5');
-    if (h) h.textContent = res.length ? '🔍 "'+search+'" ('+res.length+' video)' : '🔥 TRENDING VIDEO';
+    if (h) {
+      h.textContent = rel.length ? '🔍 "'+search+'" — '+rel.length+' hasil' : '🔥 TRENDING VIDEO';
+      if (!document.getElementById('btn-back-home')) {
+        var btn = document.createElement('button');
+        btn.id='btn-back-home';
+        btn.onclick=function(){ history.pushState({},'',location.origin+'/'); router(); };
+        btn.style.cssText='background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
+        btn.innerHTML='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
+        h.parentNode.insertBefore(btn, h);
+      }
+    }
   } else if (!slug || slug==='home') {
+    // Homepage normal — hapus tombol HOME kalau ada
+    var oldBtn = document.getElementById('btn-back-home');
+    if (oldBtn) oldBtn.remove();
     navbar.classList.remove('video-mode');
     updateCanonical('home','seo');
   } else {
+    // ?v=slug → redirect ke halaman statis
     window.location.replace('/video/'+slug+'/');
     return;
   }
@@ -408,7 +460,7 @@ async function router() {
 //  MAIN
 // ════════════════════════════════════════════════════════════════
 function main() {
-  if (!fs.existsSync(DB_FILE)) { console.error('❌ db-en.json tidak ditemukan!'); process.exit(1); }
+  if (!fs.existsSync(DB_FILE_EN)) { console.error('❌ db-en.json tidak ditemukan!'); process.exit(1); }
 
   if (!fs.existsSync(BASE_TMPL)) {
     if (!fs.existsSync(INDEX_FILE)) { console.error('❌ index.html dan index_base.html keduanya tidak ada!'); process.exit(1); }
@@ -417,32 +469,36 @@ function main() {
     console.log('✅ index_base.html dibuat otomatis dari index.html');
   }
 
-  const rawDb = JSON.parse(fs.readFileSync(DB_FILE,'utf8'));
-  // Hanya proses db-en.json — db-id.json noindex/nofollow, tidak di-generate
-  const db    = rawDb.filter(v=>v.slug&&v.youtubeId&&v.title);
-  console.log(`📦 ${rawDb.length} total → ${db.length} valid (db-en only)`);
+  // Hanya db-en.json yang di-generate jadi halaman statis
+  const rawEN = JSON.parse(fs.readFileSync(DB_FILE_EN,'utf8'));
+  const dbEN  = rawEN.filter(v=>v.slug&&v.youtubeId&&v.title);
+  console.log(`📦 db-en.json: ${rawEN.length} total → ${dbEN.length} valid`);
+  if (fs.existsSync(DB_FILE_ID)) {
+    const rawID = JSON.parse(fs.readFileSync(DB_FILE_ID,'utf8'));
+    console.log(`📦 db-id.json: ${rawID.length} video (noindex — tidak di-generate, hanya tampil di homepage)`);
+  }
 
   console.log('🗑️  Hapus /video/ lama...');
   rmDir(VIDEO_DIR);
   fs.mkdirSync(VIDEO_DIR,{recursive:true});
 
-  console.log('📄 Generate halaman video...');
+  console.log('📄 Generate halaman statis dari db-en.json...');
   let created = 0;
-  db.forEach(v=>{
+  dbEN.forEach(v=>{
     const dir = path.join(VIDEO_DIR, v.slug);
     fs.mkdirSync(dir, {recursive:true});
-    fs.writeFileSync(path.join(dir,'index.html'), buildVideoPage(v,db), 'utf8');
+    fs.writeFileSync(path.join(dir,'index.html'), buildVideoPage(v,dbEN), 'utf8');
     created++;
-    if (created%50===0) console.log(`  ✅ ${created}/${db.length}`);
+    if (created%50===0) console.log(`  ✅ ${created}/${dbEN.length}`);
   });
   console.log(`✅ ${created} halaman video selesai`);
 
   console.log('🏠 Update index.html dari index_base.html...');
-  const newIndex = buildHomepage(db);
+  const newIndex = buildHomepage(dbEN);
   fs.writeFileSync(INDEX_FILE, newIndex, 'utf8');
   console.log('✅ index.html diperbarui dengan 20 card random hardcoded');
 
-  console.log(`\n🎉 Selesai! ${created} video + homepage statis`);
+  console.log(`\n🎉 Selesai! ${created} halaman statis (db-en) + homepage (EN+ID berbaur)`);
 }
 
 main();
