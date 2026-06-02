@@ -492,8 +492,17 @@ async function router() {
     navbar.classList.remove('video-mode');
     updateCanonical('home','seo');
   } else {
-    // ?v=slug → redirect ke halaman statis
-    window.location.replace('/video/'+slug+'/');
+    // Cek dulu apakah ini video nofollow dari db-id.json
+    const video = videoDatabaseALL.find(v => v.slug === slug);
+    
+    if (video && video.source === 'nofollow') {
+      // Render via SPA untuk db-id.json (tidak ada file fisik statis)
+      navbar.classList.add('video-mode');
+      renderVideo(app, video);
+    } else {
+      // Jika dari db-en.json, tetap redirect ke halaman statis SEO
+      window.location.replace('/video/' + slug + '/');
+    }
     return;
   }
   window.scrollTo(0,0);
