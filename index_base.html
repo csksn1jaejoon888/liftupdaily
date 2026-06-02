@@ -99,6 +99,8 @@
     .btn-load-more:disabled{opacity:.4;cursor:not-allowed}
 
     /* ── Video Page ── */
+    .main-content.video-page-container { max-width: 800px; margin: 0 auto; }
+    .summary-text strong { color: #fff; }
     @media(max-width:600px){.video-page-container{padding:0!important}.info-section{padding:15px!important}.player-container{border-radius:0!important}}
     .player-container{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
     .player-container iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1}
@@ -502,6 +504,7 @@ function renderVideo(container, v) {
     '<div class="recommendation-slider" id="rec-slider">'+buildSliderItems(shuffled.slice(0,SLIDER_INIT))+'</div></div>';
   const slider=document.getElementById('rec-slider');
   if(slider){ slider.addEventListener('scroll',function(){ if(this.scrollLeft+this.clientWidth>=this.scrollWidth-100){ const more=shuffled.slice(sliderPage*SLIDER_INIT,(sliderPage+1)*SLIDER_INIT); if(more.length){ this.insertAdjacentHTML('beforeend',buildSliderItems(more)); sliderPage++; } } }); }
+  window.scrollTo(0, 0);
 }
 
 // ════════════════════════════════════════════════════════
