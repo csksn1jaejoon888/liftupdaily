@@ -77,7 +77,14 @@
     .suggestion-item span{font-size:.75rem;color:#f1f1f1;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
     .suggestion-item span em{color:var(--green);font-style:normal;font-weight:bold}
     .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
-    @media(max-width:768px){.search-suggestions{width:240px}}
+    @media(max-width:768px){
+    .search-suggestions{width:240px}
+  
+    /* ── FIX MOBILE GESER KANAN (OVERFLOW) ── */
+    html, body { overflow-x: hidden !important; max-width: 100%; position: relative; }
+    .main-content, .video-page-container, #app { max-width: 100% !important; width: 100%; box-sizing: border-box; overflow-x: hidden; }
+    .recommendation-slider { max-width: 100% !important; box-sizing: border-box; }
+}
 
     /* ── Grid ── */
     .main-content{padding:15px;max-width:1150px;margin:auto}
