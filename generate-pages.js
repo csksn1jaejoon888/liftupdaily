@@ -110,6 +110,7 @@ function buildVideoPage(v, allVideos) {
   <meta name="twitter:description" content="${esc(desc)}"/>
   <meta name="twitter:image"       content="${thumbOg}"/>
   <script type="application/ld+json">${jsonLd}</script>
+  ${v.faqSchema ? `<script type="application/ld+json">${JSON.stringify(v.faqSchema).replace(/<\/script>/gi,'<\\/script>')}</script>` : ''}
   <link rel="preload" as="image" href="${thumb}" fetchpriority="high"/>
   <link rel="preconnect" href="https://img.youtube.com"/>
   <style>
