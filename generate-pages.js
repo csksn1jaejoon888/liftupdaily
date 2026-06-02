@@ -490,6 +490,11 @@ async function router() {
     var oldBtn = document.getElementById('btn-back-home');
     if (oldBtn) oldBtn.remove();
     navbar.classList.remove('video-mode');
+    
+    // PENYEMBUH 1: Panggil ulang grid video agar layar tidak nyangkut
+    if(!videoDatabaseALL.length) await loadDatabases();
+    renderGrid(app, videoDatabaseALL);
+    
     updateCanonical('home','seo');
   } else {
     // Cek dulu apakah ini video nofollow dari db-id.json
