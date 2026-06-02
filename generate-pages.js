@@ -118,6 +118,8 @@ function buildVideoPage(v, allVideos) {
     :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a}
     body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
 
+    html, body { overflow-x: hidden; max-width: 100%; }
+
     /* ── Navbar ── */
     .navbar-custom{background:#000;padding:8px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:0}
     .navbar-right-group{display:flex;align-items:center;margin-left:auto}
@@ -172,7 +174,7 @@ function buildVideoPage(v, allVideos) {
     .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;text-decoration:none;transition:.15s;display:inline-block}
     .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
     .more-videos-label{color:#98FB98;margin:24px 0 12px;font-size:.85rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
-    .recommendation-slider{display:flex;
+    .recommendation-slider{display:flex;overflow-x:auto;gap:10px;padding-bottom:8px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
     .recommendation-slider::-webkit-scrollbar{display:none}
     .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent}
     .slider-item:hover{border-color:var(--green);transform:translateY(-2px)}
