@@ -229,7 +229,7 @@
 const AD_CONFIG = {
 
   // ── Master switch ── true = semua ads aktif, false = semua mati
-  allAds: false,
+  allAds: true,
 
   // ── Per-halaman: native banner ──────────────────────────────────
   gridPageAds: {
@@ -240,8 +240,8 @@ const AD_CONFIG = {
   },
 
   // ── Direct Link (tombol More Info 🔥) ──────────────────────────
-  useDirect:   false,           // true = tombol More Info buka URL direct link
-  directUrl:   'https://linkadsterra.com',
+  useDirect:   true,           // true = tombol More Info buka URL direct link
+  directUrl:   'https://facebook.com',
 
   // ── Popunder (saat klik logo / brand) ──────────────────────────
   usePopunder: false,           // true = klik logo/brand trigger popunder
@@ -249,13 +249,13 @@ const AD_CONFIG = {
 
   // ── Play Button Ads (SPA db-id.json) ───────────────────────────
   // Muncul mulai dari video ke-N yang ditonton di sesi yang sama
-  usePlayAds:      false,       // true = aktifkan play button ads
-  playAdsUrl:      'https://linkadsterra.com',
+  usePlayAds:      true,       // true = aktifkan play button ads
+  playAdsUrl:      'https://google.com',
   playAdsStartFrom: 2,          // mulai buka ads dari tap play ke berapa
 
   // ── Posisi banner di grid ───────────────────────────────────────
-  gridBannerAfterRow:  1,       // sisipkan banner setelah baris ke-N
-  gridColumnsOnMobile: 2,       // kolom grid di mobile (2 atau 3)
+  gridBannerAfterRow:  2,       // sisipkan banner setelah baris ke-N
+  gridColumnsOnMobile: 5,       // kolom grid di mobile (2 atau 3)
 
   // ── Kode HTML Native Banner ─────────────────────────────────────
   // Ganti seluruh konten di sini dengan kode native banner dari Adsterra/dll
