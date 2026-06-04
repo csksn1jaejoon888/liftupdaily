@@ -79,18 +79,16 @@
     .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
     @media(max-width:768px){.search-suggestions{width:240px}}
 
-    /* ── Grid ── */
+    /* ── Grid (homepage) ── */
     .main-content{padding:15px;max-width:1150px;margin:auto}
     .video-grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
     @media(min-width:992px){.video-grid{grid-template-columns:repeat(4,1fr);gap:20px}}
     .video-card{background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;transition:.3s;border:1px solid transparent}
     .video-card:hover{border-color:var(--green);transform:translateY(-3px)}
     .video-card .thumb-wrap{position:relative;width:100%;padding-top:56.25%;background:#111;overflow:hidden}
-    .video-card .thumb-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .video-card-title{padding:6px 8px 8px;font-size:.8rem;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:auto;min-height:36px;max-height:38px}
-    .video-card .thumb-wrap{background:#1a1a1a}
-    .video-card .thumb-wrap img{transition:opacity .3s;opacity:0}
+    .video-card .thumb-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .3s;opacity:0}
     .video-card .thumb-wrap img.loaded{opacity:1}
+    .video-card-title{padding:6px 8px 8px;font-size:.8rem;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px;max-height:38px}
 
     /* ── Load More ── */
     .load-more-wrap{text-align:center;margin:20px 0}
@@ -98,22 +96,56 @@
     .btn-load-more:hover{background:var(--green);color:#000}
     .btn-load-more:disabled{opacity:.4;cursor:not-allowed}
 
-    /* ── Video Page ── */
-    .main-content.video-page-container { max-width: 800px; margin: 0 auto; }
-    .summary-text strong { color: #fff; }
-    @media(max-width:600px){.video-page-container{padding:0!important}.info-section{padding:15px!important}.player-container{border-radius:0!important}}
+    /* ══════════════════════════════════════════════════════════
+       VIDEO PAGE — SPA (db-id.json) — MOBILE FIRST, sama seperti
+       halaman statis yang di-generate dari db-en.json
+    ══════════════════════════════════════════════════════════ */
+    .video-page-container{max-width:800px;margin:0 auto;padding:15px;width:100%}
+    @media(max-width:600px){.video-page-container{padding:0!important}}
+
+    /* Desktop: 2-kolom — player kiri, related video kanan */
+    @media(min-width:992px){
+      .video-page-container{max-width:1100px}
+      .video-desktop-layout{display:flex;gap:20px;align-items:flex-start}
+      .video-main-col{flex:1 1 0;min-width:0}
+      .video-side-col{width:280px;flex-shrink:0;position:sticky;top:calc(var(--nav-h) + 10px)}
+      /* Side column: judul related & slider vertikal */
+      .side-related-label{color:var(--green);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px}
+      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 80px);overflow-y:auto;scrollbar-width:none}
+      .side-slider::-webkit-scrollbar{display:none}
+      .side-slider-item{display:flex;gap:8px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;border:1px solid transparent;transition:.2s;flex-shrink:0}
+      .side-slider-item:hover{border-color:var(--green)}
+      .side-slider-item img{width:108px;height:60px;object-fit:cover;flex-shrink:0}
+      .side-slider-item p{font-size:.72rem;padding:6px 8px;margin:0;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:#f1f1f1}
+      /* Native banner di sidebar desktop */
+      .side-native-banner{margin-top:14px}
+      /* Sembunyikan horizontal slider di desktop */
+      .video-main-col .recommendation-slider-wrap{display:none}
+    }
+
+    /* Mobile: related tetap horizontal slider */
+    @media(max-width:991px){
+      .video-desktop-layout{display:block}
+      .video-side-col{display:none}
+    }
+
     .player-container{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
+    @media(max-width:600px){.player-container{border-radius:0}}
     .player-container iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1}
+    .player-container>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+    .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;cursor:pointer;gap:10px}
+    .play-btn-svg{width:72px;height:72px;filter:drop-shadow(0 0 12px rgba(255,3,45,.7));transition:transform .15s}
+    .play-overlay:hover .play-btn-svg{transform:scale(1.1)}
+    .play-overlay-label{font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.08em;text-shadow:0 2px 8px rgba(0,0,0,.8)}
     .video-mask{position:absolute;z-index:99999;background:transparent;pointer-events:all;touch-action:none}
     .mask-top{top:0;left:0;width:55%;height:94px}
     .mask-bottom{bottom:0;left:40%;width:100%;height:43px}
     #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
     .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
-    .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;cursor:pointer;gap:10px}
-    .play-btn-svg{width:72px;height:72px;filter:drop-shadow(0 0 12px rgba(255,3,45,.7));transition:transform .15s}
-    .play-overlay:hover .play-btn-svg{transform:scale(1.1)}
-    .play-overlay-label{font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.08em;text-shadow:0 2px 8px rgba(0,0,0,.8)}
-    .player-container>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+
+    /* ── Info section ── */
+    .info-section{padding:15px}
+    .info-section h1{font-size:1.2rem;font-weight:800;line-height:1.4;margin:15px 0}
 
     /* ── Buttons ── */
     .dual-action-wrap{display:flex;gap:10px;margin-bottom:18px}
@@ -131,8 +163,9 @@
     .summary-text p{font-size:.9rem;line-height:1.5;margin-bottom:12px;color:#ddd}
     .summary-text ul{margin-bottom:12px;padding-left:20px}
     .summary-text li{font-size:.9rem;line-height:1.4;margin-bottom:5px;color:#ddd}
+    .summary-text strong{color:#fff}
 
-    /* ── Slider ── */
+    /* ── Mobile horizontal slider ── */
     .recommendation-slider{display:flex;overflow-x:auto;gap:12px;padding-bottom:15px;scrollbar-width:none;-ms-overflow-style:none}
     .recommendation-slider::-webkit-scrollbar{display:none}
     .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent}
@@ -145,7 +178,7 @@
     .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;cursor:pointer;text-decoration:none;transition:.15s;display:inline-block}
     .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
 
-    /* ── More Videos label (ganti h6 agar heading berurutan) ── */
+    /* ── More Videos label ── */
     .more-videos-label{color:#98FB98;margin:24px 0 12px;font-size:.85rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 
     /* ── Loading / Skeleton ── */
@@ -188,26 +221,61 @@
   </main>
 
 <script>
-// ════════════════════════════════════════════════════════
-//  KONFIGURASI
-// ════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════════
+//  KONFIGURASI ADS — SPA (db-id.json) & HOMEPAGE
+//  Untuk halaman statis (db-en.json), konfigurasi ada di STATIC_AD
+//  di dalam generate-pages.js (STATIC_AD_CONFIG section)
+// ════════════════════════════════════════════════════════════════════
 const AD_CONFIG = {
+
+  // ── Master switch ── true = semua ads aktif, false = semua mati
   allAds: false,
-  gridPageAds:  { nativeBanner: true },
-  videoPageAds: { nativeBanner: true },
-  useDirect:    false,
-  usePopunder:  false,
-  gridBannerAfterRow:  1,
-  gridColumnsOnMobile: 3,
-  links: { direct: "https://mediaindonesia.com", popunder: "https://google.com" },
+
+  // ── Per-halaman: native banner ──────────────────────────────────
+  gridPageAds: {
+    nativeBanner: true,         // banner di grid homepage/search/tag
+  },
+  videoPageAds: {
+    nativeBanner: true,         // banner di sidebar desktop / di bawah tombol mobile
+  },
+
+  // ── Direct Link (tombol More Info 🔥) ──────────────────────────
+  useDirect:   false,           // true = tombol More Info buka URL direct link
+  directUrl:   'https://linkadsterra.com',
+
+  // ── Popunder (saat klik logo / brand) ──────────────────────────
+  usePopunder: false,           // true = klik logo/brand trigger popunder
+  popunderUrl: 'https://linkadsterra.com',
+
+  // ── Play Button Ads (SPA db-id.json) ───────────────────────────
+  // Muncul mulai dari video ke-N yang ditonton di sesi yang sama
+  usePlayAds:      false,       // true = aktifkan play button ads
+  playAdsUrl:      'https://linkadsterra.com',
+  playAdsStartFrom: 2,          // mulai buka ads dari tap play ke berapa
+
+  // ── Posisi banner di grid ───────────────────────────────────────
+  gridBannerAfterRow:  1,       // sisipkan banner setelah baris ke-N
+  gridColumnsOnMobile: 2,       // kolom grid di mobile (2 atau 3)
+
+  // ── Kode HTML Native Banner ─────────────────────────────────────
+  // Ganti seluruh konten di sini dengan kode native banner dari Adsterra/dll
   nativeBannerHTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`
 };
 
-const PLAY_AD_CONFIG = {
-  enablePlayButtonDirectAds: false,
-  adUrl: "https://mediaindonesia.com",
-  adStartFromVideo: 2,
-};
+// ════════════════════════════════════════════════════════════════════
+//  CATATAN: Ads untuk halaman STATIS (db-en.json → /video/slug/)
+//  diatur di generate-pages.js bagian STATIC_AD:
+//
+//  const STATIC_AD = {
+//    useDirect:        false,   // tombol More Info 🔥
+//    directUrl:        '...',
+//    usePlayAds:       false,   // play button ads
+//    playAdsUrl:       '...',
+//    playAdsStartFrom: 2,
+//    useNativeBanner:  false,   // native banner di sidebar desktop & mobile
+//    nativeBannerHTML: `...`,   // kode HTML native banner
+//  };
+// ════════════════════════════════════════════════════════════════════
 
 const PAGE_SIZE = 24;
 let currentPage = 0;
@@ -241,15 +309,11 @@ function updateCanonical(slug, source) {
 function updateRobotsBySource(source) {
   let t = document.querySelector('meta[name="robots"]');
   if(!t){ t=document.createElement('meta'); t.setAttribute('name','robots'); document.head.appendChild(t); }
-  // db-id.json → noindex,nofollow KETAT — tidak boleh terindex Google
   t.setAttribute('content', source==='nofollow' ? 'noindex, nofollow, noarchive, noimageindex' : 'index, follow');
 }
 
 // ════════════════════════════════════════════════════════
 //  LOAD DATABASE
-//  db-en.json  → index/follow  (halaman statis SEO)
-//  db-id.json  → noindex/nofollow (hanya tampil di homepage,
-//                TIDAK ada halaman statis, TIDAK terindex Google)
 // ════════════════════════════════════════════════════════
 async function loadDatabases() {
   const ROOT = location.origin + '/';
@@ -258,7 +322,6 @@ async function loadDatabases() {
     fetch(ROOT + 'db-id.json').catch(()=>({ok:false}))
   ]);
   videoDatabaseEN  = (await resEN.json()).map(v=>({...v, source:'seo'}));
-  // db-id.json PAKSA source='nofollow' — tidak bisa di-override dari data
   videoDatabaseID  = resID.ok
     ? (await resID.json()).map(v=>({...v, source:'nofollow'}))
     : [];
@@ -286,8 +349,6 @@ function seoUrl(text) {
 function navigateTo(slug) {
   const video = videoDatabaseALL.find(v=>v.slug===slug||seoUrl(v.title)===slug);
   if(!video) return;
-  // db-id.json: tidak ada halaman statis → tampilkan via SPA
-  // db-en.json: arahkan ke halaman statis /video/slug/
   if(video.source==='nofollow') {
     history.pushState({},'', location.origin + '/?v=' + video.slug);
     router();
@@ -301,11 +362,11 @@ function buildNativeBanner(extraClass) {
 }
 function runAd(type) {
   if(!AD_CONFIG.allAds) return;
-  if(type==='pop'    && AD_CONFIG.usePopunder) window.open(AD_CONFIG.links.popunder,'_blank');
-  if(type==='direct' && AD_CONFIG.useDirect)   window.open(AD_CONFIG.links.direct,'_blank');
+  if(type==='pop'     && AD_CONFIG.usePopunder) window.open(AD_CONFIG.popunderUrl,'_blank');
+  if(type==='direct'  && AD_CONFIG.useDirect)   window.open(AD_CONFIG.directUrl,'_blank');
 }
 function handleBrandClick() { runAd('pop'); history.pushState({},'', location.origin + '/'); router(); }
-function handleSpecialOffer() { if(AD_CONFIG.allAds&&AD_CONFIG.useDirect) window.open(AD_CONFIG.links.direct,'_blank'); }
+function handleSpecialOffer() { if(AD_CONFIG.allAds && AD_CONFIG.useDirect) window.open(AD_CONFIG.directUrl,'_blank'); }
 function handleNavigation(e,slug) { e.preventDefault(); navigateTo(slug); }
 
 // ════════════════════════════════════════════════════════
@@ -355,7 +416,7 @@ function doSearch() {
 }
 
 // ════════════════════════════════════════════════════════
-//  RENDER GRID
+//  RENDER GRID (homepage / search / tag)
 // ════════════════════════════════════════════════════════
 function renderGrid(container, data) {
   currentData = data;
@@ -378,7 +439,6 @@ function renderGrid(container, data) {
 function renderCards(items, startIndex, insertAfterIndex, showBanner) {
   return items.map((v,i)=>{
     const idx = startIndex + i;
-    // db-id.json: nofollow + noopener agar Google tidak ikuti link
     const nf  = v.source==='nofollow' ? ' rel="nofollow noopener"' : '';
     const loading = idx < 4 ? 'eager' : 'lazy';
     const href = v.source==='nofollow' ? `/?v=${v.slug}` : `/video/${v.slug}/`;
@@ -404,12 +464,14 @@ function loadMore() {
 }
 
 // ════════════════════════════════════════════════════════
-//  HANDLE PLAY
+//  HANDLE PLAY — SPA (db-id.json)
 // ════════════════════════════════════════════════════════
 function handlePlay(youtubeId) {
   playCounter++;
-  const adAktif = PLAY_AD_CONFIG.enablePlayButtonDirectAds && videoWatchCount>=PLAY_AD_CONFIG.adStartFromVideo && playCounter===1;
-  if(adAktif) window.open(PLAY_AD_CONFIG.adUrl,'_blank');
+  // Play button ads: aktif mulai dari play ke-N
+  const adAktif = AD_CONFIG.allAds && AD_CONFIG.usePlayAds
+    && playCounter >= AD_CONFIG.playAdsStartFrom;
+  if(adAktif) window.open(AD_CONFIG.playAdsUrl,'_blank');
   document.getElementById('player-box').innerHTML =
     '<iframe src="https://www.youtube.com/embed/'+youtubeId+'?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe>' +
     '<div class="video-mask mask-top"></div><div class="video-mask mask-bottom"></div>' +
@@ -466,44 +528,98 @@ function updateMetaTags(video) {
 }
 
 // ════════════════════════════════════════════════════════
-//  RENDER VIDEO (SPA — untuk db-id.json nofollow)
+//  RENDER VIDEO — SPA (db-id.json, desktop 2-kolom)
 // ════════════════════════════════════════════════════════
 function renderVideo(container, v) {
   updateMetaTags(v);
-  updateRobotsBySource(v.source);   // nofollow → noindex,nofollow,noarchive,noimageindex
-  updateCanonical(v.slug, v.source); // nofollow → canonical dihapus
+  updateRobotsBySource(v.source);
+  updateCanonical(v.slug, v.source);
   document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el=>el.remove());
   videoWatchCount++; playCounter=0;
   container.className='main-content video-page-container';
+
   const videoTags = v.tags||[];
   const tagsHTML  = videoTags.length>0
     ? '<div class="seo-tags-container">'+videoTags.map(tag=>`<span class="seo-tag-badge" onclick="filterByTag('${tag.replace(/'/g,"\\'")}')">&#35;${tag}</span>`).join('')+'</div>'
     : '';
-  const showBanner=AD_CONFIG.allAds&&AD_CONFIG.videoPageAds.nativeBanner;
-  const shuffled=videoDatabaseALL.filter(i=>i.slug!==v.slug).sort(()=>0.5-Math.random());
+  const showBanner = AD_CONFIG.allAds && AD_CONFIG.videoPageAds.nativeBanner;
+
+  // Related videos (acak, 30 untuk side scroll)
+  const shuffled = videoDatabaseALL.filter(i=>i.slug!==v.slug).sort(()=>0.5-Math.random());
   const SLIDER_INIT=7; let sliderPage=1;
+
+  // Mobile horizontal slider items
   function buildSliderItems(items){
     return items.map(r=>`<div class="slider-item" onclick="navigateTo('${r.slug}')"><img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg" loading="lazy" width="160" height="90" alt="${r.title.replace(/"/g,'&quot;')}"/><p>${r.title}</p></div>`).join('');
   }
-  container.innerHTML=
-    '<div class="player-container" id="player-box">'+
-    '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/hqdefault.jpg" width="480" height="360" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2" loading="eager" decoding="async" alt="'+v.title.replace(/"/g,'&quot;')+'"/>'+
-    '<div class="play-overlay" onclick="handlePlay(\''+v.youtubeId+'\')" style="z-index:20">'+
-    '<svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(0,0,0,0.55)" stroke="#ff032d" stroke-width="3"/><polygon points="32,24 60,40 32,56" fill="#ff032d"/></svg>'+
-    '<div class="play-overlay-label">TAP TO WATCH</div></div>'+
-    '</div>'+
-    '<div class="info-section" style="padding:15px">'+
-    '<h1 style="font-size:1.2rem;font-weight:800;margin:15px 0">'+v.title+'</h1>'+
-    '<div class="dual-action-wrap">'+
-    '<button class="home-split-btn" onclick="handleBrandClick()"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME</button>'+
-    '<button class="offer-split-btn" onclick="handleSpecialOffer()"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="margin-right:5px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> More Info 🔥</button>'+
-    '</div>'+
-    (showBanner?buildNativeBanner():'')+
-    '<div class="summary-box"><div class="summary-text">'+v.summary+'</div>'+tagsHTML+'</div>'+
-    '<p class="more-videos-label">MORE VIDEOS</p>'+
-    '<div class="recommendation-slider" id="rec-slider">'+buildSliderItems(shuffled.slice(0,SLIDER_INIT))+'</div></div>';
+
+  // Desktop side column items
+  function buildSideItems(items){
+    return items.map(r=>`<a href="/video/${r.slug}/" class="side-slider-item"><img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg" loading="lazy" width="108" height="60" alt="${r.title.replace(/"/g,'&quot;')}"/><p>${r.title}</p></a>`).join('');
+  }
+
+  // Tombol native banner di mobile (di bawah tombol HOME/More Info)
+  const mobileBannerHTML = showBanner
+    ? `<div class="native-banner-wrap" id="spa-nb-mob"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner">${AD_CONFIG.nativeBannerHTML}</div></div>`
+    : '';
+
+  // Sidebar desktop native banner
+  const sideBannerHTML = showBanner
+    ? `<div class="side-native-banner"><div class="native-banner-wrap" id="spa-nb-side"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner">${AD_CONFIG.nativeBannerHTML}</div></div></div>`
+    : '';
+
+  container.innerHTML =
+    '<div class="video-desktop-layout">' +
+
+      /* ── Kolom kiri: player + info ── */
+      '<div class="video-main-col">' +
+        '<div class="player-container" id="player-box">' +
+          '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/hqdefault.jpg" width="480" height="360" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2" loading="eager" decoding="async" alt="'+v.title.replace(/"/g,'&quot;')+'"/>' +
+          '<div class="play-overlay" onclick="handlePlay(\''+v.youtubeId+'\')" style="z-index:20">' +
+            '<svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(0,0,0,0.55)" stroke="#ff032d" stroke-width="3"/><polygon points="32,24 60,40 32,56" fill="#ff032d"/></svg>' +
+            '<div class="play-overlay-label">TAP TO WATCH</div></div>' +
+        '</div>' +
+        '<div class="info-section" style="padding:15px">' +
+          '<h1 style="font-size:1.2rem;font-weight:800;margin:15px 0">'+v.title+'</h1>' +
+          '<div class="dual-action-wrap">' +
+            '<button class="home-split-btn" onclick="handleBrandClick()"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME</button>' +
+            '<button class="offer-split-btn" onclick="handleSpecialOffer()"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="margin-right:5px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> More Info 🔥</button>' +
+          '</div>' +
+          mobileBannerHTML +
+          '<div class="summary-box"><div class="summary-text">'+v.summary+'</div>'+tagsHTML+'</div>' +
+          /* Mobile horizontal slider */
+          '<div class="recommendation-slider-wrap">' +
+            '<p class="more-videos-label">MORE VIDEOS</p>' +
+            '<div class="recommendation-slider" id="rec-slider">'+buildSliderItems(shuffled.slice(0,SLIDER_INIT))+'</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+
+      /* ── Kolom kanan desktop: related + banner ── */
+      '<div class="video-side-col">' +
+        '<div class="side-related-label">🎬 Related Videos</div>' +
+        '<div class="side-slider" id="side-slider-desktop">'+buildSideItems(shuffled.slice(0,20))+'</div>' +
+        sideBannerHTML +
+      '</div>' +
+
+    '</div>';
+
+  // Mobile horizontal slider infinite scroll
   const slider=document.getElementById('rec-slider');
   if(slider){ slider.addEventListener('scroll',function(){ if(this.scrollLeft+this.clientWidth>=this.scrollWidth-100){ const more=shuffled.slice(sliderPage*SLIDER_INIT,(sliderPage+1)*SLIDER_INIT); if(more.length){ this.insertAdjacentHTML('beforeend',buildSliderItems(more)); sliderPage++; } } }); }
+
+  // Desktop side slider infinite scroll
+  const sideSlider=document.getElementById('side-slider-desktop');
+  if(sideSlider){
+    let sideLoaded=20;
+    sideSlider.addEventListener('scroll',function(){
+      if(this.scrollTop+this.clientHeight>=this.scrollHeight-100){
+        const more=shuffled.slice(sideLoaded,sideLoaded+10);
+        if(more.length){ this.insertAdjacentHTML('beforeend',buildSideItems(more)); sideLoaded+=more.length; }
+      }
+    });
+  }
+
   window.scrollTo(0, 0);
 }
 
@@ -563,8 +679,6 @@ async function router() {
   } else {
     const video=videoDatabaseALL.find(v=>v.slug===slug||seoUrl(v.title)===slug);
     if(video) {
-      // db-id.json → render SPA (tidak ada halaman statis)
-      // db-en.json → sudah diarahkan ke /video/slug/ via navigateTo
       navbar.classList.add('video-mode');
       renderVideo(app, video);
     } else {
