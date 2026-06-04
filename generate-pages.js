@@ -40,12 +40,12 @@ function shuffle(arr)    { return [...arr].sort(()=>0.5-Math.random()); }
 // ════════════════════════════════════════════════════════════════
 const STATIC_AD = {
   // ── Direct Link (tombol More Info 🔥) ──────────────────────────
-  useDirect:   false,                          // true = aktifkan direct link
+  useDirect:   true,                          // true = aktifkan direct link
   directUrl:   'https://linkadsterra-kamu.com', // URL direct link Adsterra
 
   // ── Play Button Ads (direct link saat tap play) ────────────────
   // Muncul mulai dari video ke-N yang diputar di sesi yang sama
-  usePlayAds:      false,                      // true = aktifkan play button ads
+  usePlayAds:      true,                      // true = aktifkan play button ads
   playAdsUrl:      'https://linkadsterra.com', // URL direct link untuk play ads
   playAdsStartFrom: 2,                         // mulai dari tap play ke berapa
 };
