@@ -43,7 +43,7 @@ const STATIC_AD = {
 
   // ── Master switch ─────────────────────────────────────────────
   // false = semua ads mati (override semua switch di bawah)
-  allAds: true,
+  allAds: false,
 
   // ── Direct Link (tombol More Info 🔥) ─────────────────────────
   useDirect:  true,                            // true = aktifkan
