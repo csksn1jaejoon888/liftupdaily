@@ -192,19 +192,19 @@
 //  KONFIGURASI
 // ════════════════════════════════════════════════════════
 const AD_CONFIG = {
-  allAds: false,
+  allAds: true,
   gridPageAds:  { nativeBanner: true },
   videoPageAds: { nativeBanner: true },
-  useDirect:    false,
+  useDirect:    true,
   usePopunder:  false,
   gridBannerAfterRow:  1,
-  gridColumnsOnMobile: 2,
+  gridColumnsOnMobile: 3,
   links: { direct: "https://mediaindonesia.com", popunder: "https://google.com" },
   nativeBannerHTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`
 };
 
 const PLAY_AD_CONFIG = {
-  enablePlayButtonDirectAds: false,
+  enablePlayButtonDirectAds: true,
   adUrl: "https://mediaindonesia.com",
   adStartFromVideo: 2,
 };
