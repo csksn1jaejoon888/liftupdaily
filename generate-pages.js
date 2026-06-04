@@ -43,22 +43,22 @@ const STATIC_AD = {
 
   // ── Master switch ─────────────────────────────────────────────
   // false = semua ads mati (override semua switch di bawah)
-  allAds: false,
+  allAds: true,
 
   // ── Direct Link (tombol More Info 🔥) ─────────────────────────
-  useDirect:  false,                            // true = aktifkan
-  directUrl:  'https://linkadsterra.com',       // URL direct link Adsterra
+  useDirect:  true,                            // true = aktifkan
+  directUrl:  'https://facebook.com',       // URL direct link Adsterra
 
   // ── Play Button Ads ───────────────────────────────────────────
   // Buka URL saat user tap tombol play (mulai dari tap ke-N)
-  usePlayAds:       false,                      // true = aktifkan
-  playAdsUrl:       'https://linkadsterra.com', // URL direct link
+  usePlayAds:       true,                      // true = aktifkan
+  playAdsUrl:       'https://facebook.com', // URL direct link
   playAdsStartFrom: 2,                          // mulai dari tap play ke berapa (1 = semua)
 
   // ── Native Banner ─────────────────────────────────────────────
   // Desktop: tampil di sidebar kanan (di bawah list related video)
   // Mobile:  tampil di antara tombol HOME/More Info dan summary
-  useNativeBanner: false,                       // true = tampilkan banner
+  useNativeBanner: true,                       // true = tampilkan banner
   nativeBannerHTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
 };
 
