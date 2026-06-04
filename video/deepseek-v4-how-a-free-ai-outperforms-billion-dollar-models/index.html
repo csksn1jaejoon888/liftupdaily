@@ -171,7 +171,7 @@
           </button>
         </div>
         <!-- Native banner mobile (tersembunyi di desktop via CSS) -->
-        
+        <div class="native-banner-wrap" id="static-nb"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div>
         <div class="summary-box">
           <div class="summary-text"><p>DeepSeek V4 just achieved a <strong>1 million-token context window</strong>—a feat once reserved for Google’s Gemini and costing billions. But here’s the kicker: it’s <strong>open weights, free to use, and matches flagship models</strong> from just months ago while requiring <strong>3x less compute</strong>. The numbers don’t lie: this isn’t just progress; it’s a paradigm shift in how we build and access AI.</p>
 
@@ -213,17 +213,29 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
+    <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-ai-agents-rewrite-coding-forever/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
+           alt="Cursor 3.0 Ditches VS Code: AI Agents Rewrite Coding Forever" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Cursor 3.0 Ditches VS Code: AI Agents Rewrite Coding Forever</p>
+    </a>
+    <a href="https://trend4genz.fun/video/tesla-powerwall-3-app-guide-master-settings-solar-control/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/wxhZBcCFQwI/mqdefault.jpg"
+           alt="Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control</p>
+    </a>
+    <a href="https://trend4genz.fun/video/gemma-4-review-google-s-first-truly-open-ai-model-changes-the-game/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
+           alt="Gemma 4 Review: Google’s First Truly Open AI Model Changes the Game" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Gemma 4 Review: Google’s First Truly Open AI Model Changes the Game</p>
+    </a>
     <a href="https://trend4genz.fun/video/7-ai-user-levels-how-to-go-from-search-to-self-running-systems/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
            alt="7 AI User Levels: How to Go from Search to Self-Running Systems" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>7 AI User Levels: How to Go from Search to Self-Running Systems</p>
-    </a>
-    <a href="https://trend4genz.fun/video/7-ai-engineering-mistakes-killing-your-career-and-how-to-fix-them/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/nvc7xi6vZWw/mqdefault.jpg"
-           alt="7 AI Engineering Mistakes Killing Your Career (And How to Fix Them)" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>7 AI Engineering Mistakes Killing Your Career (And How to Fix Them)</p>
     </a>
     <a href="https://trend4genz.fun/video/rag-vs-graphrag-why-context-is-the-new-ai-bottleneck/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/pN-LfxNFiTc/mqdefault.jpg"
@@ -231,35 +243,23 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>RAG vs GraphRAG: Why Context Is the New AI Bottleneck</p>
     </a>
-    <a href="https://trend4genz.fun/video/2026-s-top-jobs-ai-remote-work-the-rise-of-digital-lifestyle-careers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
-           alt="2026’s Top Jobs: AI, Remote Work &amp; the Rise of Digital Lifestyle Careers" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/10-unconventional-open-source-tools-to-supercharge-your-dev-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
+           alt="10 Unconventional Open-Source Tools to Supercharge Your Dev Workflow" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>2026’s Top Jobs: AI, Remote Work &amp; the Rise of Digital Lifestyle Careers</p>
+      <p>10 Unconventional Open-Source Tools to Supercharge Your Dev Workflow</p>
     </a>
-    <a href="https://trend4genz.fun/video/rag-explained-why-40-of-ai-projects-now-depend-on-retrieval-augmentation/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/dDkynerzV-Q/mqdefault.jpg"
-           alt="RAG Explained: Why 40% of AI Projects Now Depend on Retrieval Augmentation" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/aeo-guide-get-your-business-recommended-by-ai-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
+           alt="AEO Guide: Get Your Business Recommended by AI in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>RAG Explained: Why 40% of AI Projects Now Depend on Retrieval Augmentation</p>
+      <p>AEO Guide: Get Your Business Recommended by AI in 2026</p>
     </a>
     <a href="https://trend4genz.fun/video/ai-agents-in-2027-long-horizon-tasks-meta-harnesses-fleet-control/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/R9K2574YEAg/mqdefault.jpg"
            alt="AI Agents in 2027: Long-Horizon Tasks, Meta-Harnesses &amp; Fleet Control" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>AI Agents in 2027: Long-Horizon Tasks, Meta-Harnesses &amp; Fleet Control</p>
-    </a>
-    <a href="https://trend4genz.fun/video/gemini-3-5-flash-pro-level-ai-at-60-lower-cost-what-changed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/kn9Gh5HWqQs/mqdefault.jpg"
-           alt="Gemini 3.5 Flash: Pro-Level AI at 60% Lower Cost—What Changed" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Gemini 3.5 Flash: Pro-Level AI at 60% Lower Cost—What Changed</p>
-    </a>
-    <a href="https://trend4genz.fun/video/cursor-ai-agent-pro-tips-10-hidden-hacks-to-code-faster/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/WVeYLlKOWc0/mqdefault.jpg"
-           alt="Cursor AI Agent Pro Tips: 10 Hidden Hacks to Code Faster" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Cursor AI Agent Pro Tips: 10 Hidden Hacks to Code Faster</p>
     </a></div>
         </div>
       </div>
@@ -269,17 +269,29 @@
     <div class="video-side-col">
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">
+    <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-ai-agents-rewrite-coding-forever/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
+           alt="Cursor 3.0 Ditches VS Code: AI Agents Rewrite Coding Forever" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Cursor 3.0 Ditches VS Code: AI Agents Rewrite Coding Forever</p>
+    </a>
+    <a href="https://trend4genz.fun/video/tesla-powerwall-3-app-guide-master-settings-solar-control/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/wxhZBcCFQwI/mqdefault.jpg"
+           alt="Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control</p>
+    </a>
+    <a href="https://trend4genz.fun/video/gemma-4-review-google-s-first-truly-open-ai-model-changes-the-game/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
+           alt="Gemma 4 Review: Google’s First Truly Open AI Model Changes the Game" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Gemma 4 Review: Google’s First Truly Open AI Model Changes the Game</p>
+    </a>
     <a href="https://trend4genz.fun/video/7-ai-user-levels-how-to-go-from-search-to-self-running-systems/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
            alt="7 AI User Levels: How to Go from Search to Self-Running Systems" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>7 AI User Levels: How to Go from Search to Self-Running Systems</p>
-    </a>
-    <a href="https://trend4genz.fun/video/7-ai-engineering-mistakes-killing-your-career-and-how-to-fix-them/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/nvc7xi6vZWw/mqdefault.jpg"
-           alt="7 AI Engineering Mistakes Killing Your Career (And How to Fix Them)" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>7 AI Engineering Mistakes Killing Your Career (And How to Fix Them)</p>
     </a>
     <a href="https://trend4genz.fun/video/rag-vs-graphrag-why-context-is-the-new-ai-bottleneck/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/pN-LfxNFiTc/mqdefault.jpg"
@@ -287,17 +299,17 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>RAG vs GraphRAG: Why Context Is the New AI Bottleneck</p>
     </a>
-    <a href="https://trend4genz.fun/video/2026-s-top-jobs-ai-remote-work-the-rise-of-digital-lifestyle-careers/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
-           alt="2026’s Top Jobs: AI, Remote Work &amp; the Rise of Digital Lifestyle Careers" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/10-unconventional-open-source-tools-to-supercharge-your-dev-workflow/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
+           alt="10 Unconventional Open-Source Tools to Supercharge Your Dev Workflow" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>2026’s Top Jobs: AI, Remote Work &amp; the Rise of Digital Lifestyle Careers</p>
+      <p>10 Unconventional Open-Source Tools to Supercharge Your Dev Workflow</p>
     </a>
-    <a href="https://trend4genz.fun/video/rag-explained-why-40-of-ai-projects-now-depend-on-retrieval-augmentation/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/dDkynerzV-Q/mqdefault.jpg"
-           alt="RAG Explained: Why 40% of AI Projects Now Depend on Retrieval Augmentation" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/aeo-guide-get-your-business-recommended-by-ai-in-2025/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
+           alt="AEO Guide: Get Your Business Recommended by AI in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAG Explained: Why 40% of AI Projects Now Depend on Retrieval Augmentation</p>
+      <p>AEO Guide: Get Your Business Recommended by AI in 2026</p>
     </a>
     <a href="https://trend4genz.fun/video/ai-agents-in-2027-long-horizon-tasks-meta-harnesses-fleet-control/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/R9K2574YEAg/mqdefault.jpg"
@@ -305,65 +317,23 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>AI Agents in 2027: Long-Horizon Tasks, Meta-Harnesses &amp; Fleet Control</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-3-5-flash-pro-level-ai-at-60-lower-cost-what-changed/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/kn9Gh5HWqQs/mqdefault.jpg"
-           alt="Gemini 3.5 Flash: Pro-Level AI at 60% Lower Cost—What Changed" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/google-s-40b-anthropic-bet-why-mythos-ai-could-break-nvidia-s-monopoly/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Llei51M3u5g/mqdefault.jpg"
+           alt="Google’s $40B Anthropic Bet: Why Mythos AI Could Break NVIDIA’s Monopoly" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Gemini 3.5 Flash: Pro-Level AI at 60% Lower Cost—What Changed</p>
+      <p>Google’s $40B Anthropic Bet: Why Mythos AI Could Break NVIDIA’s Monopoly</p>
     </a>
-    <a href="https://trend4genz.fun/video/cursor-ai-agent-pro-tips-10-hidden-hacks-to-code-faster/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/WVeYLlKOWc0/mqdefault.jpg"
-           alt="Cursor AI Agent Pro Tips: 10 Hidden Hacks to Code Faster" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/software-defined-vehicles-the-400b-shift-reshaping-auto-stocks/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/cctI8JZhWUI/mqdefault.jpg"
+           alt="Software-Defined Vehicles: The $400B Shift Reshaping Auto Stocks" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Cursor AI Agent Pro Tips: 10 Hidden Hacks to Code Faster</p>
+      <p>Software-Defined Vehicles: The $400B Shift Reshaping Auto Stocks</p>
     </a>
-    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-jeff-dean-reveals-about-the-future/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
-           alt="1,000,000x AI Compute Leap: What Jeff Dean Reveals About the Future" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/ai-stack-explained-llms-rag-hardware-for-real-world-ai/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/RRKwmeyIc24/mqdefault.jpg"
+           alt="AI Stack Explained: LLMs, RAG, &amp; Hardware for Real-World AI" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>1,000,000x AI Compute Leap: What Jeff Dean Reveals About the Future</p>
-    </a>
-    <a href="https://trend4genz.fun/video/qwen-3-6-27b-outperforms-35b-moe-in-local-coding-speed-accuracy/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/7ejQSGaiyQE/mqdefault.jpg"
-           alt="Qwen 3.6 27B Outperforms 35B MoE in Local Coding Speed &amp; Accuracy" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Qwen 3.6 27B Outperforms 35B MoE in Local Coding Speed &amp; Accuracy</p>
-    </a>
-    <a href="https://trend4genz.fun/video/run-35b-ai-model-on-6gb-vram-5-flags-that-unlock-speed/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/8F_5pdcD3HY/mqdefault.jpg"
-           alt="Run 35B AI Model on 6GB VRAM: 5 Flags That Unlock Speed" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Run 35B AI Model on 6GB VRAM: 5 Flags That Unlock Speed</p>
-    </a>
-    <a href="https://trend4genz.fun/video/gemini-omni-google-s-ai-video-model-that-edits-itself-in-real-time/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/iRgPSOHjAWM/mqdefault.jpg"
-           alt="Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time</p>
-    </a>
-    <a href="https://trend4genz.fun/video/gemma-4-vs-gemini-3-1-which-google-ai-wins-for-coding-speed-privacy/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/oFReQNuIVpE/mqdefault.jpg"
-           alt="Gemma 4 vs Gemini 3.1: Which Google AI Wins for Coding, Speed &amp; Privacy?" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Gemma 4 vs Gemini 3.1: Which Google AI Wins for Coding, Speed &amp; Privacy?</p>
-    </a>
-    <a href="https://trend4genz.fun/video/6-must-have-claude-code-skills-to-automate-workflows-in-minutes/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
-           alt="6 Must-Have Claude Code Skills to Automate Workflows in Minutes" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>6 Must-Have Claude Code Skills to Automate Workflows in Minutes</p>
-    </a>
-    <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-ai-agents-rewrite-coding-forever/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
-           alt="Cursor 3.0 Ditches VS Code: AI Agents Rewrite Coding Forever" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Cursor 3.0 Ditches VS Code: AI Agents Rewrite Coding Forever</p>
-    </a>
-    <a href="https://trend4genz.fun/video/2026-toyota-c-hr-review-reliability-vs-range-trade-offs/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
-           alt="2026 Toyota C-HR Review: Reliability vs. Range Trade-Offs" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>2026 Toyota C-HR Review: Reliability vs. Range Trade-Offs</p>
+      <p>AI Stack Explained: LLMs, RAG, &amp; Hardware for Real-World AI</p>
     </a>
     <a href="https://trend4genz.fun/video/adk-vs-rag-when-to-use-ai-agents-or-retrieval-for-your-stack/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/7HSSR1n8dgc/mqdefault.jpg"
@@ -371,17 +341,47 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>ADK vs RAG: When to Use AI Agents or Retrieval for Your Stack</p>
     </a>
-    <a href="https://trend4genz.fun/video/solar-panels-battery-storage-cost-benefit-for-ev-owners-high-use-homes/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Jh033yLRI1E/mqdefault.jpg"
-           alt="Solar Panels + Battery Storage: Cost-Benefit for EV Owners &amp; High-Use Homes" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/claude-s-hidden-features-build-apps-automate-workflows-collaborate-like-a-pro/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
+           alt="Claude’s Hidden Features: Build Apps, Automate Workflows &amp; Collaborate Like a Pro" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Solar Panels + Battery Storage: Cost-Benefit for EV Owners &amp; High-Use Homes</p>
+      <p>Claude’s Hidden Features: Build Apps, Automate Workflows &amp; Collaborate Like a Pro</p>
     </a>
-    <a href="https://trend4genz.fun/video/tesla-powerwall-3-review-uk-s-first-all-in-one-solar-battery-tested/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/6LUYGe0benc/mqdefault.jpg"
-           alt="Tesla Powerwall 3 Review: UK’s First All-in-One Solar Battery Tested" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-in-big-tech/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
+           alt="AI Engineer Salaries 2026: From Junior to Senior in Big Tech" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Tesla Powerwall 3 Review: UK’s First All-in-One Solar Battery Tested</p>
+      <p>AI Engineer Salaries 2026: From Junior to Senior in Big Tech</p>
+    </a>
+    <a href="https://trend4genz.fun/video/run-llms-locally-for-free-ollama-s-privacy-breakthrough/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/UtSSMs6ObqY/mqdefault.jpg"
+           alt="Run LLMs Locally for Free: Ollama’s Privacy Breakthrough" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Run LLMs Locally for Free: Ollama’s Privacy Breakthrough</p>
+    </a>
+    <a href="https://trend4genz.fun/video/cli-vs-mcp-why-ai-agents-need-both-to-work-smarter/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/g9JIUM0MHgQ/mqdefault.jpg"
+           alt="CLI vs MCP: Why AI Agents Need Both to Work Smarter" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>CLI vs MCP: Why AI Agents Need Both to Work Smarter</p>
+    </a>
+    <a href="https://trend4genz.fun/video/self-evolving-ai-memory-how-claude-code-hooks-outperform-llm-knowledge-bases/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
+           alt="Self-Evolving AI Memory: How Claude Code Hooks Outperform LLM Knowledge Bases" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Self-Evolving AI Memory: How Claude Code Hooks Outperform LLM Knowledge Bases</p>
+    </a>
+    <a href="https://trend4genz.fun/video/run-35b-ai-model-on-6gb-vram-5-flags-that-unlock-speed/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/8F_5pdcD3HY/mqdefault.jpg"
+           alt="Run 35B AI Model on 6GB VRAM: 5 Flags That Unlock Speed" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Run 35B AI Model on 6GB VRAM: 5 Flags That Unlock Speed</p>
+    </a>
+    <a href="https://trend4genz.fun/video/5-claude-co-work-setup-tips-to-save-hours-tokens-daily/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
+           alt="5 Claude Co-Work Setup Tips to Save Hours &amp; Tokens Daily" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>5 Claude Co-Work Setup Tips to Save Hours &amp; Tokens Daily</p>
     </a>
     <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-4-levels-that-multiply-your-output/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
@@ -389,7 +389,7 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>AI Agents in 2026: The 4 Levels That Multiply Your Output</p>
     </a></div>
-      
+      <div class="side-native-banner"><div class="native-banner-wrap" id="static-nb-side"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
     </div>
 
   </div><!-- end video-desktop-layout -->
@@ -399,13 +399,13 @@
 <script>
 // ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
 var STATIC_AD = {
-  allAds:          false,
-  useDirect:       false,
-  directUrl:       'https://linkadsterra.com',
-  usePlayAds:      false,
-  playAdsUrl:      'https://linkadsterra.com',
+  allAds:          true,
+  useDirect:       true,
+  directUrl:       'https://facebook.com',
+  usePlayAds:      true,
+  playAdsUrl:      'https://facebook.com',
   playAdsStartFrom:2,
-  useNativeBanner: false
+  useNativeBanner: true
 };
 var _playCount = 0;
 
