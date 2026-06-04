@@ -24,10 +24,9 @@
   <link rel="preconnect" href="https://img.youtube.com"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a}
+    :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a;--nav-h:52px}
     body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
-
-    html, body { overflow-x: hidden; max-width: 100%; }
+    html,body{overflow-x:hidden;max-width:100%}
 
     /* ── Navbar ── */
     .navbar-custom{background:#000;padding:8px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:0}
@@ -47,8 +46,37 @@
     .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
     @media(max-width:768px){.search-suggestions{width:240px}}
 
+    /* ── Wrapper utama ── */
     .video-page-container{width:100%;max-width:800px;margin:0 auto;padding:15px}
     @media(max-width:600px){.video-page-container{padding:0}}
+
+    /* ══════════════════════════════════════════════════════
+       DESKTOP 2-KOLOM: player kiri, related kanan
+       Berlaku min-width 992px
+    ══════════════════════════════════════════════════════ */
+    @media(min-width:992px){
+      .video-page-container{max-width:1100px}
+      .video-desktop-layout{display:flex;gap:20px;align-items:flex-start}
+      .video-main-col{flex:1 1 0;min-width:0}
+      .video-side-col{width:280px;flex-shrink:0;position:sticky;top:calc(var(--nav-h) + 10px)}
+      .side-related-label{color:var(--green);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px}
+      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 80px);overflow-y:auto;scrollbar-width:none}
+      .side-slider::-webkit-scrollbar{display:none}
+      .side-slider-item{display:flex;gap:8px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;border:1px solid transparent;transition:.2s;flex-shrink:0}
+      .side-slider-item:hover{border-color:var(--green)}
+      .side-slider-item img{width:108px;height:60px;object-fit:cover;flex-shrink:0}
+      .side-slider-item p{font-size:.72rem;padding:6px 8px;margin:0;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:#f1f1f1}
+      .side-native-banner{margin-top:14px}
+      /* Sembunyikan mobile horizontal slider di desktop */
+      .recommendation-slider-wrap{display:none}
+    }
+    /* Mobile: sembunyikan kolom kanan */
+    @media(max-width:991px){
+      .video-desktop-layout{display:block}
+      .video-side-col{display:none}
+    }
+
+    /* ── Player ── */
     .player-container{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
     @media(max-width:600px){.player-container{border-radius:0}}
     .player-container iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1}
@@ -63,7 +91,7 @@
     .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
     #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
 
-    /* ── Info ── */
+    /* ── Info section ── */
     .info-section{padding:15px}
     h1{font-size:1.2rem;font-weight:800;line-height:1.4;margin:15px 0}
     .dual-action-wrap{display:flex;gap:10px;margin-bottom:18px}
@@ -83,12 +111,19 @@
     .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;text-decoration:none;transition:.15s;display:inline-block}
     .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
     .more-videos-label{color:#98FB98;margin:24px 0 12px;font-size:.85rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+
+    /* ── Mobile horizontal slider ── */
     .recommendation-slider{display:flex;overflow-x:auto;gap:10px;padding-bottom:8px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
     .recommendation-slider::-webkit-scrollbar{display:none}
-    .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent}
+    .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent;text-decoration:none;color:inherit;display:block}
     .slider-item:hover{border-color:var(--green);transform:translateY(-2px)}
     .slider-item img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
     .slider-item p{font-size:.72rem;padding:6px 8px 8px;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35;min-height:42px;color:#f1f1f1}
+
+    /* ── Native Banner ── */
+    .native-banner-wrap{position:relative;width:100%;margin:14px 0;border-radius:10px;overflow:hidden;min-height:90px}
+    .native-banner-wrap .close-btn{position:absolute;top:6px;right:6px;width:26px;height:26px;background:rgba(0,0,0,.65);color:#fff;border:2px solid #fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;cursor:pointer;z-index:10}
+    .native-banner-inner{width:100%;padding:18px 40px 18px 18px;display:flex;flex-direction:column;justify-content:center;min-height:90px}
   </style>
 </head>
 <body>
@@ -106,33 +141,39 @@
 
 <main>
 <div class="video-page-container">
-  <div class="player-container" id="player-box">
-    <img src="https://img.youtube.com/vi/JFO9TfZLnT8/hqdefault.jpg" alt="7 AI User Levels: How to Go from Search to Self-Running Systems" width="480" height="270"
-         fetchpriority="high" decoding="sync"/>
-    <div class="play-overlay" onclick="startPlay()">
-      <svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="38" fill="rgba(0,0,0,.55)" stroke="#ff032d" stroke-width="3"/>
-        <polygon points="32,24 60,40 32,56" fill="#ff032d"/>
-      </svg>
-      <div class="play-overlay-label">TAP TO WATCH</div>
-    </div>
-    <div class="video-mask mask-top"></div>
-    <div class="video-mask mask-bottom"></div>
-  </div>
-  <div class="info-section">
-    <h1>7 AI User Levels: How to Go from Search to Self-Running Systems</h1>
-    <div class="dual-action-wrap">
-      <button class="home-split-btn" onclick="location.href='https://trend4genz.fun/'">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        HOME
-      </button>
-      <button class="offer-split-btn" onclick="handleMoreInfo()">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        More Info 🔥
-      </button>
-    </div>
-    <div class="summary-box">
-      <div class="summary-text"><p>Two people use AI daily. One saves minutes on emails. The other runs entire business systems that operate while they sleep. The difference isn’t intelligence—it’s knowing which of the seven AI user levels you’re at and what to do next.</p>
+  <div class="video-desktop-layout">
+
+    <!-- ── Kolom kiri: player + info ── -->
+    <div class="video-main-col">
+      <div class="player-container" id="player-box">
+        <img src="https://img.youtube.com/vi/JFO9TfZLnT8/hqdefault.jpg" alt="7 AI User Levels: How to Go from Search to Self-Running Systems" width="480" height="270"
+             fetchpriority="high" decoding="sync"/>
+        <div class="play-overlay" onclick="startPlay()">
+          <svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="38" fill="rgba(0,0,0,.55)" stroke="#ff032d" stroke-width="3"/>
+            <polygon points="32,24 60,40 32,56" fill="#ff032d"/>
+          </svg>
+          <div class="play-overlay-label">TAP TO WATCH</div>
+        </div>
+        <div class="video-mask mask-top"></div>
+        <div class="video-mask mask-bottom"></div>
+      </div>
+      <div class="info-section">
+        <h1>7 AI User Levels: How to Go from Search to Self-Running Systems</h1>
+        <div class="dual-action-wrap">
+          <button class="home-split-btn" onclick="location.href='https://trend4genz.fun/'">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            HOME
+          </button>
+          <button class="offer-split-btn" onclick="handleMoreInfo()">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            More Info 🔥
+          </button>
+        </div>
+        <!-- Native banner mobile (tersembunyi di desktop via CSS) -->
+        
+        <div class="summary-box">
+          <div class="summary-text"><p>Two people use AI daily. One saves minutes on emails. The other runs entire business systems that operate while they sleep. The difference isn’t intelligence—it’s knowing which of the seven AI user levels you’re at and what to do next.</p>
 
 <h2>Why Most AI Users Stay Stuck at Level One</h2>
 
@@ -171,21 +212,23 @@
 <h2>The Road Ahead</h2>
 
 <p>The gap between Level One and Level Seven isn’t intelligence or technical skill. It’s awareness. Most users don’t know the levels exist, let alone how to climb them. The first step? Recognize where you are. The second? Start building. The tools are here—what will you automate next?</p></div>
-      <div class="seo-tags-container"><a href="https://trend4genz.fun/?tag=ai%20user%20levels" class="seo-tag-badge">#ai user levels</a><a href="https://trend4genz.fun/?tag=ai%20mastery%20framework" class="seo-tag-badge">#ai mastery framework</a><a href="https://trend4genz.fun/?tag=autonomous%20ai%20systems" class="seo-tag-badge">#autonomous ai systems</a><a href="https://trend4genz.fun/?tag=prompt%20engineering" class="seo-tag-badge">#prompt engineering</a><a href="https://trend4genz.fun/?tag=ai%20tools%20forbusiness" class="seo-tag-badge">#ai tools forbusiness</a><a href="https://trend4genz.fun/?tag=ai%20agents" class="seo-tag-badge">#ai agents</a><a href="https://trend4genz.fun/?tag=ai%20productivity" class="seo-tag-badge">#ai productivity</a></div>
-    </div>
-    <p class="more-videos-label">MORE VIDEOS</p>
-    <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/aeo-guide-get-your-business-recommended-by-ai-in-2025/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
-           alt="AEO Guide: Get Your Business Recommended by AI in 2026" loading="lazy" width="160" height="90"
+          <div class="seo-tags-container"><a href="https://trend4genz.fun/?tag=ai%20user%20levels" class="seo-tag-badge">#ai user levels</a><a href="https://trend4genz.fun/?tag=ai%20mastery%20framework" class="seo-tag-badge">#ai mastery framework</a><a href="https://trend4genz.fun/?tag=autonomous%20ai%20systems" class="seo-tag-badge">#autonomous ai systems</a><a href="https://trend4genz.fun/?tag=prompt%20engineering" class="seo-tag-badge">#prompt engineering</a><a href="https://trend4genz.fun/?tag=ai%20tools%20forbusiness" class="seo-tag-badge">#ai tools forbusiness</a><a href="https://trend4genz.fun/?tag=ai%20agents" class="seo-tag-badge">#ai agents</a><a href="https://trend4genz.fun/?tag=ai%20productivity" class="seo-tag-badge">#ai productivity</a></div>
+        </div>
+        <!-- Mobile horizontal slider (tersembunyi di desktop via CSS) -->
+        <div class="recommendation-slider-wrap">
+          <p class="more-videos-label">MORE VIDEOS</p>
+          <div class="recommendation-slider" id="rec-slider">
+    <a href="https://trend4genz.fun/video/2026-toyota-c-hr-review-reliability-vs-range-trade-offs/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
+           alt="2026 Toyota C-HR Review: Reliability vs. Range Trade-Offs" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AEO Guide: Get Your Business Recommended by AI in 2026</p>
+      <p>2026 Toyota C-HR Review: Reliability vs. Range Trade-Offs</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemma-4-review-google-s-first-truly-open-ai-model-changes-the-game/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
-           alt="Gemma 4 Review: Google’s First Truly Open AI Model Changes the Game" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-s-40b-anthropic-bet-why-mythos-ai-could-break-nvidia-s-monopoly/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Llei51M3u5g/mqdefault.jpg"
+           alt="Google’s $40B Anthropic Bet: Why Mythos AI Could Break NVIDIA’s Monopoly" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Gemma 4 Review: Google’s First Truly Open AI Model Changes the Game</p>
+      <p>Google’s $40B Anthropic Bet: Why Mythos AI Could Break NVIDIA’s Monopoly</p>
     </a>
     <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-ai-agents-rewrite-coding-forever/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
@@ -193,64 +236,196 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>Cursor 3.0 Ditches VS Code: AI Agents Rewrite Coding Forever</p>
     </a>
-    <a href="https://trend4genz.fun/video/tmux-for-ai-engineers-run-agents-24-7-on-a-vps-step-by-step-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/z7xyZQVK4Dg/mqdefault.jpg"
-           alt="Tmux for AI Engineers: Run Agents 24/7 on a VPS (Step-by-Step Guide)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/software-defined-vehicles-the-400b-shift-reshaping-auto-stocks/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/cctI8JZhWUI/mqdefault.jpg"
+           alt="Software-Defined Vehicles: The $400B Shift Reshaping Auto Stocks" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Tmux for AI Engineers: Run Agents 24/7 on a VPS (Step-by-Step Guide)</p>
+      <p>Software-Defined Vehicles: The $400B Shift Reshaping Auto Stocks</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-claude-co-work-setup-tips-to-save-hours-tokens-daily/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
-           alt="5 Claude Co-Work Setup Tips to Save Hours &amp; Tokens Daily" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/run-ai-agents-locally-ollama-mcp-unlocks-8-000-tools-for-free/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/GAyNvq6Ayps/mqdefault.jpg"
+           alt="Run AI Agents Locally: Ollama + MCP Unlocks 8,000+ Tools for Free" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Claude Co-Work Setup Tips to Save Hours &amp; Tokens Daily</p>
+      <p>Run AI Agents Locally: Ollama + MCP Unlocks 8,000+ Tools for Free</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-adoption-surges-why-coding-in-english-creates-more-developers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/u8bKR3RHAYA/mqdefault.jpg"
-           alt="AI Adoption Surges: Why Coding in English Creates More Developers" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/test-time-compute-why-ai-pauses-to-think-before-answering/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/DAlC8mL5ZlI/mqdefault.jpg"
+           alt="Test-Time Compute: Why AI Pauses to Think Before Answering" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI Adoption Surges: Why Coding in English Creates More Developers</p>
+      <p>Test-Time Compute: Why AI Pauses to Think Before Answering</p>
     </a>
-    <a href="https://trend4genz.fun/video/selling-5k-ai-operating-systems-to-smbs-the-scalable-agency-blueprint/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/yd9tr0xqg-Y/mqdefault.jpg"
-           alt="Selling $5K AI Operating Systems to SMBs: The Scalable Agency Blueprint" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/qwen-3-6-27b-outperforms-35b-moe-in-local-coding-speed-accuracy/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7ejQSGaiyQE/mqdefault.jpg"
+           alt="Qwen 3.6 27B Outperforms 35B MoE in Local Coding Speed &amp; Accuracy" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Selling $5K AI Operating Systems to SMBs: The Scalable Agency Blueprint</p>
+      <p>Qwen 3.6 27B Outperforms 35B MoE in Local Coding Speed &amp; Accuracy</p>
     </a>
-    <a href="https://trend4genz.fun/video/adk-vs-rag-when-to-use-ai-agents-or-retrieval-for-your-stack/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7HSSR1n8dgc/mqdefault.jpg"
-           alt="ADK vs RAG: When to Use AI Agents or Retrieval for Your Stack" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/deepseek-v4-how-a-free-ai-outperforms-billion-dollar-models/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
+           alt="DeepSeek V4: How a Free AI Outperforms Billion-Dollar Models" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>ADK vs RAG: When to Use AI Agents or Retrieval for Your Stack</p>
+      <p>DeepSeek V4: How a Free AI Outperforms Billion-Dollar Models</p>
     </a></div>
-  </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Kolom kanan desktop: related + native banner ── -->
+    <div class="video-side-col">
+      <div class="side-related-label">🎬 Related Videos</div>
+      <div class="side-slider" id="side-slider-desktop">
+    <a href="https://trend4genz.fun/video/2026-toyota-c-hr-review-reliability-vs-range-trade-offs/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
+           alt="2026 Toyota C-HR Review: Reliability vs. Range Trade-Offs" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>2026 Toyota C-HR Review: Reliability vs. Range Trade-Offs</p>
+    </a>
+    <a href="https://trend4genz.fun/video/google-s-40b-anthropic-bet-why-mythos-ai-could-break-nvidia-s-monopoly/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Llei51M3u5g/mqdefault.jpg"
+           alt="Google’s $40B Anthropic Bet: Why Mythos AI Could Break NVIDIA’s Monopoly" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Google’s $40B Anthropic Bet: Why Mythos AI Could Break NVIDIA’s Monopoly</p>
+    </a>
+    <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-ai-agents-rewrite-coding-forever/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
+           alt="Cursor 3.0 Ditches VS Code: AI Agents Rewrite Coding Forever" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Cursor 3.0 Ditches VS Code: AI Agents Rewrite Coding Forever</p>
+    </a>
+    <a href="https://trend4genz.fun/video/software-defined-vehicles-the-400b-shift-reshaping-auto-stocks/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/cctI8JZhWUI/mqdefault.jpg"
+           alt="Software-Defined Vehicles: The $400B Shift Reshaping Auto Stocks" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Software-Defined Vehicles: The $400B Shift Reshaping Auto Stocks</p>
+    </a>
+    <a href="https://trend4genz.fun/video/run-ai-agents-locally-ollama-mcp-unlocks-8-000-tools-for-free/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/GAyNvq6Ayps/mqdefault.jpg"
+           alt="Run AI Agents Locally: Ollama + MCP Unlocks 8,000+ Tools for Free" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Run AI Agents Locally: Ollama + MCP Unlocks 8,000+ Tools for Free</p>
+    </a>
+    <a href="https://trend4genz.fun/video/test-time-compute-why-ai-pauses-to-think-before-answering/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/DAlC8mL5ZlI/mqdefault.jpg"
+           alt="Test-Time Compute: Why AI Pauses to Think Before Answering" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Test-Time Compute: Why AI Pauses to Think Before Answering</p>
+    </a>
+    <a href="https://trend4genz.fun/video/qwen-3-6-27b-outperforms-35b-moe-in-local-coding-speed-accuracy/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7ejQSGaiyQE/mqdefault.jpg"
+           alt="Qwen 3.6 27B Outperforms 35B MoE in Local Coding Speed &amp; Accuracy" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Qwen 3.6 27B Outperforms 35B MoE in Local Coding Speed &amp; Accuracy</p>
+    </a>
+    <a href="https://trend4genz.fun/video/deepseek-v4-how-a-free-ai-outperforms-billion-dollar-models/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
+           alt="DeepSeek V4: How a Free AI Outperforms Billion-Dollar Models" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>DeepSeek V4: How a Free AI Outperforms Billion-Dollar Models</p>
+    </a>
+    <a href="https://trend4genz.fun/video/cursor-ai-agent-pro-tips-10-hidden-hacks-to-code-faster/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/WVeYLlKOWc0/mqdefault.jpg"
+           alt="Cursor AI Agent Pro Tips: 10 Hidden Hacks to Code Faster" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Cursor AI Agent Pro Tips: 10 Hidden Hacks to Code Faster</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-4-levels-that-multiply-your-output/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
+           alt="AI Agents in 2026: The 4 Levels That Multiply Your Output" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>AI Agents in 2026: The 4 Levels That Multiply Your Output</p>
+    </a>
+    <a href="https://trend4genz.fun/video/thinking-machines-labs-unveils-ai-that-works-without-typing-heres-why-it-matters/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Oy7tzmfbl64/mqdefault.jpg"
+           alt="Thinking Machines Labs Unveils AI That Works Without Typing—Here's Why It Matters" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Thinking Machines Labs Unveils AI That Works Without Typing—Here's Why It Matters</p>
+    </a>
+    <a href="https://trend4genz.fun/video/tesla-powerwall-3-review-uk-s-first-all-in-one-solar-battery-tested/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/6LUYGe0benc/mqdefault.jpg"
+           alt="Tesla Powerwall 3 Review: UK’s First All-in-One Solar Battery Tested" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Tesla Powerwall 3 Review: UK’s First All-in-One Solar Battery Tested</p>
+    </a>
+    <a href="https://trend4genz.fun/video/run-llms-locally-for-free-ollama-s-privacy-breakthrough/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/UtSSMs6ObqY/mqdefault.jpg"
+           alt="Run LLMs Locally for Free: Ollama’s Privacy Breakthrough" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Run LLMs Locally for Free: Ollama’s Privacy Breakthrough</p>
+    </a>
+    <a href="https://trend4genz.fun/video/gemma-4-review-google-s-first-truly-open-ai-model-changes-the-game/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
+           alt="Gemma 4 Review: Google’s First Truly Open AI Model Changes the Game" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Gemma 4 Review: Google’s First Truly Open AI Model Changes the Game</p>
+    </a>
+    <a href="https://trend4genz.fun/video/self-evolving-ai-memory-how-claude-code-hooks-outperform-llm-knowledge-bases/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
+           alt="Self-Evolving AI Memory: How Claude Code Hooks Outperform LLM Knowledge Bases" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Self-Evolving AI Memory: How Claude Code Hooks Outperform LLM Knowledge Bases</p>
+    </a>
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-jeff-dean-reveals-about-the-future/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Jeff Dean Reveals About the Future" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>1,000,000x AI Compute Leap: What Jeff Dean Reveals About the Future</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-s-hidden-ai-image-video-engine-how-higgs-field-mcp-changes-everything/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/rrylSizvnSg/mqdefault.jpg"
+           alt="Claude’s Hidden AI Image &amp; Video Engine: How Higgs Field MCP Changes Everything" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude’s Hidden AI Image &amp; Video Engine: How Higgs Field MCP Changes Everything</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-s-hidden-features-build-apps-automate-workflows-collaborate-like-a-pro/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
+           alt="Claude’s Hidden Features: Build Apps, Automate Workflows &amp; Collaborate Like a Pro" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude’s Hidden Features: Build Apps, Automate Workflows &amp; Collaborate Like a Pro</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-presentation-mastery-how-top-1-builders-merge-depth-with-design/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/ZpXN9M0WLQ4/mqdefault.jpg"
+           alt="AI Presentation Mastery: How Top 1% Builders Merge Depth with Design" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>AI Presentation Mastery: How Top 1% Builders Merge Depth with Design</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-agents-in-2027-long-horizon-tasks-meta-harnesses-fleet-control/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/R9K2574YEAg/mqdefault.jpg"
+           alt="AI Agents in 2027: Long-Horizon Tasks, Meta-Harnesses &amp; Fleet Control" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>AI Agents in 2027: Long-Horizon Tasks, Meta-Harnesses &amp; Fleet Control</p>
+    </a></div>
+      
+    </div>
+
+  </div><!-- end video-desktop-layout -->
 </div>
 </main>
 
 <script>
 // ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
 var STATIC_AD = {
-  useDirect:       true,
-  directUrl:       'https://linkadsterra-kamu.com',
-  usePlayAds:      true,
+  allAds:          false,
+  useDirect:       false,
+  directUrl:       'https://linkadsterra.com',
+  usePlayAds:      false,
   playAdsUrl:      'https://linkadsterra.com',
-  playAdsStartFrom:2
+  playAdsStartFrom:2,
+  useNativeBanner: false
 };
-// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
-var _playCount = 0; // hitung berapa kali tap play di sesi ini
+var _playCount = 0;
 
 // ── Tombol More Info 🔥 ──────────────────────────────────────────
 function handleMoreInfo() {
-  if (STATIC_AD.useDirect) {
+  if (STATIC_AD.allAds && STATIC_AD.useDirect) {
     window.open(STATIC_AD.directUrl, '_blank');
   }
 }
 
-// ── Player & Fullscreen ──────────────────────────────────────────
+// ── Play Button Ads + Player ─────────────────────────────────────
 function startPlay() {
   _playCount++;
-  // Play Button Ads: buka direct link mulai dari tap ke-N
-  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+  // Buka ads jika allAds=true, usePlayAds=true, dan sudah tap ke-N
+  if (STATIC_AD.allAds && STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
     window.open(STATIC_AD.playAdsUrl, '_blank');
   }
   var pb = document.getElementById('player-box');
@@ -266,6 +441,7 @@ function startPlay() {
     '<polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>' +
     '</svg></div>';
 }
+
 function toggleFS() {
   var el=document.getElementById('player-box'), svg=document.getElementById('fs-icon');
   if (!document.fullscreenElement&&!document.webkitFullscreenElement) {
@@ -277,8 +453,8 @@ function toggleFS() {
   }
 }
 
-// ── FIX #1: Search suggestion real dari db-en.json ───────────────
-var _db = [{"slug":"1-000-000x-ai-compute-leap-what-jeff-dean-reveals-about-the-future","youtubeId":"yz6I23VRbdg","title":"1,000,000x AI Compute Leap: What Jeff Dean Reveals About the Future"},{"slug":"10-unconventional-open-source-tools-to-supercharge-your-dev-workflow","youtubeId":"qPuzWFvRajk","title":"10 Unconventional Open-Source Tools to Supercharge Your Dev Workflow"},{"slug":"2026-s-top-jobs-ai-remote-work-the-rise-of-digital-lifestyle-careers","youtubeId":"oDO_hTtQedQ","title":"2026’s Top Jobs: AI, Remote Work & the Rise of Digital Lifestyle Careers"},{"slug":"2026-toyota-c-hr-review-reliability-vs-range-trade-offs","youtubeId":"dtAGxPx3bcY","title":"2026 Toyota C-HR Review: Reliability vs. Range Trade-Offs"},{"slug":"5-claude-co-work-setup-tips-to-save-hours-tokens-daily","youtubeId":"4wvLHFgnQZQ","title":"5 Claude Co-Work Setup Tips to Save Hours & Tokens Daily"},{"slug":"6-must-have-claude-code-skills-to-automate-workflows-in-minutes","youtubeId":"ZSvcxjNZdxk","title":"6 Must-Have Claude Code Skills to Automate Workflows in Minutes"},{"slug":"7-ai-engineering-mistakes-killing-your-career-and-how-to-fix-them","youtubeId":"nvc7xi6vZWw","title":"7 AI Engineering Mistakes Killing Your Career (And How to Fix Them)"},{"slug":"adk-vs-rag-when-to-use-ai-agents-or-retrieval-for-your-stack","youtubeId":"7HSSR1n8dgc","title":"ADK vs RAG: When to Use AI Agents or Retrieval for Your Stack"},{"slug":"aeo-guide-get-your-business-recommended-by-ai-in-2025","youtubeId":"-5Drsq6ve7w","title":"AEO Guide: Get Your Business Recommended by AI in 2026"},{"slug":"ai-adoption-surges-why-coding-in-english-creates-more-developers","youtubeId":"u8bKR3RHAYA","title":"AI Adoption Surges: Why Coding in English Creates More Developers"},{"slug":"ai-agent-iam-4-step-maturity-model-to-secure-non-deterministic-systems","youtubeId":"e8ela6puxig","title":"AI Agent IAM: 4-Step Maturity Model to Secure Non-Deterministic Systems"},{"slug":"ai-agents-in-2026-the-4-levels-that-multiply-your-output","youtubeId":"LNkAW4SSgdY","title":"AI Agents in 2026: The 4 Levels That Multiply Your Output"},{"slug":"ai-agents-in-2027-long-horizon-tasks-meta-harnesses-fleet-control","youtubeId":"R9K2574YEAg","title":"AI Agents in 2027: Long-Horizon Tasks, Meta-Harnesses & Fleet Control"},{"slug":"ai-engineer-salaries-2026-from-junior-to-senior-in-big-tech","youtubeId":"eTBSF411yQ4","title":"AI Engineer Salaries 2026: From Junior to Senior in Big Tech"},{"slug":"ai-first-tech-stack-the-2026-blueprint-for-builders","youtubeId":"21_k2St8bBI","title":"AI-First Tech Stack: The 2026 Blueprint for Builders"},{"slug":"ai-in-2026-why-deep-mastery-beats-tool-hopping","youtubeId":"I62CvEwVS58","title":"AI in 2026: Why Deep Mastery Beats Tool-Hopping"},{"slug":"ai-presentation-mastery-how-top-1-builders-merge-depth-with-design","youtubeId":"ZpXN9M0WLQ4","title":"AI Presentation Mastery: How Top 1% Builders Merge Depth with Design"},{"slug":"ai-stack-explained-llms-rag-hardware-for-real-world-ai","youtubeId":"RRKwmeyIc24","title":"AI Stack Explained: LLMs, RAG, & Hardware for Real-World AI"},{"slug":"amd-gpus-for-local-ai-how-32gb-vram-changes-the-game","youtubeId":"PEg08OAht2s","title":"AMD GPUs for Local AI: How 32GB VRAM Changes the Game"},{"slug":"claude-s-hidden-ai-image-video-engine-how-higgs-field-mcp-changes-everything","youtubeId":"rrylSizvnSg","title":"Claude’s Hidden AI Image & Video Engine: How Higgs Field MCP Changes Everything"},{"slug":"claude-s-hidden-features-build-apps-automate-workflows-collaborate-like-a-pro","youtubeId":"tkpdPvx65A0","title":"Claude’s Hidden Features: Build Apps, Automate Workflows & Collaborate Like a Pro"},{"slug":"claude-vs-codex-which-ai-codes-faster-cheaper-bug-free","youtubeId":"E2UgYp2vh5U","title":"Claude vs Codex: Which AI Codes Faster, Cheaper & Bug-Free?"},{"slug":"cli-vs-mcp-why-ai-agents-need-both-to-work-smarter","youtubeId":"g9JIUM0MHgQ","title":"CLI vs MCP: Why AI Agents Need Both to Work Smarter"},{"slug":"cmax-terminal-open-source-ai-agent-orchestration-for-macos","youtubeId":"8jDXI4_rJOE","title":"CMAX Terminal: Open-Source AI Agent Orchestration for macOS"},{"slug":"cursor-3-0-ditches-vs-code-ai-agents-rewrite-coding-forever","youtubeId":"JSuS-zXMVwE","title":"Cursor 3.0 Ditches VS Code: AI Agents Rewrite Coding Forever"},{"slug":"cursor-ai-agent-pro-tips-10-hidden-hacks-to-code-faster","youtubeId":"WVeYLlKOWc0","title":"Cursor AI Agent Pro Tips: 10 Hidden Hacks to Code Faster"},{"slug":"deepseek-v4-how-a-free-ai-outperforms-billion-dollar-models","youtubeId":"p7K3xfViWCE","title":"DeepSeek V4: How a Free AI Outperforms Billion-Dollar Models"},{"slug":"fix-notebooklm-infographic-errors-in-2-minutes-with-chatgpt","youtubeId":"psAQ7GYLmKw","title":"Fix NotebookLM Infographic Errors in 2 Minutes with ChatGPT"},{"slug":"gemini-3-5-flash-pro-level-ai-at-60-lower-cost-what-changed","youtubeId":"kn9Gh5HWqQs","title":"Gemini 3.5 Flash: Pro-Level AI at 60% Lower Cost—What Changed"},{"slug":"gemini-omni-google-s-ai-video-model-that-edits-itself-in-real-time","youtubeId":"iRgPSOHjAWM","title":"Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time"},{"slug":"gemma-4-review-google-s-first-truly-open-ai-model-changes-the-game","youtubeId":"5aqF1HVpjdc","title":"Gemma 4 Review: Google’s First Truly Open AI Model Changes the Game"},{"slug":"gemma-4-vs-gemini-3-1-which-google-ai-wins-for-coding-speed-privacy","youtubeId":"oFReQNuIVpE","title":"Gemma 4 vs Gemini 3.1: Which Google AI Wins for Coding, Speed & Privacy?"},{"slug":"google-s-40b-anthropic-bet-why-mythos-ai-could-break-nvidia-s-monopoly","youtubeId":"Llei51M3u5g","title":"Google’s $40B Anthropic Bet: Why Mythos AI Could Break NVIDIA’s Monopoly"},{"slug":"qwen-3-6-27b-outperforms-35b-moe-in-local-coding-speed-accuracy","youtubeId":"7ejQSGaiyQE","title":"Qwen 3.6 27B Outperforms 35B MoE in Local Coding Speed & Accuracy"},{"slug":"rag-explained-how-ai-retrieval-augments-llm-accuracy-without-retraining","youtubeId":"RosLeHGBLoY","title":"RAG Explained: How AI Retrieval Augments LLM Accuracy Without Retraining"},{"slug":"rag-explained-why-40-of-ai-projects-now-depend-on-retrieval-augmentation","youtubeId":"dDkynerzV-Q","title":"RAG Explained: Why 40% of AI Projects Now Depend on Retrieval Augmentation"},{"slug":"rag-vs-graphrag-why-context-is-the-new-ai-bottleneck","youtubeId":"pN-LfxNFiTc","title":"RAG vs GraphRAG: Why Context Is the New AI Bottleneck"},{"slug":"run-35b-ai-model-on-6gb-vram-5-flags-that-unlock-speed","youtubeId":"8F_5pdcD3HY","title":"Run 35B AI Model on 6GB VRAM: 5 Flags That Unlock Speed"},{"slug":"run-ai-agents-locally-ollama-mcp-unlocks-8-000-tools-for-free","youtubeId":"GAyNvq6Ayps","title":"Run AI Agents Locally: Ollama + MCP Unlocks 8,000+ Tools for Free"},{"slug":"run-llms-locally-for-free-ollama-s-privacy-breakthrough","youtubeId":"UtSSMs6ObqY","title":"Run LLMs Locally for Free: Ollama’s Privacy Breakthrough"},{"slug":"self-evolving-ai-memory-how-claude-code-hooks-outperform-llm-knowledge-bases","youtubeId":"7huCP6RkcY4","title":"Self-Evolving AI Memory: How Claude Code Hooks Outperform LLM Knowledge Bases"},{"slug":"selling-5k-ai-operating-systems-to-smbs-the-scalable-agency-blueprint","youtubeId":"yd9tr0xqg-Y","title":"Selling $5K AI Operating Systems to SMBs: The Scalable Agency Blueprint"},{"slug":"software-defined-vehicles-the-400b-shift-reshaping-auto-stocks","youtubeId":"cctI8JZhWUI","title":"Software-Defined Vehicles: The $400B Shift Reshaping Auto Stocks"},{"slug":"solar-panels-battery-storage-cost-benefit-for-ev-owners-high-use-homes","youtubeId":"Jh033yLRI1E","title":"Solar Panels + Battery Storage: Cost-Benefit for EV Owners & High-Use Homes"},{"slug":"tesla-powerwall-3-app-guide-master-settings-solar-control","youtubeId":"wxhZBcCFQwI","title":"Tesla Powerwall 3 App Guide: Master Settings & Solar Control"},{"slug":"tesla-powerwall-3-review-uk-s-first-all-in-one-solar-battery-tested","youtubeId":"6LUYGe0benc","title":"Tesla Powerwall 3 Review: UK’s First All-in-One Solar Battery Tested"},{"slug":"test-time-compute-why-ai-pauses-to-think-before-answering","youtubeId":"DAlC8mL5ZlI","title":"Test-Time Compute: Why AI Pauses to Think Before Answering"},{"slug":"thinking-machines-labs-unveils-ai-that-works-without-typing-heres-why-it-matters","youtubeId":"Oy7tzmfbl64","title":"Thinking Machines Labs Unveils AI That Works Without Typing—Here's Why It Matters"},{"slug":"tmux-for-ai-engineers-run-agents-24-7-on-a-vps-step-by-step-guide","youtubeId":"z7xyZQVK4Dg","title":"Tmux for AI Engineers: Run Agents 24/7 on a VPS (Step-by-Step Guide)"}];  // sudah ada dari slider data, reuse!
+// ── Search suggestion dari data slider ──────────────────────────
+var _db = [{"slug":"1-000-000x-ai-compute-leap-what-jeff-dean-reveals-about-the-future","youtubeId":"yz6I23VRbdg","title":"1,000,000x AI Compute Leap: What Jeff Dean Reveals About the Future"},{"slug":"10-unconventional-open-source-tools-to-supercharge-your-dev-workflow","youtubeId":"qPuzWFvRajk","title":"10 Unconventional Open-Source Tools to Supercharge Your Dev Workflow"},{"slug":"2026-s-top-jobs-ai-remote-work-the-rise-of-digital-lifestyle-careers","youtubeId":"oDO_hTtQedQ","title":"2026’s Top Jobs: AI, Remote Work & the Rise of Digital Lifestyle Careers"},{"slug":"2026-toyota-c-hr-review-reliability-vs-range-trade-offs","youtubeId":"dtAGxPx3bcY","title":"2026 Toyota C-HR Review: Reliability vs. Range Trade-Offs"},{"slug":"5-claude-co-work-setup-tips-to-save-hours-tokens-daily","youtubeId":"4wvLHFgnQZQ","title":"5 Claude Co-Work Setup Tips to Save Hours & Tokens Daily"},{"slug":"6-must-have-claude-code-skills-to-automate-workflows-in-minutes","youtubeId":"ZSvcxjNZdxk","title":"6 Must-Have Claude Code Skills to Automate Workflows in Minutes"},{"slug":"7-ai-engineering-mistakes-killing-your-career-and-how-to-fix-them","youtubeId":"nvc7xi6vZWw","title":"7 AI Engineering Mistakes Killing Your Career (And How to Fix Them)"},{"slug":"adk-vs-rag-when-to-use-ai-agents-or-retrieval-for-your-stack","youtubeId":"7HSSR1n8dgc","title":"ADK vs RAG: When to Use AI Agents or Retrieval for Your Stack"},{"slug":"aeo-guide-get-your-business-recommended-by-ai-in-2025","youtubeId":"-5Drsq6ve7w","title":"AEO Guide: Get Your Business Recommended by AI in 2026"},{"slug":"ai-adoption-surges-why-coding-in-english-creates-more-developers","youtubeId":"u8bKR3RHAYA","title":"AI Adoption Surges: Why Coding in English Creates More Developers"},{"slug":"ai-agent-iam-4-step-maturity-model-to-secure-non-deterministic-systems","youtubeId":"e8ela6puxig","title":"AI Agent IAM: 4-Step Maturity Model to Secure Non-Deterministic Systems"},{"slug":"ai-agents-in-2026-the-4-levels-that-multiply-your-output","youtubeId":"LNkAW4SSgdY","title":"AI Agents in 2026: The 4 Levels That Multiply Your Output"},{"slug":"ai-agents-in-2027-long-horizon-tasks-meta-harnesses-fleet-control","youtubeId":"R9K2574YEAg","title":"AI Agents in 2027: Long-Horizon Tasks, Meta-Harnesses & Fleet Control"},{"slug":"ai-engineer-salaries-2026-from-junior-to-senior-in-big-tech","youtubeId":"eTBSF411yQ4","title":"AI Engineer Salaries 2026: From Junior to Senior in Big Tech"},{"slug":"ai-first-tech-stack-the-2026-blueprint-for-builders","youtubeId":"21_k2St8bBI","title":"AI-First Tech Stack: The 2026 Blueprint for Builders"},{"slug":"ai-in-2026-why-deep-mastery-beats-tool-hopping","youtubeId":"I62CvEwVS58","title":"AI in 2026: Why Deep Mastery Beats Tool-Hopping"},{"slug":"ai-presentation-mastery-how-top-1-builders-merge-depth-with-design","youtubeId":"ZpXN9M0WLQ4","title":"AI Presentation Mastery: How Top 1% Builders Merge Depth with Design"},{"slug":"ai-stack-explained-llms-rag-hardware-for-real-world-ai","youtubeId":"RRKwmeyIc24","title":"AI Stack Explained: LLMs, RAG, & Hardware for Real-World AI"},{"slug":"amd-gpus-for-local-ai-how-32gb-vram-changes-the-game","youtubeId":"PEg08OAht2s","title":"AMD GPUs for Local AI: How 32GB VRAM Changes the Game"},{"slug":"claude-s-hidden-ai-image-video-engine-how-higgs-field-mcp-changes-everything","youtubeId":"rrylSizvnSg","title":"Claude’s Hidden AI Image & Video Engine: How Higgs Field MCP Changes Everything"},{"slug":"claude-s-hidden-features-build-apps-automate-workflows-collaborate-like-a-pro","youtubeId":"tkpdPvx65A0","title":"Claude’s Hidden Features: Build Apps, Automate Workflows & Collaborate Like a Pro"},{"slug":"claude-vs-codex-which-ai-codes-faster-cheaper-bug-free","youtubeId":"E2UgYp2vh5U","title":"Claude vs Codex: Which AI Codes Faster, Cheaper & Bug-Free?"},{"slug":"cli-vs-mcp-why-ai-agents-need-both-to-work-smarter","youtubeId":"g9JIUM0MHgQ","title":"CLI vs MCP: Why AI Agents Need Both to Work Smarter"},{"slug":"cmax-terminal-open-source-ai-agent-orchestration-for-macos","youtubeId":"8jDXI4_rJOE","title":"CMAX Terminal: Open-Source AI Agent Orchestration for macOS"},{"slug":"cursor-3-0-ditches-vs-code-ai-agents-rewrite-coding-forever","youtubeId":"JSuS-zXMVwE","title":"Cursor 3.0 Ditches VS Code: AI Agents Rewrite Coding Forever"},{"slug":"cursor-ai-agent-pro-tips-10-hidden-hacks-to-code-faster","youtubeId":"WVeYLlKOWc0","title":"Cursor AI Agent Pro Tips: 10 Hidden Hacks to Code Faster"},{"slug":"deepseek-v4-how-a-free-ai-outperforms-billion-dollar-models","youtubeId":"p7K3xfViWCE","title":"DeepSeek V4: How a Free AI Outperforms Billion-Dollar Models"},{"slug":"fix-notebooklm-infographic-errors-in-2-minutes-with-chatgpt","youtubeId":"psAQ7GYLmKw","title":"Fix NotebookLM Infographic Errors in 2 Minutes with ChatGPT"},{"slug":"gemini-3-5-flash-pro-level-ai-at-60-lower-cost-what-changed","youtubeId":"kn9Gh5HWqQs","title":"Gemini 3.5 Flash: Pro-Level AI at 60% Lower Cost—What Changed"},{"slug":"gemini-omni-google-s-ai-video-model-that-edits-itself-in-real-time","youtubeId":"iRgPSOHjAWM","title":"Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time"},{"slug":"gemma-4-review-google-s-first-truly-open-ai-model-changes-the-game","youtubeId":"5aqF1HVpjdc","title":"Gemma 4 Review: Google’s First Truly Open AI Model Changes the Game"},{"slug":"gemma-4-vs-gemini-3-1-which-google-ai-wins-for-coding-speed-privacy","youtubeId":"oFReQNuIVpE","title":"Gemma 4 vs Gemini 3.1: Which Google AI Wins for Coding, Speed & Privacy?"},{"slug":"google-s-40b-anthropic-bet-why-mythos-ai-could-break-nvidia-s-monopoly","youtubeId":"Llei51M3u5g","title":"Google’s $40B Anthropic Bet: Why Mythos AI Could Break NVIDIA’s Monopoly"},{"slug":"qwen-3-6-27b-outperforms-35b-moe-in-local-coding-speed-accuracy","youtubeId":"7ejQSGaiyQE","title":"Qwen 3.6 27B Outperforms 35B MoE in Local Coding Speed & Accuracy"},{"slug":"rag-explained-how-ai-retrieval-augments-llm-accuracy-without-retraining","youtubeId":"RosLeHGBLoY","title":"RAG Explained: How AI Retrieval Augments LLM Accuracy Without Retraining"},{"slug":"rag-explained-why-40-of-ai-projects-now-depend-on-retrieval-augmentation","youtubeId":"dDkynerzV-Q","title":"RAG Explained: Why 40% of AI Projects Now Depend on Retrieval Augmentation"},{"slug":"rag-vs-graphrag-why-context-is-the-new-ai-bottleneck","youtubeId":"pN-LfxNFiTc","title":"RAG vs GraphRAG: Why Context Is the New AI Bottleneck"},{"slug":"run-35b-ai-model-on-6gb-vram-5-flags-that-unlock-speed","youtubeId":"8F_5pdcD3HY","title":"Run 35B AI Model on 6GB VRAM: 5 Flags That Unlock Speed"},{"slug":"run-ai-agents-locally-ollama-mcp-unlocks-8-000-tools-for-free","youtubeId":"GAyNvq6Ayps","title":"Run AI Agents Locally: Ollama + MCP Unlocks 8,000+ Tools for Free"},{"slug":"run-llms-locally-for-free-ollama-s-privacy-breakthrough","youtubeId":"UtSSMs6ObqY","title":"Run LLMs Locally for Free: Ollama’s Privacy Breakthrough"},{"slug":"self-evolving-ai-memory-how-claude-code-hooks-outperform-llm-knowledge-bases","youtubeId":"7huCP6RkcY4","title":"Self-Evolving AI Memory: How Claude Code Hooks Outperform LLM Knowledge Bases"},{"slug":"selling-5k-ai-operating-systems-to-smbs-the-scalable-agency-blueprint","youtubeId":"yd9tr0xqg-Y","title":"Selling $5K AI Operating Systems to SMBs: The Scalable Agency Blueprint"},{"slug":"software-defined-vehicles-the-400b-shift-reshaping-auto-stocks","youtubeId":"cctI8JZhWUI","title":"Software-Defined Vehicles: The $400B Shift Reshaping Auto Stocks"},{"slug":"solar-panels-battery-storage-cost-benefit-for-ev-owners-high-use-homes","youtubeId":"Jh033yLRI1E","title":"Solar Panels + Battery Storage: Cost-Benefit for EV Owners & High-Use Homes"},{"slug":"tesla-powerwall-3-app-guide-master-settings-solar-control","youtubeId":"wxhZBcCFQwI","title":"Tesla Powerwall 3 App Guide: Master Settings & Solar Control"},{"slug":"tesla-powerwall-3-review-uk-s-first-all-in-one-solar-battery-tested","youtubeId":"6LUYGe0benc","title":"Tesla Powerwall 3 Review: UK’s First All-in-One Solar Battery Tested"},{"slug":"test-time-compute-why-ai-pauses-to-think-before-answering","youtubeId":"DAlC8mL5ZlI","title":"Test-Time Compute: Why AI Pauses to Think Before Answering"},{"slug":"thinking-machines-labs-unveils-ai-that-works-without-typing-heres-why-it-matters","youtubeId":"Oy7tzmfbl64","title":"Thinking Machines Labs Unveils AI That Works Without Typing—Here's Why It Matters"},{"slug":"tmux-for-ai-engineers-run-agents-24-7-on-a-vps-step-by-step-guide","youtubeId":"z7xyZQVK4Dg","title":"Tmux for AI Engineers: Run Agents 24/7 on a VPS (Step-by-Step Guide)"}];
 (function(){
   var inp = document.getElementById('searchInput');
   var btn = document.getElementById('searchBtn');
@@ -329,7 +505,7 @@ var _db = [{"slug":"1-000-000x-ai-compute-leap-what-jeff-dean-reveals-about-the-
   document.addEventListener('click', function(e){ if(!e.target.closest('.search-wrapper')) hide(); });
 })();
 
-// ── Infinite scroll slider ───────────────────────────────────────
+// ── Infinite scroll: mobile horizontal slider ────────────────────
 var _loaded = 8;
 document.getElementById('rec-slider').addEventListener('scroll', function(){
   if (this.scrollLeft + this.clientWidth >= this.scrollWidth - 120) {
@@ -346,6 +522,31 @@ document.getElementById('rec-slider').addEventListener('scroll', function(){
     _loaded += next.length;
   }
 });
+
+// ── Infinite scroll: desktop side slider ────────────────────────
+(function(){
+  var side = document.getElementById('side-slider-desktop');
+  if (!side) return;
+  var sideLoaded = 20;
+  side.addEventListener('scroll', function(){
+    if (this.scrollTop + this.clientHeight >= this.scrollHeight - 100) {
+      var next = _db.slice(sideLoaded, sideLoaded+10);
+      if (!next.length) { sideLoaded=0; next=_db.slice(0,10); }
+      next.forEach(function(r){
+        var a = document.createElement('a');
+        a.className = 'side-slider-item';
+        a.href = 'https://trend4genz.fun/video/'+r.slug+'/';
+        a.innerHTML =
+          '<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy"' +
+          ' width="108" height="60" onload="this.style.opacity=1"' +
+          ' style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>' +
+          '<p>'+r.title.replace(/</g,'&lt;')+'</p>';
+        side.appendChild(a);
+      });
+      sideLoaded += next.length;
+    }
+  });
+})();
 </script>
 </body>
 </html>

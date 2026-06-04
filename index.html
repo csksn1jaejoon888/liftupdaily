@@ -79,18 +79,16 @@
     .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
     @media(max-width:768px){.search-suggestions{width:240px}}
 
-    /* ── Grid ── */
+    /* ── Grid (homepage) ── */
     .main-content{padding:15px;max-width:1150px;margin:auto}
     .video-grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
     @media(min-width:992px){.video-grid{grid-template-columns:repeat(4,1fr);gap:20px}}
     .video-card{background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;transition:.3s;border:1px solid transparent}
     .video-card:hover{border-color:var(--green);transform:translateY(-3px)}
     .video-card .thumb-wrap{position:relative;width:100%;padding-top:56.25%;background:#111;overflow:hidden}
-    .video-card .thumb-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .video-card-title{padding:6px 8px 8px;font-size:.8rem;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:auto;min-height:36px;max-height:38px}
-    .video-card .thumb-wrap{background:#1a1a1a}
-    .video-card .thumb-wrap img{transition:opacity .3s;opacity:0}
+    .video-card .thumb-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .3s;opacity:0}
     .video-card .thumb-wrap img.loaded{opacity:1}
+    .video-card-title{padding:6px 8px 8px;font-size:.8rem;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px;max-height:38px}
 
     /* ── Load More ── */
     .load-more-wrap{text-align:center;margin:20px 0}
@@ -98,22 +96,56 @@
     .btn-load-more:hover{background:var(--green);color:#000}
     .btn-load-more:disabled{opacity:.4;cursor:not-allowed}
 
-    /* ── Video Page ── */
-    .main-content.video-page-container { max-width: 800px; margin: 0 auto; }
-    .summary-text strong { color: #fff; }
-    @media(max-width:600px){.video-page-container{padding:0!important}.info-section{padding:15px!important}.player-container{border-radius:0!important}}
+    /* ══════════════════════════════════════════════════════════
+       VIDEO PAGE — SPA (db-id.json) — MOBILE FIRST, sama seperti
+       halaman statis yang di-generate dari db-en.json
+    ══════════════════════════════════════════════════════════ */
+    .video-page-container{max-width:800px;margin:0 auto;padding:15px;width:100%}
+    @media(max-width:600px){.video-page-container{padding:0!important}}
+
+    /* Desktop: 2-kolom — player kiri, related video kanan */
+    @media(min-width:992px){
+      .video-page-container{max-width:1100px}
+      .video-desktop-layout{display:flex;gap:20px;align-items:flex-start}
+      .video-main-col{flex:1 1 0;min-width:0}
+      .video-side-col{width:280px;flex-shrink:0;position:sticky;top:calc(var(--nav-h) + 10px)}
+      /* Side column: judul related & slider vertikal */
+      .side-related-label{color:var(--green);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px}
+      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 80px);overflow-y:auto;scrollbar-width:none}
+      .side-slider::-webkit-scrollbar{display:none}
+      .side-slider-item{display:flex;gap:8px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;border:1px solid transparent;transition:.2s;flex-shrink:0}
+      .side-slider-item:hover{border-color:var(--green)}
+      .side-slider-item img{width:108px;height:60px;object-fit:cover;flex-shrink:0}
+      .side-slider-item p{font-size:.72rem;padding:6px 8px;margin:0;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:#f1f1f1}
+      /* Native banner di sidebar desktop */
+      .side-native-banner{margin-top:14px}
+      /* Sembunyikan horizontal slider di desktop */
+      .video-main-col .recommendation-slider-wrap{display:none}
+    }
+
+    /* Mobile: related tetap horizontal slider */
+    @media(max-width:991px){
+      .video-desktop-layout{display:block}
+      .video-side-col{display:none}
+    }
+
     .player-container{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
+    @media(max-width:600px){.player-container{border-radius:0}}
     .player-container iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1}
+    .player-container>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+    .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;cursor:pointer;gap:10px}
+    .play-btn-svg{width:72px;height:72px;filter:drop-shadow(0 0 12px rgba(255,3,45,.7));transition:transform .15s}
+    .play-overlay:hover .play-btn-svg{transform:scale(1.1)}
+    .play-overlay-label{font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.08em;text-shadow:0 2px 8px rgba(0,0,0,.8)}
     .video-mask{position:absolute;z-index:99999;background:transparent;pointer-events:all;touch-action:none}
     .mask-top{top:0;left:0;width:55%;height:94px}
     .mask-bottom{bottom:0;left:40%;width:100%;height:43px}
     #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
     .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
-    .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;cursor:pointer;gap:10px}
-    .play-btn-svg{width:72px;height:72px;filter:drop-shadow(0 0 12px rgba(255,3,45,.7));transition:transform .15s}
-    .play-overlay:hover .play-btn-svg{transform:scale(1.1)}
-    .play-overlay-label{font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.08em;text-shadow:0 2px 8px rgba(0,0,0,.8)}
-    .player-container>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+
+    /* ── Info section ── */
+    .info-section{padding:15px}
+    .info-section h1{font-size:1.2rem;font-weight:800;line-height:1.4;margin:15px 0}
 
     /* ── Buttons ── */
     .dual-action-wrap{display:flex;gap:10px;margin-bottom:18px}
@@ -131,8 +163,9 @@
     .summary-text p{font-size:.9rem;line-height:1.5;margin-bottom:12px;color:#ddd}
     .summary-text ul{margin-bottom:12px;padding-left:20px}
     .summary-text li{font-size:.9rem;line-height:1.4;margin-bottom:5px;color:#ddd}
+    .summary-text strong{color:#fff}
 
-    /* ── Slider ── */
+    /* ── Mobile horizontal slider ── */
     .recommendation-slider{display:flex;overflow-x:auto;gap:12px;padding-bottom:15px;scrollbar-width:none;-ms-overflow-style:none}
     .recommendation-slider::-webkit-scrollbar{display:none}
     .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent}
@@ -145,7 +178,7 @@
     .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;cursor:pointer;text-decoration:none;transition:.15s;display:inline-block}
     .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
 
-    /* ── More Videos label (ganti h6 agar heading berurutan) ── */
+    /* ── More Videos label ── */
     .more-videos-label{color:#98FB98;margin:24px 0 12px;font-size:.85rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 
     /* ── Loading / Skeleton ── */
@@ -185,59 +218,48 @@
   <div class="main-content" id="app">
     <h5 style="color:#98FB98;margin-bottom:12px">🔥 TRENDING VIDEO</h5>
     <div class="video-grid" id="video-grid-inner">
-<a href="/video/2026-toyota-c-hr-review-reliability-vs-range-trade-offs/" class="video-card-link" style="text-decoration:none;color:inherit">
+<a href="/video/ai-adoption-surges-why-coding-in-english-creates-more-developers/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
-           alt="2026 Toyota C-HR Review: Reliability vs. Range Trade-Offs" loading="eager" fetchpriority="high" decoding="async" width="320" height="180"
+      <img src="https://img.youtube.com/vi/u8bKR3RHAYA/mqdefault.jpg"
+           alt="AI Adoption Surges: Why Coding in English Creates More Developers" loading="eager" fetchpriority="high" decoding="async" width="320" height="180"
            onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/dtAGxPx3bcY/hqdefault.jpg';this.classList.add('loaded')"/>
+           onerror="this.src='https://img.youtube.com/vi/u8bKR3RHAYA/hqdefault.jpg';this.classList.add('loaded')"/>
     </div>
-    <div class="video-card-title">2026 Toyota C-HR Review: Reliability vs. Range Trade-Offs</div>
+    <div class="video-card-title">AI Adoption Surges: Why Coding in English Creates More Developers</div>
   </div>
 </a>
-<a href="/video/run-ai-agents-locally-ollama-mcp-unlocks-8-000-tools-for-free/" class="video-card-link" style="text-decoration:none;color:inherit">
+<a href="/video/adk-vs-rag-when-to-use-ai-agents-or-retrieval-for-your-stack/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/GAyNvq6Ayps/mqdefault.jpg"
-           alt="Run AI Agents Locally: Ollama + MCP Unlocks 8,000+ Tools for Free" loading="eager" fetchpriority="high" decoding="async" width="320" height="180"
+      <img src="https://img.youtube.com/vi/7HSSR1n8dgc/mqdefault.jpg"
+           alt="ADK vs RAG: When to Use AI Agents or Retrieval for Your Stack" loading="eager" fetchpriority="high" decoding="async" width="320" height="180"
            onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/GAyNvq6Ayps/hqdefault.jpg';this.classList.add('loaded')"/>
+           onerror="this.src='https://img.youtube.com/vi/7HSSR1n8dgc/hqdefault.jpg';this.classList.add('loaded')"/>
     </div>
-    <div class="video-card-title">Run AI Agents Locally: Ollama + MCP Unlocks 8,000+ Tools for Free</div>
+    <div class="video-card-title">ADK vs RAG: When to Use AI Agents or Retrieval for Your Stack</div>
   </div>
 </a>
-<a href="/video/ai-engineer-salaries-2026-from-junior-to-senior-in-big-tech/" class="video-card-link" style="text-decoration:none;color:inherit">
+<a href="/video/7-ai-engineering-mistakes-killing-your-career-and-how-to-fix-them/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
-           alt="AI Engineer Salaries 2026: From Junior to Senior in Big Tech" loading="eager" fetchpriority="high" decoding="async" width="320" height="180"
+      <img src="https://img.youtube.com/vi/nvc7xi6vZWw/mqdefault.jpg"
+           alt="7 AI Engineering Mistakes Killing Your Career (And How to Fix Them)" loading="eager" fetchpriority="high" decoding="async" width="320" height="180"
            onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/eTBSF411yQ4/hqdefault.jpg';this.classList.add('loaded')"/>
+           onerror="this.src='https://img.youtube.com/vi/nvc7xi6vZWw/hqdefault.jpg';this.classList.add('loaded')"/>
     </div>
-    <div class="video-card-title">AI Engineer Salaries 2026: From Junior to Senior in Big Tech</div>
+    <div class="video-card-title">7 AI Engineering Mistakes Killing Your Career (And How to Fix Them)</div>
   </div>
 </a>
-<a href="/video/2026-s-top-jobs-ai-remote-work-the-rise-of-digital-lifestyle-careers/" class="video-card-link" style="text-decoration:none;color:inherit">
+<a href="/video/rag-explained-how-ai-retrieval-augments-llm-accuracy-without-retraining/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
-           alt="2026’s Top Jobs: AI, Remote Work &amp; the Rise of Digital Lifestyle Careers" loading="eager" fetchpriority="high" decoding="async" width="320" height="180"
+      <img src="https://img.youtube.com/vi/RosLeHGBLoY/mqdefault.jpg"
+           alt="RAG Explained: How AI Retrieval Augments LLM Accuracy Without Retraining" loading="eager" fetchpriority="high" decoding="async" width="320" height="180"
            onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/oDO_hTtQedQ/hqdefault.jpg';this.classList.add('loaded')"/>
+           onerror="this.src='https://img.youtube.com/vi/RosLeHGBLoY/hqdefault.jpg';this.classList.add('loaded')"/>
     </div>
-    <div class="video-card-title">2026’s Top Jobs: AI, Remote Work &amp; the Rise of Digital Lifestyle Careers</div>
-  </div>
-</a>
-<a href="/video/deepseek-v4-how-a-free-ai-outperforms-billion-dollar-models/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
-           alt="DeepSeek V4: How a Free AI Outperforms Billion-Dollar Models" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/p7K3xfViWCE/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">DeepSeek V4: How a Free AI Outperforms Billion-Dollar Models</div>
+    <div class="video-card-title">RAG Explained: How AI Retrieval Augments LLM Accuracy Without Retraining</div>
   </div>
 </a>
 <a href="/video/10-unconventional-open-source-tools-to-supercharge-your-dev-workflow/" class="video-card-link" style="text-decoration:none;color:inherit">
@@ -251,147 +273,81 @@
     <div class="video-card-title">10 Unconventional Open-Source Tools to Supercharge Your Dev Workflow</div>
   </div>
 </a>
-<a href="/video/ai-agent-iam-4-step-maturity-model-to-secure-non-deterministic-systems/" class="video-card-link" style="text-decoration:none;color:inherit">
+<a href="/video/ai-agents-in-2027-long-horizon-tasks-meta-harnesses-fleet-control/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/e8ela6puxig/mqdefault.jpg"
-           alt="AI Agent IAM: 4-Step Maturity Model to Secure Non-Deterministic Systems" loading="lazy" decoding="async" width="320" height="180"
+      <img src="https://img.youtube.com/vi/R9K2574YEAg/mqdefault.jpg"
+           alt="AI Agents in 2027: Long-Horizon Tasks, Meta-Harnesses &amp; Fleet Control" loading="lazy" decoding="async" width="320" height="180"
            onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/e8ela6puxig/hqdefault.jpg';this.classList.add('loaded')"/>
+           onerror="this.src='https://img.youtube.com/vi/R9K2574YEAg/hqdefault.jpg';this.classList.add('loaded')"/>
     </div>
-    <div class="video-card-title">AI Agent IAM: 4-Step Maturity Model to Secure Non-Deterministic Systems</div>
+    <div class="video-card-title">AI Agents in 2027: Long-Horizon Tasks, Meta-Harnesses &amp; Fleet Control</div>
   </div>
 </a>
-<a href="/video/claude-vs-codex-which-ai-codes-faster-cheaper-bug-free/" class="video-card-link" style="text-decoration:none;color:inherit">
+<a href="/video/rag-explained-why-40-of-ai-projects-now-depend-on-retrieval-augmentation/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/E2UgYp2vh5U/mqdefault.jpg"
-           alt="Claude vs Codex: Which AI Codes Faster, Cheaper &amp; Bug-Free?" loading="lazy" decoding="async" width="320" height="180"
+      <img src="https://img.youtube.com/vi/dDkynerzV-Q/mqdefault.jpg"
+           alt="RAG Explained: Why 40% of AI Projects Now Depend on Retrieval Augmentation" loading="lazy" decoding="async" width="320" height="180"
            onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/E2UgYp2vh5U/hqdefault.jpg';this.classList.add('loaded')"/>
+           onerror="this.src='https://img.youtube.com/vi/dDkynerzV-Q/hqdefault.jpg';this.classList.add('loaded')"/>
     </div>
-    <div class="video-card-title">Claude vs Codex: Which AI Codes Faster, Cheaper &amp; Bug-Free?</div>
+    <div class="video-card-title">RAG Explained: Why 40% of AI Projects Now Depend on Retrieval Augmentation</div>
   </div>
 </a>
-<a href="/video/tesla-powerwall-3-review-uk-s-first-all-in-one-solar-battery-tested/" class="video-card-link" style="text-decoration:none;color:inherit">
+<a href="/video/software-defined-vehicles-the-400b-shift-reshaping-auto-stocks/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/6LUYGe0benc/mqdefault.jpg"
-           alt="Tesla Powerwall 3 Review: UK’s First All-in-One Solar Battery Tested" loading="lazy" decoding="async" width="320" height="180"
+      <img src="https://img.youtube.com/vi/cctI8JZhWUI/mqdefault.jpg"
+           alt="Software-Defined Vehicles: The $400B Shift Reshaping Auto Stocks" loading="lazy" decoding="async" width="320" height="180"
            onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/6LUYGe0benc/hqdefault.jpg';this.classList.add('loaded')"/>
+           onerror="this.src='https://img.youtube.com/vi/cctI8JZhWUI/hqdefault.jpg';this.classList.add('loaded')"/>
     </div>
-    <div class="video-card-title">Tesla Powerwall 3 Review: UK’s First All-in-One Solar Battery Tested</div>
+    <div class="video-card-title">Software-Defined Vehicles: The $400B Shift Reshaping Auto Stocks</div>
   </div>
 </a>
-<a href="/video/solar-panels-battery-storage-cost-benefit-for-ev-owners-high-use-homes/" class="video-card-link" style="text-decoration:none;color:inherit">
+<a href="/video/2026-s-top-jobs-ai-remote-work-the-rise-of-digital-lifestyle-careers/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/Jh033yLRI1E/mqdefault.jpg"
-           alt="Solar Panels + Battery Storage: Cost-Benefit for EV Owners &amp; High-Use Homes" loading="lazy" decoding="async" width="320" height="180"
+      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
+           alt="2026’s Top Jobs: AI, Remote Work &amp; the Rise of Digital Lifestyle Careers" loading="lazy" decoding="async" width="320" height="180"
            onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/Jh033yLRI1E/hqdefault.jpg';this.classList.add('loaded')"/>
+           onerror="this.src='https://img.youtube.com/vi/oDO_hTtQedQ/hqdefault.jpg';this.classList.add('loaded')"/>
     </div>
-    <div class="video-card-title">Solar Panels + Battery Storage: Cost-Benefit for EV Owners &amp; High-Use Homes</div>
+    <div class="video-card-title">2026’s Top Jobs: AI, Remote Work &amp; the Rise of Digital Lifestyle Careers</div>
   </div>
 </a>
-<a href="/video/qwen-3-6-27b-outperforms-35b-moe-in-local-coding-speed-accuracy/" class="video-card-link" style="text-decoration:none;color:inherit">
+<a href="/video/aeo-guide-get-your-business-recommended-by-ai-in-2025/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/7ejQSGaiyQE/mqdefault.jpg"
-           alt="Qwen 3.6 27B Outperforms 35B MoE in Local Coding Speed &amp; Accuracy" loading="lazy" decoding="async" width="320" height="180"
+      <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
+           alt="AEO Guide: Get Your Business Recommended by AI in 2026" loading="lazy" decoding="async" width="320" height="180"
            onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/7ejQSGaiyQE/hqdefault.jpg';this.classList.add('loaded')"/>
+           onerror="this.src='https://img.youtube.com/vi/-5Drsq6ve7w/hqdefault.jpg';this.classList.add('loaded')"/>
     </div>
-    <div class="video-card-title">Qwen 3.6 27B Outperforms 35B MoE in Local Coding Speed &amp; Accuracy</div>
+    <div class="video-card-title">AEO Guide: Get Your Business Recommended by AI in 2026</div>
   </div>
 </a>
-<a href="/video/claude-s-hidden-features-build-apps-automate-workflows-collaborate-like-a-pro/" class="video-card-link" style="text-decoration:none;color:inherit">
+<a href="/video/ai-agents-in-2026-the-4-levels-that-multiply-your-output/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
-           alt="Claude’s Hidden Features: Build Apps, Automate Workflows &amp; Collaborate Like a Pro" loading="lazy" decoding="async" width="320" height="180"
+      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
+           alt="AI Agents in 2026: The 4 Levels That Multiply Your Output" loading="lazy" decoding="async" width="320" height="180"
            onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/tkpdPvx65A0/hqdefault.jpg';this.classList.add('loaded')"/>
+           onerror="this.src='https://img.youtube.com/vi/LNkAW4SSgdY/hqdefault.jpg';this.classList.add('loaded')"/>
     </div>
-    <div class="video-card-title">Claude’s Hidden Features: Build Apps, Automate Workflows &amp; Collaborate Like a Pro</div>
+    <div class="video-card-title">AI Agents in 2026: The 4 Levels That Multiply Your Output</div>
   </div>
 </a>
-<a href="/video/1-000-000x-ai-compute-leap-what-jeff-dean-reveals-about-the-future/" class="video-card-link" style="text-decoration:none;color:inherit">
+<a href="/video/amd-gpus-for-local-ai-how-32gb-vram-changes-the-game/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
-           alt="1,000,000x AI Compute Leap: What Jeff Dean Reveals About the Future" loading="lazy" decoding="async" width="320" height="180"
+      <img src="https://img.youtube.com/vi/PEg08OAht2s/mqdefault.jpg"
+           alt="AMD GPUs for Local AI: How 32GB VRAM Changes the Game" loading="lazy" decoding="async" width="320" height="180"
            onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/yz6I23VRbdg/hqdefault.jpg';this.classList.add('loaded')"/>
+           onerror="this.src='https://img.youtube.com/vi/PEg08OAht2s/hqdefault.jpg';this.classList.add('loaded')"/>
     </div>
-    <div class="video-card-title">1,000,000x AI Compute Leap: What Jeff Dean Reveals About the Future</div>
-  </div>
-</a>
-<a href="/video/cursor-ai-agent-pro-tips-10-hidden-hacks-to-code-faster/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/WVeYLlKOWc0/mqdefault.jpg"
-           alt="Cursor AI Agent Pro Tips: 10 Hidden Hacks to Code Faster" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/WVeYLlKOWc0/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">Cursor AI Agent Pro Tips: 10 Hidden Hacks to Code Faster</div>
-  </div>
-</a>
-<a href="/video/6-must-have-claude-code-skills-to-automate-workflows-in-minutes/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
-           alt="6 Must-Have Claude Code Skills to Automate Workflows in Minutes" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/ZSvcxjNZdxk/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">6 Must-Have Claude Code Skills to Automate Workflows in Minutes</div>
-  </div>
-</a>
-<a href="/video/5-claude-co-work-setup-tips-to-save-hours-tokens-daily/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
-           alt="5 Claude Co-Work Setup Tips to Save Hours &amp; Tokens Daily" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/4wvLHFgnQZQ/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">5 Claude Co-Work Setup Tips to Save Hours &amp; Tokens Daily</div>
-  </div>
-</a>
-<a href="/video/ai-presentation-mastery-how-top-1-builders-merge-depth-with-design/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/ZpXN9M0WLQ4/mqdefault.jpg"
-           alt="AI Presentation Mastery: How Top 1% Builders Merge Depth with Design" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/ZpXN9M0WLQ4/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">AI Presentation Mastery: How Top 1% Builders Merge Depth with Design</div>
-  </div>
-</a>
-<a href="/video/tesla-powerwall-3-app-guide-master-settings-solar-control/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/wxhZBcCFQwI/mqdefault.jpg"
-           alt="Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/wxhZBcCFQwI/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control</div>
-  </div>
-</a>
-<a href="/video/ai-first-tech-stack-the-2026-blueprint-for-builders/" class="video-card-link" style="text-decoration:none;color:inherit">
-  <div class="video-card">
-    <div class="thumb-wrap">
-      <img src="https://img.youtube.com/vi/21_k2St8bBI/mqdefault.jpg"
-           alt="AI-First Tech Stack: The 2026 Blueprint for Builders" loading="lazy" decoding="async" width="320" height="180"
-           onload="this.classList.add('loaded')"
-           onerror="this.src='https://img.youtube.com/vi/21_k2St8bBI/hqdefault.jpg';this.classList.add('loaded')"/>
-    </div>
-    <div class="video-card-title">AI-First Tech Stack: The 2026 Blueprint for Builders</div>
+    <div class="video-card-title">AMD GPUs for Local AI: How 32GB VRAM Changes the Game</div>
   </div>
 </a>
 <a href="/video/thinking-machines-labs-unveils-ai-that-works-without-typing-heres-why-it-matters/" class="video-card-link" style="text-decoration:none;color:inherit">
@@ -405,32 +361,144 @@
     <div class="video-card-title">Thinking Machines Labs Unveils AI That Works Without Typing—Here's Why It Matters</div>
   </div>
 </a>
+<a href="/video/6-must-have-claude-code-skills-to-automate-workflows-in-minutes/" class="video-card-link" style="text-decoration:none;color:inherit">
+  <div class="video-card">
+    <div class="thumb-wrap">
+      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
+           alt="6 Must-Have Claude Code Skills to Automate Workflows in Minutes" loading="lazy" decoding="async" width="320" height="180"
+           onload="this.classList.add('loaded')"
+           onerror="this.src='https://img.youtube.com/vi/ZSvcxjNZdxk/hqdefault.jpg';this.classList.add('loaded')"/>
+    </div>
+    <div class="video-card-title">6 Must-Have Claude Code Skills to Automate Workflows in Minutes</div>
+  </div>
+</a>
+<a href="/video/claude-s-hidden-features-build-apps-automate-workflows-collaborate-like-a-pro/" class="video-card-link" style="text-decoration:none;color:inherit">
+  <div class="video-card">
+    <div class="thumb-wrap">
+      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
+           alt="Claude’s Hidden Features: Build Apps, Automate Workflows &amp; Collaborate Like a Pro" loading="lazy" decoding="async" width="320" height="180"
+           onload="this.classList.add('loaded')"
+           onerror="this.src='https://img.youtube.com/vi/tkpdPvx65A0/hqdefault.jpg';this.classList.add('loaded')"/>
+    </div>
+    <div class="video-card-title">Claude’s Hidden Features: Build Apps, Automate Workflows &amp; Collaborate Like a Pro</div>
+  </div>
+</a>
+<a href="/video/test-time-compute-why-ai-pauses-to-think-before-answering/" class="video-card-link" style="text-decoration:none;color:inherit">
+  <div class="video-card">
+    <div class="thumb-wrap">
+      <img src="https://img.youtube.com/vi/DAlC8mL5ZlI/mqdefault.jpg"
+           alt="Test-Time Compute: Why AI Pauses to Think Before Answering" loading="lazy" decoding="async" width="320" height="180"
+           onload="this.classList.add('loaded')"
+           onerror="this.src='https://img.youtube.com/vi/DAlC8mL5ZlI/hqdefault.jpg';this.classList.add('loaded')"/>
+    </div>
+    <div class="video-card-title">Test-Time Compute: Why AI Pauses to Think Before Answering</div>
+  </div>
+</a>
+<a href="/video/solar-panels-battery-storage-cost-benefit-for-ev-owners-high-use-homes/" class="video-card-link" style="text-decoration:none;color:inherit">
+  <div class="video-card">
+    <div class="thumb-wrap">
+      <img src="https://img.youtube.com/vi/Jh033yLRI1E/mqdefault.jpg"
+           alt="Solar Panels + Battery Storage: Cost-Benefit for EV Owners &amp; High-Use Homes" loading="lazy" decoding="async" width="320" height="180"
+           onload="this.classList.add('loaded')"
+           onerror="this.src='https://img.youtube.com/vi/Jh033yLRI1E/hqdefault.jpg';this.classList.add('loaded')"/>
+    </div>
+    <div class="video-card-title">Solar Panels + Battery Storage: Cost-Benefit for EV Owners &amp; High-Use Homes</div>
+  </div>
+</a>
+<a href="/video/5-claude-co-work-setup-tips-to-save-hours-tokens-daily/" class="video-card-link" style="text-decoration:none;color:inherit">
+  <div class="video-card">
+    <div class="thumb-wrap">
+      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
+           alt="5 Claude Co-Work Setup Tips to Save Hours &amp; Tokens Daily" loading="lazy" decoding="async" width="320" height="180"
+           onload="this.classList.add('loaded')"
+           onerror="this.src='https://img.youtube.com/vi/4wvLHFgnQZQ/hqdefault.jpg';this.classList.add('loaded')"/>
+    </div>
+    <div class="video-card-title">5 Claude Co-Work Setup Tips to Save Hours &amp; Tokens Daily</div>
+  </div>
+</a>
+<a href="/video/rag-vs-graphrag-why-context-is-the-new-ai-bottleneck/" class="video-card-link" style="text-decoration:none;color:inherit">
+  <div class="video-card">
+    <div class="thumb-wrap">
+      <img src="https://img.youtube.com/vi/pN-LfxNFiTc/mqdefault.jpg"
+           alt="RAG vs GraphRAG: Why Context Is the New AI Bottleneck" loading="lazy" decoding="async" width="320" height="180"
+           onload="this.classList.add('loaded')"
+           onerror="this.src='https://img.youtube.com/vi/pN-LfxNFiTc/hqdefault.jpg';this.classList.add('loaded')"/>
+    </div>
+    <div class="video-card-title">RAG vs GraphRAG: Why Context Is the New AI Bottleneck</div>
+  </div>
+</a>
+<a href="/video/self-evolving-ai-memory-how-claude-code-hooks-outperform-llm-knowledge-bases/" class="video-card-link" style="text-decoration:none;color:inherit">
+  <div class="video-card">
+    <div class="thumb-wrap">
+      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
+           alt="Self-Evolving AI Memory: How Claude Code Hooks Outperform LLM Knowledge Bases" loading="lazy" decoding="async" width="320" height="180"
+           onload="this.classList.add('loaded')"
+           onerror="this.src='https://img.youtube.com/vi/7huCP6RkcY4/hqdefault.jpg';this.classList.add('loaded')"/>
+    </div>
+    <div class="video-card-title">Self-Evolving AI Memory: How Claude Code Hooks Outperform LLM Knowledge Bases</div>
+  </div>
+</a>
     </div>
     <div class="load-more-wrap"><button class="btn-load-more" id="btn-load-more" onclick="loadMore()">Load More</button></div>
   </div>
   </main>
 
 <script>
-// ════════════════════════════════════════════════════════
-//  KONFIGURASI
-// ════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════════
+//  KONFIGURASI ADS — SPA (db-id.json) & HOMEPAGE
+//  Untuk halaman statis (db-en.json), konfigurasi ada di STATIC_AD
+//  di dalam generate-pages.js (STATIC_AD_CONFIG section)
+// ════════════════════════════════════════════════════════════════════
 const AD_CONFIG = {
-  allAds: true,
-  gridPageAds:  { nativeBanner: true },
-  videoPageAds: { nativeBanner: true },
-  useDirect:    true,
-  usePopunder:  false,
-  gridBannerAfterRow:  1,
-  gridColumnsOnMobile: 3,
-  links: { direct: "https://mediaindonesia.com", popunder: "https://google.com" },
+
+  // ── Master switch ── true = semua ads aktif, false = semua mati
+  allAds: false,
+
+  // ── Per-halaman: native banner ──────────────────────────────────
+  gridPageAds: {
+    nativeBanner: true,         // banner di grid homepage/search/tag
+  },
+  videoPageAds: {
+    nativeBanner: true,         // banner di sidebar desktop / di bawah tombol mobile
+  },
+
+  // ── Direct Link (tombol More Info 🔥) ──────────────────────────
+  useDirect:   false,           // true = tombol More Info buka URL direct link
+  directUrl:   'https://linkadsterra.com',
+
+  // ── Popunder (saat klik logo / brand) ──────────────────────────
+  usePopunder: false,           // true = klik logo/brand trigger popunder
+  popunderUrl: 'https://linkadsterra.com',
+
+  // ── Play Button Ads (SPA db-id.json) ───────────────────────────
+  // Muncul mulai dari video ke-N yang ditonton di sesi yang sama
+  usePlayAds:      false,       // true = aktifkan play button ads
+  playAdsUrl:      'https://linkadsterra.com',
+  playAdsStartFrom: 2,          // mulai buka ads dari tap play ke berapa
+
+  // ── Posisi banner di grid ───────────────────────────────────────
+  gridBannerAfterRow:  1,       // sisipkan banner setelah baris ke-N
+  gridColumnsOnMobile: 2,       // kolom grid di mobile (2 atau 3)
+
+  // ── Kode HTML Native Banner ─────────────────────────────────────
+  // Ganti seluruh konten di sini dengan kode native banner dari Adsterra/dll
   nativeBannerHTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`
 };
 
-const PLAY_AD_CONFIG = {
-  enablePlayButtonDirectAds: true,
-  adUrl: "https://mediaindonesia.com",
-  adStartFromVideo: 2,
-};
+// ════════════════════════════════════════════════════════════════════
+//  CATATAN: Ads untuk halaman STATIS (db-en.json → /video/slug/)
+//  diatur di generate-pages.js bagian STATIC_AD:
+//
+//  const STATIC_AD = {
+//    useDirect:        false,   // tombol More Info 🔥
+//    directUrl:        '...',
+//    usePlayAds:       false,   // play button ads
+//    playAdsUrl:       '...',
+//    playAdsStartFrom: 2,
+//    useNativeBanner:  false,   // native banner di sidebar desktop & mobile
+//    nativeBannerHTML: `...`,   // kode HTML native banner
+//  };
+// ════════════════════════════════════════════════════════════════════
 
 const PAGE_SIZE = 24;
 let currentPage = 0;
@@ -464,15 +532,11 @@ function updateCanonical(slug, source) {
 function updateRobotsBySource(source) {
   let t = document.querySelector('meta[name="robots"]');
   if(!t){ t=document.createElement('meta'); t.setAttribute('name','robots'); document.head.appendChild(t); }
-  // db-id.json → noindex,nofollow KETAT — tidak boleh terindex Google
   t.setAttribute('content', source==='nofollow' ? 'noindex, nofollow, noarchive, noimageindex' : 'index, follow');
 }
 
 // ════════════════════════════════════════════════════════
 //  LOAD DATABASE
-//  db-en.json  → index/follow  (halaman statis SEO)
-//  db-id.json  → noindex/nofollow (hanya tampil di homepage,
-//                TIDAK ada halaman statis, TIDAK terindex Google)
 // ════════════════════════════════════════════════════════
 async function loadDatabases() {
   const ROOT = location.origin + '/';
@@ -481,7 +545,6 @@ async function loadDatabases() {
     fetch(ROOT + 'db-id.json').catch(()=>({ok:false}))
   ]);
   videoDatabaseEN  = (await resEN.json()).map(v=>({...v, source:'seo'}));
-  // db-id.json PAKSA source='nofollow' — tidak bisa di-override dari data
   videoDatabaseID  = resID.ok
     ? (await resID.json()).map(v=>({...v, source:'nofollow'}))
     : [];
@@ -509,8 +572,6 @@ function seoUrl(text) {
 function navigateTo(slug) {
   const video = videoDatabaseALL.find(v=>v.slug===slug||seoUrl(v.title)===slug);
   if(!video) return;
-  // db-id.json: tidak ada halaman statis → tampilkan via SPA
-  // db-en.json: arahkan ke halaman statis /video/slug/
   if(video.source==='nofollow') {
     history.pushState({},'', location.origin + '/?v=' + video.slug);
     router();
@@ -524,11 +585,11 @@ function buildNativeBanner(extraClass) {
 }
 function runAd(type) {
   if(!AD_CONFIG.allAds) return;
-  if(type==='pop'    && AD_CONFIG.usePopunder) window.open(AD_CONFIG.links.popunder,'_blank');
-  if(type==='direct' && AD_CONFIG.useDirect)   window.open(AD_CONFIG.links.direct,'_blank');
+  if(type==='pop'     && AD_CONFIG.usePopunder) window.open(AD_CONFIG.popunderUrl,'_blank');
+  if(type==='direct'  && AD_CONFIG.useDirect)   window.open(AD_CONFIG.directUrl,'_blank');
 }
 function handleBrandClick() { runAd('pop'); history.pushState({},'', location.origin + '/'); router(); }
-function handleSpecialOffer() { if(AD_CONFIG.allAds&&AD_CONFIG.useDirect) window.open(AD_CONFIG.links.direct,'_blank'); }
+function handleSpecialOffer() { if(AD_CONFIG.allAds && AD_CONFIG.useDirect) window.open(AD_CONFIG.directUrl,'_blank'); }
 function handleNavigation(e,slug) { e.preventDefault(); navigateTo(slug); }
 
 // ════════════════════════════════════════════════════════
@@ -578,7 +639,7 @@ function doSearch() {
 }
 
 // ════════════════════════════════════════════════════════
-//  RENDER GRID
+//  RENDER GRID (homepage / search / tag)
 // ════════════════════════════════════════════════════════
 function renderGrid(container, data) {
   currentData = data;
@@ -601,7 +662,6 @@ function renderGrid(container, data) {
 function renderCards(items, startIndex, insertAfterIndex, showBanner) {
   return items.map((v,i)=>{
     const idx = startIndex + i;
-    // db-id.json: nofollow + noopener agar Google tidak ikuti link
     const nf  = v.source==='nofollow' ? ' rel="nofollow noopener"' : '';
     const loading = idx < 4 ? 'eager' : 'lazy';
     const href = v.source==='nofollow' ? `/?v=${v.slug}` : `/video/${v.slug}/`;
@@ -627,12 +687,14 @@ function loadMore() {
 }
 
 // ════════════════════════════════════════════════════════
-//  HANDLE PLAY
+//  HANDLE PLAY — SPA (db-id.json)
 // ════════════════════════════════════════════════════════
 function handlePlay(youtubeId) {
   playCounter++;
-  const adAktif = PLAY_AD_CONFIG.enablePlayButtonDirectAds && videoWatchCount>=PLAY_AD_CONFIG.adStartFromVideo && playCounter===1;
-  if(adAktif) window.open(PLAY_AD_CONFIG.adUrl,'_blank');
+  // Play button ads: aktif mulai dari play ke-N
+  const adAktif = AD_CONFIG.allAds && AD_CONFIG.usePlayAds
+    && playCounter >= AD_CONFIG.playAdsStartFrom;
+  if(adAktif) window.open(AD_CONFIG.playAdsUrl,'_blank');
   document.getElementById('player-box').innerHTML =
     '<iframe src="https://www.youtube.com/embed/'+youtubeId+'?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe>' +
     '<div class="video-mask mask-top"></div><div class="video-mask mask-bottom"></div>' +
@@ -689,44 +751,98 @@ function updateMetaTags(video) {
 }
 
 // ════════════════════════════════════════════════════════
-//  RENDER VIDEO (SPA — untuk db-id.json nofollow)
+//  RENDER VIDEO — SPA (db-id.json, desktop 2-kolom)
 // ════════════════════════════════════════════════════════
 function renderVideo(container, v) {
   updateMetaTags(v);
-  updateRobotsBySource(v.source);   // nofollow → noindex,nofollow,noarchive,noimageindex
-  updateCanonical(v.slug, v.source); // nofollow → canonical dihapus
+  updateRobotsBySource(v.source);
+  updateCanonical(v.slug, v.source);
   document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el=>el.remove());
   videoWatchCount++; playCounter=0;
   container.className='main-content video-page-container';
+
   const videoTags = v.tags||[];
   const tagsHTML  = videoTags.length>0
     ? '<div class="seo-tags-container">'+videoTags.map(tag=>`<span class="seo-tag-badge" onclick="filterByTag('${tag.replace(/'/g,"\\'")}')">&#35;${tag}</span>`).join('')+'</div>'
     : '';
-  const showBanner=AD_CONFIG.allAds&&AD_CONFIG.videoPageAds.nativeBanner;
-  const shuffled=videoDatabaseALL.filter(i=>i.slug!==v.slug).sort(()=>0.5-Math.random());
+  const showBanner = AD_CONFIG.allAds && AD_CONFIG.videoPageAds.nativeBanner;
+
+  // Related videos (acak, 30 untuk side scroll)
+  const shuffled = videoDatabaseALL.filter(i=>i.slug!==v.slug).sort(()=>0.5-Math.random());
   const SLIDER_INIT=7; let sliderPage=1;
+
+  // Mobile horizontal slider items
   function buildSliderItems(items){
     return items.map(r=>`<div class="slider-item" onclick="navigateTo('${r.slug}')"><img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg" loading="lazy" width="160" height="90" alt="${r.title.replace(/"/g,'&quot;')}"/><p>${r.title}</p></div>`).join('');
   }
-  container.innerHTML=
-    '<div class="player-container" id="player-box">'+
-    '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/hqdefault.jpg" width="480" height="360" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2" loading="eager" decoding="async" alt="'+v.title.replace(/"/g,'&quot;')+'"/>'+
-    '<div class="play-overlay" onclick="handlePlay(\''+v.youtubeId+'\')" style="z-index:20">'+
-    '<svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(0,0,0,0.55)" stroke="#ff032d" stroke-width="3"/><polygon points="32,24 60,40 32,56" fill="#ff032d"/></svg>'+
-    '<div class="play-overlay-label">TAP TO WATCH</div></div>'+
-    '</div>'+
-    '<div class="info-section" style="padding:15px">'+
-    '<h1 style="font-size:1.2rem;font-weight:800;margin:15px 0">'+v.title+'</h1>'+
-    '<div class="dual-action-wrap">'+
-    '<button class="home-split-btn" onclick="handleBrandClick()"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME</button>'+
-    '<button class="offer-split-btn" onclick="handleSpecialOffer()"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="margin-right:5px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> More Info 🔥</button>'+
-    '</div>'+
-    (showBanner?buildNativeBanner():'')+
-    '<div class="summary-box"><div class="summary-text">'+v.summary+'</div>'+tagsHTML+'</div>'+
-    '<p class="more-videos-label">MORE VIDEOS</p>'+
-    '<div class="recommendation-slider" id="rec-slider">'+buildSliderItems(shuffled.slice(0,SLIDER_INIT))+'</div></div>';
+
+  // Desktop side column items
+  function buildSideItems(items){
+    return items.map(r=>`<a href="/video/${r.slug}/" class="side-slider-item"><img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg" loading="lazy" width="108" height="60" alt="${r.title.replace(/"/g,'&quot;')}"/><p>${r.title}</p></a>`).join('');
+  }
+
+  // Tombol native banner di mobile (di bawah tombol HOME/More Info)
+  const mobileBannerHTML = showBanner
+    ? `<div class="native-banner-wrap" id="spa-nb-mob"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner">${AD_CONFIG.nativeBannerHTML}</div></div>`
+    : '';
+
+  // Sidebar desktop native banner
+  const sideBannerHTML = showBanner
+    ? `<div class="side-native-banner"><div class="native-banner-wrap" id="spa-nb-side"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner">${AD_CONFIG.nativeBannerHTML}</div></div></div>`
+    : '';
+
+  container.innerHTML =
+    '<div class="video-desktop-layout">' +
+
+      /* ── Kolom kiri: player + info ── */
+      '<div class="video-main-col">' +
+        '<div class="player-container" id="player-box">' +
+          '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/hqdefault.jpg" width="480" height="360" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2" loading="eager" decoding="async" alt="'+v.title.replace(/"/g,'&quot;')+'"/>' +
+          '<div class="play-overlay" onclick="handlePlay(\''+v.youtubeId+'\')" style="z-index:20">' +
+            '<svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(0,0,0,0.55)" stroke="#ff032d" stroke-width="3"/><polygon points="32,24 60,40 32,56" fill="#ff032d"/></svg>' +
+            '<div class="play-overlay-label">TAP TO WATCH</div></div>' +
+        '</div>' +
+        '<div class="info-section" style="padding:15px">' +
+          '<h1 style="font-size:1.2rem;font-weight:800;margin:15px 0">'+v.title+'</h1>' +
+          '<div class="dual-action-wrap">' +
+            '<button class="home-split-btn" onclick="handleBrandClick()"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME</button>' +
+            '<button class="offer-split-btn" onclick="handleSpecialOffer()"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="margin-right:5px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> More Info 🔥</button>' +
+          '</div>' +
+          mobileBannerHTML +
+          '<div class="summary-box"><div class="summary-text">'+v.summary+'</div>'+tagsHTML+'</div>' +
+          /* Mobile horizontal slider */
+          '<div class="recommendation-slider-wrap">' +
+            '<p class="more-videos-label">MORE VIDEOS</p>' +
+            '<div class="recommendation-slider" id="rec-slider">'+buildSliderItems(shuffled.slice(0,SLIDER_INIT))+'</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+
+      /* ── Kolom kanan desktop: related + banner ── */
+      '<div class="video-side-col">' +
+        '<div class="side-related-label">🎬 Related Videos</div>' +
+        '<div class="side-slider" id="side-slider-desktop">'+buildSideItems(shuffled.slice(0,20))+'</div>' +
+        sideBannerHTML +
+      '</div>' +
+
+    '</div>';
+
+  // Mobile horizontal slider infinite scroll
   const slider=document.getElementById('rec-slider');
   if(slider){ slider.addEventListener('scroll',function(){ if(this.scrollLeft+this.clientWidth>=this.scrollWidth-100){ const more=shuffled.slice(sliderPage*SLIDER_INIT,(sliderPage+1)*SLIDER_INIT); if(more.length){ this.insertAdjacentHTML('beforeend',buildSliderItems(more)); sliderPage++; } } }); }
+
+  // Desktop side slider infinite scroll
+  const sideSlider=document.getElementById('side-slider-desktop');
+  if(sideSlider){
+    let sideLoaded=20;
+    sideSlider.addEventListener('scroll',function(){
+      if(this.scrollTop+this.clientHeight>=this.scrollHeight-100){
+        const more=shuffled.slice(sideLoaded,sideLoaded+10);
+        if(more.length){ this.insertAdjacentHTML('beforeend',buildSideItems(more)); sideLoaded+=more.length; }
+      }
+    });
+  }
+
   window.scrollTo(0, 0);
 }
 
@@ -786,8 +902,6 @@ async function router() {
   } else {
     const video=videoDatabaseALL.find(v=>v.slug===slug||seoUrl(v.title)===slug);
     if(video) {
-      // db-id.json → render SPA (tidak ada halaman statis)
-      // db-en.json → sudah diarahkan ke /video/slug/ via navigateTo
       navbar.classList.add('video-mode');
       renderVideo(app, video);
     } else {
@@ -813,28 +927,23 @@ window.addEventListener('load', async ()=>{
 });
 
 // ══════════════════════════════════════════════════════════════
-//  PATCH homepage statis v7
+//  PATCH homepage statis v8
 // ══════════════════════════════════════════════════════════════
 
-// FIX #5: db-id.json tetap di-fetch agar muncul di grid & load more
 async function loadDatabases() {
   const ROOT = location.origin + '/';
-  // Fetch paralel — db-id.json tetap dimuat untuk ditampilkan di homepage
   const [resEN, resID] = await Promise.all([
     fetch(ROOT + 'db-en.json'),
     fetch(ROOT + 'db-id.json').catch(()=>({ok:false}))
   ]);
   videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
   videoDatabaseID  = resID.ok ? (await resID.json()).map(v=>({...v,source:v.source||'nofollow'})) : [];
-  // Shuffle campuran EN+ID — EN & ID berbaur di homepage
   videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
-  // Load more mulai dari video yang belum tampil di 20 card hardcoded
-  const shown = new Set(["2026-toyota-c-hr-review-reliability-vs-range-trade-offs","run-ai-agents-locally-ollama-mcp-unlocks-8-000-tools-for-free","ai-engineer-salaries-2026-from-junior-to-senior-in-big-tech","2026-s-top-jobs-ai-remote-work-the-rise-of-digital-lifestyle-careers","deepseek-v4-how-a-free-ai-outperforms-billion-dollar-models","10-unconventional-open-source-tools-to-supercharge-your-dev-workflow","ai-agent-iam-4-step-maturity-model-to-secure-non-deterministic-systems","claude-vs-codex-which-ai-codes-faster-cheaper-bug-free","tesla-powerwall-3-review-uk-s-first-all-in-one-solar-battery-tested","solar-panels-battery-storage-cost-benefit-for-ev-owners-high-use-homes","qwen-3-6-27b-outperforms-35b-moe-in-local-coding-speed-accuracy","claude-s-hidden-features-build-apps-automate-workflows-collaborate-like-a-pro","1-000-000x-ai-compute-leap-what-jeff-dean-reveals-about-the-future","cursor-ai-agent-pro-tips-10-hidden-hacks-to-code-faster","6-must-have-claude-code-skills-to-automate-workflows-in-minutes","5-claude-co-work-setup-tips-to-save-hours-tokens-daily","ai-presentation-mastery-how-top-1-builders-merge-depth-with-design","tesla-powerwall-3-app-guide-master-settings-solar-control","ai-first-tech-stack-the-2026-blueprint-for-builders","thinking-machines-labs-unveils-ai-that-works-without-typing-heres-why-it-matters"]);
+  const shown = new Set(["ai-adoption-surges-why-coding-in-english-creates-more-developers","adk-vs-rag-when-to-use-ai-agents-or-retrieval-for-your-stack","7-ai-engineering-mistakes-killing-your-career-and-how-to-fix-them","rag-explained-how-ai-retrieval-augments-llm-accuracy-without-retraining","10-unconventional-open-source-tools-to-supercharge-your-dev-workflow","ai-agents-in-2027-long-horizon-tasks-meta-harnesses-fleet-control","rag-explained-why-40-of-ai-projects-now-depend-on-retrieval-augmentation","software-defined-vehicles-the-400b-shift-reshaping-auto-stocks","2026-s-top-jobs-ai-remote-work-the-rise-of-digital-lifestyle-careers","aeo-guide-get-your-business-recommended-by-ai-in-2025","ai-agents-in-2026-the-4-levels-that-multiply-your-output","amd-gpus-for-local-ai-how-32gb-vram-changes-the-game","thinking-machines-labs-unveils-ai-that-works-without-typing-heres-why-it-matters","6-must-have-claude-code-skills-to-automate-workflows-in-minutes","claude-s-hidden-features-build-apps-automate-workflows-collaborate-like-a-pro","test-time-compute-why-ai-pauses-to-think-before-answering","solar-panels-battery-storage-cost-benefit-for-ev-owners-high-use-homes","5-claude-co-work-setup-tips-to-save-hours-tokens-daily","rag-vs-graphrag-why-context-is-the-new-ai-bottleneck","self-evolving-ai-memory-how-claude-code-hooks-outperform-llm-knowledge-bases"]);
   currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
   currentPage = 1;
 }
 
-// FIX #2 & #3: router dengan tombol HOME + hasil search tidak terputus
 async function router() {
   const app    = document.getElementById('app');
   const navbar = document.getElementById('main-navbar');
@@ -848,13 +957,11 @@ async function router() {
   if (tag) {
     navbar.classList.remove('video-mode');
     if (!videoDatabaseALL.length) await loadDatabases();
-    // Relevan di atas, sisanya (tidak relevan) tetap muncul di bawah
     const rel   = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
     const rest  = videoDatabaseALL.filter(v=>!v.tags||!v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
     const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
     renderGrid(app, combined);
     updateCanonical('home','seo');
-    // FIX #2: Tambahkan tombol HOME di bawah heading
     const h = app.querySelector('h5');
     if (h) {
       h.textContent = rel.length ? '🏷️ Tag: #'+tag+' ('+rel.length+' videos)' : '🔥 TRENDING VIDEO';
@@ -871,13 +978,11 @@ async function router() {
     navbar.classList.remove('video-mode');
     if (!videoDatabaseALL.length) await loadDatabases();
     const q   = search.toLowerCase();
-    // Relevan di atas, sisanya tetap muncul di bawah
     const rel  = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)!==-1);
     const rest = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)===-1);
     const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
     renderGrid(app, combined);
     updateCanonical('home','seo');
-    // FIX #2: Tambahkan tombol HOME
     const h = app.querySelector('h5');
     if (h) {
       h.textContent = rel.length ? '🔍 "'+search+'" — '+rel.length+' hasil' : '🔥 TRENDING VIDEO';
@@ -891,33 +996,24 @@ async function router() {
       }
     }
   } else if (!slug || slug==='home') {
-    // Homepage normal — hapus tombol HOME kalau ada
     var oldBtn = document.getElementById('btn-back-home');
     if (oldBtn) oldBtn.remove();
     navbar.classList.remove('video-mode');
-    
-    // PENYEMBUH 1: Panggil ulang grid video agar layar tidak nyangkut
     if(!videoDatabaseALL.length) await loadDatabases();
     renderGrid(app, videoDatabaseALL);
-    
     updateCanonical('home','seo');
   } else {
-    // Cek dulu apakah ini video nofollow dari db-id.json
     const video = videoDatabaseALL.find(v => v.slug === slug);
-    
     if (video && video.source === 'nofollow') {
-      // Render via SPA untuk db-id.json (tidak ada file fisik statis)
       navbar.classList.add('video-mode');
       renderVideo(app, video);
     } else {
-      // Jika dari db-en.json, tetap redirect ke halaman statis SEO
       window.location.replace('/video/' + slug + '/');
     }
     return;
   }
   window.scrollTo(0,0);
 }
-// ── END PATCH ───────────────────────────────────────────────────
 </script>
 </body>
 </html>
