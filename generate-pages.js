@@ -1,12 +1,11 @@
 // ══════════════════════════════════════════════════════════════════
-//  generate-pages.js  v7
-//  Fix:
-//    1. Search suggestion real di halaman statis (fetch db-en.json bg)
-//    2. Tombol HOME muncul di halaman hasil search/?tag di homepage
-//    3. Hasil search/tag: relevan di atas + semua video di bawah (tdk terputus)
-//    4. Desktop player lebih lebar (max-width 1100px, tengah)
-//    5. db-id.json tetap di-fetch di homepage (muncul di grid & load more)
-//       tapi TIDAK di-generate jadi halaman statis
+//  generate-pages.js  v8
+//  Changes:
+//    1. Desktop layout 2-kolom: player kiri + related video kanan
+//    2. Native banner di sidebar kanan desktop (bukan di bawah judul)
+//    3. Switch ads lengkap per jenis (useDirect, usePlayAds, useNativeBanner)
+//    4. Play button ads FIXED — benar-benar berfungsi di halaman statis
+//    5. Sinkron dengan index_base.html v2 (AD_CONFIG vs STATIC_AD)
 // ══════════════════════════════════════════════════════════════════
 'use strict';
 
@@ -35,23 +34,36 @@ function rmDir(dir)      { if(fs.existsSync(dir)) fs.rmSync(dir,{recursive:true,
 function shuffle(arr)    { return [...arr].sort(()=>0.5-Math.random()); }
 
 // ════════════════════════════════════════════════════════════════
-//  KONFIGURASI ADS — HALAMAN STATIS
-//  Edit bagian ini untuk mengatur semua ads di /video/slug/
+//  KONFIGURASI ADS — HALAMAN STATIS (/video/slug/)
+//  ─────────────────────────────────────────────────────────────
+//  Setelah edit, jalankan ulang: node generate-pages.js
+//  Perubahan di sini tidak otomatis — harus regenerate.
 // ════════════════════════════════════════════════════════════════
 const STATIC_AD = {
-  // ── Direct Link (tombol More Info 🔥) ──────────────────────────
-  useDirect:   false,                          // true = aktifkan direct link
-  directUrl:   'https://linkadsterra-kamu.com', // URL direct link Adsterra
 
-  // ── Play Button Ads (direct link saat tap play) ────────────────
-  // Muncul mulai dari video ke-N yang diputar di sesi yang sama
-  usePlayAds:      false,                      // true = aktifkan play button ads
-  playAdsUrl:      'https://linkadsterra.com', // URL direct link untuk play ads
-  playAdsStartFrom: 2,                         // mulai dari tap play ke berapa
+  // ── Master switch ─────────────────────────────────────────────
+  // false = semua ads mati (override semua switch di bawah)
+  allAds: false,
+
+  // ── Direct Link (tombol More Info 🔥) ─────────────────────────
+  useDirect:  false,                            // true = aktifkan
+  directUrl:  'https://linkadsterra.com',       // URL direct link Adsterra
+
+  // ── Play Button Ads ───────────────────────────────────────────
+  // Buka URL saat user tap tombol play (mulai dari tap ke-N)
+  usePlayAds:       false,                      // true = aktifkan
+  playAdsUrl:       'https://linkadsterra.com', // URL direct link
+  playAdsStartFrom: 2,                          // mulai dari tap play ke berapa (1 = semua)
+
+  // ── Native Banner ─────────────────────────────────────────────
+  // Desktop: tampil di sidebar kanan (di bawah list related video)
+  // Mobile:  tampil di antara tombol HOME/More Info dan summary
+  useNativeBanner: false,                       // true = tampilkan banner
+  nativeBannerHTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
 };
 
 // ════════════════════════════════════════════════════════════════
-//  HALAMAN VIDEO STATIS
+//  HALAMAN VIDEO STATIS — DESKTOP 2-KOLOM
 // ════════════════════════════════════════════════════════════════
 function buildVideoPage(v, allVideos) {
   const canonical  = `${BASE_URL}/video/${v.slug}/`;
@@ -60,7 +72,7 @@ function buildVideoPage(v, allVideos) {
   const desc       = trunc(v.summary||DESC_DEF, 160);
   const uploadDate = v.uploadDate||new Date().toISOString();
   const tags       = v.tags||[];
-  const related    = shuffle(allVideos.filter(r=>r.slug!==v.slug)).slice(0,8);
+  const related    = shuffle(allVideos.filter(r=>r.slug!==v.slug)).slice(0,30);
 
   const jsonLd = JSON.stringify({
     '@context':'https://schema.org','@type':'VideoObject',
@@ -76,7 +88,8 @@ function buildVideoPage(v, allVideos) {
         `<a href="${BASE_URL}/?tag=${encodeURIComponent(t)}" class="seo-tag-badge">#${esc(t)}</a>`
       ).join('')}</div>` : '';
 
-  const relatedHtml = related.map(r=>`
+  // Mobile horizontal slider (8 awal, sisanya lazy via JS scroll)
+  const mobileRelatedHtml = related.slice(0,8).map(r=>`
     <a href="${BASE_URL}/video/${r.slug}/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg"
            alt="${esc(r.title)}" loading="lazy" width="160" height="90"
@@ -84,10 +97,24 @@ function buildVideoPage(v, allVideos) {
       <p>${esc(r.title)}</p>
     </a>`).join('');
 
-  // Semua video untuk infinite scroll slider + suggestion search
+  // Desktop sidebar related (20 awal)
+  const sideRelatedHtml = related.slice(0,20).map(r=>`
+    <a href="${BASE_URL}/video/${r.slug}/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg"
+           alt="${esc(r.title)}" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>${esc(r.title)}</p>
+    </a>`).join('');
+
+  // Semua video untuk infinite scroll + search suggestion
   const sliderDataJson = JSON.stringify(
     allVideos.filter(r=>r.slug!==v.slug).map(r=>({slug:r.slug,youtubeId:r.youtubeId,title:r.title}))
   );
+
+  // Native banner HTML (dipakai di mobile & desktop sidebar)
+  const bannerBlock = STATIC_AD.allAds && STATIC_AD.useNativeBanner
+    ? `<div class="native-banner-wrap" id="static-nb"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner">${STATIC_AD.nativeBannerHTML}</div></div>`
+    : '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -109,16 +136,15 @@ function buildVideoPage(v, allVideos) {
   <meta name="twitter:title"       content="${esc(v.title)}"/>
   <meta name="twitter:description" content="${esc(desc)}"/>
   <meta name="twitter:image"       content="${thumbOg}"/>
-  <script type="application/ld+json">${jsonLd}</script>
-  ${v.faqSchema ? `<script type="application/ld+json">${JSON.stringify(v.faqSchema).replace(/<\/script>/gi,'<\\/script>')}</script>` : ''}
+  <script type="application/ld+json">${jsonLd}<\/script>
+  ${v.faqSchema ? `<script type="application/ld+json">${JSON.stringify(v.faqSchema).replace(/<\/script>/gi,'<\\/script>')}<\/script>` : ''}
   <link rel="preload" as="image" href="${thumb}" fetchpriority="high"/>
   <link rel="preconnect" href="https://img.youtube.com"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a}
+    :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a;--nav-h:52px}
     body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
-
-    html, body { overflow-x: hidden; max-width: 100%; }
+    html,body{overflow-x:hidden;max-width:100%}
 
     /* ── Navbar ── */
     .navbar-custom{background:#000;padding:8px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:0}
@@ -138,8 +164,37 @@ function buildVideoPage(v, allVideos) {
     .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
     @media(max-width:768px){.search-suggestions{width:240px}}
 
+    /* ── Wrapper utama ── */
     .video-page-container{width:100%;max-width:800px;margin:0 auto;padding:15px}
     @media(max-width:600px){.video-page-container{padding:0}}
+
+    /* ══════════════════════════════════════════════════════
+       DESKTOP 2-KOLOM: player kiri, related kanan
+       Berlaku min-width 992px
+    ══════════════════════════════════════════════════════ */
+    @media(min-width:992px){
+      .video-page-container{max-width:1100px}
+      .video-desktop-layout{display:flex;gap:20px;align-items:flex-start}
+      .video-main-col{flex:1 1 0;min-width:0}
+      .video-side-col{width:280px;flex-shrink:0;position:sticky;top:calc(var(--nav-h) + 10px)}
+      .side-related-label{color:var(--green);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px}
+      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 80px);overflow-y:auto;scrollbar-width:none}
+      .side-slider::-webkit-scrollbar{display:none}
+      .side-slider-item{display:flex;gap:8px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;border:1px solid transparent;transition:.2s;flex-shrink:0}
+      .side-slider-item:hover{border-color:var(--green)}
+      .side-slider-item img{width:108px;height:60px;object-fit:cover;flex-shrink:0}
+      .side-slider-item p{font-size:.72rem;padding:6px 8px;margin:0;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:#f1f1f1}
+      .side-native-banner{margin-top:14px}
+      /* Sembunyikan mobile horizontal slider di desktop */
+      .recommendation-slider-wrap{display:none}
+    }
+    /* Mobile: sembunyikan kolom kanan */
+    @media(max-width:991px){
+      .video-desktop-layout{display:block}
+      .video-side-col{display:none}
+    }
+
+    /* ── Player ── */
     .player-container{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
     @media(max-width:600px){.player-container{border-radius:0}}
     .player-container iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1}
@@ -154,7 +209,7 @@ function buildVideoPage(v, allVideos) {
     .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
     #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
 
-    /* ── Info ── */
+    /* ── Info section ── */
     .info-section{padding:15px}
     h1{font-size:1.2rem;font-weight:800;line-height:1.4;margin:15px 0}
     .dual-action-wrap{display:flex;gap:10px;margin-bottom:18px}
@@ -174,12 +229,19 @@ function buildVideoPage(v, allVideos) {
     .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;text-decoration:none;transition:.15s;display:inline-block}
     .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
     .more-videos-label{color:#98FB98;margin:24px 0 12px;font-size:.85rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+
+    /* ── Mobile horizontal slider ── */
     .recommendation-slider{display:flex;overflow-x:auto;gap:10px;padding-bottom:8px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
     .recommendation-slider::-webkit-scrollbar{display:none}
-    .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent}
+    .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent;text-decoration:none;color:inherit;display:block}
     .slider-item:hover{border-color:var(--green);transform:translateY(-2px)}
     .slider-item img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
     .slider-item p{font-size:.72rem;padding:6px 8px 8px;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35;min-height:42px;color:#f1f1f1}
+
+    /* ── Native Banner ── */
+    .native-banner-wrap{position:relative;width:100%;margin:14px 0;border-radius:10px;overflow:hidden;min-height:90px}
+    .native-banner-wrap .close-btn{position:absolute;top:6px;right:6px;width:26px;height:26px;background:rgba(0,0,0,.65);color:#fff;border:2px solid #fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;cursor:pointer;z-index:10}
+    .native-banner-inner{width:100%;padding:18px 40px 18px 18px;display:flex;flex-direction:column;justify-content:center;min-height:90px}
   </style>
 </head>
 <body>
@@ -197,65 +259,85 @@ function buildVideoPage(v, allVideos) {
 
 <main>
 <div class="video-page-container">
-  <div class="player-container" id="player-box">
-    <img src="${thumb}" alt="${esc(v.title)}" width="480" height="270"
-         fetchpriority="high" decoding="sync"/>
-    <div class="play-overlay" onclick="startPlay()">
-      <svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="38" fill="rgba(0,0,0,.55)" stroke="#ff032d" stroke-width="3"/>
-        <polygon points="32,24 60,40 32,56" fill="#ff032d"/>
-      </svg>
-      <div class="play-overlay-label">TAP TO WATCH</div>
+  <div class="video-desktop-layout">
+
+    <!-- ── Kolom kiri: player + info ── -->
+    <div class="video-main-col">
+      <div class="player-container" id="player-box">
+        <img src="${thumb}" alt="${esc(v.title)}" width="480" height="270"
+             fetchpriority="high" decoding="sync"/>
+        <div class="play-overlay" onclick="startPlay()">
+          <svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="38" fill="rgba(0,0,0,.55)" stroke="#ff032d" stroke-width="3"/>
+            <polygon points="32,24 60,40 32,56" fill="#ff032d"/>
+          </svg>
+          <div class="play-overlay-label">TAP TO WATCH</div>
+        </div>
+        <div class="video-mask mask-top"></div>
+        <div class="video-mask mask-bottom"></div>
+      </div>
+      <div class="info-section">
+        <h1>${esc(v.title)}</h1>
+        <div class="dual-action-wrap">
+          <button class="home-split-btn" onclick="location.href='${BASE_URL}/'">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            HOME
+          </button>
+          <button class="offer-split-btn" onclick="handleMoreInfo()">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            More Info 🔥
+          </button>
+        </div>
+        <!-- Native banner mobile (tersembunyi di desktop via CSS) -->
+        ${bannerBlock}
+        <div class="summary-box">
+          <div class="summary-text">${v.summary||'<p>'+esc(desc)+'</p>'}</div>
+          ${tagsHtml}
+        </div>
+        <!-- Mobile horizontal slider (tersembunyi di desktop via CSS) -->
+        <div class="recommendation-slider-wrap">
+          <p class="more-videos-label">MORE VIDEOS</p>
+          <div class="recommendation-slider" id="rec-slider">${mobileRelatedHtml}</div>
+        </div>
+      </div>
     </div>
-    <div class="video-mask mask-top"></div>
-    <div class="video-mask mask-bottom"></div>
-  </div>
-  <div class="info-section">
-    <h1>${esc(v.title)}</h1>
-    <div class="dual-action-wrap">
-      <button class="home-split-btn" onclick="location.href='${BASE_URL}/'">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        HOME
-      </button>
-      <button class="offer-split-btn" onclick="handleMoreInfo()">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        More Info 🔥
-      </button>
+
+    <!-- ── Kolom kanan desktop: related + native banner ── -->
+    <div class="video-side-col">
+      <div class="side-related-label">🎬 Related Videos</div>
+      <div class="side-slider" id="side-slider-desktop">${sideRelatedHtml}</div>
+      ${STATIC_AD.allAds && STATIC_AD.useNativeBanner ? `<div class="side-native-banner">${bannerBlock.replace('id="static-nb"','id="static-nb-side"')}</div>` : ''}
     </div>
-    <div class="summary-box">
-      <div class="summary-text">${v.summary||'<p>'+esc(desc)+'</p>'}</div>
-      ${tagsHtml}
-    </div>
-    <p class="more-videos-label">MORE VIDEOS</p>
-    <div class="recommendation-slider" id="rec-slider">${relatedHtml}</div>
-  </div>
+
+  </div><!-- end video-desktop-layout -->
 </div>
 </main>
 
 <script>
 // ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
 var STATIC_AD = {
+  allAds:          ${STATIC_AD.allAds},
   useDirect:       ${STATIC_AD.useDirect},
   directUrl:       '${STATIC_AD.directUrl}',
   usePlayAds:      ${STATIC_AD.usePlayAds},
   playAdsUrl:      '${STATIC_AD.playAdsUrl}',
-  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
+  playAdsStartFrom:${STATIC_AD.playAdsStartFrom},
+  useNativeBanner: ${STATIC_AD.useNativeBanner}
 };
-// ── Ads config (dibaca dari STATIC_AD yang di-inject saat build) ──
-var _playCount = 0; // hitung berapa kali tap play di sesi ini
+var _playCount = 0;
 
 // ── Tombol More Info 🔥 ──────────────────────────────────────────
 function handleMoreInfo() {
-  if (STATIC_AD.useDirect) {
+  if (STATIC_AD.allAds && STATIC_AD.useDirect) {
     window.open(STATIC_AD.directUrl, '_blank');
   }
 }
 
-// ── Player & Fullscreen ──────────────────────────────────────────
+// ── Play Button Ads + Player ─────────────────────────────────────
 function startPlay() {
   _playCount++;
-  // Play Button Ads: buka direct link mulai dari tap ke-N
-  if (STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+  // Buka ads jika allAds=true, usePlayAds=true, dan sudah tap ke-N
+  if (STATIC_AD.allAds && STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
     window.open(STATIC_AD.playAdsUrl, '_blank');
   }
   var pb = document.getElementById('player-box');
@@ -271,6 +353,7 @@ function startPlay() {
     '<polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>' +
     '</svg></div>';
 }
+
 function toggleFS() {
   var el=document.getElementById('player-box'), svg=document.getElementById('fs-icon');
   if (!document.fullscreenElement&&!document.webkitFullscreenElement) {
@@ -282,8 +365,8 @@ function toggleFS() {
   }
 }
 
-// ── FIX #1: Search suggestion real dari db-en.json ───────────────
-var _db = ${sliderDataJson};  // sudah ada dari slider data, reuse!
+// ── Search suggestion dari data slider ──────────────────────────
+var _db = ${sliderDataJson};
 (function(){
   var inp = document.getElementById('searchInput');
   var btn = document.getElementById('searchBtn');
@@ -334,7 +417,7 @@ var _db = ${sliderDataJson};  // sudah ada dari slider data, reuse!
   document.addEventListener('click', function(e){ if(!e.target.closest('.search-wrapper')) hide(); });
 })();
 
-// ── Infinite scroll slider ───────────────────────────────────────
+// ── Infinite scroll: mobile horizontal slider ────────────────────
 var _loaded = 8;
 document.getElementById('rec-slider').addEventListener('scroll', function(){
   if (this.scrollLeft + this.clientWidth >= this.scrollWidth - 120) {
@@ -351,7 +434,32 @@ document.getElementById('rec-slider').addEventListener('scroll', function(){
     _loaded += next.length;
   }
 });
-</script>
+
+// ── Infinite scroll: desktop side slider ────────────────────────
+(function(){
+  var side = document.getElementById('side-slider-desktop');
+  if (!side) return;
+  var sideLoaded = 20;
+  side.addEventListener('scroll', function(){
+    if (this.scrollTop + this.clientHeight >= this.scrollHeight - 100) {
+      var next = _db.slice(sideLoaded, sideLoaded+10);
+      if (!next.length) { sideLoaded=0; next=_db.slice(0,10); }
+      next.forEach(function(r){
+        var a = document.createElement('a');
+        a.className = 'side-slider-item';
+        a.href = '${BASE_URL}/video/'+r.slug+'/';
+        a.innerHTML =
+          '<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy"' +
+          ' width="108" height="60" onload="this.style.opacity=1"' +
+          ' style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>' +
+          '<p>'+r.title.replace(/</g,'&lt;')+'</p>';
+        side.appendChild(a);
+      });
+      sideLoaded += next.length;
+    }
+  });
+})();
+<\/script>
 </body>
 </html>`;
 }
@@ -365,12 +473,11 @@ function buildHomepage(dbEN) {
   let html = fs.readFileSync(BASE_TMPL, 'utf8').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
   const APP_START = '  <div class="main-content" id="app">';
-  // APP_END disesuaikan dengan index_base.html baru yang ada <main> landmark
   const APP_END   = '  </div>\n  </main>\n\n<script>';
   const startIdx  = html.indexOf(APP_START);
   let   endIdx    = html.indexOf(APP_END);
 
-  // Fallback pola lama tanpa </main> jika template belum diupdate
+  // Fallback pola lama tanpa </main>
   if (endIdx === -1) {
     const APP_END_OLD = '  </div>\n\n<script>';
     endIdx = html.indexOf(APP_END_OLD);
@@ -411,28 +518,23 @@ ${cardsHtml}
 
   const patchScript = `
 // ══════════════════════════════════════════════════════════════
-//  PATCH homepage statis v7
+//  PATCH homepage statis v8
 // ══════════════════════════════════════════════════════════════
 
-// FIX #5: db-id.json tetap di-fetch agar muncul di grid & load more
 async function loadDatabases() {
   const ROOT = location.origin + '/';
-  // Fetch paralel — db-id.json tetap dimuat untuk ditampilkan di homepage
   const [resEN, resID] = await Promise.all([
     fetch(ROOT + 'db-en.json'),
     fetch(ROOT + 'db-id.json').catch(()=>({ok:false}))
   ]);
   videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
   videoDatabaseID  = resID.ok ? (await resID.json()).map(v=>({...v,source:v.source||'nofollow'})) : [];
-  // Shuffle campuran EN+ID — EN & ID berbaur di homepage
   videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
-  // Load more mulai dari video yang belum tampil di 20 card hardcoded
   const shown = new Set(${hardcodedSlugs});
   currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
   currentPage = 1;
 }
 
-// FIX #2 & #3: router dengan tombol HOME + hasil search tidak terputus
 async function router() {
   const app    = document.getElementById('app');
   const navbar = document.getElementById('main-navbar');
@@ -446,13 +548,11 @@ async function router() {
   if (tag) {
     navbar.classList.remove('video-mode');
     if (!videoDatabaseALL.length) await loadDatabases();
-    // Relevan di atas, sisanya (tidak relevan) tetap muncul di bawah
     const rel   = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
     const rest  = videoDatabaseALL.filter(v=>!v.tags||!v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
     const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
     renderGrid(app, combined);
     updateCanonical('home','seo');
-    // FIX #2: Tambahkan tombol HOME di bawah heading
     const h = app.querySelector('h5');
     if (h) {
       h.textContent = rel.length ? '🏷️ Tag: #'+tag+' ('+rel.length+' videos)' : '🔥 TRENDING VIDEO';
@@ -469,13 +569,11 @@ async function router() {
     navbar.classList.remove('video-mode');
     if (!videoDatabaseALL.length) await loadDatabases();
     const q   = search.toLowerCase();
-    // Relevan di atas, sisanya tetap muncul di bawah
     const rel  = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)!==-1);
     const rest = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)===-1);
     const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
     renderGrid(app, combined);
     updateCanonical('home','seo');
-    // FIX #2: Tambahkan tombol HOME
     const h = app.querySelector('h5');
     if (h) {
       h.textContent = rel.length ? '🔍 "'+search+'" — '+rel.length+' hasil' : '🔥 TRENDING VIDEO';
@@ -489,36 +587,27 @@ async function router() {
       }
     }
   } else if (!slug || slug==='home') {
-    // Homepage normal — hapus tombol HOME kalau ada
     var oldBtn = document.getElementById('btn-back-home');
     if (oldBtn) oldBtn.remove();
     navbar.classList.remove('video-mode');
-    
-    // PENYEMBUH 1: Panggil ulang grid video agar layar tidak nyangkut
     if(!videoDatabaseALL.length) await loadDatabases();
     renderGrid(app, videoDatabaseALL);
-    
     updateCanonical('home','seo');
   } else {
-    // Cek dulu apakah ini video nofollow dari db-id.json
     const video = videoDatabaseALL.find(v => v.slug === slug);
-    
     if (video && video.source === 'nofollow') {
-      // Render via SPA untuk db-id.json (tidak ada file fisik statis)
       navbar.classList.add('video-mode');
       renderVideo(app, video);
     } else {
-      // Jika dari db-en.json, tetap redirect ke halaman statis SEO
       window.location.replace('/video/' + slug + '/');
     }
     return;
   }
   window.scrollTo(0,0);
 }
-// ── END PATCH ───────────────────────────────────────────────────
 `;
 
-  html = html.replace('</script>\n</body>', patchScript + '</script>\n</body>');
+  html = html.replace('<\/script>\n</body>', patchScript + '<\/script>\n</body>');
   return html;
 }
 
@@ -535,7 +624,6 @@ function main() {
     console.log('✅ index_base.html dibuat otomatis dari index.html');
   }
 
-  // Hanya db-en.json yang di-generate jadi halaman statis
   const rawEN = JSON.parse(fs.readFileSync(DB_FILE_EN,'utf8'));
   const dbEN  = rawEN.filter(v=>v.slug&&v.youtubeId&&v.title);
   console.log(`📦 db-en.json: ${rawEN.length} total → ${dbEN.length} valid`);
@@ -562,9 +650,14 @@ function main() {
   console.log('🏠 Update index.html dari index_base.html...');
   const newIndex = buildHomepage(dbEN);
   fs.writeFileSync(INDEX_FILE, newIndex, 'utf8');
-  console.log('✅ index.html diperbarui dengan 20 card random hardcoded');
+  console.log('✅ index.html diperbarui');
 
   console.log(`\n🎉 Selesai! ${created} halaman statis (db-en) + homepage (EN+ID berbaur)`);
+  console.log('\n📋 Status Ads (STATIC_AD di generate-pages.js):');
+  console.log(`   allAds          : ${STATIC_AD.allAds}`);
+  console.log(`   useDirect       : ${STATIC_AD.useDirect}  → tombol More Info 🔥`);
+  console.log(`   usePlayAds      : ${STATIC_AD.usePlayAds}  → play button ads (mulai tap ke-${STATIC_AD.playAdsStartFrom})`);
+  console.log(`   useNativeBanner : ${STATIC_AD.useNativeBanner}  → banner sidebar desktop / mobile`);
 }
 
 main();
