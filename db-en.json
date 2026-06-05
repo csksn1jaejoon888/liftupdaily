@@ -75,7 +75,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Are these projects production-ready?",
+          "name": "Are these projects production ready?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Most are experimental but stable enough for side projects. RATI and CUDA Oxide are actively maintained; Honker is production-ready for lightweight use cases."
