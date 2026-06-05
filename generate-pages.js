@@ -621,7 +621,222 @@ ${cardsHtml}
 </footer>`;
   html = html.replace('</body>', footerHtml + '\n</body>');
 
-   return html;
+  // ── Patch script: loadMore + router (self-contained) ──────────
+  const patchScript = `
+// ══════════════════════════════════════════════════════════════
+//  PATCH homepage statis v10
+//  loadMore: self-contained, append kartu langsung ke DOM
+//  router: tag/search pakai SPA; slug kosong = homepage statis
+// ══════════════════════════════════════════════════════════════
+
+// ── Data semua video (EN, minimal fields) ─────────────────────
+var _ALL_VIDEOS  = ${allVideosMini};
+var _SHOWN_SLUGS = new Set(${hardcodedSlugs});
+
+// Pool untuk loadMore — mulai dari video yang belum ditampilkan
+// Urutannya sudah di-shuffle saat generate, tampil sequentially
+var _loadPool  = _ALL_VIDEOS.filter(function(v){ return !_SHOWN_SLUGS.has(v.slug); });
+var _loadIndex = 0;       // posisi berikutnya di _loadPool
+var _PAGE_SIZE = 20;      // jumlah kartu per klik Load More
+var _isLoading = false;
+
+// ── Buat satu elemen kartu video ─────────────────────────────
+function _makeCard(v) {
+  var a = document.createElement('a');
+  a.href  = '/video/' + v.slug + '/';
+  a.className = 'video-card-link';
+  a.style.cssText = 'text-decoration:none;color:inherit';
+  a.innerHTML =
+    '<div class="video-card">' +
+      '<div class="thumb-wrap">' +
+        '<img src="https://img.youtube.com/vi/' + v.youtubeId + '/mqdefault.jpg"' +
+             ' alt="' + v.title.replace(/"/g,'&quot;') + '"' +
+             ' loading="lazy" decoding="async" width="320" height="180"' +
+             ' onload="this.classList.add(\'loaded\')"' +
+             ' onerror="this.src=\'https://img.youtube.com/vi/' + v.youtubeId + '/hqdefault.jpg\';this.classList.add(\'loaded\')"/>' +
+      '</div>' +
+      '<div class="video-card-title">' + v.title.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>' +
+    '</div>';
+  return a;
+}
+
+// ── loadMore: append _PAGE_SIZE kartu berikutnya ──────────────
+function loadMore() {
+  if (_isLoading) return;
+  var grid = document.getElementById('video-grid-inner');
+  var btn  = document.getElementById('btn-load-more');
+  if (!grid) return;
+
+  // Kalau pool habis, mulai ulang dari awal pool (loop)
+  if (_loadIndex >= _loadPool.length) {
+    _loadIndex = 0;
+  }
+
+  var batch = _loadPool.slice(_loadIndex, _loadIndex + _PAGE_SIZE);
+  if (!batch.length) return;
+
+  _isLoading = true;
+  if (btn) { btn.textContent = 'Loading…'; btn.disabled = true; }
+
+  // Append kartu ke grid
+  var frag = document.createDocumentFragment();
+  batch.forEach(function(v) { frag.appendChild(_makeCard(v)); });
+  grid.appendChild(frag);
+
+  _loadIndex += batch.length;
+  _isLoading  = false;
+
+  if (btn) {
+    btn.textContent = 'Load More';
+    btn.disabled    = false;
+    // Sembunyikan tombol kalau semua sudah ditampilkan
+    if (_loadIndex >= _loadPool.length) {
+      btn.style.display = 'none';
+    }
+  }
+}
+
+// ── Helper: cari slug dari URL path ───────────────────────────
+function _getSlug() {
+  var p = location.pathname.replace(/\\/+$/, '');
+  var parts = p.split('/').filter(Boolean);
+  // Path /video/slug → biarkan redirect ke halaman statis
+  // Path / atau kosong → homepage
+  if (!parts.length || parts[0] === '') return '';
+  if (parts[0] === 'video' && parts[1]) return parts[1];
+  return parts[parts.length - 1] || '';
+}
+
+// ── Helper: render grid kartu (untuk tag/search SPA mode) ─────
+function _renderFilteredGrid(videos, label) {
+  var grid  = document.getElementById('video-grid-inner');
+  var lbl   = document.getElementById('grid-label');
+  var btn   = document.getElementById('btn-load-more');
+  if (!grid) return;
+
+  // Reset grid
+  grid.innerHTML = '';
+  var frag = document.createDocumentFragment();
+  videos.slice(0, _PAGE_SIZE).forEach(function(v) { frag.appendChild(_makeCard(v)); });
+  grid.appendChild(frag);
+
+  // Sisa untuk loadMore dalam mode filter
+  var rest = videos.slice(_PAGE_SIZE);
+  _loadPool  = rest;
+  _loadIndex = 0;
+  if (lbl) lbl.textContent = label;
+  if (btn) btn.style.display = rest.length ? '' : 'none';
+}
+
+// ── router: hanya handle tag & search di homepage ─────────────
+// Slug non-kosong → langsung redirect ke halaman statis /video/
+// Ini homepage statis, jadi SPA hanya untuk filter tag/search
+async function router() {
+  var slug   = _getSlug();
+  var params = new URLSearchParams(location.search);
+  var tag    = params.get('tag');
+  var search = params.get('search');
+
+  // Kalau ada slug video → redirect ke halaman statis
+  if (slug && slug !== 'home' && slug !== 'index') {
+    window.location.replace('/video/' + slug + '/');
+    return;
+  }
+
+  // Ambil navbar dari template jika ada
+  var navbar = document.getElementById('main-navbar');
+
+  if (tag || search) {
+    // Mode filter — gunakan _ALL_VIDEOS (sudah ada di halaman)
+    if (navbar) navbar.classList.remove('video-mode');
+
+    var q = (search || '').toLowerCase();
+    var t = (tag    || '').toLowerCase();
+
+    var filtered = _ALL_VIDEOS.filter(function(v) {
+      if (t) return v.tags && v.tags.some(function(tg){ return tg.toLowerCase() === t; });
+      if (q) return v.title.toLowerCase().indexOf(q) !== -1;
+      return true;
+    });
+
+    var rest = _ALL_VIDEOS.filter(function(v) {
+      return filtered.indexOf(v) === -1;
+    });
+
+    var combined = filtered.length ? filtered.concat(rest) : _ALL_VIDEOS;
+
+    var label = t
+      ? ('🏷️ Tag: #' + tag + ' — ' + filtered.length + ' video')
+      : ('🔍 "' + search + '" — ' + filtered.length + ' hasil');
+
+    _renderFilteredGrid(combined, label);
+
+    // Tambah tombol back ke home jika belum ada
+    var lbl = document.getElementById('grid-label');
+    if (lbl && !document.getElementById('btn-back-home')) {
+      var backBtn = document.createElement('button');
+      backBtn.id = 'btn-back-home';
+      backBtn.onclick = function() {
+        history.pushState({}, '', '/');
+        router();
+      };
+      backBtn.style.cssText = 'background:transparent;color:#98FB98;border:1px solid #98FB98;' +
+        'padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;' +
+        'margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
+      backBtn.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" ' +
+        'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>' +
+        '<polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
+      lbl.parentNode.insertBefore(backBtn, lbl);
+    }
+
+  } else {
+    // Mode homepage normal — reset ke pool awal, tampilkan tombol Load More
+    if (navbar) navbar.classList.remove('video-mode');
+
+    var oldBtn = document.getElementById('btn-back-home');
+    if (oldBtn) oldBtn.remove();
+
+    var lbl2 = document.getElementById('grid-label');
+    if (lbl2) lbl2.textContent = '🔥 TRENDING VIDEO';
+
+    // Reset loadMore pool ke video yang belum di-hardcode
+    _loadPool  = _ALL_VIDEOS.filter(function(v){ return !_SHOWN_SLUGS.has(v.slug); });
+    _loadIndex = 0;
+
+    var btn2 = document.getElementById('btn-load-more');
+    if (btn2) {
+      btn2.style.display = _loadPool.length ? '' : 'none';
+      btn2.textContent   = 'Load More';
+      btn2.disabled      = false;
+    }
+
+    // Grid sudah berisi kartu hardcode dari HTML — tidak perlu re-render
+  }
+
+  window.scrollTo(0, 0);
+}
+
+// ── Override fungsi loadMore dari template jika ada ───────────
+// (template mungkin punya loadMore sendiri yang tidak kompatibel)
+window.loadMore = loadMore;
+
+// ── Jalankan router saat popstate (back/forward browser) ───────
+window.addEventListener('popstate', function() { router(); });
+
+// ── Init: jalankan router sekali saat halaman dimuat ──────────
+(function init() {
+  var params = new URLSearchParams(location.search);
+  if (params.get('tag') || params.get('search')) {
+    router();
+  }
+  // Kalau tidak ada tag/search, grid hardcode sudah siap — tidak perlu apa-apa
+})();
+`;
+
+  // Inject patch script sebelum </script> terakhir sebelum </body>
+  html = html.replace('<\/script>\n</body>', '<script id="node-patch">' + patchScript + '<\/script>\n</body>');
+  return html;
 }
 
 // ════════════════════════════════════════════════════════════════
