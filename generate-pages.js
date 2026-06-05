@@ -18,7 +18,6 @@ const DB_FILE_ID   = path.join(__dirname, 'db-id.json');
 const BASE_TMPL    = path.join(__dirname, 'index_base.html');
 const INDEX_FILE   = path.join(__dirname, 'index.html');
 const VIDEO_DIR    = path.join(__dirname, 'video');
-const CATEGORY_DIR = path.join(__dirname, 'category');
 const BASE_URL     = 'https://trend4genz.fun';
 const SITE_NAME    = 'Trend4GenZ';
 const DESC_DEF     = 'Streaming video terbaru — teknologi, AI, lifestyle, dan tren global.';
@@ -644,26 +643,21 @@ async function router() {
   const slug   = getCurrentSlug();
   const tag    = getUrlParams().get('tag');
   const search = getUrlParams().get('search');
-  const category = getUrlParams().get('category'); // <-- Tambahkan variabel ini
 
   updateHtmlLang();
   updateRobotsBySource('seo');
 
-  // --- MULAI BLOK KATEGORI BARU ---
-  if (category) {
+  if (tag) {
     navbar.classList.remove('video-mode');
     if (!videoDatabaseALL.length) await loadDatabases();
-    
-    // HANYA ambil video dari db-en.json yang sesuai dengan kategorinya
-    const rel = videoDatabaseEN.filter(v => v.category === category);
-    
-    // Render HANYA video dari kategori tersebut (tanpa dicampur)
-    renderGrid(app, rel);
+    const rel   = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+    const rest  = videoDatabaseALL.filter(v=>!v.tags||!v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
+    const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
+    renderGrid(app, combined);
     updateCanonical('home','seo');
-    
     const h = app.querySelector('h5');
     if (h) {
-      h.textContent = rel.length ? '📁 Kategori: ' + category.replace(/_/g, ' ') + ' (' + rel.length + ' video)' : '🔥 TRENDING VIDEO';
+      h.textContent = rel.length ? '🏷️ Tag: #'+tag+' ('+rel.length+' videos)' : '🔥 TRENDING VIDEO';
       if (!document.getElementById('btn-back-home')) {
         var btn = document.createElement('button');
         btn.id='btn-back-home';
@@ -673,7 +667,7 @@ async function router() {
         h.parentNode.insertBefore(btn, h);
       }
     }
-  } else if (tag) {
+  } else if (search) {
     navbar.classList.remove('video-mode');
     if (!videoDatabaseALL.length) await loadDatabases();
     const q   = search.toLowerCase();
@@ -760,38 +754,6 @@ function main() {
   fs.writeFileSync(INDEX_FILE, newIndex, 'utf8');
   console.log('✅ index.html diperbarui');
 
-  // --- MULAI TAMBAHAN PEMBUAT FOLDER KATEGORI ---
-  console.log('📂 Generate folder kategori...');
-  rmDir(CATEGORY_DIR); // Hapus folder lama agar bersih
-  fs.mkdirSync(CATEGORY_DIR, { recursive: true });
-
-  FOOTER_CATEGORIES.forEach(cat => {
-    // Membuat nama folder SEO friendly (cth: ai-ml-research)
-    const catSlug = cat.key.toLowerCase().replace(/_/g, '-');
-    const dirPath = path.join(CATEGORY_DIR, catSlug);
-    fs.mkdirSync(dirPath, { recursive: true });
-
-    // HTML Statis yang otomatis memanggil router category yang kita buat di atas
-    const catHtml = `<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Kategori: ${cat.label} | ${SITE_NAME}</title>
-  <meta name="robots" content="index, follow">
-  <meta http-equiv="refresh" content="0; url=${BASE_URL}/?category=${cat.key}">
-  <script>window.location.replace("${BASE_URL}/?category=${cat.key}");</script>
-</head>
-<body style="background:#212122; color:#fff; text-align:center; padding-top:20vh; font-family:'Segoe UI', sans-serif;">
-  <h2>${cat.icon} Membuka Kategori ${cat.label}...</h2>
-  <p>Jika tidak dialihkan secara otomatis, <a href="${BASE_URL}/?category=${cat.key}" style="color:#98FB98;">klik di sini</a>.</p>
-</body>
-</html>`;
-
-    fs.writeFileSync(path.join(dirPath, 'index.html'), catHtml, 'utf8');
-  });
-  console.log(`✅ ${FOOTER_CATEGORIES.length} folder kategori berhasil dibuat`);
-  // --- AKHIR TAMBAHAN ---
   console.log(`\n🎉 Selesai! ${created} halaman statis (db-en) + homepage (EN+ID berbaur)`);
   console.log('\n📋 Status Ads (STATIC_AD):');
   console.log(`   allAds           : ${STATIC_AD.allAds}`);
