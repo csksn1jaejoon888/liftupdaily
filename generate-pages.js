@@ -1,11 +1,11 @@
 // ══════════════════════════════════════════════════════════════════
-//  generate-pages.js  v8
-//  Changes:
-//    1. Desktop layout 2-kolom: player kiri + related video kanan
-//    2. Native banner di sidebar kanan desktop (bukan di bawah judul)
-//    3. Switch ads lengkap per jenis (useDirect, usePlayAds, useNativeBanner)
-//    4. Play button ads FIXED — benar-benar berfungsi di halaman statis
-//    5. Sinkron dengan index_base.html v2 (AD_CONFIG vs STATIC_AD)
+//  generate-pages.js  v9
+//  Fixes & improvements:
+//    1. Native Banner di desktop: NB1 di ATAS related video
+//    2. Tidak ada duplikat — NB1 & NB2 terpisah dengan switch sendiri
+//    3. Mobile: NB1 bawah tombol, NB2 bawah summary
+//    4. Footer kategori SEO rapi (6 kategori, dari db-en.json)
+//    5. Container NB sidebar full-width & seimbang
 // ══════════════════════════════════════════════════════════════════
 'use strict';
 
@@ -18,6 +18,7 @@ const DB_FILE_ID   = path.join(__dirname, 'db-id.json');
 const BASE_TMPL    = path.join(__dirname, 'index_base.html');
 const INDEX_FILE   = path.join(__dirname, 'index.html');
 const VIDEO_DIR    = path.join(__dirname, 'video');
+const CATEGORY_DIR = path.join(__dirname, 'category');
 const BASE_URL     = 'https://trend4genz.fun';
 const SITE_NAME    = 'Trend4GenZ';
 const DESC_DEF     = 'Streaming video terbaru — teknologi, AI, lifestyle, dan tren global.';
@@ -37,30 +38,50 @@ function shuffle(arr)    { return [...arr].sort(()=>0.5-Math.random()); }
 //  KONFIGURASI ADS — HALAMAN STATIS (/video/slug/)
 //  ─────────────────────────────────────────────────────────────
 //  Setelah edit, jalankan ulang: node generate-pages.js
-//  Perubahan di sini tidak otomatis — harus regenerate.
 // ════════════════════════════════════════════════════════════════
 const STATIC_AD = {
 
-  // ── Master switch ─────────────────────────────────────────────
-  // false = semua ads mati (override semua switch di bawah)
-  allAds: false,
+  // ── Master switch — false = semua ads mati ────────────────────
+  allAds: true,
 
   // ── Direct Link (tombol More Info 🔥) ─────────────────────────
-  useDirect:  false,                            // true = aktifkan
-  directUrl:  'https://linkadsterra.com',       // URL direct link Adsterra
+  useDirect:  true,
+  directUrl:  'https://facebook.com',
 
   // ── Play Button Ads ───────────────────────────────────────────
-  // Buka URL saat user tap tombol play (mulai dari tap ke-N)
-  usePlayAds:       false,                      // true = aktifkan
-  playAdsUrl:       'https://linkadsterra.com', // URL direct link
-  playAdsStartFrom: 2,                          // mulai dari tap play ke berapa (1 = semua)
+  usePlayAds:       true,
+  playAdsUrl:       'https://facebook.com',
+  playAdsStartFrom: 2,           // mulai buka ads dari tap ke-N
 
-  // ── Native Banner ─────────────────────────────────────────────
-  // Desktop: tampil di sidebar kanan (di bawah list related video)
-  // Mobile:  tampil di antara tombol HOME/More Info dan summary
-  useNativeBanner: false,                       // true = tampilkan banner
-  nativeBannerHTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
+  // ════════════════════════════════════════════════════════════
+  //  NATIVE BANNER 1
+  //  Desktop : tampil di ATAS list related video (sidebar kanan)
+  //  Mobile  : tampil di bawah tombol HOME / More Info
+  // ════════════════════════════════════════════════════════════
+  useNativeBanner1: true,
+  nativeBanner1HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
+
+  // ════════════════════════════════════════════════════════════
+  //  NATIVE BANNER 2
+  //  Desktop : tampil di BAWAH list related video (sidebar kanan)
+  //  Mobile  : tampil di bawah summary box
+  // ════════════════════════════════════════════════════════════
+  useNativeBanner2: true,
+  nativeBanner2HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
 };
+
+// ════════════════════════════════════════════════════════════════
+//  KONFIGURASI KATEGORI FOOTER SEO
+//  Thumbnail diambil dari db-en.json berdasarkan tag
+// ════════════════════════════════════════════════════════════════
+const FOOTER_CATEGORIES = [
+  { key: 'AI_ML_RESEARCH',    label: 'AI & ML Research',  icon: '✨', tag: 'ai-research'  },
+  { key: 'TUTORIAL_HOWTO',    label: 'Tutorial & How-To', icon: '💻', tag: 'tutorial'      },
+  { key: 'TECH_REVIEW',       label: 'Tech Review',       icon: '📊', tag: 'tech-review'   },
+  { key: 'FINANCE_CRYPTO',    label: 'Finance & Crypto',  icon: '💰', tag: 'finance'       },
+  { key: 'SCIENCE_EXPLAINER', label: 'Science Explainer', icon: '🔬', tag: 'science'       },
+  { key: 'BUSINESS_STRATEGY', label: 'Business Strategy', icon: '📈', tag: 'business'      },
+];
 
 // ════════════════════════════════════════════════════════════════
 //  HALAMAN VIDEO STATIS — DESKTOP 2-KOLOM
@@ -88,7 +109,7 @@ function buildVideoPage(v, allVideos) {
         `<a href="${BASE_URL}/?tag=${encodeURIComponent(t)}" class="seo-tag-badge">#${esc(t)}</a>`
       ).join('')}</div>` : '';
 
-  // Mobile horizontal slider (8 awal, sisanya lazy via JS scroll)
+  // Mobile horizontal slider
   const mobileRelatedHtml = related.slice(0,8).map(r=>`
     <a href="${BASE_URL}/video/${r.slug}/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg"
@@ -106,15 +127,29 @@ function buildVideoPage(v, allVideos) {
       <p>${esc(r.title)}</p>
     </a>`).join('');
 
-  // Semua video untuk infinite scroll + search suggestion
   const sliderDataJson = JSON.stringify(
     allVideos.filter(r=>r.slug!==v.slug).map(r=>({slug:r.slug,youtubeId:r.youtubeId,title:r.title}))
   );
 
-  // Native banner HTML (dipakai di mobile & desktop sidebar)
-  const bannerBlock = STATIC_AD.allAds && STATIC_AD.useNativeBanner
-    ? `<div class="native-banner-wrap" id="static-nb"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner">${STATIC_AD.nativeBannerHTML}</div></div>`
-    : '';
+  // ── Buat blok native banner (dengan ID unik agar close tidak konflik) ──
+  function makeBanner(uid, htmlContent) {
+    return `<div class="native-banner-wrap" id="nb-${uid}">` +
+      `<div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div>` +
+      `<div class="native-banner-inner">${htmlContent}</div>` +
+      `</div>`;
+  }
+
+  // Buat 4 instance terpisah — mobile x2, desktop x2 — tanpa duplikat
+  const nb1Mobile  = STATIC_AD.allAds && STATIC_AD.useNativeBanner1 ? makeBanner('1m', STATIC_AD.nativeBanner1HTML) : '';
+  const nb2Mobile  = STATIC_AD.allAds && STATIC_AD.useNativeBanner2 ? makeBanner('2m', STATIC_AD.nativeBanner2HTML) : '';
+  const nb1Desktop = STATIC_AD.allAds && STATIC_AD.useNativeBanner1 ? makeBanner('1d', STATIC_AD.nativeBanner1HTML) : '';
+  const nb2Desktop = STATIC_AD.allAds && STATIC_AD.useNativeBanner2 ? makeBanner('2d', STATIC_AD.nativeBanner2HTML) : '';
+
+  // ── Footer kategori untuk halaman video ──
+  const footerCatHtml = FOOTER_CATEGORIES.map(cat =>
+    `<a href="${BASE_URL}/category/${cat.key.toLowerCase().replace(/_/g,'-')}/" class="footer-cat-link">` +
+    `<span>${cat.icon}</span><span>${cat.label}</span></a>`
+  ).join('');
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -168,26 +203,58 @@ function buildVideoPage(v, allVideos) {
     .video-page-container{width:100%;max-width:800px;margin:0 auto;padding:15px}
     @media(max-width:600px){.video-page-container{padding:0}}
 
-    /* ══════════════════════════════════════════════════════
-       DESKTOP 2-KOLOM: player kiri, related kanan
-       Berlaku min-width 992px
-    ══════════════════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════════
+       DESKTOP 2-KOLOM (≥992px)
+    ═══════════════════════════════════════════════ */
     @media(min-width:992px){
       .video-page-container{max-width:1100px}
       .video-desktop-layout{display:flex;gap:20px;align-items:flex-start}
       .video-main-col{flex:1 1 0;min-width:0}
-      .video-side-col{width:280px;flex-shrink:0;position:sticky;top:calc(var(--nav-h) + 10px)}
-      .side-related-label{color:var(--green);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px}
-      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 80px);overflow-y:auto;scrollbar-width:none}
+
+      /* Sidebar kanan — sticky, flex column */
+      .video-side-col{
+        width:280px;flex-shrink:0;
+        position:sticky;top:calc(var(--nav-h) + 10px);
+        display:flex;flex-direction:column;gap:0;
+      }
+
+      /* Label related */
+      .side-related-label{
+        color:var(--green);font-size:.8rem;font-weight:700;
+        letter-spacing:.05em;text-transform:uppercase;
+        padding:8px 0 8px;flex-shrink:0;
+      }
+
+      /* Daftar related video — scrollable */
+      .side-slider{
+        display:flex;flex-direction:column;gap:8px;
+        max-height:calc(100vh - var(--nav-h) - 300px);
+        overflow-y:auto;scrollbar-width:none;flex-shrink:0;
+      }
       .side-slider::-webkit-scrollbar{display:none}
-      .side-slider-item{display:flex;gap:8px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;border:1px solid transparent;transition:.2s;flex-shrink:0}
+
+      .side-slider-item{
+        display:flex;gap:8px;background:var(--dark);border-radius:8px;
+        overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;
+        border:1px solid transparent;transition:.2s;flex-shrink:0;
+      }
       .side-slider-item:hover{border-color:var(--green)}
       .side-slider-item img{width:108px;height:60px;object-fit:cover;flex-shrink:0}
-      .side-slider-item p{font-size:.72rem;padding:6px 8px;margin:0;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:#f1f1f1}
-      .side-native-banner{margin-top:14px}
-      /* Sembunyikan mobile horizontal slider di desktop */
+      .side-slider-item p{
+        font-size:.72rem;padding:6px 8px;margin:0;line-height:1.35;
+        display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
+        overflow:hidden;color:#f1f1f1;
+      }
+
+      /* Native banner di sidebar — full width */
+      .side-nb-block{width:100%;flex-shrink:0;margin:8px 0}
+      .side-nb-block .native-banner-wrap{margin:0;border-radius:10px}
+
+      /* Sembunyikan elemen mobile-only */
+      .nb-mobile-only{display:none}
       .recommendation-slider-wrap{display:none}
     }
+
     /* Mobile: sembunyikan kolom kanan */
     @media(max-width:991px){
       .video-desktop-layout{display:block}
@@ -239,9 +306,17 @@ function buildVideoPage(v, allVideos) {
     .slider-item p{font-size:.72rem;padding:6px 8px 8px;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35;min-height:42px;color:#f1f1f1}
 
     /* ── Native Banner ── */
-    .native-banner-wrap{position:relative;width:100%;margin:14px 0;border-radius:10px;overflow:hidden;min-height:90px}
+    .native-banner-wrap{position:relative;width:100%;margin:10px 0;border-radius:10px;overflow:hidden;min-height:90px}
     .native-banner-wrap .close-btn{position:absolute;top:6px;right:6px;width:26px;height:26px;background:rgba(0,0,0,.65);color:#fff;border:2px solid #fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;cursor:pointer;z-index:10}
-    .native-banner-inner{width:100%;padding:18px 40px 18px 18px;display:flex;flex-direction:column;justify-content:center;min-height:90px}
+    .native-banner-inner{width:100%;min-height:90px;display:flex;flex-direction:column;justify-content:center}
+
+    /* ── Footer SEO ── */
+    .footer-seo{margin-top:60px;padding:24px 16px 28px;background:#0d0d0d;border-top:1px solid #1e1e1e}
+    .footer-seo-title{color:#555;font-size:10px;letter-spacing:2px;font-weight:700;text-transform:uppercase;text-align:center;margin-bottom:14px}
+    .footer-cat-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:18px}
+    .footer-cat-link{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border:1px solid #2a2a2a;border-radius:20px;text-decoration:none;color:#888;font-size:11px;font-weight:600;background:#111;transition:.2s;white-space:nowrap}
+    .footer-cat-link:hover{color:var(--green);border-color:#3a3a3a;background:#161616}
+    .footer-copy{color:#333;font-size:10px;text-align:center;letter-spacing:.5px}
   </style>
 </head>
 <body>
@@ -261,7 +336,9 @@ function buildVideoPage(v, allVideos) {
 <div class="video-page-container">
   <div class="video-desktop-layout">
 
-    <!-- ── Kolom kiri: player + info ── -->
+    <!-- ═════════════════════════════════════════
+         KOLOM KIRI: player + info
+    ════════════════════════════════════════════ -->
     <div class="video-main-col">
       <div class="player-container" id="player-box">
         <img src="${thumb}" alt="${esc(v.title)}" width="480" height="270"
@@ -276,6 +353,7 @@ function buildVideoPage(v, allVideos) {
         <div class="video-mask mask-top"></div>
         <div class="video-mask mask-bottom"></div>
       </div>
+
       <div class="info-section">
         <h1>${esc(v.title)}</h1>
         <div class="dual-action-wrap">
@@ -288,13 +366,19 @@ function buildVideoPage(v, allVideos) {
             More Info 🔥
           </button>
         </div>
-        <!-- Native banner mobile (tersembunyi di desktop via CSS) -->
-        ${bannerBlock}
+
+        <!-- Native Banner 1 — MOBILE ONLY -->
+        <div class="nb-mobile-only">${nb1Mobile}</div>
+
         <div class="summary-box">
           <div class="summary-text">${v.summary||'<p>'+esc(desc)+'</p>'}</div>
           ${tagsHtml}
         </div>
-        <!-- Mobile horizontal slider (tersembunyi di desktop via CSS) -->
+
+        <!-- Native Banner 2 — MOBILE ONLY (di bawah summary) -->
+        <div class="nb-mobile-only">${nb2Mobile}</div>
+
+        <!-- Mobile horizontal slider -->
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">${mobileRelatedHtml}</div>
@@ -302,19 +386,44 @@ function buildVideoPage(v, allVideos) {
       </div>
     </div>
 
-    <!-- ── Kolom kanan desktop: related + native banner ── -->
+    <!-- ═════════════════════════════════════════
+         KOLOM KANAN DESKTOP
+         Urutan: NB1 → Label → Related → NB2
+    ════════════════════════════════════════════ -->
     <div class="video-side-col">
+
+      <!-- NB1: di ATAS related video -->
+      ${nb1Desktop ? `<div class="side-nb-block">${nb1Desktop}</div>` : ''}
+
+      <!-- Label -->
       <div class="side-related-label">🎬 Related Videos</div>
+
+      <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">${sideRelatedHtml}</div>
-      ${STATIC_AD.allAds && STATIC_AD.useNativeBanner ? `<div class="side-native-banner">${bannerBlock.replace('id="static-nb"','id="static-nb-side"')}</div>` : ''}
+
+      <!-- NB2: di BAWAH related video -->
+      ${nb2Desktop ? `<div class="side-nb-block">${nb2Desktop}</div>` : ''}
+
     </div>
 
   </div><!-- end video-desktop-layout -->
 </div>
 </main>
 
+<!-- ══════════════════════════════════════════════
+     FOOTER SEO KATEGORI
+     Sumber: db-en.json (HANYA)
+════════════════════════════════════════════════ -->
+<footer class="footer-seo">
+  <p class="footer-seo-title">Jelajahi Kategori</p>
+  <nav class="footer-cat-grid" aria-label="Kategori konten">
+    ${footerCatHtml}
+  </nav>
+  <p class="footer-copy">© 2026 Trend4GenZ. All rights reserved.</p>
+</footer>
+
 <script>
-// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+// ── Ads config (injected at build time) ────────────────────────
 var STATIC_AD = {
   allAds:          ${STATIC_AD.allAds},
   useDirect:       ${STATIC_AD.useDirect},
@@ -322,23 +431,19 @@ var STATIC_AD = {
   usePlayAds:      ${STATIC_AD.usePlayAds},
   playAdsUrl:      '${STATIC_AD.playAdsUrl}',
   playAdsStartFrom:${STATIC_AD.playAdsStartFrom},
-  useNativeBanner: ${STATIC_AD.useNativeBanner}
+  useNativeBanner1:${STATIC_AD.useNativeBanner1},
+  useNativeBanner2:${STATIC_AD.useNativeBanner2}
 };
 var _playCount = 0;
 
-// ── Tombol More Info 🔥 ──────────────────────────────────────────
 function handleMoreInfo() {
-  if (STATIC_AD.allAds && STATIC_AD.useDirect) {
-    window.open(STATIC_AD.directUrl, '_blank');
-  }
+  if (STATIC_AD.allAds && STATIC_AD.useDirect) window.open(STATIC_AD.directUrl,'_blank');
 }
 
-// ── Play Button Ads + Player ─────────────────────────────────────
 function startPlay() {
   _playCount++;
-  // Buka ads jika allAds=true, usePlayAds=true, dan sudah tap ke-N
   if (STATIC_AD.allAds && STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
-    window.open(STATIC_AD.playAdsUrl, '_blank');
+    window.open(STATIC_AD.playAdsUrl,'_blank');
   }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
@@ -365,97 +470,80 @@ function toggleFS() {
   }
 }
 
-// ── Search suggestion dari data slider ──────────────────────────
+// ── Search ───────────────────────────────────────────────────────
 var _db = ${sliderDataJson};
 (function(){
-  var inp = document.getElementById('searchInput');
-  var btn = document.getElementById('searchBtn');
-  var sug = document.getElementById('searchSuggestions');
-  var ai  = -1;
-
+  var inp=document.getElementById('searchInput'),
+      btn=document.getElementById('searchBtn'),
+      sug=document.getElementById('searchSuggestions'),
+      ai=-1;
   function hl(t,q){
-    var esc=q.replace(/[.*+?^$\x7B\x7D()|[\]\\]/g,'\\$&');
-    return t.replace(new RegExp('('+esc+')','gi'),'<em>$1</em>');
+    var e=q.replace(/[.*+?^$\x7B\x7D()|[\]\\]/g,'\\$&');
+    return t.replace(new RegExp('('+e+')','gi'),'<em>$1</em>');
   }
-  function hide(){ sug.classList.remove('show'); sug.innerHTML=''; ai=-1; }
-
-  inp.addEventListener('input', function(){
-    var val = inp.value.trim().toLowerCase(); ai=-1;
-    if (!val) { hide(); return; }
-    var matches = _db.filter(function(v){ return v.title.toLowerCase().indexOf(val)!==-1; }).slice(0,7);
-    if (!matches.length) {
-      sug.innerHTML='<div class="suggestion-empty">No results for "<b>'+val+'</b>"</div>';
-      sug.classList.add('show'); return;
-    }
-    sug.innerHTML = matches.map(function(v){
-      return '<div class="suggestion-item" data-slug="'+v.slug+'">' +
-        '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/mqdefault.jpg" loading="lazy" alt=""/>' +
+  function hide(){sug.classList.remove('show');sug.innerHTML='';ai=-1;}
+  inp.addEventListener('input',function(){
+    var val=inp.value.trim().toLowerCase();ai=-1;
+    if(!val){hide();return;}
+    var m=_db.filter(function(v){return v.title.toLowerCase().indexOf(val)!==-1;}).slice(0,7);
+    if(!m.length){sug.innerHTML='<div class="suggestion-empty">No results for "<b>'+val+'</b>"</div>';sug.classList.add('show');return;}
+    sug.innerHTML=m.map(function(v){
+      return '<div class="suggestion-item" data-slug="'+v.slug+'">'+
+        '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/mqdefault.jpg" loading="lazy" alt=""/>'+
         '<span>'+hl(v.title,val)+'</span></div>';
     }).join('');
     sug.classList.add('show');
     sug.querySelectorAll('.suggestion-item').forEach(function(el){
-      el.addEventListener('mousedown', function(e){
-        e.preventDefault();
-        window.location.href = '${BASE_URL}/video/' + el.dataset.slug + '/';
-      });
+      el.addEventListener('mousedown',function(e){e.preventDefault();window.location.href='${BASE_URL}/video/'+el.dataset.slug+'/';});
     });
   });
-
-  inp.addEventListener('keydown', function(e){
-    var items = sug.querySelectorAll('.suggestion-item');
-    if (e.key==='ArrowDown'){ e.preventDefault(); ai=Math.min(ai+1,items.length-1); upA(items); }
-    else if (e.key==='ArrowUp'){ e.preventDefault(); ai=Math.max(ai-1,-1); upA(items); }
-    else if (e.key==='Enter'){
-      if (ai>=0&&items[ai]) { window.location.href='${BASE_URL}/video/'+items[ai].dataset.slug+'/'; }
-      else { var q=inp.value.trim(); if(q) window.location.href='${BASE_URL}/?search='+encodeURIComponent(q); }
-    }
-    else if (e.key==='Escape'){ hide(); inp.blur(); }
+  inp.addEventListener('keydown',function(e){
+    var items=sug.querySelectorAll('.suggestion-item');
+    if(e.key==='ArrowDown'){e.preventDefault();ai=Math.min(ai+1,items.length-1);upA(items);}
+    else if(e.key==='ArrowUp'){e.preventDefault();ai=Math.max(ai-1,-1);upA(items);}
+    else if(e.key==='Enter'){
+      if(ai>=0&&items[ai])window.location.href='${BASE_URL}/video/'+items[ai].dataset.slug+'/';
+      else{var q=inp.value.trim();if(q)window.location.href='${BASE_URL}/?search='+encodeURIComponent(q);}
+    }else if(e.key==='Escape'){hide();inp.blur();}
   });
-
-  function upA(items){ items.forEach(function(el,i){ el.classList.toggle('active',i===ai); }); }
-  btn.addEventListener('click', function(){ var q=inp.value.trim(); if(q) window.location.href='${BASE_URL}/?search='+encodeURIComponent(q); });
-  document.addEventListener('click', function(e){ if(!e.target.closest('.search-wrapper')) hide(); });
+  function upA(items){items.forEach(function(el,i){el.classList.toggle('active',i===ai);});}
+  btn.addEventListener('click',function(){var q=inp.value.trim();if(q)window.location.href='${BASE_URL}/?search='+encodeURIComponent(q);});
+  document.addEventListener('click',function(e){if(!e.target.closest('.search-wrapper'))hide();});
 })();
 
-// ── Infinite scroll: mobile horizontal slider ────────────────────
-var _loaded = 8;
-document.getElementById('rec-slider').addEventListener('scroll', function(){
-  if (this.scrollLeft + this.clientWidth >= this.scrollWidth - 120) {
-    var next = _db.slice(_loaded, _loaded+8);
-    if (!next.length) { _loaded=0; next=_db.slice(0,8); }
+// ── Infinite scroll: mobile ──────────────────────────────────────
+var _loaded=8;
+document.getElementById('rec-slider').addEventListener('scroll',function(){
+  if(this.scrollLeft+this.clientWidth>=this.scrollWidth-120){
+    var next=_db.slice(_loaded,_loaded+8);
+    if(!next.length){_loaded=0;next=_db.slice(0,8);}
     next.forEach(function(r){
-      var a = document.createElement('a');
-      a.className='slider-item';
-      a.href='${BASE_URL}/video/'+r.slug+'/';
+      var a=document.createElement('a');
+      a.className='slider-item';a.href='${BASE_URL}/video/'+r.slug+'/';
       a.style.cssText='text-decoration:none;color:inherit;display:block';
       a.innerHTML='<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" width="160" height="90" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><p>'+r.title.replace(/</g,'&lt;')+'</p>';
       document.getElementById('rec-slider').appendChild(a);
     });
-    _loaded += next.length;
+    _loaded+=next.length;
   }
 });
 
-// ── Infinite scroll: desktop side slider ────────────────────────
+// ── Infinite scroll: desktop sidebar ────────────────────────────
 (function(){
-  var side = document.getElementById('side-slider-desktop');
-  if (!side) return;
-  var sideLoaded = 20;
-  side.addEventListener('scroll', function(){
-    if (this.scrollTop + this.clientHeight >= this.scrollHeight - 100) {
-      var next = _db.slice(sideLoaded, sideLoaded+10);
-      if (!next.length) { sideLoaded=0; next=_db.slice(0,10); }
+  var side=document.getElementById('side-slider-desktop');
+  if(!side)return;
+  var sideLoaded=20;
+  side.addEventListener('scroll',function(){
+    if(this.scrollTop+this.clientHeight>=this.scrollHeight-100){
+      var next=_db.slice(sideLoaded,sideLoaded+10);
+      if(!next.length){sideLoaded=0;next=_db.slice(0,10);}
       next.forEach(function(r){
-        var a = document.createElement('a');
-        a.className = 'side-slider-item';
-        a.href = '${BASE_URL}/video/'+r.slug+'/';
-        a.innerHTML =
-          '<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy"' +
-          ' width="108" height="60" onload="this.style.opacity=1"' +
-          ' style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>' +
-          '<p>'+r.title.replace(/</g,'&lt;')+'</p>';
+        var a=document.createElement('a');
+        a.className='side-slider-item';a.href='${BASE_URL}/video/'+r.slug+'/';
+        a.innerHTML='<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" width="108" height="60" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/><p>'+r.title.replace(/</g,'&lt;')+'</p>';
         side.appendChild(a);
       });
-      sideLoaded += next.length;
+      sideLoaded+=next.length;
     }
   });
 })();
@@ -477,7 +565,6 @@ function buildHomepage(dbEN) {
   const startIdx  = html.indexOf(APP_START);
   let   endIdx    = html.indexOf(APP_END);
 
-  // Fallback pola lama tanpa </main>
   if (endIdx === -1) {
     const APP_END_OLD = '  </div>\n\n<script>';
     endIdx = html.indexOf(APP_END_OLD);
@@ -516,9 +603,25 @@ ${cardsHtml}
 
   html = html.slice(0, startIdx) + newApp + html.slice(endIdx + APP_END.length);
 
+  // Footer homepage
+  const footerHomepage = `
+<footer style="margin-top:60px;padding:24px 16px 28px;background:#0d0d0d;border-top:1px solid #1e1e1e">
+  <p style="color:#555;font-size:10px;letter-spacing:2px;font-weight:700;text-transform:uppercase;text-align:center;margin-bottom:14px">Jelajahi Kategori</p>
+  <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:18px" aria-label="Kategori konten">
+    ${FOOTER_CATEGORIES.map(cat =>
+      `<a href="/category/${cat.key.toLowerCase().replace(/_/g,'-')}/" `+
+      `style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border:1px solid #2a2a2a;border-radius:20px;text-decoration:none;color:#888;font-size:11px;font-weight:600;background:#111;white-space:nowrap">`+
+      `${cat.icon} ${cat.label}</a>`
+    ).join('')}
+  </nav>
+  <p style="color:#333;font-size:10px;text-align:center;letter-spacing:.5px">© 2026 Trend4GenZ. All rights reserved.</p>
+</footer>`;
+
+  html = html.replace('</body>', footerHomepage + '\n</body>');
+
   const patchScript = `
 // ══════════════════════════════════════════════════════════════
-//  PATCH homepage statis v8
+//  PATCH homepage statis v9
 // ══════════════════════════════════════════════════════════════
 
 async function loadDatabases() {
@@ -541,21 +644,26 @@ async function router() {
   const slug   = getCurrentSlug();
   const tag    = getUrlParams().get('tag');
   const search = getUrlParams().get('search');
+  const category = getUrlParams().get('category'); // <-- Tambahkan variabel ini
 
   updateHtmlLang();
   updateRobotsBySource('seo');
 
-  if (tag) {
+  // --- MULAI BLOK KATEGORI BARU ---
+  if (category) {
     navbar.classList.remove('video-mode');
     if (!videoDatabaseALL.length) await loadDatabases();
-    const rel   = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    const rest  = videoDatabaseALL.filter(v=>!v.tags||!v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
-    const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
-    renderGrid(app, combined);
+    
+    // HANYA ambil video dari db-en.json yang sesuai dengan kategorinya
+    const rel = videoDatabaseEN.filter(v => v.category === category);
+    
+    // Render HANYA video dari kategori tersebut (tanpa dicampur)
+    renderGrid(app, rel);
     updateCanonical('home','seo');
+    
     const h = app.querySelector('h5');
     if (h) {
-      h.textContent = rel.length ? '🏷️ Tag: #'+tag+' ('+rel.length+' videos)' : '🔥 TRENDING VIDEO';
+      h.textContent = rel.length ? '📁 Kategori: ' + category.replace(/_/g, ' ') + ' (' + rel.length + ' video)' : '🔥 TRENDING VIDEO';
       if (!document.getElementById('btn-back-home')) {
         var btn = document.createElement('button');
         btn.id='btn-back-home';
@@ -565,7 +673,7 @@ async function router() {
         h.parentNode.insertBefore(btn, h);
       }
     }
-  } else if (search) {
+  } else if (tag) {
     navbar.classList.remove('video-mode');
     if (!videoDatabaseALL.length) await loadDatabases();
     const q   = search.toLowerCase();
@@ -640,7 +748,7 @@ function main() {
   let created = 0;
   dbEN.forEach(v=>{
     const dir = path.join(VIDEO_DIR, v.slug);
-    fs.mkdirSync(dir, {recursive:true});
+    fs.mkdirSync(dir,{recursive:true});
     fs.writeFileSync(path.join(dir,'index.html'), buildVideoPage(v,dbEN), 'utf8');
     created++;
     if (created%50===0) console.log(`  ✅ ${created}/${dbEN.length}`);
@@ -652,12 +760,45 @@ function main() {
   fs.writeFileSync(INDEX_FILE, newIndex, 'utf8');
   console.log('✅ index.html diperbarui');
 
+  // --- MULAI TAMBAHAN PEMBUAT FOLDER KATEGORI ---
+  console.log('📂 Generate folder kategori...');
+  rmDir(CATEGORY_DIR); // Hapus folder lama agar bersih
+  fs.mkdirSync(CATEGORY_DIR, { recursive: true });
+
+  FOOTER_CATEGORIES.forEach(cat => {
+    // Membuat nama folder SEO friendly (cth: ai-ml-research)
+    const catSlug = cat.key.toLowerCase().replace(/_/g, '-');
+    const dirPath = path.join(CATEGORY_DIR, catSlug);
+    fs.mkdirSync(dirPath, { recursive: true });
+
+    // HTML Statis yang otomatis memanggil router category yang kita buat di atas
+    const catHtml = `<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kategori: ${cat.label} | ${SITE_NAME}</title>
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="refresh" content="0; url=${BASE_URL}/?category=${cat.key}">
+  <script>window.location.replace("${BASE_URL}/?category=${cat.key}");</script>
+</head>
+<body style="background:#212122; color:#fff; text-align:center; padding-top:20vh; font-family:'Segoe UI', sans-serif;">
+  <h2>${cat.icon} Membuka Kategori ${cat.label}...</h2>
+  <p>Jika tidak dialihkan secara otomatis, <a href="${BASE_URL}/?category=${cat.key}" style="color:#98FB98;">klik di sini</a>.</p>
+</body>
+</html>`;
+
+    fs.writeFileSync(path.join(dirPath, 'index.html'), catHtml, 'utf8');
+  });
+  console.log(`✅ ${FOOTER_CATEGORIES.length} folder kategori berhasil dibuat`);
+  // --- AKHIR TAMBAHAN ---
   console.log(`\n🎉 Selesai! ${created} halaman statis (db-en) + homepage (EN+ID berbaur)`);
-  console.log('\n📋 Status Ads (STATIC_AD di generate-pages.js):');
-  console.log(`   allAds          : ${STATIC_AD.allAds}`);
-  console.log(`   useDirect       : ${STATIC_AD.useDirect}  → tombol More Info 🔥`);
-  console.log(`   usePlayAds      : ${STATIC_AD.usePlayAds}  → play button ads (mulai tap ke-${STATIC_AD.playAdsStartFrom})`);
-  console.log(`   useNativeBanner : ${STATIC_AD.useNativeBanner}  → banner sidebar desktop / mobile`);
+  console.log('\n📋 Status Ads (STATIC_AD):');
+  console.log(`   allAds           : ${STATIC_AD.allAds}`);
+  console.log(`   useDirect        : ${STATIC_AD.useDirect}   → tombol More Info 🔥`);
+  console.log(`   usePlayAds       : ${STATIC_AD.usePlayAds}   → play button ads (mulai tap ke-${STATIC_AD.playAdsStartFrom})`);
+  console.log(`   useNativeBanner1 : ${STATIC_AD.useNativeBanner1}   → NB1 (atas related video / bawah tombol mobile)`);
+  console.log(`   useNativeBanner2 : ${STATIC_AD.useNativeBanner2}   → NB2 (bawah related video / bawah summary mobile)`);
 }
 
 main();
