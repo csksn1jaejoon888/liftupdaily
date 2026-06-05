@@ -573,7 +573,7 @@ function buildHomepage(dbEN) {
 
   // ── Cari posisi #app di template ──────────────────────────────
   const APP_START = '  <div class="main-content" id="app">';
-  const APP_END = '  </div>\n  </main>\n\n<script>';
+  const APP_END   = '  </div>\n  </main>\n\n<script>';
   const startIdx  = html.indexOf(APP_START);
   let   endIdx    = html.indexOf(APP_END);
   if (endIdx === -1) endIdx = html.indexOf('  </div>\n\n<script>');
@@ -659,7 +659,7 @@ function _makeCard(v) {
     '</div>';
   return a;
 }
-window.loadMore = null;
+
 // ── loadMore: append _PAGE_SIZE kartu berikutnya ──────────────
 function loadMore() {
   if (_isLoading) return;
@@ -727,7 +727,7 @@ function _renderFilteredGrid(videos, label) {
   if (lbl) lbl.textContent = label;
   if (btn) btn.style.display = rest.length ? '' : 'none';
 }
-  window.router = router;
+
 // ── router: hanya handle tag & search di homepage ─────────────
 // Slug non-kosong → langsung redirect ke halaman statis /video/
 // Ini homepage statis, jadi SPA hanya untuk filter tag/search
@@ -835,7 +835,7 @@ window.addEventListener('popstate', function() { router(); });
 `;
 
   // Inject patch script sebelum </script> terakhir sebelum </body>
-  html = html.lastIndexOf('<\/script>\n</body>', patchScript + '<\/script>\n</body>');
+  html = html.replace('<\/script>\n</body>', patchScript + '<\/script>\n</body>');
   return html;
 }
 
