@@ -344,6 +344,11 @@ function getCurrentSlug() {
   if (fromQuery) return fromQuery;
   const parts = location.pathname.replace(/\/index\.html$/,'').replace(/\/$/,'').split('/').filter(Boolean);
   if (!parts.length) return null;
+  
+  // ✅ TAMBAHAN: Jika URL mengandung /category/, kembalikan null
+  // Biarkan file index.html statis di folder category yang mengambil alih
+  if (parts[0] === 'category') return null; 
+  
   const last = parts[parts.length - 1];
   if (!last || last.length < 3) return null;
   return last;
@@ -683,12 +688,30 @@ async function router() {
     if(!videoDatabaseALL.length) { await loadDatabases(); renderGrid(app, videoDatabaseALL); }
     updateCanonical('home','seo');
     const og=document.getElementById('og-type'); if(og) og.setAttribute('content','website');
-  } else {
-    const video=videoDatabaseALL.find(v=>v.slug===slug||seoUrl(v.title)===slug);
+    } else {
+    // Cek apakah URL ini adalah halaman video statis (/video/slug)
+    const isVideoPage = location.pathname.startsWith('/video/');
+    
+    const video = videoDatabaseALL.find(v=>v.slug===slug||seoUrl(v.title)===slug);
+    
     if(video) {
       navbar.classList.add('video-mode');
       renderVideo(app, video);
+    } else if(isVideoPage) {
+      // ✅ TAMBAHAN: Jika ini halaman statis /video/ tapi DB belum ke-load, 
+      // jangan redirect! Biarkan browser me-refresh untuk memunculkan HTML statisnya.
+      if(!videoDatabaseALL.length) {
+        window.location.reload(); 
+      } else {
+        // Jika DB sudah load tapi video tidak ditemukan, baru fallback ke home
+        history.replaceState({},'', location.origin+'/');
+        navbar.classList.remove('video-mode');
+        document.title='Trend4GenZ - Streaming';
+        renderGrid(app, videoDatabaseALL);
+        updateCanonical('home','seo');
+      }
     } else {
+      // Fallback untuk URL aneh (selain /video/ dan /category/)
       history.replaceState({},'', location.origin+'/');
       navbar.classList.remove('video-mode');
       document.title='Trend4GenZ - Streaming';
