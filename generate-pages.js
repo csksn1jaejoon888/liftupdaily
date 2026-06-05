@@ -603,13 +603,28 @@ ${cardsHtml}
 
   html = html.slice(0, startIdx) + newApp + html.slice(endIdx + APP_END.length);
 
-  // Footer homepage dihilangkan sesuai permintaan (hanya ada di halaman video)
-  // agar tidak menimpa atau mengganggu tombol Load More.
+  // Bagian footerHomepage dihapus 100% dari homepage statis ini
 
   const patchScript = `
 // ══════════════════════════════════════════════════════════════
-//  PATCH homepage statis v9
+//  PATCH homepage statis v10 (Fixed Route, Category Match & Load More)
 // ══════════════════════════════════════════════════════════════
+
+// OVERRIDE Keras Fungsi Load More Asli agar 100% Berfungsi
+window.loadMore = function() {
+  var grid = document.getElementById('video-grid-inner');
+  var btn = document.getElementById('btn-load-more');
+  if (!grid || !window.currentData) return;
+  
+  var batch = window.currentData.slice(0, 20);
+  window.currentData = window.currentData.slice(20);
+  
+  batch.forEach(function(v) {
+    grid.innerHTML += '<a href="/video/'+v.slug+'/" class="video-card-link" style="text-decoration:none;color:inherit"><div class="video-card"><div class="thumb-wrap"><img src="https://img.youtube.com/vi/'+v.youtubeId+'/mqdefault.jpg" alt="'+(v.title||'').replace(/"/g,'&quot;')+'" loading="lazy" width="320" height="180" onload="this.classList.add(\\'loaded\\')" onerror="this.src=\\'https://img.youtube.com/vi/'+v.youtubeId+'/hqdefault.jpg\\';this.classList.add(\\'loaded\\')"/></div><div class="video-card-title">'+(v.title||'')+'</div></div></a>';
+  });
+  
+  if (btn) btn.style.display = window.currentData.length > 0 ? 'inline-block' : 'none';
+};
 
 async function loadDatabases() {
   const ROOT = location.origin + '/';
@@ -620,104 +635,111 @@ async function loadDatabases() {
   videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
   videoDatabaseID  = resID.ok ? (await resID.json()).map(v=>({...v,source:v.source||'nofollow'})) : [];
   videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
-  const shown = new Set(${hardcodedSlugs});
-  currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
-  currentPage = 1;
 }
 
 async function router() {
   const app    = document.getElementById('app');
   const navbar = document.getElementById('main-navbar');
-  const slug   = getCurrentSlug();
-  const tag    = getUrlParams().get('tag');
-  const search = getUrlParams().get('search');
-  const category = getUrlParams().get('category'); // <-- Tambahkan variabel ini
+  
+  // PARSING URL YANG 100% AKURAT DAN TAHAN ERROR
+  const urlParams = new URLSearchParams(window.location.search);
+  const category  = urlParams.get('category');
+  const tag       = urlParams.get('tag');
+  const search    = urlParams.get('search');
 
-  updateHtmlLang();
-  updateRobotsBySource('seo');
+  if(typeof updateHtmlLang === 'function') updateHtmlLang();
+  if(typeof updateRobotsBySource === 'function') updateRobotsBySource('seo');
 
-  // --- MULAI BLOK KATEGORI BARU ---
   if (category) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
+    if(navbar) navbar.classList.remove('video-mode');
+    if (!window.videoDatabaseALL || !videoDatabaseALL.length) await loadDatabases();
     
-    // HANYA ambil video dari db-en.json yang sesuai dengan kategorinya
-    // FIX: Matcher dibuat lebih fleksibel agar membaca format db-en.json yang bervariasi
-    const catMatch = category.toLowerCase().replace(/[-_]/g, ' ');
+    const catKey = category.toUpperCase();
     const rel = videoDatabaseEN.filter(v => {
-      if (v.category) return v.category.toLowerCase().replace(/[-_]/g, ' ') === catMatch || v.category === category;
-      if (v.tags) return v.tags.some(t => t.toLowerCase().replace(/[-_]/g, ' ').includes(catMatch.split(' ')[0]));
-      return false;
+      if (!v) return false;
+      let c = (v.category || '').toUpperCase();
+      let tgs = (v.tags || []).map(t => typeof t === 'string' ? t.toUpperCase() : '');
+      if (c === catKey || c.replace(/[-_\\s]+/g, '_') === catKey) return true;
+      let keywords = catKey.split('_'); 
+      return keywords.some(kw => c.includes(kw) || tgs.some(t => t.includes(kw)));
     });
     
-    currentData = rel; // FIX: Update array currentData agar Load More berfungsi untuk kategori
-    currentPage = 1;
-    
-    // Render HANYA video dari kategori tersebut (tanpa dicampur)
-    renderGrid(app, rel);
-    updateCanonical('home','seo');
-    
-    const h = app.querySelector('h5');
-    if (h) {
-      h.textContent = rel.length ? '📁 Kategori: ' + category.replace(/_/g, ' ') + ' (' + rel.length + ' video)' : '🔥 TRENDING VIDEO';
-      if (!document.getElementById('btn-back-home')) {
-        var btn = document.createElement('button');
-        btn.id='btn-back-home';
-        btn.onclick=function(){ history.pushState({},'',location.origin+'/'); router(); };
-        btn.style.cssText='background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
-        btn.innerHTML='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
-        h.parentNode.insertBefore(btn, h);
-      }
+    window.currentData = rel;
+    const grid = document.getElementById('video-grid-inner');
+    if (grid) {
+      grid.innerHTML = ''; // Wajib kosongkan video dari homepage lama
+      window.loadMore();   // Inject ulang manual via loadMore Override
     }
-  } else if (tag) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
-    const q   = (search || tag).toLowerCase(); // FIX: Mencegah error jika search null
-    const rel  = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)!==-1);
-    const rest = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)===-1);
+    if(typeof updateCanonical === 'function') updateCanonical('home','seo');
+    
+    const h = app ? app.querySelector('h5') : null;
+    if (h) {
+      h.textContent = rel.length ? '📁 Kategori: ' + category.replace(/_/g, ' ') + ' (' + rel.length + ' video)' : '📁 Kategori: Tidak ada video';
+      addHomeBtn(h);
+    }
+    
+  } else if (tag || search) {
+    if(navbar) navbar.classList.remove('video-mode');
+    if (!window.videoDatabaseALL || !videoDatabaseALL.length) await loadDatabases();
+    
+    const q = (search || tag).toLowerCase();
+    const rel  = videoDatabaseALL.filter(v=>(v.title||'').toLowerCase().includes(q));
+    const rest = videoDatabaseALL.filter(v=>!(v.title||'').toLowerCase().includes(q));
     const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
     
-    currentData = combined; // FIX: Update array untuk Load More
-    currentPage = 1;
-    
-    renderGrid(app, combined);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
-    if (h) {
-      h.textContent = rel.length ? '🔍 "'+(search || tag)+'" — '+rel.length+' hasil' : '🔥 TRENDING VIDEO';
-      if (!document.getElementById('btn-back-home')) {
-        var btn = document.createElement('button');
-        btn.id='btn-back-home';
-        btn.onclick=function(){ history.pushState({},'',location.origin+'/'); router(); };
-        btn.style.cssText='background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
-        btn.innerHTML='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
-        h.parentNode.insertBefore(btn, h);
-      }
+    window.currentData = combined;
+    const grid = document.getElementById('video-grid-inner');
+    if (grid) {
+      grid.innerHTML = '';
+      window.loadMore();
     }
-  } else if (!slug || slug==='home') {
+    if(typeof updateCanonical === 'function') updateCanonical('home','seo');
+    
+    const h = app ? app.querySelector('h5') : null;
+    if (h) {
+      h.textContent = rel.length ? '🔍 "' + (search||tag) + '" — ' + rel.length + ' hasil' : '🔥 TRENDING VIDEO';
+      addHomeBtn(h);
+    }
+    
+  } else {
+    // KONDISI UNTUK HOMEPAGE ATAU STATIS VIDEO
     var oldBtn = document.getElementById('btn-back-home');
     if (oldBtn) oldBtn.remove();
-    navbar.classList.remove('video-mode');
-    if(!videoDatabaseALL.length) await loadDatabases();
     
-    // FIX: Reset Load More saat kembali ke Home
-    const shown = new Set(${hardcodedSlugs});
-    currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
-    currentPage = 1;
-    
-    renderGrid(app, videoDatabaseALL);
-    updateCanonical('home','seo');
-  } else {
-    const video = videoDatabaseALL.find(v => v.slug === slug);
-    if (video && video.source === 'nofollow') {
-      navbar.classList.add('video-mode');
-      renderVideo(app, video);
+    const slug = typeof getCurrentSlug === 'function' ? getCurrentSlug() : null;
+    if (!slug || slug === 'home' || slug === '') {
+      if(navbar) navbar.classList.remove('video-mode');
+      if (!window.videoDatabaseALL || !videoDatabaseALL.length) await loadDatabases();
+      
+      const shown = new Set(${hardcodedSlugs});
+      window.currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
+      
+      const btn = document.getElementById('btn-load-more');
+      if (btn) btn.style.display = window.currentData.length > 0 ? 'inline-block' : 'none';
+      if(typeof updateCanonical === 'function') updateCanonical('home','seo');
     } else {
-      window.location.replace('/video/' + slug + '/');
+      if (!window.videoDatabaseALL || !videoDatabaseALL.length) await loadDatabases();
+      const video = videoDatabaseALL.find(v => v.slug === slug);
+      if (video && video.source === 'nofollow') {
+        if(navbar) navbar.classList.add('video-mode');
+        if(typeof renderVideo === 'function') renderVideo(app, video);
+      } else {
+        window.location.replace('/video/' + slug + '/');
+      }
     }
-    return;
   }
   window.scrollTo(0,0);
+}
+
+function addHomeBtn(headingElement) {
+  if (!document.getElementById('btn-back-home')) {
+    var btn = document.createElement('button');
+    btn.id='btn-back-home';
+    btn.onclick=function(){ window.location.href = location.origin + '/'; };
+    btn.style.cssText='background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
+    btn.innerHTML='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
+    headingElement.parentNode.insertBefore(btn, headingElement);
+  }
 }
 `;
 
