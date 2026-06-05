@@ -1,12 +1,10 @@
 // ══════════════════════════════════════════════════════════════════
-//  generate-pages.js  v12 (Perfect Load More on Homepage Fix)
+//  generate-pages.js  v14 (Ultimate Load More Fix)
 //  Fixes & improvements:
-//    1. Native Banner di desktop: NB1 di ATAS related video
-//    2. Mobile: NB1 bawah tombol, NB2 bawah summary
-//    3. Footer kategori SEO rapi (6 kategori, dari db-en.json)
-//    4. Kategori Router disisipkan langsung ke script bawaan user
-//    5. Load More 100% Fix di Homepage Statis (No Flash, Seamless)
-//    6. Footer di homepage DIHILANGKAN sepenuhnya.
+//    1. Native Banner di desktop & Mobile
+//    2. Footer kategori SEO rapi
+//    3. Load More 100% Berjalan sampai seluruh database habis
+//    4. Footer di homepage DIHILANGKAN sepenuhnya.
 // ══════════════════════════════════════════════════════════════════
 'use strict';
 
@@ -36,7 +34,7 @@ function rmDir(dir)      { if(fs.existsSync(dir)) fs.rmSync(dir,{recursive:true,
 function shuffle(arr)    { return [...arr].sort(()=>0.5-Math.random()); }
 
 // ════════════════════════════════════════════════════════════════
-//  KONFIGURASI ADS — HALAMAN STATIS (/video/slug/)
+//  KONFIGURASI ADS
 // ════════════════════════════════════════════════════════════════
 const STATIC_AD = {
   allAds: true,
@@ -49,7 +47,7 @@ const STATIC_AD = {
   useNativeBanner1: true,
   nativeBanner1HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
 
-  useNativeBanner2: true,
+  useNativeBanner2: false,
   nativeBanner2HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
 };
 
@@ -588,26 +586,35 @@ function buildHomepage(dbEN) {
 
   html = html.replace(/if\s*\(\s*tag\s*\)\s*\{/, categoryLogic);
 
-  // c. PATCH: PERBAIKAN LOAD MORE HOMEPAGE (No Flash)
-  // Menyiapkan variabel array data halaman dengan offset yang tepat
+  // c. PATCH: PERBAIKAN LOAD MORE HOMEPAGE KARENA MASALAH AWAIT LOAD
   const hardcodedSlugs = JSON.stringify(featured.map(v => v.slug));
   const homePatch = `if(!videoDatabaseALL.length) await loadDatabases();
+    
+    // SELALU jalankan penyiapan _homeData
     if (!window._homeData) {
       const staticSlugs = ${hardcodedSlugs};
       const staticVids = staticSlugs.map(s => videoDatabaseALL.find(v=>v&&v.slug===s)).filter(Boolean);
       const remaining = videoDatabaseALL.filter(v => !staticSlugs.includes(v.slug));
       window._homeData = [...staticVids, ...remaining];
     }
+    
     const gridInner = document.getElementById('video-grid-inner');
-    if (gridInner && currentData.length === 0) {
+    
+    // Jika kita berada di halaman utama dan grid belum diganti
+    if (gridInner && !window._homeInitialized) {
       currentData = window._homeData.slice(${HOMEPAGE_CARDS});
       currentPage = 0;
+      window._homeInitialized = true;
+      const btn = document.getElementById('btn-load-more');
+      if(btn) btn.style.display = currentData.length > 0 ? 'inline-block' : 'none';
     } else {
+      // Jika LoadMore tidak ada grid (dari SPA), jalankan fungsi asli
       renderGrid(app, window._homeData);
+      window._homeInitialized = true;
     }`;
 
-  // Ganti blok if(!videoDatabaseALL.length) bawaan index_base yang me-reset Homepage
-  html = html.replace(/if\(!videoDatabaseALL\.length\)\s*\{\s*await loadDatabases\(\);\s*renderGrid\(app,\s*videoDatabaseALL\);\s*\}/, homePatch);
+  // Menggunakan regex super fleksibel agar memakan kode aslinya meskipun ada beda spasi
+  html = html.replace(/if\s*\(\s*!videoDatabaseALL\.length\s*\)\s*\{\s*await\s+loadDatabases\(\);\s*renderGrid\(app,\s*videoDatabaseALL\);\s*\}/g, homePatch);
 
   return html;
 }
