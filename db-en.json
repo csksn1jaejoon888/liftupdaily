@@ -35,7 +35,7 @@
           "name": "Why is continual learning still a challenge for AI?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Models struggle to retain knowledge while adapting to new data, leading to \"catastrophic forgetting.\" Even with massive compute, this remains unsolved."
+            "text": "Models struggle to retain knowledge while adapting to new-data, leading to \"catastrophic forgetting.\" Even with massive compute, this remains unsolved."
           }
         },
         {
