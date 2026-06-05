@@ -86,7 +86,7 @@
           "name": "How much RAM does RATI really use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Around 300MB due to GPU-acceleration. close other apps if your system has limited RAM."
+            "text": "Around 300MB due to GPU acceleration. close other apps if your system has limited RAM."
           }
         },
         {
