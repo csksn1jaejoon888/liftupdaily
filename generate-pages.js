@@ -1,11 +1,12 @@
 // ══════════════════════════════════════════════════════════════════
-//  generate-pages.js  v9
+//  generate-pages.js  v11 (Perfect Integration with SPA index_base)
 //  Fixes & improvements:
 //    1. Native Banner di desktop: NB1 di ATAS related video
-//    2. Tidak ada duplikat — NB1 & NB2 terpisah dengan switch sendiri
-//    3. Mobile: NB1 bawah tombol, NB2 bawah summary
-//    4. Footer kategori SEO rapi (6 kategori, dari db-en.json)
-//    5. Container NB sidebar full-width & seimbang
+//    2. Mobile: NB1 bawah tombol, NB2 bawah summary
+//    3. Footer kategori SEO rapi (6 kategori, dari db-en.json)
+//    4. Kategori Router disisipkan langsung ke script bawaan user
+//    5. Load More 100% Fix (karena menggunakan renderGrid bawaan)
+//    6. Footer di homepage DIHILANGKAN sepenuhnya.
 // ══════════════════════════════════════════════════════════════════
 'use strict';
 
@@ -36,44 +37,22 @@ function shuffle(arr)    { return [...arr].sort(()=>0.5-Math.random()); }
 
 // ════════════════════════════════════════════════════════════════
 //  KONFIGURASI ADS — HALAMAN STATIS (/video/slug/)
-//  ─────────────────────────────────────────────────────────────
-//  Setelah edit, jalankan ulang: node generate-pages.js
 // ════════════════════════════════════════════════════════════════
 const STATIC_AD = {
-
-  // ── Master switch — false = semua ads mati ────────────────────
   allAds: true,
-
-  // ── Direct Link (tombol More Info 🔥) ─────────────────────────
   useDirect:  true,
   directUrl:  'https://facebook.com',
-
-  // ── Play Button Ads ───────────────────────────────────────────
   usePlayAds:       true,
   playAdsUrl:       'https://facebook.com',
-  playAdsStartFrom: 2,           // mulai buka ads dari tap ke-N
+  playAdsStartFrom: 2,
 
-  // ════════════════════════════════════════════════════════════
-  //  NATIVE BANNER 1
-  //  Desktop : tampil di ATAS list related video (sidebar kanan)
-  //  Mobile  : tampil di bawah tombol HOME / More Info
-  // ════════════════════════════════════════════════════════════
   useNativeBanner1: true,
   nativeBanner1HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
 
-  // ════════════════════════════════════════════════════════════
-  //  NATIVE BANNER 2
-  //  Desktop : tampil di BAWAH list related video (sidebar kanan)
-  //  Mobile  : tampil di bawah summary box
-  // ════════════════════════════════════════════════════════════
   useNativeBanner2: true,
   nativeBanner2HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
 };
 
-// ════════════════════════════════════════════════════════════════
-//  KONFIGURASI KATEGORI FOOTER SEO
-//  Thumbnail diambil dari db-en.json berdasarkan tag
-// ════════════════════════════════════════════════════════════════
 const FOOTER_CATEGORIES = [
   { key: 'AI_ML_RESEARCH',    label: 'AI & ML Research',  icon: '✨', tag: 'ai-research'  },
   { key: 'TUTORIAL_HOWTO',    label: 'Tutorial & How-To', icon: '💻', tag: 'tutorial'      },
@@ -109,7 +88,6 @@ function buildVideoPage(v, allVideos) {
         `<a href="${BASE_URL}/?tag=${encodeURIComponent(t)}" class="seo-tag-badge">#${esc(t)}</a>`
       ).join('')}</div>` : '';
 
-  // Mobile horizontal slider
   const mobileRelatedHtml = related.slice(0,8).map(r=>`
     <a href="${BASE_URL}/video/${r.slug}/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg"
@@ -118,7 +96,6 @@ function buildVideoPage(v, allVideos) {
       <p>${esc(r.title)}</p>
     </a>`).join('');
 
-  // Desktop sidebar related (20 awal)
   const sideRelatedHtml = related.slice(0,20).map(r=>`
     <a href="${BASE_URL}/video/${r.slug}/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg"
@@ -131,7 +108,6 @@ function buildVideoPage(v, allVideos) {
     allVideos.filter(r=>r.slug!==v.slug).map(r=>({slug:r.slug,youtubeId:r.youtubeId,title:r.title}))
   );
 
-  // ── Buat blok native banner (dengan ID unik agar close tidak konflik) ──
   function makeBanner(uid, htmlContent) {
     return `<div class="native-banner-wrap" id="nb-${uid}">` +
       `<div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div>` +
@@ -139,13 +115,11 @@ function buildVideoPage(v, allVideos) {
       `</div>`;
   }
 
-  // Buat 4 instance terpisah — mobile x2, desktop x2 — tanpa duplikat
   const nb1Mobile  = STATIC_AD.allAds && STATIC_AD.useNativeBanner1 ? makeBanner('1m', STATIC_AD.nativeBanner1HTML) : '';
   const nb2Mobile  = STATIC_AD.allAds && STATIC_AD.useNativeBanner2 ? makeBanner('2m', STATIC_AD.nativeBanner2HTML) : '';
   const nb1Desktop = STATIC_AD.allAds && STATIC_AD.useNativeBanner1 ? makeBanner('1d', STATIC_AD.nativeBanner1HTML) : '';
   const nb2Desktop = STATIC_AD.allAds && STATIC_AD.useNativeBanner2 ? makeBanner('2d', STATIC_AD.nativeBanner2HTML) : '';
 
-  // ── Footer kategori untuk halaman video ──
   const footerCatHtml = FOOTER_CATEGORIES.map(cat =>
     `<a href="${BASE_URL}/category/${cat.key.toLowerCase().replace(/_/g,'-')}/" class="footer-cat-link">` +
     `<span>${cat.icon}</span><span>${cat.label}</span></a>`
@@ -557,26 +531,12 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
 // ════════════════════════════════════════════════════════════════
 function buildHomepage(dbEN) {
   const featured = shuffle(dbEN).slice(0, HOMEPAGE_CARDS);
+  let html = fs.readFileSync(BASE_TMPL, 'utf8');
 
-  let html = fs.readFileSync(BASE_TMPL, 'utf8').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-
-  const APP_START = '  <div class="main-content" id="app">';
-  const APP_END   = '  </div>\n  </main>\n\n<script>';
-  const startIdx  = html.indexOf(APP_START);
-  let   endIdx    = html.indexOf(APP_END);
-
-  if (endIdx === -1) {
-    const APP_END_OLD = '  </div>\n\n<script>';
-    endIdx = html.indexOf(APP_END_OLD);
-  }
-  if (startIdx === -1 || endIdx === -1) {
-    console.error('❌ Tidak bisa menemukan #app block di template! Cek index_base.html');
-    process.exit(1);
-  }
-
-  function cardHtml(v, idx) {
-    const loading = idx < 4 ? 'eager' : 'lazy';
-    const fp      = idx < 4 ? ' fetchpriority="high"' : '';
+  // 1. INJECT STATIC CARDS KE DALAM <div class="main-content" id="app">
+  const cardsHtml = featured.map((v, i) => {
+    const loading = i < 4 ? 'eager' : 'lazy';
+    const fp      = i < 4 ? ' fetchpriority="high"' : '';
     return `<a href="/video/${v.slug}/" class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
     <div class="thumb-wrap">
@@ -588,162 +548,50 @@ function buildHomepage(dbEN) {
     <div class="video-card-title">${esc(v.title)}</div>
   </div>
 </a>`;
-  }
+  }).join('\n');
 
-  const cardsHtml      = featured.map((v,i) => cardHtml(v,i)).join('\n');
-  const hardcodedSlugs = JSON.stringify(featured.map(v => v.slug));
+  const staticGrid = `<h5 style="color:#98FB98;margin-bottom:12px">🔥 TRENDING VIDEO</h5>
+<div class="video-grid" id="video-grid-inner">\n${cardsHtml}\n</div>
+<div class="load-more-wrap"><button class="btn-load-more" id="btn-load-more" onclick="loadMore()">Load More</button></div>`;
 
-  const newApp = `${APP_START}
-    <h5 style="color:#98FB98;margin-bottom:12px">🔥 TRENDING VIDEO</h5>
-    <div class="video-grid" id="video-grid-inner">
-${cardsHtml}
-    </div>
-    <div class="load-more-wrap"><button class="btn-load-more" id="btn-load-more" onclick="loadMore()">Load More</button></div>
-  </div>\n  </main>\n\n<script>`;
+  // Ganti isi dari #app dengan grid static
+  html = html.replace(/<div class="main-content" id="app">([\s\S]*?)<\/div>\s*<\/main>/i, 
+    `<div class="main-content" id="app">\n${staticGrid}\n</div>\n  </main>`
+  );
 
-  html = html.slice(0, startIdx) + newApp + html.slice(endIdx + APP_END.length);
 
-  // Bagian footerHomepage dihapus 100% dari homepage statis ini
+  // 2. SISIPKAN LOGIKA KATEGORI LANGSUNG KE DALAM SCRIPT ASLI INDEX_BASE
+  // Agar tidak bentrok, kita string replace kode asli di dalam router()
 
-  const patchScript = `
-// ══════════════════════════════════════════════════════════════
-//  PATCH homepage statis v10 (Fixed Route, Category Match & Load More)
-// ══════════════════════════════════════════════════════════════
+  // a. Ambil parameter URL category
+  html = html.replace(/const tag\s*=\s*getUrlParams\(\)\.get\('tag'\);/g, 
+    "const tag   = getUrlParams().get('tag');\n  const category = getUrlParams().get('category');"
+  );
 
-// OVERRIDE Keras Fungsi Load More Asli agar 100% Berfungsi
-window.loadMore = function() {
-  var grid = document.getElementById('video-grid-inner');
-  var btn = document.getElementById('btn-load-more');
-  if (!grid || !window.currentData) return;
-  
-  var batch = window.currentData.slice(0, 20);
-  window.currentData = window.currentData.slice(20);
-  
-  batch.forEach(function(v) {
-    grid.innerHTML += '<a href="/video/'+v.slug+'/" class="video-card-link" style="text-decoration:none;color:inherit"><div class="video-card"><div class="thumb-wrap"><img src="https://img.youtube.com/vi/'+v.youtubeId+'/mqdefault.jpg" alt="'+(v.title||'').replace(/"/g,'&quot;')+'" loading="lazy" width="320" height="180" onload="this.classList.add(\\'loaded\\')" onerror="this.src=\\'https://img.youtube.com/vi/'+v.youtubeId+'/hqdefault.jpg\\';this.classList.add(\\'loaded\\')"/></div><div class="video-card-title">'+(v.title||'')+'</div></div></a>';
-  });
-  
-  if (btn) btn.style.display = window.currentData.length > 0 ? 'inline-block' : 'none';
-};
-
-async function loadDatabases() {
-  const ROOT = location.origin + '/';
-  const [resEN, resID] = await Promise.all([
-    fetch(ROOT + 'db-en.json'),
-    fetch(ROOT + 'db-id.json').catch(()=>({ok:false}))
-  ]);
-  videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
-  videoDatabaseID  = resID.ok ? (await resID.json()).map(v=>({...v,source:v.source||'nofollow'})) : [];
-  videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
-}
-
-async function router() {
-  const app    = document.getElementById('app');
-  const navbar = document.getElementById('main-navbar');
-  
-  // PARSING URL YANG 100% AKURAT DAN TAHAN ERROR
-  const urlParams = new URLSearchParams(window.location.search);
-  const category  = urlParams.get('category');
-  const tag       = urlParams.get('tag');
-  const search    = urlParams.get('search');
-
-  if(typeof updateHtmlLang === 'function') updateHtmlLang();
-  if(typeof updateRobotsBySource === 'function') updateRobotsBySource('seo');
-
-  if (category) {
-    if(navbar) navbar.classList.remove('video-mode');
-    if (!window.videoDatabaseALL || !videoDatabaseALL.length) await loadDatabases();
+  // b. Override "if(tag)" bawaan index_base.html dengan logika kategori terlebih dahulu
+  const categoryLogic = `if(category) {
+    navbar.classList.remove('video-mode');
+    if(!videoDatabaseALL.length) await loadDatabases();
     
-    const catKey = category.toUpperCase();
+    const catKey = category.toUpperCase().replace(/[-_\\s]+/g, ' ');
     const rel = videoDatabaseEN.filter(v => {
       if (!v) return false;
-      let c = (v.category || '').toUpperCase();
+      let c = (v.category || '').toUpperCase().replace(/[-_\\s]+/g, ' ');
+      if (c === catKey) return true;
       let tgs = (v.tags || []).map(t => typeof t === 'string' ? t.toUpperCase() : '');
-      if (c === catKey || c.replace(/[-_\\s]+/g, '_') === catKey) return true;
-      let keywords = catKey.split('_'); 
+      let keywords = catKey.split(' '); 
       return keywords.some(kw => c.includes(kw) || tgs.some(t => t.includes(kw)));
     });
     
-    window.currentData = rel;
-    const grid = document.getElementById('video-grid-inner');
-    if (grid) {
-      grid.innerHTML = ''; // Wajib kosongkan video dari homepage lama
-      window.loadMore();   // Inject ulang manual via loadMore Override
-    }
-    if(typeof updateCanonical === 'function') updateCanonical('home','seo');
-    
-    const h = app ? app.querySelector('h5') : null;
-    if (h) {
-      h.textContent = rel.length ? '📁 Kategori: ' + category.replace(/_/g, ' ') + ' (' + rel.length + ' video)' : '📁 Kategori: Tidak ada video';
-      addHomeBtn(h);
-    }
-    
-  } else if (tag || search) {
-    if(navbar) navbar.classList.remove('video-mode');
-    if (!window.videoDatabaseALL || !videoDatabaseALL.length) await loadDatabases();
-    
-    const q = (search || tag).toLowerCase();
-    const rel  = videoDatabaseALL.filter(v=>(v.title||'').toLowerCase().includes(q));
-    const rest = videoDatabaseALL.filter(v=>!(v.title||'').toLowerCase().includes(q));
-    const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
-    
-    window.currentData = combined;
-    const grid = document.getElementById('video-grid-inner');
-    if (grid) {
-      grid.innerHTML = '';
-      window.loadMore();
-    }
-    if(typeof updateCanonical === 'function') updateCanonical('home','seo');
-    
-    const h = app ? app.querySelector('h5') : null;
-    if (h) {
-      h.textContent = rel.length ? '🔍 "' + (search||tag) + '" — ' + rel.length + ' hasil' : '🔥 TRENDING VIDEO';
-      addHomeBtn(h);
-    }
-    
-  } else {
-    // KONDISI UNTUK HOMEPAGE ATAU STATIS VIDEO
-    var oldBtn = document.getElementById('btn-back-home');
-    if (oldBtn) oldBtn.remove();
-    
-    const slug = typeof getCurrentSlug === 'function' ? getCurrentSlug() : null;
-    if (!slug || slug === 'home' || slug === '') {
-      if(navbar) navbar.classList.remove('video-mode');
-      if (!window.videoDatabaseALL || !videoDatabaseALL.length) await loadDatabases();
-      
-      const shown = new Set(${hardcodedSlugs});
-      window.currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
-      
-      const btn = document.getElementById('btn-load-more');
-      if (btn) btn.style.display = window.currentData.length > 0 ? 'inline-block' : 'none';
-      if(typeof updateCanonical === 'function') updateCanonical('home','seo');
-    } else {
-      if (!window.videoDatabaseALL || !videoDatabaseALL.length) await loadDatabases();
-      const video = videoDatabaseALL.find(v => v.slug === slug);
-      if (video && video.source === 'nofollow') {
-        if(navbar) navbar.classList.add('video-mode');
-        if(typeof renderVideo === 'function') renderVideo(app, video);
-      } else {
-        window.location.replace('/video/' + slug + '/');
-      }
-    }
-  }
-  window.scrollTo(0,0);
-}
+    renderGrid(app, rel); // Panggil renderGrid bawaan index_base, Load More akan otomatis work!
+    updateCanonical('home','seo');
+    _insertHomeBtn(app, '📁 Kategori: ' + category.replace(/[-_]/g, ' ').toUpperCase() + ' (' + rel.length + ' video)');
+  } else if(tag) {`;
 
-function addHomeBtn(headingElement) {
-  if (!document.getElementById('btn-back-home')) {
-    var btn = document.createElement('button');
-    btn.id='btn-back-home';
-    btn.onclick=function(){ window.location.href = location.origin + '/'; };
-    btn.style.cssText='background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
-    btn.innerHTML='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
-    headingElement.parentNode.insertBefore(btn, headingElement);
-  }
-}
-`;
+  html = html.replace(/if\s*\(\s*tag\s*\)\s*\{/, categoryLogic);
 
-  html = html.replace('<\/script>\n</body>', patchScript + '<\/script>\n</body>');
+  // (Catatan: Footer TIDAK ditambahkan ke html di sini sesuai instruksi agar homepage bersih)
+
   return html;
 }
 
@@ -781,25 +629,24 @@ function main() {
     created++;
     if (created%50===0) console.log(`  ✅ ${created}/${dbEN.length}`);
   });
-  console.log(`✅ ${created} halaman video selesai`);
+  console.log(`✅ ${created} halaman video statis selesai`);
 
   console.log('🏠 Update index.html dari index_base.html...');
   const newIndex = buildHomepage(dbEN);
   fs.writeFileSync(INDEX_FILE, newIndex, 'utf8');
-  console.log('✅ index.html diperbarui');
+  console.log('✅ index.html diperbarui (Homepage Tanpa Footer)');
 
-  // --- MULAI TAMBAHAN PEMBUAT FOLDER KATEGORI ---
-  console.log('📂 Generate folder kategori...');
-  rmDir(CATEGORY_DIR); // Hapus folder lama agar bersih
+  // --- PEMBUAT FOLDER KATEGORI SEO STATIS ---
+  console.log('📂 Generate folder kategori statis...');
+  rmDir(CATEGORY_DIR); 
   fs.mkdirSync(CATEGORY_DIR, { recursive: true });
 
   FOOTER_CATEGORIES.forEach(cat => {
-    // Membuat nama folder SEO friendly (cth: ai-ml-research)
     const catSlug = cat.key.toLowerCase().replace(/_/g, '-');
     const dirPath = path.join(CATEGORY_DIR, catSlug);
     fs.mkdirSync(dirPath, { recursive: true });
 
-    // HTML Statis yang otomatis memanggil router category yang kita buat di atas
+    // HTML Statis yang otomatis redirect / memanggil router category yang telah kita patch di atas
     const catHtml = `<!DOCTYPE html>
 <html lang="id">
 <head>
@@ -819,14 +666,8 @@ function main() {
     fs.writeFileSync(path.join(dirPath, 'index.html'), catHtml, 'utf8');
   });
   console.log(`✅ ${FOOTER_CATEGORIES.length} folder kategori berhasil dibuat`);
-  // --- AKHIR TAMBAHAN ---
-  console.log(`\n🎉 Selesai! ${created} halaman statis (db-en) + homepage (EN+ID berbaur)`);
-  console.log('\n📋 Status Ads (STATIC_AD):');
-  console.log(`   allAds           : ${STATIC_AD.allAds}`);
-  console.log(`   useDirect        : ${STATIC_AD.useDirect}   → tombol More Info 🔥`);
-  console.log(`   usePlayAds       : ${STATIC_AD.usePlayAds}   → play button ads (mulai tap ke-${STATIC_AD.playAdsStartFrom})`);
-  console.log(`   useNativeBanner1 : ${STATIC_AD.useNativeBanner1}   → NB1 (atas related video / bawah tombol mobile)`);
-  console.log(`   useNativeBanner2 : ${STATIC_AD.useNativeBanner2}   → NB2 (bawah related video / bawah summary mobile)`);
+  
+  console.log(`\n🎉 Selesai! ${created} halaman video (db-en) + homepage statis`);
 }
 
 main();
