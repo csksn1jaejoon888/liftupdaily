@@ -1,11 +1,11 @@
 // ══════════════════════════════════════════════════════════════════
-//  generate-pages.js  v11 (Perfect Integration with SPA index_base)
+//  generate-pages.js  v12 (Perfect Load More on Homepage Fix)
 //  Fixes & improvements:
 //    1. Native Banner di desktop: NB1 di ATAS related video
 //    2. Mobile: NB1 bawah tombol, NB2 bawah summary
 //    3. Footer kategori SEO rapi (6 kategori, dari db-en.json)
 //    4. Kategori Router disisipkan langsung ke script bawaan user
-//    5. Load More 100% Fix (karena menggunakan renderGrid bawaan)
+//    5. Load More 100% Fix di Homepage Statis (No Flash, Seamless)
 //    6. Footer di homepage DIHILANGKAN sepenuhnya.
 // ══════════════════════════════════════════════════════════════════
 'use strict';
@@ -559,16 +559,14 @@ function buildHomepage(dbEN) {
     `<div class="main-content" id="app">\n${staticGrid}\n</div>\n  </main>`
   );
 
-
-  // 2. SISIPKAN LOGIKA KATEGORI LANGSUNG KE DALAM SCRIPT ASLI INDEX_BASE
-  // Agar tidak bentrok, kita string replace kode asli di dalam router()
+  // 2. SISIPKAN LOGIKA KATEGORI & LOAD MORE KE SCRIPT BAWAAN INDEX_BASE
 
   // a. Ambil parameter URL category
   html = html.replace(/const tag\s*=\s*getUrlParams\(\)\.get\('tag'\);/g, 
     "const tag   = getUrlParams().get('tag');\n  const category = getUrlParams().get('category');"
   );
 
-  // b. Override "if(tag)" bawaan index_base.html dengan logika kategori terlebih dahulu
+  // b. Override "if(tag)" dengan logika kategori terlebih dahulu
   const categoryLogic = `if(category) {
     navbar.classList.remove('video-mode');
     if(!videoDatabaseALL.length) await loadDatabases();
@@ -583,14 +581,33 @@ function buildHomepage(dbEN) {
       return keywords.some(kw => c.includes(kw) || tgs.some(t => t.includes(kw)));
     });
     
-    renderGrid(app, rel); // Panggil renderGrid bawaan index_base, Load More akan otomatis work!
+    renderGrid(app, rel);
     updateCanonical('home','seo');
     _insertHomeBtn(app, '📁 Kategori: ' + category.replace(/[-_]/g, ' ').toUpperCase() + ' (' + rel.length + ' video)');
   } else if(tag) {`;
 
   html = html.replace(/if\s*\(\s*tag\s*\)\s*\{/, categoryLogic);
 
-  // (Catatan: Footer TIDAK ditambahkan ke html di sini sesuai instruksi agar homepage bersih)
+  // c. PATCH: PERBAIKAN LOAD MORE HOMEPAGE (No Flash)
+  // Menyiapkan variabel array data halaman dengan offset yang tepat
+  const hardcodedSlugs = JSON.stringify(featured.map(v => v.slug));
+  const homePatch = `if(!videoDatabaseALL.length) await loadDatabases();
+    if (!window._homeData) {
+      const staticSlugs = ${hardcodedSlugs};
+      const staticVids = staticSlugs.map(s => videoDatabaseALL.find(v=>v&&v.slug===s)).filter(Boolean);
+      const remaining = videoDatabaseALL.filter(v => !staticSlugs.includes(v.slug));
+      window._homeData = [...staticVids, ...remaining];
+    }
+    const gridInner = document.getElementById('video-grid-inner');
+    if (gridInner && currentData.length === 0) {
+      currentData = window._homeData.slice(${HOMEPAGE_CARDS});
+      currentPage = 0;
+    } else {
+      renderGrid(app, window._homeData);
+    }`;
+
+  // Ganti blok if(!videoDatabaseALL.length) bawaan index_base yang me-reset Homepage
+  html = html.replace(/if\(!videoDatabaseALL\.length\)\s*\{\s*await loadDatabases\(\);\s*renderGrid\(app,\s*videoDatabaseALL\);\s*\}/, homePatch);
 
   return html;
 }
