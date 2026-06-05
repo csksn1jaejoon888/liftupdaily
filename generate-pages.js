@@ -623,6 +623,9 @@ ${cardsHtml}
 
   // ── Patch script: loadMore + router (self-contained) ──────────
   const patchScript = `
+  if (!location.pathname.startsWith('/video/')) {
+  // Pulangkan ke SPA murni
+} else {
 // ══════════════════════════════════════════════════════════════
 //  PATCH homepage statis v10
 //  loadMore: self-contained, append kartu langsung ke DOM
@@ -832,10 +835,11 @@ window.addEventListener('popstate', function() { router(); });
   }
   // Kalau tidak ada tag/search, grid hardcode sudah siap — tidak perlu apa-apa
 })();
+}
 `;
 
   // Inject patch script sebelum </script> terakhir sebelum </body>
-  html = html.replace('<\/script>\n</body>', '<script id="node-patch">' + patchScript + '<\/script>\n</body>');
+  html = html.replace('<\/script>\n</body>', patchScript + '<\/script>\n</body>');
   return html;
 }
 
