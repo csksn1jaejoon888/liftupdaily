@@ -573,7 +573,7 @@ function buildHomepage(dbEN) {
 
   // ── Cari posisi #app di template ──────────────────────────────
   const APP_START = '  <div class="main-content" id="app">';
-  const APP_END   = '  </div>\n  </main>\n\n<script>';
+  const endMatch = html.match(/\s*<\/div>\s*<\/main>\s*<script>/);
   const startIdx  = html.indexOf(APP_START);
   let   endIdx    = html.indexOf(APP_END);
   if (endIdx === -1) endIdx = html.indexOf('  </div>\n\n<script>');
@@ -835,7 +835,7 @@ window.addEventListener('popstate', function() { router(); });
 `;
 
   // Inject patch script sebelum </script> terakhir sebelum </body>
-  html = html.replace('<\/script>\n</body>', patchScript + '<\/script>\n</body>');
+  html = html.lastIndexOf('<\/script>\n</body>', patchScript + '<\/script>\n</body>');
   return html;
 }
 
