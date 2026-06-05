@@ -65,7 +65,7 @@ const STATIC_AD = {
   //  Desktop : tampil di BAWAH list related video (sidebar kanan)
   //  Mobile  : tampil di bawah summary box
   // ════════════════════════════════════════════════════════════
-  useNativeBanner2: false,
+  useNativeBanner2: true,
   nativeBanner2HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
 };
 
@@ -554,10 +554,24 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
 // ════════════════════════════════════════════════════════════════
 //  HOMEPAGE STATIS
 // ════════════════════════════════════════════════════════════════
-function buildHomepage(dbEN) {
-  const featured = shuffle(dbEN).slice(0, HOMEPAGE_CARDS);
+function buildHomepage(dbEN, catObj = null) {
+  let filteredDB = dbEN;
+  let titleHTML = `<h5 style="color:#98FB98;margin-bottom:12px">🔥 TRENDING VIDEO</h5>`;
+
+  if (catObj) {
+    filteredDB = dbEN.filter(v => v.category === catObj.key);
+    titleHTML = `<h5 style="color:#98FB98;margin-bottom:12px">${catObj.icon} KATEGORI: ${catObj.label.toUpperCase()}</h5>
+    <button id="btn-back-home" onclick="location.href='${BASE_URL}/'" style="background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME</button>`;
+  }
+
+  const featured = shuffle(filteredDB).slice(0, HOMEPAGE_CARDS);
 
   let html = fs.readFileSync(BASE_TMPL, 'utf8').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+
+  if (catObj) {
+    html = html.replace(/<title>.*?<\/title>/i, `<title>Kategori: ${catObj.label} | ${SITE_NAME}</title>`);
+    html = html.replace(/<meta\s+name=["']description["']\s+content=["'][^"']*["']/i, `<meta name="description" content="Streaming video terbaru untuk kategori ${catObj.label} di ${SITE_NAME}."`);
+  }
 
   const APP_START = '  <div class="main-content" id="app">';
   const APP_END   = '  </div>\n  </main>\n\n<script>';
@@ -593,7 +607,7 @@ function buildHomepage(dbEN) {
   const hardcodedSlugs = JSON.stringify(featured.map(v => v.slug));
 
   const newApp = `${APP_START}
-    <h5 style="color:#98FB98;margin-bottom:12px">🔥 TRENDING VIDEO</h5>
+    ${titleHTML}
     <div class="video-grid" id="video-grid-inner">
 ${cardsHtml}
     </div>
@@ -622,6 +636,10 @@ ${cardsHtml}
 // ══════════════════════════════════════════════════════════════
 //  PATCH homepage statis v9
 // ══════════════════════════════════════════════════════════════
+window.IS_CATEGORY_PAGE = ${catObj ? `'${catObj.key}'` : 'false'};
+window.IS_CATEGORY_SLUG = ${catObj ? `'${catObj.key.toLowerCase().replace(/_/g, '-')}'` : 'false'};
+window.CAT_LABEL = ${catObj ? `'${catObj.label}'` : 'false'};
+window.CAT_ICON = ${catObj ? `'${catObj.icon}'` : 'false'};
 
 async function loadDatabases() {
   const ROOT = location.origin + '/';
@@ -632,30 +650,60 @@ async function loadDatabases() {
   videoDatabaseEN  = (await resEN.json()).map(v=>({...v,source:v.source||'seo'}));
   videoDatabaseID  = resID.ok ? (await resID.json()).map(v=>({...v,source:v.source||'nofollow'})) : [];
   videoDatabaseALL = [...videoDatabaseEN,...videoDatabaseID].sort(()=>0.5-Math.random());
+  
+  let targetData = videoDatabaseALL;
+  if (window.IS_CATEGORY_PAGE) {
+    targetData = videoDatabaseALL.filter(v => v.category === window.IS_CATEGORY_PAGE);
+  }
+  
   const shown = new Set(${hardcodedSlugs});
-  currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
+  currentData = targetData.filter(v=>!shown.has(v.slug));
   currentPage = 1;
 }
 
 async function router() {
   const app    = document.getElementById('app');
   const navbar = document.getElementById('main-navbar');
-  const slug   = getCurrentSlug();
-  const tag    = getUrlParams().get('tag');
-  const search = getUrlParams().get('search');
+  const slug   = typeof getCurrentSlug === 'function' ? getCurrentSlug() : '';
+  const tag    = typeof getUrlParams === 'function' ? getUrlParams().get('tag') : null;
+  const search = typeof getUrlParams === 'function' ? getUrlParams().get('search') : null;
 
-  updateHtmlLang();
-  updateRobotsBySource('seo');
+  if (typeof updateHtmlLang === 'function') updateHtmlLang();
+  if (typeof updateRobotsBySource === 'function') updateRobotsBySource('seo');
+
+  const isCatNav = window.IS_CATEGORY_PAGE && (!slug || slug === 'home' || slug === 'category' || slug === window.IS_CATEGORY_SLUG);
+
+  if (isCatNav && !tag && !search) {
+    if (navbar) navbar.classList.remove('video-mode');
+    if (!videoDatabaseALL || !videoDatabaseALL.length) await loadDatabases();
+    const rel = videoDatabaseALL.filter(v => v.category === window.IS_CATEGORY_PAGE);
+    if (typeof renderGrid === 'function') renderGrid(app, rel);
+    if (typeof updateCanonical === 'function') updateCanonical('category', 'seo');
+    const h = app ? app.querySelector('h5') : null;
+    if (h) {
+      h.textContent = window.CAT_ICON + ' KATEGORI: ' + window.CAT_LABEL.toUpperCase();
+      if (!document.getElementById('btn-back-home')) {
+        var btn = document.createElement('button');
+        btn.id='btn-back-home';
+        btn.onclick=function(){ location.href = location.origin + '/'; };
+        btn.style.cssText='background:transparent;color:var(--green);border:1px solid var(--green);padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
+        btn.innerHTML='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
+        h.parentNode.insertBefore(btn, h);
+      }
+    }
+    window.scrollTo(0,0);
+    return;
+  }
 
   if (tag) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
+    if (navbar) navbar.classList.remove('video-mode');
+    if (!videoDatabaseALL || !videoDatabaseALL.length) await loadDatabases();
     const rel   = videoDatabaseALL.filter(v=>v.tags&&v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
     const rest  = videoDatabaseALL.filter(v=>!v.tags||!v.tags.some(t=>t.toLowerCase()===tag.toLowerCase()));
     const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
-    renderGrid(app, combined);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
+    if (typeof renderGrid === 'function') renderGrid(app, combined);
+    if (typeof updateCanonical === 'function') updateCanonical('home','seo');
+    const h = app ? app.querySelector('h5') : null;
     if (h) {
       h.textContent = rel.length ? '🏷️ Tag: #'+tag+' ('+rel.length+' videos)' : '🔥 TRENDING VIDEO';
       if (!document.getElementById('btn-back-home')) {
@@ -668,15 +716,15 @@ async function router() {
       }
     }
   } else if (search) {
-    navbar.classList.remove('video-mode');
-    if (!videoDatabaseALL.length) await loadDatabases();
+    if (navbar) navbar.classList.remove('video-mode');
+    if (!videoDatabaseALL || !videoDatabaseALL.length) await loadDatabases();
     const q   = search.toLowerCase();
     const rel  = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)!==-1);
     const rest = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)===-1);
     const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
-    renderGrid(app, combined);
-    updateCanonical('home','seo');
-    const h = app.querySelector('h5');
+    if (typeof renderGrid === 'function') renderGrid(app, combined);
+    if (typeof updateCanonical === 'function') updateCanonical('home','seo');
+    const h = app ? app.querySelector('h5') : null;
     if (h) {
       h.textContent = rel.length ? '🔍 "'+search+'" — '+rel.length+' hasil' : '🔥 TRENDING VIDEO';
       if (!document.getElementById('btn-back-home')) {
@@ -691,15 +739,15 @@ async function router() {
   } else if (!slug || slug==='home') {
     var oldBtn = document.getElementById('btn-back-home');
     if (oldBtn) oldBtn.remove();
-    navbar.classList.remove('video-mode');
-    if(!videoDatabaseALL.length) await loadDatabases();
-    renderGrid(app, videoDatabaseALL);
-    updateCanonical('home','seo');
+    if (navbar) navbar.classList.remove('video-mode');
+    if (!videoDatabaseALL || !videoDatabaseALL.length) await loadDatabases();
+    if (typeof renderGrid === 'function') renderGrid(app, videoDatabaseALL);
+    if (typeof updateCanonical === 'function') updateCanonical('home','seo');
   } else {
-    const video = videoDatabaseALL.find(v => v.slug === slug);
+    const video = videoDatabaseALL ? videoDatabaseALL.find(v => v.slug === slug) : null;
     if (video && video.source === 'nofollow') {
-      navbar.classList.add('video-mode');
-      renderVideo(app, video);
+      if (navbar) navbar.classList.add('video-mode');
+      if (typeof renderVideo === 'function') renderVideo(app, video);
     } else {
       window.location.replace('/video/' + slug + '/');
     }
@@ -738,6 +786,11 @@ function main() {
   rmDir(VIDEO_DIR);
   fs.mkdirSync(VIDEO_DIR,{recursive:true});
 
+  const CATEGORY_DIR = path.join(__dirname, 'category');
+  console.log('🗑️  Hapus /category/ lama...');
+  rmDir(CATEGORY_DIR);
+  fs.mkdirSync(CATEGORY_DIR, {recursive:true});
+
   console.log('📄 Generate halaman statis dari db-en.json...');
   let created = 0;
   dbEN.forEach(v=>{
@@ -749,12 +802,24 @@ function main() {
   });
   console.log(`✅ ${created} halaman video selesai`);
 
+  console.log('📄 Generate halaman kategori statis...');
+  let catCreated = 0;
+  FOOTER_CATEGORIES.forEach(cat => {
+    const catSlug = cat.key.toLowerCase().replace(/_/g, '-');
+    const dir = path.join(CATEGORY_DIR, catSlug);
+    fs.mkdirSync(dir, {recursive:true});
+    const newCatPage = buildHomepage(dbEN, cat);
+    fs.writeFileSync(path.join(dir, 'index.html'), newCatPage, 'utf8');
+    catCreated++;
+  });
+  console.log(`✅ ${catCreated} halaman kategori selesai`);
+
   console.log('🏠 Update index.html dari index_base.html...');
   const newIndex = buildHomepage(dbEN);
   fs.writeFileSync(INDEX_FILE, newIndex, 'utf8');
   console.log('✅ index.html diperbarui');
 
-  console.log(`\n🎉 Selesai! ${created} halaman statis (db-en) + homepage (EN+ID berbaur)`);
+  console.log(`\n🎉 Selesai! ${created} halaman video statis, ${catCreated} halaman kategori statis, + homepage`);
   console.log('\n📋 Status Ads (STATIC_AD):');
   console.log(`   allAds           : ${STATIC_AD.allAds}`);
   console.log(`   useDirect        : ${STATIC_AD.useDirect}   → tombol More Info 🔥`);
