@@ -43,22 +43,22 @@ const STATIC_AD = {
 
   // ── Master switch ─────────────────────────────────────────────
   // false = semua ads mati (override semua switch di bawah)
-  allAds: true,
+  allAds: false,
 
   // ── Direct Link (tombol More Info 🔥) ─────────────────────────
-  useDirect:  true,                            // true = aktifkan
-  directUrl:  'https://facebook.com',       // URL direct link Adsterra
+  useDirect:  false,                            // true = aktifkan
+  directUrl:  'https://linkadsterra.com',       // URL direct link Adsterra
 
   // ── Play Button Ads ───────────────────────────────────────────
   // Buka URL saat user tap tombol play (mulai dari tap ke-N)
-  usePlayAds:       true,                      // true = aktifkan
-  playAdsUrl:       'https://facebook.com', // URL direct link
+  usePlayAds:       false,                      // true = aktifkan
+  playAdsUrl:       'https://linkadsterra.com', // URL direct link
   playAdsStartFrom: 2,                          // mulai dari tap play ke berapa (1 = semua)
 
   // ── Native Banner ─────────────────────────────────────────────
   // Desktop: tampil di sidebar kanan (di bawah list related video)
   // Mobile:  tampil di antara tombol HOME/More Info dan summary
-  useNativeBanner: true,                       // true = tampilkan banner
+  useNativeBanner: false,                       // true = tampilkan banner
   nativeBannerHTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
 };
 
@@ -110,10 +110,12 @@ function buildVideoPage(v, allVideos) {
   const sliderDataJson = JSON.stringify(
     allVideos.filter(r=>r.slug!==v.slug).map(r=>({slug:r.slug,youtubeId:r.youtubeId,title:r.title}))
   );
+
   // Native banner HTML (dipakai di mobile & desktop sidebar)
   const bannerBlock = STATIC_AD.allAds && STATIC_AD.useNativeBanner
     ? `<div class="native-banner-wrap" id="static-nb"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner">${STATIC_AD.nativeBannerHTML}</div></div>`
- 
+    : '';
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -458,21 +460,6 @@ document.getElementById('rec-slider').addEventListener('scroll', function(){
   });
 })();
 <\/script>
-<footer style="margin-top: 80px; padding: 40px 16px; background: #0d0d0d; text-align: center; border-top: 1px solid #222;">
-      <p style="color: #666; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; font-weight: bold;">
-        JELAJAHI KATEGORI UTAMA
-      </p>
-      
-      <nav style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-bottom: 30px;">
-        <a href="/category/ai-research" style="color: #aaa; text-decoration: none; font-size: 14px; transition: color 0.2s;">✨ AI Research</a>
-        <a href="/category/tutorial-howto" style="color: #aaa; text-decoration: none; font-size: 14px; transition: color 0.2s;">💻 Tutorial & Code</a>
-        <a href="/category/tech-review" style="color: #aaa; text-decoration: none; font-size: 14px; transition: color 0.2s;">📊 Tech Reviews</a>
-      </nav>
-
-      <p style="color: #333; font-size: 11px; margin: 0;">
-       © 2026 Trend4Genz. All rights reserved.
-      </p>
-    </footer>
 </body>
 </html>`;
 }
