@@ -50,26 +50,58 @@
     .video-page-container{width:100%;max-width:800px;margin:0 auto;padding:15px}
     @media(max-width:600px){.video-page-container{padding:0}}
 
-    /* ══════════════════════════════════════════════════════
-       DESKTOP 2-KOLOM: player kiri, related kanan
-       Berlaku min-width 992px
-    ══════════════════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════════
+       DESKTOP 2-KOLOM (≥992px)
+    ═══════════════════════════════════════════════ */
     @media(min-width:992px){
       .video-page-container{max-width:1100px}
       .video-desktop-layout{display:flex;gap:20px;align-items:flex-start}
       .video-main-col{flex:1 1 0;min-width:0}
-      .video-side-col{width:280px;flex-shrink:0;position:sticky;top:calc(var(--nav-h) + 10px)}
-      .side-related-label{color:var(--green);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px}
-      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 80px);overflow-y:auto;scrollbar-width:none}
+
+      /* Sidebar kanan — sticky, flex column */
+      .video-side-col{
+        width:280px;flex-shrink:0;
+        position:sticky;top:calc(var(--nav-h) + 10px);
+        display:flex;flex-direction:column;gap:0;
+      }
+
+      /* Label related */
+      .side-related-label{
+        color:var(--green);font-size:.8rem;font-weight:700;
+        letter-spacing:.05em;text-transform:uppercase;
+        padding:8px 0 8px;flex-shrink:0;
+      }
+
+      /* Daftar related video — scrollable */
+      .side-slider{
+        display:flex;flex-direction:column;gap:8px;
+        max-height:calc(100vh - var(--nav-h) - 300px);
+        overflow-y:auto;scrollbar-width:none;flex-shrink:0;
+      }
       .side-slider::-webkit-scrollbar{display:none}
-      .side-slider-item{display:flex;gap:8px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;border:1px solid transparent;transition:.2s;flex-shrink:0}
+
+      .side-slider-item{
+        display:flex;gap:8px;background:var(--dark);border-radius:8px;
+        overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;
+        border:1px solid transparent;transition:.2s;flex-shrink:0;
+      }
       .side-slider-item:hover{border-color:var(--green)}
       .side-slider-item img{width:108px;height:60px;object-fit:cover;flex-shrink:0}
-      .side-slider-item p{font-size:.72rem;padding:6px 8px;margin:0;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:#f1f1f1}
-      .side-native-banner{margin-top:14px}
-      /* Sembunyikan mobile horizontal slider di desktop */
+      .side-slider-item p{
+        font-size:.72rem;padding:6px 8px;margin:0;line-height:1.35;
+        display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
+        overflow:hidden;color:#f1f1f1;
+      }
+
+      /* Native banner di sidebar — full width */
+      .side-nb-block{width:100%;flex-shrink:0;margin:8px 0}
+      .side-nb-block .native-banner-wrap{margin:0;border-radius:10px}
+
+      /* Sembunyikan elemen mobile-only */
+      .nb-mobile-only{display:none}
       .recommendation-slider-wrap{display:none}
     }
+
     /* Mobile: sembunyikan kolom kanan */
     @media(max-width:991px){
       .video-desktop-layout{display:block}
@@ -121,9 +153,17 @@
     .slider-item p{font-size:.72rem;padding:6px 8px 8px;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35;min-height:42px;color:#f1f1f1}
 
     /* ── Native Banner ── */
-    .native-banner-wrap{position:relative;width:100%;margin:14px 0;border-radius:10px;overflow:hidden;min-height:90px}
+    .native-banner-wrap{position:relative;width:100%;margin:10px 0;border-radius:10px;overflow:hidden;min-height:90px}
     .native-banner-wrap .close-btn{position:absolute;top:6px;right:6px;width:26px;height:26px;background:rgba(0,0,0,.65);color:#fff;border:2px solid #fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;cursor:pointer;z-index:10}
-    .native-banner-inner{width:100%;padding:18px 40px 18px 18px;display:flex;flex-direction:column;justify-content:center;min-height:90px}
+    .native-banner-inner{width:100%;min-height:90px;display:flex;flex-direction:column;justify-content:center}
+
+    /* ── Footer SEO ── */
+    .footer-seo{margin-top:60px;padding:24px 16px 28px;background:#0d0d0d;border-top:1px solid #1e1e1e}
+    .footer-seo-title{color:#555;font-size:10px;letter-spacing:2px;font-weight:700;text-transform:uppercase;text-align:center;margin-bottom:14px}
+    .footer-cat-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:18px}
+    .footer-cat-link{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border:1px solid #2a2a2a;border-radius:20px;text-decoration:none;color:#888;font-size:11px;font-weight:600;background:#111;transition:.2s;white-space:nowrap}
+    .footer-cat-link:hover{color:var(--green);border-color:#3a3a3a;background:#161616}
+    .footer-copy{color:#333;font-size:10px;text-align:center;letter-spacing:.5px}
   </style>
 </head>
 <body>
@@ -143,7 +183,9 @@
 <div class="video-page-container">
   <div class="video-desktop-layout">
 
-    <!-- ── Kolom kiri: player + info ── -->
+    <!-- ═════════════════════════════════════════
+         KOLOM KIRI: player + info
+    ════════════════════════════════════════════ -->
     <div class="video-main-col">
       <div class="player-container" id="player-box">
         <img src="https://img.youtube.com/vi/u8bKR3RHAYA/hqdefault.jpg" alt="AI Diffusion Report: How the World Is Really Using AI in 2026" width="480" height="270"
@@ -158,6 +200,7 @@
         <div class="video-mask mask-top"></div>
         <div class="video-mask mask-bottom"></div>
       </div>
+
       <div class="info-section">
         <h1>AI Diffusion Report: How the World Is Really Using AI in 2026</h1>
         <div class="dual-action-wrap">
@@ -170,8 +213,10 @@
             More Info 🔥
           </button>
         </div>
-        <!-- Native banner mobile (tersembunyi di desktop via CSS) -->
-        
+
+        <!-- Native Banner 1 — MOBILE ONLY -->
+        <div class="nb-mobile-only"><div class="native-banner-wrap" id="nb-1m"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
+
         <div class="summary-box">
           <div class="summary-text"><p>Imagine a world where coding isn’t confined to syntax-heavy languages—where English becomes the new Python, and software development democratizes overnight. That future isn’t speculative; it’s already unfolding. Microsoft’s latest <strong>Global AI Diffusion Report</strong> reveals a seismic shift: AI adoption isn’t just accelerating—it’s rewriting the rules of who gets to build technology, where, and why.</p>
 
@@ -207,45 +252,19 @@
 <p>The AI Diffusion Report paints a future where technology is less about mastery of arcane tools and more about <strong>leveraging intelligence to solve problems</strong>. The next wave of adoption won’t be driven by hardware or even algorithms—it’ll be driven by trust, accessibility, and the realization that AI isn’t a replacement for human skill, but a multiplier. The question isn’t whether AI will reshape work; it’s how quickly we’ll adapt to a world where everyone—from farmers to lawyers—can code in plain English.</p></div>
           <div class="seo-tags-container"><a href="https://trend4genz.fun/?tag=ai%20adoption%20trends%202026" class="seo-tag-badge">#ai adoption trends 2026</a><a href="https://trend4genz.fun/?tag=global%20ai%20diffusion" class="seo-tag-badge">#global ai diffusion</a><a href="https://trend4genz.fun/?tag=ai%20in%20software%20development" class="seo-tag-badge">#ai in software development</a><a href="https://trend4genz.fun/?tag=urban-rural%20ai%20divide" class="seo-tag-badge">#urban-rural ai divide</a><a href="https://trend4genz.fun/?tag=ai%20trust%20and%20usage" class="seo-tag-badge">#ai trust and usage</a><a href="https://trend4genz.fun/?tag=microsoft%20ai%20research" class="seo-tag-badge">#microsoft ai research</a><a href="https://trend4genz.fun/?tag=ai%20productivity%20tools" class="seo-tag-badge">#ai productivity tools</a></div>
         </div>
-        <!-- Mobile horizontal slider (tersembunyi di desktop via CSS) -->
+
+        <!-- Native Banner 2 — MOBILE ONLY (di bawah summary) -->
+        <div class="nb-mobile-only"><div class="native-banner-wrap" id="nb-2m"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
+
+        <!-- Mobile horizontal slider -->
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
-           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/gemma-4-drops-apache-2-license-google-s-open-ai-power-move/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
+           alt="Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
-    </a>
-    <a href="https://trend4genz.fun/video/2026-s-best-jobs-aren-t-what-you-think-here-s-the-data/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
-           alt="2026’s Best Jobs Aren’t What You Think—Here’s the Data" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>2026’s Best Jobs Aren’t What You Think—Here’s the Data</p>
-    </a>
-    <a href="https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RosLeHGBLoY/mqdefault.jpg"
-           alt="RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating</p>
-    </a>
-    <a href="https://trend4genz.fun/video/2026-toyota-c-hr-reliability-vs-range-trade-offs-for-ev-buyers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
-           alt="2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers</p>
-    </a>
-    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
-           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
-    </a>
-    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
-           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
+      <p>Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move</p>
     </a>
     <a href="https://trend4genz.fun/video/3-hidden-claude-features-that-turn-ai-into-your-workflow-engine/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
@@ -253,55 +272,65 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>3 Hidden Claude Features That Turn AI Into Your Workflow Engine</p>
     </a>
+    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
+           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
+           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
+    </a>
+    <a href="https://trend4genz.fun/video/fix-notebooklm-infographic-errors-in-2-minutes-2026-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/psAQ7GYLmKw/mqdefault.jpg"
+           alt="Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)</p>
+    </a>
+    <a href="https://trend4genz.fun/video/run-35b-ai-models-on-6gb-vram-fast-local-inference-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/8F_5pdcD3HY/mqdefault.jpg"
+           alt="Run 35B AI Models on 6GB VRAM: Fast Local Inference Guide" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Run 35B AI Models on 6GB VRAM: Fast Local Inference Guide</p>
+    </a>
     <a href="https://trend4genz.fun/video/adk-vs-rag-how-to-choose-the-right-ai-stack-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/7HSSR1n8dgc/mqdefault.jpg"
            alt="ADK vs RAG: How to Choose the Right AI Stack in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>ADK vs RAG: How to Choose the Right AI Stack in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/tesla-powerwall-3-review-uk-s-smartest-home-battery-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/6LUYGe0benc/mqdefault.jpg"
+           alt="Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?</p>
     </a></div>
         </div>
       </div>
     </div>
 
-    <!-- ── Kolom kanan desktop: related + native banner ── -->
+    <!-- ═════════════════════════════════════════
+         KOLOM KANAN DESKTOP
+         Urutan: NB1 → Label → Related → NB2
+    ════════════════════════════════════════════ -->
     <div class="video-side-col">
+
+      <!-- NB1: di ATAS related video -->
+      <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
+
+      <!-- Label -->
       <div class="side-related-label">🎬 Related Videos</div>
+
+      <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
-           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/gemma-4-drops-apache-2-license-google-s-open-ai-power-move/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
+           alt="Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
-    </a>
-    <a href="https://trend4genz.fun/video/2026-s-best-jobs-aren-t-what-you-think-here-s-the-data/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
-           alt="2026’s Best Jobs Aren’t What You Think—Here’s the Data" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>2026’s Best Jobs Aren’t What You Think—Here’s the Data</p>
-    </a>
-    <a href="https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/RosLeHGBLoY/mqdefault.jpg"
-           alt="RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating</p>
-    </a>
-    <a href="https://trend4genz.fun/video/2026-toyota-c-hr-reliability-vs-range-trade-offs-for-ev-buyers/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
-           alt="2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers</p>
-    </a>
-    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
-           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
-    </a>
-    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
-           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
+      <p>Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move</p>
     </a>
     <a href="https://trend4genz.fun/video/3-hidden-claude-features-that-turn-ai-into-your-workflow-engine/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
@@ -309,47 +338,17 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>3 Hidden Claude Features That Turn AI Into Your Workflow Engine</p>
     </a>
-    <a href="https://trend4genz.fun/video/adk-vs-rag-how-to-choose-the-right-ai-stack-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/7HSSR1n8dgc/mqdefault.jpg"
-           alt="ADK vs RAG: How to Choose the Right AI Stack in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
+           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>ADK vs RAG: How to Choose the Right AI Stack in 2026</p>
+      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
     </a>
-    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
-           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
+           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/tesla-powerwall-3-review-uk-s-smartest-home-battery-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/6LUYGe0benc/mqdefault.jpg"
-           alt="Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?</p>
-    </a>
-    <a href="https://trend4genz.fun/video/5-claude-co-work-tips-to-master-your-workspace-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
-           alt="5 Claude Co-Work Tips to Master Your Workspace in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>5 Claude Co-Work Tips to Master Your Workspace in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/software-defined-vehicles-the-500b-shift-reshaping-automotive/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/cctI8JZhWUI/mqdefault.jpg"
-           alt="Software-Defined Vehicles: The $500B Shift Reshaping Automotive" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Software-Defined Vehicles: The $500B Shift Reshaping Automotive</p>
-    </a>
-    <a href="https://trend4genz.fun/video/deepseek-v4-ai-outperforms-billion-dollar-models-for-free/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
-           alt="DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free</p>
-    </a>
-    <a href="https://trend4genz.fun/video/7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
-           alt="7 Levels of AI Mastery: How to Build Systems That Work While You Sleep" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>7 Levels of AI Mastery: How to Build Systems That Work While You Sleep</p>
+      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
     </a>
     <a href="https://trend4genz.fun/video/fix-notebooklm-infographic-errors-in-2-minutes-2026-guide/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/psAQ7GYLmKw/mqdefault.jpg"
@@ -357,69 +356,140 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)</p>
     </a>
+    <a href="https://trend4genz.fun/video/run-35b-ai-models-on-6gb-vram-fast-local-inference-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/8F_5pdcD3HY/mqdefault.jpg"
+           alt="Run 35B AI Models on 6GB VRAM: Fast Local Inference Guide" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Run 35B AI Models on 6GB VRAM: Fast Local Inference Guide</p>
+    </a>
+    <a href="https://trend4genz.fun/video/adk-vs-rag-how-to-choose-the-right-ai-stack-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7HSSR1n8dgc/mqdefault.jpg"
+           alt="ADK vs RAG: How to Choose the Right AI Stack in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>ADK vs RAG: How to Choose the Right AI Stack in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/tesla-powerwall-3-review-uk-s-smartest-home-battery-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/6LUYGe0benc/mqdefault.jpg"
+           alt="Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?</p>
+    </a>
+    <a href="https://trend4genz.fun/video/aeo-in-2026-get-ai-to-recommend-your-business-like-a-pro/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
+           alt="AEO in 2026: Get AI to Recommend Your Business Like a Pro" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>AEO in 2026: Get AI to Recommend Your Business Like a Pro</p>
+    </a>
+    <a href="https://trend4genz.fun/video/rag-vs-graphrag-why-context-is-the-new-ai-bottleneck-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/pN-LfxNFiTc/mqdefault.jpg"
+           alt="RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/5-claude-co-work-tips-to-master-your-workspace-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
+           alt="5 Claude Co-Work Tips to Master Your Workspace in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>5 Claude Co-Work Tips to Master Your Workspace in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-in-2026-the-3-shifts-that-actually-move-the-needle/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/I62CvEwVS58/mqdefault.jpg"
+           alt="AI in 2026: The 3 Shifts That Actually Move the Needle" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>AI in 2026: The 3 Shifts That Actually Move the Needle</p>
+    </a>
+    <a href="https://trend4genz.fun/video/run-llms-locally-with-full-tool-use-ollama-mcp-unlocks-ai-agents/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/GAyNvq6Ayps/mqdefault.jpg"
+           alt="Run LLMs Locally with Full Tool Use: Ollama + MCP Unlocks AI Agents" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Run LLMs Locally with Full Tool Use: Ollama + MCP Unlocks AI Agents</p>
+    </a>
+    <a href="https://trend4genz.fun/video/gemma-4-vs-gemini-3-1-which-google-ai-wins-for-free/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/oFReQNuIVpE/mqdefault.jpg"
+           alt="Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?</p>
+    </a>
+    <a href="https://trend4genz.fun/video/software-defined-vehicles-the-500b-shift-reshaping-automotive/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/cctI8JZhWUI/mqdefault.jpg"
+           alt="Software-Defined Vehicles: The $500B Shift Reshaping Automotive" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Software-Defined Vehicles: The $500B Shift Reshaping Automotive</p>
+    </a>
+    <a href="https://trend4genz.fun/video/2026-toyota-c-hr-reliability-vs-range-trade-offs-for-ev-buyers/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
+           alt="2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers</p>
+    </a>
+    <a href="https://trend4genz.fun/video/run-llms-locally-for-free-ollama-s-privacy-breakthrough/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/UtSSMs6ObqY/mqdefault.jpg"
+           alt="Run LLMs Locally for Free: Ollama’s Privacy Breakthrough" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Run LLMs Locally for Free: Ollama’s Privacy Breakthrough</p>
+    </a>
     <a href="https://trend4genz.fun/video/amd-gpus-unlock-local-ai-threadripper-r9700-benchmarks/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/PEg08OAht2s/mqdefault.jpg"
            alt="AMD GPUs Unlock Local AI: Threadripper &amp; R9700 Benchmarks" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>AMD GPUs Unlock Local AI: Threadripper &amp; R9700 Benchmarks</p>
     </a>
-    <a href="https://trend4genz.fun/video/tesla-powerwall-3-app-guide-master-settings-solar-control/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/wxhZBcCFQwI/mqdefault.jpg"
-           alt="Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/gemini-omni-google-s-ai-video-model-that-edits-itself-in-real-time/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/iRgPSOHjAWM/mqdefault.jpg"
+           alt="Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control</p>
+      <p>Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time</p>
     </a>
-    <a href="https://trend4genz.fun/video/selling-5k-ai-operating-systems-to-smbs-the-full-blueprint/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/yd9tr0xqg-Y/mqdefault.jpg"
-           alt="Selling $5K AI Operating Systems to SMBs: The Full Blueprint" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/gemini-3-5-flash-pro-performance-at-half-the-cost/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/kn9Gh5HWqQs/mqdefault.jpg"
+           alt="Gemini 3.5 Flash: Pro Performance at Half the Cost" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Selling $5K AI Operating Systems to SMBs: The Full Blueprint</p>
-    </a>
-    <a href="https://trend4genz.fun/video/solar-evs-batteries-the-real-roi-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Jh033yLRI1E/mqdefault.jpg"
-           alt="Solar + EVs + Batteries: The Real ROI in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Solar + EVs + Batteries: The Real ROI in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/the-ai-prodigy-who-cracked-vision-and-why-it-matters-now/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/qh0FkdgieS8/mqdefault.jpg"
-           alt="The AI Prodigy Who Cracked Vision—And Why It Matters Now" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The AI Prodigy Who Cracked Vision—And Why It Matters Now</p>
+      <p>Gemini 3.5 Flash: Pro Performance at Half the Cost</p>
     </a></div>
-      
+
+      <!-- NB2: di BAWAH related video -->
+      <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
+
     </div>
 
   </div><!-- end video-desktop-layout -->
 </div>
 </main>
 
+<!-- ══════════════════════════════════════════════
+     FOOTER SEO KATEGORI
+     Sumber: db-en.json (HANYA)
+════════════════════════════════════════════════ -->
+<footer class="footer-seo">
+  <p class="footer-seo-title">Jelajahi Kategori</p>
+  <nav class="footer-cat-grid" aria-label="Kategori konten">
+    <a href="https://trend4genz.fun/category/ai-ml-research/" class="footer-cat-link"><span>✨</span><span>AI & ML Research</span></a><a href="https://trend4genz.fun/category/tutorial-howto/" class="footer-cat-link"><span>💻</span><span>Tutorial & How-To</span></a><a href="https://trend4genz.fun/category/tech-review/" class="footer-cat-link"><span>📊</span><span>Tech Review</span></a><a href="https://trend4genz.fun/category/finance-crypto/" class="footer-cat-link"><span>💰</span><span>Finance & Crypto</span></a><a href="https://trend4genz.fun/category/science-explainer/" class="footer-cat-link"><span>🔬</span><span>Science Explainer</span></a><a href="https://trend4genz.fun/category/business-strategy/" class="footer-cat-link"><span>📈</span><span>Business Strategy</span></a>
+  </nav>
+  <p class="footer-copy">© 2026 Trend4GenZ. All rights reserved.</p>
+</footer>
+
 <script>
-// ── Konfigurasi Ads — di-inject saat build oleh generate-pages.js ──
+// ── Ads config (injected at build time) ────────────────────────
 var STATIC_AD = {
-  allAds:          false,
-  useDirect:       false,
-  directUrl:       'https://linkadsterra.com',
-  usePlayAds:      false,
-  playAdsUrl:      'https://linkadsterra.com',
+  allAds:          true,
+  useDirect:       true,
+  directUrl:       'https://facebook.com',
+  usePlayAds:      true,
+  playAdsUrl:      'https://facebook.com',
   playAdsStartFrom:2,
-  useNativeBanner: false
+  useNativeBanner1:true,
+  useNativeBanner2:true
 };
 var _playCount = 0;
 
-// ── Tombol More Info 🔥 ──────────────────────────────────────────
 function handleMoreInfo() {
-  if (STATIC_AD.allAds && STATIC_AD.useDirect) {
-    window.open(STATIC_AD.directUrl, '_blank');
-  }
+  if (STATIC_AD.allAds && STATIC_AD.useDirect) window.open(STATIC_AD.directUrl,'_blank');
 }
 
-// ── Play Button Ads + Player ─────────────────────────────────────
 function startPlay() {
   _playCount++;
-  // Buka ads jika allAds=true, usePlayAds=true, dan sudah tap ke-N
   if (STATIC_AD.allAds && STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
-    window.open(STATIC_AD.playAdsUrl, '_blank');
+    window.open(STATIC_AD.playAdsUrl,'_blank');
   }
   var pb = document.getElementById('player-box');
   pb.innerHTML =
@@ -446,97 +516,80 @@ function toggleFS() {
   }
 }
 
-// ── Search suggestion dari data slider ──────────────────────────
+// ── Search ───────────────────────────────────────────────────────
 var _db = [{"slug":"1-000-000x-ai-compute-leap-what-changes-next-in-2026","youtubeId":"yz6I23VRbdg","title":"1,000,000x AI Compute Leap: What Changes Next in 2026"},{"slug":"10-weird-open-source-tools-that-solve-real-problems-in-2026","youtubeId":"qPuzWFvRajk","title":"10 Weird Open-Source Tools That Solve Real Problems in 2026"},{"slug":"2026-s-best-jobs-aren-t-what-you-think-here-s-the-data","youtubeId":"oDO_hTtQedQ","title":"2026’s Best Jobs Aren’t What You Think—Here’s the Data"},{"slug":"2026-toyota-c-hr-reliability-vs-range-trade-offs-for-ev-buyers","youtubeId":"dtAGxPx3bcY","title":"2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers"},{"slug":"3-hidden-claude-features-that-turn-ai-into-your-workflow-engine","youtubeId":"tkpdPvx65A0","title":"3 Hidden Claude Features That Turn AI Into Your Workflow Engine"},{"slug":"5-claude-co-work-tips-to-master-your-workspace-in-2026","youtubeId":"4wvLHFgnQZQ","title":"5 Claude Co-Work Tips to Master Your Workspace in 2026"},{"slug":"6-must-have-claude-skills-to-supercharge-your-coding-workflow","youtubeId":"ZSvcxjNZdxk","title":"6 Must-Have Claude Skills to Supercharge Your Coding Workflow"},{"slug":"7-ai-engineering-mistakes-killing-your-career-2026-guide","youtubeId":"nvc7xi6vZWw","title":"7 AI Engineering Mistakes Killing Your Career (2026 Guide)"},{"slug":"7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep","youtubeId":"JFO9TfZLnT8","title":"7 Levels of AI Mastery: How to Build Systems That Work While You Sleep"},{"slug":"adk-vs-rag-how-to-choose-the-right-ai-stack-in-2026","youtubeId":"7HSSR1n8dgc","title":"ADK vs RAG: How to Choose the Right AI Stack in 2026"},{"slug":"aeo-in-2026-get-ai-to-recommend-your-business-like-a-pro","youtubeId":"-5Drsq6ve7w","title":"AEO in 2026: Get AI to Recommend Your Business Like a Pro"},{"slug":"ai-agents-in-2026-the-4-levels-that-multiply-your-output","youtubeId":"LNkAW4SSgdY","title":"AI Agents in 2026: The 4 Levels That Multiply Your Output"},{"slug":"ai-agents-in-2026-the-divergence-that-will-redefine-workflows","youtubeId":"R9K2574YEAg","title":"AI Agents in 2026: The Divergence That Will Redefine Workflows"},{"slug":"ai-engineer-salaries-2026-from-junior-to-senior-what-s-real","youtubeId":"eTBSF411yQ4","title":"AI Engineer Salaries 2026: From Junior to Senior—What’s Real"},{"slug":"ai-in-2026-the-3-shifts-that-actually-move-the-needle","youtubeId":"I62CvEwVS58","title":"AI in 2026: The 3 Shifts That Actually Move the Needle"},{"slug":"ai-stack-demystified-llms-rag-hardware-that-power-real-world-ai","youtubeId":"RRKwmeyIc24","title":"AI Stack Demystified: LLMs, RAG & Hardware That Power Real-World AI"},{"slug":"amd-gpus-unlock-local-ai-threadripper-r9700-benchmarks","youtubeId":"PEg08OAht2s","title":"AMD GPUs Unlock Local AI: Threadripper & R9700 Benchmarks"},{"slug":"deepseek-v4-ai-outperforms-billion-dollar-models-for-free","youtubeId":"p7K3xfViWCE","title":"DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free"},{"slug":"digital-certificates-explained-prevent-outages-before-2026","youtubeId":"V7EgIMWOqgw","title":"Digital Certificates Explained: Prevent Outages Before 2026"},{"slug":"essential-ai-skills-for-investors-a-2026-roadmap","youtubeId":"tu4rU4YD1Jk","title":"Essential AI Skills for Investors: A 2026 Roadmap"},{"slug":"fix-notebooklm-infographic-errors-in-2-minutes-2026-guide","youtubeId":"psAQ7GYLmKw","title":"Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)"},{"slug":"gemini-3-5-flash-pro-performance-at-half-the-cost","youtubeId":"kn9Gh5HWqQs","title":"Gemini 3.5 Flash: Pro Performance at Half the Cost"},{"slug":"gemini-omni-google-s-ai-video-model-that-edits-itself-in-real-time","youtubeId":"iRgPSOHjAWM","title":"Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time"},{"slug":"gemma-4-drops-apache-2-license-google-s-open-ai-power-move","youtubeId":"5aqF1HVpjdc","title":"Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move"},{"slug":"gemma-4-vs-gemini-3-1-which-google-ai-wins-for-free","youtubeId":"oFReQNuIVpE","title":"Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?"},{"slug":"google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything","youtubeId":"Llei51M3u5g","title":"Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything"},{"slug":"master-tmux-build-run-ai-agents-24-7-on-a-vps","youtubeId":"z7xyZQVK4Dg","title":"Master Tmux: Build & Run AI Agents 24/7 on a VPS"},{"slug":"rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating","youtubeId":"RosLeHGBLoY","title":"RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating"},{"slug":"rag-vs-graphrag-why-context-is-the-new-ai-bottleneck-in-2026","youtubeId":"pN-LfxNFiTc","title":"RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026"},{"slug":"run-35b-ai-models-on-6gb-vram-fast-local-inference-guide","youtubeId":"8F_5pdcD3HY","title":"Run 35B AI Models on 6GB VRAM: Fast Local Inference Guide"},{"slug":"run-llms-locally-for-free-ollama-s-privacy-breakthrough","youtubeId":"UtSSMs6ObqY","title":"Run LLMs Locally for Free: Ollama’s Privacy Breakthrough"},{"slug":"run-llms-locally-with-full-tool-use-ollama-mcp-unlocks-ai-agents","youtubeId":"GAyNvq6Ayps","title":"Run LLMs Locally with Full Tool Use: Ollama + MCP Unlocks AI Agents"},{"slug":"self-evolving-ai-code-memory-how-llm-knowledge-bases-work","youtubeId":"7huCP6RkcY4","title":"Self-Evolving AI Code Memory: How LLM Knowledge Bases Work"},{"slug":"selling-5k-ai-operating-systems-to-smbs-the-full-blueprint","youtubeId":"yd9tr0xqg-Y","title":"Selling $5K AI Operating Systems to SMBs: The Full Blueprint"},{"slug":"software-defined-vehicles-the-500b-shift-reshaping-automotive","youtubeId":"cctI8JZhWUI","title":"Software-Defined Vehicles: The $500B Shift Reshaping Automotive"},{"slug":"solar-evs-batteries-the-real-roi-in-2026","youtubeId":"Jh033yLRI1E","title":"Solar + EVs + Batteries: The Real ROI in 2026"},{"slug":"tesla-powerwall-3-app-guide-master-settings-solar-control","youtubeId":"wxhZBcCFQwI","title":"Tesla Powerwall 3 App Guide: Master Settings & Solar Control"},{"slug":"tesla-powerwall-3-review-uk-s-smartest-home-battery-in-2026","youtubeId":"6LUYGe0benc","title":"Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?"},{"slug":"test-time-compute-why-ai-pauses-to-think-before-answering","youtubeId":"DAlC8mL5ZlI","title":"Test Time Compute: Why AI Pauses to Think Before Answering"},{"slug":"the-ai-prodigy-who-cracked-vision-and-why-it-matters-now","youtubeId":"qh0FkdgieS8","title":"The AI Prodigy Who Cracked Vision—And Why It Matters Now"},{"slug":"the-ai-tech-stack-powering-2026-stability-over-hype","youtubeId":"21_k2St8bBI","title":"The AI Tech Stack Powering 2026: Stability Over Hype"}];
 (function(){
-  var inp = document.getElementById('searchInput');
-  var btn = document.getElementById('searchBtn');
-  var sug = document.getElementById('searchSuggestions');
-  var ai  = -1;
-
+  var inp=document.getElementById('searchInput'),
+      btn=document.getElementById('searchBtn'),
+      sug=document.getElementById('searchSuggestions'),
+      ai=-1;
   function hl(t,q){
-    var esc=q.replace(/[.*+?^${}()|[]\]/g,'\$&');
-    return t.replace(new RegExp('('+esc+')','gi'),'<em>$1</em>');
+    var e=q.replace(/[.*+?^${}()|[]\]/g,'\$&');
+    return t.replace(new RegExp('('+e+')','gi'),'<em>$1</em>');
   }
-  function hide(){ sug.classList.remove('show'); sug.innerHTML=''; ai=-1; }
-
-  inp.addEventListener('input', function(){
-    var val = inp.value.trim().toLowerCase(); ai=-1;
-    if (!val) { hide(); return; }
-    var matches = _db.filter(function(v){ return v.title.toLowerCase().indexOf(val)!==-1; }).slice(0,7);
-    if (!matches.length) {
-      sug.innerHTML='<div class="suggestion-empty">No results for "<b>'+val+'</b>"</div>';
-      sug.classList.add('show'); return;
-    }
-    sug.innerHTML = matches.map(function(v){
-      return '<div class="suggestion-item" data-slug="'+v.slug+'">' +
-        '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/mqdefault.jpg" loading="lazy" alt=""/>' +
+  function hide(){sug.classList.remove('show');sug.innerHTML='';ai=-1;}
+  inp.addEventListener('input',function(){
+    var val=inp.value.trim().toLowerCase();ai=-1;
+    if(!val){hide();return;}
+    var m=_db.filter(function(v){return v.title.toLowerCase().indexOf(val)!==-1;}).slice(0,7);
+    if(!m.length){sug.innerHTML='<div class="suggestion-empty">No results for "<b>'+val+'</b>"</div>';sug.classList.add('show');return;}
+    sug.innerHTML=m.map(function(v){
+      return '<div class="suggestion-item" data-slug="'+v.slug+'">'+
+        '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/mqdefault.jpg" loading="lazy" alt=""/>'+
         '<span>'+hl(v.title,val)+'</span></div>';
     }).join('');
     sug.classList.add('show');
     sug.querySelectorAll('.suggestion-item').forEach(function(el){
-      el.addEventListener('mousedown', function(e){
-        e.preventDefault();
-        window.location.href = 'https://trend4genz.fun/video/' + el.dataset.slug + '/';
-      });
+      el.addEventListener('mousedown',function(e){e.preventDefault();window.location.href='https://trend4genz.fun/video/'+el.dataset.slug+'/';});
     });
   });
-
-  inp.addEventListener('keydown', function(e){
-    var items = sug.querySelectorAll('.suggestion-item');
-    if (e.key==='ArrowDown'){ e.preventDefault(); ai=Math.min(ai+1,items.length-1); upA(items); }
-    else if (e.key==='ArrowUp'){ e.preventDefault(); ai=Math.max(ai-1,-1); upA(items); }
-    else if (e.key==='Enter'){
-      if (ai>=0&&items[ai]) { window.location.href='https://trend4genz.fun/video/'+items[ai].dataset.slug+'/'; }
-      else { var q=inp.value.trim(); if(q) window.location.href='https://trend4genz.fun/?search='+encodeURIComponent(q); }
-    }
-    else if (e.key==='Escape'){ hide(); inp.blur(); }
+  inp.addEventListener('keydown',function(e){
+    var items=sug.querySelectorAll('.suggestion-item');
+    if(e.key==='ArrowDown'){e.preventDefault();ai=Math.min(ai+1,items.length-1);upA(items);}
+    else if(e.key==='ArrowUp'){e.preventDefault();ai=Math.max(ai-1,-1);upA(items);}
+    else if(e.key==='Enter'){
+      if(ai>=0&&items[ai])window.location.href='https://trend4genz.fun/video/'+items[ai].dataset.slug+'/';
+      else{var q=inp.value.trim();if(q)window.location.href='https://trend4genz.fun/?search='+encodeURIComponent(q);}
+    }else if(e.key==='Escape'){hide();inp.blur();}
   });
-
-  function upA(items){ items.forEach(function(el,i){ el.classList.toggle('active',i===ai); }); }
-  btn.addEventListener('click', function(){ var q=inp.value.trim(); if(q) window.location.href='https://trend4genz.fun/?search='+encodeURIComponent(q); });
-  document.addEventListener('click', function(e){ if(!e.target.closest('.search-wrapper')) hide(); });
+  function upA(items){items.forEach(function(el,i){el.classList.toggle('active',i===ai);});}
+  btn.addEventListener('click',function(){var q=inp.value.trim();if(q)window.location.href='https://trend4genz.fun/?search='+encodeURIComponent(q);});
+  document.addEventListener('click',function(e){if(!e.target.closest('.search-wrapper'))hide();});
 })();
 
-// ── Infinite scroll: mobile horizontal slider ────────────────────
-var _loaded = 8;
-document.getElementById('rec-slider').addEventListener('scroll', function(){
-  if (this.scrollLeft + this.clientWidth >= this.scrollWidth - 120) {
-    var next = _db.slice(_loaded, _loaded+8);
-    if (!next.length) { _loaded=0; next=_db.slice(0,8); }
+// ── Infinite scroll: mobile ──────────────────────────────────────
+var _loaded=8;
+document.getElementById('rec-slider').addEventListener('scroll',function(){
+  if(this.scrollLeft+this.clientWidth>=this.scrollWidth-120){
+    var next=_db.slice(_loaded,_loaded+8);
+    if(!next.length){_loaded=0;next=_db.slice(0,8);}
     next.forEach(function(r){
-      var a = document.createElement('a');
-      a.className='slider-item';
-      a.href='https://trend4genz.fun/video/'+r.slug+'/';
+      var a=document.createElement('a');
+      a.className='slider-item';a.href='https://trend4genz.fun/video/'+r.slug+'/';
       a.style.cssText='text-decoration:none;color:inherit;display:block';
       a.innerHTML='<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" width="160" height="90" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><p>'+r.title.replace(/</g,'&lt;')+'</p>';
       document.getElementById('rec-slider').appendChild(a);
     });
-    _loaded += next.length;
+    _loaded+=next.length;
   }
 });
 
-// ── Infinite scroll: desktop side slider ────────────────────────
+// ── Infinite scroll: desktop sidebar ────────────────────────────
 (function(){
-  var side = document.getElementById('side-slider-desktop');
-  if (!side) return;
-  var sideLoaded = 20;
-  side.addEventListener('scroll', function(){
-    if (this.scrollTop + this.clientHeight >= this.scrollHeight - 100) {
-      var next = _db.slice(sideLoaded, sideLoaded+10);
-      if (!next.length) { sideLoaded=0; next=_db.slice(0,10); }
+  var side=document.getElementById('side-slider-desktop');
+  if(!side)return;
+  var sideLoaded=20;
+  side.addEventListener('scroll',function(){
+    if(this.scrollTop+this.clientHeight>=this.scrollHeight-100){
+      var next=_db.slice(sideLoaded,sideLoaded+10);
+      if(!next.length){sideLoaded=0;next=_db.slice(0,10);}
       next.forEach(function(r){
-        var a = document.createElement('a');
-        a.className = 'side-slider-item';
-        a.href = 'https://trend4genz.fun/video/'+r.slug+'/';
-        a.innerHTML =
-          '<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy"' +
-          ' width="108" height="60" onload="this.style.opacity=1"' +
-          ' style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>' +
-          '<p>'+r.title.replace(/</g,'&lt;')+'</p>';
+        var a=document.createElement('a');
+        a.className='side-slider-item';a.href='https://trend4genz.fun/video/'+r.slug+'/';
+        a.innerHTML='<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" width="108" height="60" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/><p>'+r.title.replace(/</g,'&lt;')+'</p>';
         side.appendChild(a);
       });
-      sideLoaded += next.length;
+      sideLoaded+=next.length;
     }
   });
 })();
