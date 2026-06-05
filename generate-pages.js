@@ -43,7 +43,7 @@ const STATIC_AD = {
 
   // ── Master switch ─────────────────────────────────────────────
   // false = semua ads mati (override semua switch di bawah)
-  allAds: false,
+  allAds: true,
 
   // ── Direct Link (tombol More Info 🔥) ─────────────────────────
   useDirect:  true,                            // true = aktifkan
@@ -111,11 +111,7 @@ function buildVideoPage(v, allVideos) {
     allVideos.filter(r=>r.slug!==v.slug).map(r=>({slug:r.slug,youtubeId:r.youtubeId,title:r.title}))
   );
 
-  // Native banner HTML (dipakai di mobile & desktop sidebar)
-  const bannerBlock = STATIC_AD.allAds && STATIC_AD.useNativeBanner
-    ? `<div class="native-banner-wrap" id="static-nb"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner">${STATIC_AD.nativeBannerHTML}</div></div>`
-    : '';
-
+  
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
