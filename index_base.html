@@ -323,9 +323,6 @@ function updateRobotsBySource(source) {
 //  LOAD DATABASE
 // ════════════════════════════════════════════════════════
 async function loadDatabases() {
-  var nodePatch = document.getElementById('node-patch');
-  if (nodePatch) nodePatch.remove();
-  
   const ROOT = location.origin + '/';
   const [resEN, resID] = await Promise.all([
     fetch(ROOT + 'db-en.json'),
