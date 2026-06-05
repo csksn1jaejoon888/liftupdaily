@@ -126,7 +126,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What are the top 3 fastest-growing jobs in 2026?",
+          "name": "What are the top 3 fastest growing jobs in 2026?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Farm workers, delivery drivers, and software developers lead the pack. All prioritize skills over degrees, with software devs earning the highest salaries."
