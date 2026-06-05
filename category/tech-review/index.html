@@ -1,15 +1,125 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Kategori: Tech Review | Trend4GenZ</title>
-  <meta name="robots" content="index, follow">
-  <meta http-equiv="refresh" content="0; url=https://trend4genz.fun/?category=TECH_REVIEW">
-  <script>window.location.replace("https://trend4genz.fun/?category=TECH_REVIEW");</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Tech Review — Trend4GenZ</title>
+  <meta name="description" content="Kumpulan video Tech Review terbaru — teknologi, AI, lifestyle, dan tren global di Trend4GenZ."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://trend4genz.fun/category/tech-review/"/>
+  <link rel="icon" href="https://trend4genz.fun/logo.png" sizes="96x96" type="image/png"/>
+  <meta property="og:type"        content="website"/>
+  <meta property="og:title"       content="Tech Review — Trend4GenZ"/>
+  <meta property="og:description" content="Kumpulan video Tech Review terbaru — teknologi, AI, lifestyle, dan tren global di Trend4GenZ."/>
+  <meta property="og:url"         content="https://trend4genz.fun/category/tech-review/"/>
+  <meta property="og:site_name"   content="Trend4GenZ"/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://trend4genz.fun/"},{"@type":"ListItem","position":2,"name":"Tech Review","item":"https://trend4genz.fun/category/tech-review/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Tech Review","url":"https://trend4genz.fun/category/tech-review/","numberOfItems":0,"itemListElement":[]}</script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--green:#98FB98;--dark:#1a1a1a;--nav-h:52px}
+    body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
+
+    /* ── Navbar ── */
+    .navbar-custom{background:#000;padding:8px 15px;position:sticky;top:0;z-index:1000;
+      display:flex;align-items:center;gap:12px;border-bottom:0}
+    .nav-home-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;
+      border-radius:20px;border:1px solid var(--green);color:var(--green);
+      text-decoration:none;font-size:.8rem;font-weight:700;white-space:nowrap;transition:.2s}
+    .nav-home-btn:hover{background:rgba(152,251,152,.1)}
+    .nav-title{color:#fff;font-size:.9rem;font-weight:700;overflow:hidden;
+      white-space:nowrap;text-overflow:ellipsis;flex:1}
+
+    /* ── Wrapper ── */
+    .cat-page{max-width:1100px;margin:0 auto;padding:20px 15px}
+
+    /* ── Breadcrumb ── */
+    .breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:18px;
+      font-size:.78rem;color:#666;flex-wrap:wrap}
+    .breadcrumb a{color:#888;text-decoration:none;transition:.15s}
+    .breadcrumb a:hover{color:var(--green)}
+    .breadcrumb-sep{color:#444}
+
+    /* ── Header kategori ── */
+    .cat-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;
+      padding-bottom:14px;border-bottom:1px solid #2a2a2a}
+    .cat-icon-big{font-size:1.8rem;line-height:1}
+    .cat-header-text h1{font-size:1.25rem;font-weight:800;color:#fff;line-height:1.2}
+    .cat-header-text p{font-size:.8rem;color:#888;margin-top:4px}
+
+    /* ── Grid kartu video ── */
+    .cat-grid{display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+      gap:12px}
+    @media(min-width:600px){.cat-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}}
+    @media(min-width:900px){.cat-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
+
+    .cat-card{display:block;text-decoration:none;color:inherit;
+      background:var(--dark);border-radius:10px;overflow:hidden;
+      border:1px solid transparent;transition:.2s}
+    .cat-card:hover{border-color:var(--green);transform:translateY(-2px)}
+    .cat-thumb{position:relative;width:100%;aspect-ratio:16/9;background:#111;overflow:hidden}
+    .cat-thumb img{width:100%;height:100%;object-fit:cover;display:block;
+      opacity:0;transition:opacity .3s}
+    .cat-title{font-size:.75rem;font-weight:600;padding:8px 10px 10px;
+      line-height:1.35;color:#e0e0e0;
+      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .cat-empty{color:#555;font-size:.9rem;padding:40px;text-align:center;grid-column:1/-1}
+
+    /* ── Footer SEO ── */
+    .footer-seo{margin-top:60px;padding:24px 16px 28px;
+      background:#0d0d0d;border-top:1px solid #1e1e1e}
+    .footer-seo-title{color:#555;font-size:10px;letter-spacing:2px;font-weight:700;
+      text-transform:uppercase;text-align:center;margin-bottom:14px}
+    .footer-cat-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:18px}
+    .footer-cat-link{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;
+      border:1px solid #2a2a2a;border-radius:20px;text-decoration:none;
+      color:#888;font-size:11px;font-weight:600;background:#111;
+      transition:.2s;white-space:nowrap}
+    .footer-cat-link:hover,.footer-cat-link.active{color:var(--green);
+      border-color:#3a3a3a;background:#161616}
+    .footer-copy{color:#333;font-size:10px;text-align:center;letter-spacing:.5px}
+  </style>
 </head>
-<body style="background:#212122; color:#fff; text-align:center; padding-top:20vh; font-family:'Segoe UI', sans-serif;">
-  <h2>📊 Membuka Kategori Tech Review...</h2>
-  <p>Jika tidak dialihkan secara otomatis, <a href="https://trend4genz.fun/?category=TECH_REVIEW" style="color:#98FB98;">klik di sini</a>.</p>
+<body>
+<nav class="navbar-custom">
+  <a href="https://trend4genz.fun/" class="nav-home-btn" aria-label="Kembali ke Home">
+    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+         stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    HOME
+  </a>
+  <span class="nav-title">📊 Tech Review</span>
+</nav>
+
+<main class="cat-page">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="https://trend4genz.fun/">Home</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Tech Review</span>
+  </nav>
+
+  <div class="cat-header">
+    <div class="cat-icon-big">📊</div>
+    <div class="cat-header-text">
+      <h1>Tech Review</h1>
+      <p>0 video ditemukan</p>
+    </div>
+  </div>
+
+  <div class="cat-grid">
+    <div class="cat-empty">Belum ada video untuk kategori ini.</div>
+  </div>
+</main>
+
+<footer class="footer-seo">
+  <p class="footer-seo-title">Jelajahi Kategori</p>
+  <nav class="footer-cat-grid" aria-label="Kategori konten">
+    <a href="https://trend4genz.fun/category/ai-ml-research/" class="footer-cat-link">✨ AI & ML Research</a><a href="https://trend4genz.fun/category/tutorial-howto/" class="footer-cat-link">💻 Tutorial & How-To</a><a href="https://trend4genz.fun/category/tech-review/" class="footer-cat-link active">📊 Tech Review</a><a href="https://trend4genz.fun/category/finance-crypto/" class="footer-cat-link">💰 Finance & Crypto</a><a href="https://trend4genz.fun/category/science-explainer/" class="footer-cat-link">🔬 Science Explainer</a><a href="https://trend4genz.fun/category/business-strategy/" class="footer-cat-link">📈 Business Strategy</a>
+  </nav>
+  <p class="footer-copy">© 2026 Trend4GenZ. All rights reserved.</p>
+</footer>
 </body>
 </html>
