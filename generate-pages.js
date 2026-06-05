@@ -603,21 +603,8 @@ ${cardsHtml}
 
   html = html.slice(0, startIdx) + newApp + html.slice(endIdx + APP_END.length);
 
-  // Footer homepage
-  const footerHomepage = `
-<footer style="margin-top:60px;padding:24px 16px 28px;background:#0d0d0d;border-top:1px solid #1e1e1e">
-  <p style="color:#555;font-size:10px;letter-spacing:2px;font-weight:700;text-transform:uppercase;text-align:center;margin-bottom:14px">Jelajahi Kategori</p>
-  <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:18px" aria-label="Kategori konten">
-    ${FOOTER_CATEGORIES.map(cat =>
-      `<a href="/category/${cat.key.toLowerCase().replace(/_/g,'-')}/" `+
-      `style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border:1px solid #2a2a2a;border-radius:20px;text-decoration:none;color:#888;font-size:11px;font-weight:600;background:#111;white-space:nowrap">`+
-      `${cat.icon} ${cat.label}</a>`
-    ).join('')}
-  </nav>
-  <p style="color:#333;font-size:10px;text-align:center;letter-spacing:.5px">© 2026 Trend4GenZ. All rights reserved.</p>
-</footer>`;
-
-  html = html.replace('</body>', footerHomepage + '\n</body>');
+  // Footer homepage dihilangkan sesuai permintaan (hanya ada di halaman video)
+  // agar tidak menimpa atau mengganggu tombol Load More.
 
   const patchScript = `
 // ══════════════════════════════════════════════════════════════
@@ -655,7 +642,16 @@ async function router() {
     if (!videoDatabaseALL.length) await loadDatabases();
     
     // HANYA ambil video dari db-en.json yang sesuai dengan kategorinya
-    const rel = videoDatabaseEN.filter(v => v.category === category);
+    // FIX: Matcher dibuat lebih fleksibel agar membaca format db-en.json yang bervariasi
+    const catMatch = category.toLowerCase().replace(/[-_]/g, ' ');
+    const rel = videoDatabaseEN.filter(v => {
+      if (v.category) return v.category.toLowerCase().replace(/[-_]/g, ' ') === catMatch || v.category === category;
+      if (v.tags) return v.tags.some(t => t.toLowerCase().replace(/[-_]/g, ' ').includes(catMatch.split(' ')[0]));
+      return false;
+    });
+    
+    currentData = rel; // FIX: Update array currentData agar Load More berfungsi untuk kategori
+    currentPage = 1;
     
     // Render HANYA video dari kategori tersebut (tanpa dicampur)
     renderGrid(app, rel);
@@ -676,15 +672,19 @@ async function router() {
   } else if (tag) {
     navbar.classList.remove('video-mode');
     if (!videoDatabaseALL.length) await loadDatabases();
-    const q   = search.toLowerCase();
+    const q   = (search || tag).toLowerCase(); // FIX: Mencegah error jika search null
     const rel  = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)!==-1);
     const rest = videoDatabaseALL.filter(v=>v.title.toLowerCase().indexOf(q)===-1);
     const combined = rel.length ? [...rel, ...rest] : videoDatabaseALL;
+    
+    currentData = combined; // FIX: Update array untuk Load More
+    currentPage = 1;
+    
     renderGrid(app, combined);
     updateCanonical('home','seo');
     const h = app.querySelector('h5');
     if (h) {
-      h.textContent = rel.length ? '🔍 "'+search+'" — '+rel.length+' hasil' : '🔥 TRENDING VIDEO';
+      h.textContent = rel.length ? '🔍 "'+(search || tag)+'" — '+rel.length+' hasil' : '🔥 TRENDING VIDEO';
       if (!document.getElementById('btn-back-home')) {
         var btn = document.createElement('button');
         btn.id='btn-back-home';
@@ -699,6 +699,12 @@ async function router() {
     if (oldBtn) oldBtn.remove();
     navbar.classList.remove('video-mode');
     if(!videoDatabaseALL.length) await loadDatabases();
+    
+    // FIX: Reset Load More saat kembali ke Home
+    const shown = new Set(${hardcodedSlugs});
+    currentData = videoDatabaseALL.filter(v=>!shown.has(v.slug));
+    currentPage = 1;
+    
     renderGrid(app, videoDatabaseALL);
     updateCanonical('home','seo');
   } else {
