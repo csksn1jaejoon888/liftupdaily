@@ -41,7 +41,7 @@ function shuffle(arr)    { return [...arr].sort(()=>0.5-Math.random()); }
 const STATIC_AD = {
 
   // ── Master switch — false = semua ads mati ────────────────────
-  allAds: false,
+  allAds: true,
 
   // ── Direct Link (tombol More Info 🔥) ─────────────────────────
   useDirect:  true,
@@ -692,37 +692,55 @@ var _SHOWN_SLUGS = new Set(${hardcodedSlugs});
       // Kita ganti: isi database dari _ALL_VIDEOS (embed), skip router untuk homepage.
       _origAEL('load', async function() {
 
-        // ── 1. Isi semua variabel database template dari data embed ──
-        videoDatabaseEN  = _ALL_VIDEOS.map(function(v){
+        // ── 1. Isi videoDatabaseEN dari data embed (db-en, sudah ada di HTML) ──
+        videoDatabaseEN = _ALL_VIDEOS.map(function(v){
           return {slug:v.slug, youtubeId:v.youtubeId, title:v.title,
                   tags:v.tags||[], source:'seo'};
         });
-        videoDatabaseID  = [];
-        videoDatabaseALL = videoDatabaseEN.slice();
 
-        // ── 2. Siapkan currentData untuk loadMore template ───────────
-        // Template loadMore(): start = currentPage * PAGE_SIZE; batch = currentData.slice(start, start+PAGE_SIZE)
-        // PAGE_SIZE template = 24. currentPage kita set 0, currentData = SEMUA video
-        // tapi grid hardcode sudah tampil 20 teratas, jadi kita slice dari situ.
-        // Cara paling aman: currentData = semua video kecuali yang sudah hardcode,
-        // currentPage = 0 (loadMore akan ambil slice(0, PAGE_SIZE) = 24 video berikutnya).
+        // ── 2. Fetch db-id.json (video gado-gado, noindex) ───────────
+        // Tampil di homepage & search, tapi:
+        //  - Tidak di-generate sebagai halaman statis /video/
+        //  - Tidak masuk folder /category/ (hanya db-en)
+        //  - Di halaman video SPA: noindex, nofollow
+        try {
+          var resID = await fetch('/db-id.json');
+          if (resID.ok) {
+            videoDatabaseID = (await resID.json()).map(function(v){
+              return {slug:v.slug, youtubeId:v.youtubeId, title:v.title,
+                      tags:v.tags||[], source:'nofollow'};
+            });
+          } else {
+            videoDatabaseID = [];
+          }
+        } catch(e) {
+          videoDatabaseID = [];
+        }
+
+        // ── 3. Gabungkan EN + ID, acak urutan ID agar berbaur ────────
+        // EN di depan (20 hardcode sudah tampil), ID menyebar sesudahnya
+        videoDatabaseALL = videoDatabaseEN.concat(
+          videoDatabaseID.sort(function(){ return 0.5 - Math.random(); })
+        );
+
+        // ── 4. Siapkan currentData untuk loadMore ────────────────────
+        // Grid hardcode sudah tampilkan 20 EN pertama (_SHOWN_SLUGS).
+        // currentData = semua video (EN+ID) kecuali yang sudah hardcode.
+        // currentPage = 0 → loadMore() ambil slice(0, PAGE_SIZE) = 24 berikutnya.
         currentData = videoDatabaseALL.filter(function(v){
           return !_SHOWN_SLUGS.has(v.slug);
         });
         currentPage = 0;
 
-        // ── 3. Init search pakai database yang sudah terisi ──────────
+        // ── 5. Init search (gunakan videoDatabaseALL yang sudah terisi) ──
         if (typeof initSearch === 'function') initSearch();
 
-        // ── 4. Handle URL params (tag/search) — pakai router template ─
+        // ── 6. Handle URL params (tag/search) via router template ────
         var params = new URLSearchParams(location.search);
         if (params.get('tag') || params.get('search')) {
-          // Untuk filter, router template akan panggil renderGrid() → reset grid
-          // Ini OK karena user memang minta filter, bukan homepage normal
           if (typeof router === 'function') await router();
         }
-        // Untuk homepage normal: TIDAK panggil router() —
-        // grid hardcode sudah siap di HTML, loadMore() sudah siap via currentData
+        // Homepage normal: grid hardcode siap, loadMore siap via currentData
 
       }, opts);
     } else {
