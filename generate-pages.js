@@ -41,7 +41,7 @@ function shuffle(arr)    { return [...arr].sort(()=>0.5-Math.random()); }
 const STATIC_AD = {
 
   // ── Master switch — false = semua ads mati ────────────────────
-  allAds: false,
+  allAds: true,
 
   // ── Direct Link (tombol More Info 🔥) ─────────────────────────
   useDirect:  true,
@@ -74,12 +74,43 @@ const STATIC_AD = {
 //  Thumbnail diambil dari db-en.json berdasarkan tag
 // ════════════════════════════════════════════════════════════════
 const FOOTER_CATEGORIES = [
-  { key: 'AI_ML_RESEARCH',    label: 'AI & ML Research',  icon: '✨', tag: 'ai-research'  },
-  { key: 'TUTORIAL_HOWTO',    label: 'Tutorial & How-To', icon: '💻', tag: 'tutorial'      },
-  { key: 'TECH_REVIEW',       label: 'Tech Review',       icon: '📊', tag: 'tech-review'   },
-  { key: 'FINANCE_CRYPTO',    label: 'Finance & Crypto',  icon: '💰', tag: 'finance'       },
-  { key: 'SCIENCE_EXPLAINER', label: 'Science Explainer', icon: '🔬', tag: 'science'       },
-  { key: 'BUSINESS_STRATEGY', label: 'Business Strategy', icon: '📈', tag: 'business'      },
+  {
+    key: 'AI_ML_RESEARCH', label: 'AI & ML Research', icon: '✨',
+    // Cocok jika salah satu keyword ada di tag video (substring match)
+    keywords: ['ai', 'ml', 'machine-learning', 'machinelearning', 'artificial-intelligence',
+               'artificialintelligence', 'deep-learning', 'deeplearning', 'llm', 'gpt',
+               'neural', 'ai-research', 'research', 'openai', 'gemini', 'claude', 'model']
+  },
+  {
+    key: 'TUTORIAL_HOWTO', label: 'Tutorial & How-To', icon: '💻',
+    keywords: ['tutorial', 'how-to', 'howto', 'guide', 'learn', 'course', 'coding',
+               'code', 'programming', 'developer', 'dev', 'python', 'javascript',
+               'beginner', 'step-by-step', 'tips', 'tricks', 'walkthrough']
+  },
+  {
+    key: 'TECH_REVIEW', label: 'Tech Review', icon: '📊',
+    keywords: ['review', 'tech', 'technology', 'gadget', 'hardware', 'software',
+               'product', 'comparison', 'best', 'vs', 'unboxing', 'test', 'benchmark',
+               'specs', 'iphone', 'android', 'laptop', 'phone', 'device', 'app']
+  },
+  {
+    key: 'FINANCE_CRYPTO', label: 'Finance & Crypto', icon: '💰',
+    keywords: ['finance', 'crypto', 'bitcoin', 'ethereum', 'blockchain', 'investment',
+               'investing', 'stock', 'trading', 'money', 'wealth', 'defi', 'nft',
+               'economy', 'market', 'passive-income', 'income', 'earn', 'profit']
+  },
+  {
+    key: 'SCIENCE_EXPLAINER', label: 'Science Explainer', icon: '🔬',
+    keywords: ['science', 'physics', 'biology', 'chemistry', 'space', 'nasa', 'quantum',
+               'explained', 'explainer', 'how', 'why', 'what', 'facts', 'discovery',
+               'research', 'experiment', 'nature', 'universe', 'brain', 'health']
+  },
+  {
+    key: 'BUSINESS_STRATEGY', label: 'Business Strategy', icon: '📈',
+    keywords: ['business', 'strategy', 'startup', 'entrepreneur', 'marketing', 'growth',
+               'productivity', 'leadership', 'management', 'career', 'success', 'mindset',
+               'ecommerce', 'saas', 'brand', 'sales', 'customer', 'company', 'ceo', 'founder']
+  },
 ];
 
 // ════════════════════════════════════════════════════════════════
@@ -552,19 +583,20 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
 }
 
 // ════════════════════════════════════════════════════════════════
-//  HOMEPAGE STATIS  v10
-//  - Tidak ada footer kategori di homepage
-//  - loadMore() self-contained, tidak bergantung renderGrid template
-//  - router() diperbaiki: slug kosong = homepage statis, bukan SPA
-//  - tag/?search tetap pakai SPA renderGrid (dari template)
+//  HOMEPAGE STATIS  v11
+//  FIX:
+//  1. Patch script diinjek SEBELUM script template, bukan sesudah
+//  2. loadMore pakai currentData/currentPage milik template (tidak bentrok)
+//  3. Template 'load' event di-override agar tidak reset grid hardcode
+//  4. _ALL_VIDEOS tersedia untuk search/tag filter tanpa fetch ulang
 // ════════════════════════════════════════════════════════════════
 function buildHomepage(dbEN) {
   // 20 kartu awal di-hardcode ke HTML (SEO + LCP cepat)
   const featured       = shuffle(dbEN).slice(0, HOMEPAGE_CARDS);
   const hardcodedSlugs = JSON.stringify(featured.map(v => v.slug));
 
-  // Semua video (EN + ID) untuk loadMore & search — di-embed sebagai JSON
-  // Hanya field minimal agar tidak membengkakkan HTML
+  // Semua video EN — field minimal, di-embed langsung ke HTML
+  // Dipakai untuk: loadMore, search, tag filter — tanpa fetch
   const allVideosMini = JSON.stringify(
     dbEN.map(v => ({ slug: v.slug, youtubeId: v.youtubeId, title: v.title, tags: v.tags || [] }))
   );
@@ -582,7 +614,7 @@ function buildHomepage(dbEN) {
     process.exit(1);
   }
 
-  // ── Fungsi buat satu kartu video ──────────────────────────────
+  // ── Buat kartu HTML untuk hardcode ────────────────────────────
   function cardHtml(v, idx) {
     const loading = idx < 4 ? 'eager' : 'lazy';
     const fp      = idx < 4 ? ' fetchpriority="high"' : '';
@@ -614,231 +646,110 @@ ${cardsHtml}
 
   html = html.slice(0, startIdx) + newApp + html.slice(endIdx + APP_END.length);
 
-  // ── Footer homepage — hanya copyright, tanpa kategori ─────────
+  // ── Footer homepage — hanya copyright ─────────────────────────
   const footerHtml = `
 <footer style="margin-top:60px;padding:20px 16px;background:#0d0d0d;border-top:1px solid #1e1e1e;text-align:center">
   <p style="color:#333;font-size:10px;letter-spacing:.5px">© 2026 Trend4GenZ. All rights reserved.</p>
 </footer>`;
   html = html.replace('</body>', footerHtml + '\n</body>');
 
-  // ── Patch script: loadMore + router (self-contained) ──────────
+  // ════════════════════════════════════════════════════════════════
+  //  PATCH SCRIPT — diinjek SEBELUM script template
+  //
+  //  Strategi:
+  //  - _ALL_VIDEOS & _SHOWN_SLUGS tersedia global sejak awal
+  //  - Override window.addEventListener('load',...) template:
+  //    template memanggil loadDatabases() + router() di sini.
+  //    Kita ganti agar: set currentData dari _ALL_VIDEOS (tidak fetch),
+  //    lalu template router() tetap jalan tapi grid hardcode tidak di-reset.
+  //  - loadMore() dari template DIPAKAI LANGSUNG karena currentData sudah diisi.
+  //  - Tidak ada fungsi loadMore baru — tidak ada bentrok.
+  // ════════════════════════════════════════════════════════════════
   const patchScript = `
-// ══════════════════════════════════════════════════════════════
-//  PATCH homepage statis v10
-//  loadMore: self-contained, append kartu langsung ke DOM
-//  router: tag/search pakai SPA; slug kosong = homepage statis
-// ══════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════════════
+//  PATCH v11 — dijalankan SEBELUM script template
+//  Tujuan: isi videoDatabaseEN/ALL dari data embed, override 'load'
+//  event template agar grid hardcode tidak di-reset.
+// ══════════════════════════════════════════════════════════════════
 
-// ── Data semua video (EN, minimal fields) ─────────────────────
+// ── Data embed — semua video db-en (field minimal) ───────────────
 var _ALL_VIDEOS  = ${allVideosMini};
 var _SHOWN_SLUGS = new Set(${hardcodedSlugs});
 
-// Pool untuk loadMore — mulai dari video yang belum ditampilkan
-// Urutannya sudah di-shuffle saat generate, tampil sequentially
-var _loadPool  = _ALL_VIDEOS.filter(function(v){ return !_SHOWN_SLUGS.has(v.slug); });
-var _loadIndex = 0;       // posisi berikutnya di _loadPool
-var _PAGE_SIZE = 20;      // jumlah kartu per klik Load More
-var _isLoading = false;
+// ── Override addEventListener sebelum template script jalan ──────
+// Template memanggil: window.addEventListener('load', async () => {
+//   await loadDatabases(); initSearch(); router();
+// });
+// Kita intercept 'load' event: isi database dari _ALL_VIDEOS,
+// lalu panggil initSearch() saja — TIDAK panggil renderGrid/router
+// agar grid hardcode tidak di-reset.
+(function() {
+  var _origAEL = window.addEventListener.bind(window);
+  window.addEventListener = function(type, fn, opts) {
+    if (type === 'load') {
+      // Intercept 'load' event milik template.
+      // Template aslinya: loadDatabases() lalu router() → akan reset grid hardcode.
+      // Kita ganti: isi database dari _ALL_VIDEOS (embed), skip router untuk homepage.
+      _origAEL('load', async function() {
 
-// ── Buat satu elemen kartu video ─────────────────────────────
-function _makeCard(v) {
-  var a = document.createElement('a');
-  a.href  = '/video/' + v.slug + '/';
-  a.className = 'video-card-link';
-  a.style.cssText = 'text-decoration:none;color:inherit';
-  a.innerHTML =
-    '<div class="video-card">' +
-      '<div class="thumb-wrap">' +
-        '<img src="https://img.youtube.com/vi/' + v.youtubeId + '/mqdefault.jpg"' +
-             ' alt="' + v.title.replace(/"/g,'&quot;') + '"' +
-             ' loading="lazy" decoding="async" width="320" height="180"' +
-             ' onload="this.classList.add(\'loaded\')"' +
-             ' onerror="this.src=\'https://img.youtube.com/vi/' + v.youtubeId + '/hqdefault.jpg\';this.classList.add(\'loaded\')"/>' +
-      '</div>' +
-      '<div class="video-card-title">' + v.title.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>' +
-    '</div>';
-  return a;
-}
+        // ── 1. Isi semua variabel database template dari data embed ──
+        videoDatabaseEN  = _ALL_VIDEOS.map(function(v){
+          return {slug:v.slug, youtubeId:v.youtubeId, title:v.title,
+                  tags:v.tags||[], source:'seo'};
+        });
+        videoDatabaseID  = [];
+        videoDatabaseALL = videoDatabaseEN.slice();
 
-// ── loadMore: append _PAGE_SIZE kartu berikutnya ──────────────
-function loadMore() {
-  if (_isLoading) return;
-  var grid = document.getElementById('video-grid-inner');
-  var btn  = document.getElementById('btn-load-more');
-  if (!grid) return;
+        // ── 2. Siapkan currentData untuk loadMore template ───────────
+        // Template loadMore(): start = currentPage * PAGE_SIZE; batch = currentData.slice(start, start+PAGE_SIZE)
+        // PAGE_SIZE template = 24. currentPage kita set 0, currentData = SEMUA video
+        // tapi grid hardcode sudah tampil 20 teratas, jadi kita slice dari situ.
+        // Cara paling aman: currentData = semua video kecuali yang sudah hardcode,
+        // currentPage = 0 (loadMore akan ambil slice(0, PAGE_SIZE) = 24 video berikutnya).
+        currentData = videoDatabaseALL.filter(function(v){
+          return !_SHOWN_SLUGS.has(v.slug);
+        });
+        currentPage = 0;
 
-  // Kalau pool habis, mulai ulang dari awal pool (loop)
-  if (_loadIndex >= _loadPool.length) {
-    _loadIndex = 0;
-  }
+        // ── 3. Init search pakai database yang sudah terisi ──────────
+        if (typeof initSearch === 'function') initSearch();
 
-  var batch = _loadPool.slice(_loadIndex, _loadIndex + _PAGE_SIZE);
-  if (!batch.length) return;
+        // ── 4. Handle URL params (tag/search) — pakai router template ─
+        var params = new URLSearchParams(location.search);
+        if (params.get('tag') || params.get('search')) {
+          // Untuk filter, router template akan panggil renderGrid() → reset grid
+          // Ini OK karena user memang minta filter, bukan homepage normal
+          if (typeof router === 'function') await router();
+        }
+        // Untuk homepage normal: TIDAK panggil router() —
+        // grid hardcode sudah siap di HTML, loadMore() sudah siap via currentData
 
-  _isLoading = true;
-  if (btn) { btn.textContent = 'Loading…'; btn.disabled = true; }
-
-  // Append kartu ke grid
-  var frag = document.createDocumentFragment();
-  batch.forEach(function(v) { frag.appendChild(_makeCard(v)); });
-  grid.appendChild(frag);
-
-  _loadIndex += batch.length;
-  _isLoading  = false;
-
-  if (btn) {
-    btn.textContent = 'Load More';
-    btn.disabled    = false;
-    // Sembunyikan tombol kalau semua sudah ditampilkan
-    if (_loadIndex >= _loadPool.length) {
-      btn.style.display = 'none';
+      }, opts);
+    } else {
+      _origAEL(type, fn, opts);
     }
-  }
-}
-
-// ── Helper: cari slug dari URL path ───────────────────────────
-function _getSlug() {
-  var p = location.pathname.replace(/\\/+$/, '');
-  var parts = p.split('/').filter(Boolean);
-  // Path /video/slug → biarkan redirect ke halaman statis
-  // Path / atau kosong → homepage
-  if (!parts.length || parts[0] === '') return '';
-  if (parts[0] === 'video' && parts[1]) return parts[1];
-  return parts[parts.length - 1] || '';
-}
-
-// ── Helper: render grid kartu (untuk tag/search SPA mode) ─────
-function _renderFilteredGrid(videos, label) {
-  var grid  = document.getElementById('video-grid-inner');
-  var lbl   = document.getElementById('grid-label');
-  var btn   = document.getElementById('btn-load-more');
-  if (!grid) return;
-
-  // Reset grid
-  grid.innerHTML = '';
-  var frag = document.createDocumentFragment();
-  videos.slice(0, _PAGE_SIZE).forEach(function(v) { frag.appendChild(_makeCard(v)); });
-  grid.appendChild(frag);
-
-  // Sisa untuk loadMore dalam mode filter
-  var rest = videos.slice(_PAGE_SIZE);
-  _loadPool  = rest;
-  _loadIndex = 0;
-  if (lbl) lbl.textContent = label;
-  if (btn) btn.style.display = rest.length ? '' : 'none';
-}
-
-// ── router: hanya handle tag & search di homepage ─────────────
-// Slug non-kosong → langsung redirect ke halaman statis /video/
-// Ini homepage statis, jadi SPA hanya untuk filter tag/search
-async function router() {
-  var slug   = _getSlug();
-  var params = new URLSearchParams(location.search);
-  var tag    = params.get('tag');
-  var search = params.get('search');
-
-  // Kalau ada slug video → redirect ke halaman statis
-  if (slug && slug !== 'home' && slug !== 'index') {
-    window.location.replace('/video/' + slug + '/');
-    return;
-  }
-
-  // Ambil navbar dari template jika ada
-  var navbar = document.getElementById('main-navbar');
-
-  if (tag || search) {
-    // Mode filter — gunakan _ALL_VIDEOS (sudah ada di halaman)
-    if (navbar) navbar.classList.remove('video-mode');
-
-    var q = (search || '').toLowerCase();
-    var t = (tag    || '').toLowerCase();
-
-    var filtered = _ALL_VIDEOS.filter(function(v) {
-      if (t) return v.tags && v.tags.some(function(tg){ return tg.toLowerCase() === t; });
-      if (q) return v.title.toLowerCase().indexOf(q) !== -1;
-      return true;
-    });
-
-    var rest = _ALL_VIDEOS.filter(function(v) {
-      return filtered.indexOf(v) === -1;
-    });
-
-    var combined = filtered.length ? filtered.concat(rest) : _ALL_VIDEOS;
-
-    var label = t
-      ? ('🏷️ Tag: #' + tag + ' — ' + filtered.length + ' video')
-      : ('🔍 "' + search + '" — ' + filtered.length + ' hasil');
-
-    _renderFilteredGrid(combined, label);
-
-    // Tambah tombol back ke home jika belum ada
-    var lbl = document.getElementById('grid-label');
-    if (lbl && !document.getElementById('btn-back-home')) {
-      var backBtn = document.createElement('button');
-      backBtn.id = 'btn-back-home';
-      backBtn.onclick = function() {
-        history.pushState({}, '', '/');
-        router();
-      };
-      backBtn.style.cssText = 'background:transparent;color:#98FB98;border:1px solid #98FB98;' +
-        'padding:4px 12px;border-radius:14px;font-weight:700;font-size:.75rem;cursor:pointer;' +
-        'margin-bottom:10px;display:inline-flex;align-items:center;gap:5px;line-height:1';
-      backBtn.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" ' +
-        'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
-        '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>' +
-        '<polyline points="9 22 9 12 15 12 15 22"/></svg> HOME';
-      lbl.parentNode.insertBefore(backBtn, lbl);
-    }
-
-  } else {
-    // Mode homepage normal — reset ke pool awal, tampilkan tombol Load More
-    if (navbar) navbar.classList.remove('video-mode');
-
-    var oldBtn = document.getElementById('btn-back-home');
-    if (oldBtn) oldBtn.remove();
-
-    var lbl2 = document.getElementById('grid-label');
-    if (lbl2) lbl2.textContent = '🔥 TRENDING VIDEO';
-
-    // Reset loadMore pool ke video yang belum di-hardcode
-    _loadPool  = _ALL_VIDEOS.filter(function(v){ return !_SHOWN_SLUGS.has(v.slug); });
-    _loadIndex = 0;
-
-    var btn2 = document.getElementById('btn-load-more');
-    if (btn2) {
-      btn2.style.display = _loadPool.length ? '' : 'none';
-      btn2.textContent   = 'Load More';
-      btn2.disabled      = false;
-    }
-
-    // Grid sudah berisi kartu hardcode dari HTML — tidak perlu re-render
-  }
-
-  window.scrollTo(0, 0);
-}
-
-// ── Override fungsi loadMore dari template jika ada ───────────
-// (template mungkin punya loadMore sendiri yang tidak kompatibel)
-window.loadMore = loadMore;
-
-// ── Jalankan router saat popstate (back/forward browser) ───────
-window.addEventListener('popstate', function() { router(); });
-
-// ── Init: jalankan router sekali saat halaman dimuat ──────────
-(function init() {
-  var params = new URLSearchParams(location.search);
-  if (params.get('tag') || params.get('search')) {
-    router();
-  }
-  // Kalau tidak ada tag/search, grid hardcode sudah siap — tidak perlu apa-apa
+  };
 })();
 `;
 
-  // Inject patch script sebelum </script> terakhir sebelum </body>
-  html = html.replace('<\/script>\n</body>', patchScript + '<\/script>\n</body>');
+  // ── Inject patch SEBELUM <script> besar template ──────────────
+  // Template punya satu blok <script> besar yang dimulai tepat setelah </main>
+  // Kita sisipkan patch script kita sebelum blok itu.
+  const TMPL_SCRIPT_START = '\n<script>\n';
+  const afterMain = html.indexOf('</main>');
+  const scriptPos = html.indexOf(TMPL_SCRIPT_START, afterMain);
+
+  if (scriptPos !== -1) {
+    html = html.slice(0, scriptPos) +
+           '\n<script>\n' + patchScript + '\n<\/script>' +
+           html.slice(scriptPos);
+  } else {
+    // Fallback: inject tepat sebelum <script> di akhir
+    html = html.replace('<script>\n// ════', '<script>\n' + patchScript + '\n// ════');
+  }
+
   return html;
 }
-
 // ════════════════════════════════════════════════════════════════
 //  HALAMAN KATEGORI STATIS — /category/{slug}/index.html
 //  Sumber: HANYA db-en.json
@@ -1070,15 +981,23 @@ function main() {
 
   FOOTER_CATEGORIES.forEach(cat => {
     const catSlug  = cat.key.toLowerCase().replace(/_/g, '-');
+    // Matching: cek setiap tag video apakah mengandung salah satu keyword kategori
+    // Juga cek title video langsung jika tidak ada tag yang cocok
     const normalize = s => s.toLowerCase().replace(/[\s_\-]/g, '');
-    const catNorm   = normalize(cat.tag);
-    const catVideos = dbEN.filter(v =>
-      v.tags && v.tags.some(t =>
-        normalize(t) === catNorm ||
-        normalize(t).includes(catNorm) ||
-        catNorm.includes(normalize(t))
-      )
-    );
+    const kws = cat.keywords.map(k => normalize(k));
+    const matchTag = t => {
+      const nt = normalize(t);
+      return kws.some(k => nt === k || nt.includes(k) || k.includes(nt));
+    };
+    const matchTitle = title => {
+      const nt = title.toLowerCase();
+      return cat.keywords.some(k => nt.includes(k.replace(/-/g,' ')));
+    };
+    const catVideos = dbEN.filter(v => {
+      if (v.tags && v.tags.length) return v.tags.some(t => matchTag(t));
+      // Fallback: cocokkan keyword ke judul kalau tidak ada tag
+      return matchTitle(v.title);
+    });
     const dir = path.join(CAT_DIR, catSlug);
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), buildCategoryPage(cat, catVideos), 'utf8');
