@@ -41,7 +41,7 @@ function shuffle(arr)    { return [...arr].sort(()=>0.5-Math.random()); }
 const STATIC_AD = {
 
   // ── Master switch — false = semua ads mati ────────────────────
-  allAds: true,
+  allAds: false,
 
   // ── Direct Link (tombol More Info 🔥) ─────────────────────────
   useDirect:  true,
