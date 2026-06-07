@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /?v=*
-
+Disallow: /entertainment/
 Sitemap: https://www.trend4genz.fun/sitemap.xml
