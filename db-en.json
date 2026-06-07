@@ -3989,7 +3989,7 @@
           "name": "How do I prevent the agent from introducing bugs?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Validate outputs with tests, compare solutions from multiple models, and document constraints in your prompts. Use AI code reviews before merging changes."
+            "text": "Validate outputs with tests,compare solutions from multiple models, and document constraints in your prompts. Use AI code reviews before merging changes."
           }
         }
       ]
