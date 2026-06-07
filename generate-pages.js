@@ -77,7 +77,7 @@ const STATIC_AD = {
   //  Desktop : tampil di BAWAH list related video (sidebar kanan)
   //  Mobile  : tampil di bawah summary box
   // ════════════════════════════════════════════════════════════
-  useNativeBanner2: false,
+  useNativeBanner2: true,
   nativeBanner2HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
 };
 
@@ -287,7 +287,7 @@ function buildVideoPage(v, allVideos, isNoIndex) {
       .video-main-col{flex:1 1 0;min-width:0}
       .video-side-col{width:280px;flex-shrink:0;position:sticky;top:calc(var(--nav-h) + 10px);display:flex;flex-direction:column;gap:0}
       .side-related-label{color:var(--green);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:8px 0 8px;flex-shrink:0}
-      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 480px);overflow-y:auto;scrollbar-width:none;flex-shrink:0}
+      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 220px);overflow-y:auto;scrollbar-width:none;flex-shrink:0}
       .side-slider::-webkit-scrollbar{display:none}
       .side-slider-item{display:flex;gap:8px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;border:1px solid transparent;transition:.2s;flex-shrink:0}
       .side-slider-item:hover{border-color:var(--green)}
