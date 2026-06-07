@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems | Trend4GenZ</title>
+  <meta name="description" content="Agentic systems are rewriting the rules of automation. Yet most organizations still treat AI agents like static APIs—granting long-lived credentials, blurring …"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://trend4genz.fun/video/iam-for-ai-agents-4-steps-to-secure-future-proof-systems/"/>
+  <link rel="icon" href="https://trend4genz.fun/logo.png" sizes="96x96" type="image/png"/>
+  <meta property="og:type"        content="video.other"/>
+  <meta property="og:title"       content="IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems"/>
+  <meta property="og:description" content="Agentic systems are rewriting the rules of automation. Yet most organizations still treat AI agents like static APIs—granting long-lived credentials, blurring …"/>
+  <meta property="og:url"         content="https://trend4genz.fun/video/iam-for-ai-agents-4-steps-to-secure-future-proof-systems/"/>
+  <meta property="og:image"       content="https://img.youtube.com/vi/e8ela6puxig/maxresdefault.jpg"/>
+  <meta property="og:site_name"   content="Trend4GenZ"/>
+  <meta name="twitter:card"        content="summary_large_image"/>
+  <meta name="twitter:title"       content="IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems"/>
+  <meta name="twitter:description" content="Agentic systems are rewriting the rules of automation. Yet most organizations still treat AI agents like static APIs—granting long-lived credentials, blurring …"/>
+  <meta name="twitter:image"       content="https://img.youtube.com/vi/e8ela6puxig/maxresdefault.jpg"/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"IAM for AI Agents: 4 Steps to Secure & Future-Proof Systems","description":"Agentic systems are rewriting the rules of automation. Yet most organizations still treat AI agents like static APIs—granting long-lived credentials, blurring …","thumbnailUrl":["https://img.youtube.com/vi/e8ela6puxig/hqdefault.jpg"],"uploadDate":"2026-06-04T14:21:38+00:00","embedUrl":"https://www.youtube.com/embed/e8ela6puxig","url":"https://trend4genz.fun/video/iam-for-ai-agents-4-steps-to-secure-future-proof-systems/","publisher":{"@type":"Organization","name":"Trend4GenZ","url":"https://trend4genz.fun"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What’s the biggest risk of not securing AI agents with IAM?","acceptedAnswer":{"@type":"Answer","text":"Unsecured agents create accountability gaps. Without identity propagation, you can’t trace actions back to users or systems, making audits impossible and breaches harder to contain."}},{"@type":"Question","name":"How do ephemeral credentials improve AI agent security?","acceptedAnswer":{"@type":"Answer","text":"They limit exposure by auto-rotating or expiring after single use. Even if compromised, the window for abuse is minutes, not months or years."}},{"@type":"Question","name":"Can this model work with legacy IAM systems?","acceptedAnswer":{"@type":"Answer","text":"Partially. The foundational layer (identity + delegation) is compatible, but advanced features like real-time revocation require modern identity providers."}}]}</script>
+  <link rel="preload" as="image" href="https://img.youtube.com/vi/e8ela6puxig/hqdefault.jpg" fetchpriority="high"/>
+  <link rel="preconnect" href="https://img.youtube.com"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a;--nav-h:52px}
+    body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
+    html,body{overflow-x:hidden;max-width:100%}
+
+    /* ── Navbar ── */
+    .navbar-custom{background:#000;padding:8px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:0}
+    .navbar-right-group{display:flex;align-items:center;margin-left:auto}
+    .search-wrapper{position:relative;display:flex;align-items:center;z-index:9999}
+    .search-container{display:flex;align-items:center;background:var(--dark);border-radius:20px;padding:5px 12px;border:1px solid var(--green)}
+    .search-container input{background:transparent;border:none;color:#fff;outline:none;font-size:.85rem;width:45px;transition:.3s}
+    .search-container input:focus{width:65px}
+    .search-suggestions{position:absolute;top:calc(100% + 6px);right:0;width:280px;background:var(--dark);border:1px solid var(--green);border-radius:10px;overflow:hidden;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.6);display:none}
+    .search-suggestions.show{display:block}
+    .suggestion-item{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(255,255,255,.05)}
+    .suggestion-item:last-child{border-bottom:none}
+    .suggestion-item:hover{background:rgba(152,251,152,.12)}
+    .suggestion-item img{width:52px;height:30px;object-fit:cover;border-radius:4px;flex-shrink:0}
+    .suggestion-item span{font-size:.75rem;color:#f1f1f1;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+    .suggestion-item span em{color:var(--green);font-style:normal;font-weight:bold}
+    .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
+    @media(max-width:768px){.search-suggestions{width:240px}}
+
+    /* ── Wrapper utama ── */
+    .video-page-container{width:100%;max-width:800px;margin:0 auto;padding:15px}
+    @media(max-width:600px){.video-page-container{padding:0}}
+
+    /* ═══════════════════════════════════════════════
+       DESKTOP 2-KOLOM (≥992px)
+    ═══════════════════════════════════════════════ */
+    @media(min-width:992px){
+      .video-page-container{max-width:1100px}
+      .video-desktop-layout{display:flex;gap:20px;align-items:flex-start}
+      .video-main-col{flex:1 1 0;min-width:0}
+
+      /* Sidebar kanan — sticky, flex column */
+      .video-side-col{
+        width:280px;flex-shrink:0;
+        position:sticky;top:calc(var(--nav-h) + 10px);
+        display:flex;flex-direction:column;gap:0;
+      }
+
+      /* Label related */
+      .side-related-label{
+        color:var(--green);font-size:.8rem;font-weight:700;
+        letter-spacing:.05em;text-transform:uppercase;
+        padding:8px 0 8px;flex-shrink:0;
+      }
+
+      /* Daftar related video — scrollable */
+      .side-slider{
+        display:flex;flex-direction:column;gap:8px;
+        max-height:calc(100vh - var(--nav-h) - 300px);
+        overflow-y:auto;scrollbar-width:none;flex-shrink:0;
+      }
+      .side-slider::-webkit-scrollbar{display:none}
+
+      .side-slider-item{
+        display:flex;gap:8px;background:var(--dark);border-radius:8px;
+        overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;
+        border:1px solid transparent;transition:.2s;flex-shrink:0;
+      }
+      .side-slider-item:hover{border-color:var(--green)}
+      .side-slider-item img{width:108px;height:60px;object-fit:cover;flex-shrink:0}
+      .side-slider-item p{
+        font-size:.72rem;padding:6px 8px;margin:0;line-height:1.35;
+        display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
+        overflow:hidden;color:#f1f1f1;
+      }
+
+      /* Native banner di sidebar — full width */
+      .side-nb-block{width:100%;flex-shrink:0;margin:8px 0}
+      .side-nb-block .native-banner-wrap{margin:0;border-radius:10px}
+
+      /* Sembunyikan elemen mobile-only */
+      .nb-mobile-only{display:none}
+      .recommendation-slider-wrap{display:none}
+    }
+
+    /* Mobile: sembunyikan kolom kanan */
+    @media(max-width:991px){
+      .video-desktop-layout{display:block}
+      .video-side-col{display:none}
+    }
+
+    /* ── Player ── */
+    .player-container{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
+    @media(max-width:600px){.player-container{border-radius:0}}
+    .player-container iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1}
+    .player-container>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+    .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;cursor:pointer;gap:10px}
+    .play-btn-svg{width:72px;height:72px;filter:drop-shadow(0 0 12px rgba(255,3,45,.7));transition:transform .15s}
+    .play-overlay:hover .play-btn-svg{transform:scale(1.1)}
+    .play-overlay-label{font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.08em;text-shadow:0 2px 8px rgba(0,0,0,.8)}
+    .video-mask{position:absolute;z-index:99999;background:transparent;pointer-events:all;touch-action:none}
+    .mask-top{top:0;left:0;width:55%;height:94px}
+    .mask-bottom{bottom:0;left:40%;width:100%;height:43px}
+    .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
+    #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
+
+    /* ── Info section ── */
+    .info-section{padding:15px}
+    h1{font-size:1.2rem;font-weight:800;line-height:1.4;margin:15px 0}
+    .dual-action-wrap{display:flex;gap:10px;margin-bottom:18px}
+    .home-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;background:var(--green);color:#000;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
+    .home-split-btn:hover{background:#7ddb7d;transform:translateY(-2px)}
+    .offer-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;color:#fff;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#ff416c,#ff4b2b);animation:pulse-offer 2s infinite}
+    @keyframes pulse-offer{0%,100%{box-shadow:0 0 14px rgba(255,65,108,.5)}50%{box-shadow:0 0 24px rgba(255,65,108,.85)}}
+    .summary-box{background:rgba(255,255,255,.05);padding:20px;border-radius:12px;border-left:4px solid var(--green)}
+    .summary-text{font-size:.9rem;line-height:1.5;color:#ddd}
+    .summary-text h2{font-size:1.1rem;font-weight:700;margin:20px 0 8px;color:#fff}
+    .summary-text h3{font-size:1.0rem;font-weight:600;margin:16px 0 6px;color:#fff}
+    .summary-text p{font-size:.9rem;line-height:1.5;margin-bottom:12px;color:#ddd}
+    .summary-text ul{margin-bottom:12px;padding-left:20px}
+    .summary-text li{font-size:.9rem;line-height:1.4;margin-bottom:5px;color:#ddd}
+    .summary-text strong{color:#fff}
+    .seo-tags-container{margin-top:15px;padding-top:15px;border-top:1px solid #222;display:flex;flex-wrap:wrap;gap:6px}
+    .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;text-decoration:none;transition:.15s;display:inline-block}
+    .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
+    .more-videos-label{color:#98FB98;margin:24px 0 12px;font-size:.85rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+
+    /* ── Mobile horizontal slider ── */
+    .recommendation-slider{display:flex;overflow-x:auto;gap:10px;padding-bottom:8px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+    .recommendation-slider::-webkit-scrollbar{display:none}
+    .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent;text-decoration:none;color:inherit;display:block}
+    .slider-item:hover{border-color:var(--green);transform:translateY(-2px)}
+    .slider-item img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+    .slider-item p{font-size:.72rem;padding:6px 8px 8px;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35;min-height:42px;color:#f1f1f1}
+
+    /* ── Native Banner ── */
+    .native-banner-wrap{position:relative;width:100%;margin:10px 0;border-radius:10px;overflow:hidden;min-height:90px}
+    .native-banner-wrap .close-btn{position:absolute;top:6px;right:6px;width:26px;height:26px;background:rgba(0,0,0,.65);color:#fff;border:2px solid #fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;cursor:pointer;z-index:10}
+    .native-banner-inner{width:100%;min-height:90px;display:flex;flex-direction:column;justify-content:center}
+
+    /* ── Footer SEO ── */
+    .footer-seo{margin-top:60px;padding:24px 16px 28px;background:#0d0d0d;border-top:1px solid #1e1e1e}
+    .footer-seo-title{color:#555;font-size:10px;letter-spacing:2px;font-weight:700;text-transform:uppercase;text-align:center;margin-bottom:14px}
+    .footer-cat-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:18px}
+    .footer-cat-link{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border:1px solid #2a2a2a;border-radius:20px;text-decoration:none;color:#888;font-size:11px;font-weight:600;background:#111;transition:.2s;white-space:nowrap}
+    .footer-cat-link:hover{color:var(--green);border-color:#3a3a3a;background:#161616}
+    .footer-copy{color:#333;font-size:10px;text-align:center;letter-spacing:.5px}
+  </style>
+</head>
+<body>
+<nav class="navbar-custom">
+  <div class="navbar-right-group">
+    <div class="search-wrapper">
+      <div class="search-container">
+        <input id="searchInput" placeholder="Cari..." type="text" autocomplete="off"/>
+        <svg id="searchBtn" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="cursor:pointer;flex-shrink:0"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+  </div>
+</nav>
+
+<main>
+<div class="video-page-container">
+  <div class="video-desktop-layout">
+
+    <!-- ═════════════════════════════════════════
+         KOLOM KIRI: player + info
+    ════════════════════════════════════════════ -->
+    <div class="video-main-col">
+      <div class="player-container" id="player-box">
+        <img src="https://img.youtube.com/vi/e8ela6puxig/hqdefault.jpg" alt="IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems" width="480" height="270"
+             fetchpriority="high" decoding="sync"/>
+        <div class="play-overlay" onclick="startPlay()">
+          <svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="38" fill="rgba(0,0,0,.55)" stroke="#ff032d" stroke-width="3"/>
+            <polygon points="32,24 60,40 32,56" fill="#ff032d"/>
+          </svg>
+          <div class="play-overlay-label">TAP TO WATCH</div>
+        </div>
+        <div class="video-mask mask-top"></div>
+        <div class="video-mask mask-bottom"></div>
+      </div>
+
+      <div class="info-section">
+        <h1>IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems</h1>
+        <div class="dual-action-wrap">
+          <button class="home-split-btn" onclick="location.href='https://trend4genz.fun/'">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            HOME
+          </button>
+          <button class="offer-split-btn" onclick="handleMoreInfo()">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            More Info 🔥
+          </button>
+        </div>
+
+        <!-- Native Banner 1 — MOBILE ONLY -->
+        <div class="nb-mobile-only"><div class="native-banner-wrap" id="nb-1m"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
+
+        <div class="summary-box">
+          <div class="summary-text"><p>Agentic systems are rewriting the rules of automation. Yet most organizations still treat AI agents like static APIs—granting long-lived credentials, blurring accountability, and leaving critical data exposed. The shift from deterministic workflows to non-deterministic agents demands a new security paradigm: <strong>identity and access management built for autonomy, not just automation.</strong></p>
+
+<h2>Why Traditional IAM Was Holding AI Back</h2>
+
+<p>For decades, IAM operated under a simple contract: applications request access, humans approve, and systems execute. This model breaks down when agents act on behalf of users, delegate tasks to other agents, or operate autonomously. The core problem? <strong>Accountability collapses when credentials outlive their purpose.</strong> A 2026 study found that 68% of AI-related breaches involved compromised API keys or service accounts—credentials that were never designed to be ephemeral or context-aware.</p>
+
+<p>Traditional IAM also fails to address the <strong>delegation chain</strong>. When Agent A tasks Agent B, which then interacts with Agent C, who owns the risk? Without explicit identity propagation, audit trails become useless, and least-privilege enforcement becomes impossible. The result: organizations either over-provision access (inviting abuse) or under-provision (stifling innovation).</p>
+
+<h2>Inside the 4-Step Maturity Model: Architecture & Design Choices</h2>
+
+<p>The model progresses from foundational controls to adaptive, real-time governance. Here’s how each layer builds on the last:</p>
+
+<ul>
+  <li><strong>Foundation: Identity & Delegation</strong>
+    <ul>
+      <li>Assign non-human identities to agents, treating them as distinct from human users or static service accounts.</li>
+      <li>Implement <strong>delegation chains</strong> to track "on behalf of" relationships (e.g., Agent A → Agent B → User X).</li>
+      <li>Integrate a Security Information and Event Management (SIEM) system to log all agent actions for auditability.</li>
+    </ul>
+  </li>
+  <li><strong>Enhanced: Ephemeral Credentials & First-Class Citizenship</strong>
+    <ul>
+      <li>Treat agents as <strong>first-class identities</strong>, with the same governance rigor as human users (e.g., lifecycle management, access reviews).</li>
+      <li>Replace long-lived API keys with <strong>short-lived, ephemeral credentials</strong> that auto-rotate or expire after single use.</li>
+      <li>Enforce <strong>contextual access</strong> (e.g., time-bound, location-aware, or task-specific permissions).</li>
+    </ul>
+  </li>
+  <li><strong>Advanced: Fine-Grained Controls & Real-Time Revocation</strong>
+    <ul>
+      <li>Adopt <strong>attribute-based access control (ABAC)</strong> to dynamically adjust permissions based on risk signals (e.g., anomalous behavior, data sensitivity).</li>
+      <li>Deploy <strong>real-time credential revocation</strong> to kill compromised sessions instantly, without waiting for manual intervention.</li>
+      <li>Use <strong>behavioral analytics</strong> to detect and block unintended agent actions (e.g., an agent exceeding its intended scope).</li>
+    </ul>
+  </li>
+  <li><strong>Adaptive: Continuous Evaluation & Self-Healing</strong>
+    <ul>
+      <li>Implement <strong>continuous access evaluation</strong> to re-assess permissions mid-session, not just at authentication.</li>
+      <li>Enable <strong>self-healing workflows</strong> where agents can request temporary privilege escalation (with approval) and auto-revert after task completion.</li>
+      <li>Integrate with <strong>threat intelligence feeds</strong> to proactively block access to compromised endpoints or data sources.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Results vs State-of-the-Art</h2>
+
+<p>Organizations adopting this model report transformative outcomes:</p>
+
+<ul>
+  <li><strong>92% reduction in credential-related breaches</strong> by replacing static API keys with ephemeral tokens (source: 2026 Enterprise AI Security Report).</li>
+  <li><strong>40% faster incident response</strong> due to real-time audit trails and delegation chain visibility.</li>
+  <li><strong>75% fewer over-provisioned permissions</strong> through contextual access controls and continuous evaluation.</li>
+  <li><strong>60% improvement in agent autonomy</strong> by enabling self-healing workflows without sacrificing security.</li>
+  <li><strong>100% compliance with data sovereignty laws</strong> via granular identity propagation and logging.</li>
+</ul>
+
+<h2>What This Means in Practice</h2>
+
+<p>For security teams, this model shifts the focus from <strong>"who has access?"</strong> to <strong>"who should have access right now?"</strong>. Consider a healthcare AI agent tasked with processing patient records. Under traditional IAM, it might retain broad database access indefinitely. With the adaptive layer, it requests and receives <em>only</em> the permissions needed for a specific patient’s records—revoked immediately after the task completes. The result: even if the agent is compromised, the blast radius is contained to a single transaction.</p>
+
+<p>For developers, the model eliminates the friction of manual credential management. Ephemeral tokens auto-rotate, and delegation chains auto-document, freeing engineers to focus on agent logic rather than security overhead. For compliance teams, the SIEM integration provides a single pane of glass for audits, with every agent action tied to a verifiable identity and timestamp.</p>
+
+<h3>Limitations & Open Questions</h3>
+
+<p>The model assumes a baseline of identity infrastructure—organizations without a modern IAM system will struggle to implement even the foundational layer. Additionally, <strong>real-time revocation</strong> requires low-latency identity providers, which may not be feasible in legacy environments. Finally, while behavioral analytics reduce false positives, they’re not foolproof: adversarial agents could mimic legitimate behavior to bypass controls.</p>
+
+<p>Open questions remain around <strong>scalability</strong>. As agent ecosystems grow, delegation chains could become unwieldy, and continuous evaluation may introduce performance overhead. Future work will likely focus on <strong>distributed identity</strong> models, where agents carry verifiable credentials (e.g., decentralized identifiers) rather than relying on centralized IAM systems.</p>
+
+<h2>The Road Ahead</h2>
+
+<p>The next frontier is <strong>autonomous identity governance</strong>. Imagine agents that not only request access but also <em>justify</em> it in plain language, with human-readable audit trails. Or systems that auto-generate least-privilege policies based on observed agent behavior, reducing manual configuration. The goal isn’t just to secure agentic systems—it’s to make security <em>invisible</em>, so autonomy can flourish without compromise.</p>
+
+<p>For now, the 4-step model provides a pragmatic path forward. Start with identity. Add delegation. Enforce ephemerality. Then adapt. The alternative—clinging to static IAM—isn’t just risky. It’s a roadblock to the future.</p></div>
+          <div class="seo-tags-container"><a href="https://trend4genz.fun/?tag=ai%20identity%20management" class="seo-tag-badge">#ai identity management</a><a href="https://trend4genz.fun/?tag=agentic%20system%20security" class="seo-tag-badge">#agentic system security</a><a href="https://trend4genz.fun/?tag=ephemeral%20credentials%20for%20ai" class="seo-tag-badge">#ephemeral credentials for ai</a><a href="https://trend4genz.fun/?tag=ai%20access%20control" class="seo-tag-badge">#ai access control</a><a href="https://trend4genz.fun/?tag=ai%20auditability" class="seo-tag-badge">#ai auditability</a><a href="https://trend4genz.fun/?tag=non-human%20identity%20governance" class="seo-tag-badge">#non-human identity governance</a><a href="https://trend4genz.fun/?tag=ai%20security%202026" class="seo-tag-badge">#ai security 2026</a></div>
+        </div>
+
+        <!-- Native Banner 2 — MOBILE ONLY (di bawah summary) -->
+        <div class="nb-mobile-only"><div class="native-banner-wrap" id="nb-2m"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
+
+        <!-- Mobile horizontal slider -->
+        <div class="recommendation-slider-wrap">
+          <p class="more-videos-label">MORE VIDEOS</p>
+          <div class="recommendation-slider" id="rec-slider">
+    <a href="https://trend4genz.fun/video/unlock-codex-superpowers-a-developer-s-guide-to-ai-mastery/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/3zSU-DGZ6J0/mqdefault.jpg"
+           alt="Unlock Codex Superpowers: A Developer’s Guide to AI Mastery" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Unlock Codex Superpowers: A Developer’s Guide to AI Mastery</p>
+    </a>
+    <a href="https://trend4genz.fun/video/nvidia-cosmos-3-the-world-model-that-rewrites-ai-s-rules/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/2zDtIWeyqYs/mqdefault.jpg"
+           alt="NVIDIA Cosmos 3: The World Model That Rewrites AI’s Rules" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>NVIDIA Cosmos 3: The World Model That Rewrites AI’s Rules</p>
+    </a>
+    <a href="https://trend4genz.fun/video/openai-s-ex-cto-just-built-the-ai-interface-we-ve-been-waiting-for/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Oy7tzmfbl64/mqdefault.jpg"
+           alt="OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For</p>
+    </a>
+    <a href="https://trend4genz.fun/video/nvidia-lyria-2-0-one-photo-creates-a-3d-world-that-never-breaks/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/eCw33snvoNI/mqdefault.jpg"
+           alt="NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks</p>
+    </a>
+    <a href="https://trend4genz.fun/video/q-day-2026-why-quantum-computing-breaks-crypto-and-what-investors-must-do/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/rTM95-gZtOs/mqdefault.jpg"
+           alt="Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do</p>
+    </a>
+    <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
+           alt="Hermes Agent on DGX Spark: Local AI That Feels Like Magic" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
+    </a>
+    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
+           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
+    </a>
+    <a href="https://trend4genz.fun/video/master-cursor-coding-agents-in-2026-step-by-step-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/kF2WQgk1LtY/mqdefault.jpg"
+           alt="Master Cursor Coding Agents in 2026: Step-by-Step Guide" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Master Cursor Coding Agents in 2026: Step-by-Step Guide</p>
+    </a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════════
+         KOLOM KANAN DESKTOP
+         Urutan: NB1 → Label → Related → NB2
+    ════════════════════════════════════════════ -->
+    <div class="video-side-col">
+
+      <!-- NB1: di ATAS related video -->
+      <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
+
+      <!-- Label -->
+      <div class="side-related-label">🎬 Related Videos</div>
+
+      <!-- Daftar related video -->
+      <div class="side-slider" id="side-slider-desktop">
+    <a href="https://trend4genz.fun/video/unlock-codex-superpowers-a-developer-s-guide-to-ai-mastery/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/3zSU-DGZ6J0/mqdefault.jpg"
+           alt="Unlock Codex Superpowers: A Developer’s Guide to AI Mastery" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unlock Codex Superpowers: A Developer’s Guide to AI Mastery</p>
+    </a>
+    <a href="https://trend4genz.fun/video/nvidia-cosmos-3-the-world-model-that-rewrites-ai-s-rules/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/2zDtIWeyqYs/mqdefault.jpg"
+           alt="NVIDIA Cosmos 3: The World Model That Rewrites AI’s Rules" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>NVIDIA Cosmos 3: The World Model That Rewrites AI’s Rules</p>
+    </a>
+    <a href="https://trend4genz.fun/video/openai-s-ex-cto-just-built-the-ai-interface-we-ve-been-waiting-for/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Oy7tzmfbl64/mqdefault.jpg"
+           alt="OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For</p>
+    </a>
+    <a href="https://trend4genz.fun/video/nvidia-lyria-2-0-one-photo-creates-a-3d-world-that-never-breaks/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/eCw33snvoNI/mqdefault.jpg"
+           alt="NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks</p>
+    </a>
+    <a href="https://trend4genz.fun/video/q-day-2026-why-quantum-computing-breaks-crypto-and-what-investors-must-do/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/rTM95-gZtOs/mqdefault.jpg"
+           alt="Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do</p>
+    </a>
+    <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
+           alt="Hermes Agent on DGX Spark: Local AI That Feels Like Magic" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
+    </a>
+    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
+           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
+    </a>
+    <a href="https://trend4genz.fun/video/master-cursor-coding-agents-in-2026-step-by-step-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/kF2WQgk1LtY/mqdefault.jpg"
+           alt="Master Cursor Coding Agents in 2026: Step-by-Step Guide" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Master Cursor Coding Agents in 2026: Step-by-Step Guide</p>
+    </a>
+    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-a-proven-2026-roadmap/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
+           alt="How to Learn Python Fast: A Proven 2026 Roadmap" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>How to Learn Python Fast: A Proven 2026 Roadmap</p>
+    </a>
+    <a href="https://trend4genz.fun/video/managed-deep-agents-the-missing-layer-for-production-ai/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/LdQpoK2TzSo/mqdefault.jpg"
+           alt="Managed Deep Agents: The Missing Layer for Production AI" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Managed Deep Agents: The Missing Layer for Production AI</p>
+    </a>
+    <a href="https://trend4genz.fun/video/the-ai-tech-stack-powering-2026-stability-over-hype/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/21_k2St8bBI/mqdefault.jpg"
+           alt="The AI Tech Stack Powering 2026: Stability Over Hype" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>The AI Tech Stack Powering 2026: Stability Over Hype</p>
+    </a>
+    <a href="https://trend4genz.fun/video/rag-vs-graphrag-why-context-is-the-new-ai-bottleneck-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/pN-LfxNFiTc/mqdefault.jpg"
+           alt="RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/build-ai-agent-harnesses-for-large-codebases-a-step-by-step-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/efRIrLXoOVA/mqdefault.jpg"
+           alt="Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide</p>
+    </a>
+    <a href="https://trend4genz.fun/video/3-hidden-claude-features-that-turn-ai-into-your-workflow-engine/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
+           alt="3 Hidden Claude Features That Turn AI Into Your Workflow Engine" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>3 Hidden Claude Features That Turn AI Into Your Workflow Engine</p>
+    </a>
+    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-why-your-car-isn-t-a-power-plant-yet/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/RdPzoDV7F3M/mqdefault.jpg"
+           alt="Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)</p>
+    </a>
+    <a href="https://trend4genz.fun/video/how-ai-agencies-hit-20k-month-with-claude-code-retainers/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/NlGIl5-gpHM/mqdefault.jpg"
+           alt="How AI Agencies Hit $20K/Month with Claude Code Retainers" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>How AI Agencies Hit $20K/Month with Claude Code Retainers</p>
+    </a>
+    <a href="https://trend4genz.fun/video/why-auto-mechanics-are-disappearing-what-it-means-for-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/9cfbhxsqW84/mqdefault.jpg"
+           alt="Why Auto Mechanics Are Disappearing &amp; What It Means for 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Why Auto Mechanics Are Disappearing &amp; What It Means for 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/mcp-vs-adk-how-ai-agents-connect-work-together-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/BedAaB1RKgE/mqdefault.jpg"
+           alt="MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/10-weird-open-source-tools-that-solve-real-problems-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
+           alt="10 Weird Open-Source Tools That Solve Real Problems in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>10 Weird Open-Source Tools That Solve Real Problems in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/deepseek-v4-ai-outperforms-billion-dollar-models-for-free/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
+           alt="DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free</p>
+    </a></div>
+
+      <!-- NB2: di BAWAH related video -->
+      <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
+
+    </div>
+
+  </div><!-- end video-desktop-layout -->
+</div>
+</main>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER SEO KATEGORI
+     Sumber: db-en.json (HANYA)
+════════════════════════════════════════════════ -->
+<footer class="footer-seo">
+  <p class="footer-seo-title">Jelajahi Kategori</p>
+  <nav class="footer-cat-grid" aria-label="Kategori konten">
+    <a href="https://trend4genz.fun/category/ai-ml-research/" class="footer-cat-link"><span>✨</span><span>AI & ML Research</span></a><a href="https://trend4genz.fun/category/tutorial-howto/" class="footer-cat-link"><span>💻</span><span>Tutorial & How-To</span></a><a href="https://trend4genz.fun/category/tech-review/" class="footer-cat-link"><span>📊</span><span>Tech Review</span></a><a href="https://trend4genz.fun/category/finance-crypto/" class="footer-cat-link"><span>💰</span><span>Finance & Crypto</span></a><a href="https://trend4genz.fun/category/science-explainer/" class="footer-cat-link"><span>🔬</span><span>Science Explainer</span></a><a href="https://trend4genz.fun/category/business-strategy/" class="footer-cat-link"><span>📈</span><span>Business Strategy</span></a>
+  </nav>
+  <p class="footer-copy">© 2026 Trend4GenZ. All rights reserved.</p>
+</footer>
+
+<script>
+// ── Ads config (injected at build time) ────────────────────────
+var STATIC_AD = {
+  allAds:          true,
+  useDirect:       true,
+  directUrl:       'https://facebook.com',
+  usePlayAds:      true,
+  playAdsUrl:      'https://facebook.com',
+  playAdsStartFrom:2,
+  useNativeBanner1:true,
+  useNativeBanner2:true
+};
+var _playCount = 0;
+
+function handleMoreInfo() {
+  if (STATIC_AD.allAds && STATIC_AD.useDirect) window.open(STATIC_AD.directUrl,'_blank');
+}
+
+function startPlay() {
+  _playCount++;
+  if (STATIC_AD.allAds && STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
+    window.open(STATIC_AD.playAdsUrl,'_blank');
+  }
+  var pb = document.getElementById('player-box');
+  pb.innerHTML =
+    '<iframe src="https://www.youtube.com/embed/e8ela6puxig?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +
+    ' allow="autoplay;encrypted-media;fullscreen" allowfullscreen' +
+    ' style="position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1"></iframe>' +
+    '<div class="video-mask mask-top"></div>' +
+    '<div class="video-mask mask-bottom"></div>' +
+    '<div id="fs-btn" class="btn-fs-custom" onclick="toggleFS()" title="Fullscreen">' +
+    '<svg id="fs-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+    '<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/>' +
+    '<polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>' +
+    '</svg></div>';
+}
+
+function toggleFS() {
+  var el=document.getElementById('player-box'), svg=document.getElementById('fs-icon');
+  if (!document.fullscreenElement&&!document.webkitFullscreenElement) {
+    (el.requestFullscreen||el.webkitRequestFullscreen).call(el);
+    if(svg) svg.innerHTML='<polyline points="8 3 3 3 3 8"/><line x1="3" y1="3" x2="10" y2="10"/><polyline points="21 8 21 3 16 3"/><line x1="21" y1="3" x2="14" y2="10"/><polyline points="3 16 3 21 8 21"/><line x1="3" y1="21" x2="10" y2="14"/><polyline points="16 21 21 21 21 16"/><line x1="21" y1="21" x2="14" y2="14"/>';
+  } else {
+    (document.exitFullscreen||document.webkitExitFullscreen).call(document);
+    if(svg) svg.innerHTML='<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/><polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>';
+  }
+}
+
+// ── Search ───────────────────────────────────────────────────────
+var _db = [{"slug":"1-000-000x-ai-compute-leap-what-changes-next-in-2026","youtubeId":"yz6I23VRbdg","title":"1,000,000x AI Compute Leap: What Changes Next in 2026"},{"slug":"10-weird-open-source-tools-that-solve-real-problems-in-2026","youtubeId":"qPuzWFvRajk","title":"10 Weird Open-Source Tools That Solve Real Problems in 2026"},{"slug":"2026-s-best-jobs-aren-t-what-you-think-here-s-the-data","youtubeId":"oDO_hTtQedQ","title":"2026’s Best Jobs Aren’t What You Think—Here’s the Data"},{"slug":"2026-toyota-c-hr-reliability-vs-range-trade-offs-for-ev-buyers","youtubeId":"dtAGxPx3bcY","title":"2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers"},{"slug":"3-hidden-claude-features-that-turn-ai-into-your-workflow-engine","youtubeId":"tkpdPvx65A0","title":"3 Hidden Claude Features That Turn AI Into Your Workflow Engine"},{"slug":"5-claude-co-work-tips-to-master-your-workspace-in-2026","youtubeId":"4wvLHFgnQZQ","title":"5 Claude Co-Work Tips to Master Your Workspace in 2026"},{"slug":"6-must-have-claude-skills-to-supercharge-your-coding-workflow","youtubeId":"ZSvcxjNZdxk","title":"6 Must-Have Claude Skills to Supercharge Your Coding Workflow"},{"slug":"7-ai-engineering-mistakes-killing-your-career-2026-guide","youtubeId":"nvc7xi6vZWw","title":"7 AI Engineering Mistakes Killing Your Career (2026 Guide)"},{"slug":"7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep","youtubeId":"JFO9TfZLnT8","title":"7 Levels of AI Mastery: How to Build Systems That Work While You Sleep"},{"slug":"adk-vs-rag-how-to-choose-the-right-ai-stack-in-2026","youtubeId":"7HSSR1n8dgc","title":"ADK vs RAG: How to Choose the Right AI Stack in 2026"},{"slug":"aeo-in-2026-get-ai-to-recommend-your-business-like-a-pro","youtubeId":"-5Drsq6ve7w","title":"AEO in 2026: Get AI to Recommend Your Business Like a Pro"},{"slug":"ai-agents-in-2026-the-4-levels-that-multiply-your-output","youtubeId":"LNkAW4SSgdY","title":"AI Agents in 2026: The 4 Levels That Multiply Your Output"},{"slug":"ai-agents-in-2026-the-divergence-that-will-redefine-workflows","youtubeId":"R9K2574YEAg","title":"AI Agents in 2026: The Divergence That Will Redefine Workflows"},{"slug":"ai-diffusion-report-how-the-world-is-really-using-ai-in-2026","youtubeId":"u8bKR3RHAYA","title":"AI Diffusion Report: How the World Is Really Using AI in 2026"},{"slug":"ai-engineer-salaries-2026-from-junior-to-senior-what-s-real","youtubeId":"eTBSF411yQ4","title":"AI Engineer Salaries 2026: From Junior to Senior—What’s Real"},{"slug":"ai-in-2026-the-3-shifts-that-actually-move-the-needle","youtubeId":"I62CvEwVS58","title":"AI in 2026: The 3 Shifts That Actually Move the Needle"},{"slug":"ai-stack-demystified-llms-rag-hardware-that-power-real-world-ai","youtubeId":"RRKwmeyIc24","title":"AI Stack Demystified: LLMs, RAG & Hardware That Power Real-World AI"},{"slug":"amd-gpus-unlock-local-ai-threadripper-r9700-benchmarks","youtubeId":"PEg08OAht2s","title":"AMD GPUs Unlock Local AI: Threadripper & R9700 Benchmarks"},{"slug":"amd-local-ai-breakthrough-32gb-vram-runs-frontier-llms-at-90-speed","youtubeId":"PEg08OAht2s&t=6s","title":"AMD Local AI Breakthrough: 32GB VRAM Runs Frontier LLMs at 90% Speed"},{"slug":"anderson-ev-chargers-a3-vs-a2-vs-quartz-vs-vision-which-wins","youtubeId":"_lB9Bm5qUfI","title":"Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?"},{"slug":"anthropic-mythos-ai-s-cybersecurity-tipping-point-unlocked","youtubeId":"ahRMR_9kqb0","title":"Anthropic Mythos: AI’s Cybersecurity Tipping Point Unlocked"},{"slug":"auth-md-the-missing-protocol-for-autonomous-ai-agents-in-2026","youtubeId":"Dqp_b8GHLXU","title":"Auth.md: The Missing Protocol for Autonomous AI Agents in 2026"},{"slug":"autonomous-ai-coders-the-next-productivity-wave-or-overhyped-loop","youtubeId":"rIs802-bXDY","title":"Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?"},{"slug":"best-ev-chargers-uk-2026-which-one-actually-wins","youtubeId":"Il9b9JfYjk8","title":"Best EV Chargers UK 2026: Which One Actually Wins?"},{"slug":"best-worst-toyota-models-2026-reliability-secrets-revealed","youtubeId":"AeJTCIm-Z34","title":"Best & Worst Toyota Models 2026: Reliability Secrets Revealed"},{"slug":"bidirectional-ev-charging-the-hidden-grid-revolution-in-2026","youtubeId":"etS75SY3Pr4","title":"Bidirectional EV Charging: The Hidden Grid Revolution in 2026"},{"slug":"bidirectional-ev-charging-why-your-car-isn-t-a-power-plant-yet","youtubeId":"RdPzoDV7F3M","title":"Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)"},{"slug":"boost-ai-agent-memory-with-obsidian-step-by-step-guide","youtubeId":"6V-b073qhPA","title":"Boost AI Agent Memory with Obsidian: Step-by-Step Guide"},{"slug":"build-ai-agent-harnesses-for-large-codebases-a-step-by-step-guide","youtubeId":"efRIrLXoOVA","title":"Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide"},{"slug":"build-an-ai-dark-factory-self-shipping-code-tutorial","youtubeId":"6woc6ii-zoE","title":"Build an AI Dark Factory: Self-Shipping Code Tutorial"},{"slug":"build-an-autonomous-openclaw-agent-full-setup-guide-2026","youtubeId":"oOCN30ulVyo","title":"Build an Autonomous OpenClaw Agent: Full Setup Guide 2026"},{"slug":"build-high-converting-ai-websites-in-17-minutes-gemini-3-5-guide","youtubeId":"PsE9u37gJjU","title":"Build High-Converting AI Websites in 17 Minutes (Gemini 3.5 Guide)"},{"slug":"cag-vs-long-context-how-ai-models-actually-remember-data-in-2026","youtubeId":"B_RrXwDupIg","title":"CAG vs Long Context: How AI Models Actually Remember Data in 2026"},{"slug":"chatgpt-5-5-codex-the-ai-coding-revolution-you-can-t-ignore","youtubeId":"iz3_xhi6iQE","title":"ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore"},{"slug":"chatgpt-5-5-instant-why-speed-now-rivals-smarts-in-ai","youtubeId":"4nQnhjimB4Y","title":"ChatGPT 5.5 Instant: Why Speed Now Rivals Smarts in AI"},{"slug":"chatgpt-5-5-unlocked-the-pre-training-shift-that-changes-everything","youtubeId":"McOK2URVyNg","title":"ChatGPT 5.5 Unlocked: The Pre-Training Shift That Changes Everything"},{"slug":"china-s-ev-revolution-5-cars-redefining-automotive-tech-by-2026","youtubeId":"wBKzg4-dYVM","title":"China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026"},{"slug":"claude-4-8-unveiled-honesty-breakthrough-or-just-another-incremental-upgrade","youtubeId":"7TG78vIYI-Q","title":"Claude 4.8 Unveiled: Honesty Breakthrough or Just Another Incremental Upgrade?"},{"slug":"claude-cowork-unlocked-7-capabilities-that-redefine-ai-workflows","youtubeId":"z9rdrNrkvDY","title":"Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows"},{"slug":"claude-cowork-unlocked-build-ai-agents-without-coding-in-2026","youtubeId":"uGwDuvSqgYI","title":"Claude Cowork Unlocked: Build AI Agents Without Coding in 2026"},{"slug":"claude-design-agents-6-architectural-patterns-powering-ai-workflows","youtubeId":"V-djAkt0t-M","title":"Claude Design Agents: 6 Architectural Patterns Powering AI Workflows"},{"slug":"claude-hype-overload-why-ai-youtube-needs-real-engineering-now","youtubeId":"rlsP-T_IxVE","title":"Claude Hype Overload: Why AI YouTube Needs Real Engineering Now"},{"slug":"claude-managed-agents-the-ai-breakthrough-that-will-create-millionaires","youtubeId":"qpa5XwGkLp8","title":"Claude Managed Agents: The AI Breakthrough That Will Create Millionaires"},{"slug":"claude-opus-4-8-the-ai-leap-that-just-redefined-benchmarks","youtubeId":"j-oiGiIEcws","title":"Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks"},{"slug":"claude-s-hidden-superpower-ai-image-video-generation-unlocked","youtubeId":"rrylSizvnSg","title":"Claude’s Hidden Superpower: AI Image & Video Generation Unlocked"},{"slug":"claude-vs-codex-which-ai-coder-wins-for-real-world-apps","youtubeId":"E2UgYp2vh5U","title":"Claude vs Codex: Which AI Coder Wins for Real-World Apps?"},{"slug":"cli-vs-mcp-how-ai-agents-pick-the-right-tool-in-2026","youtubeId":"g9JIUM0MHgQ","title":"CLI vs MCP: How AI Agents Pick the Right Tool in 2026"},{"slug":"cmax-terminal-the-open-source-ai-agent-hub-that-outperforms-iterm2","youtubeId":"8jDXI4_rJOE","title":"CMAX Terminal: The Open-Source AI Agent Hub That Outperforms iTerm2"},{"slug":"cursor-3-0-ditches-vs-code-the-zero-code-future-of-ai-agents","youtubeId":"JSuS-zXMVwE","title":"Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents"},{"slug":"cursor-agent-pro-tips-10-power-moves-for-ai-powered-coding","youtubeId":"WVeYLlKOWc0","title":"Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding"},{"slug":"deepseek-v4-ai-outperforms-billion-dollar-models-for-free","youtubeId":"p7K3xfViWCE","title":"DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free"},{"slug":"digital-certificates-explained-prevent-outages-before-2026","youtubeId":"V7EgIMWOqgw","title":"Digital Certificates Explained: Prevent Outages Before 2026"},{"slug":"essential-ai-skills-for-investors-a-2026-roadmap","youtubeId":"tu4rU4YD1Jk","title":"Essential AI Skills for Investors: A 2026 Roadmap"},{"slug":"fix-notebooklm-infographic-errors-in-2-minutes-2026-guide","youtubeId":"psAQ7GYLmKw","title":"Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)"},{"slug":"gemini-3-5-flash-pro-performance-at-half-the-cost","youtubeId":"kn9Gh5HWqQs","title":"Gemini 3.5 Flash: Pro Performance at Half the Cost"},{"slug":"gemini-omni-google-s-ai-video-model-that-edits-itself-in-real-time","youtubeId":"iRgPSOHjAWM","title":"Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time"},{"slug":"gemma-4-drops-apache-2-license-google-s-open-ai-power-move","youtubeId":"5aqF1HVpjdc","title":"Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move"},{"slug":"gemma-4-vs-gemini-3-1-which-google-ai-wins-for-free","youtubeId":"oFReQNuIVpE","title":"Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?"},{"slug":"google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything","youtubeId":"Llei51M3u5g","title":"Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything"},{"slug":"google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything-2","youtubeId":"Llei51M3u5g&t=18s","title":"Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything"},{"slug":"gpt-5-4-cyber-the-ai-security-model-redefining-defense-in-2026","youtubeId":"xbvI5G-8q4o","title":"GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026"},{"slug":"grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know","youtubeId":"0eza4bHvddE","title":"Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know"},{"slug":"hands-free-driving-overtaking-with-bmw-highway-assistant","youtubeId":"GM-xBQ7MWOE","title":"Hands-Free Driving & Overtaking with BMW Highway Assistant"},{"slug":"hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep","youtubeId":"B2wHaRDf3Qo","title":"Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep"},{"slug":"hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic","youtubeId":"7JRHSo2F-Wk","title":"Hermes Agent on DGX Spark: Local AI That Feels Like Magic"},{"slug":"hermes-agent-setup-guide-build-a-self-improving-ai-assistant-in-20-minutes","youtubeId":"1ve4Atbqmoo","title":"Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes"},{"slug":"hermes-agent-the-24-7-ai-employee-that-outperforms-openclaw","youtubeId":"RoBD7Lc-0MI","title":"Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw"},{"slug":"hermes-agent-vs-openclaw-why-reliability-just-changed-ai-workflows","youtubeId":"Bg-IPiql7x8","title":"Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows"},{"slug":"hermes-agentic-os-the-ai-workspace-revolution-you-missed","youtubeId":"zqUdtL5l9yM","title":"Hermes Agentic OS: The AI Workspace Revolution You Missed"},{"slug":"how-ai-agencies-hit-20k-month-with-claude-code-retainers","youtubeId":"NlGIl5-gpHM","title":"How AI Agencies Hit $20K/Month with Claude Code Retainers"},{"slug":"how-ai-shaves-seconds-off-race-cars-r-d-secrets-revealed","youtubeId":"DHfZqTWlSc4","title":"How AI Shaves Seconds Off Race Cars: R&D Secrets Revealed"},{"slug":"how-operating-systems-work-the-hidden-miracle-behind-every-click","youtubeId":"MtxP2pyCvYA","title":"How Operating Systems Work: The Hidden Miracle Behind Every Click"},{"slug":"how-to-learn-python-fast-a-proven-2026-roadmap","youtubeId":"S5tOMUCvPFA","title":"How to Learn Python Fast: A Proven 2026 Roadmap"},{"slug":"how-top-1-ai-builders-craft-presentations-that-win-deals-in-2026","youtubeId":"ZpXN9M0WLQ4","title":"How Top 1% AI Builders Craft Presentations That Win Deals in 2026"},{"slug":"how-uber-scales-60k-ai-agent-tasks-weekly-with-mcps","youtubeId":"yVqMxBahjfA","title":"How Uber Scales 60K AI Agent Tasks Weekly With MCPs"},{"slug":"how-ugc-ads-convert-10x-higher-now-automated-with-claude-code","youtubeId":"zswO-Wuo0E0","title":"How UGC Ads Convert 10x Higher—Now Automated with Claude Code"},{"slug":"local-ai-breakthrough-when-hardware-starts-to-matter-again","youtubeId":"K2IGHj7KQoM","title":"Local AI Breakthrough: When Hardware Starts to Matter Again"},{"slug":"managed-deep-agents-the-missing-layer-for-production-ai","youtubeId":"LdQpoK2TzSo","title":"Managed Deep Agents: The Missing Layer for Production AI"},{"slug":"master-agent-context-with-langsmiths-context-hub-in-2026","youtubeId":"yqmvlmxR1ts","title":"Master Agent Context with LangSmith's Context Hub in 2026"},{"slug":"master-cursor-coding-agents-in-2026-step-by-step-guide","youtubeId":"kF2WQgk1LtY","title":"Master Cursor Coding Agents in 2026: Step-by-Step Guide"},{"slug":"master-tmux-build-run-ai-agents-24-7-on-a-vps","youtubeId":"z7xyZQVK4Dg","title":"Master Tmux: Build & Run AI Agents 24/7 on a VPS"},{"slug":"mcp-vs-adk-how-ai-agents-connect-work-together-in-2026","youtubeId":"BedAaB1RKgE","title":"MCP vs ADK: How AI Agents Connect & Work Together in 2026"},{"slug":"minicpm-v-4-6-the-1-3b-vision-model-that-changes-local-ai-agents","youtubeId":"nEaljlUlqKk","title":"MiniCPM-V 4.6: The 1.3B Vision Model That Changes Local AI Agents"},{"slug":"multi-agent-ai-that-ships-the-architecture-behind-autonomous-dev-teams","youtubeId":"ow1we5PzK-o","title":"Multi-Agent AI That Ships: The Architecture Behind Autonomous Dev Teams"},{"slug":"multi-agent-orchestration-the-missing-layer-for-ai-at-scale","youtubeId":"RWT3sh68PWE","title":"Multi-Agent Orchestration: The Missing Layer for AI at Scale"},{"slug":"multi-ai-agent-systems-why-one-brain-fails-in-high-stakes-ai","youtubeId":"kYkZI3oj2W4","title":"Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI"},{"slug":"muse-spark-meta-s-quiet-revolution-in-ai-reasoning","youtubeId":"7vkybiVRSm0","title":"Muse Spark: Meta’s Quiet Revolution in AI Reasoning"},{"slug":"nissan-s-aws-powered-sdv-shift-what-investors-need-to-watch","youtubeId":"FWrNnwQjKlM","title":"Nissan’s AWS-Powered SDV Shift: What Investors Need to Watch"},{"slug":"notebooklm-in-2026-the-ai-workspace-that-outperforms-gemini","youtubeId":"_uXnyhrqmsU","title":"NotebookLM in 2026: The AI Workspace That Outperforms Gemini"},{"slug":"nvidia-cosmos-3-the-world-model-that-rewrites-ai-s-rules","youtubeId":"2zDtIWeyqYs","title":"NVIDIA Cosmos 3: The World Model That Rewrites AI’s Rules"},{"slug":"nvidia-lyria-2-0-one-photo-creates-a-3d-world-that-never-breaks","youtubeId":"eCw33snvoNI","title":"NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks"},{"slug":"nvidia-nvfp4-vs-llama-cpp-q4-speed-vs-quality-trade-offs-revealed","youtubeId":"5daRawqNpaE","title":"NVIDIA NVFP4 vs Llama.cpp Q4: Speed vs Quality Trade-Offs Revealed"},{"slug":"openai-s-ex-cto-just-built-the-ai-interface-we-ve-been-waiting-for","youtubeId":"Oy7tzmfbl64","title":"OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For"},{"slug":"openshell-agents-the-hidden-runtime-redefining-ai-safety-in-2026","youtubeId":"0zHNyGFSelA","title":"OpenShell Agents: The Hidden Runtime Redefining AI Safety in 2026"},{"slug":"osek-vs-posix-in-automotive-why-your-car-runs-two-oses","youtubeId":"wnb4WyHveCY","title":"OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes"},{"slug":"predictive-vs-generative-ai-key-differences-when-to-use-each","youtubeId":"phOhGqpXss4","title":"Predictive vs Generative AI: Key Differences & When to Use Each"},{"slug":"q-day-2026-why-quantum-computing-breaks-crypto-and-what-investors-must-do","youtubeId":"rTM95-gZtOs","title":"Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do"},{"slug":"qwen-3-6-27b-outperforms-35b-in-speed-coding-tasks-here-s-why","youtubeId":"7ejQSGaiyQE","title":"Qwen 3.6 27B Outperforms 35B in Speed & Coding Tasks—Here’s Why"},{"slug":"rag-explained-why-ai-s-memory-upgrade-changes-everything-in-2026","youtubeId":"dDkynerzV-Q","title":"RAG Explained: Why AI’s Memory Upgrade Changes Everything in 2026"},{"slug":"rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating","youtubeId":"RosLeHGBLoY","title":"RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating"},{"slug":"rag-vs-graphrag-why-context-is-the-new-ai-bottleneck-in-2026","youtubeId":"pN-LfxNFiTc","title":"RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026"},{"slug":"run-35b-ai-models-on-6gb-vram-fast-local-inference-guide","youtubeId":"8F_5pdcD3HY","title":"Run 35B AI Models on 6GB VRAM: Fast Local Inference Guide"},{"slug":"run-llms-locally-for-free-ollama-s-privacy-breakthrough","youtubeId":"UtSSMs6ObqY","title":"Run LLMs Locally for Free: Ollama’s Privacy Breakthrough"},{"slug":"run-llms-locally-with-full-tool-use-ollama-mcp-unlocks-ai-agents","youtubeId":"GAyNvq6Ayps","title":"Run LLMs Locally with Full Tool Use: Ollama + MCP Unlocks AI Agents"},{"slug":"self-evolving-ai-code-memory-how-llm-knowledge-bases-work","youtubeId":"7huCP6RkcY4","title":"Self-Evolving AI Code Memory: How LLM Knowledge Bases Work"},{"slug":"selling-5k-ai-operating-systems-to-smbs-the-full-blueprint","youtubeId":"yd9tr0xqg-Y","title":"Selling $5K AI Operating Systems to SMBs: The Full Blueprint"},{"slug":"software-defined-vehicles-the-500b-shift-reshaping-automotive","youtubeId":"cctI8JZhWUI","title":"Software-Defined Vehicles: The $500B Shift Reshaping Automotive"},{"slug":"solar-evs-batteries-the-real-roi-in-2026","youtubeId":"Jh033yLRI1E","title":"Solar + EVs + Batteries: The Real ROI in 2026"},{"slug":"tesla-powerwall-3-app-guide-master-settings-solar-control","youtubeId":"wxhZBcCFQwI","title":"Tesla Powerwall 3 App Guide: Master Settings & Solar Control"},{"slug":"tesla-powerwall-3-review-uk-s-smartest-home-battery-in-2026","youtubeId":"6LUYGe0benc","title":"Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?"},{"slug":"test-time-compute-why-ai-pauses-to-think-before-answering","youtubeId":"DAlC8mL5ZlI","title":"Test Time Compute: Why AI Pauses to Think Before Answering"},{"slug":"the-ai-prodigy-who-cracked-vision-and-why-it-matters-now","youtubeId":"qh0FkdgieS8","title":"The AI Prodigy Who Cracked Vision—And Why It Matters Now"},{"slug":"the-ai-tech-stack-powering-2026-stability-over-hype","youtubeId":"21_k2St8bBI","title":"The AI Tech Stack Powering 2026: Stability Over Hype"},{"slug":"tmux-mastery-run-ai-agents-24-7-without-losing-work","youtubeId":"z7xyZQVK4Dg&t=19s","title":"Tmux Mastery: Run AI Agents 24/7 Without Losing Work"},{"slug":"top-5-ai-engineering-courses-for-2026-build-production-grade-apps","youtubeId":"HFmoNVx6vTA","title":"Top 5 AI Engineering Courses for 2026: Build Production-Grade Apps"},{"slug":"turn-plain-english-into-stunning-videos-with-ai-in-minutes","youtubeId":"oyWSdPYeQwQ","title":"Turn Plain English into Stunning Videos with AI in Minutes"},{"slug":"unlock-codex-superpowers-a-developer-s-guide-to-ai-mastery","youtubeId":"3zSU-DGZ6J0","title":"Unlock Codex Superpowers: A Developer’s Guide to AI Mastery"},{"slug":"why-auto-mechanics-are-disappearing-what-it-means-for-2026","youtubeId":"9cfbhxsqW84","title":"Why Auto Mechanics Are Disappearing & What It Means for 2026"},{"slug":"why-code-based-agent-skills-outperform-markdown-by-90-in-ai-workflows","youtubeId":"IjiaCOt7bP8","title":"Why Code-Based Agent Skills Outperform Markdown by 90% in AI Workflows"},{"slug":"why-engineers-rule-the-billionaire-list-in-2026","youtubeId":"ujD1wrsfLr0","title":"Why Engineers Rule the Billionaire List in 2026"},{"slug":"why-spacex-could-dominate-the-global-economy-by-2026","youtubeId":"PJ8HLcWWkk0","title":"Why SpaceX Could Dominate the Global Economy by 2026"}];
+(function(){
+  var inp=document.getElementById('searchInput'),
+      btn=document.getElementById('searchBtn'),
+      sug=document.getElementById('searchSuggestions'),
+      ai=-1;
+  function hl(t,q){
+    var e=q.replace(/[.*+?^${}()|[]\]/g,'\$&');
+    return t.replace(new RegExp('('+e+')','gi'),'<em>$1</em>');
+  }
+  function hide(){sug.classList.remove('show');sug.innerHTML='';ai=-1;}
+  inp.addEventListener('input',function(){
+    var val=inp.value.trim().toLowerCase();ai=-1;
+    if(!val){hide();return;}
+    var m=_db.filter(function(v){return v.title.toLowerCase().indexOf(val)!==-1;}).slice(0,7);
+    if(!m.length){sug.innerHTML='<div class="suggestion-empty">No results for "<b>'+val+'</b>"</div>';sug.classList.add('show');return;}
+    sug.innerHTML=m.map(function(v){
+      return '<div class="suggestion-item" data-slug="'+v.slug+'">'+
+        '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/mqdefault.jpg" loading="lazy" alt=""/>'+
+        '<span>'+hl(v.title,val)+'</span></div>';
+    }).join('');
+    sug.classList.add('show');
+    sug.querySelectorAll('.suggestion-item').forEach(function(el){
+      el.addEventListener('mousedown',function(e){e.preventDefault();window.location.href='https://trend4genz.fun/video/'+el.dataset.slug+'/';});
+    });
+  });
+  inp.addEventListener('keydown',function(e){
+    var items=sug.querySelectorAll('.suggestion-item');
+    if(e.key==='ArrowDown'){e.preventDefault();ai=Math.min(ai+1,items.length-1);upA(items);}
+    else if(e.key==='ArrowUp'){e.preventDefault();ai=Math.max(ai-1,-1);upA(items);}
+    else if(e.key==='Enter'){
+      if(ai>=0&&items[ai])window.location.href='https://trend4genz.fun/video/'+items[ai].dataset.slug+'/';
+      else{var q=inp.value.trim();if(q)window.location.href='https://trend4genz.fun/?search='+encodeURIComponent(q);}
+    }else if(e.key==='Escape'){hide();inp.blur();}
+  });
+  function upA(items){items.forEach(function(el,i){el.classList.toggle('active',i===ai);});}
+  btn.addEventListener('click',function(){var q=inp.value.trim();if(q)window.location.href='https://trend4genz.fun/?search='+encodeURIComponent(q);});
+  document.addEventListener('click',function(e){if(!e.target.closest('.search-wrapper'))hide();});
+})();
+
+// ── Infinite scroll: mobile ──────────────────────────────────────
+var _loaded=8;
+document.getElementById('rec-slider').addEventListener('scroll',function(){
+  if(this.scrollLeft+this.clientWidth>=this.scrollWidth-120){
+    var next=_db.slice(_loaded,_loaded+8);
+    if(!next.length){_loaded=0;next=_db.slice(0,8);}
+    next.forEach(function(r){
+      var a=document.createElement('a');
+      a.className='slider-item';a.href='https://trend4genz.fun/video/'+r.slug+'/';
+      a.style.cssText='text-decoration:none;color:inherit;display:block';
+      a.innerHTML='<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" width="160" height="90" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><p>'+r.title.replace(/</g,'&lt;')+'</p>';
+      document.getElementById('rec-slider').appendChild(a);
+    });
+    _loaded+=next.length;
+  }
+});
+
+// ── Infinite scroll: desktop sidebar ────────────────────────────
+(function(){
+  var side=document.getElementById('side-slider-desktop');
+  if(!side)return;
+  var sideLoaded=20;
+  side.addEventListener('scroll',function(){
+    if(this.scrollTop+this.clientHeight>=this.scrollHeight-100){
+      var next=_db.slice(sideLoaded,sideLoaded+10);
+      if(!next.length){sideLoaded=0;next=_db.slice(0,10);}
+      next.forEach(function(r){
+        var a=document.createElement('a');
+        a.className='side-slider-item';a.href='https://trend4genz.fun/video/'+r.slug+'/';
+        a.innerHTML='<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" width="108" height="60" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/><p>'+r.title.replace(/</g,'&lt;')+'</p>';
+        side.appendChild(a);
+      });
+      sideLoaded+=next.length;
+    }
+  });
+})();
+</script>
+</body>
+</html>
