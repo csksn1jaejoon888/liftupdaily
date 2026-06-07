@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: '24'
 
-      - name: 
+      
 
 
       - name: Generate static pages (video + homepage)
