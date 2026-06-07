@@ -918,57 +918,6 @@
     "category": "AI_ML_RESEARCH"
   },
   {
-    "title": "AMD Local AI Breakthrough: 32GB VRAM Runs Frontier LLMs at 90% Speed",
-    "meta_description": "AMD's Threadripper + Radeon AI Pro R9700 delivers near-frontier LLM performance locally. See benchmarks, setup, and real-world use cases.",
-    "tags": [
-      "local ai deployment",
-      "amd rocm 6",
-      "llm inference benchmarks",
-      "private ai infrastructure",
-      "radeon ai pro r9700",
-      "threadripper 9980x ai workstation",
-      "open weight models 2026"
-    ],
-    "summary": "<p>The numbers don’t lie: a 32GB AMD Radeon AI Pro R9700 now runs <strong>Gemma 4 at 180 tokens/second</strong>—just 3–6 months behind frontier models in quality, while keeping every prompt private. What changed? Open-weight models closed the gap, cloud costs exploded, and AMD’s software stack finally caught up. Here’s how to build a local AI workstation that handles real workloads.</p>\n\n<h2>Why Cloud-Only AI Was Holding Back Progress</h2>\n\n<p>For years, the AI ecosystem operated under a simple assumption: bigger models require bigger clouds. Frontier labs like Anthropic and OpenAI delivered cutting-edge performance, but at a cost—both financial and philosophical. Token prices dropped on paper, yet bills surged as agents and reasoning workloads consumed 10–100x more tokens than simple chat. A single research project could rack up $50,000 in API fees before hitting production.</p>\n\n<p>Privacy became the second casualty. Enterprises hesitated to send sensitive data to third-party APIs, while developers faced rate limits and unpredictable latency. The gap between open-weight models and frontier models shrank to months, not years, yet the hardware to run them locally remained inaccessible. Until now.</p>\n\n<h2>Inside AMD’s Local AI Stack: Architecture & Design Choices</h2>\n\n<ul>\n<li><strong>Hardware Foundation:</strong> The Threadripper 9980X (64 cores) + Radeon AI Pro R9700 (32GB VRAM) combo delivers 61 TFLOPS of FP16 compute, enough to run 7B–14B parameter models at full precision without quantization tricks.</li>\n<li><strong>ROCM 6 Software Layer:</strong> AMD’s ROCm (Radeon Open Compute) platform now supports all major frameworks—Pytorch, TensorFlow, and JAX—via official wheels. The HIP (Heterogeneous-Compute Interface for Portability) translation layer converts CUDA calls to ROCm with minimal overhead, enabling drop-in compatibility for 90% of existing LLM code.</li>\n<li><strong>Memory Bandwidth:</strong> The R9700’s 1TB/s memory bandwidth eliminates the bottleneck that plagued earlier consumer GPUs, allowing models like Qwen 3.6 to run at near-maximum throughput.</li>\n<li><strong>Ecosystem Integration:</strong> Tools like LM Studio and Ollama run out-of-the-box, while VLLM and Transformers support ROCm natively. No more compiling from source or debugging driver issues.</li>\n<li><strong>Agent-Ready Performance:</strong> The 32GB VRAM enables multi-turn agent workflows (e.g., code generation + execution + debugging) without swapping to system RAM, a critical advantage over 24GB cards.</li>\n</ul>\n\n<h2>Local vs Cloud: Benchmarking AMD’s Edge</h2>\n\n<ul>\n<li><strong>Throughput:</strong> Gemma 4 (9B) runs at 180 tokens/second on the R9700—comparable to a cloud T4 instance but with zero latency variability. For context, a 14B model like DeepSeek-V2 achieves 120 tokens/second, sufficient for real-time chat.</li>\n<li><strong>Cost Efficiency:</strong> A $5,000 workstation pays for itself in 3–6 months vs cloud APIs for moderate workloads. At 100,000 tokens/day, the break-even point is ~120 days.</li>\n<li><strong>Privacy:</strong> Zero data leaves the machine. For industries like healthcare or finance, this eliminates compliance risks and audit trails.</li>\n<li><strong>Flexibility:</strong> Swap models in seconds—no API keys, no rate limits. Test Qwen 3.6, Gemma 4, and DeepSeek-V2 side-by-side without additional costs.</li>\n</ul>\n\n<h2>What This Means in Practice</h2>\n\n<p>Local AI isn’t just for hobbyists anymore. The Threadripper + R9700 combo handles real workloads: fine-tuning small models, running multi-agent systems, and even serving as a private API for internal tools. A biotech firm, for example, could deploy a local LLM to analyze proprietary datasets without exposing them to third parties. A developer could prototype an agent that iterates on code, tests it, and debugs—all without hitting API limits.</p>\n\n<p>The shift also democratizes access. Startups and researchers no longer need six-figure budgets to experiment with frontier-scale models. A $5,000 workstation delivers 80–90% of the performance of a cloud instance at a fraction of the cost, with the added benefit of full control over the stack.</p>\n\n<h3>Limitations & Open Questions</h3>\n\n<p>AMD’s stack isn’t perfect. ROCm support for Windows remains limited, forcing most users to Linux. While 32GB VRAM handles 14B models comfortably, larger models (e.g., 30B+) still require multi-GPU setups or quantization. Training, too, is possible but slower than Nvidia’s offerings due to less mature software optimizations.</p>\n\n<p>Another challenge: model availability. While open-weight models are closing the gap, frontier models like Claude 3.5 or GPT-4o remain cloud-only. For now, local AI is best suited for workflows where privacy or cost outweighs the need for absolute cutting-edge performance.</p>\n\n<h2>The Road Ahead</h2>\n\n<p>The local AI revolution is just beginning. As open-weight models continue to improve, the hardware to run them will become more accessible. AMD’s next-gen GPUs, rumored for 2026, promise 64GB VRAM and 2x the performance—enough to run 30B models at full precision. Meanwhile, software stacks like ROCm will mature, closing the gap with CUDA.</p>\n\n<p>For now, the Threadripper + R9700 combo proves that local AI is ready for prime time. The question isn’t whether you can afford to run models locally—it’s whether you can afford not to.</p>",
-    "slug": "amd-local-ai-breakthrough-32gb-vram-runs-frontier-llms-at-90-speed",
-    "youtubeId": "PEg08OAht2s&t=6s",
-    "source": "seo",
-    "uploadDate": "2026-05-17T12:31:28.040Z",
-    "wordCount": 751,
-    "readingTime": 4,
-    "faqSchema": {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Can AMD GPUs really compete with Nvidia for local AI?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. AMD’s Radeon AI Pro R9700 delivers 90% of Nvidia’s performance for LLM inference at a lower cost, with 32GB VRAM enabling larger models and agent workflows."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What models can I run on a 32GB AMD GPU?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "7B–14B parameter models (e.g., Gemma 4, Qwen 3.6, DeepSeek-V2) run at full precision. Larger models (20B+) require quantization or multi-GPU setups."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is ROCm as easy to use as CUDA?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ROCm 6 supports PyTorch, TensorFlow, and Transformers natively. Most code runs out-of-the-box, but Windows support is limited—Linux is recommended."
-          }
-        }
-      ]
-    },
-    "category": "AI_ML_RESEARCH"
-  },
-  {
     "title": "Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?",
     "meta_description": "Anderson EV chargers redefine home charging with premium design and smart tariffs. Compare the A3, A2, Quartz, and Vision to find your perfect match.",
     "tags": [
@@ -3000,57 +2949,6 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Mythos runs on Google’s XLA and Amazon’s Tranium stacks, offering a non-CUDA alternative. Early benchmarks suggest it can match frontier performance at 40-50% lower compute costs."
-          }
-        }
-      ]
-    },
-    "category": "AI_ML_RESEARCH"
-  },
-  {
-    "title": "Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything",
-    "meta_description": "Google’s $40 billion investment in Anthropic’s Mythos reveals a seismic shift in AI dominance. Here’s why this model could break NVIDIA’s monopoly.",
-    "tags": [
-      "anthropic mythos",
-      "google ai investment",
-      "ai training infrastructure",
-      "tpu vs cuda",
-      "frontier ai models 2026",
-      "ai cybersecurity models",
-      "nvidia gpu monopoly"
-    ],
-    "summary": "<p>Imagine a world where the company that invented the transformer architecture—Google—quietly admits its own models aren’t enough. That world arrived when Google wired $40 billion to Anthropic, a competitor whose pitch is brutally simple: <strong>we build better AI than you have.</strong> The catalyst? A model called Mythos, and the numbers behind it are staggering: $9 billion in annual recurring revenue in just 12 months, a projected $30 billion within 15, and a cybersecurity consortium built around it that rewrote the rules of what AI can secure.</p>\n\n<h2>Why the Transformer Monopoly Was Holding AI Back</h2>\n\n<p>The transformer architecture, born at Google, became the backbone of modern AI. But dominance breeds complacency. While Google perfected its Gemini models, Anthropic’s Mythos emerged with three critical advantages:</p>\n\n<ul>\n <li><strong>Speed of iteration:</strong> Anthropic’s ARR growth—from $1 billion to $9 billion in a single year—signals a model optimized for real-world adoption, not just lab benchmarks.</li>\n <li><strong>Infrastructure agnosticism:</strong> Mythos runs on Google’s TPUs and Amazon’s Tranium chips, bypassing NVIDIA’s CUDA lock-in, which controls 80% of the AI training market.</li>\n <li><strong>Strategic leverage:</strong> Google’s $40 billion commitment isn’t just about the model; it’s a 5-gigawatt TPU deal—equivalent to the output of five nuclear reactors—dedicated to running Mythos. That’s not investment; that’s surrender.</li>\n</ul>\n\n<p>The real problem? NVIDIA’s monopoly. CUDA’s software stack is so entrenched that developers tolerate its inefficiencies. Mythos proves that frontier AI can thrive without it, and Google’s $40 billion check is the white flag.</p>\n\n<h2>Inside Mythos: Architecture & Design Choices</h2>\n\n<p>Mythos isn’t just another large language model. Its design reflects a fundamental shift in how AI is built, deployed, and scaled:</p>\n\n<ul>\n <li><strong>Cybersecurity-first architecture:</strong> Project Last Wing, a consortium built around Mythos, suggests a model trained on adversarial datasets, capable of identifying and neutralizing threats in real time. This isn’t theoretical; it’s a direct response to the escalating arms race in AI-driven cyber warfare.</li>\n <li><strong>Hardware-agnostic training:</strong> Mythos runs on Google’s TPUs and Amazon’s Tranium chips, proving that frontier performance isn’t tied to NVIDIA’s GPUs. This flexibility allows Anthropic to negotiate infrastructure deals at an unprecedented scale—like Google’s 5-gigawatt TPU commitment.</li>\n <li><strong>Modular scaling:</strong> The model’s ability to grow from $1 billion to $9 billion ARR in a year implies a design that prioritizes enterprise adoption. This likely includes features like dynamic context windows, fine-tuning APIs, and integration hooks for third-party tools.</li>\n <li><strong>Cost efficiency:</strong> DeepSeek’s performance on Huawei’s Ascend chips—at 44 cents per million tokens—hints at Mythos’s potential to undercut competitors on price. This aligns with Anthropic’s rapid revenue growth, suggesting a model optimized for both performance and affordability.</li>\n <li><strong>Closed-loop feedback:</strong> The model’s integration into Anthropic’s cybersecurity consortium implies a feedback mechanism where real-world threats continuously refine its capabilities. This creates a self-improving system, a key differentiator from static models.</li>\n</ul>\n\n<h2>Mythos Results vs State-of-the-Art</h2>\n\n<p>The numbers don’t lie, and Mythos’s performance is redefining what’s possible in AI:</p>\n\n<ul>\n <li><strong>Revenue growth:</strong> Anthropic’s ARR skyrocketed from $1 billion to $9 billion in 12 months—an 800% increase. For context, OpenAI took years to hit $1 billion. This isn’t just adoption; it’s a paradigm shift in enterprise AI.</li>\n <li><strong>Infrastructure commitments:</strong> Google’s 5-gigawatt TPU deal and Amazon’s 500,000 Tranium chips under Project Rainier prove that hyperscalers see Mythos as mission-critical. These aren’t speculative bets; they’re foundational investments.</li>\n <li><strong>Cost disruption:</strong> While exact token costs for Mythos aren’t public, DeepSeek’s 44 cents per million tokens on Huawei chips suggests a path to sub-dollar pricing for frontier models. This could collapse the cost structure of AI inference.</li>\n <li><strong>Strategic impact:</strong> Google’s $40 billion investment—$10 billion upfront with $30 billion in milestones—is the clearest signal yet that Mythos isn’t just competitive; it’s the new benchmark. The company that invented the transformer is now betting against its own models.</li>\n</ul>\n\n<h2>What This Means in Practice</h2>\n\n<p>Mythos isn’t just a model; it’s a blueprint for the next decade of AI. Here’s what it changes:</p>\n\n<p>First, the NVIDIA monopoly is under siege. Google and Amazon’s infrastructure commitments to Mythos prove that frontier AI can run on alternative hardware. This isn’t about replacing CUDA overnight; it’s about creating a parallel ecosystem where NVIDIA’s dominance is no longer a given. The implications for chip manufacturers, cloud providers, and developers are profound: <strong>the AI stack is becoming modular.</strong></p>\n\n<p>Second, cybersecurity is the new frontier. Project Last Wing, the consortium built around Mythos, suggests a model capable of real-time threat detection and mitigation. This isn’t just about defending against attacks; it’s about enabling AI systems to operate in adversarial environments—think autonomous vehicles, financial systems, or military applications. The model’s design implies a level of robustness that could redefine trust in AI.</p>\n\n<h3>Limitations & Open Questions</h3>\n\n<p>No model is perfect, and Mythos is no exception. Three key challenges remain:</p>\n\n<ul>\n <li><strong>Transparency:</strong> Anthropic’s rapid growth and closed-loop feedback mechanisms raise questions about how much of Mythos’s training data and architecture are public. Without transparency, adoption in regulated industries could face hurdles.</li>\n <li><strong>Scalability:</strong> While Mythos’s revenue growth is impressive, sustaining $30 billion ARR within 15 months will require enterprise adoption at an unprecedented scale. Can Anthropic maintain performance as demand explodes?</li>\n <li><strong>Hardware fragmentation:</strong> Running on TPUs and Tranium is a strength, but it also creates complexity. Developers may face trade-offs between performance, cost, and compatibility when choosing infrastructure.</li>\n</ul>\n\n<h2>The Road Ahead</h2>\n\n<p>April 2026 will be remembered as the moment the AI race stopped being about chatbots and started being about infrastructure. Google’s $40 billion bet on Mythos isn’t just an investment; it’s a confession: <strong>the future of AI isn’t controlled by the company that invented the transformer—it’s controlled by the company that can scale it without NVIDIA.</strong></p>\n\n<p>The next phase of this race will be defined by three battles: cost, cybersecurity, and control. Mythos has already rewritten the rules on the first two. The third—who controls the AI stack—is just beginning.</p>",
-    "slug": "google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything-2",
-    "youtubeId": "Llei51M3u5g&t=18s",
-    "source": "seo",
-    "uploadDate": "2026-05-24T18:27:23.332Z",
-    "wordCount": 947,
-    "readingTime": 5,
-    "faqSchema": {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Why did Google invest $40 billion in Anthropic’s Mythos?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Google’s investment signals that Mythos outperforms its own models, particularly in cybersecurity and cost efficiency. The $40B commitment includes a 5-gigawatt TPU deal, proving Google sees Mythos as mission-critical."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How does Mythos compare to NVIDIA’s CUDA-based models?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Mythos runs on Google’s TPUs and Amazon’s Tranium chips, bypassing NVIDIA’s CUDA monopoly. This hardware agnosticism could disrupt NVIDIA’s 80% market share in AI training."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is Project Last Wing, and why does it matter?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Project Last Wing is a cybersecurity consortium built around Mythos. It suggests the model is designed for real-time threat detection, positioning AI as a tool for security—not just productivity."
           }
         }
       ]
@@ -5780,57 +5678,6 @@
       ]
     },
     "category": "AI_ML_RESEARCH"
-  },
-  {
-    "title": "Tmux Mastery: Run AI Agents 24/7 Without Losing Work",
-    "meta_description": "Learn to use Tmux like top AI engineers—keep terminals alive after disconnects, split panes, and run agents for days on a VPS. Step-by-step guide.",
-    "tags": [
-      "tmux tutorial",
-      "terminal multiplexer guide",
-      "ai agent persistence",
-      "vps tmux setup",
-      "remote development workflow",
-      "tmux split panes",
-      "24/7 ai automation"
-    ],
-    "summary": "<p>You close your laptop, walk away for lunch, and return to find your AI agent’s 12-hour refactor job dead. The terminal session vanished—along with hours of progress. (If this sounds familiar, you’re not alone. Most developers lose critical work this way daily.)</p>\n\n<p>Tmux, the terminal multiplexer, solves this. It keeps processes running even after disconnects, splits your terminal into multiple panes, and lets you manage long-running tasks effortlessly. Top AI engineers (like the creators of OpenClaw and Pi) rely on it to run agents for days on remote servers. Here’s how to wield it like a pro.</p>\n\n<h2>What This Tool Lets You Build</h2>\n<ul>\n <li><strong>Persistent AI agents:</strong> Run Codex, Hermes, or Cloud Code for hours (or days) without interruption—even if your laptop dies or you switch networks.</li>\n <li><strong>Multi-pane workflows:</strong> Split your terminal into panes to monitor logs, edit code, and run commands simultaneously. (No more alt-tabbing between windows.)</li>\n <li><strong>Remote development rigs:</strong> SSH into a VPS, launch Tmux, and work from any device. Your session stays alive, so you can pick up right where you left off.</li>\n <li><strong>Automated refactors:</strong> Kick off large-scale code changes and let Tmux handle the rest. (Imagine walking away while your agent rewrites 10,000 lines of legacy code.)</li>\n</ul>\n\n<h2>Requirements Before You Start</h2>\n<ul>\n <li>A Unix-like system (macOS, Linux, or WSL on Windows).</li>\n <li>Basic terminal familiarity (you should know how to navigate directories and run commands).</li>\n <li>For remote setups: A VPS (e.g., Hostinger’s KVM2 plan) and SSH access. (If you don’t have one, grab a cheap VPS—it’s a game-changer.)</li>\n <li>Optional: A paid AI agent account (e.g., ChatGPT Pro, Codex) to test long-running tasks. (Free tiers work, but paid plans unlock more features.)</li>\n</ul>\n\n<h2>Complete Tmux Tutorial</h2>\n\n<h3>1. Install Tmux</h3>\n<p>Open your terminal and run:</p>\n<pre>brew install tmux # macOS\nsudo apt install tmux # Ubuntu/Debian\nsudo yum install tmux # CentOS/RHEL</pre>\n<p>Verify the install with:</p>\n<pre>tmux -V</pre>\n<p>(If you see a version number, you’re good to go.)</p>\n\n<h3>2. Start Your First Session</h3>\n<p>Launch Tmux with:</p>\n<pre>tmux new -s my_session</pre>\n<p>You’ll see a green status bar at the bottom—this means you’re inside a Tmux session. (The session name <code>my_session</code> is arbitrary; use something descriptive like <code>codex_refactor</code>.)</p>\n\n<h3>3. Split Panes Like a Pro</h3>\n<p>Tmux’s killer feature is pane splitting. Here’s how to use it:</p>\n<ul>\n <li>Split vertically: <code>Ctrl+b %</code></li>\n <li>Split horizontally: <code>Ctrl+b \"</code></li>\n <li>Switch between panes: <code>Ctrl+b arrow_key</code></li>\n <li>Close a pane: Type <code>exit</code> or press <code>Ctrl+d</code>.</li>\n</ul>\n<p>(Pro tip: Use <code>Ctrl+b z</code> to zoom into a pane, then repeat to zoom out.)</p>\n\n<h3>4. Run AI Agents Persistently</h3>\n<p>Inside your Tmux session, launch your agent:</p>\n<pre>codex --yolo</pre>\n<p>Or for Hermes:</p>\n<pre>hermes --goal \"refactor auth system\"</pre>\n<p>Detach from the session (without killing it) with:</p>\n<pre>Ctrl+b d</pre>\n<p>Your agent keeps running in the background. Reattach later with:</p>\n<pre>tmux attach -t my_session</pre>\n\n<h3>5. Remote Setup: Tmux on a VPS</h3>\n<p>SSH into your VPS:</p>\n<pre>ssh user@your_vps_ip</pre>\n<p>Start a Tmux session (name it <code>remote_agents</code>):</p>\n<pre>tmux new -s remote_agents</pre>\n<p>Launch your agents as before. Detach (<code>Ctrl+b d</code>) and log out—your agents will keep running. (This is how top engineers run tasks for days.)</p>\n\n<h3>Troubleshooting: Errors & Fixes</h3>\n<ul>\n <li><strong>Error:</strong> <code>tmux: command not found</code><br>\n <strong>Fix:</strong> Reinstall Tmux or check your <code>PATH</code>. (On macOS, try <code>brew link tmux</code>.)</li>\n \n <li><strong>Error:</strong> <code>no sessions</code> when reattaching<br>\n <strong>Fix:</strong> List active sessions with <code>tmux ls</code>, then reattach with <code>tmux attach -t session_name</code>.</li>\n \n <li><strong>Error:</strong> Pane shortcuts don’t work<br>\n <strong>Fix:</strong> Ensure you’re pressing <code>Ctrl+b</code> first, then the command key (e.g., <code>%</code> for splits). (If you’re holding <code>Ctrl</code> too long, Tmux won’t register the next key.)</li>\n \n <li><strong>Error:</strong> Agent disconnects on SSH logout<br>\n <strong>Fix:</strong> Always detach (<code>Ctrl+b d</code>) before logging out. (Never kill the SSH session directly.)</li>\n</ul>\n\n<h2>Where to Take This Further</h2>\n<ul>\n <li><strong>Customize Tmux:</strong> Edit <code>~/.tmux.conf</code> to tweak keybindings, colors, and status bars. (Example: <code>set -g default-terminal \"xterm-256color\"</code> for better colors.)</li>\n \n <li><strong>Automate workflows:</strong> Use Tmux scripting to launch agents in split panes automatically. (Example: <code>tmux split-window -h \"codex --yolo\"</code>.)</li>\n \n <li><strong>Scale to multiple VPS instances:</strong> Run agents across several servers for redundancy. (Use <code>tmux new -s agent_1</code>, <code>tmux new -s agent_2</code>, etc.)</li>\n \n <li><strong>Integrate with CI/CD:</strong> Trigger Tmux sessions from GitHub Actions to run post-deploy tests. (Example: <code>ssh user@server \"tmux new -s deploy_tests\"</code>.)</li>\n</ul>\n\n<p>Tmux isn’t just a tool—it’s a force multiplier. Once you master it, you’ll wonder how you ever worked without it. (And yes, your AI agents will thank you too.)</p>",
-    "slug": "tmux-mastery-run-ai-agents-24-7-without-losing-work",
-    "youtubeId": "z7xyZQVK4Dg&t=19s",
-    "source": "seo",
-    "uploadDate": "2026-06-03T12:15:15.948Z",
-    "wordCount": 721,
-    "readingTime": 4,
-    "faqSchema": {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Can I use Tmux on Windows?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, but only via WSL (Windows Subsystem for Linux). Install WSL, then follow the Linux instructions. Native Windows support is limited."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do I keep Tmux sessions alive after rebooting my VPS?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Use <code>tmux-resurrect</code> or <code>tmux-continuum</code> plugins to save/restore sessions automatically. Manual method: Reattach with <code>tmux attach -t session_name</code>."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What’s the difference between Tmux and GNU Screen?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Tmux offers better pane splitting, scripting, and modern features. Screen is simpler but lacks persistence and multi-pane workflows. (Most engineers prefer Tmux.)"
-          }
-        }
-      ]
-    },
-    "category": "TUTORIAL_HOWTO"
   },
   {
     "title": "Top 5 AI Engineering Courses for 2026: Build Production-Grade Apps",
