@@ -562,8 +562,21 @@ function renderVideo(container, v) {
 
   // Desktop side column items
   function buildSideItems(items){
-    return items.map(r=>`<a href="/video/${r.slug}/" class="side-slider-item"><img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg" loading="lazy" width="108" height="60" alt="${r.title.replace(/"/g,'&quot;')}"/><p>${r.title}</p></a>`).join('');
-  }
+  return items.map(r => {
+    const href = r.source === 'nofollow' 
+      ? `/?v=${r.slug}` 
+      : `/video/${r.slug}/`;
+    const rel = r.source === 'nofollow' 
+      ? ' rel="nofollow noopener"' 
+      : '';
+    return `<a href="${href}"${rel} class="side-slider-item" 
+      onclick="handleNavigation(event,'${r.slug}')">
+      <img src="https://img.youtube.com/vi/${r.youtubeId}/mqdefault.jpg" 
+           loading="lazy" width="108" height="60" 
+           alt="${r.title.replace(/"/g,'&quot;')}"/>
+      <p>${r.title}</p></a>`;
+  }).join('');
+}
 
   // Tombol native banner di mobile (di bawah tombol HOME/More Info)
   const mobileBannerHTML = showBanner
