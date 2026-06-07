@@ -106,7 +106,6 @@ const FOOTER_CATEGORIES = [
 //  Di-inject sekali per halaman video (static, inline)
 // ════════════════════════════════════════════════════════════════
 function wideScreenScript(pageUrl) {
-  // pageUrl = full canonical URL halaman ini, misal https://trend4genz.fun/video/some-slug/
   return `
 <style>
 /* ── Wide Screen Badge ── */
@@ -138,7 +137,6 @@ function wideScreenScript(pageUrl) {
   transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);
 }
 #ws-modal-overlay.show #ws-modal-box{transform:translateY(0);}
-
 .ws-modal-header{
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:14px;
@@ -154,12 +152,10 @@ function wideScreenScript(pageUrl) {
   transition:background .15s;
 }
 .ws-modal-close:hover{background:rgba(255,255,255,.2);}
-
 .ws-modal-subtitle{
   font-size:.82rem;color:#aaa;margin-bottom:18px;line-height:1.5;
 }
 .ws-modal-subtitle strong{color:#fff;}
-
 .ws-steps{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:12px;}
 .ws-step{
   display:flex;align-items:flex-start;gap:12px;
@@ -178,7 +174,6 @@ function wideScreenScript(pageUrl) {
   padding:2px 6px;font-size:.78rem;font-weight:700;color:#fff;
   margin:0 2px;vertical-align:middle;letter-spacing:.02em;
 }
-
 .ws-copy-btn{
   width:100%;padding:13px;border-radius:10px;border:2px solid #98FB98;
   background:transparent;color:#98FB98;font-size:.88rem;font-weight:800;
@@ -212,18 +207,31 @@ function wideScreenScript(pageUrl) {
 <script>
 (function(){
   var PAGE_URL = '${pageUrl}';
+  var ua  = navigator.userAgent || '';
+  var ref = document.referrer   || '';
+  var qs  = location.search     || '';
 
-  // ── Deteksi in-app browser ──────────────────────────────────
-  var ua = navigator.userAgent || '';
-  var isFB      = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID/i.test(ua);
-  var isTwitterX = /Twitter/i.test(ua);
-  var isInApp   = isFB || isTwitterX;
+  // ── Deteksi FB ──────────────────────────────────────────────
+  var isFB_UA  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua);
+  var isFB_REF = /facebook\\.com|fb\\.com|fb\\.gg/i.test(ref);
+  var isFB_QS  = /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
+  var isFB     = isFB_UA || isFB_REF || isFB_QS;
+
+  // ── Deteksi X / Twitter ──────────────────────────────────────
+  var isX_UA   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua);
+  var isX_REF  = /twitter\\.com|t\\.co|x\\.com/i.test(ref);
+  var isX_QS   = /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
+  var isX      = isX_UA || isX_REF || isX_QS;
+
+  // ── Deteksi device ───────────────────────────────────────────
   var isAndroid = /Android/i.test(ua);
   var isIOS     = /iPhone|iPad|iPod/i.test(ua);
 
-  if (!isInApp) return; // Bukan dari social media in-app browser → badge tidak muncul
+  // ── Hanya tampil jika dari FB atau X ─────────────────────────
+  var isInApp = isFB || isX;
+  if (!isInApp) return;
 
-  // ── Inject badge setelah DOM ready ─────────────────────────
+  // ── Inject badge ─────────────────────────────────────────────
   function injectBadge() {
     var h1 = document.querySelector('.info-section h1');
     if (!h1) return;
@@ -236,7 +244,6 @@ function wideScreenScript(pageUrl) {
       '<line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>' +
       '</svg>FULL WIDE SCREEN';
     badge.onclick = wsHandleClick;
-    // Insert di awal h1 agar float:right bekerja (harus jadi child pertama)
     h1.insertBefore(badge, h1.firstChild);
   }
 
@@ -246,87 +253,88 @@ function wideScreenScript(pageUrl) {
     injectBadge();
   }
 
-  // ── Handle klik badge ───────────────────────────────────────
+  // ── Handle klik badge ────────────────────────────────────────
   window.wsHandleClick = function() {
     if (isAndroid) {
-      // Coba intent:// → buka di Chrome
-      var encoded = encodeURIComponent(PAGE_URL);
-      var intentUrl =
-        'intent://' + PAGE_URL.replace(/^https?:\/\//,'') +
+      var encoded    = encodeURIComponent(PAGE_URL);
+      var intentUrl  =
+        'intent://' + PAGE_URL.replace(/^https?:\\/\\//, '') +
         '#Intent;scheme=https;package=com.android.chrome;' +
         'S.browser_fallback_url=' + encoded + ';end';
-      // Buka intent
-      var iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-      try { iframe.src = intentUrl; } catch(e){}
-      // Fallback: jika setelah 1.2 detik masih di halaman ini → tampilkan modal
       var t = Date.now();
-      setTimeout(function(){
-        document.body.removeChild(iframe);
+      window.location.href = intentUrl;
+      setTimeout(function() {
         if (Date.now() - t < 2000) {
-          // Masih di halaman → intent gagal, tampilkan modal
-          wsShowModal('android-fb');
+          wsShowModal(isFB ? 'android-fb' : 'android-x');
         }
       }, 1200);
     } else {
-      // iOS atau device lain → langsung modal
-      if (isIOS && isFB)      wsShowModal('ios-fb');
-      else if (isIOS && isTwitterX) wsShowModal('ios-x');
-      else if (isTwitterX)    wsShowModal('android-x');
-      else                    wsShowModal('android-fb');
+      // iOS atau lainnya → langsung modal
+      if (isIOS && isFB)     wsShowModal('ios-fb');
+      else if (isIOS && isX) wsShowModal('ios-x');
+      else if (isX)          wsShowModal('android-x');
+      else                   wsShowModal('android-fb');
     }
   };
 
-  // ── Build & show modal ──────────────────────────────────────
+  // ── Show modal ───────────────────────────────────────────────
   window.wsShowModal = function(type) {
-    var subtitle = document.getElementById('ws-modal-subtitle');
+    var subtitle  = document.getElementById('ws-modal-subtitle');
     var stepsList = document.getElementById('ws-steps-list');
-
     var configs = {
       'android-fb': {
-        sub: 'Your <strong>Facebook</strong> browser doesn\'t support full wide screen. Follow these steps to open this page in <strong>Chrome</strong>:',
+        sub: 'Your <strong>Facebook</strong> browser doesn\\'t support full wide screen. Open this page in <strong>Chrome</strong>:',
         steps: [
-          { title: 'Tap the menu icon', desc: 'Find the <span class="ws-step-icon">⋮</span> icon at the <strong>top right</strong> corner of your Facebook browser.' },
-          { title: 'Select "Open in Chrome"', desc: 'Tap <strong>"Open in Chrome"</strong> or <strong>"Open in external browser"</strong> from the menu.' },
-          { title: 'You\'re all set!', desc: 'The page will reload in Chrome with <strong>full wide screen</strong> support.' }
+          { title: 'Tap the menu icon',
+            desc:  'Find the <span class="ws-step-icon">⋮</span> icon at the <strong>top right</strong> of your Facebook browser.' },
+          { title: 'Select "Open in Chrome"',
+            desc:  'Tap <strong>"Open in Chrome"</strong> or <strong>"Open in external browser"</strong>.' },
+          { title: 'Done!',
+            desc:  'The page reloads in Chrome with <strong>full wide screen</strong> support.' }
         ]
       },
       'ios-fb': {
-        sub: 'Your <strong>Facebook</strong> browser doesn\'t support full wide screen. Follow these steps to open this page in <strong>Safari</strong>:',
+        sub: 'Your <strong>Facebook</strong> browser doesn\\'t support full wide screen. Open this page in <strong>Safari</strong>:',
         steps: [
-          { title: 'Tap the menu icon', desc: 'Find the <span class="ws-step-icon">···</span> icon at the <strong>bottom</strong> of your Facebook browser.' },
-          { title: 'Select "Open in Safari"', desc: 'Tap <strong>"Open in Safari"</strong> or <strong>"Open in Browser"</strong> from the menu.' },
-          { title: 'You\'re all set!', desc: 'The page will reload in Safari with <strong>full wide screen</strong> support.' }
+          { title: 'Tap the menu icon',
+            desc:  'Find the <span class="ws-step-icon">···</span> icon at the <strong>bottom</strong> of your Facebook browser.' },
+          { title: 'Select "Open in Safari"',
+            desc:  'Tap <strong>"Open in Safari"</strong> or <strong>"Open in Browser"</strong>.' },
+          { title: 'Done!',
+            desc:  'The page reloads in Safari with <strong>full wide screen</strong> support.' }
         ]
       },
       'android-x': {
-        sub: 'Your <strong>X (Twitter)</strong> browser doesn\'t support full wide screen. Follow these steps to open this page in <strong>Chrome</strong>:',
+        sub: 'Your <strong>X (Twitter)</strong> browser doesn\\'t support full wide screen. Open this page in <strong>Chrome</strong>:',
         steps: [
-          { title: 'Tap the menu icon', desc: 'Find the <span class="ws-step-icon">⋮</span> icon at the <strong>top right</strong> corner of the X browser.' },
-          { title: 'Select "Open in browser"', desc: 'Tap <strong>"Open in browser"</strong> or <strong>"Open in Chrome"</strong> from the menu.' },
-          { title: 'You\'re all set!', desc: 'The page will reload in Chrome with <strong>full wide screen</strong> support.' }
+          { title: 'Tap the menu icon',
+            desc:  'Find the <span class="ws-step-icon">⋮</span> icon at the <strong>top right</strong> of the X browser.' },
+          { title: 'Select "Open in browser"',
+            desc:  'Tap <strong>"Open in browser"</strong> or <strong>"Open in Chrome"</strong>.' },
+          { title: 'Done!',
+            desc:  'The page reloads in Chrome with <strong>full wide screen</strong> support.' }
         ]
       },
       'ios-x': {
-        sub: 'Your <strong>X (Twitter)</strong> browser doesn\'t support full wide screen. Follow these steps to open this page in <strong>Safari</strong>:',
+        sub: 'Your <strong>X (Twitter)</strong> browser doesn\\'t support full wide screen. Open this page in <strong>Safari</strong>:',
         steps: [
-          { title: 'Tap the menu icon', desc: 'Find the <span class="ws-step-icon">···</span> icon at the <strong>bottom</strong> of the X browser.' },
-          { title: 'Select "Open in Safari"', desc: 'Tap <strong>"Open in Safari"</strong> or <strong>"Open in Browser"</strong> from the menu.' },
-          { title: 'You\'re all set!', desc: 'The page will reload in Safari with <strong>full wide screen</strong> support.' }
+          { title: 'Tap the menu icon',
+            desc:  'Find the <span class="ws-step-icon">···</span> icon at the <strong>bottom</strong> of the X browser.' },
+          { title: 'Select "Open in Safari"',
+            desc:  'Tap <strong>"Open in Safari"</strong> or <strong>"Open in Browser"</strong>.' },
+          { title: 'Done!',
+            desc:  'The page reloads in Safari with <strong>full wide screen</strong> support.' }
         ]
       }
     };
-
     var cfg = configs[type] || configs['android-fb'];
     subtitle.innerHTML = cfg.sub;
-    stepsList.innerHTML = cfg.steps.map(function(s, i){
+    stepsList.innerHTML = cfg.steps.map(function(s, i) {
       return '<li class="ws-step">' +
-        '<div class="ws-step-num">' + (i+1) + '</div>' +
+        '<div class="ws-step-num">' + (i + 1) + '</div>' +
         '<div class="ws-step-text"><strong>' + s.title + '</strong>' + s.desc + '</div>' +
         '</li>';
     }).join('');
-
     document.getElementById('ws-modal-overlay').classList.add('show');
     document.body.style.overflow = 'hidden';
   };
@@ -340,9 +348,9 @@ function wideScreenScript(pageUrl) {
   window.wsCopyLink = function() {
     var btn = document.getElementById('ws-copy-btn');
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(PAGE_URL).then(function(){
+      navigator.clipboard.writeText(PAGE_URL).then(function() {
         wsShowCopied(btn);
-      }).catch(function(){ wsFallbackCopy(btn); });
+      }).catch(function() { wsFallbackCopy(btn); });
     } else {
       wsFallbackCopy(btn);
     }
@@ -354,7 +362,7 @@ function wideScreenScript(pageUrl) {
     ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
     document.body.appendChild(ta);
     ta.select();
-    try { document.execCommand('copy'); } catch(e){}
+    try { document.execCommand('copy'); } catch(e) {}
     document.body.removeChild(ta);
     wsShowCopied(btn);
   }
@@ -364,7 +372,7 @@ function wideScreenScript(pageUrl) {
     btn.innerHTML =
       '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
       'Copied!';
-    setTimeout(function(){
+    setTimeout(function() {
       btn.classList.remove('copied');
       btn.innerHTML =
         '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>' +
