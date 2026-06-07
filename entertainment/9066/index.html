@@ -59,7 +59,7 @@
       .video-main-col{flex:1 1 0;min-width:0}
       .video-side-col{width:280px;flex-shrink:0;position:sticky;top:calc(var(--nav-h) + 10px);display:flex;flex-direction:column;gap:0}
       .side-related-label{color:var(--green);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:8px 0 8px;flex-shrink:0}
-      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 480px);overflow-y:auto;scrollbar-width:none;flex-shrink:0}
+      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 220px);overflow-y:auto;scrollbar-width:none;flex-shrink:0}
       .side-slider::-webkit-scrollbar{display:none}
       .side-slider-item{display:flex;gap:8px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;border:1px solid transparent;transition:.2s;flex-shrink:0}
       .side-slider-item:hover{border-color:var(--green)}
@@ -188,53 +188,18 @@
         </div>
 
         <!-- Native Banner 2 — MOBILE ONLY -->
-        <div class="nb-mobile-only"></div>
+        <div class="nb-mobile-only"><div class="native-banner-wrap" id="nb-2m"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
 
         <!-- Mobile horizontal slider -->
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/nvidia-nvfp4-vs-llama-cpp-q4-speed-vs-quality-trade-offs-revealed/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/video/turn-plain-english-into-stunning-videos-with-ai-in-minutes/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        >
-      <img src="https://img.youtube.com/vi/5daRawqNpaE/mqdefault.jpg"
-           alt="NVIDIA NVFP4 vs Llama.cpp Q4: Speed vs Quality Trade-Offs Revealed" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/oyWSdPYeQwQ/mqdefault.jpg"
+           alt="Turn Plain English into Stunning Videos with AI in Minutes" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>NVIDIA NVFP4 vs Llama.cpp Q4: Speed vs Quality Trade-Offs Revealed</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8843/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/n-NDYWPXpKg/mqdefault.jpg"
-           alt="GODZILLA MINUS ZERO First Look Teaser | Watch in IMAX High-Definition" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>GODZILLA MINUS ZERO First Look Teaser | Watch in IMAX High-Definition</p>
-    </a>
-    <a href="https://trend4genz.fun/video/local-ai-breakthrough-when-hardware-starts-to-matter-again/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/K2IGHj7KQoM/mqdefault.jpg"
-           alt="Local AI Breakthrough: When Hardware Starts to Matter Again" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Local AI Breakthrough: When Hardware Starts to Matter Again</p>
-    </a>
-    <a href="https://trend4genz.fun/video/deepseek-v4-ai-outperforms-billion-dollar-models-for-free/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
-           alt="DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8825/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/pgtdkuNFoKk/mqdefault.jpg"
-           alt="Is God Is | Official Trailer | Revenge Epic Indie Film 2026" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Is God Is | Official Trailer | Revenge Epic Indie Film 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/chatgpt-5-5-codex-the-ai-coding-revolution-you-can-t-ignore/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/iz3_xhi6iQE/mqdefault.jpg"
-           alt="ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore</p>
+      <p>Turn Plain English into Stunning Videos with AI in Minutes</p>
     </a>
     <a href="https://trend4genz.fun/entertainment/8885/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
@@ -243,12 +208,47 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>EXCLUSIVE: Miley Cyrus - Flowers Official HD Video - Watch The Viral Sensation!</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8845/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/3-wSEehDBVk/mqdefault.jpg"
-           alt="Ramayana Official Teaser Trailer | Watch Ranbir Kapoor &amp; Yash in HD Epic" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-4-levels-that-multiply-your-output/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       >
+      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
+           alt="AI Agents in 2026: The 4 Levels That Multiply Your Output" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Ramayana Official Teaser Trailer | Watch Ranbir Kapoor &amp; Yash in HD Epic</p>
+      <p>AI Agents in 2026: The 4 Levels That Multiply Your Output</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       >
+      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
+           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
+    </a>
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       >
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-in-2026-the-3-shifts-that-actually-move-the-needle/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       >
+      <img src="https://img.youtube.com/vi/I62CvEwVS58/mqdefault.jpg"
+           alt="AI in 2026: The 3 Shifts That Actually Move the Needle" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>AI in 2026: The 3 Shifts That Actually Move the Needle</p>
+    </a>
+    <a href="https://trend4genz.fun/video/cli-vs-mcp-how-ai-agents-pick-the-right-tool-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       >
+      <img src="https://img.youtube.com/vi/g9JIUM0MHgQ/mqdefault.jpg"
+           alt="CLI vs MCP: How AI Agents Pick the Right Tool in 2026" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>CLI vs MCP: How AI Agents Pick the Right Tool in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-the-zero-code-future-of-ai-agents/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       >
+      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
+           alt="Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents</p>
     </a></div>
         </div>
       </div>
@@ -260,47 +260,12 @@
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/nvidia-nvfp4-vs-llama-cpp-q4-speed-vs-quality-trade-offs-revealed/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/turn-plain-english-into-stunning-videos-with-ai-in-minutes/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/5daRawqNpaE/mqdefault.jpg"
-           alt="NVIDIA NVFP4 vs Llama.cpp Q4: Speed vs Quality Trade-Offs Revealed" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/oyWSdPYeQwQ/mqdefault.jpg"
+           alt="Turn Plain English into Stunning Videos with AI in Minutes" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>NVIDIA NVFP4 vs Llama.cpp Q4: Speed vs Quality Trade-Offs Revealed</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8843/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/n-NDYWPXpKg/mqdefault.jpg"
-           alt="GODZILLA MINUS ZERO First Look Teaser | Watch in IMAX High-Definition" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>GODZILLA MINUS ZERO First Look Teaser | Watch in IMAX High-Definition</p>
-    </a>
-    <a href="https://trend4genz.fun/video/local-ai-breakthrough-when-hardware-starts-to-matter-again/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/K2IGHj7KQoM/mqdefault.jpg"
-           alt="Local AI Breakthrough: When Hardware Starts to Matter Again" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Local AI Breakthrough: When Hardware Starts to Matter Again</p>
-    </a>
-    <a href="https://trend4genz.fun/video/deepseek-v4-ai-outperforms-billion-dollar-models-for-free/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
-           alt="DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8825/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/pgtdkuNFoKk/mqdefault.jpg"
-           alt="Is God Is | Official Trailer | Revenge Epic Indie Film 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Is God Is | Official Trailer | Revenge Epic Indie Film 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/chatgpt-5-5-codex-the-ai-coding-revolution-you-can-t-ignore/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/iz3_xhi6iQE/mqdefault.jpg"
-           alt="ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore</p>
+      <p>Turn Plain English into Stunning Videos with AI in Minutes</p>
     </a>
     <a href="https://trend4genz.fun/entertainment/8885/" class="side-slider-item"
        rel="nofollow noopener">
@@ -309,98 +274,133 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>EXCLUSIVE: Miley Cyrus - Flowers Official HD Video - Watch The Viral Sensation!</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8845/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/3-wSEehDBVk/mqdefault.jpg"
-           alt="Ramayana Official Teaser Trailer | Watch Ranbir Kapoor &amp; Yash in HD Epic" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Ramayana Official Teaser Trailer | Watch Ranbir Kapoor &amp; Yash in HD Epic</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8866/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/oIv_Y2RPQ_A/mqdefault.jpg"
-           alt="EXCLUSIVE: Olivia Dean - Man I Need Official HD Video - Watch Now!" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>EXCLUSIVE: Olivia Dean - Man I Need Official HD Video - Watch Now!</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8809/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/8TZMtslA3UY/mqdefault.jpg"
-           alt="Spider-Man: Brand New Day Official Trailer HD Watch Now 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Spider-Man: Brand New Day Official Trailer HD Watch Now 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/qwen-3-6-27b-outperforms-35b-in-speed-coding-tasks-here-s-why/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-4-levels-that-multiply-your-output/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/7ejQSGaiyQE/mqdefault.jpg"
-           alt="Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
+           alt="AI Agents in 2026: The 4 Levels That Multiply Your Output" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why</p>
+      <p>AI Agents in 2026: The 4 Levels That Multiply Your Output</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-uber-scales-60k-ai-agent-tasks-weekly-with-mcps/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/yVqMxBahjfA/mqdefault.jpg"
-           alt="How Uber Scales 60K AI Agent Tasks Weekly With MCPs" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
+           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How Uber Scales 60K AI Agent Tasks Weekly With MCPs</p>
+      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
     </a>
-    <a href="https://trend4genz.fun/video/the-ai-tech-stack-powering-2026-stability-over-hype/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/21_k2St8bBI/mqdefault.jpg"
-           alt="The AI Tech Stack Powering 2026: Stability Over Hype" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The AI Tech Stack Powering 2026: Stability Over Hype</p>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8857/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/ai-in-2026-the-3-shifts-that-actually-move-the-needle/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/I62CvEwVS58/mqdefault.jpg"
+           alt="AI in 2026: The 3 Shifts That Actually Move the Needle" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>AI in 2026: The 3 Shifts That Actually Move the Needle</p>
+    </a>
+    <a href="https://trend4genz.fun/video/cli-vs-mcp-how-ai-agents-pick-the-right-tool-in-2026/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/g9JIUM0MHgQ/mqdefault.jpg"
+           alt="CLI vs MCP: How AI Agents Pick the Right Tool in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>CLI vs MCP: How AI Agents Pick the Right Tool in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-the-zero-code-future-of-ai-agents/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
+           alt="Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents</p>
+    </a>
+    <a href="https://trend4genz.fun/video/10-weird-open-source-tools-that-solve-real-problems-in-2026/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
+           alt="10 Weird Open-Source Tools That Solve Real Problems in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>10 Weird Open-Source Tools That Solve Real Problems in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/essential-ai-skills-for-investors-a-2026-roadmap/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/tu4rU4YD1Jk/mqdefault.jpg"
+           alt="Essential AI Skills for Investors: A 2026 Roadmap" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Essential AI Skills for Investors: A 2026 Roadmap</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-stack-demystified-llms-rag-hardware-that-power-real-world-ai/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/RRKwmeyIc24/mqdefault.jpg"
+           alt="AI Stack Demystified: LLMs, RAG &amp; Hardware That Power Real-World AI" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>AI Stack Demystified: LLMs, RAG &amp; Hardware That Power Real-World AI</p>
+    </a>
+    <a href="https://trend4genz.fun/video/nissan-s-aws-powered-sdv-shift-what-investors-need-to-watch/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/FWrNnwQjKlM/mqdefault.jpg"
+           alt="Nissan’s AWS-Powered SDV Shift: What Investors Need to Watch" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Nissan’s AWS-Powered SDV Shift: What Investors Need to Watch</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8824/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/Ypv_ZDgXYAo/mqdefault.jpg"
-           alt="Real Madrid vs Bayern Munich - German Giant Silence the Bernabeu! | Champions League 2026 HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/QX85JymdGnQ/mqdefault.jpg"
+           alt="HUNGRY | Official Trailer | Swamp Horror 2026 Exclusive" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Real Madrid vs Bayern Munich - German Giant Silence the Bernabeu! | Champions League 2026 HD</p>
+      <p>HUNGRY | Official Trailer | Swamp Horror 2026 Exclusive</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8831/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/Xt4X4FvXk2A/mqdefault.jpg"
-           alt="Street Fighter Official Trailer 2026 | Ryu vs Ken Action Reveal" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Street Fighter Official Trailer 2026 | Ryu vs Ken Action Reveal</p>
-    </a>
-    <a href="https://trend4genz.fun/video/fix-notebooklm-infographic-errors-in-2-minutes-2026-guide/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-a-proven-2026-roadmap/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/psAQ7GYLmKw/mqdefault.jpg"
-           alt="Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
+           alt="How to Learn Python Fast: A Proven 2026 Roadmap" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)</p>
+      <p>How to Learn Python Fast: A Proven 2026 Roadmap</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8855/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/wIRtAyOxp5E/mqdefault.jpg"
-           alt="Osasuna vs Barcelona - Late Drama in the Spanish Capital! | LaLiga 2026 HD" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Osasuna vs Barcelona - Late Drama in the Spanish Capital! | LaLiga 2026 HD</p>
-    </a>
-    <a href="https://trend4genz.fun/video/unlock-codex-superpowers-a-developer-s-guide-to-ai-mastery/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/why-spacex-could-dominate-the-global-economy-by-2026/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/3zSU-DGZ6J0/mqdefault.jpg"
-           alt="Unlock Codex Superpowers: A Developer’s Guide to AI Mastery" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/PJ8HLcWWkk0/mqdefault.jpg"
+           alt="Why SpaceX Could Dominate the Global Economy by 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlock Codex Superpowers: A Developer’s Guide to AI Mastery</p>
+      <p>Why SpaceX Could Dominate the Global Economy by 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemma-4-drops-apache-2-license-google-s-open-ai-power-move/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
-           alt="Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8854/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9109/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/fa2mwZGFOPQ/mqdefault.jpg"
-           alt="Atletico Madrid vs Arsenal - High Stakes Tactical Standoff! | Champions League 2026 HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/_t_coIM5yeo/mqdefault.jpg"
+           alt="Busting the Taboo: The Ultimate Truth Behind Video Content Creation" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Atletico Madrid vs Arsenal - High Stakes Tactical Standoff! | Champions League 2026 HD</p>
+      <p>Busting the Taboo: The Ultimate Truth Behind Video Content Creation</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8814/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/pyZI5oM6hWk/mqdefault.jpg"
+           alt="The Sheep Detectives Trailer | Hugh Jackman Mystery Comedy 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>The Sheep Detectives Trailer | Hugh Jackman Mystery Comedy 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/cag-vs-long-context-how-ai-models-actually-remember-data-in-2026/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/B_RrXwDupIg/mqdefault.jpg"
+           alt="CAG vs Long Context: How AI Models Actually Remember Data in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>CAG vs Long Context: How AI Models Actually Remember Data in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
+           alt="Hermes Agent on DGX Spark: Local AI That Feels Like Magic" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
+    </a>
+    <a href="https://trend4genz.fun/video/build-an-autonomous-openclaw-agent-full-setup-guide-2026/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/oOCN30ulVyo/mqdefault.jpg"
+           alt="Build an Autonomous OpenClaw Agent: Full Setup Guide 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Build an Autonomous OpenClaw Agent: Full Setup Guide 2026</p>
     </a></div>
-      
+      <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
     </div>
 
   </div>
