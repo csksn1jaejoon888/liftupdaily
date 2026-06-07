@@ -287,7 +287,7 @@ function buildVideoPage(v, allVideos, isNoIndex) {
       .video-main-col{flex:1 1 0;min-width:0}
       .video-side-col{width:280px;flex-shrink:0;position:sticky;top:calc(var(--nav-h) + 10px);display:flex;flex-direction:column;gap:0}
       .side-related-label{color:var(--green);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:8px 0 8px;flex-shrink:0}
-      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 300px);overflow-y:auto;scrollbar-width:none;flex-shrink:0}
+      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 480px);overflow-y:auto;scrollbar-width:none;flex-shrink:0}
       .side-slider::-webkit-scrollbar{display:none}
       .side-slider-item{display:flex;gap:8px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;border:1px solid transparent;transition:.2s;flex-shrink:0}
       .side-slider-item:hover{border-color:var(--green)}
