@@ -4585,7 +4585,7 @@
           "name": "Is NVFP4 better than Q4 for local LLMs?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "NVFP4 is faster (30–50% on MLX) but less consistent. It excels in speed-critical tasks but may miss syntax in code generation. Q4 is slower but more reliable for structured outputs."
+            "text": "NVFP4 is faster (30–50% on MLX) but less consistent. It excels in speed critical tasks but may miss syntax in code generation. Q4 is slower but more reliable for structured outputs."
           }
         },
         {
