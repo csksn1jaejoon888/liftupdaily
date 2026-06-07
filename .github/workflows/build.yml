@@ -33,7 +33,6 @@ jobs:
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }} 
 
-
       - name: Generate static pages (video + homepage)
         run: node generate-pages.js
 
