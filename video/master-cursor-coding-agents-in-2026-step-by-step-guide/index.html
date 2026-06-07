@@ -222,19 +222,19 @@
 
 <h2>What This Method Lets You Build</h2>
 <ul>
-  <li><strong>Autonomous code generation:</strong> Describe what you need, and let the agent handle the implementation—from simple functions to full modules.</li>
-  <li><strong>Smart debugging:</strong> Use AI to instrument code, analyze logs, and pinpoint root causes of bugs without manual slog work.</li>
-  <li><strong>Collaborative workflows:</strong> Integrate AI into your team’s development cycle, from PR reviews to shared knowledge bases, ensuring consistency and reducing regressions.</li>
-  <li><strong>Tool-augmented development:</strong> Connect agents to databases, external APIs, or monitoring tools (like Sentry) to gather evidence and optimize performance automatically.</li>
+ <li><strong>Autonomous code generation:</strong> Describe what you need, and let the agent handle the implementation—from simple functions to full modules.</li>
+ <li><strong>Smart debugging:</strong> Use AI to instrument code, analyze logs, and pinpoint root causes of bugs without manual slog work.</li>
+ <li><strong>Collaborative workflows:</strong> Integrate AI into your team’s development cycle, from PR reviews to shared knowledge bases, ensuring consistency and reducing regressions.</li>
+ <li><strong>Tool-augmented development:</strong> Connect agents to databases, external APIs, or monitoring tools (like Sentry) to gather evidence and optimize performance automatically.</li>
 </ul>
 
 <h2>Requirements Before You Start</h2>
 <ul>
-  <li><strong>Cursor AI Editor:</strong> Install the latest version of Cursor, which includes built-in coding agents and harness support. No additional plugins are needed.</li>
-  <li><strong>Basic familiarity with your codebase:</strong> While agents handle the heavy lifting, you’ll need to guide them with context about your project’s structure and goals.</li>
-  <li><strong>Terminal access:</strong> Agents may need to run commands (e.g., tests, linters, or database queries) to verify their work or gather data.</li>
-  <li><strong>GitHub/GitLab account:</strong> For pushing code, opening PRs, and leveraging AI-powered code reviews. Agents can interact with your repository to streamline workflows.</li>
-  <li><strong>Patience for iteration:</strong> AI agents improve with feedback. Expect to refine prompts and validate outputs, especially for complex tasks.</li>
+ <li><strong>Cursor AI Editor:</strong> Install the latest version of Cursor, which includes built-in coding agents and harness support. No additional plugins are needed.</li>
+ <li><strong>Basic familiarity with your codebase:</strong> While agents handle the heavy lifting, you’ll need to guide them with context about your project’s structure and goals.</li>
+ <li><strong>Terminal access:</strong> Agents may need to run commands (e.g., tests, linters, or database queries) to verify their work or gather data.</li>
+ <li><strong>GitHub/GitLab account:</strong> For pushing code, opening PRs, and leveraging AI-powered code reviews. Agents can interact with your repository to streamline workflows.</li>
+ <li><strong>Patience for iteration:</strong> AI agents improve with feedback. Expect to refine prompts and validate outputs, especially for complex tasks.</li>
 </ul>
 
 <h2>Complete Cursor Coding Agents Tutorial</h2>
@@ -242,9 +242,9 @@
 <h3>1. Set Up Your Harness</h3>
 <p>Cursor’s coding agent operates within a <strong>harness</strong>, a framework that defines how the agent behaves. Think of it as the agent’s "operating system." The harness consists of three core components:</p>
 <ul>
-  <li><strong>Instructions:</strong> The system prompt or rules guiding the agent’s behavior. For example, "You are a senior Python developer. Write clean, modular code with type hints."</li>
-  <li><strong>Tools:</strong> The agent’s capabilities, such as file editing, codebase search, or terminal command execution. These tools let the agent interact with your project dynamically.</li>
-  <li><strong>Model:</strong> The AI model powering the agent. Cursor offers multiple frontier models—choose one based on your task’s complexity and budget.</li>
+ <li><strong>Instructions:</strong> The system prompt or rules guiding the agent’s behavior. For example, "You are a senior Python developer. Write clean, modular code with type hints."</li>
+ <li><strong>Tools:</strong> The agent’s capabilities, such as file editing, codebase search, or terminal command execution. These tools let the agent interact with your project dynamically.</li>
+ <li><strong>Model:</strong> The AI model powering the agent. Cursor offers multiple frontier models—choose one based on your task’s complexity and budget.</li>
 </ul>
 <p>Open Cursor and navigate to the agent settings. Here, you’ll configure the harness. Start with a default system prompt, then customize it later as you gain experience.</p>
 
@@ -252,9 +252,9 @@
 <p>Why do some prompts yield useless code while others generate exactly what you need? The difference lies in clarity and specificity.</p>
 <p>A weak prompt like "Build a React dashboard" leaves too much to interpretation. The agent might guess at the layout, components, or data structure, leading to mismatched results. Instead, structure your prompts like this:</p>
 <ul>
-  <li><strong>Context:</strong> "I’m building an e-commerce admin dashboard with React and TypeScript. The backend is a REST API."</li>
-  <li><strong>Task:</strong> "Create a reusable `ProductTable` component that fetches and displays products from the `/api/products` endpoint. Include sorting and pagination."</li>
-  <li><strong>Constraints:</strong> "Use Tailwind CSS for styling. Ensure the component is accessible and type-safe."</li>
+ <li><strong>Context:</strong> "I’m building an e-commerce admin dashboard with React and TypeScript. The backend is a REST API."</li>
+ <li><strong>Task:</strong> "Create a reusable `ProductTable` component that fetches and displays products from the `/api/products` endpoint. Include sorting and pagination."</li>
+ <li><strong>Constraints:</strong> "Use Tailwind CSS for styling. Ensure the component is accessible and type-safe."</li>
 </ul>
 <p>Run the prompt and review the output. If the agent misses the mark, refine your instructions. For example, add: "The table should support multi-column sorting. Use the `useTable` hook from React Table v8."</p>
 
@@ -262,19 +262,19 @@
 <p>How do you debug a bug that only appears under specific conditions? Manually reproducing it can take hours. Coding agents streamline this process by automating evidence collection.</p>
 <p>When you encounter a bug, switch Cursor to <strong>debug mode</strong>. The agent will:</p>
 <ol>
-  <li>Formulate hypotheses about the root cause.</li>
-  <li>Instrument your code with targeted logging to capture runtime data.</li>
-  <li>Ask you to reproduce the issue (e.g., click through the app to trigger the bug).</li>
-  <li>Analyze the logs and propose a fix based on the evidence.</li>
+ <li>Formulate hypotheses about the root cause.</li>
+ <li>Instrument your code with targeted logging to capture runtime data.</li>
+ <li>Ask you to reproduce the issue (e.g., click through the app to trigger the bug).</li>
+ <li>Analyze the logs and propose a fix based on the evidence.</li>
 </ol>
 <p>For example, if a discount calculation fails when multiple codes are applied, the agent might log the order of operations and identify that the bug stems from non-commutative discounts. It will then suggest a fix, such as enforcing a specific evaluation order.</p>
 
 <h3>4. Validate and Iterate</h3>
 <p>Can you trust the agent’s output? Always validate it. Here’s how:</p>
 <ul>
-  <li><strong>Run tests:</strong> Use your existing test suite to verify the agent’s changes. If tests fail, provide the error output to the agent and ask it to revise its approach.</li>
-  <li><strong>Compare models:</strong> Cursor lets you switch between models. Ask multiple models to solve the same problem, then compare their solutions. This "ensemble" approach often yields the best results.</li>
-  <li><strong>Leverage tools:</strong> For performance issues, ask the agent to analyze slow database queries. It can use `EXPLAIN ANALYZE` to identify bottlenecks and suggest optimizations, like adding an index.</li>
+ <li><strong>Run tests:</strong> Use your existing test suite to verify the agent’s changes. If tests fail, provide the error output to the agent and ask it to revise its approach.</li>
+ <li><strong>Compare models:</strong> Cursor lets you switch between models. Ask multiple models to solve the same problem, then compare their solutions. This "ensemble" approach often yields the best results.</li>
+ <li><strong>Leverage tools:</strong> For performance issues, ask the agent to analyze slow database queries. It can use `EXPLAIN ANALYZE` to identify bottlenecks and suggest optimizations, like adding an index.</li>
 </ul>
 <p>After validating the code, push it to GitHub and open a PR. Use Cursor’s AI code review feature to catch regressions or style issues before merging.</p>
 
@@ -288,23 +288,23 @@
 
 <h3>Troubleshooting: Errors & Fixes</h3>
 <ul>
-  <li><strong>Agent generates off-target code:</strong> Refine your prompt with more context. For example, specify the exact API endpoints, data structures, or libraries to use. Break complex tasks into smaller steps.</li>
-  <li><strong>Debug mode fails to reproduce the bug:</strong> Manually trigger the issue while the agent monitors logs. If the bug is intermittent, ask the agent to add more granular logging or suggest edge cases to test.</li>
-  <li><strong>Performance regressions after AI changes:</strong> Use the agent’s tool integration to analyze slow queries or inefficient algorithms. For example, ask it to run `EXPLAIN ANALYZE` on a PostgreSQL query and suggest optimizations.</li>
-  <li><strong>Agent ignores constraints:</strong> Explicitly list constraints in bullet points. For example:
-    <pre>- Do NOT use deprecated libraries.
+ <li><strong>Agent generates off-target code:</strong> Refine your prompt with more context. For example, specify the exact API endpoints, data structures, or libraries to use. Break complex tasks into smaller steps.</li>
+ <li><strong>Debug mode fails to reproduce the bug:</strong> Manually trigger the issue while the agent monitors logs. If the bug is intermittent, ask the agent to add more granular logging or suggest edge cases to test.</li>
+ <li><strong>Performance regressions after AI changes:</strong> Use the agent’s tool integration to analyze slow queries or inefficient algorithms. For example, ask it to run `EXPLAIN ANALYZE` on a PostgreSQL query and suggest optimizations.</li>
+ <li><strong>Agent ignores constraints:</strong> Explicitly list constraints in bullet points. For example:
+ <pre>- Do NOT use deprecated libraries.
 - Follow the project’s ESLint rules.
 - Ensure all functions are pure where possible.</pre>
-  </li>
+ </li>
 </ul>
 
 <h2>Where to Take This Further</h2>
 <p>Now that you’ve mastered the basics, push the boundaries of what coding agents can do:</p>
 <ul>
-  <li><strong>Automate repetitive tasks:</strong> Use agents to generate boilerplate code, refactor legacy systems, or migrate between frameworks (e.g., React to Svelte).</li>
-  <li><strong>Integrate with external tools:</strong> Connect agents to monitoring tools like Sentry or Datadog. For example, ask the agent to analyze error logs and suggest fixes for recurring issues.</li>
-  <li><strong>Build custom tools:</strong> Extend the agent’s capabilities by writing scripts or plugins. For example, create a tool that automatically generates API documentation from your codebase.</li>
-  <li><strong>Collaborate with your team:</strong> Share prompt templates and rules files across your organization. Use Cursor’s team features to standardize AI-assisted workflows.</li>
+ <li><strong>Automate repetitive tasks:</strong> Use agents to generate boilerplate code, refactor legacy systems, or migrate between frameworks (e.g., React to Svelte).</li>
+ <li><strong>Integrate with external tools:</strong> Connect agents to monitoring tools like Sentry or Datadog. For example, ask the agent to analyze error logs and suggest fixes for recurring issues.</li>
+ <li><strong>Build custom tools:</strong> Extend the agent’s capabilities by writing scripts or plugins. For example, create a tool that automatically generates API documentation from your codebase.</li>
+ <li><strong>Collaborate with your team:</strong> Share prompt templates and rules files across your organization. Use Cursor’s team features to standardize AI-assisted workflows.</li>
 </ul>
 <p>Remember, the tools and models will evolve, but the core skill—<strong>working effectively with coding agents</strong>—will remain essential. Start small, iterate often, and let the agent handle the tedious parts while you focus on solving bigger problems.</p>
 <p>Ready to build? Open Cursor, set up your harness, and give your first prompt. The future of coding is here—embrace it.</p></div>
@@ -318,53 +318,53 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/iam-for-ai-agents-4-steps-to-secure-future-proof-systems/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/e8ela6puxig/mqdefault.jpg"
-           alt="IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/master-agent-context-with-langsmiths-context-hub-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/yqmvlmxR1ts/mqdefault.jpg"
+           alt="Master Agent Context with LangSmith's Context Hub in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems</p>
+      <p>Master Agent Context with LangSmith's Context Hub in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
-           alt="Hermes Agent on DGX Spark: Local AI That Feels Like Magic" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/build-high-converting-ai-websites-in-17-minutes-gemini-3-5-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/PsE9u37gJjU/mqdefault.jpg"
+           alt="Build High-Converting AI Websites in 17 Minutes (Gemini 3.5 Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
+      <p>Build High-Converting AI Websites in 17 Minutes (Gemini 3.5 Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
-           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-cowork-unlocked-7-capabilities-that-redefine-ai-workflows/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/z9rdrNrkvDY/mqdefault.jpg"
+           alt="Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
+      <p>Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-setup-guide-build-a-self-improving-ai-assistant-in-20-minutes/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/1ve4Atbqmoo/mqdefault.jpg"
-           alt="Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-vs-codex-which-ai-coder-wins-for-real-world-apps/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/E2UgYp2vh5U/mqdefault.jpg"
+           alt="Claude vs Codex: Which AI Coder Wins for Real-World Apps?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes</p>
+      <p>Claude vs Codex: Which AI Coder Wins for Real-World Apps?</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-ai-agencies-hit-20k-month-with-claude-code-retainers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/NlGIl5-gpHM/mqdefault.jpg"
-           alt="How AI Agencies Hit $20K/Month with Claude Code Retainers" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/china-s-ev-revolution-5-cars-redefining-automotive-tech-by-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/wBKzg4-dYVM/mqdefault.jpg"
+           alt="China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI Agencies Hit $20K/Month with Claude Code Retainers</p>
+      <p>China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
-           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
+           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
+      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
     </a>
-    <a href="https://trend4genz.fun/video/predictive-vs-generative-ai-key-differences-when-to-use-each/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/phOhGqpXss4/mqdefault.jpg"
-           alt="Predictive vs Generative AI: Key Differences &amp; When to Use Each" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
+           alt="7 Levels of AI Mastery: How to Build Systems That Work While You Sleep" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Predictive vs Generative AI: Key Differences &amp; When to Use Each</p>
+      <p>7 Levels of AI Mastery: How to Build Systems That Work While You Sleep</p>
     </a>
-    <a href="https://trend4genz.fun/video/the-ai-tech-stack-powering-2026-stability-over-hype/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/21_k2St8bBI/mqdefault.jpg"
-           alt="The AI Tech Stack Powering 2026: Stability Over Hype" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/3-hidden-claude-features-that-turn-ai-into-your-workflow-engine/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
+           alt="3 Hidden Claude Features That Turn AI Into Your Workflow Engine" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>The AI Tech Stack Powering 2026: Stability Over Hype</p>
+      <p>3 Hidden Claude Features That Turn AI Into Your Workflow Engine</p>
     </a></div>
         </div>
       </div>
@@ -384,17 +384,65 @@
 
       <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/iam-for-ai-agents-4-steps-to-secure-future-proof-systems/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/e8ela6puxig/mqdefault.jpg"
-           alt="IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/master-agent-context-with-langsmiths-context-hub-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yqmvlmxR1ts/mqdefault.jpg"
+           alt="Master Agent Context with LangSmith's Context Hub in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems</p>
+      <p>Master Agent Context with LangSmith's Context Hub in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
-           alt="Hermes Agent on DGX Spark: Local AI That Feels Like Magic" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/build-high-converting-ai-websites-in-17-minutes-gemini-3-5-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/PsE9u37gJjU/mqdefault.jpg"
+           alt="Build High-Converting AI Websites in 17 Minutes (Gemini 3.5 Guide)" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
+      <p>Build High-Converting AI Websites in 17 Minutes (Gemini 3.5 Guide)</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-cowork-unlocked-7-capabilities-that-redefine-ai-workflows/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/z9rdrNrkvDY/mqdefault.jpg"
+           alt="Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-vs-codex-which-ai-coder-wins-for-real-world-apps/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/E2UgYp2vh5U/mqdefault.jpg"
+           alt="Claude vs Codex: Which AI Coder Wins for Real-World Apps?" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude vs Codex: Which AI Coder Wins for Real-World Apps?</p>
+    </a>
+    <a href="https://trend4genz.fun/video/china-s-ev-revolution-5-cars-redefining-automotive-tech-by-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/wBKzg4-dYVM/mqdefault.jpg"
+           alt="China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
+           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
+    </a>
+    <a href="https://trend4genz.fun/video/7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
+           alt="7 Levels of AI Mastery: How to Build Systems That Work While You Sleep" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>7 Levels of AI Mastery: How to Build Systems That Work While You Sleep</p>
+    </a>
+    <a href="https://trend4genz.fun/video/3-hidden-claude-features-that-turn-ai-into-your-workflow-engine/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
+           alt="3 Hidden Claude Features That Turn AI Into Your Workflow Engine" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>3 Hidden Claude Features That Turn AI Into Your Workflow Engine</p>
+    </a>
+    <a href="https://trend4genz.fun/video/amd-local-ai-breakthrough-32gb-vram-runs-frontier-llms-at-90-speed/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/PEg08OAht2s&t=6s/mqdefault.jpg"
+           alt="AMD Local AI Breakthrough: 32GB VRAM Runs Frontier LLMs at 90% Speed" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>AMD Local AI Breakthrough: 32GB VRAM Runs Frontier LLMs at 90% Speed</p>
+    </a>
+    <a href="https://trend4genz.fun/video/essential-ai-skills-for-investors-a-2026-roadmap/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/tu4rU4YD1Jk/mqdefault.jpg"
+           alt="Essential AI Skills for Investors: A 2026 Roadmap" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Essential AI Skills for Investors: A 2026 Roadmap</p>
     </a>
     <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
@@ -402,41 +450,17 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-setup-guide-build-a-self-improving-ai-assistant-in-20-minutes/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/1ve4Atbqmoo/mqdefault.jpg"
-           alt="Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/tesla-powerwall-3-app-guide-master-settings-solar-control/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/wxhZBcCFQwI/mqdefault.jpg"
+           alt="Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes</p>
+      <p>Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-ai-agencies-hit-20k-month-with-claude-code-retainers/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/NlGIl5-gpHM/mqdefault.jpg"
-           alt="How AI Agencies Hit $20K/Month with Claude Code Retainers" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/autonomous-ai-coders-the-next-productivity-wave-or-overhyped-loop/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/rIs802-bXDY/mqdefault.jpg"
+           alt="Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How AI Agencies Hit $20K/Month with Claude Code Retainers</p>
-    </a>
-    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
-           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
-    </a>
-    <a href="https://trend4genz.fun/video/predictive-vs-generative-ai-key-differences-when-to-use-each/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/phOhGqpXss4/mqdefault.jpg"
-           alt="Predictive vs Generative AI: Key Differences &amp; When to Use Each" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Predictive vs Generative AI: Key Differences &amp; When to Use Each</p>
-    </a>
-    <a href="https://trend4genz.fun/video/the-ai-tech-stack-powering-2026-stability-over-hype/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/21_k2St8bBI/mqdefault.jpg"
-           alt="The AI Tech Stack Powering 2026: Stability Over Hype" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The AI Tech Stack Powering 2026: Stability Over Hype</p>
-    </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-vs-openclaw-why-reliability-just-changed-ai-workflows/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Bg-IPiql7x8/mqdefault.jpg"
-           alt="Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows</p>
+      <p>Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?</p>
     </a>
     <a href="https://trend4genz.fun/video/solar-evs-batteries-the-real-roi-in-2026/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/Jh033yLRI1E/mqdefault.jpg"
@@ -444,65 +468,41 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Solar + EVs + Batteries: The Real ROI in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/test-time-compute-why-ai-pauses-to-think-before-answering/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/DAlC8mL5ZlI/mqdefault.jpg"
-           alt="Test Time Compute: Why AI Pauses to Think Before Answering" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/rag-vs-graphrag-why-context-is-the-new-ai-bottleneck-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/pN-LfxNFiTc/mqdefault.jpg"
+           alt="RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Test Time Compute: Why AI Pauses to Think Before Answering</p>
+      <p>RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-the-24-7-ai-employee-that-outperforms-openclaw/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/RoBD7Lc-0MI/mqdefault.jpg"
-           alt="Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/qwen-3-6-27b-outperforms-35b-in-speed-coding-tasks-here-s-why/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7ejQSGaiyQE/mqdefault.jpg"
+           alt="Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw</p>
+      <p>Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why</p>
     </a>
-    <a href="https://trend4genz.fun/video/nissan-s-aws-powered-sdv-shift-what-investors-need-to-watch/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/FWrNnwQjKlM/mqdefault.jpg"
-           alt="Nissan’s AWS-Powered SDV Shift: What Investors Need to Watch" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
+           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Nissan’s AWS-Powered SDV Shift: What Investors Need to Watch</p>
+      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
     </a>
-    <a href="https://trend4genz.fun/video/hands-free-driving-overtaking-with-bmw-highway-assistant/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/GM-xBQ7MWOE/mqdefault.jpg"
-           alt="Hands-Free Driving &amp; Overtaking with BMW Highway Assistant" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/tesla-powerwall-3-review-uk-s-smartest-home-battery-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/6LUYGe0benc/mqdefault.jpg"
+           alt="Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hands-Free Driving &amp; Overtaking with BMW Highway Assistant</p>
+      <p>Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?</p>
     </a>
-    <a href="https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/RosLeHGBLoY/mqdefault.jpg"
-           alt="RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/gpt-5-4-cyber-the-ai-security-model-redefining-defense-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/xbvI5G-8q4o/mqdefault.jpg"
+           alt="GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating</p>
+      <p>GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-code-based-agent-skills-outperform-markdown-by-90-in-ai-workflows/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/IjiaCOt7bP8/mqdefault.jpg"
-           alt="Why Code-Based Agent Skills Outperform Markdown by 90% in AI Workflows" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/build-an-ai-dark-factory-self-shipping-code-tutorial/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/6woc6ii-zoE/mqdefault.jpg"
+           alt="Build an AI Dark Factory: Self-Shipping Code Tutorial" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Why Code-Based Agent Skills Outperform Markdown by 90% in AI Workflows</p>
-    </a>
-    <a href="https://trend4genz.fun/video/how-operating-systems-work-the-hidden-miracle-behind-every-click/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/MtxP2pyCvYA/mqdefault.jpg"
-           alt="How Operating Systems Work: The Hidden Miracle Behind Every Click" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How Operating Systems Work: The Hidden Miracle Behind Every Click</p>
-    </a>
-    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Llei51M3u5g/mqdefault.jpg"
-           alt="Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything</p>
-    </a>
-    <a href="https://trend4genz.fun/video/fix-notebooklm-infographic-errors-in-2-minutes-2026-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/psAQ7GYLmKw/mqdefault.jpg"
-           alt="Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)</p>
-    </a>
-    <a href="https://trend4genz.fun/video/7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
-           alt="7 Levels of AI Mastery: How to Build Systems That Work While You Sleep" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>7 Levels of AI Mastery: How to Build Systems That Work While You Sleep</p>
+      <p>Build an AI Dark Factory: Self-Shipping Code Tutorial</p>
     </a></div>
 
       <!-- NB2: di BAWAH related video -->

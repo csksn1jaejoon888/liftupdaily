@@ -223,19 +223,19 @@
 
 <h2>What This Tool Lets You Build</h2>
 <ul>
-  <li><strong>Persistent AI agents:</strong> Run Codex, Hermes, or Cloud Code for hours (or days) without interruptions, even if your local machine powers off.</li>
-  <li><strong>Parallel development:</strong> Split your terminal into multiple panes to work on different features or projects simultaneously.</li>
-  <li><strong>Remote workflows:</strong> Offload heavy tasks to a VPS, freeing your local machine for other work while agents run in the background.</li>
-  <li><strong>Uninterrupted refactors:</strong> Keep large-scale code changes running overnight or while you’re offline.</li>
+ <li><strong>Persistent AI agents:</strong> Run Codex, Hermes, or Cloud Code for hours (or days) without interruptions, even if your local machine powers off.</li>
+ <li><strong>Parallel development:</strong> Split your terminal into multiple panes to work on different features or projects simultaneously.</li>
+ <li><strong>Remote workflows:</strong> Offload heavy tasks to a VPS, freeing your local machine for other work while agents run in the background.</li>
+ <li><strong>Uninterrupted refactors:</strong> Keep large-scale code changes running overnight or while you’re offline.</li>
 </ul>
 
 <h2>Requirements Before You Start</h2>
 <ul>
-  <li>A terminal (macOS, Linux, or WSL on Windows).</li>
-  <li>Basic familiarity with command-line navigation (e.g., <code>cd</code>, <code>ls</code>).</li>
-  <li>Optional: A VPS (e.g., Hostinger KVM2 plan) for remote sessions. If you don’t have one, start with local setup first.</li>
-  <li>Package manager for installation (e.g., <code>brew</code> on macOS, <code>apt</code> on Ubuntu).</li>
-  <li>SSH access if using a VPS (e.g., <code>ssh user@your-vps-ip</code>).</li>
+ <li>A terminal (macOS, Linux, or WSL on Windows).</li>
+ <li>Basic familiarity with command-line navigation (e.g., <code>cd</code>, <code>ls</code>).</li>
+ <li>Optional: A VPS (e.g., Hostinger KVM2 plan) for remote sessions. If you don’t have one, start with local setup first.</li>
+ <li>Package manager for installation (e.g., <code>brew</code> on macOS, <code>apt</code> on Ubuntu).</li>
+ <li>SSH access if using a VPS (e.g., <code>ssh user@your-vps-ip</code>).</li>
 </ul>
 
 <h2>Complete Tmux Tutorial</h2>
@@ -257,12 +257,12 @@
 <h3>3. Basic Commands to Navigate</h3>
 <p>Tmux uses a prefix key (default: <code>Ctrl+b</code>) followed by a command. Memorize these:</p>
 <ul>
-  <li><code>Ctrl+b %</code>: Split pane vertically.</li>
-  <li><code>Ctrl+b "</code>: Split pane horizontally.</li>
-  <li><code>Ctrl+b arrow_key</code>: Switch between panes.</li>
-  <li><code>Ctrl+b d</code>: Detach from the session (keeps it running in the background).</li>
-  <li><code>tmux ls</code>: List all active sessions.</li>
-  <li><code>tmux attach -t my_session</code>: Reattach to a session.</li>
+ <li><code>Ctrl+b %</code>: Split pane vertically.</li>
+ <li><code>Ctrl+b "</code>: Split pane horizontally.</li>
+ <li><code>Ctrl+b arrow_key</code>: Switch between panes.</li>
+ <li><code>Ctrl+b d</code>: Detach from the session (keeps it running in the background).</li>
+ <li><code>tmux ls</code>: List all active sessions.</li>
+ <li><code>tmux attach -t my_session</code>: Reattach to a session.</li>
 </ul>
 
 <h3>4. Run AI Agents in Tmux</h3>
@@ -270,9 +270,9 @@
 <pre><code>codex --yolo</code></pre>
 <p>Authenticate using the device code method:</p>
 <ol>
-  <li>Copy the URL provided in the terminal.</li>
-  <li>Paste it into your browser and log in to your ChatGPT account.</li>
-  <li>Enter the 9-digit code from the terminal to complete authentication.</li>
+ <li>Copy the URL provided in the terminal.</li>
+ <li>Paste it into your browser and log in to your ChatGPT account.</li>
+ <li>Enter the 9-digit code from the terminal to complete authentication.</li>
 </ol>
 <p>Set the model (e.g., <code>gpt-4o-mini</code>) and enable fast mode with:</p>
 <pre><code>/fast</code></pre>
@@ -287,19 +287,19 @@
 
 <h3>Troubleshooting: Errors & Fixes</h3>
 <ul>
-  <li><strong>"Pane is dead":</strong> The process in the pane crashed. Reattach (<code>tmux attach -t session_name</code>) and restart the command.</li>
-  <li><strong>Authentication fails for AI agents:</strong> Ensure you’re logged into the correct account (e.g., ChatGPT Pro) and have 2FA enabled. Clear cached credentials with <code>codex --logout</code> and retry.</li>
-  <li><strong>Tmux commands not responding:</strong> The prefix key might conflict with another app. Change it by adding <code>set -g prefix C-a</code> to <code>~/.tmux.conf</code> and reload with <code>tmux source-file ~/.tmux.conf</code>.</li>
-  <li><strong>VPS disconnections:</strong> Use <code>tmux set -g remain-on-exit on</code> to keep panes open after crashes. For SSH timeouts, add <code>ServerAliveInterval 60</code> to <code>~/.ssh/config</code>.</li>
+ <li><strong>"Pane is dead":</strong> The process in the pane crashed. Reattach (<code>tmux attach -t session_name</code>) and restart the command.</li>
+ <li><strong>Authentication fails for AI agents:</strong> Ensure you’re logged into the correct account (e.g., ChatGPT Pro) and have 2FA enabled. Clear cached credentials with <code>codex --logout</code> and retry.</li>
+ <li><strong>Tmux commands not responding:</strong> The prefix key might conflict with another app. Change it by adding <code>set -g prefix C-a</code> to <code>~/.tmux.conf</code> and reload with <code>tmux source-file ~/.tmux.conf</code>.</li>
+ <li><strong>VPS disconnections:</strong> Use <code>tmux set -g remain-on-exit on</code> to keep panes open after crashes. For SSH timeouts, add <code>ServerAliveInterval 60</code> to <code>~/.ssh/config</code>.</li>
 </ul>
 
 <h2>Where to Take This Further</h2>
 <p>Once you’re comfortable with the basics, explore these advanced workflows:</p>
 <ul>
-  <li><strong>Automate session startup:</strong> Create a <code>.tmux.conf</code> file to customize key bindings, colors, and default panes. Example: <code>bind-key -n C-h select-pane -L</code> to switch panes with <code>Ctrl+h</code>.</li>
-  <li><strong>Sync panes:</strong> Use <code>setw synchronize-panes on</code> to send commands to all panes simultaneously—ideal for testing scripts across multiple environments.</li>
-  <li><strong>Monitor resources:</strong> Install <code>htop</code> in a Tmux pane to track CPU/memory usage while agents run. Split the pane and run <code>watch -n 1 df -h</code> to monitor disk space.</li>
-  <li><strong>Deploy full-stack apps:</strong> Use Tmux on your VPS to run a backend server (e.g., Node.js) in one pane and a frontend dev server (e.g., Vite) in another. Detach and let them run 24/7.</li>
+ <li><strong>Automate session startup:</strong> Create a <code>.tmux.conf</code> file to customize key bindings, colors, and default panes. Example: <code>bind-key -n C-h select-pane -L</code> to switch panes with <code>Ctrl+h</code>.</li>
+ <li><strong>Sync panes:</strong> Use <code>setw synchronize-panes on</code> to send commands to all panes simultaneously—ideal for testing scripts across multiple environments.</li>
+ <li><strong>Monitor resources:</strong> Install <code>htop</code> in a Tmux pane to track CPU/memory usage while agents run. Split the pane and run <code>watch -n 1 df -h</code> to monitor disk space.</li>
+ <li><strong>Deploy full-stack apps:</strong> Use Tmux on your VPS to run a backend server (e.g., Node.js) in one pane and a frontend dev server (e.g., Vite) in another. Detach and let them run 24/7.</li>
 </ul>
 <p>Tmux isn’t just a tool—it’s a productivity multiplier. Start with local sessions, then graduate to a VPS to unlock persistent, uninterrupted workflows. The next time your laptop dies, your agents won’t.</p></div>
           <div class="seo-tags-container"><a href="https://trend4genz.fun/?tag=tmux%20tutorial" class="seo-tag-badge">#tmux tutorial</a><a href="https://trend4genz.fun/?tag=terminal%20multiplexer%20guide" class="seo-tag-badge">#terminal multiplexer guide</a><a href="https://trend4genz.fun/?tag=vps%20for%20ai%20agents" class="seo-tag-badge">#vps for ai agents</a><a href="https://trend4genz.fun/?tag=persistent%20terminal%20sessions" class="seo-tag-badge">#persistent terminal sessions</a><a href="https://trend4genz.fun/?tag=ai%20development%20tools" class="seo-tag-badge">#ai development tools</a><a href="https://trend4genz.fun/?tag=ssh%20tmux%20setup" class="seo-tag-badge">#ssh tmux setup</a><a href="https://trend4genz.fun/?tag=build%20with%20tmux%202026" class="seo-tag-badge">#build with tmux 2026</a></div>
@@ -312,29 +312,17 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
-           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/adk-vs-rag-how-to-choose-the-right-ai-stack-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7HSSR1n8dgc/mqdefault.jpg"
+           alt="ADK vs RAG: How to Choose the Right AI Stack in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
+      <p>ADK vs RAG: How to Choose the Right AI Stack in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/tesla-powerwall-3-app-guide-master-settings-solar-control/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/wxhZBcCFQwI/mqdefault.jpg"
-           alt="Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
+           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control</p>
-    </a>
-    <a href="https://trend4genz.fun/video/the-ai-prodigy-who-cracked-vision-and-why-it-matters-now/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/qh0FkdgieS8/mqdefault.jpg"
-           alt="The AI Prodigy Who Cracked Vision—And Why It Matters Now" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>The AI Prodigy Who Cracked Vision—And Why It Matters Now</p>
-    </a>
-    <a href="https://trend4genz.fun/video/test-time-compute-why-ai-pauses-to-think-before-answering/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/DAlC8mL5ZlI/mqdefault.jpg"
-           alt="Test Time Compute: Why AI Pauses to Think Before Answering" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Test Time Compute: Why AI Pauses to Think Before Answering</p>
+      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
     </a>
     <a href="https://trend4genz.fun/video/minicpm-v-4-6-the-1-3b-vision-model-that-changes-local-ai-agents/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/nEaljlUlqKk/mqdefault.jpg"
@@ -342,23 +330,35 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>MiniCPM-V 4.6: The 1.3B Vision Model That Changes Local AI Agents</p>
     </a>
-    <a href="https://trend4genz.fun/video/qwen-3-6-27b-outperforms-35b-in-speed-coding-tasks-here-s-why/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7ejQSGaiyQE/mqdefault.jpg"
-           alt="Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/osek-vs-posix-in-automotive-why-your-car-runs-two-oses/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/wnb4WyHveCY/mqdefault.jpg"
+           alt="OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why</p>
+      <p>OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes</p>
     </a>
-    <a href="https://trend4genz.fun/video/unlock-codex-superpowers-a-developer-s-guide-to-ai-mastery/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/3zSU-DGZ6J0/mqdefault.jpg"
-           alt="Unlock Codex Superpowers: A Developer’s Guide to AI Mastery" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
+           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unlock Codex Superpowers: A Developer’s Guide to AI Mastery</p>
+      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
     </a>
-    <a href="https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RosLeHGBLoY/mqdefault.jpg"
-           alt="RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/selling-5k-ai-operating-systems-to-smbs-the-full-blueprint/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/yd9tr0xqg-Y/mqdefault.jpg"
+           alt="Selling $5K AI Operating Systems to SMBs: The Full Blueprint" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating</p>
+      <p>Selling $5K AI Operating Systems to SMBs: The Full Blueprint</p>
+    </a>
+    <a href="https://trend4genz.fun/video/master-cursor-coding-agents-in-2026-step-by-step-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/kF2WQgk1LtY/mqdefault.jpg"
+           alt="Master Cursor Coding Agents in 2026: Step-by-Step Guide" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Master Cursor Coding Agents in 2026: Step-by-Step Guide</p>
+    </a>
+    <a href="https://trend4genz.fun/video/how-top-1-ai-builders-craft-presentations-that-win-deals-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ZpXN9M0WLQ4/mqdefault.jpg"
+           alt="How Top 1% AI Builders Craft Presentations That Win Deals in 2026" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>How Top 1% AI Builders Craft Presentations That Win Deals in 2026</p>
     </a></div>
         </div>
       </div>
@@ -378,29 +378,17 @@
 
       <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
-           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/adk-vs-rag-how-to-choose-the-right-ai-stack-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7HSSR1n8dgc/mqdefault.jpg"
+           alt="ADK vs RAG: How to Choose the Right AI Stack in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
+      <p>ADK vs RAG: How to Choose the Right AI Stack in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/tesla-powerwall-3-app-guide-master-settings-solar-control/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/wxhZBcCFQwI/mqdefault.jpg"
-           alt="Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
+           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control</p>
-    </a>
-    <a href="https://trend4genz.fun/video/the-ai-prodigy-who-cracked-vision-and-why-it-matters-now/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/qh0FkdgieS8/mqdefault.jpg"
-           alt="The AI Prodigy Who Cracked Vision—And Why It Matters Now" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The AI Prodigy Who Cracked Vision—And Why It Matters Now</p>
-    </a>
-    <a href="https://trend4genz.fun/video/test-time-compute-why-ai-pauses-to-think-before-answering/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/DAlC8mL5ZlI/mqdefault.jpg"
-           alt="Test Time Compute: Why AI Pauses to Think Before Answering" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Test Time Compute: Why AI Pauses to Think Before Answering</p>
+      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
     </a>
     <a href="https://trend4genz.fun/video/minicpm-v-4-6-the-1-3b-vision-model-that-changes-local-ai-agents/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/nEaljlUlqKk/mqdefault.jpg"
@@ -408,53 +396,65 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>MiniCPM-V 4.6: The 1.3B Vision Model That Changes Local AI Agents</p>
     </a>
-    <a href="https://trend4genz.fun/video/qwen-3-6-27b-outperforms-35b-in-speed-coding-tasks-here-s-why/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/7ejQSGaiyQE/mqdefault.jpg"
-           alt="Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/osek-vs-posix-in-automotive-why-your-car-runs-two-oses/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/wnb4WyHveCY/mqdefault.jpg"
+           alt="OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why</p>
+      <p>OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes</p>
     </a>
-    <a href="https://trend4genz.fun/video/unlock-codex-superpowers-a-developer-s-guide-to-ai-mastery/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/3zSU-DGZ6J0/mqdefault.jpg"
-           alt="Unlock Codex Superpowers: A Developer’s Guide to AI Mastery" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
+           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlock Codex Superpowers: A Developer’s Guide to AI Mastery</p>
+      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
     </a>
-    <a href="https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/RosLeHGBLoY/mqdefault.jpg"
-           alt="RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/selling-5k-ai-operating-systems-to-smbs-the-full-blueprint/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yd9tr0xqg-Y/mqdefault.jpg"
+           alt="Selling $5K AI Operating Systems to SMBs: The Full Blueprint" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating</p>
+      <p>Selling $5K AI Operating Systems to SMBs: The Full Blueprint</p>
     </a>
-    <a href="https://trend4genz.fun/video/nvidia-nvfp4-vs-llama-cpp-q4-speed-vs-quality-trade-offs-revealed/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/5daRawqNpaE/mqdefault.jpg"
-           alt="NVIDIA NVFP4 vs Llama.cpp Q4: Speed vs Quality Trade-Offs Revealed" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/master-cursor-coding-agents-in-2026-step-by-step-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/kF2WQgk1LtY/mqdefault.jpg"
+           alt="Master Cursor Coding Agents in 2026: Step-by-Step Guide" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>NVIDIA NVFP4 vs Llama.cpp Q4: Speed vs Quality Trade-Offs Revealed</p>
+      <p>Master Cursor Coding Agents in 2026: Step-by-Step Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/hands-free-driving-overtaking-with-bmw-highway-assistant/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/GM-xBQ7MWOE/mqdefault.jpg"
-           alt="Hands-Free Driving &amp; Overtaking with BMW Highway Assistant" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/how-top-1-ai-builders-craft-presentations-that-win-deals-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/ZpXN9M0WLQ4/mqdefault.jpg"
+           alt="How Top 1% AI Builders Craft Presentations That Win Deals in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hands-Free Driving &amp; Overtaking with BMW Highway Assistant</p>
+      <p>How Top 1% AI Builders Craft Presentations That Win Deals in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-operating-systems-work-the-hidden-miracle-behind-every-click/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/MtxP2pyCvYA/mqdefault.jpg"
-           alt="How Operating Systems Work: The Hidden Miracle Behind Every Click" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/q-day-2026-why-quantum-computing-breaks-crypto-and-what-investors-must-do/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/rTM95-gZtOs/mqdefault.jpg"
+           alt="Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How Operating Systems Work: The Hidden Miracle Behind Every Click</p>
+      <p>Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do</p>
     </a>
-    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
-           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-a-proven-2026-roadmap/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
+           alt="How to Learn Python Fast: A Proven 2026 Roadmap" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
+      <p>How to Learn Python Fast: A Proven 2026 Roadmap</p>
     </a>
-    <a href="https://trend4genz.fun/video/software-defined-vehicles-the-500b-shift-reshaping-automotive/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/cctI8JZhWUI/mqdefault.jpg"
-           alt="Software-Defined Vehicles: The $500B Shift Reshaping Automotive" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
+           alt="Hermes Agent on DGX Spark: Local AI That Feels Like Magic" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Software-Defined Vehicles: The $500B Shift Reshaping Automotive</p>
+      <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
+    </a>
+    <a href="https://trend4genz.fun/video/managed-deep-agents-the-missing-layer-for-production-ai/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/LdQpoK2TzSo/mqdefault.jpg"
+           alt="Managed Deep Agents: The Missing Layer for Production AI" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Managed Deep Agents: The Missing Layer for Production AI</p>
+    </a>
+    <a href="https://trend4genz.fun/video/test-time-compute-why-ai-pauses-to-think-before-answering/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/DAlC8mL5ZlI/mqdefault.jpg"
+           alt="Test Time Compute: Why AI Pauses to Think Before Answering" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Test Time Compute: Why AI Pauses to Think Before Answering</p>
     </a>
     <a href="https://trend4genz.fun/video/the-ai-tech-stack-powering-2026-stability-over-hype/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/21_k2St8bBI/mqdefault.jpg"
@@ -468,35 +468,35 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Multi-Agent Orchestration: The Missing Layer for AI at Scale</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-diffusion-report-how-the-world-is-really-using-ai-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/u8bKR3RHAYA/mqdefault.jpg"
-           alt="AI Diffusion Report: How the World Is Really Using AI in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/how-ai-agencies-hit-20k-month-with-claude-code-retainers/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/NlGIl5-gpHM/mqdefault.jpg"
+           alt="How AI Agencies Hit $20K/Month with Claude Code Retainers" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Diffusion Report: How the World Is Really Using AI in 2026</p>
+      <p>How AI Agencies Hit $20K/Month with Claude Code Retainers</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
-           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/rag-vs-graphrag-why-context-is-the-new-ai-bottleneck-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/pN-LfxNFiTc/mqdefault.jpg"
+           alt="RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
+      <p>RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Llei51M3u5g/mqdefault.jpg"
-           alt="Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/why-auto-mechanics-are-disappearing-what-it-means-for-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/9cfbhxsqW84/mqdefault.jpg"
+           alt="Why Auto Mechanics Are Disappearing &amp; What It Means for 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything</p>
+      <p>Why Auto Mechanics Are Disappearing &amp; What It Means for 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/nvidia-cosmos-3-the-world-model-that-rewrites-ai-s-rules/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/2zDtIWeyqYs/mqdefault.jpg"
-           alt="NVIDIA Cosmos 3: The World Model That Rewrites AI’s Rules" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/hermes-agent-setup-guide-build-a-self-improving-ai-assistant-in-20-minutes/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/1ve4Atbqmoo/mqdefault.jpg"
+           alt="Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>NVIDIA Cosmos 3: The World Model That Rewrites AI’s Rules</p>
+      <p>Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemini-3-5-flash-pro-performance-at-half-the-cost/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/kn9Gh5HWqQs/mqdefault.jpg"
-           alt="Gemini 3.5 Flash: Pro Performance at Half the Cost" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/hermes-agentic-os-the-ai-workspace-revolution-you-missed/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/zqUdtL5l9yM/mqdefault.jpg"
+           alt="Hermes Agentic OS: The AI Workspace Revolution You Missed" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Gemini 3.5 Flash: Pro Performance at Half the Cost</p>
+      <p>Hermes Agentic OS: The AI Workspace Revolution You Missed</p>
     </a></div>
 
       <!-- NB2: di BAWAH related video -->

@@ -224,19 +224,19 @@
 
 <h2>What This Method Lets You Build</h2>
 <ul>
-  <li><strong>High-converting landing pages</strong> that turn visitors into buyers—without manual A/B testing.</li>
-  <li><strong>Client-ready websites</strong> that stay intact after handoff, reducing revision cycles by 70%.</li>
-  <li><strong>Niche-specific templates</strong> (roofers, SaaS, e-commerce) reverse-engineered from top performers in your industry.</li>
-  <li><strong>SEO-optimized structures</strong> with built-in best practices for speed, accessibility, and engagement.</li>
+ <li><strong>High-converting landing pages</strong> that turn visitors into buyers—without manual A/B testing.</li>
+ <li><strong>Client-ready websites</strong> that stay intact after handoff, reducing revision cycles by 70%.</li>
+ <li><strong>Niche-specific templates</strong> (roofers, SaaS, e-commerce) reverse-engineered from top performers in your industry.</li>
+ <li><strong>SEO-optimized structures</strong> with built-in best practices for speed, accessibility, and engagement.</li>
 </ul>
 
 <h2>Requirements Before You Start</h2>
 <ul>
-  <li>A free Google AI Studio account (no credit card required).</li>
-  <li>Gemini 3.5 Flash enabled—this is the model powering the workflow. (If you’re on an older version, update in your dashboard.)</li>
-  <li>A clear goal for your website: lead generation, sales, or brand awareness. (Vague objectives yield vague results.)</li>
-  <li>Basic assets: logo, brand colors, and 3–5 high-quality images. (Stock photos work, but custom visuals convert better.)</li>
-  <li>A reference site—pick one competitor’s website you admire. (You’ll dissect its structure later.)</li>
+ <li>A free Google AI Studio account (no credit card required).</li>
+ <li>Gemini 3.5 Flash enabled—this is the model powering the workflow. (If you’re on an older version, update in your dashboard.)</li>
+ <li>A clear goal for your website: lead generation, sales, or brand awareness. (Vague objectives yield vague results.)</li>
+ <li>Basic assets: logo, brand colors, and 3–5 high-quality images. (Stock photos work, but custom visuals convert better.)</li>
+ <li>A reference site—pick one competitor’s website you admire. (You’ll dissect its structure later.)</li>
 </ul>
 
 <h2>Complete AI Website Tutorial</h2>
@@ -266,9 +266,9 @@ Output as a single HTML file with inline CSS."</pre>
 <h3>Step 3: Refine with Real Assets</h3>
 <p>Replace placeholders with your content. For images, use this workflow:</p>
 <ol>
-  <li>Upload your visuals to AI Studio’s asset manager.</li>
-  <li>Target a section and prompt: <code>"Set this image as the hero background. Keep text readable with a dark overlay (RGBA: 0,0,0,0.4). Position the focal point (e.g., rocket) 20% right of center."</code></li>
-  <li>For gaps, generate custom images with: <code>"Create a Ghibli-style illustration of [subject] with [specific details]. Output as 1920x1080 PNG."</code></li>
+ <li>Upload your visuals to AI Studio’s asset manager.</li>
+ <li>Target a section and prompt: <code>"Set this image as the hero background. Keep text readable with a dark overlay (RGBA: 0,0,0,0.4). Position the focal point (e.g., rocket) 20% right of center."</code></li>
+ <li>For gaps, generate custom images with: <code>"Create a Ghibli-style illustration of [subject] with [specific details]. Output as 1920x1080 PNG."</code></li>
 </ol>
 <p>(If the AI misaligns elements, tweak the prompt—e.g., <code>"Shift the rocket 15% further right."</code>)</p>
 
@@ -285,31 +285,31 @@ Provide a prioritized action plan to fix issues."</pre>
 <h3>Step 5: Publish and Validate</h3>
 <p>Export the HTML/CSS and deploy to:</p>
 <ul>
-  <li><strong>Vercel/Netlify</strong> for static sites (drag-and-drop).</li>
-  <li><strong>WordPress</strong> (paste into a custom HTML block).</li>
-  <li><strong>Shopify</strong> (use the "Custom Liquid" section).</li>
+ <li><strong>Vercel/Netlify</strong> for static sites (drag-and-drop).</li>
+ <li><strong>WordPress</strong> (paste into a custom HTML block).</li>
+ <li><strong>Shopify</strong> (use the "Custom Liquid" section).</li>
 </ul>
 <p>Test with real users. (Tools like Hotjar or Microsoft Clarity reveal where visitors drop off.)</p>
 
 <h3>Troubleshooting: Errors & Fixes</h3>
 <ul>
-  <li><strong>Problem:</strong> Text overlays are unreadable on hero images.<br>
-  <strong>Fix:</strong> Add <code>background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));</code> to the section’s CSS. Adjust opacity as needed.</li>
-  <li><strong>Problem:</strong> Mobile layout breaks on iPhones.<br>
-  <strong>Fix:</strong> Wrap elements in <code>@media (max-width: 768px) { ... }</code> queries. Test with Safari’s responsive mode.</li>
-  <li><strong>Problem:</strong> Gemini generates generic copy.<br>
-  <strong>Fix:</strong> Refine prompts with: <code>"Write a hero headline for [product] targeting [audience]. Use power words like ‘effortless’ or ‘proven.’ Max 12 words."</code></li>
-  <li><strong>Problem:</strong> Images load slowly.<br>
-  <strong>Fix:</strong> Compress assets with TinyPNG, then re-upload. Use <code>srcset</code> for responsive images.</li>
+ <li><strong>Problem:</strong> Text overlays are unreadable on hero images.<br>
+ <strong>Fix:</strong> Add <code>background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));</code> to the section’s CSS. Adjust opacity as needed.</li>
+ <li><strong>Problem:</strong> Mobile layout breaks on iPhones.<br>
+ <strong>Fix:</strong> Wrap elements in <code>@media (max-width: 768px) {... }</code> queries. Test with Safari’s responsive mode.</li>
+ <li><strong>Problem:</strong> Gemini generates generic copy.<br>
+ <strong>Fix:</strong> Refine prompts with: <code>"Write a hero headline for [product] targeting [audience]. Use power words like ‘effortless’ or ‘proven.’ Max 12 words."</code></li>
+ <li><strong>Problem:</strong> Images load slowly.<br>
+ <strong>Fix:</strong> Compress assets with TinyPNG, then re-upload. Use <code>srcset</code> for responsive images.</li>
 </ul>
 
 <h2>Where to Take This Further</h2>
 <p>Once you’ve mastered the basics, scale with these tactics:</p>
 <ul>
-  <li><strong>Automate niche templates:</strong> Build a library of 10 industry-specific architectures (e.g., dentists, gyms) and reuse them for clients.</li>
-  <li><strong>Add interactivity:</strong> Integrate Calendly for bookings or Stripe for payments using AI Studio’s embed blocks.</li>
-  <li><strong>SEO deep dive:</strong> Use Gemini to generate schema markup, alt text, and meta descriptions. (Prompt: <code>"Write JSON-LD schema for a [business type] website."</code>)</li>
-  <li><strong>Monetize:</strong> Sell websites as a service. (Charge $2K–$10K per site—clients pay for speed and conversions, not code.)</li>
+ <li><strong>Automate niche templates:</strong> Build a library of 10 industry-specific architectures (e.g., dentists, gyms) and reuse them for clients.</li>
+ <li><strong>Add interactivity:</strong> Integrate Calendly for bookings or Stripe for payments using AI Studio’s embed blocks.</li>
+ <li><strong>SEO deep dive:</strong> Use Gemini to generate schema markup, alt text, and meta descriptions. (Prompt: <code>"Write JSON-LD schema for a [business type] website."</code>)</li>
+ <li><strong>Monetize:</strong> Sell websites as a service. (Charge $2K–$10K per site—clients pay for speed and conversions, not code.)</li>
 </ul>
 
 <p>Ready to build? Open Google AI Studio and start with the reverse-engineering prompt. (Your first site will take 30 minutes; by the third, you’ll hit the 17-minute mark.)</p></div>
@@ -323,53 +323,53 @@ Provide a prioritized action plan to fix issues."</pre>
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/build-an-ai-dark-factory-self-shipping-code-tutorial/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/6woc6ii-zoE/mqdefault.jpg"
-           alt="Build an AI Dark Factory: Self-Shipping Code Tutorial" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/gemini-omni-google-s-ai-video-model-that-edits-itself-in-real-time/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/iRgPSOHjAWM/mqdefault.jpg"
+           alt="Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Build an AI Dark Factory: Self-Shipping Code Tutorial</p>
+      <p>Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time</p>
     </a>
-    <a href="https://trend4genz.fun/video/mcp-vs-adk-how-ai-agents-connect-work-together-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/BedAaB1RKgE/mqdefault.jpg"
-           alt="MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
+           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026</p>
+      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
     </a>
-    <a href="https://trend4genz.fun/video/10-weird-open-source-tools-that-solve-real-problems-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
-           alt="10 Weird Open-Source Tools That Solve Real Problems in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/qwen-3-6-27b-outperforms-35b-in-speed-coding-tasks-here-s-why/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7ejQSGaiyQE/mqdefault.jpg"
+           alt="Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>10 Weird Open-Source Tools That Solve Real Problems in 2026</p>
+      <p>Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why</p>
     </a>
-    <a href="https://trend4genz.fun/video/deepseek-v4-ai-outperforms-billion-dollar-models-for-free/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
-           alt="DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-hype-overload-why-ai-youtube-needs-real-engineering-now/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/rlsP-T_IxVE/mqdefault.jpg"
+           alt="Claude Hype Overload: Why AI YouTube Needs Real Engineering Now" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free</p>
+      <p>Claude Hype Overload: Why AI YouTube Needs Real Engineering Now</p>
     </a>
-    <a href="https://trend4genz.fun/video/multi-ai-agent-systems-why-one-brain-fails-in-high-stakes-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/kYkZI3oj2W4/mqdefault.jpg"
-           alt="Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/hands-free-driving-overtaking-with-bmw-highway-assistant/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/GM-xBQ7MWOE/mqdefault.jpg"
+           alt="Hands-Free Driving &amp; Overtaking with BMW Highway Assistant" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI</p>
+      <p>Hands-Free Driving &amp; Overtaking with BMW Highway Assistant</p>
     </a>
-    <a href="https://trend4genz.fun/video/2026-s-best-jobs-aren-t-what-you-think-here-s-the-data/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
-           alt="2026’s Best Jobs Aren’t What You Think—Here’s the Data" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/nvidia-lyria-2-0-one-photo-creates-a-3d-world-that-never-breaks/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/eCw33snvoNI/mqdefault.jpg"
+           alt="NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>2026’s Best Jobs Aren’t What You Think—Here’s the Data</p>
+      <p>NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks</p>
     </a>
-    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
-           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-ai-agencies-hit-20k-month-with-claude-code-retainers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/NlGIl5-gpHM/mqdefault.jpg"
-           alt="How AI Agencies Hit $20K/Month with Claude Code Retainers" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-the-hidden-grid-revolution-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/etS75SY3Pr4/mqdefault.jpg"
+           alt="Bidirectional EV Charging: The Hidden Grid Revolution in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI Agencies Hit $20K/Month with Claude Code Retainers</p>
+      <p>Bidirectional EV Charging: The Hidden Grid Revolution in 2026</p>
     </a></div>
         </div>
       </div>
@@ -389,77 +389,29 @@ Provide a prioritized action plan to fix issues."</pre>
 
       <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/build-an-ai-dark-factory-self-shipping-code-tutorial/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/6woc6ii-zoE/mqdefault.jpg"
-           alt="Build an AI Dark Factory: Self-Shipping Code Tutorial" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/gemini-omni-google-s-ai-video-model-that-edits-itself-in-real-time/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/iRgPSOHjAWM/mqdefault.jpg"
+           alt="Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Build an AI Dark Factory: Self-Shipping Code Tutorial</p>
+      <p>Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time</p>
     </a>
-    <a href="https://trend4genz.fun/video/mcp-vs-adk-how-ai-agents-connect-work-together-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/BedAaB1RKgE/mqdefault.jpg"
-           alt="MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
+           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026</p>
+      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
     </a>
-    <a href="https://trend4genz.fun/video/10-weird-open-source-tools-that-solve-real-problems-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
-           alt="10 Weird Open-Source Tools That Solve Real Problems in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/qwen-3-6-27b-outperforms-35b-in-speed-coding-tasks-here-s-why/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7ejQSGaiyQE/mqdefault.jpg"
+           alt="Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>10 Weird Open-Source Tools That Solve Real Problems in 2026</p>
+      <p>Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why</p>
     </a>
-    <a href="https://trend4genz.fun/video/deepseek-v4-ai-outperforms-billion-dollar-models-for-free/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
-           alt="DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/claude-hype-overload-why-ai-youtube-needs-real-engineering-now/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/rlsP-T_IxVE/mqdefault.jpg"
+           alt="Claude Hype Overload: Why AI YouTube Needs Real Engineering Now" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free</p>
-    </a>
-    <a href="https://trend4genz.fun/video/multi-ai-agent-systems-why-one-brain-fails-in-high-stakes-ai/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/kYkZI3oj2W4/mqdefault.jpg"
-           alt="Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI</p>
-    </a>
-    <a href="https://trend4genz.fun/video/2026-s-best-jobs-aren-t-what-you-think-here-s-the-data/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
-           alt="2026’s Best Jobs Aren’t What You Think—Here’s the Data" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>2026’s Best Jobs Aren’t What You Think—Here’s the Data</p>
-    </a>
-    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
-           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
-    </a>
-    <a href="https://trend4genz.fun/video/how-ai-agencies-hit-20k-month-with-claude-code-retainers/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/NlGIl5-gpHM/mqdefault.jpg"
-           alt="How AI Agencies Hit $20K/Month with Claude Code Retainers" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How AI Agencies Hit $20K/Month with Claude Code Retainers</p>
-    </a>
-    <a href="https://trend4genz.fun/video/turn-plain-english-into-stunning-videos-with-ai-in-minutes/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/oyWSdPYeQwQ/mqdefault.jpg"
-           alt="Turn Plain English into Stunning Videos with AI in Minutes" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Turn Plain English into Stunning Videos with AI in Minutes</p>
-    </a>
-    <a href="https://trend4genz.fun/video/nvidia-lyria-2-0-one-photo-creates-a-3d-world-that-never-breaks/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/eCw33snvoNI/mqdefault.jpg"
-           alt="NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks</p>
-    </a>
-    <a href="https://trend4genz.fun/video/rag-vs-graphrag-why-context-is-the-new-ai-bottleneck-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/pN-LfxNFiTc/mqdefault.jpg"
-           alt="RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/hermes-agentic-os-the-ai-workspace-revolution-you-missed/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/zqUdtL5l9yM/mqdefault.jpg"
-           alt="Hermes Agentic OS: The AI Workspace Revolution You Missed" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agentic OS: The AI Workspace Revolution You Missed</p>
+      <p>Claude Hype Overload: Why AI YouTube Needs Real Engineering Now</p>
     </a>
     <a href="https://trend4genz.fun/video/hands-free-driving-overtaking-with-bmw-highway-assistant/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/GM-xBQ7MWOE/mqdefault.jpg"
@@ -467,35 +419,41 @@ Provide a prioritized action plan to fix issues."</pre>
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Hands-Free Driving &amp; Overtaking with BMW Highway Assistant</p>
     </a>
-    <a href="https://trend4genz.fun/video/the-ai-prodigy-who-cracked-vision-and-why-it-matters-now/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/qh0FkdgieS8/mqdefault.jpg"
-           alt="The AI Prodigy Who Cracked Vision—And Why It Matters Now" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/nvidia-lyria-2-0-one-photo-creates-a-3d-world-that-never-breaks/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/eCw33snvoNI/mqdefault.jpg"
+           alt="NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The AI Prodigy Who Cracked Vision—And Why It Matters Now</p>
+      <p>NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks</p>
     </a>
-    <a href="https://trend4genz.fun/video/build-ai-agent-harnesses-for-large-codebases-a-step-by-step-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/efRIrLXoOVA/mqdefault.jpg"
-           alt="Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide</p>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-operating-systems-work-the-hidden-miracle-behind-every-click/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/MtxP2pyCvYA/mqdefault.jpg"
-           alt="How Operating Systems Work: The Hidden Miracle Behind Every Click" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-the-hidden-grid-revolution-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/etS75SY3Pr4/mqdefault.jpg"
+           alt="Bidirectional EV Charging: The Hidden Grid Revolution in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How Operating Systems Work: The Hidden Miracle Behind Every Click</p>
+      <p>Bidirectional EV Charging: The Hidden Grid Revolution in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Llei51M3u5g/mqdefault.jpg"
-           alt="Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-divergence-that-will-redefine-workflows/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/R9K2574YEAg/mqdefault.jpg"
+           alt="AI Agents in 2026: The Divergence That Will Redefine Workflows" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything</p>
+      <p>AI Agents in 2026: The Divergence That Will Redefine Workflows</p>
     </a>
-    <a href="https://trend4genz.fun/video/tesla-powerwall-3-app-guide-master-settings-solar-control/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/wxhZBcCFQwI/mqdefault.jpg"
-           alt="Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/how-top-1-ai-builders-craft-presentations-that-win-deals-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/ZpXN9M0WLQ4/mqdefault.jpg"
+           alt="How Top 1% AI Builders Craft Presentations That Win Deals in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control</p>
+      <p>How Top 1% AI Builders Craft Presentations That Win Deals in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/gpt-5-4-cyber-the-ai-security-model-redefining-defense-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/xbvI5G-8q4o/mqdefault.jpg"
+           alt="GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026</p>
     </a>
     <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-the-zero-code-future-of-ai-agents/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
@@ -503,11 +461,53 @@ Provide a prioritized action plan to fix issues."</pre>
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents</p>
     </a>
-    <a href="https://trend4genz.fun/video/nvidia-cosmos-3-the-world-model-that-rewrites-ai-s-rules/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/2zDtIWeyqYs/mqdefault.jpg"
-           alt="NVIDIA Cosmos 3: The World Model That Rewrites AI’s Rules" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/china-s-ev-revolution-5-cars-redefining-automotive-tech-by-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/wBKzg4-dYVM/mqdefault.jpg"
+           alt="China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>NVIDIA Cosmos 3: The World Model That Rewrites AI’s Rules</p>
+      <p>China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/gemini-3-5-flash-pro-performance-at-half-the-cost/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/kn9Gh5HWqQs/mqdefault.jpg"
+           alt="Gemini 3.5 Flash: Pro Performance at Half the Cost" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Gemini 3.5 Flash: Pro Performance at Half the Cost</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
+           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
+    </a>
+    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-a-proven-2026-roadmap/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
+           alt="How to Learn Python Fast: A Proven 2026 Roadmap" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>How to Learn Python Fast: A Proven 2026 Roadmap</p>
+    </a>
+    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-why-your-car-isn-t-a-power-plant-yet/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/RdPzoDV7F3M/mqdefault.jpg"
+           alt="Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)</p>
+    </a>
+    <a href="https://trend4genz.fun/video/test-time-compute-why-ai-pauses-to-think-before-answering/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/DAlC8mL5ZlI/mqdefault.jpg"
+           alt="Test Time Compute: Why AI Pauses to Think Before Answering" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Test Time Compute: Why AI Pauses to Think Before Answering</p>
+    </a>
+    <a href="https://trend4genz.fun/video/7-ai-engineering-mistakes-killing-your-career-2026-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/nvc7xi6vZWw/mqdefault.jpg"
+           alt="7 AI Engineering Mistakes Killing Your Career (2026 Guide)" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>7 AI Engineering Mistakes Killing Your Career (2026 Guide)</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-opus-4-8-the-ai-leap-that-just-redefined-benchmarks/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/j-oiGiIEcws/mqdefault.jpg"
+           alt="Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks</p>
     </a></div>
 
       <!-- NB2: di BAWAH related video -->

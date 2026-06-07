@@ -227,19 +227,19 @@
 
 <h2>Inside MCP: Architecture & Design Choices</h2>
 <ul>
-  <li><strong>Structured Tool Definitions:</strong> MCP tools come with a name, description, and JSON schema that defines inputs and outputs. This standardization ensures consistency but requires upfront investment in schema design.</li>
-  <li><strong>Context Window Tax:</strong> Every MCP tool definition consumes tokens. For instance, the GitHub MCP server ships with 80 tools, each adding ~55 tokens to the context window—even if only one or two are used. This overhead can be prohibitive for cost-sensitive applications.</li>
-  <li><strong>Server-Managed Workflows:</strong> MCP servers handle authentication, token refreshes, and access control, offloading these tasks from the agent. This is a game-changer for enterprise environments where governance is critical.</li>
-  <li><strong>Abstraction vs. Flexibility:</strong> MCP abstracts away the underlying commands, making it easier to swap tools without retraining the agent. However, this abstraction can backfire when the task requires low-level control, such as parsing a Next.js web page’s DOM.</li>
-  <li><strong>Scalability Trade-offs:</strong> While MCP scales well for complex, multi-step workflows, CLI remains unmatched for lightweight, high-speed operations. The choice hinges on whether the priority is speed or scalability.</li>
+ <li><strong>Structured Tool Definitions:</strong> MCP tools come with a name, description, and JSON schema that defines inputs and outputs. This standardization ensures consistency but requires upfront investment in schema design.</li>
+ <li><strong>Context Window Tax:</strong> Every MCP tool definition consumes tokens. For instance, the GitHub MCP server ships with 80 tools, each adding ~55 tokens to the context window—even if only one or two are used. This overhead can be prohibitive for cost-sensitive applications.</li>
+ <li><strong>Server-Managed Workflows:</strong> MCP servers handle authentication, token refreshes, and access control, offloading these tasks from the agent. This is a game-changer for enterprise environments where governance is critical.</li>
+ <li><strong>Abstraction vs. Flexibility:</strong> MCP abstracts away the underlying commands, making it easier to swap tools without retraining the agent. However, this abstraction can backfire when the task requires low-level control, such as parsing a Next.js web page’s DOM.</li>
+ <li><strong>Scalability Trade-offs:</strong> While MCP scales well for complex, multi-step workflows, CLI remains unmatched for lightweight, high-speed operations. The choice hinges on whether the priority is speed or scalability.</li>
 </ul>
 
 <h2>CLI Results vs State-of-the-Art</h2>
 <ul>
-  <li><strong>Speed:</strong> CLI commands execute in milliseconds, with no additional token overhead. For tasks like fetching the last 10 Git commits, CLI is 3–5x faster than MCP.</li>
-  <li><strong>Cost:</strong> MCP’s token consumption can inflate API costs by 20–40% for simple tasks, as tool schemas are loaded regardless of usage.</li>
-  <li><strong>Flexibility:</strong> CLI leverages the model’s pre-trained knowledge, eliminating the need for schema definitions. This makes it ideal for ad-hoc or exploratory tasks.</li>
-  <li><strong>Governance:</strong> MCP excels in enterprise environments, where built-in audit trails, access control, and authentication are non-negotiable. CLI requires manual implementation of these features, increasing complexity.</li>
+ <li><strong>Speed:</strong> CLI commands execute in milliseconds, with no additional token overhead. For tasks like fetching the last 10 Git commits, CLI is 3–5x faster than MCP.</li>
+ <li><strong>Cost:</strong> MCP’s token consumption can inflate API costs by 20–40% for simple tasks, as tool schemas are loaded regardless of usage.</li>
+ <li><strong>Flexibility:</strong> CLI leverages the model’s pre-trained knowledge, eliminating the need for schema definitions. This makes it ideal for ad-hoc or exploratory tasks.</li>
+ <li><strong>Governance:</strong> MCP excels in enterprise environments, where built-in audit trails, access control, and authentication are non-negotiable. CLI requires manual implementation of these features, increasing complexity.</li>
 </ul>
 
 <h2>What This Means in Practice</h2>
@@ -262,53 +262,53 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/adk-vs-rag-how-to-choose-the-right-ai-stack-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7HSSR1n8dgc/mqdefault.jpg"
-           alt="ADK vs RAG: How to Choose the Right AI Stack in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-a-proven-2026-roadmap/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
+           alt="How to Learn Python Fast: A Proven 2026 Roadmap" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>ADK vs RAG: How to Choose the Right AI Stack in 2026</p>
+      <p>How to Learn Python Fast: A Proven 2026 Roadmap</p>
     </a>
-    <a href="https://trend4genz.fun/video/run-llms-locally-for-free-ollama-s-privacy-breakthrough/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/UtSSMs6ObqY/mqdefault.jpg"
-           alt="Run LLMs Locally for Free: Ollama’s Privacy Breakthrough" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/cursor-agent-pro-tips-10-power-moves-for-ai-powered-coding/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/WVeYLlKOWc0/mqdefault.jpg"
+           alt="Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Run LLMs Locally for Free: Ollama’s Privacy Breakthrough</p>
+      <p>Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding</p>
     </a>
-    <a href="https://trend4genz.fun/video/multi-ai-agent-systems-why-one-brain-fails-in-high-stakes-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/kYkZI3oj2W4/mqdefault.jpg"
-           alt="Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
+           alt="7 Levels of AI Mastery: How to Build Systems That Work While You Sleep" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI</p>
+      <p>7 Levels of AI Mastery: How to Build Systems That Work While You Sleep</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-the-24-7-ai-employee-that-outperforms-openclaw/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RoBD7Lc-0MI/mqdefault.jpg"
-           alt="Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/7-ai-engineering-mistakes-killing-your-career-2026-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/nvc7xi6vZWw/mqdefault.jpg"
+           alt="7 AI Engineering Mistakes Killing Your Career (2026 Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw</p>
+      <p>7 AI Engineering Mistakes Killing Your Career (2026 Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/nvidia-lyria-2-0-one-photo-creates-a-3d-world-that-never-breaks/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/eCw33snvoNI/mqdefault.jpg"
-           alt="NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
+           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks</p>
+      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
     </a>
-    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
-           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/10-weird-open-source-tools-that-solve-real-problems-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
+           alt="10 Weird Open-Source Tools That Solve Real Problems in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
+      <p>10 Weird Open-Source Tools That Solve Real Problems in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/autonomous-ai-coders-the-next-productivity-wave-or-overhyped-loop/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/rIs802-bXDY/mqdefault.jpg"
-           alt="Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-4-8-unveiled-honesty-breakthrough-or-just-another-incremental-upgrade/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7TG78vIYI-Q/mqdefault.jpg"
+           alt="Claude 4.8 Unveiled: Honesty Breakthrough or Just Another Incremental Upgrade?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?</p>
+      <p>Claude 4.8 Unveiled: Honesty Breakthrough or Just Another Incremental Upgrade?</p>
     </a>
-    <a href="https://trend4genz.fun/video/boost-ai-agent-memory-with-obsidian-step-by-step-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/6V-b073qhPA/mqdefault.jpg"
-           alt="Boost AI Agent Memory with Obsidian: Step-by-Step Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Boost AI Agent Memory with Obsidian: Step-by-Step Guide</p>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
     </a></div>
         </div>
       </div>
@@ -328,29 +328,59 @@
 
       <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/adk-vs-rag-how-to-choose-the-right-ai-stack-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/7HSSR1n8dgc/mqdefault.jpg"
-           alt="ADK vs RAG: How to Choose the Right AI Stack in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-a-proven-2026-roadmap/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
+           alt="How to Learn Python Fast: A Proven 2026 Roadmap" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>ADK vs RAG: How to Choose the Right AI Stack in 2026</p>
+      <p>How to Learn Python Fast: A Proven 2026 Roadmap</p>
     </a>
-    <a href="https://trend4genz.fun/video/run-llms-locally-for-free-ollama-s-privacy-breakthrough/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/UtSSMs6ObqY/mqdefault.jpg"
-           alt="Run LLMs Locally for Free: Ollama’s Privacy Breakthrough" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/cursor-agent-pro-tips-10-power-moves-for-ai-powered-coding/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/WVeYLlKOWc0/mqdefault.jpg"
+           alt="Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Run LLMs Locally for Free: Ollama’s Privacy Breakthrough</p>
+      <p>Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding</p>
     </a>
-    <a href="https://trend4genz.fun/video/multi-ai-agent-systems-why-one-brain-fails-in-high-stakes-ai/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/kYkZI3oj2W4/mqdefault.jpg"
-           alt="Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
+           alt="7 Levels of AI Mastery: How to Build Systems That Work While You Sleep" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI</p>
+      <p>7 Levels of AI Mastery: How to Build Systems That Work While You Sleep</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-the-24-7-ai-employee-that-outperforms-openclaw/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/RoBD7Lc-0MI/mqdefault.jpg"
-           alt="Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/7-ai-engineering-mistakes-killing-your-career-2026-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/nvc7xi6vZWw/mqdefault.jpg"
+           alt="7 AI Engineering Mistakes Killing Your Career (2026 Guide)" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw</p>
+      <p>7 AI Engineering Mistakes Killing Your Career (2026 Guide)</p>
+    </a>
+    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
+           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
+    </a>
+    <a href="https://trend4genz.fun/video/10-weird-open-source-tools-that-solve-real-problems-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
+           alt="10 Weird Open-Source Tools That Solve Real Problems in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>10 Weird Open-Source Tools That Solve Real Problems in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-4-8-unveiled-honesty-breakthrough-or-just-another-incremental-upgrade/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7TG78vIYI-Q/mqdefault.jpg"
+           alt="Claude 4.8 Unveiled: Honesty Breakthrough or Just Another Incremental Upgrade?" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude 4.8 Unveiled: Honesty Breakthrough or Just Another Incremental Upgrade?</p>
+    </a>
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/rag-explained-why-ai-s-memory-upgrade-changes-everything-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/dDkynerzV-Q/mqdefault.jpg"
+           alt="RAG Explained: Why AI’s Memory Upgrade Changes Everything in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>RAG Explained: Why AI’s Memory Upgrade Changes Everything in 2026</p>
     </a>
     <a href="https://trend4genz.fun/video/nvidia-lyria-2-0-one-photo-creates-a-3d-world-that-never-breaks/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/eCw33snvoNI/mqdefault.jpg"
@@ -358,41 +388,23 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>NVIDIA Lyria 2.0: One Photo Creates a 3D World That Never Breaks</p>
     </a>
-    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
-           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
-    </a>
-    <a href="https://trend4genz.fun/video/autonomous-ai-coders-the-next-productivity-wave-or-overhyped-loop/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/rIs802-bXDY/mqdefault.jpg"
-           alt="Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?</p>
-    </a>
-    <a href="https://trend4genz.fun/video/boost-ai-agent-memory-with-obsidian-step-by-step-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/6V-b073qhPA/mqdefault.jpg"
-           alt="Boost AI Agent Memory with Obsidian: Step-by-Step Guide" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Boost AI Agent Memory with Obsidian: Step-by-Step Guide</p>
-    </a>
-    <a href="https://trend4genz.fun/video/why-engineers-rule-the-billionaire-list-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/ujD1wrsfLr0/mqdefault.jpg"
-           alt="Why Engineers Rule the Billionaire List in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Why Engineers Rule the Billionaire List in 2026</p>
-    </a>
     <a href="https://trend4genz.fun/video/unlock-codex-superpowers-a-developer-s-guide-to-ai-mastery/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/3zSU-DGZ6J0/mqdefault.jpg"
            alt="Unlock Codex Superpowers: A Developer’s Guide to AI Mastery" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Unlock Codex Superpowers: A Developer’s Guide to AI Mastery</p>
     </a>
-    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
-           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/hands-free-driving-overtaking-with-bmw-highway-assistant/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/GM-xBQ7MWOE/mqdefault.jpg"
+           alt="Hands-Free Driving &amp; Overtaking with BMW Highway Assistant" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
+      <p>Hands-Free Driving &amp; Overtaking with BMW Highway Assistant</p>
+    </a>
+    <a href="https://trend4genz.fun/video/run-llms-locally-for-free-ollama-s-privacy-breakthrough/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/UtSSMs6ObqY/mqdefault.jpg"
+           alt="Run LLMs Locally for Free: Ollama’s Privacy Breakthrough" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Run LLMs Locally for Free: Ollama’s Privacy Breakthrough</p>
     </a>
     <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
@@ -400,53 +412,41 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
     </a>
-    <a href="https://trend4genz.fun/video/build-high-converting-ai-websites-in-17-minutes-gemini-3-5-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/PsE9u37gJjU/mqdefault.jpg"
-           alt="Build High-Converting AI Websites in 17 Minutes (Gemini 3.5 Guide)" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/multi-agent-orchestration-the-missing-layer-for-ai-at-scale/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/RWT3sh68PWE/mqdefault.jpg"
+           alt="Multi-Agent Orchestration: The Missing Layer for AI at Scale" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Build High-Converting AI Websites in 17 Minutes (Gemini 3.5 Guide)</p>
+      <p>Multi-Agent Orchestration: The Missing Layer for AI at Scale</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemma-4-vs-gemini-3-1-which-google-ai-wins-for-free/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/oFReQNuIVpE/mqdefault.jpg"
-           alt="Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/q-day-2026-why-quantum-computing-breaks-crypto-and-what-investors-must-do/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/rTM95-gZtOs/mqdefault.jpg"
+           alt="Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?</p>
+      <p>Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do</p>
     </a>
-    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-the-hidden-grid-revolution-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/etS75SY3Pr4/mqdefault.jpg"
-           alt="Bidirectional EV Charging: The Hidden Grid Revolution in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Bidirectional EV Charging: The Hidden Grid Revolution in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/predictive-vs-generative-ai-key-differences-when-to-use-each/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/phOhGqpXss4/mqdefault.jpg"
-           alt="Predictive vs Generative AI: Key Differences &amp; When to Use Each" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Predictive vs Generative AI: Key Differences &amp; When to Use Each</p>
-    </a>
-    <a href="https://trend4genz.fun/video/osek-vs-posix-in-automotive-why-your-car-runs-two-oses/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/wnb4WyHveCY/mqdefault.jpg"
-           alt="OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes</p>
-    </a>
-    <a href="https://trend4genz.fun/video/digital-certificates-explained-prevent-outages-before-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/V7EgIMWOqgw/mqdefault.jpg"
-           alt="Digital Certificates Explained: Prevent Outages Before 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Digital Certificates Explained: Prevent Outages Before 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
-           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
-    </a>
-    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything-2/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Llei51M3u5g&t=18s/mqdefault.jpg"
+    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Llei51M3u5g/mqdefault.jpg"
            alt="Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything</p>
+    </a>
+    <a href="https://trend4genz.fun/video/hermes-agentic-os-the-ai-workspace-revolution-you-missed/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/zqUdtL5l9yM/mqdefault.jpg"
+           alt="Hermes Agentic OS: The AI Workspace Revolution You Missed" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Hermes Agentic OS: The AI Workspace Revolution You Missed</p>
+    </a>
+    <a href="https://trend4genz.fun/video/minicpm-v-4-6-the-1-3b-vision-model-that-changes-local-ai-agents/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/nEaljlUlqKk/mqdefault.jpg"
+           alt="MiniCPM-V 4.6: The 1.3B Vision Model That Changes Local AI Agents" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>MiniCPM-V 4.6: The 1.3B Vision Model That Changes Local AI Agents</p>
+    </a>
+    <a href="https://trend4genz.fun/video/gemini-3-5-flash-pro-performance-at-half-the-cost/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/kn9Gh5HWqQs/mqdefault.jpg"
+           alt="Gemini 3.5 Flash: Pro Performance at Half the Cost" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Gemini 3.5 Flash: Pro Performance at Half the Cost</p>
     </a></div>
 
       <!-- NB2: di BAWAH related video -->

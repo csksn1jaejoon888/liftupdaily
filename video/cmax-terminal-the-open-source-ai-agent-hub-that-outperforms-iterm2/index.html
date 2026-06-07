@@ -231,20 +231,20 @@
 <h2>Inside CMAX: Architecture & Design Choices</h2>
 
 <ul>
-  <li><strong>GPU-Accelerated Rendering:</strong> Built on libghostty, CMAX leverages Metal for sub-16ms frame rendering, eliminating the stutter common in Electron apps. This is critical for agents streaming real-time logs or interactive REPL sessions.</li>
-  <li><strong>Native Swift Core:</strong> Unlike Electron terminals, CMAX compiles to native macOS code, reducing memory usage by ~40% and startup time to under 200ms. The difference is palpable when launching 10+ agent panes simultaneously.</li>
-  <li><strong>Agent-Aware Workspaces:</strong> Each workspace maintains state (e.g., pane layouts, agent sessions), enabling seamless context switching. A keyboard shortcut (<code>⌘⇧U</code>) jumps to the latest unread agent output, a feature missing in even premium terminals.</li>
-  <li><strong>Orchestration Layer:</strong> The <code>cmax skill</code> teaches agents to navigate the terminal (e.g., splitting panes, launching browsers). This turns a single agent into an orchestrator, dynamically managing other agents without human intervention.</li>
-  <li><strong>CLI-Agnostic:</strong> CMAX supports any CLI agent—Cloud Code, Hermes, Pi, or custom scripts—via a plugin-free architecture. Agents communicate through the terminal’s event bus, avoiding the overhead of inter-process communication (IPC).</li>
+ <li><strong>GPU-Accelerated Rendering:</strong> Built on libghostty, CMAX leverages Metal for sub-16ms frame rendering, eliminating the stutter common in Electron apps. This is critical for agents streaming real-time logs or interactive REPL sessions.</li>
+ <li><strong>Native Swift Core:</strong> Unlike Electron terminals, CMAX compiles to native macOS code, reducing memory usage by ~40% and startup time to under 200ms. The difference is palpable when launching 10+ agent panes simultaneously.</li>
+ <li><strong>Agent-Aware Workspaces:</strong> Each workspace maintains state (e.g., pane layouts, agent sessions), enabling seamless context switching. A keyboard shortcut (<code>⌘⇧U</code>) jumps to the latest unread agent output, a feature missing in even premium terminals.</li>
+ <li><strong>Orchestration Layer:</strong> The <code>cmax skill</code> teaches agents to navigate the terminal (e.g., splitting panes, launching browsers). This turns a single agent into an orchestrator, dynamically managing other agents without human intervention.</li>
+ <li><strong>CLI-Agnostic:</strong> CMAX supports any CLI agent—Cloud Code, Hermes, Pi, or custom scripts—via a plugin-free architecture. Agents communicate through the terminal’s event bus, avoiding the overhead of inter-process communication (IPC).</li>
 </ul>
 
 <h2>CMAX Results vs State-of-the-Art</h2>
 
 <ul>
-  <li><strong>Speed:</strong> Benchmarks show CMAX renders 10,000 lines of text in 42ms vs iTerm2’s 180ms—a 4.3x improvement. Agent pane creation takes 80ms vs Warp’s 320ms.</li>
-  <li><strong>Memory:</strong> With 4 agents running, CMAX uses 280MB RAM vs Ghostty’s 450MB and Hyper’s 1.2GB. The Swift runtime’s efficiency shines in long-running sessions.</li>
-  <li><strong>Orchestration:</strong> A single Pi agent can manage 3 Cloud Code instances to build a full-stack app in parallel, reducing total build time by ~60% compared to manual tab management.</li>
-  <li><strong>UX:</strong> Users report a 78% reduction in context-switching friction, thanks to workspace-aware shortcuts and agent skills. The <code>⌘W</code> shortcut for closing tabs mirrors Chrome, a deliberate choice to reduce cognitive load.</li>
+ <li><strong>Speed:</strong> Benchmarks show CMAX renders 10,000 lines of text in 42ms vs iTerm2’s 180ms—a 4.3x improvement. Agent pane creation takes 80ms vs Warp’s 320ms.</li>
+ <li><strong>Memory:</strong> With 4 agents running, CMAX uses 280MB RAM vs Ghostty’s 450MB and Hyper’s 1.2GB. The Swift runtime’s efficiency shines in long-running sessions.</li>
+ <li><strong>Orchestration:</strong> A single Pi agent can manage 3 Cloud Code instances to build a full-stack app in parallel, reducing total build time by ~60% compared to manual tab management.</li>
+ <li><strong>UX:</strong> Users report a 78% reduction in context-switching friction, thanks to workspace-aware shortcuts and agent skills. The <code>⌘W</code> shortcut for closing tabs mirrors Chrome, a deliberate choice to reduce cognitive load.</li>
 </ul>
 
 <h2>What This Means in Practice</h2>
@@ -272,53 +272,53 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/best-worst-toyota-models-2026-reliability-secrets-revealed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/AeJTCIm-Z34/mqdefault.jpg"
-           alt="Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/local-ai-breakthrough-when-hardware-starts-to-matter-again/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/K2IGHj7KQoM/mqdefault.jpg"
+           alt="Local AI Breakthrough: When Hardware Starts to Matter Again" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed</p>
+      <p>Local AI Breakthrough: When Hardware Starts to Matter Again</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-ev-chargers-uk-2026-which-one-actually-wins/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Il9b9JfYjk8/mqdefault.jpg"
-           alt="Best EV Chargers UK 2026: Which One Actually Wins?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-ugc-ads-convert-10x-higher-now-automated-with-claude-code/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/zswO-Wuo0E0/mqdefault.jpg"
+           alt="How UGC Ads Convert 10x Higher—Now Automated with Claude Code" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Best EV Chargers UK 2026: Which One Actually Wins?</p>
+      <p>How UGC Ads Convert 10x Higher—Now Automated with Claude Code</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-diffusion-report-how-the-world-is-really-using-ai-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/u8bKR3RHAYA/mqdefault.jpg"
-           alt="AI Diffusion Report: How the World Is Really Using AI in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/gemma-4-drops-apache-2-license-google-s-open-ai-power-move/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
+           alt="Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI Diffusion Report: How the World Is Really Using AI in 2026</p>
+      <p>Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move</p>
     </a>
-    <a href="https://trend4genz.fun/video/chatgpt-5-5-instant-why-speed-now-rivals-smarts-in-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/4nQnhjimB4Y/mqdefault.jpg"
-           alt="ChatGPT 5.5 Instant: Why Speed Now Rivals Smarts in AI" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-auto-mechanics-are-disappearing-what-it-means-for-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/9cfbhxsqW84/mqdefault.jpg"
+           alt="Why Auto Mechanics Are Disappearing &amp; What It Means for 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>ChatGPT 5.5 Instant: Why Speed Now Rivals Smarts in AI</p>
+      <p>Why Auto Mechanics Are Disappearing &amp; What It Means for 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/autonomous-ai-coders-the-next-productivity-wave-or-overhyped-loop/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/rIs802-bXDY/mqdefault.jpg"
-           alt="Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-code-based-agent-skills-outperform-markdown-by-90-in-ai-workflows/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/IjiaCOt7bP8/mqdefault.jpg"
+           alt="Why Code-Based Agent Skills Outperform Markdown by 90% in AI Workflows" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?</p>
+      <p>Why Code-Based Agent Skills Outperform Markdown by 90% in AI Workflows</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-engineers-rule-the-billionaire-list-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ujD1wrsfLr0/mqdefault.jpg"
-           alt="Why Engineers Rule the Billionaire List in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/chatgpt-5-5-codex-the-ai-coding-revolution-you-can-t-ignore/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/iz3_xhi6iQE/mqdefault.jpg"
+           alt="ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why Engineers Rule the Billionaire List in 2026</p>
+      <p>ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
-           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-why-your-car-isn-t-a-power-plant-yet/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/RdPzoDV7F3M/mqdefault.jpg"
+           alt="Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
+      <p>Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)</p>
     </a>
-    <a href="https://trend4genz.fun/video/tmux-mastery-run-ai-agents-24-7-without-losing-work/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/z7xyZQVK4Dg&t=19s/mqdefault.jpg"
-           alt="Tmux Mastery: Run AI Agents 24/7 Without Losing Work" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Tmux Mastery: Run AI Agents 24/7 Without Losing Work</p>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
     </a></div>
         </div>
       </div>
@@ -338,17 +338,107 @@
 
       <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/best-worst-toyota-models-2026-reliability-secrets-revealed/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/AeJTCIm-Z34/mqdefault.jpg"
-           alt="Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/local-ai-breakthrough-when-hardware-starts-to-matter-again/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/K2IGHj7KQoM/mqdefault.jpg"
+           alt="Local AI Breakthrough: When Hardware Starts to Matter Again" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed</p>
+      <p>Local AI Breakthrough: When Hardware Starts to Matter Again</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-ev-chargers-uk-2026-which-one-actually-wins/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Il9b9JfYjk8/mqdefault.jpg"
-           alt="Best EV Chargers UK 2026: Which One Actually Wins?" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/how-ugc-ads-convert-10x-higher-now-automated-with-claude-code/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/zswO-Wuo0E0/mqdefault.jpg"
+           alt="How UGC Ads Convert 10x Higher—Now Automated with Claude Code" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Best EV Chargers UK 2026: Which One Actually Wins?</p>
+      <p>How UGC Ads Convert 10x Higher—Now Automated with Claude Code</p>
+    </a>
+    <a href="https://trend4genz.fun/video/gemma-4-drops-apache-2-license-google-s-open-ai-power-move/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
+           alt="Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move</p>
+    </a>
+    <a href="https://trend4genz.fun/video/why-auto-mechanics-are-disappearing-what-it-means-for-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/9cfbhxsqW84/mqdefault.jpg"
+           alt="Why Auto Mechanics Are Disappearing &amp; What It Means for 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Why Auto Mechanics Are Disappearing &amp; What It Means for 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/why-code-based-agent-skills-outperform-markdown-by-90-in-ai-workflows/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/IjiaCOt7bP8/mqdefault.jpg"
+           alt="Why Code-Based Agent Skills Outperform Markdown by 90% in AI Workflows" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Why Code-Based Agent Skills Outperform Markdown by 90% in AI Workflows</p>
+    </a>
+    <a href="https://trend4genz.fun/video/chatgpt-5-5-codex-the-ai-coding-revolution-you-can-t-ignore/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/iz3_xhi6iQE/mqdefault.jpg"
+           alt="ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore</p>
+    </a>
+    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-why-your-car-isn-t-a-power-plant-yet/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/RdPzoDV7F3M/mqdefault.jpg"
+           alt="Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)</p>
+    </a>
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/5-claude-co-work-tips-to-master-your-workspace-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
+           alt="5 Claude Co-Work Tips to Master Your Workspace in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>5 Claude Co-Work Tips to Master Your Workspace in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/unlock-codex-superpowers-a-developer-s-guide-to-ai-mastery/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/3zSU-DGZ6J0/mqdefault.jpg"
+           alt="Unlock Codex Superpowers: A Developer’s Guide to AI Mastery" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unlock Codex Superpowers: A Developer’s Guide to AI Mastery</p>
+    </a>
+    <a href="https://trend4genz.fun/video/multi-agent-ai-that-ships-the-architecture-behind-autonomous-dev-teams/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/ow1we5PzK-o/mqdefault.jpg"
+           alt="Multi-Agent AI That Ships: The Architecture Behind Autonomous Dev Teams" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Multi-Agent AI That Ships: The Architecture Behind Autonomous Dev Teams</p>
+    </a>
+    <a href="https://trend4genz.fun/video/mcp-vs-adk-how-ai-agents-connect-work-together-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/BedAaB1RKgE/mqdefault.jpg"
+           alt="MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
+           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
+    </a>
+    <a href="https://trend4genz.fun/video/hands-free-driving-overtaking-with-bmw-highway-assistant/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/GM-xBQ7MWOE/mqdefault.jpg"
+           alt="Hands-Free Driving &amp; Overtaking with BMW Highway Assistant" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Hands-Free Driving &amp; Overtaking with BMW Highway Assistant</p>
+    </a>
+    <a href="https://trend4genz.fun/video/top-5-ai-engineering-courses-for-2026-build-production-grade-apps/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/HFmoNVx6vTA/mqdefault.jpg"
+           alt="Top 5 AI Engineering Courses for 2026: Build Production-Grade Apps" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Top 5 AI Engineering Courses for 2026: Build Production-Grade Apps</p>
+    </a>
+    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-the-hidden-grid-revolution-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/etS75SY3Pr4/mqdefault.jpg"
+           alt="Bidirectional EV Charging: The Hidden Grid Revolution in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Bidirectional EV Charging: The Hidden Grid Revolution in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/predictive-vs-generative-ai-key-differences-when-to-use-each/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/phOhGqpXss4/mqdefault.jpg"
+           alt="Predictive vs Generative AI: Key Differences &amp; When to Use Each" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Predictive vs Generative AI: Key Differences &amp; When to Use Each</p>
     </a>
     <a href="https://trend4genz.fun/video/ai-diffusion-report-how-the-world-is-really-using-ai-in-2026/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/u8bKR3RHAYA/mqdefault.jpg"
@@ -356,107 +446,17 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>AI Diffusion Report: How the World Is Really Using AI in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/chatgpt-5-5-instant-why-speed-now-rivals-smarts-in-ai/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/4nQnhjimB4Y/mqdefault.jpg"
-           alt="ChatGPT 5.5 Instant: Why Speed Now Rivals Smarts in AI" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Llei51M3u5g/mqdefault.jpg"
+           alt="Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>ChatGPT 5.5 Instant: Why Speed Now Rivals Smarts in AI</p>
+      <p>Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything</p>
     </a>
-    <a href="https://trend4genz.fun/video/autonomous-ai-coders-the-next-productivity-wave-or-overhyped-loop/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/rIs802-bXDY/mqdefault.jpg"
-           alt="Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/best-worst-toyota-models-2026-reliability-secrets-revealed/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/AeJTCIm-Z34/mqdefault.jpg"
+           alt="Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?</p>
-    </a>
-    <a href="https://trend4genz.fun/video/why-engineers-rule-the-billionaire-list-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/ujD1wrsfLr0/mqdefault.jpg"
-           alt="Why Engineers Rule the Billionaire List in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Why Engineers Rule the Billionaire List in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
-           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
-    </a>
-    <a href="https://trend4genz.fun/video/tmux-mastery-run-ai-agents-24-7-without-losing-work/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/z7xyZQVK4Dg&t=19s/mqdefault.jpg"
-           alt="Tmux Mastery: Run AI Agents 24/7 Without Losing Work" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Tmux Mastery: Run AI Agents 24/7 Without Losing Work</p>
-    </a>
-    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-4-levels-that-multiply-your-output/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
-           alt="AI Agents in 2026: The 4 Levels That Multiply Your Output" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Agents in 2026: The 4 Levels That Multiply Your Output</p>
-    </a>
-    <a href="https://trend4genz.fun/video/how-ai-agencies-hit-20k-month-with-claude-code-retainers/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/NlGIl5-gpHM/mqdefault.jpg"
-           alt="How AI Agencies Hit $20K/Month with Claude Code Retainers" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How AI Agencies Hit $20K/Month with Claude Code Retainers</p>
-    </a>
-    <a href="https://trend4genz.fun/video/run-llms-locally-for-free-ollama-s-privacy-breakthrough/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/UtSSMs6ObqY/mqdefault.jpg"
-           alt="Run LLMs Locally for Free: Ollama’s Privacy Breakthrough" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Run LLMs Locally for Free: Ollama’s Privacy Breakthrough</p>
-    </a>
-    <a href="https://trend4genz.fun/video/build-high-converting-ai-websites-in-17-minutes-gemini-3-5-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/PsE9u37gJjU/mqdefault.jpg"
-           alt="Build High-Converting AI Websites in 17 Minutes (Gemini 3.5 Guide)" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Build High-Converting AI Websites in 17 Minutes (Gemini 3.5 Guide)</p>
-    </a>
-    <a href="https://trend4genz.fun/video/chatgpt-5-5-unlocked-the-pre-training-shift-that-changes-everything/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/McOK2URVyNg/mqdefault.jpg"
-           alt="ChatGPT 5.5 Unlocked: The Pre-Training Shift That Changes Everything" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>ChatGPT 5.5 Unlocked: The Pre-Training Shift That Changes Everything</p>
-    </a>
-    <a href="https://trend4genz.fun/video/essential-ai-skills-for-investors-a-2026-roadmap/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/tu4rU4YD1Jk/mqdefault.jpg"
-           alt="Essential AI Skills for Investors: A 2026 Roadmap" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Essential AI Skills for Investors: A 2026 Roadmap</p>
-    </a>
-    <a href="https://trend4genz.fun/video/boost-ai-agent-memory-with-obsidian-step-by-step-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/6V-b073qhPA/mqdefault.jpg"
-           alt="Boost AI Agent Memory with Obsidian: Step-by-Step Guide" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Boost AI Agent Memory with Obsidian: Step-by-Step Guide</p>
-    </a>
-    <a href="https://trend4genz.fun/video/nvidia-nvfp4-vs-llama-cpp-q4-speed-vs-quality-trade-offs-revealed/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/5daRawqNpaE/mqdefault.jpg"
-           alt="NVIDIA NVFP4 vs Llama.cpp Q4: Speed vs Quality Trade-Offs Revealed" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>NVIDIA NVFP4 vs Llama.cpp Q4: Speed vs Quality Trade-Offs Revealed</p>
-    </a>
-    <a href="https://trend4genz.fun/video/how-uber-scales-60k-ai-agent-tasks-weekly-with-mcps/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/yVqMxBahjfA/mqdefault.jpg"
-           alt="How Uber Scales 60K AI Agent Tasks Weekly With MCPs" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How Uber Scales 60K AI Agent Tasks Weekly With MCPs</p>
-    </a>
-    <a href="https://trend4genz.fun/video/fix-notebooklm-infographic-errors-in-2-minutes-2026-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/psAQ7GYLmKw/mqdefault.jpg"
-           alt="Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)</p>
-    </a>
-    <a href="https://trend4genz.fun/video/rag-vs-graphrag-why-context-is-the-new-ai-bottleneck-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/pN-LfxNFiTc/mqdefault.jpg"
-           alt="RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-setup-guide-build-a-self-improving-ai-assistant-in-20-minutes/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/1ve4Atbqmoo/mqdefault.jpg"
-           alt="Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes</p>
+      <p>Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed</p>
     </a></div>
 
       <!-- NB2: di BAWAH related video -->

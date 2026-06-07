@@ -229,38 +229,38 @@
 <h2>Inside the AI Stack: Architecture & Design Choices</h2>
 
 <ul>
-  <li><strong>Hardware Layer: The Foundation of Feasibility</strong>
-    <p>Not all AI workloads are created equal. A 7B-parameter model might run efficiently on a laptop GPU, but a 70B-parameter model demands high-memory GPUs like NVIDIA’s H100 or AMD’s MI300X. The catch: hardware choices aren’t just about raw power—they’re about trade-offs. On-premise deployments offer control but require capital expenditure; cloud solutions provide scalability but introduce latency and cost variability. Local deployments, meanwhile, are ideal for privacy-sensitive use cases but limit model size and complexity.</p>
-  </li>
-  <li><strong>Model Layer: Beyond the "Big vs. Small" Dichotomy</strong>
-    <p>Model selection is no longer a binary choice between "large" and "small." The modern AI stack demands specialization. A model optimized for reasoning (e.g., DeepSeek-R1) might outperform a generalist LLM in scientific analysis, while a lightweight model (e.g., Phi-3) could be the only viable option for edge devices. Open-source models offer customization but require expertise; proprietary models provide convenience but lock teams into vendor ecosystems. With over 2 million models available on platforms like Hugging Face, the challenge isn’t finding a model—it’s finding the right one for the task.</p>
-  </li>
-  <li><strong>Data Layer: The Lifeblood of Real-Time AI</strong>
-    <p>Models are static; the world is not. A drug discovery AI trained on 2025 data is useless if it can’t access papers published in 2026. The data layer bridges this gap through retrieval-augmented generation (RAG), vector databases, and real-time pipelines. In practice, this means supplementing a model’s knowledge with up-to-date sources, whether through API integrations, web scraping, or proprietary datasets. The catch: data isn’t just about quantity—it’s about quality, relevance, and the ability to process it efficiently. A poorly indexed vector database can turn a 100ms retrieval into a 10-second bottleneck.</p>
-  </li>
-  <li><strong>Orchestration Layer: The Brain Behind the Brawn</strong>
-    <p>Complex tasks require more than a single prompt-response cycle. Orchestration layers break queries into sub-tasks, plan execution paths, and even critique outputs before delivery. For example, a drug discovery AI might first retrieve relevant papers, summarize key findings, generate hypotheses, and then validate them against existing literature—all before presenting a final answer. Protocols like MCP (Modular Coordination Protocol) are emerging to standardize these workflows, enabling AI systems to handle multi-step reasoning with human-like precision.</p>
-  </li>
-  <li><strong>Application Layer: Where AI Meets Usability</strong>
-    <p>The most powerful AI is useless if it’s inaccessible. The application layer defines how users interact with the system—whether through text, voice, or custom data formats like molecular structures. Key considerations include revision tools (allowing users to edit outputs), citations (linking answers to sources), and integrations (connecting AI outputs to tools like Slack or Jupyter notebooks). The best AI applications don’t just generate answers; they enable users to refine, question, and act on them.</p>
-  </li>
+ <li><strong>Hardware Layer: The Foundation of Feasibility</strong>
+ <p>Not all AI workloads are created equal. A 7B-parameter model might run efficiently on a laptop GPU, but a 70B-parameter model demands high-memory GPUs like NVIDIA’s H100 or AMD’s MI300X. The catch: hardware choices aren’t just about raw power—they’re about trade-offs. On-premise deployments offer control but require capital expenditure; cloud solutions provide scalability but introduce latency and cost variability. Local deployments, meanwhile, are ideal for privacy-sensitive use cases but limit model size and complexity.</p>
+ </li>
+ <li><strong>Model Layer: Beyond the "Big vs. Small" Dichotomy</strong>
+ <p>Model selection is no longer a binary choice between "large" and "small." The modern AI stack demands specialization. A model optimized for reasoning (e.g., DeepSeek-R1) might outperform a generalist LLM in scientific analysis, while a lightweight model (e.g., Phi-3) could be the only viable option for edge devices. Open-source models offer customization but require expertise; proprietary models provide convenience but lock teams into vendor ecosystems. With over 2 million models available on platforms like Hugging Face, the challenge isn’t finding a model—it’s finding the right one for the task.</p>
+ </li>
+ <li><strong>Data Layer: The Lifeblood of Real-Time AI</strong>
+ <p>Models are static; the world is not. A drug discovery AI trained on 2025 data is useless if it can’t access papers published in 2026. The data layer bridges this gap through retrieval-augmented generation (RAG), vector databases, and real-time pipelines. In practice, this means supplementing a model’s knowledge with up-to-date sources, whether through API integrations, web scraping, or proprietary datasets. The catch: data isn’t just about quantity—it’s about quality, relevance, and the ability to process it efficiently. A poorly indexed vector database can turn a 100ms retrieval into a 10-second bottleneck.</p>
+ </li>
+ <li><strong>Orchestration Layer: The Brain Behind the Brawn</strong>
+ <p>Complex tasks require more than a single prompt-response cycle. Orchestration layers break queries into sub-tasks, plan execution paths, and even critique outputs before delivery. For example, a drug discovery AI might first retrieve relevant papers, summarize key findings, generate hypotheses, and then validate them against existing literature—all before presenting a final answer. Protocols like MCP (Modular Coordination Protocol) are emerging to standardize these workflows, enabling AI systems to handle multi-step reasoning with human-like precision.</p>
+ </li>
+ <li><strong>Application Layer: Where AI Meets Usability</strong>
+ <p>The most powerful AI is useless if it’s inaccessible. The application layer defines how users interact with the system—whether through text, voice, or custom data formats like molecular structures. Key considerations include revision tools (allowing users to edit outputs), citations (linking answers to sources), and integrations (connecting AI outputs to tools like Slack or Jupyter notebooks). The best AI applications don’t just generate answers; they enable users to refine, question, and act on them.</p>
+ </li>
 </ul>
 
 <h2>AI Stack Results vs. State-of-the-Art</h2>
 
 <ul>
-  <li><strong>Latency: From Minutes to Milliseconds</strong>
-    <p>Teams deploying 70B-parameter models on CPU-only servers reported inference times of 3–5 minutes per query. By switching to GPU-optimized hardware (e.g., NVIDIA A100), the same models achieved sub-200ms responses—a 1,500x improvement. For real-time applications like customer support or scientific research, this difference isn’t just noticeable—it’s transformative.</p>
-  </li>
-  <li><strong>Accuracy: Closing the Knowledge Gap</strong>
-    <p>Models with static knowledge cutoffs (e.g., 2025) achieved only 62% accuracy on queries about 2026 research. By integrating RAG with up-to-date data sources, the same models reached 91% accuracy—without retraining. The key? Dynamic data pipelines that fetch and process new information in real time.</p>
-  </li>
-  <li><strong>Cost: From $50,000 to $5,000</strong>
-    <p>On-premise deployments of large models required $50,000+ in upfront hardware costs. Cloud-based solutions reduced this to $5,000/month, while hybrid approaches (e.g., local deployment for lightweight models + cloud for heavy workloads) cut costs to $1,200/month. The trade-off? Cloud solutions introduce variable costs, while on-premise offers predictability.</p>
-  </li>
-  <li><strong>Usability: From Frustration to Adoption</strong>
-    <p>AI applications with text-only interfaces saw 40% user drop-off within the first week. Adding features like citations, revisions, and integrations with tools like Excel or GitHub increased retention to 85%. The lesson? Usability isn’t an afterthought—it’s the difference between a tool and a solution.</p>
-  </li>
+ <li><strong>Latency: From Minutes to Milliseconds</strong>
+ <p>Teams deploying 70B-parameter models on CPU-only servers reported inference times of 3–5 minutes per query. By switching to GPU-optimized hardware (e.g., NVIDIA A100), the same models achieved sub-200ms responses—a 1,500x improvement. For real-time applications like customer support or scientific research, this difference isn’t just noticeable—it’s transformative.</p>
+ </li>
+ <li><strong>Accuracy: Closing the Knowledge Gap</strong>
+ <p>Models with static knowledge cutoffs (e.g., 2025) achieved only 62% accuracy on queries about 2026 research. By integrating RAG with up-to-date data sources, the same models reached 91% accuracy—without retraining. The key? Dynamic data pipelines that fetch and process new information in real time.</p>
+ </li>
+ <li><strong>Cost: From $50,000 to $5,000</strong>
+ <p>On-premise deployments of large models required $50,000+ in upfront hardware costs. Cloud-based solutions reduced this to $5,000/month, while hybrid approaches (e.g., local deployment for lightweight models + cloud for heavy workloads) cut costs to $1,200/month. The trade-off? Cloud solutions introduce variable costs, while on-premise offers predictability.</p>
+ </li>
+ <li><strong>Usability: From Frustration to Adoption</strong>
+ <p>AI applications with text-only interfaces saw 40% user drop-off within the first week. Adding features like citations, revisions, and integrations with tools like Excel or GitHub increased retention to 85%. The lesson? Usability isn’t an afterthought—it’s the difference between a tool and a solution.</p>
+ </li>
 </ul>
 
 <h2>What This Means in Practice</h2>
@@ -273,9 +273,9 @@
 
 <p>The AI stack is powerful, but it’s not a silver bullet. Key limitations include:</p>
 <ul>
-  <li><strong>Data Privacy:</strong> RAG systems that fetch external data introduce risks of exposing sensitive information. Solutions like federated learning and differential privacy are emerging, but they add complexity.</li>
-  <li><strong>Model Drift:</strong> As real-world data evolves, even the best orchestration layers can’t compensate for a model’s outdated knowledge. Continuous learning systems are needed, but they’re still in their infancy.</li>
-  <li><strong>Hardware Bottlenecks:</strong> GPUs are expensive, and not all organizations can afford them. Alternatives like TPUs or FPGAs are gaining traction, but they require specialized expertise.</li>
+ <li><strong>Data Privacy:</strong> RAG systems that fetch external data introduce risks of exposing sensitive information. Solutions like federated learning and differential privacy are emerging, but they add complexity.</li>
+ <li><strong>Model Drift:</strong> As real-world data evolves, even the best orchestration layers can’t compensate for a model’s outdated knowledge. Continuous learning systems are needed, but they’re still in their infancy.</li>
+ <li><strong>Hardware Bottlenecks:</strong> GPUs are expensive, and not all organizations can afford them. Alternatives like TPUs or FPGAs are gaining traction, but they require specialized expertise.</li>
 </ul>
 
 <h2>The Road Ahead</h2>
@@ -293,11 +293,41 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/local-ai-breakthrough-when-hardware-starts-to-matter-again/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/K2IGHj7KQoM/mqdefault.jpg"
-           alt="Local AI Breakthrough: When Hardware Starts to Matter Again" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/q-day-2026-why-quantum-computing-breaks-crypto-and-what-investors-must-do/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/rTM95-gZtOs/mqdefault.jpg"
+           alt="Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Local AI Breakthrough: When Hardware Starts to Matter Again</p>
+      <p>Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do</p>
+    </a>
+    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
+           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-cowork-unlocked-7-capabilities-that-redefine-ai-workflows/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/z9rdrNrkvDY/mqdefault.jpg"
+           alt="Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows</p>
+    </a>
+    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Llei51M3u5g/mqdefault.jpg"
+           alt="Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything</p>
+    </a>
+    <a href="https://trend4genz.fun/video/3-hidden-claude-features-that-turn-ai-into-your-workflow-engine/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
+           alt="3 Hidden Claude Features That Turn AI Into Your Workflow Engine" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>3 Hidden Claude Features That Turn AI Into Your Workflow Engine</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-design-agents-6-architectural-patterns-powering-ai-workflows/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/V-djAkt0t-M/mqdefault.jpg"
+           alt="Claude Design Agents: 6 Architectural Patterns Powering AI Workflows" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Claude Design Agents: 6 Architectural Patterns Powering AI Workflows</p>
     </a>
     <a href="https://trend4genz.fun/video/bidirectional-ev-charging-the-hidden-grid-revolution-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/etS75SY3Pr4/mqdefault.jpg"
@@ -305,41 +335,11 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>Bidirectional EV Charging: The Hidden Grid Revolution in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/10-weird-open-source-tools-that-solve-real-problems-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
-           alt="10 Weird Open-Source Tools That Solve Real Problems in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/how-ugc-ads-convert-10x-higher-now-automated-with-claude-code/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/zswO-Wuo0E0/mqdefault.jpg"
+           alt="How UGC Ads Convert 10x Higher—Now Automated with Claude Code" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>10 Weird Open-Source Tools That Solve Real Problems in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/claude-opus-4-8-the-ai-leap-that-just-redefined-benchmarks/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/j-oiGiIEcws/mqdefault.jpg"
-           alt="Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks</p>
-    </a>
-    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
-           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/build-ai-agent-harnesses-for-large-codebases-a-step-by-step-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/efRIrLXoOVA/mqdefault.jpg"
-           alt="Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide</p>
-    </a>
-    <a href="https://trend4genz.fun/video/chatgpt-5-5-unlocked-the-pre-training-shift-that-changes-everything/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/McOK2URVyNg/mqdefault.jpg"
-           alt="ChatGPT 5.5 Unlocked: The Pre-Training Shift That Changes Everything" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>ChatGPT 5.5 Unlocked: The Pre-Training Shift That Changes Everything</p>
-    </a>
-    <a href="https://trend4genz.fun/video/7-ai-engineering-mistakes-killing-your-career-2026-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/nvc7xi6vZWw/mqdefault.jpg"
-           alt="7 AI Engineering Mistakes Killing Your Career (2026 Guide)" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>7 AI Engineering Mistakes Killing Your Career (2026 Guide)</p>
+      <p>How UGC Ads Convert 10x Higher—Now Automated with Claude Code</p>
     </a></div>
         </div>
       </div>
@@ -359,11 +359,41 @@
 
       <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/local-ai-breakthrough-when-hardware-starts-to-matter-again/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/K2IGHj7KQoM/mqdefault.jpg"
-           alt="Local AI Breakthrough: When Hardware Starts to Matter Again" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/q-day-2026-why-quantum-computing-breaks-crypto-and-what-investors-must-do/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/rTM95-gZtOs/mqdefault.jpg"
+           alt="Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Local AI Breakthrough: When Hardware Starts to Matter Again</p>
+      <p>Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do</p>
+    </a>
+    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
+           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-cowork-unlocked-7-capabilities-that-redefine-ai-workflows/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/z9rdrNrkvDY/mqdefault.jpg"
+           alt="Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows</p>
+    </a>
+    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Llei51M3u5g/mqdefault.jpg"
+           alt="Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything</p>
+    </a>
+    <a href="https://trend4genz.fun/video/3-hidden-claude-features-that-turn-ai-into-your-workflow-engine/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
+           alt="3 Hidden Claude Features That Turn AI Into Your Workflow Engine" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>3 Hidden Claude Features That Turn AI Into Your Workflow Engine</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-design-agents-6-architectural-patterns-powering-ai-workflows/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/V-djAkt0t-M/mqdefault.jpg"
+           alt="Claude Design Agents: 6 Architectural Patterns Powering AI Workflows" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude Design Agents: 6 Architectural Patterns Powering AI Workflows</p>
     </a>
     <a href="https://trend4genz.fun/video/bidirectional-ev-charging-the-hidden-grid-revolution-in-2026/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/etS75SY3Pr4/mqdefault.jpg"
@@ -371,53 +401,41 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Bidirectional EV Charging: The Hidden Grid Revolution in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/10-weird-open-source-tools-that-solve-real-problems-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
-           alt="10 Weird Open-Source Tools That Solve Real Problems in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/how-ugc-ads-convert-10x-higher-now-automated-with-claude-code/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/zswO-Wuo0E0/mqdefault.jpg"
+           alt="How UGC Ads Convert 10x Higher—Now Automated with Claude Code" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>10 Weird Open-Source Tools That Solve Real Problems in 2026</p>
+      <p>How UGC Ads Convert 10x Higher—Now Automated with Claude Code</p>
     </a>
-    <a href="https://trend4genz.fun/video/claude-opus-4-8-the-ai-leap-that-just-redefined-benchmarks/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/j-oiGiIEcws/mqdefault.jpg"
-           alt="Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/openai-s-ex-cto-just-built-the-ai-interface-we-ve-been-waiting-for/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Oy7tzmfbl64/mqdefault.jpg"
+           alt="OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks</p>
+      <p>OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For</p>
     </a>
-    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
-           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/multi-agent-ai-that-ships-the-architecture-behind-autonomous-dev-teams/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/ow1we5PzK-o/mqdefault.jpg"
+           alt="Multi-Agent AI That Ships: The Architecture Behind Autonomous Dev Teams" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
+      <p>Multi-Agent AI That Ships: The Architecture Behind Autonomous Dev Teams</p>
     </a>
-    <a href="https://trend4genz.fun/video/build-ai-agent-harnesses-for-large-codebases-a-step-by-step-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/efRIrLXoOVA/mqdefault.jpg"
-           alt="Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/anderson-ev-chargers-a3-vs-a2-vs-quartz-vs-vision-which-wins/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/_lB9Bm5qUfI/mqdefault.jpg"
+           alt="Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide</p>
+      <p>Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?</p>
     </a>
-    <a href="https://trend4genz.fun/video/chatgpt-5-5-unlocked-the-pre-training-shift-that-changes-everything/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/McOK2URVyNg/mqdefault.jpg"
-           alt="ChatGPT 5.5 Unlocked: The Pre-Training Shift That Changes Everything" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/build-an-autonomous-openclaw-agent-full-setup-guide-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/oOCN30ulVyo/mqdefault.jpg"
+           alt="Build an Autonomous OpenClaw Agent: Full Setup Guide 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>ChatGPT 5.5 Unlocked: The Pre-Training Shift That Changes Everything</p>
+      <p>Build an Autonomous OpenClaw Agent: Full Setup Guide 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/7-ai-engineering-mistakes-killing-your-career-2026-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/nvc7xi6vZWw/mqdefault.jpg"
-           alt="7 AI Engineering Mistakes Killing Your Career (2026 Guide)" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/gemma-4-drops-apache-2-license-google-s-open-ai-power-move/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
+           alt="Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>7 AI Engineering Mistakes Killing Your Career (2026 Guide)</p>
-    </a>
-    <a href="https://trend4genz.fun/video/chatgpt-5-5-codex-the-ai-coding-revolution-you-can-t-ignore/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/iz3_xhi6iQE/mqdefault.jpg"
-           alt="ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore</p>
-    </a>
-    <a href="https://trend4genz.fun/video/gemini-3-5-flash-pro-performance-at-half-the-cost/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/kn9Gh5HWqQs/mqdefault.jpg"
-           alt="Gemini 3.5 Flash: Pro Performance at Half the Cost" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Gemini 3.5 Flash: Pro Performance at Half the Cost</p>
+      <p>Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move</p>
     </a>
     <a href="https://trend4genz.fun/video/the-ai-prodigy-who-cracked-vision-and-why-it-matters-now/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/qh0FkdgieS8/mqdefault.jpg"
@@ -425,59 +443,41 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>The AI Prodigy Who Cracked Vision—And Why It Matters Now</p>
     </a>
-    <a href="https://trend4genz.fun/video/china-s-ev-revolution-5-cars-redefining-automotive-tech-by-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/wBKzg4-dYVM/mqdefault.jpg"
-           alt="China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/cag-vs-long-context-how-ai-models-actually-remember-data-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/B_RrXwDupIg/mqdefault.jpg"
+           alt="CAG vs Long Context: How AI Models Actually Remember Data in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026</p>
+      <p>CAG vs Long Context: How AI Models Actually Remember Data in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/q-day-2026-why-quantum-computing-breaks-crypto-and-what-investors-must-do/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/rTM95-gZtOs/mqdefault.jpg"
-           alt="Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
+           alt="Hermes Agent on DGX Spark: Local AI That Feels Like Magic" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Q-Day 2026: Why Quantum Computing Breaks Crypto—And What Investors Must Do</p>
+      <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-setup-guide-build-a-self-improving-ai-assistant-in-20-minutes/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/1ve4Atbqmoo/mqdefault.jpg"
-           alt="Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/predictive-vs-generative-ai-key-differences-when-to-use-each/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/phOhGqpXss4/mqdefault.jpg"
+           alt="Predictive vs Generative AI: Key Differences &amp; When to Use Each" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes</p>
+      <p>Predictive vs Generative AI: Key Differences &amp; When to Use Each</p>
     </a>
-    <a href="https://trend4genz.fun/video/cursor-agent-pro-tips-10-power-moves-for-ai-powered-coding/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/WVeYLlKOWc0/mqdefault.jpg"
-           alt="Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/amd-local-ai-breakthrough-32gb-vram-runs-frontier-llms-at-90-speed/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/PEg08OAht2s&t=6s/mqdefault.jpg"
+           alt="AMD Local AI Breakthrough: 32GB VRAM Runs Frontier LLMs at 90% Speed" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding</p>
+      <p>AMD Local AI Breakthrough: 32GB VRAM Runs Frontier LLMs at 90% Speed</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-diffusion-report-how-the-world-is-really-using-ai-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/u8bKR3RHAYA/mqdefault.jpg"
-           alt="AI Diffusion Report: How the World Is Really Using AI in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/multi-ai-agent-systems-why-one-brain-fails-in-high-stakes-ai/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/kYkZI3oj2W4/mqdefault.jpg"
+           alt="Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Diffusion Report: How the World Is Really Using AI in 2026</p>
+      <p>Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-spacex-could-dominate-the-global-economy-by-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/PJ8HLcWWkk0/mqdefault.jpg"
-           alt="Why SpaceX Could Dominate the Global Economy by 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/iam-for-ai-agents-4-steps-to-secure-future-proof-systems/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/e8ela6puxig/mqdefault.jpg"
+           alt="IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Why SpaceX Could Dominate the Global Economy by 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/test-time-compute-why-ai-pauses-to-think-before-answering/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/DAlC8mL5ZlI/mqdefault.jpg"
-           alt="Test Time Compute: Why AI Pauses to Think Before Answering" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Test Time Compute: Why AI Pauses to Think Before Answering</p>
-    </a>
-    <a href="https://trend4genz.fun/video/rag-vs-graphrag-why-context-is-the-new-ai-bottleneck-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/pN-LfxNFiTc/mqdefault.jpg"
-           alt="RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
-           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
+      <p>IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems</p>
     </a></div>
 
       <!-- NB2: di BAWAH related video -->

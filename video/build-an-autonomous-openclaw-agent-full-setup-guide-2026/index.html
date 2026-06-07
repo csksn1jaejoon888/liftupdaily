@@ -223,19 +223,19 @@
 
 <h2>What This Setup Lets You Build</h2>
 <ul>
-  <li><strong>Autonomous software development:</strong> Instruct OpenClaw to build tools overnight. Wake up to functional prototypes, bug fixes, or even full applications ready for review.</li>
-  <li><strong>Custom news digest pipeline:</strong> Aggregate and filter content from Hacker News, X, Reddit, and LinkedIn—tailored to your interests. Get topic watchlists and content ideas delivered daily.</li>
-  <li><strong>Secure multi-agent collaboration:</strong> Combine OpenClaw with CloudCowork or Hermes for specialized tasks. Assign sensitive work (like email management) to agents with stricter guardrails.</li>
-  <li><strong>Mission control dashboard:</strong> Monitor agent activity, approve content ideas, and track progress in a centralized interface. No more digging through logs or scattered reports.</li>
+ <li><strong>Autonomous software development:</strong> Instruct OpenClaw to build tools overnight. Wake up to functional prototypes, bug fixes, or even full applications ready for review.</li>
+ <li><strong>Custom news digest pipeline:</strong> Aggregate and filter content from Hacker News, X, Reddit, and LinkedIn—tailored to your interests. Get topic watchlists and content ideas delivered daily.</li>
+ <li><strong>Secure multi-agent collaboration:</strong> Combine OpenClaw with CloudCowork or Hermes for specialized tasks. Assign sensitive work (like email management) to agents with stricter guardrails.</li>
+ <li><strong>Mission control dashboard:</strong> Monitor agent activity, approve content ideas, and track progress in a centralized interface. No more digging through logs or scattered reports.</li>
 </ul>
 
 <h2>Requirements Before You Start</h2>
 <ul>
-  <li><strong>Hardware:</strong> An old laptop (wiped clean) or a dedicated machine like a Mac mini. OpenClaw runs efficiently on 16GB RAM—no high-end GPU needed.</li>
-  <li><strong>Software:</strong> OpenClaw installed and configured. If you’re combining agents, have CloudCowork or Hermes ready for integration.</li>
-  <li><strong>Security mindset:</strong> Prepare to segment permissions. Never grant OpenClaw access to primary emails or sensitive accounts without guardrails.</li>
-  <li><strong>Time investment:</strong> Set aside 2–4 hours for initial setup. The system scales with your needs, but the first deployment requires focus.</li>
-  <li><strong>Optional:</strong> A Discord server or Slack workspace for agent communication and alerts. This keeps notifications organized and actionable.</li>
+ <li><strong>Hardware:</strong> An old laptop (wiped clean) or a dedicated machine like a Mac mini. OpenClaw runs efficiently on 16GB RAM—no high-end GPU needed.</li>
+ <li><strong>Software:</strong> OpenClaw installed and configured. If you’re combining agents, have CloudCowork or Hermes ready for integration.</li>
+ <li><strong>Security mindset:</strong> Prepare to segment permissions. Never grant OpenClaw access to primary emails or sensitive accounts without guardrails.</li>
+ <li><strong>Time investment:</strong> Set aside 2–4 hours for initial setup. The system scales with your needs, but the first deployment requires focus.</li>
+ <li><strong>Optional:</strong> A Discord server or Slack workspace for agent communication and alerts. This keeps notifications organized and actionable.</li>
 </ul>
 
 <h2>Complete OpenClaw Tutorial</h2>
@@ -243,9 +243,9 @@
 <h3>1. Choose Your Hardware</h3>
 <p>OpenClaw doesn’t demand cutting-edge specs. Start with what you have:</p>
 <ul>
-  <li><strong>Option 1: Repurposed laptop.</strong> Wipe an old machine and install a lightweight OS. This is free and sufficient for most workflows.</li>
-  <li><strong>Option 2: Dedicated machine.</strong> A Mac mini (500–1,000 USD) or Mac Studio (2,000+ USD) ensures 24/7 uptime. This is OpenClaw’s official recommendation for production use.</li>
-  <li><strong>Option 3: Cloud instance.</strong> If you prefer remote hosting, deploy on a VPS with at least 16GB RAM. Ensure the provider supports local AI workloads.</li>
+ <li><strong>Option 1: Repurposed laptop.</strong> Wipe an old machine and install a lightweight OS. This is free and sufficient for most workflows.</li>
+ <li><strong>Option 2: Dedicated machine.</strong> A Mac mini (500–1,000 USD) or Mac Studio (2,000+ USD) ensures 24/7 uptime. This is OpenClaw’s official recommendation for production use.</li>
+ <li><strong>Option 3: Cloud instance.</strong> If you prefer remote hosting, deploy on a VPS with at least 16GB RAM. Ensure the provider supports local AI workloads.</li>
 </ul>
 <p>Run <code>uname -a</code> to confirm your OS. OpenClaw supports macOS, Linux, and Windows (via WSL2).</p>
 
@@ -256,24 +256,24 @@ cd openclaw
 pip install -r requirements.txt</code></pre>
 <p>Set up a virtual environment to avoid conflicts:</p>
 <pre><code>python -m venv venv
-source venv/bin/activate  # macOS/Linux
-venv\Scripts\activate  # Windows</code></pre>
+source venv/bin/activate # macOS/Linux
+venv\Scripts\activate # Windows</code></pre>
 <p>Verify the installation with <code>openclaw --version</code>. If you see a version number, proceed.</p>
 
 <h3>3. Configure Multi-Agent Systems</h3>
 <p>OpenClaw thrives with multiple agents. Define roles in <code>config.yaml</code>:</p>
 <pre><code>agents:
-  - name: "Inky"
-    role: "Content Curator"
-    sources:
-      - "Hacker News"
-      - "X"
-      - "Reddit"
-  - name: "Builder"
-    role: "Software Developer"
-    permissions:
-      - "github:read"
-      - "github:write"</code></pre>
+ - name: "Inky"
+ role: "Content Curator"
+ sources:
+ - "Hacker News"
+ - "X"
+ - "Reddit"
+ - name: "Builder"
+ role: "Software Developer"
+ permissions:
+ - "github:read"
+ - "github:write"</code></pre>
 <p>Restrict permissions for sensitive tasks. For example, never grant an agent full access to your email client.</p>
 
 <h3>4. Build Your Mission Control Dashboard</h3>
@@ -283,69 +283,69 @@ app = Flask(__name__)
 
 @app.route("/")
 def dashboard():
-    return render_template("dashboard.html", agents=openclaw.get_agents())
+ return render_template("dashboard.html", agents=openclaw.get_agents())
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)</code></pre>
+ app.run(host="0.0.0.0", port=5000)</code></pre>
 <p>Design the dashboard to display:</p>
 <ul>
-  <li>Active agents and their current tasks.</li>
-  <li>Content ideas and approval buttons (e.g., "Approve for YouTube").</li>
-  <li>Topic watchlists (e.g., "AI coding agents," "local AI," "AI policy").</li>
+ <li>Active agents and their current tasks.</li>
+ <li>Content ideas and approval buttons (e.g., "Approve for YouTube").</li>
+ <li>Topic watchlists (e.g., "AI coding agents," "local AI," "AI policy").</li>
 </ul>
 
 <h3>5. Integrate with CloudCowork or Hermes</h3>
 <p>Combine OpenClaw with other agents for specialized tasks:</p>
 <ul>
-  <li><strong>CloudCowork:</strong> Assign email management or calendar scheduling. Anthropic’s guardrails make it safer for sensitive data.</li>
-  <li><strong>Hermes:</strong> Test this for experimental workflows. Report back if you find a killer use case.</li>
+ <li><strong>CloudCowork:</strong> Assign email management or calendar scheduling. Anthropic’s guardrails make it safer for sensitive data.</li>
+ <li><strong>Hermes:</strong> Test this for experimental workflows. Report back if you find a killer use case.</li>
 </ul>
 <p>Configure integrations in <code>config.yaml</code>:</p>
 <pre><code>integrations:
-  - name: "CloudCowork"
-    api_key: "your_api_key_here"
-    permissions:
-      - "email:read"
-      - "calendar:read"
-  - name: "Hermes"
-    api_key: "your_api_key_here"
-    permissions:
-      - "experimental:write"</code></pre>
+ - name: "CloudCowork"
+ api_key: "your_api_key_here"
+ permissions:
+ - "email:read"
+ - "calendar:read"
+ - name: "Hermes"
+ api_key: "your_api_key_here"
+ permissions:
+ - "experimental:write"</code></pre>
 
 <h3>6. Deploy Sustainable Memory Systems</h3>
 <p>OpenClaw’s memory system prevents context loss. Set it up with:</p>
 <pre><code>openclaw.memory.init(
-    storage_path="./memory",
-    max_tokens=8000,
-    retention_policy="lru"
+ storage_path="./memory",
+ max_tokens=8000,
+ retention_policy="lru"
 )</code></pre>
 <p>Use <code>openclaw.memory.save()</code> to persist agent state between sessions. This ensures continuity for long-running tasks like software development or content pipelines.</p>
 
 <h3>Troubleshooting: Errors & Fixes</h3>
 <ul>
-  <li><strong>Error: "Permission denied" when accessing APIs.</strong>
-  <p>Fix: Check <code>config.yaml</code> for correct API keys and scopes. Regenerate keys if necessary.</p></li>
-  
-  <li><strong>Error: Agents stall or produce incoherent outputs.</strong>
-  <p>Fix: Reduce the number of concurrent agents. OpenClaw performs best with 2–3 agents running simultaneously on 16GB RAM.</p></li>
-  
-  <li><strong>Error: Memory system fails to save.</strong>
-  <p>Fix: Verify the <code>storage_path</code> exists and is writable. Run <code>chmod -R 755 ./memory</code> on macOS/Linux.</p></li>
-  
-  <li><strong>Error: Integration with CloudCowork times out.</strong>
-  <p>Fix: Ensure your network allows outbound connections to Anthropic’s API. Test with <code>curl https://api.anthropic.com</code>.</p></li>
+ <li><strong>Error: "Permission denied" when accessing APIs.</strong>
+ <p>Fix: Check <code>config.yaml</code> for correct API keys and scopes. Regenerate keys if necessary.</p></li>
+ 
+ <li><strong>Error: Agents stall or produce incoherent outputs.</strong>
+ <p>Fix: Reduce the number of concurrent agents. OpenClaw performs best with 2–3 agents running simultaneously on 16GB RAM.</p></li>
+ 
+ <li><strong>Error: Memory system fails to save.</strong>
+ <p>Fix: Verify the <code>storage_path</code> exists and is writable. Run <code>chmod -R 755./memory</code> on macOS/Linux.</p></li>
+ 
+ <li><strong>Error: Integration with CloudCowork times out.</strong>
+ <p>Fix: Ensure your network allows outbound connections to Anthropic’s API. Test with <code>curl https://api.anthropic.com</code>.</p></li>
 </ul>
 
 <h2>Where to Take This Further</h2>
 <p>Your OpenClaw setup is now functional, but the real magic happens when you customize it. Here’s how to level up:</p>
 <ul>
-  <li><strong>Automate your content pipeline.</strong> Expand Inky’s sources to include newsletters, RSS feeds, or niche forums. Use OpenClaw to draft outlines, scripts, or even full articles.</li>
-  
-  <li><strong>Build a self-improving agent.</strong> Teach OpenClaw to refine its own prompts. Start with a simple feedback loop: <code>"Review your last output. Suggest three improvements."</code></li>
-  
-  <li><strong>Deploy to production.</strong> Containerize your setup with Docker for portability. Use Kubernetes if you’re scaling across multiple machines.</li>
-  
-  <li><strong>Join the community.</strong> Share your workflows in OpenClaw’s Discord or GitHub discussions. Contribute to the project by submitting bug fixes or new features.</li>
+ <li><strong>Automate your content pipeline.</strong> Expand Inky’s sources to include newsletters, RSS feeds, or niche forums. Use OpenClaw to draft outlines, scripts, or even full articles.</li>
+ 
+ <li><strong>Build a self-improving agent.</strong> Teach OpenClaw to refine its own prompts. Start with a simple feedback loop: <code>"Review your last output. Suggest three improvements."</code></li>
+ 
+ <li><strong>Deploy to production.</strong> Containerize your setup with Docker for portability. Use Kubernetes if you’re scaling across multiple machines.</li>
+ 
+ <li><strong>Join the community.</strong> Share your workflows in OpenClaw’s Discord or GitHub discussions. Contribute to the project by submitting bug fixes or new features.</li>
 </ul>
 <p>OpenClaw isn’t just a tool—it’s a platform for experimentation. Start small, iterate often, and let it handle the repetitive work while you focus on the big picture.</p></div>
           <div class="seo-tags-container"><a href="https://trend4genz.fun/?tag=openclaw%20setup%20guide" class="seo-tag-badge">#openclaw setup guide</a><a href="https://trend4genz.fun/?tag=local%20ai%20agent%20tutorial" class="seo-tag-badge">#local ai agent tutorial</a><a href="https://trend4genz.fun/?tag=multi-agent%20system%20configuration" class="seo-tag-badge">#multi-agent system configuration</a><a href="https://trend4genz.fun/?tag=ai%20automation%20workflows" class="seo-tag-badge">#ai automation workflows</a><a href="https://trend4genz.fun/?tag=secure%20ai%20memory%20systems" class="seo-tag-badge">#secure ai memory systems</a><a href="https://trend4genz.fun/?tag=autonomous%20software%20agents" class="seo-tag-badge">#autonomous software agents</a><a href="https://trend4genz.fun/?tag=ai%20mission%20control%20dashboard" class="seo-tag-badge">#ai mission control dashboard</a></div>
@@ -358,53 +358,53 @@ if __name__ == "__main__":
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/claude-vs-codex-which-ai-coder-wins-for-real-world-apps/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/E2UgYp2vh5U/mqdefault.jpg"
-           alt="Claude vs Codex: Which AI Coder Wins for Real-World Apps?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
+           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Claude vs Codex: Which AI Coder Wins for Real-World Apps?</p>
+      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
     </a>
-    <a href="https://trend4genz.fun/video/solar-evs-batteries-the-real-roi-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Jh033yLRI1E/mqdefault.jpg"
-           alt="Solar + EVs + Batteries: The Real ROI in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/deepseek-v4-ai-outperforms-billion-dollar-models-for-free/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
+           alt="DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Solar + EVs + Batteries: The Real ROI in 2026</p>
+      <p>DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free</p>
+    </a>
+    <a href="https://trend4genz.fun/video/best-worst-toyota-models-2026-reliability-secrets-revealed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/AeJTCIm-Z34/mqdefault.jpg"
+           alt="Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed</p>
+    </a>
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/digital-certificates-explained-prevent-outages-before-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/V7EgIMWOqgw/mqdefault.jpg"
+           alt="Digital Certificates Explained: Prevent Outages Before 2026" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Digital Certificates Explained: Prevent Outages Before 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-the-zero-code-future-of-ai-agents/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
+           alt="Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-4-levels-that-multiply-your-output/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
+           alt="AI Agents in 2026: The 4 Levels That Multiply Your Output" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>AI Agents in 2026: The 4 Levels That Multiply Your Output</p>
     </a>
     <a href="https://trend4genz.fun/video/chatgpt-5-5-instant-why-speed-now-rivals-smarts-in-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/4nQnhjimB4Y/mqdefault.jpg"
            alt="ChatGPT 5.5 Instant: Why Speed Now Rivals Smarts in AI" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>ChatGPT 5.5 Instant: Why Speed Now Rivals Smarts in AI</p>
-    </a>
-    <a href="https://trend4genz.fun/video/how-uber-scales-60k-ai-agent-tasks-weekly-with-mcps/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/yVqMxBahjfA/mqdefault.jpg"
-           alt="How Uber Scales 60K AI Agent Tasks Weekly With MCPs" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How Uber Scales 60K AI Agent Tasks Weekly With MCPs</p>
-    </a>
-    <a href="https://trend4genz.fun/video/hands-free-driving-overtaking-with-bmw-highway-assistant/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/GM-xBQ7MWOE/mqdefault.jpg"
-           alt="Hands-Free Driving &amp; Overtaking with BMW Highway Assistant" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Hands-Free Driving &amp; Overtaking with BMW Highway Assistant</p>
-    </a>
-    <a href="https://trend4genz.fun/video/2026-toyota-c-hr-reliability-vs-range-trade-offs-for-ev-buyers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
-           alt="2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers</p>
-    </a>
-    <a href="https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RosLeHGBLoY/mqdefault.jpg"
-           alt="RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating</p>
-    </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
-           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
     </a></div>
         </div>
       </div>
@@ -424,77 +424,29 @@ if __name__ == "__main__":
 
       <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/claude-vs-codex-which-ai-coder-wins-for-real-world-apps/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/E2UgYp2vh5U/mqdefault.jpg"
-           alt="Claude vs Codex: Which AI Coder Wins for Real-World Apps?" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude vs Codex: Which AI Coder Wins for Real-World Apps?</p>
-    </a>
-    <a href="https://trend4genz.fun/video/solar-evs-batteries-the-real-roi-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Jh033yLRI1E/mqdefault.jpg"
-           alt="Solar + EVs + Batteries: The Real ROI in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Solar + EVs + Batteries: The Real ROI in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/chatgpt-5-5-instant-why-speed-now-rivals-smarts-in-ai/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/4nQnhjimB4Y/mqdefault.jpg"
-           alt="ChatGPT 5.5 Instant: Why Speed Now Rivals Smarts in AI" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>ChatGPT 5.5 Instant: Why Speed Now Rivals Smarts in AI</p>
-    </a>
-    <a href="https://trend4genz.fun/video/how-uber-scales-60k-ai-agent-tasks-weekly-with-mcps/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/yVqMxBahjfA/mqdefault.jpg"
-           alt="How Uber Scales 60K AI Agent Tasks Weekly With MCPs" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How Uber Scales 60K AI Agent Tasks Weekly With MCPs</p>
-    </a>
-    <a href="https://trend4genz.fun/video/hands-free-driving-overtaking-with-bmw-highway-assistant/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/GM-xBQ7MWOE/mqdefault.jpg"
-           alt="Hands-Free Driving &amp; Overtaking with BMW Highway Assistant" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hands-Free Driving &amp; Overtaking with BMW Highway Assistant</p>
-    </a>
-    <a href="https://trend4genz.fun/video/2026-toyota-c-hr-reliability-vs-range-trade-offs-for-ev-buyers/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
-           alt="2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers</p>
-    </a>
-    <a href="https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/RosLeHGBLoY/mqdefault.jpg"
-           alt="RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating</p>
-    </a>
     <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
            alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-4-levels-that-multiply-your-output/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
-           alt="AI Agents in 2026: The 4 Levels That Multiply Your Output" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/deepseek-v4-ai-outperforms-billion-dollar-models-for-free/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
+           alt="DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Agents in 2026: The 4 Levels That Multiply Your Output</p>
+      <p>DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free</p>
     </a>
-    <a href="https://trend4genz.fun/video/auth-md-the-missing-protocol-for-autonomous-ai-agents-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Dqp_b8GHLXU/mqdefault.jpg"
-           alt="Auth.md: The Missing Protocol for Autonomous AI Agents in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/best-worst-toyota-models-2026-reliability-secrets-revealed/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/AeJTCIm-Z34/mqdefault.jpg"
+           alt="Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Auth.md: The Missing Protocol for Autonomous AI Agents in 2026</p>
+      <p>Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed</p>
     </a>
-    <a href="https://trend4genz.fun/video/master-cursor-coding-agents-in-2026-step-by-step-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/kF2WQgk1LtY/mqdefault.jpg"
-           alt="Master Cursor Coding Agents in 2026: Step-by-Step Guide" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Master Cursor Coding Agents in 2026: Step-by-Step Guide</p>
-    </a>
-    <a href="https://trend4genz.fun/video/master-agent-context-with-langsmiths-context-hub-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/yqmvlmxR1ts/mqdefault.jpg"
-           alt="Master Agent Context with LangSmith's Context Hub in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Master Agent Context with LangSmith's Context Hub in 2026</p>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
     </a>
     <a href="https://trend4genz.fun/video/digital-certificates-explained-prevent-outages-before-2026/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/V7EgIMWOqgw/mqdefault.jpg"
@@ -502,17 +454,83 @@ if __name__ == "__main__":
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Digital Certificates Explained: Prevent Outages Before 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
-           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-the-zero-code-future-of-ai-agents/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
+           alt="Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
+      <p>Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents</p>
     </a>
-    <a href="https://trend4genz.fun/video/run-llms-locally-for-free-ollama-s-privacy-breakthrough/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/UtSSMs6ObqY/mqdefault.jpg"
-           alt="Run LLMs Locally for Free: Ollama’s Privacy Breakthrough" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-4-levels-that-multiply-your-output/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
+           alt="AI Agents in 2026: The 4 Levels That Multiply Your Output" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Run LLMs Locally for Free: Ollama’s Privacy Breakthrough</p>
+      <p>AI Agents in 2026: The 4 Levels That Multiply Your Output</p>
+    </a>
+    <a href="https://trend4genz.fun/video/chatgpt-5-5-instant-why-speed-now-rivals-smarts-in-ai/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/4nQnhjimB4Y/mqdefault.jpg"
+           alt="ChatGPT 5.5 Instant: Why Speed Now Rivals Smarts in AI" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>ChatGPT 5.5 Instant: Why Speed Now Rivals Smarts in AI</p>
+    </a>
+    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-the-hidden-grid-revolution-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/etS75SY3Pr4/mqdefault.jpg"
+           alt="Bidirectional EV Charging: The Hidden Grid Revolution in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Bidirectional EV Charging: The Hidden Grid Revolution in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
+           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
+    </a>
+    <a href="https://trend4genz.fun/video/managed-deep-agents-the-missing-layer-for-production-ai/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/LdQpoK2TzSo/mqdefault.jpg"
+           alt="Managed Deep Agents: The Missing Layer for Production AI" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Managed Deep Agents: The Missing Layer for Production AI</p>
+    </a>
+    <a href="https://trend4genz.fun/video/autonomous-ai-coders-the-next-productivity-wave-or-overhyped-loop/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/rIs802-bXDY/mqdefault.jpg"
+           alt="Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?</p>
+    </a>
+    <a href="https://trend4genz.fun/video/run-35b-ai-models-on-6gb-vram-fast-local-inference-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/8F_5pdcD3HY/mqdefault.jpg"
+           alt="Run 35B AI Models on 6GB VRAM: Fast Local Inference Guide" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Run 35B AI Models on 6GB VRAM: Fast Local Inference Guide</p>
+    </a>
+    <a href="https://trend4genz.fun/video/selling-5k-ai-operating-systems-to-smbs-the-full-blueprint/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yd9tr0xqg-Y/mqdefault.jpg"
+           alt="Selling $5K AI Operating Systems to SMBs: The Full Blueprint" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Selling $5K AI Operating Systems to SMBs: The Full Blueprint</p>
+    </a>
+    <a href="https://trend4genz.fun/video/how-ai-agencies-hit-20k-month-with-claude-code-retainers/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/NlGIl5-gpHM/mqdefault.jpg"
+           alt="How AI Agencies Hit $20K/Month with Claude Code Retainers" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>How AI Agencies Hit $20K/Month with Claude Code Retainers</p>
+    </a>
+    <a href="https://trend4genz.fun/video/master-agent-context-with-langsmiths-context-hub-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yqmvlmxR1ts/mqdefault.jpg"
+           alt="Master Agent Context with LangSmith's Context Hub in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Master Agent Context with LangSmith's Context Hub in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/tmux-mastery-run-ai-agents-24-7-without-losing-work/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/z7xyZQVK4Dg&t=19s/mqdefault.jpg"
+           alt="Tmux Mastery: Run AI Agents 24/7 Without Losing Work" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Tmux Mastery: Run AI Agents 24/7 Without Losing Work</p>
+    </a>
+    <a href="https://trend4genz.fun/video/hermes-agent-vs-openclaw-why-reliability-just-changed-ai-workflows/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Bg-IPiql7x8/mqdefault.jpg"
+           alt="Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows</p>
     </a>
     <a href="https://trend4genz.fun/video/predictive-vs-generative-ai-key-differences-when-to-use-each/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/phOhGqpXss4/mqdefault.jpg"
@@ -520,29 +538,11 @@ if __name__ == "__main__":
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Predictive vs Generative AI: Key Differences &amp; When to Use Each</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-setup-guide-build-a-self-improving-ai-assistant-in-20-minutes/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/1ve4Atbqmoo/mqdefault.jpg"
-           alt="Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-divergence-that-will-redefine-workflows/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/R9K2574YEAg/mqdefault.jpg"
+           alt="AI Agents in 2026: The Divergence That Will Redefine Workflows" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes</p>
-    </a>
-    <a href="https://trend4genz.fun/video/chatgpt-5-5-unlocked-the-pre-training-shift-that-changes-everything/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/McOK2URVyNg/mqdefault.jpg"
-           alt="ChatGPT 5.5 Unlocked: The Pre-Training Shift That Changes Everything" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>ChatGPT 5.5 Unlocked: The Pre-Training Shift That Changes Everything</p>
-    </a>
-    <a href="https://trend4genz.fun/video/rag-vs-graphrag-why-context-is-the-new-ai-bottleneck-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/pN-LfxNFiTc/mqdefault.jpg"
-           alt="RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAG vs GraphRAG: Why Context is the New AI Bottleneck in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/adk-vs-rag-how-to-choose-the-right-ai-stack-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/7HSSR1n8dgc/mqdefault.jpg"
-           alt="ADK vs RAG: How to Choose the Right AI Stack in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>ADK vs RAG: How to Choose the Right AI Stack in 2026</p>
+      <p>AI Agents in 2026: The Divergence That Will Redefine Workflows</p>
     </a></div>
 
       <!-- NB2: di BAWAH related video -->

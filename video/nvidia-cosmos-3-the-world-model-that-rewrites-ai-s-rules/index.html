@@ -229,20 +229,20 @@
 <h2>Inside Cosmos 3: Architecture & Design Choices</h2>
 
 <ul>
-  <li><strong>Dual-Tower Mixture of Transformers:</strong> One tower handles autoregressive tasks (text, actions), while the other drives diffusion (video, image generation). Shared multimodal attention layers let them cross-pollinate, enabling seamless transitions like text→video→robot control in a single forward pass.</li>
-  <li><strong>Five-Modal Symmetry:</strong> Unlike asymmetric models that prioritize text, Cosmos 3 treats all modalities as first-class citizens. This symmetry allows it to, for example, generate a video from an action sequence or predict the next state of a robot arm from a single image.</li>
-  <li><strong>Synthetic Data Engine:</strong> The model’s diffusion pathway can generate physically plausible video sequences, which are then used to train downstream robotics systems. This creates a virtuous cycle: the world model improves with more data, and the data improves with better simulations.</li>
-  <li><strong>Off-the-Shelf Integration:</strong> NVIDIA reused components like Qwen3-VL’s vision-language encoders and WAN 2.2’s VAEs, but the genius lies in how these are woven into the dual-tower framework. The result is a model that’s both modular and monolithic—upgradable yet unified.</li>
-  <li><strong>Edge-Optimized Variants:</strong> Cosmos 3 Nano runs on local hardware, enabling real-time inference for robotics and IoT. This isn’t just a research artifact; it’s a deployable system for factories, warehouses, and autonomous vehicles.</li>
+ <li><strong>Dual-Tower Mixture of Transformers:</strong> One tower handles autoregressive tasks (text, actions), while the other drives diffusion (video, image generation). Shared multimodal attention layers let them cross-pollinate, enabling seamless transitions like text→video→robot control in a single forward pass.</li>
+ <li><strong>Five-Modal Symmetry:</strong> Unlike asymmetric models that prioritize text, Cosmos 3 treats all modalities as first-class citizens. This symmetry allows it to, for example, generate a video from an action sequence or predict the next state of a robot arm from a single image.</li>
+ <li><strong>Synthetic Data Engine:</strong> The model’s diffusion pathway can generate physically plausible video sequences, which are then used to train downstream robotics systems. This creates a virtuous cycle: the world model improves with more data, and the data improves with better simulations.</li>
+ <li><strong>Off-the-Shelf Integration:</strong> NVIDIA reused components like Qwen3-VL’s vision-language encoders and WAN 2.2’s VAEs, but the genius lies in how these are woven into the dual-tower framework. The result is a model that’s both modular and monolithic—upgradable yet unified.</li>
+ <li><strong>Edge-Optimized Variants:</strong> Cosmos 3 Nano runs on local hardware, enabling real-time inference for robotics and IoT. This isn’t just a research artifact; it’s a deployable system for factories, warehouses, and autonomous vehicles.</li>
 </ul>
 
 <h2>Cosmos 3 Results vs State-of-the-Art</h2>
 
 <ul>
-  <li><strong>Multimodal Coherence:</strong> While competitors like Stable Diffusion 3 excel at isolated tasks, Cosmos 3 maintains consistency across modalities. A video generated from text preserves object identities and physics, a feat no prior model achieves without post-hoc correction.</li>
-  <li><strong>Action Prediction:</strong> In robotics benchmarks, the model’s forward-dynamics predictions (e.g., "if the arm moves left, the block will topple") outperform specialized simulators by 22% in accuracy, despite requiring 10× less compute.</li>
-  <li><strong>Synthetic Data Quality:</strong> Robotics startups report 30% faster training convergence when using Cosmos 3-generated video data compared to real-world datasets, thanks to the model’s grounding in physical laws.</li>
-  <li><strong>Latency:</strong> The Nano variant processes 1080p video at 30 FPS on a single NVIDIA Jetson, a 5× improvement over stitched-together pipelines. This makes real-time edge deployment viable for the first time.</li>
+ <li><strong>Multimodal Coherence:</strong> While competitors like Stable Diffusion 3 excel at isolated tasks, Cosmos 3 maintains consistency across modalities. A video generated from text preserves object identities and physics, a feat no prior model achieves without post-hoc correction.</li>
+ <li><strong>Action Prediction:</strong> In robotics benchmarks, the model’s forward-dynamics predictions (e.g., "if the arm moves left, the block will topple") outperform specialized simulators by 22% in accuracy, despite requiring 10× less compute.</li>
+ <li><strong>Synthetic Data Quality:</strong> Robotics startups report 30% faster training convergence when using Cosmos 3-generated video data compared to real-world datasets, thanks to the model’s grounding in physical laws.</li>
+ <li><strong>Latency:</strong> The Nano variant processes 1080p video at 30 FPS on a single NVIDIA Jetson, a 5× improvement over stitched-together pipelines. This makes real-time edge deployment viable for the first time.</li>
 </ul>
 
 <h2>What This Means in Practice</h2>
@@ -268,53 +268,53 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/why-auto-mechanics-are-disappearing-what-it-means-for-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/9cfbhxsqW84/mqdefault.jpg"
-           alt="Why Auto Mechanics Are Disappearing &amp; What It Means for 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/master-tmux-build-run-ai-agents-24-7-on-a-vps/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/z7xyZQVK4Dg/mqdefault.jpg"
+           alt="Master Tmux: Build &amp; Run AI Agents 24/7 on a VPS" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why Auto Mechanics Are Disappearing &amp; What It Means for 2026</p>
+      <p>Master Tmux: Build &amp; Run AI Agents 24/7 on a VPS</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-worst-toyota-models-2026-reliability-secrets-revealed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/AeJTCIm-Z34/mqdefault.jpg"
-           alt="Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-in-2026-the-3-shifts-that-actually-move-the-needle/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/I62CvEwVS58/mqdefault.jpg"
+           alt="AI in 2026: The 3 Shifts That Actually Move the Needle" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed</p>
+      <p>AI in 2026: The 3 Shifts That Actually Move the Needle</p>
     </a>
-    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
-           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/fix-notebooklm-infographic-errors-in-2-minutes-2026-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/psAQ7GYLmKw/mqdefault.jpg"
+           alt="Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
+      <p>Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-the-zero-code-future-of-ai-agents/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
-           alt="Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/essential-ai-skills-for-investors-a-2026-roadmap/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/tu4rU4YD1Jk/mqdefault.jpg"
+           alt="Essential AI Skills for Investors: A 2026 Roadmap" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents</p>
+      <p>Essential AI Skills for Investors: A 2026 Roadmap</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-opus-4-8-the-ai-leap-that-just-redefined-benchmarks/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/j-oiGiIEcws/mqdefault.jpg"
+           alt="Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks</p>
+    </a>
+    <a href="https://trend4genz.fun/video/2026-toyota-c-hr-reliability-vs-range-trade-offs-for-ev-buyers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
+           alt="2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers</p>
+    </a>
+    <a href="https://trend4genz.fun/video/2026-s-best-jobs-aren-t-what-you-think-here-s-the-data/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
+           alt="2026’s Best Jobs Aren’t What You Think—Here’s the Data" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>2026’s Best Jobs Aren’t What You Think—Here’s the Data</p>
     </a>
     <a href="https://trend4genz.fun/video/7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
            alt="7 Levels of AI Mastery: How to Build Systems That Work While You Sleep" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>7 Levels of AI Mastery: How to Build Systems That Work While You Sleep</p>
-    </a>
-    <a href="https://trend4genz.fun/video/muse-spark-meta-s-quiet-revolution-in-ai-reasoning/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/7vkybiVRSm0/mqdefault.jpg"
-           alt="Muse Spark: Meta’s Quiet Revolution in AI Reasoning" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Muse Spark: Meta’s Quiet Revolution in AI Reasoning</p>
-    </a>
-    <a href="https://trend4genz.fun/video/claude-cowork-unlocked-build-ai-agents-without-coding-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/uGwDuvSqgYI/mqdefault.jpg"
-           alt="Claude Cowork Unlocked: Build AI Agents Without Coding in 2026" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Claude Cowork Unlocked: Build AI Agents Without Coding in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/solar-evs-batteries-the-real-roi-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Jh033yLRI1E/mqdefault.jpg"
-           alt="Solar + EVs + Batteries: The Real ROI in 2026" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Solar + EVs + Batteries: The Real ROI in 2026</p>
     </a></div>
         </div>
       </div>
@@ -334,29 +334,47 @@
 
       <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/why-auto-mechanics-are-disappearing-what-it-means-for-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/9cfbhxsqW84/mqdefault.jpg"
-           alt="Why Auto Mechanics Are Disappearing &amp; What It Means for 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/master-tmux-build-run-ai-agents-24-7-on-a-vps/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/z7xyZQVK4Dg/mqdefault.jpg"
+           alt="Master Tmux: Build &amp; Run AI Agents 24/7 on a VPS" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Why Auto Mechanics Are Disappearing &amp; What It Means for 2026</p>
+      <p>Master Tmux: Build &amp; Run AI Agents 24/7 on a VPS</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-worst-toyota-models-2026-reliability-secrets-revealed/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/AeJTCIm-Z34/mqdefault.jpg"
-           alt="Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/ai-in-2026-the-3-shifts-that-actually-move-the-needle/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/I62CvEwVS58/mqdefault.jpg"
+           alt="AI in 2026: The 3 Shifts That Actually Move the Needle" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed</p>
+      <p>AI in 2026: The 3 Shifts That Actually Move the Needle</p>
     </a>
-    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
-           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/fix-notebooklm-infographic-errors-in-2-minutes-2026-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/psAQ7GYLmKw/mqdefault.jpg"
+           alt="Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
+      <p>Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-the-zero-code-future-of-ai-agents/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
-           alt="Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/essential-ai-skills-for-investors-a-2026-roadmap/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/tu4rU4YD1Jk/mqdefault.jpg"
+           alt="Essential AI Skills for Investors: A 2026 Roadmap" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents</p>
+      <p>Essential AI Skills for Investors: A 2026 Roadmap</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-opus-4-8-the-ai-leap-that-just-redefined-benchmarks/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/j-oiGiIEcws/mqdefault.jpg"
+           alt="Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks</p>
+    </a>
+    <a href="https://trend4genz.fun/video/2026-toyota-c-hr-reliability-vs-range-trade-offs-for-ev-buyers/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
+           alt="2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers</p>
+    </a>
+    <a href="https://trend4genz.fun/video/2026-s-best-jobs-aren-t-what-you-think-here-s-the-data/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
+           alt="2026’s Best Jobs Aren’t What You Think—Here’s the Data" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>2026’s Best Jobs Aren’t What You Think—Here’s the Data</p>
     </a>
     <a href="https://trend4genz.fun/video/7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
@@ -364,59 +382,11 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>7 Levels of AI Mastery: How to Build Systems That Work While You Sleep</p>
     </a>
-    <a href="https://trend4genz.fun/video/muse-spark-meta-s-quiet-revolution-in-ai-reasoning/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/7vkybiVRSm0/mqdefault.jpg"
-           alt="Muse Spark: Meta’s Quiet Revolution in AI Reasoning" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
+           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Muse Spark: Meta’s Quiet Revolution in AI Reasoning</p>
-    </a>
-    <a href="https://trend4genz.fun/video/claude-cowork-unlocked-build-ai-agents-without-coding-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/uGwDuvSqgYI/mqdefault.jpg"
-           alt="Claude Cowork Unlocked: Build AI Agents Without Coding in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude Cowork Unlocked: Build AI Agents Without Coding in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/solar-evs-batteries-the-real-roi-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Jh033yLRI1E/mqdefault.jpg"
-           alt="Solar + EVs + Batteries: The Real ROI in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Solar + EVs + Batteries: The Real ROI in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/claude-design-agents-6-architectural-patterns-powering-ai-workflows/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/V-djAkt0t-M/mqdefault.jpg"
-           alt="Claude Design Agents: 6 Architectural Patterns Powering AI Workflows" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude Design Agents: 6 Architectural Patterns Powering AI Workflows</p>
-    </a>
-    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
-           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
-    </a>
-    <a href="https://trend4genz.fun/video/hermes-agentic-os-the-ai-workspace-revolution-you-missed/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/zqUdtL5l9yM/mqdefault.jpg"
-           alt="Hermes Agentic OS: The AI Workspace Revolution You Missed" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agentic OS: The AI Workspace Revolution You Missed</p>
-    </a>
-    <a href="https://trend4genz.fun/video/anderson-ev-chargers-a3-vs-a2-vs-quartz-vs-vision-which-wins/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/_lB9Bm5qUfI/mqdefault.jpg"
-           alt="Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?</p>
-    </a>
-    <a href="https://trend4genz.fun/video/mcp-vs-adk-how-ai-agents-connect-work-together-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/BedAaB1RKgE/mqdefault.jpg"
-           alt="MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-vs-openclaw-why-reliability-just-changed-ai-workflows/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Bg-IPiql7x8/mqdefault.jpg"
-           alt="Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows</p>
+      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
     </a>
     <a href="https://trend4genz.fun/video/10-weird-open-source-tools-that-solve-real-problems-in-2026/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
@@ -424,35 +394,65 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>10 Weird Open-Source Tools That Solve Real Problems in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/gpt-5-4-cyber-the-ai-security-model-redefining-defense-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/xbvI5G-8q4o/mqdefault.jpg"
-           alt="GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/auth-md-the-missing-protocol-for-autonomous-ai-agents-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Dqp_b8GHLXU/mqdefault.jpg"
+           alt="Auth.md: The Missing Protocol for Autonomous AI Agents in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026</p>
+      <p>Auth.md: The Missing Protocol for Autonomous AI Agents in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-4-levels-that-multiply-your-output/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
-           alt="AI Agents in 2026: The 4 Levels That Multiply Your Output" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/anderson-ev-chargers-a3-vs-a2-vs-quartz-vs-vision-which-wins/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/_lB9Bm5qUfI/mqdefault.jpg"
+           alt="Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Agents in 2026: The 4 Levels That Multiply Your Output</p>
+      <p>Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-divergence-that-will-redefine-workflows/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/R9K2574YEAg/mqdefault.jpg"
-           alt="AI Agents in 2026: The Divergence That Will Redefine Workflows" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/gemma-4-vs-gemini-3-1-which-google-ai-wins-for-free/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/oFReQNuIVpE/mqdefault.jpg"
+           alt="Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Agents in 2026: The Divergence That Will Redefine Workflows</p>
+      <p>Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?</p>
     </a>
-    <a href="https://trend4genz.fun/video/software-defined-vehicles-the-500b-shift-reshaping-automotive/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/cctI8JZhWUI/mqdefault.jpg"
-           alt="Software-Defined Vehicles: The $500B Shift Reshaping Automotive" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/build-high-converting-ai-websites-in-17-minutes-gemini-3-5-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/PsE9u37gJjU/mqdefault.jpg"
+           alt="Build High-Converting AI Websites in 17 Minutes (Gemini 3.5 Guide)" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Software-Defined Vehicles: The $500B Shift Reshaping Automotive</p>
+      <p>Build High-Converting AI Websites in 17 Minutes (Gemini 3.5 Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-ev-chargers-uk-2026-which-one-actually-wins/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Il9b9JfYjk8/mqdefault.jpg"
-           alt="Best EV Chargers UK 2026: Which One Actually Wins?" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/ai-diffusion-report-how-the-world-is-really-using-ai-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/u8bKR3RHAYA/mqdefault.jpg"
+           alt="AI Diffusion Report: How the World Is Really Using AI in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Best EV Chargers UK 2026: Which One Actually Wins?</p>
+      <p>AI Diffusion Report: How the World Is Really Using AI in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-vs-codex-which-ai-coder-wins-for-real-world-apps/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/E2UgYp2vh5U/mqdefault.jpg"
+           alt="Claude vs Codex: Which AI Coder Wins for Real-World Apps?" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude vs Codex: Which AI Coder Wins for Real-World Apps?</p>
+    </a>
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/anthropic-mythos-ai-s-cybersecurity-tipping-point-unlocked/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/ahRMR_9kqb0/mqdefault.jpg"
+           alt="Anthropic Mythos: AI’s Cybersecurity Tipping Point Unlocked" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Anthropic Mythos: AI’s Cybersecurity Tipping Point Unlocked</p>
+    </a>
+    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything-2/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Llei51M3u5g&t=18s/mqdefault.jpg"
+           alt="Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-s-hidden-superpower-ai-image-video-generation-unlocked/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/rrylSizvnSg/mqdefault.jpg"
+           alt="Claude’s Hidden Superpower: AI Image &amp; Video Generation Unlocked" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude’s Hidden Superpower: AI Image &amp; Video Generation Unlocked</p>
     </a></div>
 
       <!-- NB2: di BAWAH related video -->

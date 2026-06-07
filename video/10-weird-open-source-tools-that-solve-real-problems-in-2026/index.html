@@ -224,20 +224,20 @@
 
 <h2>What These 10 Tools Let You Build</h2>
 <ul>
-  <li><strong>GPU-accelerated terminals</strong>: Run a terminal that tilts in 3D space, complete with spinning 3D cursors and custom models.</li>
-  <li><strong>Rust-powered GPU kernels</strong>: Write CUDA code in pure Rust without touching C++ or risking $40K GPU clusters.</li>
-  <li><strong>SQLite PubSub</strong>: Add durable task queues, cron jobs, and event streams to SQLite—no Redis, no Kubernetes.</li>
-  <li><strong>80s horror ad blockers</strong>: Surf the web like it’s a sci-fi nightmare, with ads replaced by glitchy static.</li>
-  <li><strong>Game Boy chiptune synthesizers</strong>: Convert any song into a 1989 Game Boy track using the Web Audio API.</li>
+ <li><strong>GPU-accelerated terminals</strong>: Run a terminal that tilts in 3D space, complete with spinning 3D cursors and custom models.</li>
+ <li><strong>Rust-powered GPU kernels</strong>: Write CUDA code in pure Rust without touching C++ or risking $40K GPU clusters.</li>
+ <li><strong>SQLite PubSub</strong>: Add durable task queues, cron jobs, and event streams to SQLite—no Redis, no Kubernetes.</li>
+ <li><strong>80s horror ad blockers</strong>: Surf the web like it’s a sci-fi nightmare, with ads replaced by glitchy static.</li>
+ <li><strong>Game Boy chiptune synthesizers</strong>: Convert any song into a 1989 Game Boy track using the Web Audio API.</li>
 </ul>
 
 <h2>Requirements Before You Start</h2>
 <ul>
-  <li>A machine that can run Rust (Linux, macOS, or Windows with WSL2).</li>
-  <li>Basic familiarity with terminal commands and package managers (<code>cargo</code>, <code>npm</code>, or <code>brew</code>).</li>
-  <li>For GPU tools: An NVIDIA GPU with CUDA drivers installed (or a willingness to use cloud instances).</li>
-  <li>For browser-based tools: A modern browser (Chrome, Firefox, or Edge) with WebGL support.</li>
-  <li>Patience. These projects are weird. That’s the point.</li>
+ <li>A machine that can run Rust (Linux, macOS, or Windows with WSL2).</li>
+ <li>Basic familiarity with terminal commands and package managers (<code>cargo</code>, <code>npm</code>, or <code>brew</code>).</li>
+ <li>For GPU tools: An NVIDIA GPU with CUDA drivers installed (or a willingness to use cloud instances).</li>
+ <li>For browser-based tools: A modern browser (Chrome, Firefox, or Edge) with WebGL support.</li>
+ <li>Patience. These projects are weird. That’s the point.</li>
 </ul>
 
 <h2>Complete RATI Tutorial: Your Terminal in 3D</h2>
@@ -268,10 +268,10 @@ reset_view = "Ctrl-R"
 
 <h3>Troubleshooting: Errors & Fixes</h3>
 <ul>
-  <li><strong>Error: "Failed to initialize GPU"</strong>: Ensure your system supports OpenGL 3.3+. Update your graphics drivers.</li>
-  <li><strong>Error: "RATI crashes on launch"</strong>: Check for conflicting terminal emulators. Close other terminals and try again.</li>
-  <li><strong>Error: "3D models not loading"</strong>: Verify the model path in <code>config.toml</code>. Use absolute paths.</li>
-  <li><strong>High RAM usage</strong>: RATI uses 300MB+. Close other memory-intensive apps if your system struggles.</li>
+ <li><strong>Error: "Failed to initialize GPU"</strong>: Ensure your system supports OpenGL 3.3+. Update your graphics drivers.</li>
+ <li><strong>Error: "RATI crashes on launch"</strong>: Check for conflicting terminal emulators. Close other terminals and try again.</li>
+ <li><strong>Error: "3D models not loading"</strong>: Verify the model path in <code>config.toml</code>. Use absolute paths.</li>
+ <li><strong>High RAM usage</strong>: RATI uses 300MB+. Close other memory-intensive apps if your system struggles.</li>
 </ul>
 
 <h2>CUDA Oxide: GPU Kernels in Rust</h2>
@@ -285,7 +285,7 @@ reset_view = "Ctrl-R"
 cuda_oxide = "0.1"
 </code></pre>
 <p>Ensure you have CUDA Toolkit 12+ installed:</p>
-<pre><code>sudo apt install nvidia-cuda-toolkit  # Ubuntu/Debian</code></pre>
+<pre><code>sudo apt install nvidia-cuda-toolkit # Ubuntu/Debian</code></pre>
 
 <h3>Step 2: Write Your First Kernel</h3>
 <p>Annotate a Rust function with <code>#[kernel]</code>:</p>
@@ -293,8 +293,8 @@ cuda_oxide = "0.1"
 
 #[kernel]
 pub fn add_vectors(a: &[f32], b: &[f32], c: &mut [f32]) {
-    let idx = thread_idx().x;
-    c[idx] = a[idx] + b[idx];
+ let idx = thread_idx().x;
+ c[idx] = a[idx] + b[idx];
 }</code></pre>
 
 <h3>Step 3: Compile and Run</h3>
@@ -305,9 +305,9 @@ pub fn add_vectors(a: &[f32], b: &[f32], c: &mut [f32]) {
 
 <h3>Troubleshooting: Errors & Fixes</h3>
 <ul>
-  <li><strong>Error: "PTX compilation failed"</strong>: Check your CUDA Toolkit version. CUDA Oxide requires 12+.</li>
-  <li><strong>Error: "No CUDA devices found"</strong>: Verify your NVIDIA drivers are installed. Run <code>nvidia-smi</code> to check.</li>
-  <li><strong>Error: "Kernel panicked"</strong>: Ensure array lengths match. GPU kernels can’t handle out-of-bounds access.</li>
+ <li><strong>Error: "PTX compilation failed"</strong>: Check your CUDA Toolkit version. CUDA Oxide requires 12+.</li>
+ <li><strong>Error: "No CUDA devices found"</strong>: Verify your NVIDIA drivers are installed. Run <code>nvidia-smi</code> to check.</li>
+ <li><strong>Error: "Kernel panicked"</strong>: Ensure array lengths match. GPU kernels can’t handle out-of-bounds access.</li>
 </ul>
 
 <h2>Honker: SQLite PubSub Without the Overhead</h2>
@@ -321,7 +321,7 @@ pub fn add_vectors(a: &[f32], b: &[f32], c: &mut [f32]) {
 cd honker
 cargo build --release</code></pre>
 <p>Load the extension in SQLite:</p>
-<pre><code>sqlite3 :memory: ".load ./target/release/libhonker.so"
+<pre><code>sqlite3 :memory: ".load./target/release/libhonker.so"
 </code></pre>
 
 <h3>Step 2: Create a Task Queue</h3>
@@ -337,18 +337,18 @@ cargo build --release</code></pre>
 
 <h3>Troubleshooting: Errors & Fixes</h3>
 <ul>
-  <li><strong>Error: "Extension not loaded"</strong>: Ensure the <code>.so</code>/<code>.dll</code> file is in the correct path. Use absolute paths.</li>
-  <li><strong>Error: "Queue not found"</strong>: Verify the queue name. Honker is case-sensitive.</li>
-  <li><strong>Error: "Listener not receiving events"</strong>: Check for typos in the queue name. Restart the listener.</li>
+ <li><strong>Error: "Extension not loaded"</strong>: Ensure the <code>.so</code>/<code>.dll</code> file is in the correct path. Use absolute paths.</li>
+ <li><strong>Error: "Queue not found"</strong>: Verify the queue name. Honker is case-sensitive.</li>
+ <li><strong>Error: "Listener not receiving events"</strong>: Check for typos in the queue name. Restart the listener.</li>
 </ul>
 
 <h2>Where to Take This Further</h2>
 <ul>
-  <li><strong>Contribute to RATI</strong>: Add support for more 3D model formats or improve performance. The Bevy engine is well-documented.</li>
-  <li><strong>Extend CUDA Oxide</strong>: Build a higher-level library on top of it, like a Rust-based TensorFlow alternative.</li>
-  <li><strong>Integrate Honker</strong>: Use it in a side project to replace Redis. Benchmark it against traditional setups.</li>
-  <li><strong>Explore WarioSynth</strong>: Fork it and add support for more chiptune channels or MIDI input.</li>
-  <li><strong>Try the 80s ad blocker</strong>: Install <code>uBlock Origin: Horror Mode</code> and customize the glitch effects.</li>
+ <li><strong>Contribute to RATI</strong>: Add support for more 3D model formats or improve performance. The Bevy engine is well-documented.</li>
+ <li><strong>Extend CUDA Oxide</strong>: Build a higher-level library on top of it, like a Rust-based TensorFlow alternative.</li>
+ <li><strong>Integrate Honker</strong>: Use it in a side project to replace Redis. Benchmark it against traditional setups.</li>
+ <li><strong>Explore WarioSynth</strong>: Fork it and add support for more chiptune channels or MIDI input.</li>
+ <li><strong>Try the 80s ad blocker</strong>: Install <code>uBlock Origin: Horror Mode</code> and customize the glitch effects.</li>
 </ul>
 <p>These projects prove that open-source isn’t just about utility—it’s about creativity, rebellion, and solving problems in ways no one expected. Dive in, break things, and build something weird.</p></div>
           <div class="seo-tags-container"><a href="https://trend4genz.fun/?tag=open%20source%20tools%202026" class="seo-tag-badge">#open source tools 2026</a><a href="https://trend4genz.fun/?tag=rust%20terminal%20emulator" class="seo-tag-badge">#rust terminal emulator</a><a href="https://trend4genz.fun/?tag=gpu%20programming%20in%20rust" class="seo-tag-badge">#gpu programming in rust</a><a href="https://trend4genz.fun/?tag=sqlite%20extensions" class="seo-tag-badge">#sqlite extensions</a><a href="https://trend4genz.fun/?tag=weird%20github%20projects" class="seo-tag-badge">#weird github projects</a><a href="https://trend4genz.fun/?tag=developer%20tools" class="seo-tag-badge">#developer tools</a><a href="https://trend4genz.fun/?tag=oss%20innovations" class="seo-tag-badge">#oss innovations</a></div>
@@ -361,35 +361,29 @@ cargo build --release</code></pre>
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/claude-vs-codex-which-ai-coder-wins-for-real-world-apps/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/E2UgYp2vh5U/mqdefault.jpg"
-           alt="Claude vs Codex: Which AI Coder Wins for Real-World Apps?" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
+           alt="Hermes Agent on DGX Spark: Local AI That Feels Like Magic" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Claude vs Codex: Which AI Coder Wins for Real-World Apps?</p>
+      <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-diffusion-report-how-the-world-is-really-using-ai-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/u8bKR3RHAYA/mqdefault.jpg"
-           alt="AI Diffusion Report: How the World Is Really Using AI in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/gpt-5-4-cyber-the-ai-security-model-redefining-defense-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/xbvI5G-8q4o/mqdefault.jpg"
+           alt="GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI Diffusion Report: How the World Is Really Using AI in 2026</p>
+      <p>GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/build-ai-agent-harnesses-for-large-codebases-a-step-by-step-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/efRIrLXoOVA/mqdefault.jpg"
-           alt="Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/3-hidden-claude-features-that-turn-ai-into-your-workflow-engine/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
+           alt="3 Hidden Claude Features That Turn AI Into Your Workflow Engine" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide</p>
+      <p>3 Hidden Claude Features That Turn AI Into Your Workflow Engine</p>
     </a>
-    <a href="https://trend4genz.fun/video/master-tmux-build-run-ai-agents-24-7-on-a-vps/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/z7xyZQVK4Dg/mqdefault.jpg"
-           alt="Master Tmux: Build &amp; Run AI Agents 24/7 on a VPS" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-why-your-car-isn-t-a-power-plant-yet/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/RdPzoDV7F3M/mqdefault.jpg"
+           alt="Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Master Tmux: Build &amp; Run AI Agents 24/7 on a VPS</p>
-    </a>
-    <a href="https://trend4genz.fun/video/openai-s-ex-cto-just-built-the-ai-interface-we-ve-been-waiting-for/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/Oy7tzmfbl64/mqdefault.jpg"
-           alt="OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For</p>
+      <p>Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)</p>
     </a>
     <a href="https://trend4genz.fun/video/deepseek-v4-ai-outperforms-billion-dollar-models-for-free/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
@@ -397,17 +391,23 @@ cargo build --release</code></pre>
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-code-based-agent-skills-outperform-markdown-by-90-in-ai-workflows/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/IjiaCOt7bP8/mqdefault.jpg"
-           alt="Why Code-Based Agent Skills Outperform Markdown by 90% in AI Workflows" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
+           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why Code-Based Agent Skills Outperform Markdown by 90% in AI Workflows</p>
+      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agentic-os-the-ai-workspace-revolution-you-missed/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/zqUdtL5l9yM/mqdefault.jpg"
-           alt="Hermes Agentic OS: The AI Workspace Revolution You Missed" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
+           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Hermes Agentic OS: The AI Workspace Revolution You Missed</p>
+      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
+    </a>
+    <a href="https://trend4genz.fun/video/cmax-terminal-the-open-source-ai-agent-hub-that-outperforms-iterm2/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/8jDXI4_rJOE/mqdefault.jpg"
+           alt="CMAX Terminal: The Open-Source AI Agent Hub That Outperforms iTerm2" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>CMAX Terminal: The Open-Source AI Agent Hub That Outperforms iTerm2</p>
     </a></div>
         </div>
       </div>
@@ -427,35 +427,29 @@ cargo build --release</code></pre>
 
       <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/claude-vs-codex-which-ai-coder-wins-for-real-world-apps/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/E2UgYp2vh5U/mqdefault.jpg"
-           alt="Claude vs Codex: Which AI Coder Wins for Real-World Apps?" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
+           alt="Hermes Agent on DGX Spark: Local AI That Feels Like Magic" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude vs Codex: Which AI Coder Wins for Real-World Apps?</p>
+      <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-diffusion-report-how-the-world-is-really-using-ai-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/u8bKR3RHAYA/mqdefault.jpg"
-           alt="AI Diffusion Report: How the World Is Really Using AI in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/gpt-5-4-cyber-the-ai-security-model-redefining-defense-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/xbvI5G-8q4o/mqdefault.jpg"
+           alt="GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Diffusion Report: How the World Is Really Using AI in 2026</p>
+      <p>GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/build-ai-agent-harnesses-for-large-codebases-a-step-by-step-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/efRIrLXoOVA/mqdefault.jpg"
-           alt="Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/3-hidden-claude-features-that-turn-ai-into-your-workflow-engine/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
+           alt="3 Hidden Claude Features That Turn AI Into Your Workflow Engine" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide</p>
+      <p>3 Hidden Claude Features That Turn AI Into Your Workflow Engine</p>
     </a>
-    <a href="https://trend4genz.fun/video/master-tmux-build-run-ai-agents-24-7-on-a-vps/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/z7xyZQVK4Dg/mqdefault.jpg"
-           alt="Master Tmux: Build &amp; Run AI Agents 24/7 on a VPS" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-why-your-car-isn-t-a-power-plant-yet/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/RdPzoDV7F3M/mqdefault.jpg"
+           alt="Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Master Tmux: Build &amp; Run AI Agents 24/7 on a VPS</p>
-    </a>
-    <a href="https://trend4genz.fun/video/openai-s-ex-cto-just-built-the-ai-interface-we-ve-been-waiting-for/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Oy7tzmfbl64/mqdefault.jpg"
-           alt="OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For</p>
+      <p>Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)</p>
     </a>
     <a href="https://trend4genz.fun/video/deepseek-v4-ai-outperforms-billion-dollar-models-for-free/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/p7K3xfViWCE/mqdefault.jpg"
@@ -463,17 +457,23 @@ cargo build --release</code></pre>
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>DeepSeek V4 AI Outperforms Billion-Dollar Models—For Free</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-code-based-agent-skills-outperform-markdown-by-90-in-ai-workflows/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/IjiaCOt7bP8/mqdefault.jpg"
-           alt="Why Code-Based Agent Skills Outperform Markdown by 90% in AI Workflows" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
+           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Why Code-Based Agent Skills Outperform Markdown by 90% in AI Workflows</p>
+      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agentic-os-the-ai-workspace-revolution-you-missed/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/zqUdtL5l9yM/mqdefault.jpg"
-           alt="Hermes Agentic OS: The AI Workspace Revolution You Missed" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
+           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agentic OS: The AI Workspace Revolution You Missed</p>
+      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
+    </a>
+    <a href="https://trend4genz.fun/video/cmax-terminal-the-open-source-ai-agent-hub-that-outperforms-iterm2/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/8jDXI4_rJOE/mqdefault.jpg"
+           alt="CMAX Terminal: The Open-Source AI Agent Hub That Outperforms iTerm2" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>CMAX Terminal: The Open-Source AI Agent Hub That Outperforms iTerm2</p>
     </a>
     <a href="https://trend4genz.fun/video/cag-vs-long-context-how-ai-models-actually-remember-data-in-2026/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/B_RrXwDupIg/mqdefault.jpg"
@@ -481,53 +481,23 @@ cargo build --release</code></pre>
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>CAG vs Long Context: How AI Models Actually Remember Data in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-in-2026-the-3-shifts-that-actually-move-the-needle/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/I62CvEwVS58/mqdefault.jpg"
-           alt="AI in 2026: The 3 Shifts That Actually Move the Needle" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/amd-local-ai-breakthrough-32gb-vram-runs-frontier-llms-at-90-speed/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/PEg08OAht2s&t=6s/mqdefault.jpg"
+           alt="AMD Local AI Breakthrough: 32GB VRAM Runs Frontier LLMs at 90% Speed" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI in 2026: The 3 Shifts That Actually Move the Needle</p>
+      <p>AMD Local AI Breakthrough: 32GB VRAM Runs Frontier LLMs at 90% Speed</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemma-4-drops-apache-2-license-google-s-open-ai-power-move/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
-           alt="Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/gemini-omni-google-s-ai-video-model-that-edits-itself-in-real-time/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/iRgPSOHjAWM/mqdefault.jpg"
+           alt="Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move</p>
+      <p>Gemini Omni: Google’s AI Video Model That Edits Itself in Real Time</p>
     </a>
-    <a href="https://trend4genz.fun/video/autonomous-ai-coders-the-next-productivity-wave-or-overhyped-loop/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/rIs802-bXDY/mqdefault.jpg"
-           alt="Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/build-an-autonomous-openclaw-agent-full-setup-guide-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/oOCN30ulVyo/mqdefault.jpg"
+           alt="Build an Autonomous OpenClaw Agent: Full Setup Guide 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?</p>
-    </a>
-    <a href="https://trend4genz.fun/video/run-llms-locally-with-full-tool-use-ollama-mcp-unlocks-ai-agents/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/GAyNvq6Ayps/mqdefault.jpg"
-           alt="Run LLMs Locally with Full Tool Use: Ollama + MCP Unlocks AI Agents" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Run LLMs Locally with Full Tool Use: Ollama + MCP Unlocks AI Agents</p>
-    </a>
-    <a href="https://trend4genz.fun/video/the-ai-prodigy-who-cracked-vision-and-why-it-matters-now/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/qh0FkdgieS8/mqdefault.jpg"
-           alt="The AI Prodigy Who Cracked Vision—And Why It Matters Now" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The AI Prodigy Who Cracked Vision—And Why It Matters Now</p>
-    </a>
-    <a href="https://trend4genz.fun/video/rag-explained-why-ai-s-memory-upgrade-changes-everything-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/dDkynerzV-Q/mqdefault.jpg"
-           alt="RAG Explained: Why AI’s Memory Upgrade Changes Everything in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAG Explained: Why AI’s Memory Upgrade Changes Everything in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/claude-opus-4-8-the-ai-leap-that-just-redefined-benchmarks/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/j-oiGiIEcws/mqdefault.jpg"
-           alt="Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks</p>
-    </a>
-    <a href="https://trend4genz.fun/video/claude-hype-overload-why-ai-youtube-needs-real-engineering-now/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/rlsP-T_IxVE/mqdefault.jpg"
-           alt="Claude Hype Overload: Why AI YouTube Needs Real Engineering Now" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude Hype Overload: Why AI YouTube Needs Real Engineering Now</p>
+      <p>Build an Autonomous OpenClaw Agent: Full Setup Guide 2026</p>
     </a>
     <a href="https://trend4genz.fun/video/2026-s-best-jobs-aren-t-what-you-think-here-s-the-data/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/oDO_hTtQedQ/mqdefault.jpg"
@@ -535,17 +505,47 @@ cargo build --release</code></pre>
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>2026’s Best Jobs Aren’t What You Think—Here’s the Data</p>
     </a>
-    <a href="https://trend4genz.fun/video/iam-for-ai-agents-4-steps-to-secure-future-proof-systems/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/e8ela6puxig/mqdefault.jpg"
-           alt="IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything-2/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Llei51M3u5g&t=18s/mqdefault.jpg"
+           alt="Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems</p>
+      <p>Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything</p>
     </a>
-    <a href="https://trend4genz.fun/video/cursor-agent-pro-tips-10-power-moves-for-ai-powered-coding/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/WVeYLlKOWc0/mqdefault.jpg"
-           alt="Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/fix-notebooklm-infographic-errors-in-2-minutes-2026-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/psAQ7GYLmKw/mqdefault.jpg"
+           alt="Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding</p>
+      <p>Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)</p>
+    </a>
+    <a href="https://trend4genz.fun/video/gemini-3-5-flash-pro-performance-at-half-the-cost/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/kn9Gh5HWqQs/mqdefault.jpg"
+           alt="Gemini 3.5 Flash: Pro Performance at Half the Cost" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Gemini 3.5 Flash: Pro Performance at Half the Cost</p>
+    </a>
+    <a href="https://trend4genz.fun/video/build-ai-agent-harnesses-for-large-codebases-a-step-by-step-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/efRIrLXoOVA/mqdefault.jpg"
+           alt="Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide</p>
+    </a>
+    <a href="https://trend4genz.fun/video/anderson-ev-chargers-a3-vs-a2-vs-quartz-vs-vision-which-wins/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/_lB9Bm5qUfI/mqdefault.jpg"
+           alt="Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?</p>
+    </a>
+    <a href="https://trend4genz.fun/video/cursor-3-0-ditches-vs-code-the-zero-code-future-of-ai-agents/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/JSuS-zXMVwE/mqdefault.jpg"
+           alt="Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Cursor 3.0 Ditches VS Code: The Zero-Code Future of AI Agents</p>
+    </a>
+    <a href="https://trend4genz.fun/video/tmux-mastery-run-ai-agents-24-7-without-losing-work/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/z7xyZQVK4Dg&t=19s/mqdefault.jpg"
+           alt="Tmux Mastery: Run AI Agents 24/7 Without Losing Work" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Tmux Mastery: Run AI Agents 24/7 Without Losing Work</p>
     </a></div>
 
       <!-- NB2: di BAWAH related video -->

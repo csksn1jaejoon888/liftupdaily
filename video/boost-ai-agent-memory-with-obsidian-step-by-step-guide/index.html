@@ -223,20 +223,20 @@
 
 <h2>What This System Lets You Build</h2>
 <ul>
-  <li><strong>Flawless recall:</strong> Agents remember every conversation, task, and project—even after compaction or days of inactivity.</li>
-  <li><strong>Dynamic context:</strong> Pull relevant details from past interactions on demand, without overloading the agent’s context window.</li>
-  <li><strong>Shared knowledge:</strong> Multiple agents collaborate seamlessly through a central workspace, reducing redundant work.</li>
-  <li><strong>Self-improvement:</strong> Agents log their own mistakes and adjust behavior automatically.</li>
-  <li><strong>Personal wiki:</strong> Turn your agent’s memory into a visual, explorable knowledge base for human use.</li>
+ <li><strong>Flawless recall:</strong> Agents remember every conversation, task, and project—even after compaction or days of inactivity.</li>
+ <li><strong>Dynamic context:</strong> Pull relevant details from past interactions on demand, without overloading the agent’s context window.</li>
+ <li><strong>Shared knowledge:</strong> Multiple agents collaborate seamlessly through a central workspace, reducing redundant work.</li>
+ <li><strong>Self-improvement:</strong> Agents log their own mistakes and adjust behavior automatically.</li>
+ <li><strong>Personal wiki:</strong> Turn your agent’s memory into a visual, explorable knowledge base for human use.</li>
 </ul>
 
 <h2>Requirements Before You Start</h2>
 <ul>
-  <li>An AI agent (OpenClaw, Hermes, or similar) with API or plugin access.</li>
-  <li>Obsidian installed (<a href="https://obsidian.md" target="_blank">download here</a>).</li>
-  <li>A basic understanding of Obsidian vaults and markdown files.</li>
-  <li>Optional: Templater plugin for Obsidian (for automated file creation).</li>
-  <li>Optional: A local or cloud sync solution (e.g., Syncthing, iCloud) to keep vaults updated across devices.</li>
+ <li>An AI agent (OpenClaw, Hermes, or similar) with API or plugin access.</li>
+ <li>Obsidian installed (<a href="https://obsidian.md" target="_blank">download here</a>).</li>
+ <li>A basic understanding of Obsidian vaults and markdown files.</li>
+ <li>Optional: Templater plugin for Obsidian (for automated file creation).</li>
+ <li>Optional: A local or cloud sync solution (e.g., Syncthing, iCloud) to keep vaults updated across devices.</li>
 </ul>
 
 <h2>Complete Obsidian + AI Agent Memory Tutorial</h2>
@@ -244,10 +244,10 @@
 <h3>1. Set Up Your Obsidian Vault</h3>
 <p>Open Obsidian and create a new vault named <code>AI_Agent_Memory</code>. Structure it with these folders:</p>
 <ul>
-  <li><code>Daily_Logs/</code> – Automatically generated logs of every session.</li>
-  <li><code>Mistakes/</code> – Records of agent errors and corrections.</li>
-  <li><code>Shared_Workspace/</code> – Files accessible to all agents.</li>
-  <li><code>Working_Context/</code> – Temporary files for active tasks.</li>
+ <li><code>Daily_Logs/</code> – Automatically generated logs of every session.</li>
+ <li><code>Mistakes/</code> – Records of agent errors and corrections.</li>
+ <li><code>Shared_Workspace/</code> – Files accessible to all agents.</li>
+ <li><code>Working_Context/</code> – Temporary files for active tasks.</li>
 </ul>
 <p>Run this command in your terminal to create the folders quickly:</p>
 <pre><code>mkdir -p AI_Agent_Memory/{Daily_Logs,Mistakes,Shared_Workspace,Working_Context}</code></pre>
@@ -298,40 +298,40 @@ tag: shared
 <h3>5. Configure Memory on Demand</h3>
 <p>Teach your agent to query the vault dynamically. For example, if you say, "Let’s work on that project from three days ago," the agent should:</p>
 <ol>
-  <li>Search <code>Daily_Logs/</code> for <code>2026-{{three_days_ago}}.md</code>.</li>
-  <li>Extract the relevant section and load it into the current context.</li>
-  <li>Update <code>Working_Context/</code> with the project details.</li>
+ <li>Search <code>Daily_Logs/</code> for <code>2026-{{three_days_ago}}.md</code>.</li>
+ <li>Extract the relevant section and load it into the current context.</li>
+ <li>Update <code>Working_Context/</code> with the project details.</li>
 </ol>
 <p>Use Obsidian’s search API or a plugin like <strong>Dataview</strong> to automate this.</p>
 
 <h3>6. Handle Compaction Gracefully</h3>
 <p>Agents forget during compaction. Prevent this by:</p>
 <ul>
-  <li>Before compaction, saving the last 5 minutes of conversation to <code>Working_Context/compaction_buffer.md</code>.</li>
-  <li>After compaction, reloading the buffer into the new session.</li>
-  <li>Using a script to auto-append the buffer to the current daily log.</li>
+ <li>Before compaction, saving the last 5 minutes of conversation to <code>Working_Context/compaction_buffer.md</code>.</li>
+ <li>After compaction, reloading the buffer into the new session.</li>
+ <li>Using a script to auto-append the buffer to the current daily log.</li>
 </ul>
 <p>Test this by forcing a compaction mid-conversation. The agent should retain context without interruption.</p>
 
 <h3>Troubleshooting: Errors & Fixes</h3>
 <ul>
-  <li><strong>Problem:</strong> Agent ignores daily log updates.
-  <strong>Fix:</strong> Verify the Templater plugin is enabled and the trigger is set to <code>on new session</code>. Manually test by creating a new file.</li>
-  <li><strong>Problem:</strong> Mistakes aren’t logged.
-  <strong>Fix:</strong> Check the regex trigger for typos. Ensure the agent has write permissions for <code>Mistakes/mistakes.md</code>.</li>
-  <li><strong>Problem:</strong> Compaction still causes forgetfulness.
-  <strong>Fix:</strong> Increase the compaction buffer to 10 minutes. Use Obsidian’s <strong>QuickAdd</strong> plugin to auto-save the buffer.</li>
-  <li><strong>Problem:</strong> Shared workspace isn’t updating.
-  <strong>Fix:</strong> Confirm all agents use the same vault path. Use symbolic links if agents run on different machines.</li>
+ <li><strong>Problem:</strong> Agent ignores daily log updates.
+ <strong>Fix:</strong> Verify the Templater plugin is enabled and the trigger is set to <code>on new session</code>. Manually test by creating a new file.</li>
+ <li><strong>Problem:</strong> Mistakes aren’t logged.
+ <strong>Fix:</strong> Check the regex trigger for typos. Ensure the agent has write permissions for <code>Mistakes/mistakes.md</code>.</li>
+ <li><strong>Problem:</strong> Compaction still causes forgetfulness.
+ <strong>Fix:</strong> Increase the compaction buffer to 10 minutes. Use Obsidian’s <strong>QuickAdd</strong> plugin to auto-save the buffer.</li>
+ <li><strong>Problem:</strong> Shared workspace isn’t updating.
+ <strong>Fix:</strong> Confirm all agents use the same vault path. Use symbolic links if agents run on different machines.</li>
 </ul>
 
 <h2>Where to Take This Further</h2>
 <p>This system is just the foundation. Expand it with:</p>
 <ul>
-  <li><strong>Visual knowledge graphs:</strong> Use the <strong>Excalidraw</strong> plugin to map connections between daily logs, projects, and mistakes.</li>
-  <li><strong>Voice-activated recall:</strong> Integrate with a voice assistant to query the vault hands-free (e.g., "Hey agent, what did we discuss about smart glasses last month?").</li>
-  <li><strong>Cross-agent collaboration:</strong> Build a <code>task_queue.md</code> file where agents assign and track tasks in real time.</li>
-  <li><strong>Personal wiki:</strong> Ask your agent to generate a visual interface for your vault, like a private Wikipedia for your memories.</li>
+ <li><strong>Visual knowledge graphs:</strong> Use the <strong>Excalidraw</strong> plugin to map connections between daily logs, projects, and mistakes.</li>
+ <li><strong>Voice-activated recall:</strong> Integrate with a voice assistant to query the vault hands-free (e.g., "Hey agent, what did we discuss about smart glasses last month?").</li>
+ <li><strong>Cross-agent collaboration:</strong> Build a <code>task_queue.md</code> file where agents assign and track tasks in real time.</li>
+ <li><strong>Personal wiki:</strong> Ask your agent to generate a visual interface for your vault, like a private Wikipedia for your memories.</li>
 </ul>
 <p>Start small. Implement daily logs and mistake tracking first, then layer in shared workspaces and dynamic context. Within a week, your agent’s memory will feel limitless.</p></div>
           <div class="seo-tags-container"><a href="https://trend4genz.fun/?tag=ai%20agent%20memory%20improvement" class="seo-tag-badge">#ai agent memory improvement</a><a href="https://trend4genz.fun/?tag=obsidian%20for%20ai%20workflows" class="seo-tag-badge">#obsidian for ai workflows</a><a href="https://trend4genz.fun/?tag=ai%20context%20management" class="seo-tag-badge">#ai context management</a><a href="https://trend4genz.fun/?tag=automated%20ai%20logging" class="seo-tag-badge">#automated ai logging</a><a href="https://trend4genz.fun/?tag=ai%20agent%20collaboration" class="seo-tag-badge">#ai agent collaboration</a><a href="https://trend4genz.fun/?tag=personal%20knowledge%20management%202026" class="seo-tag-badge">#personal knowledge management 2026</a><a href="https://trend4genz.fun/?tag=ai%20memory%20on%20demand" class="seo-tag-badge">#ai memory on demand</a></div>
@@ -344,53 +344,53 @@ tag: shared
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/hermes-agent-the-24-7-ai-employee-that-outperforms-openclaw/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RoBD7Lc-0MI/mqdefault.jpg"
-           alt="Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/openai-s-ex-cto-just-built-the-ai-interface-we-ve-been-waiting-for/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Oy7tzmfbl64/mqdefault.jpg"
+           alt="OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw</p>
+      <p>OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For</p>
     </a>
-    <a href="https://trend4genz.fun/video/iam-for-ai-agents-4-steps-to-secure-future-proof-systems/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/e8ela6puxig/mqdefault.jpg"
-           alt="IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
+           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems</p>
+      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
     </a>
-    <a href="https://trend4genz.fun/video/multi-agent-ai-that-ships-the-architecture-behind-autonomous-dev-teams/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ow1we5PzK-o/mqdefault.jpg"
-           alt="Multi-Agent AI That Ships: The Architecture Behind Autonomous Dev Teams" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/ai-stack-demystified-llms-rag-hardware-that-power-real-world-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/RRKwmeyIc24/mqdefault.jpg"
+           alt="AI Stack Demystified: LLMs, RAG &amp; Hardware That Power Real-World AI" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Multi-Agent AI That Ships: The Architecture Behind Autonomous Dev Teams</p>
+      <p>AI Stack Demystified: LLMs, RAG &amp; Hardware That Power Real-World AI</p>
     </a>
-    <a href="https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RosLeHGBLoY/mqdefault.jpg"
-           alt="RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
+           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating</p>
+      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-auto-mechanics-are-disappearing-what-it-means-for-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/9cfbhxsqW84/mqdefault.jpg"
-           alt="Why Auto Mechanics Are Disappearing &amp; What It Means for 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/gemma-4-vs-gemini-3-1-which-google-ai-wins-for-free/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/oFReQNuIVpE/mqdefault.jpg"
+           alt="Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why Auto Mechanics Are Disappearing &amp; What It Means for 2026</p>
+      <p>Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?</p>
     </a>
-    <a href="https://trend4genz.fun/video/top-5-ai-engineering-courses-for-2026-build-production-grade-apps/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/HFmoNVx6vTA/mqdefault.jpg"
-           alt="Top 5 AI Engineering Courses for 2026: Build Production-Grade Apps" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/essential-ai-skills-for-investors-a-2026-roadmap/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/tu4rU4YD1Jk/mqdefault.jpg"
+           alt="Essential AI Skills for Investors: A 2026 Roadmap" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Top 5 AI Engineering Courses for 2026: Build Production-Grade Apps</p>
+      <p>Essential AI Skills for Investors: A 2026 Roadmap</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-engineers-rule-the-billionaire-list-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/ujD1wrsfLr0/mqdefault.jpg"
-           alt="Why Engineers Rule the Billionaire List in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/best-ev-chargers-uk-2026-which-one-actually-wins/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Il9b9JfYjk8/mqdefault.jpg"
+           alt="Best EV Chargers UK 2026: Which One Actually Wins?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why Engineers Rule the Billionaire List in 2026</p>
+      <p>Best EV Chargers UK 2026: Which One Actually Wins?</p>
     </a>
-    <a href="https://trend4genz.fun/video/osek-vs-posix-in-automotive-why-your-car-runs-two-oses/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/wnb4WyHveCY/mqdefault.jpg"
-           alt="OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/claude-cowork-unlocked-7-capabilities-that-redefine-ai-workflows/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/z9rdrNrkvDY/mqdefault.jpg"
+           alt="Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes</p>
+      <p>Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows</p>
     </a></div>
         </div>
       </div>
@@ -410,125 +410,125 @@ tag: shared
 
       <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">
+    <a href="https://trend4genz.fun/video/openai-s-ex-cto-just-built-the-ai-interface-we-ve-been-waiting-for/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Oy7tzmfbl64/mqdefault.jpg"
+           alt="OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>OpenAI’s Ex-CTO Just Built the AI Interface We’ve Been Waiting For</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-engineer-salaries-2026-from-junior-to-senior-what-s-real/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/eTBSF411yQ4/mqdefault.jpg"
+           alt="AI Engineer Salaries 2026: From Junior to Senior—What’s Real" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>AI Engineer Salaries 2026: From Junior to Senior—What’s Real</p>
+    </a>
+    <a href="https://trend4genz.fun/video/ai-stack-demystified-llms-rag-hardware-that-power-real-world-ai/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/RRKwmeyIc24/mqdefault.jpg"
+           alt="AI Stack Demystified: LLMs, RAG &amp; Hardware That Power Real-World AI" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>AI Stack Demystified: LLMs, RAG &amp; Hardware That Power Real-World AI</p>
+    </a>
+    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
+           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
+    </a>
+    <a href="https://trend4genz.fun/video/gemma-4-vs-gemini-3-1-which-google-ai-wins-for-free/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/oFReQNuIVpE/mqdefault.jpg"
+           alt="Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?</p>
+    </a>
+    <a href="https://trend4genz.fun/video/essential-ai-skills-for-investors-a-2026-roadmap/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/tu4rU4YD1Jk/mqdefault.jpg"
+           alt="Essential AI Skills for Investors: A 2026 Roadmap" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Essential AI Skills for Investors: A 2026 Roadmap</p>
+    </a>
+    <a href="https://trend4genz.fun/video/best-ev-chargers-uk-2026-which-one-actually-wins/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Il9b9JfYjk8/mqdefault.jpg"
+           alt="Best EV Chargers UK 2026: Which One Actually Wins?" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Best EV Chargers UK 2026: Which One Actually Wins?</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-cowork-unlocked-7-capabilities-that-redefine-ai-workflows/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/z9rdrNrkvDY/mqdefault.jpg"
+           alt="Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude Cowork Unlocked: 7 Capabilities That Redefine AI Workflows</p>
+    </a>
+    <a href="https://trend4genz.fun/video/gpt-5-4-cyber-the-ai-security-model-redefining-defense-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/xbvI5G-8q4o/mqdefault.jpg"
+           alt="GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/gemini-3-5-flash-pro-performance-at-half-the-cost/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/kn9Gh5HWqQs/mqdefault.jpg"
+           alt="Gemini 3.5 Flash: Pro Performance at Half the Cost" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Gemini 3.5 Flash: Pro Performance at Half the Cost</p>
+    </a>
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/10-weird-open-source-tools-that-solve-real-problems-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
+           alt="10 Weird Open-Source Tools That Solve Real Problems in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>10 Weird Open-Source Tools That Solve Real Problems in 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/claude-managed-agents-the-ai-breakthrough-that-will-create-millionaires/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/qpa5XwGkLp8/mqdefault.jpg"
+           alt="Claude Managed Agents: The AI Breakthrough That Will Create Millionaires" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Claude Managed Agents: The AI Breakthrough That Will Create Millionaires</p>
+    </a>
     <a href="https://trend4genz.fun/video/hermes-agent-the-24-7-ai-employee-that-outperforms-openclaw/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/RoBD7Lc-0MI/mqdefault.jpg"
            alt="Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw</p>
     </a>
-    <a href="https://trend4genz.fun/video/iam-for-ai-agents-4-steps-to-secure-future-proof-systems/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/e8ela6puxig/mqdefault.jpg"
-           alt="IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
+           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems</p>
+      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
     </a>
-    <a href="https://trend4genz.fun/video/multi-agent-ai-that-ships-the-architecture-behind-autonomous-dev-teams/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/ow1we5PzK-o/mqdefault.jpg"
-           alt="Multi-Agent AI That Ships: The Architecture Behind Autonomous Dev Teams" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/chatgpt-5-5-codex-the-ai-coding-revolution-you-can-t-ignore/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/iz3_xhi6iQE/mqdefault.jpg"
+           alt="ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Multi-Agent AI That Ships: The Architecture Behind Autonomous Dev Teams</p>
+      <p>ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore</p>
     </a>
-    <a href="https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/RosLeHGBLoY/mqdefault.jpg"
-           alt="RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/cursor-agent-pro-tips-10-power-moves-for-ai-powered-coding/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/WVeYLlKOWc0/mqdefault.jpg"
+           alt="Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating</p>
+      <p>Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-auto-mechanics-are-disappearing-what-it-means-for-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/9cfbhxsqW84/mqdefault.jpg"
-           alt="Why Auto Mechanics Are Disappearing &amp; What It Means for 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/hermes-agent-setup-guide-build-a-self-improving-ai-assistant-in-20-minutes/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/1ve4Atbqmoo/mqdefault.jpg"
+           alt="Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Why Auto Mechanics Are Disappearing &amp; What It Means for 2026</p>
+      <p>Hermes Agent Setup Guide: Build a Self-Improving AI Assistant in 20 Minutes</p>
     </a>
-    <a href="https://trend4genz.fun/video/top-5-ai-engineering-courses-for-2026-build-production-grade-apps/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/HFmoNVx6vTA/mqdefault.jpg"
-           alt="Top 5 AI Engineering Courses for 2026: Build Production-Grade Apps" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/digital-certificates-explained-prevent-outages-before-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/V7EgIMWOqgw/mqdefault.jpg"
+           alt="Digital Certificates Explained: Prevent Outages Before 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Top 5 AI Engineering Courses for 2026: Build Production-Grade Apps</p>
+      <p>Digital Certificates Explained: Prevent Outages Before 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/why-engineers-rule-the-billionaire-list-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/ujD1wrsfLr0/mqdefault.jpg"
-           alt="Why Engineers Rule the Billionaire List in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/china-s-ev-revolution-5-cars-redefining-automotive-tech-by-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/wBKzg4-dYVM/mqdefault.jpg"
+           alt="China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Why Engineers Rule the Billionaire List in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/osek-vs-posix-in-automotive-why-your-car-runs-two-oses/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/wnb4WyHveCY/mqdefault.jpg"
-           alt="OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes</p>
-    </a>
-    <a href="https://trend4genz.fun/video/mcp-vs-adk-how-ai-agents-connect-work-together-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/BedAaB1RKgE/mqdefault.jpg"
-           alt="MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/build-an-ai-dark-factory-self-shipping-code-tutorial/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/6woc6ii-zoE/mqdefault.jpg"
-           alt="Build an AI Dark Factory: Self-Shipping Code Tutorial" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Build an AI Dark Factory: Self-Shipping Code Tutorial</p>
-    </a>
-    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-the-hidden-grid-revolution-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/etS75SY3Pr4/mqdefault.jpg"
-           alt="Bidirectional EV Charging: The Hidden Grid Revolution in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Bidirectional EV Charging: The Hidden Grid Revolution in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/7-ai-engineering-mistakes-killing-your-career-2026-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/nvc7xi6vZWw/mqdefault.jpg"
-           alt="7 AI Engineering Mistakes Killing Your Career (2026 Guide)" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>7 AI Engineering Mistakes Killing Your Career (2026 Guide)</p>
-    </a>
-    <a href="https://trend4genz.fun/video/unlock-codex-superpowers-a-developer-s-guide-to-ai-mastery/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/3zSU-DGZ6J0/mqdefault.jpg"
-           alt="Unlock Codex Superpowers: A Developer’s Guide to AI Mastery" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlock Codex Superpowers: A Developer’s Guide to AI Mastery</p>
-    </a>
-    <a href="https://trend4genz.fun/video/claude-vs-codex-which-ai-coder-wins-for-real-world-apps/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/E2UgYp2vh5U/mqdefault.jpg"
-           alt="Claude vs Codex: Which AI Coder Wins for Real-World Apps?" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude vs Codex: Which AI Coder Wins for Real-World Apps?</p>
-    </a>
-    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything-2/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Llei51M3u5g&t=18s/mqdefault.jpg"
-           alt="Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything</p>
-    </a>
-    <a href="https://trend4genz.fun/video/nvidia-cosmos-3-the-world-model-that-rewrites-ai-s-rules/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/2zDtIWeyqYs/mqdefault.jpg"
-           alt="NVIDIA Cosmos 3: The World Model That Rewrites AI’s Rules" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>NVIDIA Cosmos 3: The World Model That Rewrites AI’s Rules</p>
-    </a>
-    <a href="https://trend4genz.fun/video/why-spacex-could-dominate-the-global-economy-by-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/PJ8HLcWWkk0/mqdefault.jpg"
-           alt="Why SpaceX Could Dominate the Global Economy by 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Why SpaceX Could Dominate the Global Economy by 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/anderson-ev-chargers-a3-vs-a2-vs-quartz-vs-vision-which-wins/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/_lB9Bm5qUfI/mqdefault.jpg"
-           alt="Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?</p>
-    </a>
-    <a href="https://trend4genz.fun/video/5-claude-co-work-tips-to-master-your-workspace-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
-           alt="5 Claude Co-Work Tips to Master Your Workspace in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>5 Claude Co-Work Tips to Master Your Workspace in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/predictive-vs-generative-ai-key-differences-when-to-use-each/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/phOhGqpXss4/mqdefault.jpg"
-           alt="Predictive vs Generative AI: Key Differences &amp; When to Use Each" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Predictive vs Generative AI: Key Differences &amp; When to Use Each</p>
+      <p>China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026</p>
     </a></div>
 
       <!-- NB2: di BAWAH related video -->

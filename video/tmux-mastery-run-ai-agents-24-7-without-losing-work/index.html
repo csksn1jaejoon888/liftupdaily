@@ -224,27 +224,27 @@
 
 <h2>What This Tool Lets You Build</h2>
 <ul>
-  <li><strong>Persistent AI agents:</strong> Run Codex, Hermes, or Cloud Code for hours (or days) without interruption—even if your laptop dies or you switch networks.</li>
-  <li><strong>Multi-pane workflows:</strong> Split your terminal into panes to monitor logs, edit code, and run commands simultaneously. (No more alt-tabbing between windows.)</li>
-  <li><strong>Remote development rigs:</strong> SSH into a VPS, launch Tmux, and work from any device. Your session stays alive, so you can pick up right where you left off.</li>
-  <li><strong>Automated refactors:</strong> Kick off large-scale code changes and let Tmux handle the rest. (Imagine walking away while your agent rewrites 10,000 lines of legacy code.)</li>
+ <li><strong>Persistent AI agents:</strong> Run Codex, Hermes, or Cloud Code for hours (or days) without interruption—even if your laptop dies or you switch networks.</li>
+ <li><strong>Multi-pane workflows:</strong> Split your terminal into panes to monitor logs, edit code, and run commands simultaneously. (No more alt-tabbing between windows.)</li>
+ <li><strong>Remote development rigs:</strong> SSH into a VPS, launch Tmux, and work from any device. Your session stays alive, so you can pick up right where you left off.</li>
+ <li><strong>Automated refactors:</strong> Kick off large-scale code changes and let Tmux handle the rest. (Imagine walking away while your agent rewrites 10,000 lines of legacy code.)</li>
 </ul>
 
 <h2>Requirements Before You Start</h2>
 <ul>
-  <li>A Unix-like system (macOS, Linux, or WSL on Windows).</li>
-  <li>Basic terminal familiarity (you should know how to navigate directories and run commands).</li>
-  <li>For remote setups: A VPS (e.g., Hostinger’s KVM2 plan) and SSH access. (If you don’t have one, grab a cheap VPS—it’s a game-changer.)</li>
-  <li>Optional: A paid AI agent account (e.g., ChatGPT Pro, Codex) to test long-running tasks. (Free tiers work, but paid plans unlock more features.)</li>
+ <li>A Unix-like system (macOS, Linux, or WSL on Windows).</li>
+ <li>Basic terminal familiarity (you should know how to navigate directories and run commands).</li>
+ <li>For remote setups: A VPS (e.g., Hostinger’s KVM2 plan) and SSH access. (If you don’t have one, grab a cheap VPS—it’s a game-changer.)</li>
+ <li>Optional: A paid AI agent account (e.g., ChatGPT Pro, Codex) to test long-running tasks. (Free tiers work, but paid plans unlock more features.)</li>
 </ul>
 
 <h2>Complete Tmux Tutorial</h2>
 
 <h3>1. Install Tmux</h3>
 <p>Open your terminal and run:</p>
-<pre>brew install tmux  # macOS
-sudo apt install tmux  # Ubuntu/Debian
-sudo yum install tmux  # CentOS/RHEL</pre>
+<pre>brew install tmux # macOS
+sudo apt install tmux # Ubuntu/Debian
+sudo yum install tmux # CentOS/RHEL</pre>
 <p>Verify the install with:</p>
 <pre>tmux -V</pre>
 <p>(If you see a version number, you’re good to go.)</p>
@@ -257,10 +257,10 @@ sudo yum install tmux  # CentOS/RHEL</pre>
 <h3>3. Split Panes Like a Pro</h3>
 <p>Tmux’s killer feature is pane splitting. Here’s how to use it:</p>
 <ul>
-  <li>Split vertically: <code>Ctrl+b %</code></li>
-  <li>Split horizontally: <code>Ctrl+b "</code></li>
-  <li>Switch between panes: <code>Ctrl+b arrow_key</code></li>
-  <li>Close a pane: Type <code>exit</code> or press <code>Ctrl+d</code>.</li>
+ <li>Split vertically: <code>Ctrl+b %</code></li>
+ <li>Split horizontally: <code>Ctrl+b "</code></li>
+ <li>Switch between panes: <code>Ctrl+b arrow_key</code></li>
+ <li>Close a pane: Type <code>exit</code> or press <code>Ctrl+d</code>.</li>
 </ul>
 <p>(Pro tip: Use <code>Ctrl+b z</code> to zoom into a pane, then repeat to zoom out.)</p>
 
@@ -283,28 +283,28 @@ sudo yum install tmux  # CentOS/RHEL</pre>
 
 <h3>Troubleshooting: Errors & Fixes</h3>
 <ul>
-  <li><strong>Error:</strong> <code>tmux: command not found</code><br>
-  <strong>Fix:</strong> Reinstall Tmux or check your <code>PATH</code>. (On macOS, try <code>brew link tmux</code>.)</li>
-  
-  <li><strong>Error:</strong> <code>no sessions</code> when reattaching<br>
-  <strong>Fix:</strong> List active sessions with <code>tmux ls</code>, then reattach with <code>tmux attach -t session_name</code>.</li>
-  
-  <li><strong>Error:</strong> Pane shortcuts don’t work<br>
-  <strong>Fix:</strong> Ensure you’re pressing <code>Ctrl+b</code> first, then the command key (e.g., <code>%</code> for splits). (If you’re holding <code>Ctrl</code> too long, Tmux won’t register the next key.)</li>
-  
-  <li><strong>Error:</strong> Agent disconnects on SSH logout<br>
-  <strong>Fix:</strong> Always detach (<code>Ctrl+b d</code>) before logging out. (Never kill the SSH session directly.)</li>
+ <li><strong>Error:</strong> <code>tmux: command not found</code><br>
+ <strong>Fix:</strong> Reinstall Tmux or check your <code>PATH</code>. (On macOS, try <code>brew link tmux</code>.)</li>
+ 
+ <li><strong>Error:</strong> <code>no sessions</code> when reattaching<br>
+ <strong>Fix:</strong> List active sessions with <code>tmux ls</code>, then reattach with <code>tmux attach -t session_name</code>.</li>
+ 
+ <li><strong>Error:</strong> Pane shortcuts don’t work<br>
+ <strong>Fix:</strong> Ensure you’re pressing <code>Ctrl+b</code> first, then the command key (e.g., <code>%</code> for splits). (If you’re holding <code>Ctrl</code> too long, Tmux won’t register the next key.)</li>
+ 
+ <li><strong>Error:</strong> Agent disconnects on SSH logout<br>
+ <strong>Fix:</strong> Always detach (<code>Ctrl+b d</code>) before logging out. (Never kill the SSH session directly.)</li>
 </ul>
 
 <h2>Where to Take This Further</h2>
 <ul>
-  <li><strong>Customize Tmux:</strong> Edit <code>~/.tmux.conf</code> to tweak keybindings, colors, and status bars. (Example: <code>set -g default-terminal "xterm-256color"</code> for better colors.)</li>
-  
-  <li><strong>Automate workflows:</strong> Use Tmux scripting to launch agents in split panes automatically. (Example: <code>tmux split-window -h "codex --yolo"</code>.)</li>
-  
-  <li><strong>Scale to multiple VPS instances:</strong> Run agents across several servers for redundancy. (Use <code>tmux new -s agent_1</code>, <code>tmux new -s agent_2</code>, etc.)</li>
-  
-  <li><strong>Integrate with CI/CD:</strong> Trigger Tmux sessions from GitHub Actions to run post-deploy tests. (Example: <code>ssh user@server "tmux new -s deploy_tests"</code>.)</li>
+ <li><strong>Customize Tmux:</strong> Edit <code>~/.tmux.conf</code> to tweak keybindings, colors, and status bars. (Example: <code>set -g default-terminal "xterm-256color"</code> for better colors.)</li>
+ 
+ <li><strong>Automate workflows:</strong> Use Tmux scripting to launch agents in split panes automatically. (Example: <code>tmux split-window -h "codex --yolo"</code>.)</li>
+ 
+ <li><strong>Scale to multiple VPS instances:</strong> Run agents across several servers for redundancy. (Use <code>tmux new -s agent_1</code>, <code>tmux new -s agent_2</code>, etc.)</li>
+ 
+ <li><strong>Integrate with CI/CD:</strong> Trigger Tmux sessions from GitHub Actions to run post-deploy tests. (Example: <code>ssh user@server "tmux new -s deploy_tests"</code>.)</li>
 </ul>
 
 <p>Tmux isn’t just a tool—it’s a force multiplier. Once you master it, you’ll wonder how you ever worked without it. (And yes, your AI agents will thank you too.)</p></div>
@@ -318,35 +318,41 @@ sudo yum install tmux  # CentOS/RHEL</pre>
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/mcp-vs-adk-how-ai-agents-connect-work-together-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/BedAaB1RKgE/mqdefault.jpg"
-           alt="MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/essential-ai-skills-for-investors-a-2026-roadmap/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/tu4rU4YD1Jk/mqdefault.jpg"
+           alt="Essential AI Skills for Investors: A 2026 Roadmap" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026</p>
+      <p>Essential AI Skills for Investors: A 2026 Roadmap</p>
     </a>
-    <a href="https://trend4genz.fun/video/build-an-autonomous-openclaw-agent-full-setup-guide-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oOCN30ulVyo/mqdefault.jpg"
-           alt="Build an Autonomous OpenClaw Agent: Full Setup Guide 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/why-auto-mechanics-are-disappearing-what-it-means-for-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/9cfbhxsqW84/mqdefault.jpg"
+           alt="Why Auto Mechanics Are Disappearing &amp; What It Means for 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Build an Autonomous OpenClaw Agent: Full Setup Guide 2026</p>
+      <p>Why Auto Mechanics Are Disappearing &amp; What It Means for 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/2026-toyota-c-hr-reliability-vs-range-trade-offs-for-ev-buyers/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
-           alt="2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
+           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers</p>
+      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
     </a>
-    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-why-your-car-isn-t-a-power-plant-yet/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/RdPzoDV7F3M/mqdefault.jpg"
-           alt="Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
+           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)</p>
+      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-claude-co-work-tips-to-master-your-workspace-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
-           alt="5 Claude Co-Work Tips to Master Your Workspace in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything-2/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/Llei51M3u5g&t=18s/mqdefault.jpg"
+           alt="Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Claude Co-Work Tips to Master Your Workspace in 2026</p>
+      <p>Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything</p>
+    </a>
+    <a href="https://trend4genz.fun/video/why-engineers-rule-the-billionaire-list-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/ujD1wrsfLr0/mqdefault.jpg"
+           alt="Why Engineers Rule the Billionaire List in 2026" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Why Engineers Rule the Billionaire List in 2026</p>
     </a>
     <a href="https://trend4genz.fun/video/auth-md-the-missing-protocol-for-autonomous-ai-agents-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
       <img src="https://img.youtube.com/vi/Dqp_b8GHLXU/mqdefault.jpg"
@@ -354,17 +360,11 @@ sudo yum install tmux  # CentOS/RHEL</pre>
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>Auth.md: The Missing Protocol for Autonomous AI Agents in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/china-s-ev-revolution-5-cars-redefining-automotive-tech-by-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/wBKzg4-dYVM/mqdefault.jpg"
-           alt="China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/video/fix-notebooklm-infographic-errors-in-2-minutes-2026-guide/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
+      <img src="https://img.youtube.com/vi/psAQ7GYLmKw/mqdefault.jpg"
+           alt="Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/gemma-4-vs-gemini-3-1-which-google-ai-wins-for-free/" class="slider-item" style="text-decoration:none;color:inherit;display:block">
-      <img src="https://img.youtube.com/vi/oFReQNuIVpE/mqdefault.jpg"
-           alt="Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?</p>
+      <p>Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)</p>
     </a></div>
         </div>
       </div>
@@ -384,35 +384,41 @@ sudo yum install tmux  # CentOS/RHEL</pre>
 
       <!-- Daftar related video -->
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/mcp-vs-adk-how-ai-agents-connect-work-together-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/BedAaB1RKgE/mqdefault.jpg"
-           alt="MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/essential-ai-skills-for-investors-a-2026-roadmap/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/tu4rU4YD1Jk/mqdefault.jpg"
+           alt="Essential AI Skills for Investors: A 2026 Roadmap" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026</p>
+      <p>Essential AI Skills for Investors: A 2026 Roadmap</p>
     </a>
-    <a href="https://trend4genz.fun/video/build-an-autonomous-openclaw-agent-full-setup-guide-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/oOCN30ulVyo/mqdefault.jpg"
-           alt="Build an Autonomous OpenClaw Agent: Full Setup Guide 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/why-auto-mechanics-are-disappearing-what-it-means-for-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/9cfbhxsqW84/mqdefault.jpg"
+           alt="Why Auto Mechanics Are Disappearing &amp; What It Means for 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Build an Autonomous OpenClaw Agent: Full Setup Guide 2026</p>
+      <p>Why Auto Mechanics Are Disappearing &amp; What It Means for 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/2026-toyota-c-hr-reliability-vs-range-trade-offs-for-ev-buyers/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/dtAGxPx3bcY/mqdefault.jpg"
-           alt="2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
+           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>2026 Toyota C-HR: Reliability vs. Range Trade-Offs for EV Buyers</p>
+      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
     </a>
-    <a href="https://trend4genz.fun/video/bidirectional-ev-charging-why-your-car-isn-t-a-power-plant-yet/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/RdPzoDV7F3M/mqdefault.jpg"
-           alt="Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
+           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Bidirectional EV Charging: Why Your Car Isn’t a Power Plant (Yet)</p>
+      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-claude-co-work-tips-to-master-your-workspace-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
-           alt="5 Claude Co-Work Tips to Master Your Workspace in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/google-s-40b-bet-on-anthropic-s-mythos-the-ai-model-that-changed-everything-2/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/Llei51M3u5g&t=18s/mqdefault.jpg"
+           alt="Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>5 Claude Co-Work Tips to Master Your Workspace in 2026</p>
+      <p>Google’s $40B Bet on Anthropic’s Mythos: The AI Model That Changed Everything</p>
+    </a>
+    <a href="https://trend4genz.fun/video/why-engineers-rule-the-billionaire-list-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/ujD1wrsfLr0/mqdefault.jpg"
+           alt="Why Engineers Rule the Billionaire List in 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Why Engineers Rule the Billionaire List in 2026</p>
     </a>
     <a href="https://trend4genz.fun/video/auth-md-the-missing-protocol-for-autonomous-ai-agents-in-2026/" class="side-slider-item">
       <img src="https://img.youtube.com/vi/Dqp_b8GHLXU/mqdefault.jpg"
@@ -420,89 +426,83 @@ sudo yum install tmux  # CentOS/RHEL</pre>
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Auth.md: The Missing Protocol for Autonomous AI Agents in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/china-s-ev-revolution-5-cars-redefining-automotive-tech-by-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/wBKzg4-dYVM/mqdefault.jpg"
-           alt="China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/fix-notebooklm-infographic-errors-in-2-minutes-2026-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/psAQ7GYLmKw/mqdefault.jpg"
+           alt="Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026</p>
+      <p>Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)</p>
     </a>
-    <a href="https://trend4genz.fun/video/gemma-4-vs-gemini-3-1-which-google-ai-wins-for-free/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/oFReQNuIVpE/mqdefault.jpg"
-           alt="Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/anderson-ev-chargers-a3-vs-a2-vs-quartz-vs-vision-which-wins/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/_lB9Bm5qUfI/mqdefault.jpg"
+           alt="Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Gemma 4 vs Gemini 3.1: Which Google AI Wins for Free?</p>
+      <p>Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?</p>
     </a>
-    <a href="https://trend4genz.fun/video/digital-certificates-explained-prevent-outages-before-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/V7EgIMWOqgw/mqdefault.jpg"
-           alt="Digital Certificates Explained: Prevent Outages Before 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/notebooklm-in-2026-the-ai-workspace-that-outperforms-gemini/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/_uXnyhrqmsU/mqdefault.jpg"
+           alt="NotebookLM in 2026: The AI Workspace That Outperforms Gemini" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Digital Certificates Explained: Prevent Outages Before 2026</p>
+      <p>NotebookLM in 2026: The AI Workspace That Outperforms Gemini</p>
     </a>
-    <a href="https://trend4genz.fun/video/amd-local-ai-breakthrough-32gb-vram-runs-frontier-llms-at-90-speed/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/PEg08OAht2s&t=6s/mqdefault.jpg"
-           alt="AMD Local AI Breakthrough: 32GB VRAM Runs Frontier LLMs at 90% Speed" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/claude-cowork-unlocked-build-ai-agents-without-coding-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/uGwDuvSqgYI/mqdefault.jpg"
+           alt="Claude Cowork Unlocked: Build AI Agents Without Coding in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AMD Local AI Breakthrough: 32GB VRAM Runs Frontier LLMs at 90% Speed</p>
+      <p>Claude Cowork Unlocked: Build AI Agents Without Coding in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/cli-vs-mcp-how-ai-agents-pick-the-right-tool-in-2026/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/g9JIUM0MHgQ/mqdefault.jpg"
-           alt="CLI vs MCP: How AI Agents Pick the Right Tool in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
+           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>CLI vs MCP: How AI Agents Pick the Right Tool in 2026</p>
+      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-worst-toyota-models-2026-reliability-secrets-revealed/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/AeJTCIm-Z34/mqdefault.jpg"
-           alt="Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/10-weird-open-source-tools-that-solve-real-problems-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/qPuzWFvRajk/mqdefault.jpg"
+           alt="10 Weird Open-Source Tools That Solve Real Problems in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed</p>
+      <p>10 Weird Open-Source Tools That Solve Real Problems in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/claude-managed-agents-the-ai-breakthrough-that-will-create-millionaires/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/qpa5XwGkLp8/mqdefault.jpg"
-           alt="Claude Managed Agents: The AI Breakthrough That Will Create Millionaires" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/master-cursor-coding-agents-in-2026-step-by-step-guide/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/kF2WQgk1LtY/mqdefault.jpg"
+           alt="Master Cursor Coding Agents in 2026: Step-by-Step Guide" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude Managed Agents: The AI Breakthrough That Will Create Millionaires</p>
+      <p>Master Cursor Coding Agents in 2026: Step-by-Step Guide</p>
     </a>
-    <a href="https://trend4genz.fun/video/build-ai-agent-harnesses-for-large-codebases-a-step-by-step-guide/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/efRIrLXoOVA/mqdefault.jpg"
-           alt="Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/master-agent-context-with-langsmiths-context-hub-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/yqmvlmxR1ts/mqdefault.jpg"
+           alt="Master Agent Context with LangSmith's Context Hub in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide</p>
+      <p>Master Agent Context with LangSmith's Context Hub in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-divergence-that-will-redefine-workflows/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/R9K2574YEAg/mqdefault.jpg"
-           alt="AI Agents in 2026: The Divergence That Will Redefine Workflows" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/run-llms-locally-with-full-tool-use-ollama-mcp-unlocks-ai-agents/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/GAyNvq6Ayps/mqdefault.jpg"
+           alt="Run LLMs Locally with Full Tool Use: Ollama + MCP Unlocks AI Agents" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Agents in 2026: The Divergence That Will Redefine Workflows</p>
+      <p>Run LLMs Locally with Full Tool Use: Ollama + MCP Unlocks AI Agents</p>
     </a>
-    <a href="https://trend4genz.fun/video/aeo-in-2026-get-ai-to-recommend-your-business-like-a-pro/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
-           alt="AEO in 2026: Get AI to Recommend Your Business Like a Pro" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/cag-vs-long-context-how-ai-models-actually-remember-data-in-2026/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/B_RrXwDupIg/mqdefault.jpg"
+           alt="CAG vs Long Context: How AI Models Actually Remember Data in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AEO in 2026: Get AI to Recommend Your Business Like a Pro</p>
+      <p>CAG vs Long Context: How AI Models Actually Remember Data in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/autonomous-ai-coders-the-next-productivity-wave-or-overhyped-loop/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/rIs802-bXDY/mqdefault.jpg"
-           alt="Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/how-ugc-ads-convert-10x-higher-now-automated-with-claude-code/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/zswO-Wuo0E0/mqdefault.jpg"
+           alt="How UGC Ads Convert 10x Higher—Now Automated with Claude Code" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?</p>
+      <p>How UGC Ads Convert 10x Higher—Now Automated with Claude Code</p>
     </a>
-    <a href="https://trend4genz.fun/video/anthropic-mythos-ai-s-cybersecurity-tipping-point-unlocked/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/ahRMR_9kqb0/mqdefault.jpg"
-           alt="Anthropic Mythos: AI’s Cybersecurity Tipping Point Unlocked" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-a-proven-2026-roadmap/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
+           alt="How to Learn Python Fast: A Proven 2026 Roadmap" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Anthropic Mythos: AI’s Cybersecurity Tipping Point Unlocked</p>
+      <p>How to Learn Python Fast: A Proven 2026 Roadmap</p>
     </a>
-    <a href="https://trend4genz.fun/video/best-ev-chargers-uk-2026-which-one-actually-wins/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/Il9b9JfYjk8/mqdefault.jpg"
-           alt="Best EV Chargers UK 2026: Which One Actually Wins?" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/how-operating-systems-work-the-hidden-miracle-behind-every-click/" class="side-slider-item">
+      <img src="https://img.youtube.com/vi/MtxP2pyCvYA/mqdefault.jpg"
+           alt="How Operating Systems Work: The Hidden Miracle Behind Every Click" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Best EV Chargers UK 2026: Which One Actually Wins?</p>
-    </a>
-    <a href="https://trend4genz.fun/video/chatgpt-5-5-codex-the-ai-coding-revolution-you-can-t-ignore/" class="side-slider-item">
-      <img src="https://img.youtube.com/vi/iz3_xhi6iQE/mqdefault.jpg"
-           alt="ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>ChatGPT 5.5 Codex: The AI Coding Revolution You Can’t Ignore</p>
+      <p>How Operating Systems Work: The Hidden Miracle Behind Every Click</p>
     </a></div>
 
       <!-- NB2: di BAWAH related video -->
