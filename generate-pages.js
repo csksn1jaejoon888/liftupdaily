@@ -1,13 +1,13 @@
 // ══════════════════════════════════════════════════════════════════
-//  generate-pages.js  v10
-//  Perubahan dari v9:
-//    1. db-id.json → halaman STATIS di /entertainment/{slug}/
-//       (noindex, nofollow, no canonical, no schema)
-//    2. db-en.json → tetap di /video/{slug}/ (index, follow)
-//    3. Related video di SEMUA halaman berbaur (EN + ID)
-//    4. URL related video otomatis menyesuaikan source
-//    5. Iklan dikontrol penuh dari STATIC_AD (satu tempat)
-//    6. Homepage patch tetap sama: EN+ID berbaur di grid
+//  generate-pages.js  v11
+//  Perubahan dari v10:
+//    1. Badge "FULL WIDE SCREEN" di pojok kanan bawah judul
+//       → hanya muncul jika pengunjung dari FB / X in-app browser
+//    2. Klik badge:
+//       - Android → intent:// buka URL sama di Chrome
+//       - Intent gagal / iOS / lainnya → modal instruksi slide-up
+//    3. Modal per-platform (FB Android, FB iOS, X/Twitter)
+//       dengan tombol "Copy Link" → "✅ Copied!" 2 detik
 // ══════════════════════════════════════════════════════════════════
 'use strict';
 
@@ -19,8 +19,8 @@ const DB_FILE_EN      = path.join(__dirname, 'db-en.json');
 const DB_FILE_ID      = path.join(__dirname, 'db-id.json');
 const BASE_TMPL       = path.join(__dirname, 'index_base.html');
 const INDEX_FILE      = path.join(__dirname, 'index.html');
-const VIDEO_DIR       = path.join(__dirname, 'video');           // db-en
-const ENTERTAIN_DIR   = path.join(__dirname, 'entertainment');   // db-id
+const VIDEO_DIR       = path.join(__dirname, 'video');
+const ENTERTAIN_DIR   = path.join(__dirname, 'entertainment');
 const BASE_URL        = 'https://trend4genz.fun';
 const SITE_NAME       = 'Trend4GenZ';
 const DESC_DEF        = 'Streaming video terbaru — teknologi, AI, lifestyle, dan tren global.';
@@ -36,9 +36,7 @@ function trunc(s,n=160)  { const t=stripHtml(s); return t.length<=n?t:t.slice(0,
 function rmDir(dir)      { if(fs.existsSync(dir)) fs.rmSync(dir,{recursive:true,force:true}); }
 function shuffle(arr)    { return [...arr].sort(()=>0.5-Math.random()); }
 
-// ── URL helper berdasarkan source ──────────────────────────────
-// db-en  → /video/{slug}/
-// db-id  → /entertainment/{slug}/
+// ── URL helper ─────────────────────────────────────────────────
 function videoUrl(v) {
   return v.source === 'nofollow'
     ? `${BASE_URL}/entertainment/${v.slug}/`
@@ -46,44 +44,23 @@ function videoUrl(v) {
 }
 
 // ════════════════════════════════════════════════════════════════
-//  KONFIGURASI ADS — BERLAKU UNTUK SEMUA HALAMAN STATIS
-//  (db-en /video/ DAN db-id /entertainment/)
-//  Setelah edit, jalankan ulang: node generate-pages.js
+//  KONFIGURASI ADS
 // ════════════════════════════════════════════════════════════════
 const STATIC_AD = {
-
-  // ── Master switch — false = semua ads mati ────────────────────
   allAds: true,
-
-  // ── Direct Link (tombol More Info 🔥) ─────────────────────────
   useDirect:  true,
   directUrl:  'https://facebook.com',
-
-  // ── Play Button Ads ───────────────────────────────────────────
   usePlayAds:       false,
   playAdsUrl:       'https://facebook.com',
-  playAdsStartFrom: 2,           // mulai buka ads dari tap ke-N
-
-  // ════════════════════════════════════════════════════════════
-  //  NATIVE BANNER 1
-  //  Desktop : tampil di ATAS list related video (sidebar kanan)
-  //  Mobile  : tampil di bawah tombol HOME / More Info
-  // ════════════════════════════════════════════════════════════
+  playAdsStartFrom: 2,
   useNativeBanner1: true,
   nativeBanner1HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
-
-  // ════════════════════════════════════════════════════════════
-  //  NATIVE BANNER 2
-  //  Desktop : tampil di BAWAH list related video (sidebar kanan)
-  //  Mobile  : tampil di bawah summary box
-  // ════════════════════════════════════════════════════════════
   useNativeBanner2: true,
   nativeBanner2HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
 };
 
 // ════════════════════════════════════════════════════════════════
 //  KONFIGURASI KATEGORI FOOTER SEO
-//  Thumbnail diambil dari db-en.json berdasarkan tag
 // ════════════════════════════════════════════════════════════════
 const FOOTER_CATEGORIES = [
   {
@@ -125,14 +102,285 @@ const FOOTER_CATEGORIES = [
 ];
 
 // ════════════════════════════════════════════════════════════════
+//  WIDE SCREEN BADGE + MODAL SCRIPT
+//  Di-inject sekali per halaman video (static, inline)
+// ════════════════════════════════════════════════════════════════
+function wideScreenScript(pageUrl) {
+  // pageUrl = full canonical URL halaman ini, misal https://trend4genz.fun/video/some-slug/
+  return `
+<style>
+/* ── Wide Screen Badge ── */
+.ws-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  background:#98FB98;color:#000;
+  font-size:10px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;
+  padding:3px 8px;border-radius:5px;cursor:pointer;
+  vertical-align:middle;white-space:nowrap;
+  border:none;outline:none;
+  transition:background .15s,transform .1s;
+  float:right;margin-left:8px;margin-top:2px;
+  line-height:1.4;
+}
+.ws-badge:active{transform:scale(.96);}
+.ws-badge svg{flex-shrink:0;}
+
+/* ── Modal overlay ── */
+#ws-modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.72);z-index:99999;
+  align-items:flex-end;justify-content:center;
+}
+#ws-modal-overlay.show{display:flex;}
+#ws-modal-box{
+  background:#1a1a1a;border-radius:18px 18px 0 0;
+  padding:22px 20px 32px;width:100%;max-width:480px;
+  border-top:3px solid #98FB98;
+  transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);
+}
+#ws-modal-overlay.show #ws-modal-box{transform:translateY(0);}
+
+.ws-modal-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;
+}
+.ws-modal-title{
+  font-size:1rem;font-weight:900;color:#98FB98;
+  display:flex;align-items:center;gap:7px;
+}
+.ws-modal-close{
+  background:rgba(255,255,255,.1);border:none;color:#fff;
+  width:28px;height:28px;border-radius:50%;font-size:14px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+.ws-modal-close:hover{background:rgba(255,255,255,.2);}
+
+.ws-modal-subtitle{
+  font-size:.82rem;color:#aaa;margin-bottom:18px;line-height:1.5;
+}
+.ws-modal-subtitle strong{color:#fff;}
+
+.ws-steps{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:12px;}
+.ws-step{
+  display:flex;align-items:flex-start;gap:12px;
+  background:rgba(255,255,255,.05);border-radius:10px;padding:12px 14px;
+}
+.ws-step-num{
+  flex-shrink:0;width:26px;height:26px;border-radius:50%;
+  background:#98FB98;color:#000;font-size:.78rem;font-weight:900;
+  display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.ws-step-text{font-size:.82rem;color:#ddd;line-height:1.5;}
+.ws-step-text strong{color:#fff;display:block;margin-bottom:2px;}
+.ws-step-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.12);border-radius:5px;
+  padding:2px 6px;font-size:.78rem;font-weight:700;color:#fff;
+  margin:0 2px;vertical-align:middle;letter-spacing:.02em;
+}
+
+.ws-copy-btn{
+  width:100%;padding:13px;border-radius:10px;border:2px solid #98FB98;
+  background:transparent;color:#98FB98;font-size:.88rem;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:background .15s,color .15s;letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.ws-copy-btn:hover{background:#98FB98;color:#000;}
+.ws-copy-btn.copied{background:#98FB98;color:#000;border-color:#98FB98;}
+</style>
+
+<!-- Modal HTML -->
+<div id="ws-modal-overlay" onclick="wsCloseModal(event)">
+  <div id="ws-modal-box">
+    <div class="ws-modal-header">
+      <div class="ws-modal-title">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+        Full Wide Screen
+      </div>
+      <button class="ws-modal-close" onclick="wsCloseModal(null)">✕</button>
+    </div>
+    <p class="ws-modal-subtitle" id="ws-modal-subtitle"></p>
+    <ul class="ws-steps" id="ws-steps-list"></ul>
+    <button class="ws-copy-btn" id="ws-copy-btn" onclick="wsCopyLink()">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy Link
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var PAGE_URL = '${pageUrl}';
+
+  // ── Deteksi in-app browser ──────────────────────────────────
+  var ua = navigator.userAgent || '';
+  var isFB      = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID/i.test(ua);
+  var isTwitterX = /Twitter/i.test(ua);
+  var isInApp   = isFB || isTwitterX;
+  var isAndroid = /Android/i.test(ua);
+  var isIOS     = /iPhone|iPad|iPod/i.test(ua);
+
+  if (!isInApp) return; // Bukan dari social media in-app browser → badge tidak muncul
+
+  // ── Inject badge setelah DOM ready ─────────────────────────
+  function injectBadge() {
+    var h1 = document.querySelector('.info-section h1');
+    if (!h1) return;
+    var badge = document.createElement('button');
+    badge.className = 'ws-badge';
+    badge.title = 'Open Full Wide Screen';
+    badge.innerHTML =
+      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>' +
+      '<line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>' +
+      '</svg>FULL WIDE SCREEN';
+    badge.onclick = wsHandleClick;
+    // Insert di awal h1 agar float:right bekerja (harus jadi child pertama)
+    h1.insertBefore(badge, h1.firstChild);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectBadge);
+  } else {
+    injectBadge();
+  }
+
+  // ── Handle klik badge ───────────────────────────────────────
+  window.wsHandleClick = function() {
+    if (isAndroid) {
+      // Coba intent:// → buka di Chrome
+      var encoded = encodeURIComponent(PAGE_URL);
+      var intentUrl =
+        'intent://' + PAGE_URL.replace(/^https?:\/\//,'') +
+        '#Intent;scheme=https;package=com.android.chrome;' +
+        'S.browser_fallback_url=' + encoded + ';end';
+      // Buka intent
+      var iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+      try { iframe.src = intentUrl; } catch(e){}
+      // Fallback: jika setelah 1.2 detik masih di halaman ini → tampilkan modal
+      var t = Date.now();
+      setTimeout(function(){
+        document.body.removeChild(iframe);
+        if (Date.now() - t < 2000) {
+          // Masih di halaman → intent gagal, tampilkan modal
+          wsShowModal('android-fb');
+        }
+      }, 1200);
+    } else {
+      // iOS atau device lain → langsung modal
+      if (isIOS && isFB)      wsShowModal('ios-fb');
+      else if (isIOS && isTwitterX) wsShowModal('ios-x');
+      else if (isTwitterX)    wsShowModal('android-x');
+      else                    wsShowModal('android-fb');
+    }
+  };
+
+  // ── Build & show modal ──────────────────────────────────────
+  window.wsShowModal = function(type) {
+    var subtitle = document.getElementById('ws-modal-subtitle');
+    var stepsList = document.getElementById('ws-steps-list');
+
+    var configs = {
+      'android-fb': {
+        sub: 'Your <strong>Facebook</strong> browser doesn\'t support full wide screen. Follow these steps to open this page in <strong>Chrome</strong>:',
+        steps: [
+          { title: 'Tap the menu icon', desc: 'Find the <span class="ws-step-icon">⋮</span> icon at the <strong>top right</strong> corner of your Facebook browser.' },
+          { title: 'Select "Open in Chrome"', desc: 'Tap <strong>"Open in Chrome"</strong> or <strong>"Open in external browser"</strong> from the menu.' },
+          { title: 'You\'re all set!', desc: 'The page will reload in Chrome with <strong>full wide screen</strong> support.' }
+        ]
+      },
+      'ios-fb': {
+        sub: 'Your <strong>Facebook</strong> browser doesn\'t support full wide screen. Follow these steps to open this page in <strong>Safari</strong>:',
+        steps: [
+          { title: 'Tap the menu icon', desc: 'Find the <span class="ws-step-icon">···</span> icon at the <strong>bottom</strong> of your Facebook browser.' },
+          { title: 'Select "Open in Safari"', desc: 'Tap <strong>"Open in Safari"</strong> or <strong>"Open in Browser"</strong> from the menu.' },
+          { title: 'You\'re all set!', desc: 'The page will reload in Safari with <strong>full wide screen</strong> support.' }
+        ]
+      },
+      'android-x': {
+        sub: 'Your <strong>X (Twitter)</strong> browser doesn\'t support full wide screen. Follow these steps to open this page in <strong>Chrome</strong>:',
+        steps: [
+          { title: 'Tap the menu icon', desc: 'Find the <span class="ws-step-icon">⋮</span> icon at the <strong>top right</strong> corner of the X browser.' },
+          { title: 'Select "Open in browser"', desc: 'Tap <strong>"Open in browser"</strong> or <strong>"Open in Chrome"</strong> from the menu.' },
+          { title: 'You\'re all set!', desc: 'The page will reload in Chrome with <strong>full wide screen</strong> support.' }
+        ]
+      },
+      'ios-x': {
+        sub: 'Your <strong>X (Twitter)</strong> browser doesn\'t support full wide screen. Follow these steps to open this page in <strong>Safari</strong>:',
+        steps: [
+          { title: 'Tap the menu icon', desc: 'Find the <span class="ws-step-icon">···</span> icon at the <strong>bottom</strong> of the X browser.' },
+          { title: 'Select "Open in Safari"', desc: 'Tap <strong>"Open in Safari"</strong> or <strong>"Open in Browser"</strong> from the menu.' },
+          { title: 'You\'re all set!', desc: 'The page will reload in Safari with <strong>full wide screen</strong> support.' }
+        ]
+      }
+    };
+
+    var cfg = configs[type] || configs['android-fb'];
+    subtitle.innerHTML = cfg.sub;
+    stepsList.innerHTML = cfg.steps.map(function(s, i){
+      return '<li class="ws-step">' +
+        '<div class="ws-step-num">' + (i+1) + '</div>' +
+        '<div class="ws-step-text"><strong>' + s.title + '</strong>' + s.desc + '</div>' +
+        '</li>';
+    }).join('');
+
+    document.getElementById('ws-modal-overlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.wsCloseModal = function(e) {
+    if (e && e.target !== document.getElementById('ws-modal-overlay')) return;
+    document.getElementById('ws-modal-overlay').classList.remove('show');
+    document.body.style.overflow = '';
+  };
+
+  window.wsCopyLink = function() {
+    var btn = document.getElementById('ws-copy-btn');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(PAGE_URL).then(function(){
+        wsShowCopied(btn);
+      }).catch(function(){ wsFallbackCopy(btn); });
+    } else {
+      wsFallbackCopy(btn);
+    }
+  };
+
+  function wsFallbackCopy(btn) {
+    var ta = document.createElement('textarea');
+    ta.value = PAGE_URL;
+    ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta);
+    wsShowCopied(btn);
+  }
+
+  function wsShowCopied(btn) {
+    btn.classList.add('copied');
+    btn.innerHTML =
+      '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
+      'Copied!';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.innerHTML =
+        '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>' +
+        'Copy Link';
+    }, 2000);
+  }
+
+})();
+<\/script>`;
+}
+
+// ════════════════════════════════════════════════════════════════
 //  HALAMAN VIDEO STATIS
-//  Dipakai untuk KEDUA database (db-en & db-id)
-//  isNoIndex = true  → db-id (/entertainment/) → noindex, nofollow
-//  isNoIndex = false → db-en (/video/)         → index, follow
 // ════════════════════════════════════════════════════════════════
 function buildVideoPage(v, allVideos, isNoIndex) {
 
-  // URL canonical sesuai folder
   const canonical  = videoUrl(v);
   const thumb      = `https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg`;
   const thumbOg    = `https://img.youtube.com/vi/${v.youtubeId}/maxresdefault.jpg`;
@@ -140,10 +388,8 @@ function buildVideoPage(v, allVideos, isNoIndex) {
   const uploadDate = v.uploadDate||new Date().toISOString();
   const tags       = v.tags||[];
 
-  // Related: gabungan semua video (EN+ID), acak, exclude diri sendiri
   const related = shuffle(allVideos.filter(r => r.slug !== v.slug)).slice(0, 30);
 
-  // ── SEO: hanya untuk db-en ──
   const robotsContent = isNoIndex
     ? 'noindex, nofollow, noarchive, noimageindex'
     : 'index, follow';
@@ -152,7 +398,6 @@ function buildVideoPage(v, allVideos, isNoIndex) {
     ? '<!-- noindex: canonical dihapus -->'
     : `<link rel="canonical" href="${canonical}"/>`;
 
-  // JSON-LD hanya untuk db-en
   const jsonLdTag = isNoIndex ? '' : `
   <script type="application/ld+json">${JSON.stringify({
     '@context':'https://schema.org','@type':'VideoObject',
@@ -167,7 +412,6 @@ function buildVideoPage(v, allVideos, isNoIndex) {
     ? `<script type="application/ld+json">${JSON.stringify(v.faqSchema).replace(/<\/script>/gi,'<\\/script>')}<\/script>`
     : '';
 
-  // ── Tags HTML — db-en pakai link SEO, db-id pakai span biasa ──
   const tagsHtml = tags.length
     ? `<div class="seo-tags-container">${tags.map(t =>
         isNoIndex
@@ -176,7 +420,6 @@ function buildVideoPage(v, allVideos, isNoIndex) {
       ).join('')}</div>`
     : '';
 
-  // ── Related: mobile horizontal slider ──
   const mobileRelatedHtml = related.slice(0, 8).map(r => `
     <a href="${videoUrl(r)}" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        ${r.source==='nofollow' ? 'rel="nofollow noopener"' : ''}>
@@ -186,7 +429,6 @@ function buildVideoPage(v, allVideos, isNoIndex) {
       <p>${esc(r.title)}</p>
     </a>`).join('');
 
-  // ── Related: desktop sidebar ──
   const sideRelatedHtml = related.slice(0, 20).map(r => `
     <a href="${videoUrl(r)}" class="side-slider-item"
        ${r.source==='nofollow' ? 'rel="nofollow noopener"' : ''}>
@@ -196,7 +438,6 @@ function buildVideoPage(v, allVideos, isNoIndex) {
       <p>${esc(r.title)}</p>
     </a>`).join('');
 
-  // Data slider (untuk infinite scroll JS) — semua video kecuali diri sendiri
   const sliderDataJson = JSON.stringify(
     allVideos
       .filter(r => r.slug !== v.slug)
@@ -208,7 +449,6 @@ function buildVideoPage(v, allVideos, isNoIndex) {
       }))
   );
 
-  // ── Native Banner blocks ──
   function makeBanner(uid, htmlContent) {
     return `<div class="native-banner-wrap" id="nb-${uid}">` +
       `<div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div>` +
@@ -220,11 +460,13 @@ function buildVideoPage(v, allVideos, isNoIndex) {
   const nb1Desktop = STATIC_AD.allAds && STATIC_AD.useNativeBanner1 ? makeBanner('1d', STATIC_AD.nativeBanner1HTML) : '';
   const nb2Desktop = STATIC_AD.allAds && STATIC_AD.useNativeBanner2 ? makeBanner('2d', STATIC_AD.nativeBanner2HTML) : '';
 
-  // ── Footer kategori ──
   const footerCatHtml = FOOTER_CATEGORIES.map(cat =>
     `<a href="${BASE_URL}/category/${cat.key.toLowerCase().replace(/_/g,'-')}/" class="footer-cat-link">` +
     `<span>${cat.icon}</span><span>${cat.label}</span></a>`
   ).join('');
+
+  // ── Wide Screen badge + modal (di-inject per halaman) ────────
+  const wsBlock = wideScreenScript(canonical);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -320,7 +562,7 @@ function buildVideoPage(v, allVideos, isNoIndex) {
 
     /* ── Info section ── */
     .info-section{padding:15px}
-    h1{font-size:1.2rem;font-weight:800;line-height:1.4;margin:15px 0}
+    h1{font-size:1.2rem;font-weight:800;line-height:1.4;margin:15px 0;overflow:hidden}
     .dual-action-wrap{display:flex;gap:10px;margin-bottom:18px}
     .home-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;background:var(--green);color:#000;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
     .home-split-btn:hover{background:#7ddb7d;transform:translateY(-2px)}
@@ -362,6 +604,9 @@ function buildVideoPage(v, allVideos, isNoIndex) {
   </style>
 </head>
 <body>
+
+${wsBlock}
+
 <nav class="navbar-custom">
   <div class="navbar-right-group">
     <div class="search-wrapper">
@@ -427,7 +672,6 @@ function buildVideoPage(v, allVideos, isNoIndex) {
     </div>
 
     <!-- ═══════════════════════════ KOLOM KANAN DESKTOP ══════════════════ -->
-    <!-- Urutan: NB1 → Label → Related → NB2 -->
     <div class="video-side-col">
       ${nb1Desktop ? `<div class="side-nb-block">${nb1Desktop}</div>` : ''}
       <div class="side-related-label">🎬 Related Videos</div>
@@ -439,7 +683,6 @@ function buildVideoPage(v, allVideos, isNoIndex) {
 </div>
 </main>
 
-<!-- Footer kategori — HANYA tampil di halaman db-en (index) -->
 ${isNoIndex ? `
 <footer class="footer-seo">
   <p class="footer-copy">© 2026 ${SITE_NAME}. All rights reserved.</p>
@@ -499,7 +742,6 @@ function toggleFS() {
 }
 
 // ── Search ─────────────────────────────────────────────────────
-// Data slider: semua video (EN+ID) — url disesuaikan source
 var _db = ${sliderDataJson};
 (function(){
   var inp=document.getElementById('searchInput'),
@@ -549,7 +791,6 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
     if(!next.length){_loaded=0;next=_db.slice(0,8);}
     next.forEach(function(r){
       var url=r.source==='nofollow'?'${BASE_URL}/entertainment/'+r.slug+'/':'${BASE_URL}/video/'+r.slug+'/';
-      var rel=r.source==='nofollow'?' rel="nofollow noopener"':'';
       var a=document.createElement('a');
       a.className='slider-item';a.href=url;a.setAttribute('rel',r.source==='nofollow'?'nofollow noopener':'');
       a.style.cssText='text-decoration:none;color:inherit;display:block';
@@ -591,12 +832,8 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
 // ════════════════════════════════════════════════════════════════
 function buildHomepage(dbEN, dbID) {
   const allVideos = [...dbEN, ...dbID];
-
-  // 20 kartu awal di-hardcode — campuran EN+ID diacak
   const featured       = shuffle(allVideos).slice(0, HOMEPAGE_CARDS);
   const hardcodedSlugs = JSON.stringify(featured.map(v => v.slug));
-
-  // Semua video — field minimal untuk embed
   const allVideosMini = JSON.stringify(
     allVideos.map(v => ({
       slug:     v.slug,
@@ -622,7 +859,6 @@ function buildHomepage(dbEN, dbID) {
   function cardHtml(v, idx) {
     const loading = idx < 4 ? 'eager' : 'lazy';
     const fp      = idx < 4 ? ' fetchpriority="high"' : '';
-    // URL kartu sesuai source
     const href    = v.source === 'nofollow'
       ? `/entertainment/${v.slug}/`
       : `/video/${v.slug}/`;
@@ -660,18 +896,13 @@ ${cardsHtml}
 </footer>`;
   html = html.replace('</body>', footerHtml + '\n</body>');
 
-  // ── Patch script ──────────────────────────────────────────────
-  // Override 'load' event template agar grid hardcode tidak di-reset
-  // navigateTo() di template juga perlu tahu URL /entertainment/ untuk db-id
   const patchScript = `
 // ══════════════════════════════════════════════════════════════════
-//  PATCH v10 — dijalankan SEBELUM script template
+//  PATCH v11
 // ══════════════════════════════════════════════════════════════════
 var _ALL_VIDEOS  = ${allVideosMini};
 var _SHOWN_SLUGS = new Set(${hardcodedSlugs});
 
-// Override navigateTo: db-id → /entertainment/slug/, db-en → /video/slug/
-// (menggantikan fungsi navigateTo di template yang hanya tahu /?v=slug)
 window._navigateTo_override = function(slug) {
   var video = _ALL_VIDEOS.find(function(v){ return v.slug === slug; });
   if(!video) return;
@@ -687,38 +918,27 @@ window._navigateTo_override = function(slug) {
   window.addEventListener = function(type, fn, opts) {
     if (type === 'load') {
       _origAEL('load', async function() {
-
-        // Isi database dari data embed
         videoDatabaseEN = _ALL_VIDEOS
           .filter(function(v){ return v.source !== 'nofollow'; })
           .map(function(v){ return {slug:v.slug,youtubeId:v.youtubeId,title:v.title,tags:v.tags||[],source:'seo'}; });
-
         videoDatabaseID = _ALL_VIDEOS
           .filter(function(v){ return v.source === 'nofollow'; })
           .map(function(v){ return {slug:v.slug,youtubeId:v.youtubeId,title:v.title,tags:v.tags||[],source:'nofollow'}; });
-
         videoDatabaseALL = _ALL_VIDEOS.map(function(v){
           return {slug:v.slug,youtubeId:v.youtubeId,title:v.title,tags:v.tags||[],source:v.source||'seo'};
         });
-
-        // currentData untuk loadMore — semua kecuali yang sudah hardcode
         currentData = videoDatabaseALL.filter(function(v){
           return !_SHOWN_SLUGS.has(v.slug);
         });
         currentPage = 0;
-
-        // Override navigateTo setelah template selesai load
         if (typeof navigateTo === 'function') {
           window.navigateTo = window._navigateTo_override;
         }
-
         if (typeof initSearch === 'function') initSearch();
-
         var params = new URLSearchParams(location.search);
         if (params.get('tag') || params.get('search')) {
           if (typeof router === 'function') await router();
         }
-
       }, opts);
     } else {
       _origAEL(type, fn, opts);
@@ -743,8 +963,7 @@ window._navigateTo_override = function(slug) {
 }
 
 // ════════════════════════════════════════════════════════════════
-//  HALAMAN KATEGORI STATIS — /category/{slug}/
-//  Sumber: HANYA db-en.json
+//  HALAMAN KATEGORI STATIS
 // ════════════════════════════════════════════════════════════════
 function buildCategoryPage(cat, videos) {
   const catSlug    = cat.key.toLowerCase().replace(/_/g, '-');
@@ -873,7 +1092,6 @@ function main() {
     fs.copyFileSync(INDEX_FILE, BASE_TMPL);
   }
 
-  // ── Load database ─────────────────────────────────────────────
   const rawEN = JSON.parse(fs.readFileSync(DB_FILE_EN,'utf8'));
   const dbEN  = rawEN.filter(v=>v.slug&&v.youtubeId&&v.title).map(v=>({...v, source:'seo'}));
   console.log(`📦 db-en.json: ${rawEN.length} total → ${dbEN.length} valid`);
@@ -887,10 +1105,8 @@ function main() {
     console.log('⚠️  db-id.json tidak ditemukan — skip');
   }
 
-  // Gabungan untuk related video di semua halaman
   const allVideos = [...dbEN, ...dbID];
 
-  // ── Generate /video/ — db-en ──────────────────────────────────
   console.log('\n🗑️  Hapus /video/ lama...');
   rmDir(VIDEO_DIR);
   fs.mkdirSync(VIDEO_DIR, {recursive:true});
@@ -905,7 +1121,6 @@ function main() {
   });
   console.log(`✅ ${createdEN} halaman /video/ selesai`);
 
-  // ── Generate /entertainment/ — db-id ─────────────────────────
   if (dbID.length) {
     console.log('\n🗑️  Hapus /entertainment/ lama...');
     rmDir(ENTERTAIN_DIR);
@@ -922,7 +1137,6 @@ function main() {
     console.log(`✅ ${createdID} halaman /entertainment/ selesai (noindex)`);
   }
 
-  // ── Generate /category/ — hanya db-en ────────────────────────
   console.log('\n📂 Generate halaman kategori dari db-en.json...');
   const CAT_DIR = path.join(__dirname, 'category');
   rmDir(CAT_DIR);
@@ -944,12 +1158,10 @@ function main() {
   });
   console.log(`✅ ${FOOTER_CATEGORIES.length} halaman kategori selesai`);
 
-  // ── Generate index.html (homepage) ───────────────────────────
   console.log('\n🏠 Update index.html...');
   fs.writeFileSync(INDEX_FILE, buildHomepage(dbEN, dbID), 'utf8');
   console.log('✅ index.html diperbarui');
 
-  // ── Summary ───────────────────────────────────────────────────
   console.log(`\n🎉 Selesai!`);
   console.log(`   /video/         : ${createdEN} halaman (index, follow)`);
   if (dbID.length) console.log(`   /entertainment/ : ${dbID.length} halaman (noindex, nofollow)`);
