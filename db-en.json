@@ -5095,7 +5095,7 @@
           "name": "Can I run a 35B AI model on a GPU with less than 8GB VRAM?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, but with trade-offs. A 6GB VRAM GPU (like a GTX 1060) can run Qwen 3.6 35B at 17 tokens/sec using TurboQuant compression. Below 6GB, you’ll need to reduce context length or accept slower speeds."
+            "text": "Yes, but with trade offs. A 6GB VRAM GPU (like a GTX 1060) can run Qwen 3.6 35B at 17 tokens/sec using TurboQuant compression. Below 6GB, you’ll need to reduce context length or accept slower speeds."
           }
         },
         {
