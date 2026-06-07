@@ -28,7 +28,10 @@ jobs:
         with:
           node-version: '24'
 
-      
+      - name : Clean DB — hapus video mati + dedup + hashtag
+        run: node clean-db.js
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }} 
 
 
       - name: Generate static pages (video + homepage)
