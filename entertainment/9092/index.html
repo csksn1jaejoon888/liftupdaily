@@ -259,10 +259,9 @@
   // ── Deteksi device ───────────────────────────────────────────
   var isAndroid = /Android/i.test(ua);
   var isIOS     = /iPhone|iPad|iPod/i.test(ua);
-
-  var isInApp = isFB || isX;
-  if (!isInApp) return;
-
+  
+  var isInApp = true;
+  
   // ── Inject badge ─────────────────────────────────────────────
   function injectBadge() {
     var h1 = document.querySelector('.info-section h1');
@@ -422,13 +421,6 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/entertainment/8972/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/mbjDw5XkJI0/mqdefault.jpg"
-           alt="Step into Opulence: Discover the Latest Luxury Exterior &amp; Interior Design Trends in Our Exclusive Modern House Tour 2026" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Step into Opulence: Discover the Latest Luxury Exterior &amp; Interior Design Trends in Our Exclusive Modern House Tour 2026</p>
-    </a>
     <a href="https://trend4genz.fun/entertainment/8818/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
       <img src="https://img.youtube.com/vi/u48_JpUloGY/mqdefault.jpg"
@@ -436,47 +428,54 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>Spider-Noir Official Trailer | Marvel Live-Action Series HD 2026</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8868/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9018/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/lY5V4hSLWY8/mqdefault.jpg"
-           alt="EXCLUSIVE: Bruno Mars - Risk It All Official HD Video - Watch Now!" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/3mhx7fBBKIs/mqdefault.jpg"
+           alt="Unveiling the Pinnacle of Luxury: A Breathtaking Dream Home with Jaw-Dropping Interiors" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>EXCLUSIVE: Bruno Mars - Risk It All Official HD Video - Watch Now!</p>
+      <p>Unveiling the Pinnacle of Luxury: A Breathtaking Dream Home with Jaw-Dropping Interiors</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8856/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9020/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/gtqX93qt0A8/mqdefault.jpg"
-           alt="Bayern Munich vs Real Madrid - The 7-Goal Classic at Allianz! | Champions League 2026 HD" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/qA7OCh5ewH8/mqdefault.jpg"
+           alt=" Witness Greatness: Wyatt Hendrickson's Dominant 125 kg Men's Freestyle Championship Win at 2026 Senior Pan American Championships" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Bayern Munich vs Real Madrid - The 7-Goal Classic at Allianz! | Champions League 2026 HD</p>
+      <p> Witness Greatness: Wyatt Hendrickson's Dominant 125 kg Men's Freestyle Championship Win at 2026 Senior Pan American Championships</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8909/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9004/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/11gcNa-TBRA/mqdefault.jpg"
-           alt="OFFICE ROMANCE Trailer: Jennifer Lopez &amp; Brett Goldstein's New Viral Comedy! Watch Now" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/DHTfz1d0N_k/mqdefault.jpg"
+           alt="Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>OFFICE ROMANCE Trailer: Jennifer Lopez &amp; Brett Goldstein's New Viral Comedy! Watch Now</p>
+      <p>Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8902/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9044/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/muUHETqh1So/mqdefault.jpg"
-           alt="Persijap vs Persija - MACAN KEMAYORAN TAMPIL DOMINAN! | BRI Super League 2026 HD" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/R3W3Z1VDqDA/mqdefault.jpg"
+           alt="Step Inside the Opulent Château Fonkem: A Dubai Luxury Home Tour Like No Other" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Persijap vs Persija - MACAN KEMAYORAN TAMPIL DOMINAN! | BRI Super League 2026 HD</p>
+      <p>Step Inside the Opulent Château Fonkem: A Dubai Luxury Home Tour Like No Other</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8858/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9032/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/_PslZ6Jw7Jw/mqdefault.jpg"
-           alt="Atletico Madrid vs Barcelona - Gritty Battle for Aggregate Glory! | Champions League 2026 HD" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/61N_AtXN7tA/mqdefault.jpg"
+           alt="Step Inside the $2 Million Texas Luxury Home That's Taking the Internet by Storm" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Atletico Madrid vs Barcelona - Gritty Battle for Aggregate Glory! | Champions League 2026 HD</p>
+      <p>Step Inside the $2 Million Texas Luxury Home That's Taking the Internet by Storm</p>
     </a>
-    <a href="https://trend4genz.fun/video/tesla-powerwall-3-app-guide-master-settings-solar-control/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/wxhZBcCFQwI/mqdefault.jpg"
-           alt="Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/entertainment/9086/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/zMx6BXvxR68/mqdefault.jpg"
+           alt="Step Into Opulence: Unveiling the $1.1M Luxury Home with Flawless Design" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control</p>
+      <p>Step Into Opulence: Unveiling the $1.1M Luxury Home with Flawless Design</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9009/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/pVx0_eNeyNM/mqdefault.jpg"
+           alt="Unveiling the Enchanted Abode: An Architect's Forest Retreat Revealed" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Unveiling the Enchanted Abode: An Architect's Forest Retreat Revealed</p>
     </a></div>
         </div>
       </div>
@@ -487,13 +486,6 @@
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/entertainment/8972/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/mbjDw5XkJI0/mqdefault.jpg"
-           alt="Step into Opulence: Discover the Latest Luxury Exterior &amp; Interior Design Trends in Our Exclusive Modern House Tour 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Step into Opulence: Discover the Latest Luxury Exterior &amp; Interior Design Trends in Our Exclusive Modern House Tour 2026</p>
-    </a>
     <a href="https://trend4genz.fun/entertainment/8818/" class="side-slider-item"
        rel="nofollow noopener">
       <img src="https://img.youtube.com/vi/u48_JpUloGY/mqdefault.jpg"
@@ -501,131 +493,138 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Spider-Noir Official Trailer | Marvel Live-Action Series HD 2026</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8868/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9018/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/lY5V4hSLWY8/mqdefault.jpg"
-           alt="EXCLUSIVE: Bruno Mars - Risk It All Official HD Video - Watch Now!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/3mhx7fBBKIs/mqdefault.jpg"
+           alt="Unveiling the Pinnacle of Luxury: A Breathtaking Dream Home with Jaw-Dropping Interiors" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>EXCLUSIVE: Bruno Mars - Risk It All Official HD Video - Watch Now!</p>
+      <p>Unveiling the Pinnacle of Luxury: A Breathtaking Dream Home with Jaw-Dropping Interiors</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8856/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9020/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/gtqX93qt0A8/mqdefault.jpg"
-           alt="Bayern Munich vs Real Madrid - The 7-Goal Classic at Allianz! | Champions League 2026 HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/qA7OCh5ewH8/mqdefault.jpg"
+           alt=" Witness Greatness: Wyatt Hendrickson's Dominant 125 kg Men's Freestyle Championship Win at 2026 Senior Pan American Championships" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Bayern Munich vs Real Madrid - The 7-Goal Classic at Allianz! | Champions League 2026 HD</p>
+      <p> Witness Greatness: Wyatt Hendrickson's Dominant 125 kg Men's Freestyle Championship Win at 2026 Senior Pan American Championships</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8909/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9004/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/11gcNa-TBRA/mqdefault.jpg"
-           alt="OFFICE ROMANCE Trailer: Jennifer Lopez &amp; Brett Goldstein's New Viral Comedy! Watch Now" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/DHTfz1d0N_k/mqdefault.jpg"
+           alt="Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>OFFICE ROMANCE Trailer: Jennifer Lopez &amp; Brett Goldstein's New Viral Comedy! Watch Now</p>
+      <p>Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8902/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9044/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/muUHETqh1So/mqdefault.jpg"
-           alt="Persijap vs Persija - MACAN KEMAYORAN TAMPIL DOMINAN! | BRI Super League 2026 HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/R3W3Z1VDqDA/mqdefault.jpg"
+           alt="Step Inside the Opulent Château Fonkem: A Dubai Luxury Home Tour Like No Other" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Persijap vs Persija - MACAN KEMAYORAN TAMPIL DOMINAN! | BRI Super League 2026 HD</p>
+      <p>Step Inside the Opulent Château Fonkem: A Dubai Luxury Home Tour Like No Other</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8858/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9032/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/_PslZ6Jw7Jw/mqdefault.jpg"
-           alt="Atletico Madrid vs Barcelona - Gritty Battle for Aggregate Glory! | Champions League 2026 HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/61N_AtXN7tA/mqdefault.jpg"
+           alt="Step Inside the $2 Million Texas Luxury Home That's Taking the Internet by Storm" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Atletico Madrid vs Barcelona - Gritty Battle for Aggregate Glory! | Champions League 2026 HD</p>
+      <p>Step Inside the $2 Million Texas Luxury Home That's Taking the Internet by Storm</p>
     </a>
-    <a href="https://trend4genz.fun/video/tesla-powerwall-3-app-guide-master-settings-solar-control/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/wxhZBcCFQwI/mqdefault.jpg"
-           alt="Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8952/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9086/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/uzpJsYLOZlA/mqdefault.jpg"
-           alt="Unveiling the Hidden World of Paint Colour Undertones: A Crucial Guide for a Flawless Finish" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/zMx6BXvxR68/mqdefault.jpg"
+           alt="Step Into Opulence: Unveiling the $1.1M Luxury Home with Flawless Design" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling the Hidden World of Paint Colour Undertones: A Crucial Guide for a Flawless Finish</p>
+      <p>Step Into Opulence: Unveiling the $1.1M Luxury Home with Flawless Design</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8983/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9009/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/dAlIywY1QtM/mqdefault.jpg"
-           alt="Step into Luxury: Unveiling the Breathtaking 5 Bedroom Modern Mansion Design" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/pVx0_eNeyNM/mqdefault.jpg"
+           alt="Unveiling the Enchanted Abode: An Architect's Forest Retreat Revealed" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Step into Luxury: Unveiling the Breathtaking 5 Bedroom Modern Mansion Design</p>
+      <p>Unveiling the Enchanted Abode: An Architect's Forest Retreat Revealed</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9126/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9129/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/aeO76pbWZ4k/mqdefault.jpg"
-           alt="Beneath the Surface: Unpacking the Quirky World of Alex Hassell's Fashion Choices" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/AamC4xp0Flk/mqdefault.jpg"
+           alt="Fueling Success: Unpacking the Secret to Staying Productive on the Move" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Beneath the Surface: Unpacking the Quirky World of Alex Hassell's Fashion Choices</p>
+      <p>Fueling Success: Unpacking the Secret to Staying Productive on the Move</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8984/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9147/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/az-ipK0AwuE/mqdefault.jpg"
-           alt="Unveiling the Epitome of Luxury: A Breathtaking 5 Bedroom Modern House Tour" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/6ay8bQuMxpA/mqdefault.jpg"
+           alt="Renovating the Heart of Our Home: A Dream Kitchen Tour | Behind the Scenes" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling the Epitome of Luxury: A Breathtaking 5 Bedroom Modern House Tour</p>
+      <p>Renovating the Heart of Our Home: A Dream Kitchen Tour | Behind the Scenes</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8979/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8988/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/9XaB7aCujjA/mqdefault.jpg"
-           alt="Unlock 200+ Breathtaking Modern Pergola Designs for the Ultimate Luxury Backyard, Patio, and Rooftop Oasis" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/5VKb04dA4tU/mqdefault.jpg"
+           alt="Experience the Pinnacle of Luxury: Modern 6 Bedroom House Design Unveiled" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlock 200+ Breathtaking Modern Pergola Designs for the Ultimate Luxury Backyard, Patio, and Rooftop Oasis</p>
+      <p>Experience the Pinnacle of Luxury: Modern 6 Bedroom House Design Unveiled</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8804/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9136/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/gictwC-KlTk/mqdefault.jpg"
-           alt="VALORANT Miks Agent Trailer: Exclusive Abilities &amp; Gameplay Leaks" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/v6shYUF2YRc/mqdefault.jpg"
+           alt="Enchanting 3BHK Home Interior Design in a Spacious 1200 Sqft Residence" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>VALORANT Miks Agent Trailer: Exclusive Abilities &amp; Gameplay Leaks</p>
+      <p>Enchanting 3BHK Home Interior Design in a Spacious 1200 Sqft Residence</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8910/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9052/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/dSnichjB3-o/mqdefault.jpg"
-           alt="CAPE FEAR Official Teaser: Javier Bardem vs. Amy Adams! Watch the Exclusive Trailer" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/5Zp-k6zLMt0/mqdefault.jpg"
+           alt="Step into Opulence: A Tour of a Lavish Modern Home for Sale in Accra, Ghana" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>CAPE FEAR Official Teaser: Javier Bardem vs. Amy Adams! Watch the Exclusive Trailer</p>
+      <p>Step into Opulence: A Tour of a Lavish Modern Home for Sale in Accra, Ghana</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9065/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9019/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/5JVJjfgAmO8/mqdefault.jpg"
-           alt="Step into the World of 'Hacks' Season 5: An Exclusive Set Tour with Jean Smart" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/E3Qati-HSJg/mqdefault.jpg"
+           alt="Step into Opulence: Unveiling the Most Sought-After Luxury Home Tour" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Step into the World of 'Hacks' Season 5: An Exclusive Set Tour with Jean Smart</p>
+      <p>Step into Opulence: Unveiling the Most Sought-After Luxury Home Tour</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8816/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9163/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/0fZ58S-7QP0/mqdefault.jpg"
-           alt="Scary Movie 2026 Trailer | The Wayans Brothers Return Official" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/OedmXGmjbGg/mqdefault.jpg"
+           alt="Tropical Abodes: Witness the Jaw-Dropping Transformation of an Old Bungalow to a Modern Concrete House" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Scary Movie 2026 Trailer | The Wayans Brothers Return Official</p>
+      <p>Tropical Abodes: Witness the Jaw-Dropping Transformation of an Old Bungalow to a Modern Concrete House</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8899/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9108/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/13X8HX2R-dE/mqdefault.jpg"
-           alt="Alan Walker 2026 Retro Hits: Official EDM Throwback Mix - Watch Now in HD!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/yT67sKe-hS8/mqdefault.jpg"
+           alt="Unpredictable Chaos Unfolds: Witness the Jaw-Dropping Normal Day Turned Upside Down" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Alan Walker 2026 Retro Hits: Official EDM Throwback Mix - Watch Now in HD!</p>
+      <p>Unpredictable Chaos Unfolds: Witness the Jaw-Dropping Normal Day Turned Upside Down</p>
     </a>
-    <a href="https://trend4genz.fun/video/7-ai-engineering-mistakes-killing-your-career-2026-guide/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/nvc7xi6vZWw/mqdefault.jpg"
-           alt="7 AI Engineering Mistakes Killing Your Career (2026 Guide)" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>7 AI Engineering Mistakes Killing Your Career (2026 Guide)</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8908/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9062/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/IOADonyCAcc/mqdefault.jpg"
-           alt="TOXIC Official Tamil Teaser: Yash Returns as the Monster! Watch the Viral Trailer Now" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/eSc-twK8eDI/mqdefault.jpg"
+           alt="Step Inside David &amp; Isabela Grutman's Vibrant Brazil-Inspired Miami Oasis" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>TOXIC Official Tamil Teaser: Yash Returns as the Monster! Watch the Viral Trailer Now</p>
+      <p>Step Inside David &amp; Isabela Grutman's Vibrant Brazil-Inspired Miami Oasis</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9095/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/3gZQEEJPRHw/mqdefault.jpg"
+           alt="Step Inside the Opulence: A $2.75M Luxury Home Tour Like No Other" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step Inside the Opulence: A $2.75M Luxury Home Tour Like No Other</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9006/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/KxeLBH8pg2c/mqdefault.jpg"
+           alt="Designing a Home Sanctuary: Expert Insights from Ome Dezin's Masterclass" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Designing a Home Sanctuary: Expert Insights from Ome Dezin's Masterclass</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9125/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/xHaJz6UUY4s/mqdefault.jpg"
+           alt="Georgia Medley Unveils Secrets to Styling Naomi Campbell &amp; Thriving in the Luxury Fashion Industry" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Georgia Medley Unveils Secrets to Styling Naomi Campbell &amp; Thriving in the Luxury Fashion Industry</p>
     </a></div>
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
     </div>

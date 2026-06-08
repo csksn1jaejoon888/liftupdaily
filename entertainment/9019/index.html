@@ -259,10 +259,9 @@
   // ── Deteksi device ───────────────────────────────────────────
   var isAndroid = /Android/i.test(ua);
   var isIOS     = /iPhone|iPad|iPod/i.test(ua);
-
-  var isInApp = isFB || isX;
-  if (!isInApp) return;
-
+  
+  var isInApp = true;
+  
   // ── Inject badge ─────────────────────────────────────────────
   function injectBadge() {
     var h1 = document.querySelector('.info-section h1');
@@ -422,6 +421,41 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
+    <a href="https://trend4genz.fun/entertainment/9018/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/3mhx7fBBKIs/mqdefault.jpg"
+           alt="Unveiling the Pinnacle of Luxury: A Breathtaking Dream Home with Jaw-Dropping Interiors" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Unveiling the Pinnacle of Luxury: A Breathtaking Dream Home with Jaw-Dropping Interiors</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9150/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/G9C86S4A9Qo/mqdefault.jpg"
+           alt="Unleash the Power of Affordable Style with these HOMEGOODS Designer Dupes!" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Unleash the Power of Affordable Style with these HOMEGOODS Designer Dupes!</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9049/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/xxhYFC5Eyoc/mqdefault.jpg"
+           alt="Step into Opulence: Unveiling the Breathtaking 'Inside a BRAND NEW DREAM HOME in Seasons Lifestyle Estate' Luxury Home Tour" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Step into Opulence: Unveiling the Breathtaking 'Inside a BRAND NEW DREAM HOME in Seasons Lifestyle Estate' Luxury Home Tour</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9002/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/EuuymmWPlFo/mqdefault.jpg"
+           alt="Unveiling the Secret World of a Los Angeles Dream Home: A Mesmerizing House Tour" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Unveiling the Secret World of a Los Angeles Dream Home: A Mesmerizing House Tour</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9005/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/-jItj2rAlvk/mqdefault.jpg"
+           alt="Unveiling the Hidden Paradise: An Architect's Dream Home Inside a Secret Garden" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Unveiling the Hidden Paradise: An Architect's Dream Home Inside a Secret Garden</p>
+    </a>
     <a href="https://trend4genz.fun/entertainment/8954/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
       <img src="https://img.youtube.com/vi/FW5EDJGa-C0/mqdefault.jpg"
@@ -429,54 +463,19 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>Bathroom Design Mistakes to Avoid: Expert Tips from a Stunning Renovation Reveal</p>
     </a>
-    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
-           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
-    </a>
-    <a href="https://trend4genz.fun/video/best-ev-chargers-uk-2026-which-one-actually-wins/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/Il9b9JfYjk8/mqdefault.jpg"
-           alt="Best EV Chargers UK 2026: Which One Actually Wins?" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Best EV Chargers UK 2026: Which One Actually Wins?</p>
-    </a>
-    <a href="https://trend4genz.fun/video/why-spacex-could-dominate-the-global-economy-by-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/PJ8HLcWWkk0/mqdefault.jpg"
-           alt="Why SpaceX Could Dominate the Global Economy by 2026" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Why SpaceX Could Dominate the Global Economy by 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/run-llms-locally-with-full-tool-use-ollama-mcp-unlocks-ai-agents/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/GAyNvq6Ayps/mqdefault.jpg"
-           alt="Run LLMs Locally with Full Tool Use: Ollama + MCP Unlocks AI Agents" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Run LLMs Locally with Full Tool Use: Ollama + MCP Unlocks AI Agents</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8845/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8990/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/3-wSEehDBVk/mqdefault.jpg"
-           alt="Ramayana Official Teaser Trailer | Watch Ranbir Kapoor &amp; Yash in HD Epic" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/NyOy-Z6FUQs/mqdefault.jpg"
+           alt="Revamp Your Home's Exterior: Top 20 Stunning House Wall Paint Colors for 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Ramayana Official Teaser Trailer | Watch Ranbir Kapoor &amp; Yash in HD Epic</p>
+      <p>Revamp Your Home's Exterior: Top 20 Stunning House Wall Paint Colors for 2026</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8874/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9028/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/ko70cExuzZM/mqdefault.jpg"
-           alt="WATCH NOW: Taylor Swift - The Fate of Ophelia Official HD Music Video - Viral Sensation!" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/YVaBTZrpJxc/mqdefault.jpg"
+           alt="Unleashing the Fury: Kannon Webster's Journey to Silver in the 74 kg Men's Freestyle at the 2026 Senior Pan American Championships" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>WATCH NOW: Taylor Swift - The Fate of Ophelia Official HD Music Video - Viral Sensation!</p>
-    </a>
-    <a href="https://trend4genz.fun/video/ai-diffusion-report-how-the-world-is-really-using-ai-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/u8bKR3RHAYA/mqdefault.jpg"
-           alt="AI Diffusion Report: How the World Is Really Using AI in 2026" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>AI Diffusion Report: How the World Is Really Using AI in 2026</p>
+      <p>Unleashing the Fury: Kannon Webster's Journey to Silver in the 74 kg Men's Freestyle at the 2026 Senior Pan American Championships</p>
     </a></div>
         </div>
       </div>
@@ -487,6 +486,41 @@
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">
+    <a href="https://trend4genz.fun/entertainment/9018/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/3mhx7fBBKIs/mqdefault.jpg"
+           alt="Unveiling the Pinnacle of Luxury: A Breathtaking Dream Home with Jaw-Dropping Interiors" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unveiling the Pinnacle of Luxury: A Breathtaking Dream Home with Jaw-Dropping Interiors</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9150/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/G9C86S4A9Qo/mqdefault.jpg"
+           alt="Unleash the Power of Affordable Style with these HOMEGOODS Designer Dupes!" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unleash the Power of Affordable Style with these HOMEGOODS Designer Dupes!</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9049/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/xxhYFC5Eyoc/mqdefault.jpg"
+           alt="Step into Opulence: Unveiling the Breathtaking 'Inside a BRAND NEW DREAM HOME in Seasons Lifestyle Estate' Luxury Home Tour" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step into Opulence: Unveiling the Breathtaking 'Inside a BRAND NEW DREAM HOME in Seasons Lifestyle Estate' Luxury Home Tour</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9002/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/EuuymmWPlFo/mqdefault.jpg"
+           alt="Unveiling the Secret World of a Los Angeles Dream Home: A Mesmerizing House Tour" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unveiling the Secret World of a Los Angeles Dream Home: A Mesmerizing House Tour</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9005/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/-jItj2rAlvk/mqdefault.jpg"
+           alt="Unveiling the Hidden Paradise: An Architect's Dream Home Inside a Secret Garden" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unveiling the Hidden Paradise: An Architect's Dream Home Inside a Secret Garden</p>
+    </a>
     <a href="https://trend4genz.fun/entertainment/8954/" class="side-slider-item"
        rel="nofollow noopener">
       <img src="https://img.youtube.com/vi/FW5EDJGa-C0/mqdefault.jpg"
@@ -494,61 +528,61 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Bathroom Design Mistakes to Avoid: Expert Tips from a Stunning Renovation Reveal</p>
     </a>
-    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
-           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
-    </a>
-    <a href="https://trend4genz.fun/video/best-ev-chargers-uk-2026-which-one-actually-wins/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/Il9b9JfYjk8/mqdefault.jpg"
-           alt="Best EV Chargers UK 2026: Which One Actually Wins?" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Best EV Chargers UK 2026: Which One Actually Wins?</p>
-    </a>
-    <a href="https://trend4genz.fun/video/why-spacex-could-dominate-the-global-economy-by-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/PJ8HLcWWkk0/mqdefault.jpg"
-           alt="Why SpaceX Could Dominate the Global Economy by 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Why SpaceX Could Dominate the Global Economy by 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/run-llms-locally-with-full-tool-use-ollama-mcp-unlocks-ai-agents/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/GAyNvq6Ayps/mqdefault.jpg"
-           alt="Run LLMs Locally with Full Tool Use: Ollama + MCP Unlocks AI Agents" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Run LLMs Locally with Full Tool Use: Ollama + MCP Unlocks AI Agents</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8845/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8990/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/3-wSEehDBVk/mqdefault.jpg"
-           alt="Ramayana Official Teaser Trailer | Watch Ranbir Kapoor &amp; Yash in HD Epic" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/NyOy-Z6FUQs/mqdefault.jpg"
+           alt="Revamp Your Home's Exterior: Top 20 Stunning House Wall Paint Colors for 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Ramayana Official Teaser Trailer | Watch Ranbir Kapoor &amp; Yash in HD Epic</p>
+      <p>Revamp Your Home's Exterior: Top 20 Stunning House Wall Paint Colors for 2026</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8874/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9028/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/ko70cExuzZM/mqdefault.jpg"
-           alt="WATCH NOW: Taylor Swift - The Fate of Ophelia Official HD Music Video - Viral Sensation!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/YVaBTZrpJxc/mqdefault.jpg"
+           alt="Unleashing the Fury: Kannon Webster's Journey to Silver in the 74 kg Men's Freestyle at the 2026 Senior Pan American Championships" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>WATCH NOW: Taylor Swift - The Fate of Ophelia Official HD Music Video - Viral Sensation!</p>
+      <p>Unleashing the Fury: Kannon Webster's Journey to Silver in the 74 kg Men's Freestyle at the 2026 Senior Pan American Championships</p>
     </a>
-    <a href="https://trend4genz.fun/video/ai-diffusion-report-how-the-world-is-really-using-ai-in-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/u8bKR3RHAYA/mqdefault.jpg"
-           alt="AI Diffusion Report: How the World Is Really Using AI in 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/entertainment/8958/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/UDTJqh-AQCw/mqdefault.jpg"
+           alt="Unlock the Secret to Choosing the Perfect Colour Palette for Your Home" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Diffusion Report: How the World Is Really Using AI in 2026</p>
+      <p>Unlock the Secret to Choosing the Perfect Colour Palette for Your Home</p>
     </a>
-    <a href="https://trend4genz.fun/video/claude-4-8-unveiled-honesty-breakthrough-or-just-another-incremental-upgrade/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/7TG78vIYI-Q/mqdefault.jpg"
-           alt="Claude 4.8 Unveiled: Honesty Breakthrough or Just Another Incremental Upgrade?" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/entertainment/9025/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/ufnumIqLL1k/mqdefault.jpg"
+           alt="Witness the Thrilling Victory: Trent Hidlay Claims 92 kg Men's Freestyle Championship at 2026 Senior Pan American Championships" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude 4.8 Unveiled: Honesty Breakthrough or Just Another Incremental Upgrade?</p>
+      <p>Witness the Thrilling Victory: Trent Hidlay Claims 92 kg Men's Freestyle Championship at 2026 Senior Pan American Championships</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9015/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/UgWq4WVwqvU/mqdefault.jpg"
+           alt="Step into Opulence: Unveiling the World's Most Stunning Luxury Home Interiors" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step into Opulence: Unveiling the World's Most Stunning Luxury Home Interiors</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8966/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/At-_B9rFYSw/mqdefault.jpg"
+           alt="Unlock the Secrets to a Stunning Home: Break Free from These Common Design Mistakes" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unlock the Secrets to a Stunning Home: Break Free from These Common Design Mistakes</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8952/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/uzpJsYLOZlA/mqdefault.jpg"
+           alt="Unveiling the Hidden World of Paint Colour Undertones: A Crucial Guide for a Flawless Finish" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unveiling the Hidden World of Paint Colour Undertones: A Crucial Guide for a Flawless Finish</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9044/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/R3W3Z1VDqDA/mqdefault.jpg"
+           alt="Step Inside the Opulent Château Fonkem: A Dubai Luxury Home Tour Like No Other" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step Inside the Opulent Château Fonkem: A Dubai Luxury Home Tour Like No Other</p>
     </a>
     <a href="https://trend4genz.fun/entertainment/8842/" class="side-slider-item"
        rel="nofollow noopener">
@@ -557,75 +591,40 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Lanterns Official Teaser HBO Max | DC Universe Green Lantern Reveal HD</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agentic-os-the-ai-workspace-revolution-you-missed/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/zqUdtL5l9yM/mqdefault.jpg"
-           alt="Hermes Agentic OS: The AI Workspace Revolution You Missed" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agentic OS: The AI Workspace Revolution You Missed</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8899/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8983/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/13X8HX2R-dE/mqdefault.jpg"
-           alt="Alan Walker 2026 Retro Hits: Official EDM Throwback Mix - Watch Now in HD!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/dAlIywY1QtM/mqdefault.jpg"
+           alt="Step into Luxury: Unveiling the Breathtaking 5 Bedroom Modern Mansion Design" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Alan Walker 2026 Retro Hits: Official EDM Throwback Mix - Watch Now in HD!</p>
+      <p>Step into Luxury: Unveiling the Breathtaking 5 Bedroom Modern Mansion Design</p>
     </a>
-    <a href="https://trend4genz.fun/video/china-s-ev-revolution-5-cars-redefining-automotive-tech-by-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/wBKzg4-dYVM/mqdefault.jpg"
-           alt="China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-chatgpt-5-5-the-ai-employee-that-learns-while-you-sleep/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/B2wHaRDf3Qo/mqdefault.jpg"
-           alt="Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent + ChatGPT 5.5: The AI Employee That Learns While You Sleep</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8914/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8994/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/wFf3ur5XKgs/mqdefault.jpg"
-           alt="FC Bayern vs PSG - Bloody Drama at Allianz Arena: Will the German Giants Fall? | UEFA Champions League 2026 HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/tCjRgVy8Ew8/mqdefault.jpg"
+           alt="Unlock the Ultimate Exterior House Color Trends of 2027: Expert Insights for a Stunning Modern Home" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>FC Bayern vs PSG - Bloody Drama at Allianz Arena: Will the German Giants Fall? | UEFA Champions League 2026 HD</p>
+      <p>Unlock the Ultimate Exterior House Color Trends of 2027: Expert Insights for a Stunning Modern Home</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8912/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8981/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/MA5NqUMEdbI/mqdefault.jpg"
-           alt="TEENAGE SEX AND DEATH AT CAMP MIASMA: The Craziest Horror Teaser! Watch Now (Viral)" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/unsym1eCmFw/mqdefault.jpg"
+           alt="Step into the Future: Unveiling the Ultimate 6 Bedroom Luxury Modern House Design of 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>TEENAGE SEX AND DEATH AT CAMP MIASMA: The Craziest Horror Teaser! Watch Now (Viral)</p>
+      <p>Step into the Future: Unveiling the Ultimate 6 Bedroom Luxury Modern House Design of 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/master-cursor-coding-agents-in-2026-step-by-step-guide/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/iam-for-ai-agents-4-steps-to-secure-future-proof-systems/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/kF2WQgk1LtY/mqdefault.jpg"
-           alt="Master Cursor Coding Agents in 2026: Step-by-Step Guide" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/e8ela6puxig/mqdefault.jpg"
+           alt="IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Master Cursor Coding Agents in 2026: Step-by-Step Guide</p>
+      <p>IAM for AI Agents: 4 Steps to Secure &amp; Future-Proof Systems</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8906/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8947/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/Bgy00eaFyhE/mqdefault.jpg"
-           alt="RAJA SHIVAJI Official Trailer: The Rise of a Legend! Watch Now in HD (Exclusive)" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/iG-ky8gHe34/mqdefault.jpg"
+           alt="Revolutionizing Home Design: Exploring Diverse Roof Styles and Colors" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAJA SHIVAJI Official Trailer: The Rise of a Legend! Watch Now in HD (Exclusive)</p>
-    </a>
-    <a href="https://trend4genz.fun/video/boost-ai-agent-memory-with-obsidian-step-by-step-guide/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/6V-b073qhPA/mqdefault.jpg"
-           alt="Boost AI Agent Memory with Obsidian: Step-by-Step Guide" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Boost AI Agent Memory with Obsidian: Step-by-Step Guide</p>
-    </a>
-    <a href="https://trend4genz.fun/video/selling-5k-ai-operating-systems-to-smbs-the-full-blueprint/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/yd9tr0xqg-Y/mqdefault.jpg"
-           alt="Selling $5K AI Operating Systems to SMBs: The Full Blueprint" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Selling $5K AI Operating Systems to SMBs: The Full Blueprint</p>
+      <p>Revolutionizing Home Design: Exploring Diverse Roof Styles and Colors</p>
     </a></div>
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
     </div>
