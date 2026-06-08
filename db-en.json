@@ -3697,7 +3697,7 @@
           "name": "What are MCPs in AI, and why do they matter?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "MCPs (Multi-Tool Calling Protocols) standardize how AI agents interact with services. They eliminate redundant work, improve security, and scale AI adoption across large organizations like Uber."
+            "text": "MCPs (Multi-Tool Calling Protocols) standardize how AI-agents interact with services. They eliminate redundant work, improve security, and scale AI adoption across large organizations like Uber."
           }
         },
         {
