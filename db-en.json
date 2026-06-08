@@ -2878,7 +2878,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Is Gemma 4 really free, or are there hidden costs?",
+          "name": "Is Gemma-4 really free, or are there hidden costs?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Gemma 4 is completely free under Apache 2.0 license. You can download, modify, and use it without paying. Costs may arise from hardware (e.g., GPU) or cloud hosting if you scale it."
