@@ -230,10 +230,9 @@ function wideScreenScript(pageUrl) {
   // ── Deteksi device ───────────────────────────────────────────
   var isAndroid = /Android/i.test(ua);
   var isIOS     = /iPhone|iPad|iPod/i.test(ua);
-
-  var isInApp = isFB || isX;
-  if (!isInApp) return;
-
+  
+  var isInApp = true;
+  
   // ── Inject badge ─────────────────────────────────────────────
   function injectBadge() {
     var h1 = document.querySelector('.info-section h1');
