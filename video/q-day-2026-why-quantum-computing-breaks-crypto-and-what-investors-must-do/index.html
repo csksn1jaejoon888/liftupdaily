@@ -293,35 +293,31 @@
       var btnS       = document.createElement('button');
       btnS.className = 'ws-browser-btn';
       btnS.innerHTML =
-        '<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">' +
-        '<circle cx="20" cy="20" r="20" fill="#006CFF"/>' +
-        '<circle cx="20" cy="20" r="18" fill="url(#sg)" stroke="#1a8cff" stroke-width="1"/>' +
-        '<defs><radialGradient id="sg" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#4FB3FF"/><stop offset="100%" stop-color="#0051C3"/></radialGradient></defs>' +
-        '<polygon points="20,6 22,18 20,20 18,18" fill="#fff"/>' +
-        '<polygon points="34,20 22,22 20,20 22,18" fill="#fff" opacity=".5"/>' +
-        '<polygon points="20,34 18,22 20,20 22,22" fill="#fff" opacity=".5"/>' +
-        '<polygon points="6,20 18,18 20,20 18,22" fill="#fff"/>' +
-        '<circle cx="20" cy="20" r="2.5" fill="#fff"/>' +
-        '</svg>' +
+        '<img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" ' +
+        'width="44" height="44" alt="Safari" ' +
+        'style="border-radius:10px;object-fit:contain;" />' +
         'Safari';
       btnS.onclick = wsOpenSafari;
       btnsWrap.appendChild(btnS);
     }
 
     if (!isAndroid && !isIOS) {
+      var btnC2       = document.createElement('button');
+      btnC2.className = 'ws-browser-btn';
+      btnC2.innerHTML =
+        '<img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" ' +
+        'width="44" height="44" alt="Chrome" ' +
+        'style="border-radius:10px;object-fit:contain;" />' +
+        'Chrome';
+      btnC2.onclick = wsOpenChrome;
+      btnsWrap.appendChild(btnC2);
+
       var btnS2       = document.createElement('button');
       btnS2.className = 'ws-browser-btn';
       btnS2.innerHTML =
-        '<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">' +
-        '<defs><radialGradient id="sg2" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#4FB3FF"/><stop offset="100%" stop-color="#0051C3"/></radialGradient></defs>' +
-        '<circle cx="20" cy="20" r="20" fill="#006CFF"/>' +
-        '<circle cx="20" cy="20" r="18" fill="url(#sg2)"/>' +
-        '<polygon points="20,6 22,18 20,20 18,18" fill="#fff"/>' +
-        '<polygon points="34,20 22,22 20,20 22,18" fill="#fff" opacity=".5"/>' +
-        '<polygon points="20,34 18,22 20,20 22,22" fill="#fff" opacity=".5"/>' +
-        '<polygon points="6,20 18,18 20,20 18,22" fill="#fff"/>' +
-        '<circle cx="20" cy="20" r="2.5" fill="#fff"/>' +
-        '</svg>' +
+        '<img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" ' +
+        'width="44" height="44" alt="Safari" ' +
+        'style="border-radius:10px;object-fit:contain;" />' +
         'Safari';
       btnS2.onclick = wsOpenSafari;
       btnsWrap.appendChild(btnS2);
@@ -465,61 +461,61 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/entertainment/9145/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/JaIfp1Y5rx0/mqdefault.jpg"
-           alt="Elevate Your Home Decor with Credent's 1600 sqft Interior Makeover 🏠💨" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Elevate Your Home Decor with Credent's 1600 sqft Interior Makeover 🏠💨</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8805/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/wvOtAnn4YIQ/mqdefault.jpg"
-           alt="Trending Hits 2026: Best Songs on TikTok and Spotify Viral" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Trending Hits 2026: Best Songs on TikTok and Spotify Viral</p>
-    </a>
-    <a href="https://trend4genz.fun/video/claude-opus-4-8-the-ai-leap-that-just-redefined-benchmarks/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        >
-      <img src="https://img.youtube.com/vi/j-oiGiIEcws/mqdefault.jpg"
-           alt="Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/RosLeHGBLoY/mqdefault.jpg"
+           alt="RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks</p>
+      <p>RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-a-proven-2026-roadmap/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
-           alt="How to Learn Python Fast: A Proven 2026 Roadmap" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How to Learn Python Fast: A Proven 2026 Roadmap</p>
-    </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
-           alt="Hermes Agent on DGX Spark: Local AI That Feels Like Magic" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8826/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9068/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/3zOLzsbOleM/mqdefault.jpg"
-           alt="Michael | Official Trailer | The King of Pop Returns 2026" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/2Zg4g3LZdWY/mqdefault.jpg"
+           alt="Emma Chamberlain's Home Makeover: A Stunning Transformation" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Michael | Official Trailer | The King of Pop Returns 2026</p>
+      <p>Emma Chamberlain's Home Makeover: A Stunning Transformation</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8855/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8807/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/wIRtAyOxp5E/mqdefault.jpg"
-           alt="Osasuna vs Barcelona - Late Drama in the Spanish Capital! | LaLiga 2026 HD" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/b24oG7qCwp4/mqdefault.jpg"
+           alt="Mortal Kombat II Official Trailer II: Watch the Brutality &amp; Fatalities 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Osasuna vs Barcelona - Late Drama in the Spanish Capital! | LaLiga 2026 HD</p>
+      <p>Mortal Kombat II Official Trailer II: Watch the Brutality &amp; Fatalities 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/qwen-3-6-27b-outperforms-35b-in-speed-coding-tasks-here-s-why/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/7ejQSGaiyQE/mqdefault.jpg"
-           alt="Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/entertainment/8923/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/sq2bL_cFeG4/mqdefault.jpg"
+           alt="VIRAL! Top 9 Most Anticipated Movies of 2026 (Part 1) Watch Now Official Trailers!" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why</p>
+      <p>VIRAL! Top 9 Most Anticipated Movies of 2026 (Part 1) Watch Now Official Trailers!</p>
+    </a>
+    <a href="https://trend4genz.fun/video/anderson-ev-chargers-a3-vs-a2-vs-quartz-vs-vision-which-wins/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       >
+      <img src="https://img.youtube.com/vi/_lB9Bm5qUfI/mqdefault.jpg"
+           alt="Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8859/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/vOJsHTCfls8/mqdefault.jpg"
+           alt="Barcelona vs Atletico Madrid - The Tactical Masterclass in Catalonia! | Champions League 2026 HD" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Barcelona vs Atletico Madrid - The Tactical Masterclass in Catalonia! | Champions League 2026 HD</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8917/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/emRNl1un2TE/mqdefault.jpg"
+           alt="SC Braga - Portuguese Masterclass Sinks Freiburg in Thriller! | Europa League 2026 HD" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>SC Braga - Portuguese Masterclass Sinks Freiburg in Thriller! | Europa League 2026 HD</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8895/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/ukFgchO1ZQo/mqdefault.jpg"
+           alt="EXCLUSIVE: Dragon Ball Z Buu God of Destruction - Official Live-Action Movie Watch Now!" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>EXCLUSIVE: Dragon Ball Z Buu God of Destruction - Official Live-Action Movie Watch Now!</p>
     </a></div>
         </div>
       </div>
@@ -530,124 +526,61 @@
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/entertainment/9145/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/JaIfp1Y5rx0/mqdefault.jpg"
-           alt="Elevate Your Home Decor with Credent's 1600 sqft Interior Makeover 🏠💨" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Elevate Your Home Decor with Credent's 1600 sqft Interior Makeover 🏠💨</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8805/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/wvOtAnn4YIQ/mqdefault.jpg"
-           alt="Trending Hits 2026: Best Songs on TikTok and Spotify Viral" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Trending Hits 2026: Best Songs on TikTok and Spotify Viral</p>
-    </a>
-    <a href="https://trend4genz.fun/video/claude-opus-4-8-the-ai-leap-that-just-redefined-benchmarks/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/j-oiGiIEcws/mqdefault.jpg"
-           alt="Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/RosLeHGBLoY/mqdefault.jpg"
+           alt="RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude Opus 4.8: The AI Leap That Just Redefined Benchmarks</p>
+      <p>RAG Unlocked: How AI Finally Learns Your Data Without Hallucinating</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-a-proven-2026-roadmap/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9068/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/2Zg4g3LZdWY/mqdefault.jpg"
+           alt="Emma Chamberlain's Home Makeover: A Stunning Transformation" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Emma Chamberlain's Home Makeover: A Stunning Transformation</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8807/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/b24oG7qCwp4/mqdefault.jpg"
+           alt="Mortal Kombat II Official Trailer II: Watch the Brutality &amp; Fatalities 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Mortal Kombat II Official Trailer II: Watch the Brutality &amp; Fatalities 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8923/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/sq2bL_cFeG4/mqdefault.jpg"
+           alt="VIRAL! Top 9 Most Anticipated Movies of 2026 (Part 1) Watch Now Official Trailers!" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>VIRAL! Top 9 Most Anticipated Movies of 2026 (Part 1) Watch Now Official Trailers!</p>
+    </a>
+    <a href="https://trend4genz.fun/video/anderson-ev-chargers-a3-vs-a2-vs-quartz-vs-vision-which-wins/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
-           alt="How to Learn Python Fast: A Proven 2026 Roadmap" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/_lB9Bm5qUfI/mqdefault.jpg"
+           alt="Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How to Learn Python Fast: A Proven 2026 Roadmap</p>
+      <p>Anderson EV Chargers: A3 vs A2 vs Quartz vs Vision—Which Wins?</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
-           alt="Hermes Agent on DGX Spark: Local AI That Feels Like Magic" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8826/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8859/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/3zOLzsbOleM/mqdefault.jpg"
-           alt="Michael | Official Trailer | The King of Pop Returns 2026" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/vOJsHTCfls8/mqdefault.jpg"
+           alt="Barcelona vs Atletico Madrid - The Tactical Masterclass in Catalonia! | Champions League 2026 HD" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Michael | Official Trailer | The King of Pop Returns 2026</p>
+      <p>Barcelona vs Atletico Madrid - The Tactical Masterclass in Catalonia! | Champions League 2026 HD</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8855/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8917/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/wIRtAyOxp5E/mqdefault.jpg"
-           alt="Osasuna vs Barcelona - Late Drama in the Spanish Capital! | LaLiga 2026 HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/emRNl1un2TE/mqdefault.jpg"
+           alt="SC Braga - Portuguese Masterclass Sinks Freiburg in Thriller! | Europa League 2026 HD" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Osasuna vs Barcelona - Late Drama in the Spanish Capital! | LaLiga 2026 HD</p>
+      <p>SC Braga - Portuguese Masterclass Sinks Freiburg in Thriller! | Europa League 2026 HD</p>
     </a>
-    <a href="https://trend4genz.fun/video/qwen-3-6-27b-outperforms-35b-in-speed-coding-tasks-here-s-why/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/7ejQSGaiyQE/mqdefault.jpg"
-           alt="Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Qwen 3.6 27B Outperforms 35B in Speed &amp; Coding Tasks—Here’s Why</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8871/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8895/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/sNY_2TEmzho/mqdefault.jpg"
-           alt="EXCLUSIVE: Kendrick Lamar &amp; SZA - luther Official HD Music Video - Watch Now!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/ukFgchO1ZQo/mqdefault.jpg"
+           alt="EXCLUSIVE: Dragon Ball Z Buu God of Destruction - Official Live-Action Movie Watch Now!" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>EXCLUSIVE: Kendrick Lamar &amp; SZA - luther Official HD Music Video - Watch Now!</p>
-    </a>
-    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
-           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9129/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/AamC4xp0Flk/mqdefault.jpg"
-           alt="Fueling Success: Unpacking the Secret to Staying Productive on the Move" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Fueling Success: Unpacking the Secret to Staying Productive on the Move</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8834/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/VL1wuCh8IV4/mqdefault.jpg"
-           alt="Legends | Official Trailer | Netflix Original 2026 True Story" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Legends | Official Trailer | Netflix Original 2026 True Story</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9164/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/qKe33WS7fj4/mqdefault.jpg"
-           alt="Luxury Design on a Budget: Are These Over-the-Top Items Worth Every Penny?" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Luxury Design on a Budget: Are These Over-the-Top Items Worth Every Penny?</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9124/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/iYRzvoVD8IA/mqdefault.jpg"
-           alt="Unpacking Polly &amp; Rabea's SS26 Style Edit: The Ultimate Guide to Summer Fashion Trends" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unpacking Polly &amp; Rabea's SS26 Style Edit: The Ultimate Guide to Summer Fashion Trends</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9133/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/pfU-1XMxrxI/mqdefault.jpg"
-           alt="Transforming a Compact Space: Expert Insights on Small Flat Interior Design" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Transforming a Compact Space: Expert Insights on Small Flat Interior Design</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8872/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/wbx-fpTkk7A/mqdefault.jpg"
-           alt="VIRAL! Night In Paradise – WALKMN (2026 Extended Eurodance Chill House Remix) - Watch Now!" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>VIRAL! Night In Paradise – WALKMN (2026 Extended Eurodance Chill House Remix) - Watch Now!</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9167/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/3zt_YRRftn8/mqdefault.jpg"
-           alt="The Kitchen Design Trends I'm Loving - And Some I'm Loving to Hate for 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The Kitchen Design Trends I'm Loving - And Some I'm Loving to Hate for 2026</p>
+      <p>EXCLUSIVE: Dragon Ball Z Buu God of Destruction - Official Live-Action Movie Watch Now!</p>
     </a>
     <a href="https://trend4genz.fun/video/rag-explained-why-ai-s-memory-upgrade-changes-everything-in-2026/" class="side-slider-item"
        >
@@ -656,19 +589,82 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>RAG Explained: Why AI’s Memory Upgrade Changes Everything in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9122/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/J6JQbpP-xWk/mqdefault.jpg"
-           alt="Unlocking the Secrets Behind Miranda Priestly's Wardrobe: 'The Devil Wears Prada 2' Style Takeaways" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/3-hidden-claude-features-that-turn-ai-into-your-workflow-engine/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/tkpdPvx65A0/mqdefault.jpg"
+           alt="3 Hidden Claude Features That Turn AI Into Your Workflow Engine" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlocking the Secrets Behind Miranda Priestly's Wardrobe: 'The Devil Wears Prada 2' Style Takeaways</p>
+      <p>3 Hidden Claude Features That Turn AI Into Your Workflow Engine</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9168/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/n2Ou6jVALG4/mqdefault.jpg"
-           alt="Unveiling the Ultimate Amazon Home Essentials from a Seasoned Owner" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/video/hermes-agent-vs-openclaw-why-reliability-just-changed-ai-workflows/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/Bg-IPiql7x8/mqdefault.jpg"
+           alt="Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling the Ultimate Amazon Home Essentials from a Seasoned Owner</p>
+      <p>Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows</p>
+    </a>
+    <a href="https://trend4genz.fun/video/fix-notebooklm-infographic-errors-in-2-minutes-2026-guide/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/psAQ7GYLmKw/mqdefault.jpg"
+           alt="Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Fix NotebookLM Infographic Errors in 2 Minutes (2026 Guide)</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8814/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/pyZI5oM6hWk/mqdefault.jpg"
+           alt="The Sheep Detectives Trailer | Hugh Jackman Mystery Comedy 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>The Sheep Detectives Trailer | Hugh Jackman Mystery Comedy 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8833/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/fS35YSjopjE/mqdefault.jpg"
+           alt="The Hunger Games: Sunrise on the Reaping | Official Trailer 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>The Hunger Games: Sunrise on the Reaping | Official Trailer 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/video/build-ai-agent-harnesses-for-large-codebases-a-step-by-step-guide/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/efRIrLXoOVA/mqdefault.jpg"
+           alt="Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Build AI Agent Harnesses for Large Codebases: A Step-by-Step Guide</p>
+    </a>
+    <a href="https://trend4genz.fun/video/autonomous-ai-coders-the-next-productivity-wave-or-overhyped-loop/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/rIs802-bXDY/mqdefault.jpg"
+           alt="Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Autonomous AI Coders: The Next Productivity Wave or Overhyped Loop?</p>
+    </a>
+    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
+           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8913/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/aHw4PuLCUIc/mqdefault.jpg"
+           alt="PAW PATROL: THE DINO MOVIE Trailer: Huge Dino Rescues &amp; New Music! Watch Now (Official)" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>PAW PATROL: THE DINO MOVIE Trailer: Huge Dino Rescues &amp; New Music! Watch Now (Official)</p>
+    </a>
+    <a href="https://trend4genz.fun/video/hermes-agentic-os-the-ai-workspace-revolution-you-missed/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/zqUdtL5l9yM/mqdefault.jpg"
+           alt="Hermes Agentic OS: The AI Workspace Revolution You Missed" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Hermes Agentic OS: The AI Workspace Revolution You Missed</p>
+    </a>
+    <a href="https://trend4genz.fun/video/build-an-autonomous-openclaw-agent-full-setup-guide-2026/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/oOCN30ulVyo/mqdefault.jpg"
+           alt="Build an Autonomous OpenClaw Agent: Full Setup Guide 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Build an Autonomous OpenClaw Agent: Full Setup Guide 2026</p>
     </a></div>
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
     </div>
