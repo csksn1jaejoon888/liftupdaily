@@ -592,7 +592,7 @@ ${wsBlock}
           </button>
           <button class="offer-split-btn" onclick="handleMoreInfo()">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            More Info 🔥
+            More Info
           </button>
         </div>
 
