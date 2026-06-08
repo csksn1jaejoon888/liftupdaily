@@ -236,6 +236,7 @@ function wideScreenScript(pageUrl) {
   // ── Inject badge ─────────────────────────────────────────────
   function injectBadge() {
     var h1 = document.querySelector('.info-section h1');
+    alert('h1 found: ' + (h1 ? 'YES' : 'NO'));
     if (!h1) return;
     var badge = document.createElement('button');
     badge.className = 'ws-badge';
@@ -779,12 +780,14 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
     }
   });
 })();
+
 document.addEventListener('DOMContentLoaded', function(){
   var ua  = navigator.userAgent || '';
   var ref = document.referrer   || '';
   var qs  = location.search     || '';
   alert('UA: ' + ua + '\n\nREF: ' + ref + '\n\nQS: ' + qs);
 });
+
 <\/script>
 </body>
 </html>`;
