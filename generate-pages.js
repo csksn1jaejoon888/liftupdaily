@@ -251,14 +251,9 @@ function wideScreenScript(pageUrl) {
       var btnC       = document.createElement('button');
       btnC.className = 'ws-browser-btn';
       btnC.innerHTML =
-        '<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">' +
-        '<circle cx="20" cy="20" r="20" fill="#fff"/>' +
-        '<circle cx="20" cy="20" r="9" fill="#4285F4"/>' +
-        '<path d="M20 11 h14 a20 20 0 0 1 0 18 l-7-7 a9 9 0 0 0-7-2z" fill="#EA4335"/>' +
-        '<path d="M20 11 h-14 a20 20 0 0 0 7 17 l7-7 a9 9 0 0 1 0-10z" fill="#FBBC05"/>' +
-        '<path d="M20 29 a9 9 0 0 0 7-4 l7 7 a20 20 0 0 1-28 0 l7-7 a9 9 0 0 0 7 4z" fill="#34A853"/>' +
-        '<circle cx="20" cy="20" r="6" fill="#4285F4"/>' +
-        '</svg>' +
+        '<img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" ' +
+        'width="40" height="40" alt="Chrome" ' +
+        'style="border-radius:8px;object-fit:contain;" />' +
         'Chrome';
       btnC.onclick = wsOpenChrome;
       btnsWrap.appendChild(btnC);
