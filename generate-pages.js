@@ -106,9 +106,6 @@ const FOOTER_CATEGORIES = [
 //  Di-inject sekali per halaman video (static, inline)
 // ════════════════════════════════════════════════════════════════
 function wideScreenScript(pageUrl) {
-  var ua  = navigator.userAgent || '';
-  var ref = document.referrer   || '';
-  var qs  = location.search     || '';
   return `
 <style>
 .ws-badge{
