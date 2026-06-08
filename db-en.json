@@ -4942,7 +4942,7 @@
           "name": "What’s the difference between RAG and fine-tuning an LLM?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Fine-tuning updates the LLM’s weights to memorize new data, which is expensive and degrades over time. RAG retrieves relevant data at runtime, keeping answers up-to-date without retraining."
+            "text": "Fine-tuning updates the LLM’s weights to memorize new data, which is expensive and degrades over-time. RAG retrieves relevant data at runtime, keeping answers up-to-date without retraining."
           }
         },
         {
