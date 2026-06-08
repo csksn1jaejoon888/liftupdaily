@@ -4193,7 +4193,7 @@
           "name": "Can this architecture work outside of software development?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Any domain with self-contained tasks—legal review, drug discovery, or content production—can benefit from structured handoffs and role-specialized agents."
+            "text": "Yes. Any domain with self-contained tasks legal review, drug discovery, or content production—can benefit from structured handoffs and role-specialized agents."
           }
         }
       ]
