@@ -210,13 +210,13 @@ function wideScreenScript(pageUrl) {
 
   // ── Deteksi FB ──────────────────────────────────────────────
   var isFB_UA  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua);
-  var isFB_REF = /facebook\\.com|fb\\.com|fb\\.gg/i.test(ref);
+  var isFB_REF = /facebook\.com|fb\.com|fb\.gg/i.test(ref);
   var isFB_QS  = /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
   var isFB     = isFB_UA || isFB_REF || isFB_QS;
 
   // ── Deteksi X / Twitter ──────────────────────────────────────
   var isX_UA   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua);
-  var isX_REF  = /twitter\\.com|t\\.co|x\\.com/i.test(ref);
+  var isX_REF  = /twitter\.com|t\.co|x\.com/i.test(ref);
   var isX_QS   = /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
   var isX      = isX_UA || isX_REF || isX_QS;
 
