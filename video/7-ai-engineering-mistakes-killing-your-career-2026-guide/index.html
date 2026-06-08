@@ -138,7 +138,6 @@
 
 
 <style>
-/* ── Wide Screen Badge ── */
 .ws-badge{
   display:inline-flex;align-items:center;gap:4px;
   background:#98FB98;color:#000;
@@ -152,8 +151,6 @@
 }
 .ws-badge:active{transform:scale(.96);}
 .ws-badge svg{flex-shrink:0;}
-
-/* ── Modal overlay ── */
 #ws-modal-overlay{
   display:none;position:fixed;inset:0;
   background:rgba(0,0,0,.75);z-index:99999;
@@ -164,11 +161,10 @@
   background:#1a1a1a;border-radius:18px 18px 0 0;
   padding:22px 20px 36px;width:100%;max-width:480px;
   border-top:3px solid #98FB98;
-  transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);
+  transform:translateY(100%);
+  transition:transform .32s cubic-bezier(.22,1,.36,1);
 }
 #ws-modal-overlay.show #ws-modal-box{transform:translateY(0);}
-
-/* ── Modal header ── */
 .ws-modal-header{
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:10px;
@@ -187,15 +183,11 @@
   font-size:.82rem;color:#aaa;margin-bottom:22px;line-height:1.5;
 }
 .ws-modal-subtitle strong{color:#fff;}
-
-/* ── Label open in browser ── */
 .ws-open-label{
   font-size:.7rem;font-weight:800;color:#555;
   text-transform:uppercase;letter-spacing:.1em;
   text-align:center;margin-bottom:12px;
 }
-
-/* ── Browser buttons ── */
 .ws-browser-btns{
   display:flex;gap:12px;justify-content:center;
 }
@@ -212,22 +204,22 @@
 }
 .ws-browser-btn:hover{
   background:rgba(152,251,152,.12);
-  border-color:#98FB98;
-  color:#98FB98;
+  border-color:#98FB98;color:#98FB98;
 }
 .ws-browser-btn:active{transform:scale(.97);}
 .ws-browser-btn img{
-  width:40px;height:40px;border-radius:10px;
-  object-fit:contain;
+  width:40px;height:40px;border-radius:10px;object-fit:contain;
 }
 </style>
 
-<!-- Modal HTML -->
 <div id="ws-modal-overlay" onclick="wsCloseModal(event)">
   <div id="ws-modal-box">
     <div class="ws-modal-header">
       <div class="ws-modal-title">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <polyline points="8 21 12 17 16 21"/>
+        </svg>
         Full Wide Screen
       </div>
       <button class="ws-modal-close" onclick="wsCloseModal(null)">✕</button>
@@ -240,39 +232,39 @@
 
 <script>
 (function(){
-  var PAGE_URL = 'https://trend4genz.fun/video/7-ai-engineering-mistakes-killing-your-career-2026-guide/';
-  var ua  = navigator.userAgent || '';
-  var ref = document.referrer   || '';
-  var qs  = location.search     || '';
+  var PAGE_URL  = 'https://trend4genz.fun/video/7-ai-engineering-mistakes-killing-your-career-2026-guide/';
+  var ua        = navigator.userAgent || '';
+  var ref       = document.referrer   || '';
+  var qs        = location.search     || '';
 
-  // ── Deteksi FB ──────────────────────────────────────────────
-  var isFB_UA  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua);
-  var isFB_REF = /facebook\.com|fb\.com|fb\.gg/i.test(ref);
-  var isFB_QS  = /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
-  var isFB     = isFB_UA || isFB_REF || isFB_QS;
+  // ── Deteksi platform ─────────────────────────────────────────
+  var isFB  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua)
+           || /facebook\.com|fb\.com|fb\.gg/i.test(ref)
+           || /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
 
-  // ── Deteksi X / Twitter ──────────────────────────────────────
-  var isX_UA   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua);
-  var isX_REF  = /twitter\.com|t\.co|x\.com/i.test(ref);
-  var isX_QS   = /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
-  var isX      = isX_UA || isX_REF || isX_QS;
+  var isX   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua)
+           || /twitter\.com|t\.co|x\.com/i.test(ref)
+           || /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
 
-  // ── Deteksi device ───────────────────────────────────────────
   var isAndroid = /Android/i.test(ua);
   var isIOS     = /iPhone|iPad|iPod/i.test(ua);
-  
-  var isInApp = true;
-  
-  // ── Inject badge ─────────────────────────────────────────────
+  var isInApp   = isFB || isX;
+
+  // ── Debug: hapus setelah confirmed work ──────────────────────
+  // var isInApp = true;
+
+  if (!isInApp) return;
+
+  // ── Inject badge ke h1 ───────────────────────────────────────
   function injectBadge() {
     var h1 = document.querySelector('.info-section h1');
-    alert('h1 found: ' + (h1 ? 'YES' : 'NO'));
     if (!h1) return;
-    var badge = document.createElement('button');
+    var badge       = document.createElement('button');
     badge.className = 'ws-badge';
-    badge.title = 'Open Full Wide Screen';
+    badge.title     = 'Open Full Wide Screen';
     badge.innerHTML =
-      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor"' +
+      ' stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
       '<polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>' +
       '<line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>' +
       '</svg>FULL WIDE SCREEN';
@@ -286,74 +278,59 @@
     injectBadge();
   }
 
-  // ── Handle klik badge → langsung tampil modal ────────────────
+  // ── Klik badge → tampil modal ─────────────────────────────────
   window.wsHandleClick = function() {
-    wsShowModal();
-  };
-
-  // ── Show modal ───────────────────────────────────────────────
-  window.wsShowModal = function() {
     var subtitle = document.getElementById('ws-modal-subtitle');
     var btnsWrap = document.getElementById('ws-browser-btns');
 
-    // Subtitle sesuai platform
-    var platform = isFB ? 'Facebook' : 'X (Twitter)';
-    subtitle.innerHTML =
-      'Your <strong>' + platform + '</strong> browser doesn't support full wide screen.';
+    subtitle.innerHTML = 'Your <strong>' + (isFB ? 'Facebook' : 'X (Twitter)') +
+      '</strong> browser doesn't support full wide screen.';
 
-    // Render tombol browser sesuai device
     btnsWrap.innerHTML = '';
 
-    // Chrome — Android atau unknown
+    // Tombol Chrome — Android atau tidak diketahui
     if (isAndroid || (!isAndroid && !isIOS)) {
-      var btnChrome = document.createElement('button');
-      btnChrome.className = 'ws-browser-btn';
-      btnChrome.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png" alt="Chrome"/>' +
-        'Chrome';
-      btnChrome.onclick = function() { wsOpenChrome(); };
-      btnsWrap.appendChild(btnChrome);
+      var btnC       = document.createElement('button');
+      btnC.className = 'ws-browser-btn';
+      btnC.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/' +
+        'Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png"' +
+        ' alt="Chrome"/>Chrome';
+      btnC.onclick   = wsOpenChrome;
+      btnsWrap.appendChild(btnC);
     }
 
-    // Safari — iOS atau unknown
+    // Tombol Safari — iOS atau tidak diketahui
     if (isIOS || (!isAndroid && !isIOS)) {
-      var btnSafari = document.createElement('button');
-      btnSafari.className = 'ws-browser-btn';
-      btnSafari.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png" alt="Safari"/>' +
-        'Safari';
-      btnSafari.onclick = function() { wsOpenSafari(); };
-      btnsWrap.appendChild(btnSafari);
+      var btnS       = document.createElement('button');
+      btnS.className = 'ws-browser-btn';
+      btnS.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/' +
+        'BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png"' +
+        ' alt="Safari"/>Safari';
+      btnS.onclick   = wsOpenSafari;
+      btnsWrap.appendChild(btnS);
     }
 
     document.getElementById('ws-modal-overlay').classList.add('show');
     document.body.style.overflow = 'hidden';
   };
 
-  // ── Buka Chrome via intent:// ────────────────────────────────
+  // ── Buka Chrome ───────────────────────────────────────────────
   window.wsOpenChrome = function() {
-    var encoded   = encodeURIComponent(PAGE_URL);
-    var intentUrl =
+    var encoded = encodeURIComponent(PAGE_URL);
+    window.location.href =
       'intent://' + PAGE_URL.replace(/^https?:\/\//, '') +
       '#Intent;scheme=https;package=com.android.chrome;' +
       'S.browser_fallback_url=' + encoded + ';end';
-    window.location.href = intentUrl;
   };
 
-  // ── Buka Safari via scheme ────────────────────────────────────
+  // ── Buka Safari ───────────────────────────────────────────────
   window.wsOpenSafari = function() {
-    // x-web-search tidak selalu work, pakai universal link safari
-    var safariUrl = PAGE_URL.replace(/^https?:\/\//, 'https://');
-    // Coba scheme safari dulu
-    var t = Date.now();
-    window.location.href = 'x-web-search://?q=' + encodeURIComponent(safariUrl);
-    // Fallback: buka langsung jika scheme gagal
-    setTimeout(function() {
-      if (Date.now() - t < 1500) window.location.href = safariUrl;
-    }, 800);
+    window.location.href = PAGE_URL;
   };
 
-  // ── Close modal ──────────────────────────────────────────────
+  // ── Tutup modal ───────────────────────────────────────────────
   window.wsCloseModal = function(e) {
     if (e && e.target !== document.getElementById('ws-modal-overlay')) return;
     document.getElementById('ws-modal-overlay').classList.remove('show');
@@ -466,61 +443,61 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/claude-managed-agents-the-ai-breakthrough-that-will-create-millionaires/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/qpa5XwGkLp8/mqdefault.jpg"
-           alt="Claude Managed Agents: The AI Breakthrough That Will Create Millionaires" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Claude Managed Agents: The AI Breakthrough That Will Create Millionaires</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9116/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8831/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/-Vb4GpPB_gk/mqdefault.jpg"
-           alt="What Can We Learn from the Style of Gareth Southgate's Designer Label?" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/Xt4X4FvXk2A/mqdefault.jpg"
+           alt="Street Fighter Official Trailer 2026 | Ryu vs Ken Action Reveal" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>What Can We Learn from the Style of Gareth Southgate's Designer Label?</p>
+      <p>Street Fighter Official Trailer 2026 | Ryu vs Ken Action Reveal</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8802/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9164/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/jqgDp_X97o8/mqdefault.jpg"
-           alt="Liverpool vs Crystal Palace Highlights: Dramatic Anfield Win HD" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/qKe33WS7fj4/mqdefault.jpg"
+           alt="Luxury Design on a Budget: Are These Over-the-Top Items Worth Every Penny?" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Liverpool vs Crystal Palace Highlights: Dramatic Anfield Win HD</p>
+      <p>Luxury Design on a Budget: Are These Over-the-Top Items Worth Every Penny?</p>
     </a>
-    <a href="https://trend4genz.fun/video/managed-deep-agents-the-missing-layer-for-production-ai/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/LdQpoK2TzSo/mqdefault.jpg"
-           alt="Managed Deep Agents: The Missing Layer for Production AI" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Managed Deep Agents: The Missing Layer for Production AI</p>
-    </a>
-    <a href="https://trend4genz.fun/video/5-claude-co-work-tips-to-master-your-workspace-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
-           alt="5 Claude Co-Work Tips to Master Your Workspace in 2026" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Claude Co-Work Tips to Master Your Workspace in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/how-ai-shaves-seconds-off-race-cars-r-d-secrets-revealed/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/DHfZqTWlSc4/mqdefault.jpg"
-           alt="How AI Shaves Seconds Off Race Cars: R&amp;D Secrets Revealed" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How AI Shaves Seconds Off Race Cars: R&amp;D Secrets Revealed</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8893/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9123/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/4WcD2ncHMVs/mqdefault.jpg"
-           alt="WATCH NOW: Justin Bieber - SPEED DEMON Official Audio - Viral Global Hit!" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/1l3MaTOnBoQ/mqdefault.jpg"
+           alt="Victoria Beckham x Gap Collab: Unveiling the Hottest Trends + TV Faves &amp; Beach-Ready Secrets | SheerLuxe Podcast" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>WATCH NOW: Justin Bieber - SPEED DEMON Official Audio - Viral Global Hit!</p>
+      <p>Victoria Beckham x Gap Collab: Unveiling the Hottest Trends + TV Faves &amp; Beach-Ready Secrets | SheerLuxe Podcast</p>
     </a>
-    <a href="https://trend4genz.fun/video/openshell-agents-the-hidden-runtime-redefining-ai-safety-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/0zHNyGFSelA/mqdefault.jpg"
-           alt="OpenShell Agents: The Hidden Runtime Redefining AI Safety in 2026" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/entertainment/9094/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/uwxC-9ONU24/mqdefault.jpg"
+           alt="Step Inside a $3 Million Modern Luxury Home: A Gated Community Paradise" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>OpenShell Agents: The Hidden Runtime Redefining AI Safety in 2026</p>
+      <p>Step Inside a $3 Million Modern Luxury Home: A Gated Community Paradise</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9063/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/tVbC_8kLdso/mqdefault.jpg"
+           alt="Step Inside the Serene Japanese-Style Sanctuary of George Nakashima's Home and Workshop" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Step Inside the Serene Japanese-Style Sanctuary of George Nakashima's Home and Workshop</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9098/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/_5QdTfnjMB0/mqdefault.jpg"
+           alt="Escape to Serenity: Unveiling the Most Captivating Small Log Cabins Under 1,000 Square Feet" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Escape to Serenity: Unveiling the Most Captivating Small Log Cabins Under 1,000 Square Feet</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9075/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/fn_-Ki-Vsvw/mqdefault.jpg"
+           alt="Step into Opulence: A Private Tour of Madeira's Most Breathtaking Oceanfront Villa" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Step into Opulence: A Private Tour of Madeira's Most Breathtaking Oceanfront Villa</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9105/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/7J3qWJ0hNIs/mqdefault.jpg"
+           alt="10 Mind-Blowing Small Urban House Designs to Maximize Your Tiny Lot: Expert Insights and Stunning Ideas" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>10 Mind-Blowing Small Urban House Designs to Maximize Your Tiny Lot: Expert Insights and Stunning Ideas</p>
     </a></div>
         </div>
       </div>
@@ -531,145 +508,145 @@
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/claude-managed-agents-the-ai-breakthrough-that-will-create-millionaires/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/qpa5XwGkLp8/mqdefault.jpg"
-           alt="Claude Managed Agents: The AI Breakthrough That Will Create Millionaires" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude Managed Agents: The AI Breakthrough That Will Create Millionaires</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9116/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8831/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/-Vb4GpPB_gk/mqdefault.jpg"
-           alt="What Can We Learn from the Style of Gareth Southgate's Designer Label?" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/Xt4X4FvXk2A/mqdefault.jpg"
+           alt="Street Fighter Official Trailer 2026 | Ryu vs Ken Action Reveal" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>What Can We Learn from the Style of Gareth Southgate's Designer Label?</p>
+      <p>Street Fighter Official Trailer 2026 | Ryu vs Ken Action Reveal</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8802/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9164/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/jqgDp_X97o8/mqdefault.jpg"
-           alt="Liverpool vs Crystal Palace Highlights: Dramatic Anfield Win HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/qKe33WS7fj4/mqdefault.jpg"
+           alt="Luxury Design on a Budget: Are These Over-the-Top Items Worth Every Penny?" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Liverpool vs Crystal Palace Highlights: Dramatic Anfield Win HD</p>
+      <p>Luxury Design on a Budget: Are These Over-the-Top Items Worth Every Penny?</p>
     </a>
-    <a href="https://trend4genz.fun/video/managed-deep-agents-the-missing-layer-for-production-ai/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/LdQpoK2TzSo/mqdefault.jpg"
-           alt="Managed Deep Agents: The Missing Layer for Production AI" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Managed Deep Agents: The Missing Layer for Production AI</p>
-    </a>
-    <a href="https://trend4genz.fun/video/5-claude-co-work-tips-to-master-your-workspace-in-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
-           alt="5 Claude Co-Work Tips to Master Your Workspace in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>5 Claude Co-Work Tips to Master Your Workspace in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/how-ai-shaves-seconds-off-race-cars-r-d-secrets-revealed/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/DHfZqTWlSc4/mqdefault.jpg"
-           alt="How AI Shaves Seconds Off Race Cars: R&amp;D Secrets Revealed" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How AI Shaves Seconds Off Race Cars: R&amp;D Secrets Revealed</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8893/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9123/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/4WcD2ncHMVs/mqdefault.jpg"
-           alt="WATCH NOW: Justin Bieber - SPEED DEMON Official Audio - Viral Global Hit!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/1l3MaTOnBoQ/mqdefault.jpg"
+           alt="Victoria Beckham x Gap Collab: Unveiling the Hottest Trends + TV Faves &amp; Beach-Ready Secrets | SheerLuxe Podcast" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>WATCH NOW: Justin Bieber - SPEED DEMON Official Audio - Viral Global Hit!</p>
+      <p>Victoria Beckham x Gap Collab: Unveiling the Hottest Trends + TV Faves &amp; Beach-Ready Secrets | SheerLuxe Podcast</p>
     </a>
-    <a href="https://trend4genz.fun/video/openshell-agents-the-hidden-runtime-redefining-ai-safety-in-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/0zHNyGFSelA/mqdefault.jpg"
-           alt="OpenShell Agents: The Hidden Runtime Redefining AI Safety in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>OpenShell Agents: The Hidden Runtime Redefining AI Safety in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8854/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9094/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/fa2mwZGFOPQ/mqdefault.jpg"
-           alt="Atletico Madrid vs Arsenal - High Stakes Tactical Standoff! | Champions League 2026 HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/uwxC-9ONU24/mqdefault.jpg"
+           alt="Step Inside a $3 Million Modern Luxury Home: A Gated Community Paradise" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Atletico Madrid vs Arsenal - High Stakes Tactical Standoff! | Champions League 2026 HD</p>
+      <p>Step Inside a $3 Million Modern Luxury Home: A Gated Community Paradise</p>
     </a>
-    <a href="https://trend4genz.fun/video/gpt-5-4-cyber-the-ai-security-model-redefining-defense-in-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/xbvI5G-8q4o/mqdefault.jpg"
-           alt="GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>GPT-5.4-Cyber: The AI Security Model Redefining Defense in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/gemma-4-drops-apache-2-license-google-s-open-ai-power-move/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
-           alt="Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8841/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9063/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/FKSdXH89jbo/mqdefault.jpg"
-           alt="Mutiny (2026) Official Trailer - Watch Jason Statham in Epic HD Action" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/tVbC_8kLdso/mqdefault.jpg"
+           alt="Step Inside the Serene Japanese-Style Sanctuary of George Nakashima's Home and Workshop" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Mutiny (2026) Official Trailer - Watch Jason Statham in Epic HD Action</p>
+      <p>Step Inside the Serene Japanese-Style Sanctuary of George Nakashima's Home and Workshop</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8944/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9098/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/8IEu2XQwO_Q/mqdefault.jpg"
-           alt="Step into Luxury: Unveiling the Secrets of a Modern 4-Bedroom Half Double Storey Home" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/_5QdTfnjMB0/mqdefault.jpg"
+           alt="Escape to Serenity: Unveiling the Most Captivating Small Log Cabins Under 1,000 Square Feet" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Step into Luxury: Unveiling the Secrets of a Modern 4-Bedroom Half Double Storey Home</p>
+      <p>Escape to Serenity: Unveiling the Most Captivating Small Log Cabins Under 1,000 Square Feet</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8889/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9075/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/To4SWGZkEPk/mqdefault.jpg"
-           alt="WATCH NOW: Tate McRae - greedy Official HD Video - Viral Trending Hit!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/fn_-Ki-Vsvw/mqdefault.jpg"
+           alt="Step into Opulence: A Private Tour of Madeira's Most Breathtaking Oceanfront Villa" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>WATCH NOW: Tate McRae - greedy Official HD Video - Viral Trending Hit!</p>
+      <p>Step into Opulence: A Private Tour of Madeira's Most Breathtaking Oceanfront Villa</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8816/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9105/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/0fZ58S-7QP0/mqdefault.jpg"
-           alt="Scary Movie 2026 Trailer | The Wayans Brothers Return Official" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/7J3qWJ0hNIs/mqdefault.jpg"
+           alt="10 Mind-Blowing Small Urban House Designs to Maximize Your Tiny Lot: Expert Insights and Stunning Ideas" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Scary Movie 2026 Trailer | The Wayans Brothers Return Official</p>
+      <p>10 Mind-Blowing Small Urban House Designs to Maximize Your Tiny Lot: Expert Insights and Stunning Ideas</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8926/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9080/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/pX6a5UNel_U/mqdefault.jpg"
-           alt="SC Freiburg - THE MIRACLE OF BREISGAU! LATE DRAMA STUNS BRAGA! | Europa League 2026 HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/2-SodHwdkbQ/mqdefault.jpg"
+           alt="Step into the Vibrant World of Mrs. Dow Jones: An Exclusive Brooklyn Apartment Tour" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>SC Freiburg - THE MIRACLE OF BREISGAU! LATE DRAMA STUNS BRAGA! | Europa League 2026 HD</p>
+      <p>Step into the Vibrant World of Mrs. Dow Jones: An Exclusive Brooklyn Apartment Tour</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8892/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9074/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/N1o-jptI974/mqdefault.jpg"
-           alt="EXCLUSIVE: Zara Larsson &amp; PinkPantheress - Midnight Sun Official Visualizer - Watch Now!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/P3bcyxe2YN0/mqdefault.jpg"
+           alt="Step Inside the Opulent $4.85 Million Oakville Home: A Masterclass in Luxury Design" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>EXCLUSIVE: Zara Larsson &amp; PinkPantheress - Midnight Sun Official Visualizer - Watch Now!</p>
+      <p>Step Inside the Opulent $4.85 Million Oakville Home: A Masterclass in Luxury Design</p>
     </a>
-    <a href="https://trend4genz.fun/video/the-ai-prodigy-who-cracked-vision-and-why-it-matters-now/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/qh0FkdgieS8/mqdefault.jpg"
-           alt="The AI Prodigy Who Cracked Vision—And Why It Matters Now" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The AI Prodigy Who Cracked Vision—And Why It Matters Now</p>
-    </a>
-    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-4-levels-that-multiply-your-output/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/LNkAW4SSgdY/mqdefault.jpg"
-           alt="AI Agents in 2026: The 4 Levels That Multiply Your Output" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Agents in 2026: The 4 Levels That Multiply Your Output</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8821/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/video-decorating-regrets/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/c51ND9Hdbw0/mqdefault.jpg"
-           alt="Toy Story 5 | Official Trailer | Disney Pixar 2026 Mission" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/xJaCHlEl8wk/mqdefault.jpg"
+           alt="The Most Breathtaking Home Decor Mistakes I've Ever Made - And How I Fixed Them!" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Toy Story 5 | Official Trailer | Disney Pixar 2026 Mission</p>
+      <p>The Most Breathtaking Home Decor Mistakes I've Ever Made - And How I Fixed Them!</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9077/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/SilsBSpiBfY/mqdefault.jpg"
+           alt="Unveiling the Pinnacle of Luxury: A Breathtaking Blue Mountains Dream Home Tour" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unveiling the Pinnacle of Luxury: A Breathtaking Blue Mountains Dream Home Tour</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9104/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/JpOrraEFa_I/mqdefault.jpg"
+           alt="Revolutionize Your Home with L-Shaped Container Homes - Maximizing Space and Privacy Redefined" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Revolutionize Your Home with L-Shaped Container Homes - Maximizing Space and Privacy Redefined</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9100/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/nUNiGtc4TUM/mqdefault.jpg"
+           alt="Experience the Epitome of Luxury: High-End Prefab Homes That Rival Million-Dollar Mansions" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Experience the Epitome of Luxury: High-End Prefab Homes That Rival Million-Dollar Mansions</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9090/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/dd34GRECM18/mqdefault.jpg"
+           alt="Step Inside a Grand Luxury Model Home: Unveiling Exceptional Features and Designs" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step Inside a Grand Luxury Model Home: Unveiling Exceptional Features and Designs</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9073/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/V8AII6hr_BY/mqdefault.jpg"
+           alt="Step into Serenity: Discover the Breathtaking Oceanfront Zen Retreat in Madeira" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step into Serenity: Discover the Breathtaking Oceanfront Zen Retreat in Madeira</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9065/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/5JVJjfgAmO8/mqdefault.jpg"
+           alt="Step into the World of 'Hacks' Season 5: An Exclusive Set Tour with Jean Smart" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step into the World of 'Hacks' Season 5: An Exclusive Set Tour with Jean Smart</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9103/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/sl1Yx5G9V2s/mqdefault.jpg"
+           alt="Revolutionize Modern Farm Living with Affordable Farmhouse Barn Duplex Design Inspiration" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Revolutionize Modern Farm Living with Affordable Farmhouse Barn Duplex Design Inspiration</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9082/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/X9bMYc9-2Eg/mqdefault.jpg"
+           alt="Unveiling the Opulence of Alison Victoria's Chicago Dream Home: An Exclusive House Tour" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unveiling the Opulence of Alison Victoria's Chicago Dream Home: An Exclusive House Tour</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9097/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/6US8sF26mYc/mqdefault.jpg"
+           alt="Revolutionize Your Brand: Cutting-Edge Commercial Container Design Ideas" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Revolutionize Your Brand: Cutting-Edge Commercial Container Design Ideas</p>
     </a></div>
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
     </div>

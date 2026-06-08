@@ -138,7 +138,6 @@
 
 
 <style>
-/* ── Wide Screen Badge ── */
 .ws-badge{
   display:inline-flex;align-items:center;gap:4px;
   background:#98FB98;color:#000;
@@ -152,8 +151,6 @@
 }
 .ws-badge:active{transform:scale(.96);}
 .ws-badge svg{flex-shrink:0;}
-
-/* ── Modal overlay ── */
 #ws-modal-overlay{
   display:none;position:fixed;inset:0;
   background:rgba(0,0,0,.75);z-index:99999;
@@ -164,11 +161,10 @@
   background:#1a1a1a;border-radius:18px 18px 0 0;
   padding:22px 20px 36px;width:100%;max-width:480px;
   border-top:3px solid #98FB98;
-  transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);
+  transform:translateY(100%);
+  transition:transform .32s cubic-bezier(.22,1,.36,1);
 }
 #ws-modal-overlay.show #ws-modal-box{transform:translateY(0);}
-
-/* ── Modal header ── */
 .ws-modal-header{
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:10px;
@@ -187,15 +183,11 @@
   font-size:.82rem;color:#aaa;margin-bottom:22px;line-height:1.5;
 }
 .ws-modal-subtitle strong{color:#fff;}
-
-/* ── Label open in browser ── */
 .ws-open-label{
   font-size:.7rem;font-weight:800;color:#555;
   text-transform:uppercase;letter-spacing:.1em;
   text-align:center;margin-bottom:12px;
 }
-
-/* ── Browser buttons ── */
 .ws-browser-btns{
   display:flex;gap:12px;justify-content:center;
 }
@@ -212,22 +204,22 @@
 }
 .ws-browser-btn:hover{
   background:rgba(152,251,152,.12);
-  border-color:#98FB98;
-  color:#98FB98;
+  border-color:#98FB98;color:#98FB98;
 }
 .ws-browser-btn:active{transform:scale(.97);}
 .ws-browser-btn img{
-  width:40px;height:40px;border-radius:10px;
-  object-fit:contain;
+  width:40px;height:40px;border-radius:10px;object-fit:contain;
 }
 </style>
 
-<!-- Modal HTML -->
 <div id="ws-modal-overlay" onclick="wsCloseModal(event)">
   <div id="ws-modal-box">
     <div class="ws-modal-header">
       <div class="ws-modal-title">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <polyline points="8 21 12 17 16 21"/>
+        </svg>
         Full Wide Screen
       </div>
       <button class="ws-modal-close" onclick="wsCloseModal(null)">✕</button>
@@ -240,39 +232,39 @@
 
 <script>
 (function(){
-  var PAGE_URL = 'https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/';
-  var ua  = navigator.userAgent || '';
-  var ref = document.referrer   || '';
-  var qs  = location.search     || '';
+  var PAGE_URL  = 'https://trend4genz.fun/video/rag-unlocked-how-ai-finally-learns-your-data-without-hallucinating/';
+  var ua        = navigator.userAgent || '';
+  var ref       = document.referrer   || '';
+  var qs        = location.search     || '';
 
-  // ── Deteksi FB ──────────────────────────────────────────────
-  var isFB_UA  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua);
-  var isFB_REF = /facebook\.com|fb\.com|fb\.gg/i.test(ref);
-  var isFB_QS  = /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
-  var isFB     = isFB_UA || isFB_REF || isFB_QS;
+  // ── Deteksi platform ─────────────────────────────────────────
+  var isFB  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua)
+           || /facebook\.com|fb\.com|fb\.gg/i.test(ref)
+           || /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
 
-  // ── Deteksi X / Twitter ──────────────────────────────────────
-  var isX_UA   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua);
-  var isX_REF  = /twitter\.com|t\.co|x\.com/i.test(ref);
-  var isX_QS   = /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
-  var isX      = isX_UA || isX_REF || isX_QS;
+  var isX   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua)
+           || /twitter\.com|t\.co|x\.com/i.test(ref)
+           || /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
 
-  // ── Deteksi device ───────────────────────────────────────────
   var isAndroid = /Android/i.test(ua);
   var isIOS     = /iPhone|iPad|iPod/i.test(ua);
-  
-  var isInApp = true;
-  
-  // ── Inject badge ─────────────────────────────────────────────
+  var isInApp   = isFB || isX;
+
+  // ── Debug: hapus setelah confirmed work ──────────────────────
+  // var isInApp = true;
+
+  if (!isInApp) return;
+
+  // ── Inject badge ke h1 ───────────────────────────────────────
   function injectBadge() {
     var h1 = document.querySelector('.info-section h1');
-    alert('h1 found: ' + (h1 ? 'YES' : 'NO'));
     if (!h1) return;
-    var badge = document.createElement('button');
+    var badge       = document.createElement('button');
     badge.className = 'ws-badge';
-    badge.title = 'Open Full Wide Screen';
+    badge.title     = 'Open Full Wide Screen';
     badge.innerHTML =
-      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor"' +
+      ' stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
       '<polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>' +
       '<line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>' +
       '</svg>FULL WIDE SCREEN';
@@ -286,74 +278,59 @@
     injectBadge();
   }
 
-  // ── Handle klik badge → langsung tampil modal ────────────────
+  // ── Klik badge → tampil modal ─────────────────────────────────
   window.wsHandleClick = function() {
-    wsShowModal();
-  };
-
-  // ── Show modal ───────────────────────────────────────────────
-  window.wsShowModal = function() {
     var subtitle = document.getElementById('ws-modal-subtitle');
     var btnsWrap = document.getElementById('ws-browser-btns');
 
-    // Subtitle sesuai platform
-    var platform = isFB ? 'Facebook' : 'X (Twitter)';
-    subtitle.innerHTML =
-      'Your <strong>' + platform + '</strong> browser doesn't support full wide screen.';
+    subtitle.innerHTML = 'Your <strong>' + (isFB ? 'Facebook' : 'X (Twitter)') +
+      '</strong> browser doesn't support full wide screen.';
 
-    // Render tombol browser sesuai device
     btnsWrap.innerHTML = '';
 
-    // Chrome — Android atau unknown
+    // Tombol Chrome — Android atau tidak diketahui
     if (isAndroid || (!isAndroid && !isIOS)) {
-      var btnChrome = document.createElement('button');
-      btnChrome.className = 'ws-browser-btn';
-      btnChrome.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png" alt="Chrome"/>' +
-        'Chrome';
-      btnChrome.onclick = function() { wsOpenChrome(); };
-      btnsWrap.appendChild(btnChrome);
+      var btnC       = document.createElement('button');
+      btnC.className = 'ws-browser-btn';
+      btnC.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/' +
+        'Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png"' +
+        ' alt="Chrome"/>Chrome';
+      btnC.onclick   = wsOpenChrome;
+      btnsWrap.appendChild(btnC);
     }
 
-    // Safari — iOS atau unknown
+    // Tombol Safari — iOS atau tidak diketahui
     if (isIOS || (!isAndroid && !isIOS)) {
-      var btnSafari = document.createElement('button');
-      btnSafari.className = 'ws-browser-btn';
-      btnSafari.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png" alt="Safari"/>' +
-        'Safari';
-      btnSafari.onclick = function() { wsOpenSafari(); };
-      btnsWrap.appendChild(btnSafari);
+      var btnS       = document.createElement('button');
+      btnS.className = 'ws-browser-btn';
+      btnS.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/' +
+        'BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png"' +
+        ' alt="Safari"/>Safari';
+      btnS.onclick   = wsOpenSafari;
+      btnsWrap.appendChild(btnS);
     }
 
     document.getElementById('ws-modal-overlay').classList.add('show');
     document.body.style.overflow = 'hidden';
   };
 
-  // ── Buka Chrome via intent:// ────────────────────────────────
+  // ── Buka Chrome ───────────────────────────────────────────────
   window.wsOpenChrome = function() {
-    var encoded   = encodeURIComponent(PAGE_URL);
-    var intentUrl =
+    var encoded = encodeURIComponent(PAGE_URL);
+    window.location.href =
       'intent://' + PAGE_URL.replace(/^https?:\/\//, '') +
       '#Intent;scheme=https;package=com.android.chrome;' +
       'S.browser_fallback_url=' + encoded + ';end';
-    window.location.href = intentUrl;
   };
 
-  // ── Buka Safari via scheme ────────────────────────────────────
+  // ── Buka Safari ───────────────────────────────────────────────
   window.wsOpenSafari = function() {
-    // x-web-search tidak selalu work, pakai universal link safari
-    var safariUrl = PAGE_URL.replace(/^https?:\/\//, 'https://');
-    // Coba scheme safari dulu
-    var t = Date.now();
-    window.location.href = 'x-web-search://?q=' + encodeURIComponent(safariUrl);
-    // Fallback: buka langsung jika scheme gagal
-    setTimeout(function() {
-      if (Date.now() - t < 1500) window.location.href = safariUrl;
-    }, 800);
+    window.location.href = PAGE_URL;
   };
 
-  // ── Close modal ──────────────────────────────────────────────
+  // ── Tutup modal ───────────────────────────────────────────────
   window.wsCloseModal = function(e) {
     if (e && e.target !== document.getElementById('ws-modal-overlay')) return;
     document.getElementById('ws-modal-overlay').classList.remove('show');
@@ -470,61 +447,61 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/entertainment/9004/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8949/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/DHTfz1d0N_k/mqdefault.jpg"
-           alt="Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/hbEPCFs-zS8/mqdefault.jpg"
+           alt="Step into Opulence: Unveiling the Breathtaking Luxury 5 Bedroom U-shape Mansion" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour</p>
+      <p>Step into Opulence: Unveiling the Breathtaking Luxury 5 Bedroom U-shape Mansion</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-vs-openclaw-why-reliability-just-changed-ai-workflows/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/Bg-IPiql7x8/mqdefault.jpg"
-           alt="Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8830/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8831/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/abHvvSvynak/mqdefault.jpg"
-           alt="Avengers: Doomsday | New Official Trailer | The End Begins MCU 2026" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/Xt4X4FvXk2A/mqdefault.jpg"
+           alt="Street Fighter Official Trailer 2026 | Ryu vs Ken Action Reveal" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Avengers: Doomsday | New Official Trailer | The End Begins MCU 2026</p>
+      <p>Street Fighter Official Trailer 2026 | Ryu vs Ken Action Reveal</p>
     </a>
-    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/video/test-time-compute-why-ai-pauses-to-think-before-answering/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        >
-      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
-           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/DAlC8mL5ZlI/mqdefault.jpg"
+           alt="Test Time Compute: Why AI Pauses to Think Before Answering" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
+      <p>Test Time Compute: Why AI Pauses to Think Before Answering</p>
     </a>
-    <a href="https://trend4genz.fun/video/tesla-powerwall-3-review-uk-s-smartest-home-battery-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/video/tesla-powerwall-3-app-guide-master-settings-solar-control/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        >
-      <img src="https://img.youtube.com/vi/6LUYGe0benc/mqdefault.jpg"
-           alt="Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/wxhZBcCFQwI/mqdefault.jpg"
+           alt="Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?</p>
+      <p>Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-ugc-ads-convert-10x-higher-now-automated-with-claude-code/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/video/hermes-agentic-os-the-ai-workspace-revolution-you-missed/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        >
-      <img src="https://img.youtube.com/vi/zswO-Wuo0E0/mqdefault.jpg"
-           alt="How UGC Ads Convert 10x Higher—Now Automated with Claude Code" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/zqUdtL5l9yM/mqdefault.jpg"
+           alt="Hermes Agentic OS: The AI Workspace Revolution You Missed" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>How UGC Ads Convert 10x Higher—Now Automated with Claude Code</p>
+      <p>Hermes Agentic OS: The AI Workspace Revolution You Missed</p>
     </a>
-    <a href="https://trend4genz.fun/video/hands-free-driving-overtaking-with-bmw-highway-assistant/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/GM-xBQ7MWOE/mqdefault.jpg"
-           alt="Hands-Free Driving &amp; Overtaking with BMW Highway Assistant" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/entertainment/8814/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/pyZI5oM6hWk/mqdefault.jpg"
+           alt="The Sheep Detectives Trailer | Hugh Jackman Mystery Comedy 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Hands-Free Driving &amp; Overtaking with BMW Highway Assistant</p>
+      <p>The Sheep Detectives Trailer | Hugh Jackman Mystery Comedy 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/muse-spark-meta-s-quiet-revolution-in-ai-reasoning/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/video/run-llms-locally-for-free-ollama-s-privacy-breakthrough/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        >
-      <img src="https://img.youtube.com/vi/7vkybiVRSm0/mqdefault.jpg"
-           alt="Muse Spark: Meta’s Quiet Revolution in AI Reasoning" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/UtSSMs6ObqY/mqdefault.jpg"
+           alt="Run LLMs Locally for Free: Ollama’s Privacy Breakthrough" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Muse Spark: Meta’s Quiet Revolution in AI Reasoning</p>
+      <p>Run LLMs Locally for Free: Ollama’s Privacy Breakthrough</p>
+    </a>
+    <a href="https://trend4genz.fun/video/predictive-vs-generative-ai-key-differences-when-to-use-each/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       >
+      <img src="https://img.youtube.com/vi/phOhGqpXss4/mqdefault.jpg"
+           alt="Predictive vs Generative AI: Key Differences &amp; When to Use Each" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Predictive vs Generative AI: Key Differences &amp; When to Use Each</p>
     </a></div>
         </div>
       </div>
@@ -535,82 +512,110 @@
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/entertainment/9004/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8949/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/DHTfz1d0N_k/mqdefault.jpg"
-           alt="Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/hbEPCFs-zS8/mqdefault.jpg"
+           alt="Step into Opulence: Unveiling the Breathtaking Luxury 5 Bedroom U-shape Mansion" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour</p>
+      <p>Step into Opulence: Unveiling the Breathtaking Luxury 5 Bedroom U-shape Mansion</p>
     </a>
-    <a href="https://trend4genz.fun/video/hermes-agent-vs-openclaw-why-reliability-just-changed-ai-workflows/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/Bg-IPiql7x8/mqdefault.jpg"
-           alt="Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hermes Agent vs OpenClaw: Why Reliability Just Changed AI Workflows</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8830/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8831/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/abHvvSvynak/mqdefault.jpg"
-           alt="Avengers: Doomsday | New Official Trailer | The End Begins MCU 2026" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/Xt4X4FvXk2A/mqdefault.jpg"
+           alt="Street Fighter Official Trailer 2026 | Ryu vs Ken Action Reveal" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Avengers: Doomsday | New Official Trailer | The End Begins MCU 2026</p>
+      <p>Street Fighter Official Trailer 2026 | Ryu vs Ken Action Reveal</p>
     </a>
-    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/test-time-compute-why-ai-pauses-to-think-before-answering/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
-           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/DAlC8mL5ZlI/mqdefault.jpg"
+           alt="Test Time Compute: Why AI Pauses to Think Before Answering" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
+      <p>Test Time Compute: Why AI Pauses to Think Before Answering</p>
     </a>
-    <a href="https://trend4genz.fun/video/tesla-powerwall-3-review-uk-s-smartest-home-battery-in-2026/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/tesla-powerwall-3-app-guide-master-settings-solar-control/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/6LUYGe0benc/mqdefault.jpg"
-           alt="Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/wxhZBcCFQwI/mqdefault.jpg"
+           alt="Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Tesla Powerwall 3 Review: UK’s Smartest Home Battery in 2026?</p>
+      <p>Tesla Powerwall 3 App Guide: Master Settings &amp; Solar Control</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-ugc-ads-convert-10x-higher-now-automated-with-claude-code/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/hermes-agentic-os-the-ai-workspace-revolution-you-missed/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/zswO-Wuo0E0/mqdefault.jpg"
-           alt="How UGC Ads Convert 10x Higher—Now Automated with Claude Code" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/zqUdtL5l9yM/mqdefault.jpg"
+           alt="Hermes Agentic OS: The AI Workspace Revolution You Missed" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How UGC Ads Convert 10x Higher—Now Automated with Claude Code</p>
+      <p>Hermes Agentic OS: The AI Workspace Revolution You Missed</p>
     </a>
-    <a href="https://trend4genz.fun/video/hands-free-driving-overtaking-with-bmw-highway-assistant/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/GM-xBQ7MWOE/mqdefault.jpg"
-           alt="Hands-Free Driving &amp; Overtaking with BMW Highway Assistant" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/entertainment/8814/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/pyZI5oM6hWk/mqdefault.jpg"
+           alt="The Sheep Detectives Trailer | Hugh Jackman Mystery Comedy 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Hands-Free Driving &amp; Overtaking with BMW Highway Assistant</p>
+      <p>The Sheep Detectives Trailer | Hugh Jackman Mystery Comedy 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/muse-spark-meta-s-quiet-revolution-in-ai-reasoning/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/run-llms-locally-for-free-ollama-s-privacy-breakthrough/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/7vkybiVRSm0/mqdefault.jpg"
-           alt="Muse Spark: Meta’s Quiet Revolution in AI Reasoning" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/UtSSMs6ObqY/mqdefault.jpg"
+           alt="Run LLMs Locally for Free: Ollama’s Privacy Breakthrough" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Muse Spark: Meta’s Quiet Revolution in AI Reasoning</p>
+      <p>Run LLMs Locally for Free: Ollama’s Privacy Breakthrough</p>
     </a>
-    <a href="https://trend4genz.fun/video/the-ai-prodigy-who-cracked-vision-and-why-it-matters-now/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/predictive-vs-generative-ai-key-differences-when-to-use-each/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/qh0FkdgieS8/mqdefault.jpg"
-           alt="The AI Prodigy Who Cracked Vision—And Why It Matters Now" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/phOhGqpXss4/mqdefault.jpg"
+           alt="Predictive vs Generative AI: Key Differences &amp; When to Use Each" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The AI Prodigy Who Cracked Vision—And Why It Matters Now</p>
+      <p>Predictive vs Generative AI: Key Differences &amp; When to Use Each</p>
     </a>
-    <a href="https://trend4genz.fun/video/solar-evs-batteries-the-real-roi-in-2026/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/hermes-agent-on-dgx-spark-local-ai-that-feels-like-magic/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/Jh033yLRI1E/mqdefault.jpg"
-           alt="Solar + EVs + Batteries: The Real ROI in 2026" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/7JRHSo2F-Wk/mqdefault.jpg"
+           alt="Hermes Agent on DGX Spark: Local AI That Feels Like Magic" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Solar + EVs + Batteries: The Real ROI in 2026</p>
+      <p>Hermes Agent on DGX Spark: Local AI That Feels Like Magic</p>
     </a>
-    <a href="https://trend4genz.fun/video/china-s-ev-revolution-5-cars-redefining-automotive-tech-by-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/wBKzg4-dYVM/mqdefault.jpg"
-           alt="China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/entertainment/8895/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/ukFgchO1ZQo/mqdefault.jpg"
+           alt="EXCLUSIVE: Dragon Ball Z Buu God of Destruction - Official Live-Action Movie Watch Now!" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026</p>
+      <p>EXCLUSIVE: Dragon Ball Z Buu God of Destruction - Official Live-Action Movie Watch Now!</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8891/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/suAR1PYFNYA/mqdefault.jpg"
+           alt="VIRAL! Dua Lipa - Houdini Official HD Music Video - Watch Now!" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>VIRAL! Dua Lipa - Houdini Official HD Music Video - Watch Now!</p>
+    </a>
+    <a href="https://trend4genz.fun/video/hermes-agent-the-24-7-ai-employee-that-outperforms-openclaw/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/RoBD7Lc-0MI/mqdefault.jpg"
+           alt="Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Hermes Agent: The 24/7 AI Employee That Outperforms OpenClaw</p>
+    </a>
+    <a href="https://trend4genz.fun/video/how-uber-scales-60k-ai-agent-tasks-weekly-with-mcps/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/yVqMxBahjfA/mqdefault.jpg"
+           alt="How Uber Scales 60K AI Agent Tasks Weekly With MCPs" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>How Uber Scales 60K AI Agent Tasks Weekly With MCPs</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8914/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/wFf3ur5XKgs/mqdefault.jpg"
+           alt="FC Bayern vs PSG - Bloody Drama at Allianz Arena: Will the German Giants Fall? | UEFA Champions League 2026 HD" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>FC Bayern vs PSG - Bloody Drama at Allianz Arena: Will the German Giants Fall? | UEFA Champions League 2026 HD</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8870/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/yebNIHKAC4A/mqdefault.jpg"
+           alt="EXCLUSIVE: HUNTR/X Golden LIVE at BAFTAs - Official Trailer &amp; Performance - Watch Now!" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>EXCLUSIVE: HUNTR/X Golden LIVE at BAFTAs - Official Trailer &amp; Performance - Watch Now!</p>
     </a>
     <a href="https://trend4genz.fun/video/software-defined-vehicles-the-500b-shift-reshaping-automotive/" class="side-slider-item"
        >
@@ -619,61 +624,33 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Software-Defined Vehicles: The $500B Shift Reshaping Automotive</p>
     </a>
-    <a href="https://trend4genz.fun/video/how-to-learn-python-fast-a-proven-2026-roadmap/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/why-engineers-rule-the-billionaire-list-in-2026/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/S5tOMUCvPFA/mqdefault.jpg"
-           alt="How to Learn Python Fast: A Proven 2026 Roadmap" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/ujD1wrsfLr0/mqdefault.jpg"
+           alt="Why Engineers Rule the Billionaire List in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>How to Learn Python Fast: A Proven 2026 Roadmap</p>
+      <p>Why Engineers Rule the Billionaire List in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/aeo-in-2026-get-ai-to-recommend-your-business-like-a-pro/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/self-evolving-ai-code-memory-how-llm-knowledge-bases-work/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/-5Drsq6ve7w/mqdefault.jpg"
-           alt="AEO in 2026: Get AI to Recommend Your Business Like a Pro" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/7huCP6RkcY4/mqdefault.jpg"
+           alt="Self-Evolving AI Code Memory: How LLM Knowledge Bases Work" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AEO in 2026: Get AI to Recommend Your Business Like a Pro</p>
+      <p>Self-Evolving AI Code Memory: How LLM Knowledge Bases Work</p>
     </a>
-    <a href="https://trend4genz.fun/video/multi-ai-agent-systems-why-one-brain-fails-in-high-stakes-ai/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/selling-5k-ai-operating-systems-to-smbs-the-full-blueprint/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/kYkZI3oj2W4/mqdefault.jpg"
-           alt="Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/yd9tr0xqg-Y/mqdefault.jpg"
+           alt="Selling $5K AI Operating Systems to SMBs: The Full Blueprint" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Multi-AI Agent Systems: Why One Brain Fails in High-Stakes AI</p>
+      <p>Selling $5K AI Operating Systems to SMBs: The Full Blueprint</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9119/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8904/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/emTfBLqtJug/mqdefault.jpg"
-           alt="Unveiling the Secrets of Ageless Beauty: Mango &amp; Toteme Summer Finds and the Truth About Botox" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/c3fj7V2YrNE/mqdefault.jpg"
+           alt="Fast Way to AI Millions - The Simplest Millionaire Blueprint | Wealth Tips 2026 HD" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling the Secrets of Ageless Beauty: Mango &amp; Toteme Summer Finds and the Truth About Botox</p>
-    </a>
-    <a href="https://trend4genz.fun/video/7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
-           alt="7 Levels of AI Mastery: How to Build Systems That Work While You Sleep" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>7 Levels of AI Mastery: How to Build Systems That Work While You Sleep</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9069/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/UT0xBbHl5Q4/mqdefault.jpg"
-           alt="The Psychology of Shopping Mall Design: How Architects Manipulate Your Mind" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The Psychology of Shopping Mall Design: How Architects Manipulate Your Mind</p>
-    </a>
-    <a href="https://trend4genz.fun/video/claude-hype-overload-why-ai-youtube-needs-real-engineering-now/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/rlsP-T_IxVE/mqdefault.jpg"
-           alt="Claude Hype Overload: Why AI YouTube Needs Real Engineering Now" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude Hype Overload: Why AI YouTube Needs Real Engineering Now</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8898/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/2XngEpLmH-w/mqdefault.jpg"
-           alt="EXCLUSIVE 2026 Top Hits: Taylor Swift, Bruno Mars, &amp; Ed Sheeran - Official HD Playlist" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>EXCLUSIVE 2026 Top Hits: Taylor Swift, Bruno Mars, &amp; Ed Sheeran - Official HD Playlist</p>
+      <p>Fast Way to AI Millions - The Simplest Millionaire Blueprint | Wealth Tips 2026 HD</p>
     </a></div>
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
     </div>

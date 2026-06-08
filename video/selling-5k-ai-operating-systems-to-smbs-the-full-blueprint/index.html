@@ -138,7 +138,6 @@
 
 
 <style>
-/* ── Wide Screen Badge ── */
 .ws-badge{
   display:inline-flex;align-items:center;gap:4px;
   background:#98FB98;color:#000;
@@ -152,8 +151,6 @@
 }
 .ws-badge:active{transform:scale(.96);}
 .ws-badge svg{flex-shrink:0;}
-
-/* ── Modal overlay ── */
 #ws-modal-overlay{
   display:none;position:fixed;inset:0;
   background:rgba(0,0,0,.75);z-index:99999;
@@ -164,11 +161,10 @@
   background:#1a1a1a;border-radius:18px 18px 0 0;
   padding:22px 20px 36px;width:100%;max-width:480px;
   border-top:3px solid #98FB98;
-  transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);
+  transform:translateY(100%);
+  transition:transform .32s cubic-bezier(.22,1,.36,1);
 }
 #ws-modal-overlay.show #ws-modal-box{transform:translateY(0);}
-
-/* ── Modal header ── */
 .ws-modal-header{
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:10px;
@@ -187,15 +183,11 @@
   font-size:.82rem;color:#aaa;margin-bottom:22px;line-height:1.5;
 }
 .ws-modal-subtitle strong{color:#fff;}
-
-/* ── Label open in browser ── */
 .ws-open-label{
   font-size:.7rem;font-weight:800;color:#555;
   text-transform:uppercase;letter-spacing:.1em;
   text-align:center;margin-bottom:12px;
 }
-
-/* ── Browser buttons ── */
 .ws-browser-btns{
   display:flex;gap:12px;justify-content:center;
 }
@@ -212,22 +204,22 @@
 }
 .ws-browser-btn:hover{
   background:rgba(152,251,152,.12);
-  border-color:#98FB98;
-  color:#98FB98;
+  border-color:#98FB98;color:#98FB98;
 }
 .ws-browser-btn:active{transform:scale(.97);}
 .ws-browser-btn img{
-  width:40px;height:40px;border-radius:10px;
-  object-fit:contain;
+  width:40px;height:40px;border-radius:10px;object-fit:contain;
 }
 </style>
 
-<!-- Modal HTML -->
 <div id="ws-modal-overlay" onclick="wsCloseModal(event)">
   <div id="ws-modal-box">
     <div class="ws-modal-header">
       <div class="ws-modal-title">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <polyline points="8 21 12 17 16 21"/>
+        </svg>
         Full Wide Screen
       </div>
       <button class="ws-modal-close" onclick="wsCloseModal(null)">✕</button>
@@ -240,39 +232,39 @@
 
 <script>
 (function(){
-  var PAGE_URL = 'https://trend4genz.fun/video/selling-5k-ai-operating-systems-to-smbs-the-full-blueprint/';
-  var ua  = navigator.userAgent || '';
-  var ref = document.referrer   || '';
-  var qs  = location.search     || '';
+  var PAGE_URL  = 'https://trend4genz.fun/video/selling-5k-ai-operating-systems-to-smbs-the-full-blueprint/';
+  var ua        = navigator.userAgent || '';
+  var ref       = document.referrer   || '';
+  var qs        = location.search     || '';
 
-  // ── Deteksi FB ──────────────────────────────────────────────
-  var isFB_UA  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua);
-  var isFB_REF = /facebook\.com|fb\.com|fb\.gg/i.test(ref);
-  var isFB_QS  = /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
-  var isFB     = isFB_UA || isFB_REF || isFB_QS;
+  // ── Deteksi platform ─────────────────────────────────────────
+  var isFB  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua)
+           || /facebook\.com|fb\.com|fb\.gg/i.test(ref)
+           || /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
 
-  // ── Deteksi X / Twitter ──────────────────────────────────────
-  var isX_UA   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua);
-  var isX_REF  = /twitter\.com|t\.co|x\.com/i.test(ref);
-  var isX_QS   = /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
-  var isX      = isX_UA || isX_REF || isX_QS;
+  var isX   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua)
+           || /twitter\.com|t\.co|x\.com/i.test(ref)
+           || /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
 
-  // ── Deteksi device ───────────────────────────────────────────
   var isAndroid = /Android/i.test(ua);
   var isIOS     = /iPhone|iPad|iPod/i.test(ua);
-  
-  var isInApp = true;
-  
-  // ── Inject badge ─────────────────────────────────────────────
+  var isInApp   = isFB || isX;
+
+  // ── Debug: hapus setelah confirmed work ──────────────────────
+  // var isInApp = true;
+
+  if (!isInApp) return;
+
+  // ── Inject badge ke h1 ───────────────────────────────────────
   function injectBadge() {
     var h1 = document.querySelector('.info-section h1');
-    alert('h1 found: ' + (h1 ? 'YES' : 'NO'));
     if (!h1) return;
-    var badge = document.createElement('button');
+    var badge       = document.createElement('button');
     badge.className = 'ws-badge';
-    badge.title = 'Open Full Wide Screen';
+    badge.title     = 'Open Full Wide Screen';
     badge.innerHTML =
-      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor"' +
+      ' stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
       '<polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>' +
       '<line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>' +
       '</svg>FULL WIDE SCREEN';
@@ -286,74 +278,59 @@
     injectBadge();
   }
 
-  // ── Handle klik badge → langsung tampil modal ────────────────
+  // ── Klik badge → tampil modal ─────────────────────────────────
   window.wsHandleClick = function() {
-    wsShowModal();
-  };
-
-  // ── Show modal ───────────────────────────────────────────────
-  window.wsShowModal = function() {
     var subtitle = document.getElementById('ws-modal-subtitle');
     var btnsWrap = document.getElementById('ws-browser-btns');
 
-    // Subtitle sesuai platform
-    var platform = isFB ? 'Facebook' : 'X (Twitter)';
-    subtitle.innerHTML =
-      'Your <strong>' + platform + '</strong> browser doesn't support full wide screen.';
+    subtitle.innerHTML = 'Your <strong>' + (isFB ? 'Facebook' : 'X (Twitter)') +
+      '</strong> browser doesn't support full wide screen.';
 
-    // Render tombol browser sesuai device
     btnsWrap.innerHTML = '';
 
-    // Chrome — Android atau unknown
+    // Tombol Chrome — Android atau tidak diketahui
     if (isAndroid || (!isAndroid && !isIOS)) {
-      var btnChrome = document.createElement('button');
-      btnChrome.className = 'ws-browser-btn';
-      btnChrome.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png" alt="Chrome"/>' +
-        'Chrome';
-      btnChrome.onclick = function() { wsOpenChrome(); };
-      btnsWrap.appendChild(btnChrome);
+      var btnC       = document.createElement('button');
+      btnC.className = 'ws-browser-btn';
+      btnC.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/' +
+        'Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png"' +
+        ' alt="Chrome"/>Chrome';
+      btnC.onclick   = wsOpenChrome;
+      btnsWrap.appendChild(btnC);
     }
 
-    // Safari — iOS atau unknown
+    // Tombol Safari — iOS atau tidak diketahui
     if (isIOS || (!isAndroid && !isIOS)) {
-      var btnSafari = document.createElement('button');
-      btnSafari.className = 'ws-browser-btn';
-      btnSafari.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png" alt="Safari"/>' +
-        'Safari';
-      btnSafari.onclick = function() { wsOpenSafari(); };
-      btnsWrap.appendChild(btnSafari);
+      var btnS       = document.createElement('button');
+      btnS.className = 'ws-browser-btn';
+      btnS.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/' +
+        'BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png"' +
+        ' alt="Safari"/>Safari';
+      btnS.onclick   = wsOpenSafari;
+      btnsWrap.appendChild(btnS);
     }
 
     document.getElementById('ws-modal-overlay').classList.add('show');
     document.body.style.overflow = 'hidden';
   };
 
-  // ── Buka Chrome via intent:// ────────────────────────────────
+  // ── Buka Chrome ───────────────────────────────────────────────
   window.wsOpenChrome = function() {
-    var encoded   = encodeURIComponent(PAGE_URL);
-    var intentUrl =
+    var encoded = encodeURIComponent(PAGE_URL);
+    window.location.href =
       'intent://' + PAGE_URL.replace(/^https?:\/\//, '') +
       '#Intent;scheme=https;package=com.android.chrome;' +
       'S.browser_fallback_url=' + encoded + ';end';
-    window.location.href = intentUrl;
   };
 
-  // ── Buka Safari via scheme ────────────────────────────────────
+  // ── Buka Safari ───────────────────────────────────────────────
   window.wsOpenSafari = function() {
-    // x-web-search tidak selalu work, pakai universal link safari
-    var safariUrl = PAGE_URL.replace(/^https?:\/\//, 'https://');
-    // Coba scheme safari dulu
-    var t = Date.now();
-    window.location.href = 'x-web-search://?q=' + encodeURIComponent(safariUrl);
-    // Fallback: buka langsung jika scheme gagal
-    setTimeout(function() {
-      if (Date.now() - t < 1500) window.location.href = safariUrl;
-    }, 800);
+    window.location.href = PAGE_URL;
   };
 
-  // ── Close modal ──────────────────────────────────────────────
+  // ── Tutup modal ───────────────────────────────────────────────
   window.wsCloseModal = function(e) {
     if (e && e.target !== document.getElementById('ws-modal-overlay')) return;
     document.getElementById('ws-modal-overlay').classList.remove('show');
@@ -479,61 +456,61 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/the-ai-prodigy-who-cracked-vision-and-why-it-matters-now/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/qh0FkdgieS8/mqdefault.jpg"
-           alt="The AI Prodigy Who Cracked Vision—And Why It Matters Now" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>The AI Prodigy Who Cracked Vision—And Why It Matters Now</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8880/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8871/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/5EpyN_6dqyk/mqdefault.jpg"
-           alt="EXCLUSIVE: The Weeknd &amp; Playboi Carti - Timeless Official HD Video - Watch Now!" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/sNY_2TEmzho/mqdefault.jpg"
+           alt="EXCLUSIVE: Kendrick Lamar &amp; SZA - luther Official HD Music Video - Watch Now!" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>EXCLUSIVE: The Weeknd &amp; Playboi Carti - Timeless Official HD Video - Watch Now!</p>
+      <p>EXCLUSIVE: Kendrick Lamar &amp; SZA - luther Official HD Music Video - Watch Now!</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8866/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8844/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/oIv_Y2RPQ_A/mqdefault.jpg"
-           alt="EXCLUSIVE: Olivia Dean - Man I Need Official HD Video - Watch Now!" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/SczeivOMuUQ/mqdefault.jpg"
+           alt="Descendants: Wicked Wonderland First Look | Exclusive Disney Channel Reveal" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>EXCLUSIVE: Olivia Dean - Man I Need Official HD Video - Watch Now!</p>
+      <p>Descendants: Wicked Wonderland First Look | Exclusive Disney Channel Reveal</p>
     </a>
-    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
-           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8824/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8884/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/QX85JymdGnQ/mqdefault.jpg"
-           alt="HUNGRY | Official Trailer | Swamp Horror 2026 Exclusive" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/QU9c0053UAU/mqdefault.jpg"
+           alt="WATCH NOW: Jung Kook feat. Latto - Seven Official HD MV - Viral Global Hit!" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>HUNGRY | Official Trailer | Swamp Horror 2026 Exclusive</p>
+      <p>WATCH NOW: Jung Kook feat. Latto - Seven Official HD MV - Viral Global Hit!</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-claude-co-work-tips-to-master-your-workspace-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
-           alt="5 Claude Co-Work Tips to Master Your Workspace in 2026" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Claude Co-Work Tips to Master Your Workspace in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/claude-managed-agents-the-ai-breakthrough-that-will-create-millionaires/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/qpa5XwGkLp8/mqdefault.jpg"
-           alt="Claude Managed Agents: The AI Breakthrough That Will Create Millionaires" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Claude Managed Agents: The AI Breakthrough That Will Create Millionaires</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9137/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8923/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/pDcC5Bvbe70/mqdefault.jpg"
-           alt="Transform Your Home with Premium Aluminium Windows &amp; Doors - A Game-Changing Upgrade" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/sq2bL_cFeG4/mqdefault.jpg"
+           alt="VIRAL! Top 9 Most Anticipated Movies of 2026 (Part 1) Watch Now Official Trailers!" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Transform Your Home with Premium Aluminium Windows &amp; Doors - A Game-Changing Upgrade</p>
+      <p>VIRAL! Top 9 Most Anticipated Movies of 2026 (Part 1) Watch Now Official Trailers!</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8838/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/BuvyY8YlC9A/mqdefault.jpg"
+           alt="SIGNAL ONE | Official Trailer 2026 | Isabelle Fuhrman Thriller" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>SIGNAL ONE | Official Trailer 2026 | Isabelle Fuhrman Thriller</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9005/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/-jItj2rAlvk/mqdefault.jpg"
+           alt="Unveiling the Hidden Paradise: An Architect's Dream Home Inside a Secret Garden" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Unveiling the Hidden Paradise: An Architect's Dream Home Inside a Secret Garden</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/rural-minimalist-home/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/YlYGqOccfoI/mqdefault.jpg"
+           alt="Discover the Ultimate Rural Retreat: A 2 Bedroom Self Contained Haven of Affordable Luxury" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Discover the Ultimate Rural Retreat: A 2 Bedroom Self Contained Haven of Affordable Luxury</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8906/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/Bgy00eaFyhE/mqdefault.jpg"
+           alt="RAJA SHIVAJI Official Trailer: The Rise of a Legend! Watch Now in HD (Exclusive)" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>RAJA SHIVAJI Official Trailer: The Rise of a Legend! Watch Now in HD (Exclusive)</p>
     </a></div>
         </div>
       </div>
@@ -544,145 +521,145 @@
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/the-ai-prodigy-who-cracked-vision-and-why-it-matters-now/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/qh0FkdgieS8/mqdefault.jpg"
-           alt="The AI Prodigy Who Cracked Vision—And Why It Matters Now" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The AI Prodigy Who Cracked Vision—And Why It Matters Now</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8880/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8871/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/5EpyN_6dqyk/mqdefault.jpg"
-           alt="EXCLUSIVE: The Weeknd &amp; Playboi Carti - Timeless Official HD Video - Watch Now!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/sNY_2TEmzho/mqdefault.jpg"
+           alt="EXCLUSIVE: Kendrick Lamar &amp; SZA - luther Official HD Music Video - Watch Now!" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>EXCLUSIVE: The Weeknd &amp; Playboi Carti - Timeless Official HD Video - Watch Now!</p>
+      <p>EXCLUSIVE: Kendrick Lamar &amp; SZA - luther Official HD Music Video - Watch Now!</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8866/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8844/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/oIv_Y2RPQ_A/mqdefault.jpg"
-           alt="EXCLUSIVE: Olivia Dean - Man I Need Official HD Video - Watch Now!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/SczeivOMuUQ/mqdefault.jpg"
+           alt="Descendants: Wicked Wonderland First Look | Exclusive Disney Channel Reveal" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>EXCLUSIVE: Olivia Dean - Man I Need Official HD Video - Watch Now!</p>
+      <p>Descendants: Wicked Wonderland First Look | Exclusive Disney Channel Reveal</p>
     </a>
-    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
-           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8824/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8884/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/QX85JymdGnQ/mqdefault.jpg"
-           alt="HUNGRY | Official Trailer | Swamp Horror 2026 Exclusive" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/QU9c0053UAU/mqdefault.jpg"
+           alt="WATCH NOW: Jung Kook feat. Latto - Seven Official HD MV - Viral Global Hit!" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>HUNGRY | Official Trailer | Swamp Horror 2026 Exclusive</p>
+      <p>WATCH NOW: Jung Kook feat. Latto - Seven Official HD MV - Viral Global Hit!</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-claude-co-work-tips-to-master-your-workspace-in-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
-           alt="5 Claude Co-Work Tips to Master Your Workspace in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>5 Claude Co-Work Tips to Master Your Workspace in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/claude-managed-agents-the-ai-breakthrough-that-will-create-millionaires/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/qpa5XwGkLp8/mqdefault.jpg"
-           alt="Claude Managed Agents: The AI Breakthrough That Will Create Millionaires" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Claude Managed Agents: The AI Breakthrough That Will Create Millionaires</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9137/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8923/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/pDcC5Bvbe70/mqdefault.jpg"
-           alt="Transform Your Home with Premium Aluminium Windows &amp; Doors - A Game-Changing Upgrade" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/sq2bL_cFeG4/mqdefault.jpg"
+           alt="VIRAL! Top 9 Most Anticipated Movies of 2026 (Part 1) Watch Now Official Trailers!" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Transform Your Home with Premium Aluminium Windows &amp; Doors - A Game-Changing Upgrade</p>
+      <p>VIRAL! Top 9 Most Anticipated Movies of 2026 (Part 1) Watch Now Official Trailers!</p>
     </a>
-    <a href="https://trend4genz.fun/video/build-an-ai-dark-factory-self-shipping-code-tutorial/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/6woc6ii-zoE/mqdefault.jpg"
-           alt="Build an AI Dark Factory: Self-Shipping Code Tutorial" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Build an AI Dark Factory: Self-Shipping Code Tutorial</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8811/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8838/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/0HjdiohVOik/mqdefault.jpg"
-           alt="Backrooms Official Movie Trailer | Kane Parsons Horror Viral 2026" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/BuvyY8YlC9A/mqdefault.jpg"
+           alt="SIGNAL ONE | Official Trailer 2026 | Isabelle Fuhrman Thriller" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Backrooms Official Movie Trailer | Kane Parsons Horror Viral 2026</p>
+      <p>SIGNAL ONE | Official Trailer 2026 | Isabelle Fuhrman Thriller</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9120/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9005/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/DscLy-a3Ebc/mqdefault.jpg"
-           alt="Unlocking Productivity and Love: The 5am Club Lifestyle with SLMan Podcast" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/-jItj2rAlvk/mqdefault.jpg"
+           alt="Unveiling the Hidden Paradise: An Architect's Dream Home Inside a Secret Garden" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlocking Productivity and Love: The 5am Club Lifestyle with SLMan Podcast</p>
+      <p>Unveiling the Hidden Paradise: An Architect's Dream Home Inside a Secret Garden</p>
     </a>
-    <a href="https://trend4genz.fun/video/cursor-agent-pro-tips-10-power-moves-for-ai-powered-coding/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/WVeYLlKOWc0/mqdefault.jpg"
-           alt="Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Cursor Agent Pro Tips: 10 Power Moves for AI-Powered Coding</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9069/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/rural-minimalist-home/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/UT0xBbHl5Q4/mqdefault.jpg"
-           alt="The Psychology of Shopping Mall Design: How Architects Manipulate Your Mind" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/YlYGqOccfoI/mqdefault.jpg"
+           alt="Discover the Ultimate Rural Retreat: A 2 Bedroom Self Contained Haven of Affordable Luxury" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The Psychology of Shopping Mall Design: How Architects Manipulate Your Mind</p>
+      <p>Discover the Ultimate Rural Retreat: A 2 Bedroom Self Contained Haven of Affordable Luxury</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9096/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8906/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/IdFUbu5owms/mqdefault.jpg"
-           alt="Revolutionize Your Dream Home: Cutting-Edge Prefab Concrete House Designs to Build in Half the Time" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/Bgy00eaFyhE/mqdefault.jpg"
+           alt="RAJA SHIVAJI Official Trailer: The Rise of a Legend! Watch Now in HD (Exclusive)" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Revolutionize Your Dream Home: Cutting-Edge Prefab Concrete House Designs to Build in Half the Time</p>
+      <p>RAJA SHIVAJI Official Trailer: The Rise of a Legend! Watch Now in HD (Exclusive)</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9071/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8822/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/4qDXPaSs_qI/mqdefault.jpg"
-           alt="Unlocking Opulence: A $9.75 Million Church Transformation in Toronto" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/n7f6hlKsxxo/mqdefault.jpg"
+           alt="Moana | Official Live Action Trailer | July 10 Release HD" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlocking Opulence: A $9.75 Million Church Transformation in Toronto</p>
+      <p>Moana | Official Live Action Trailer | July 10 Release HD</p>
     </a>
-    <a href="https://trend4genz.fun/video/1-000-000x-ai-compute-leap-what-changes-next-in-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/yz6I23VRbdg/mqdefault.jpg"
-           alt="1,000,000x AI Compute Leap: What Changes Next in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>1,000,000x AI Compute Leap: What Changes Next in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/ai-agents-in-2026-the-divergence-that-will-redefine-workflows/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/R9K2574YEAg/mqdefault.jpg"
-           alt="AI Agents in 2026: The Divergence That Will Redefine Workflows" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>AI Agents in 2026: The Divergence That Will Redefine Workflows</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9089/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8896/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/q76e2IH743g/mqdefault.jpg"
-           alt="Unveiling the $2 Million Modern Farmhouse: A 2-Acre Paradise of Luxury and Elegance" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/UUhZTVjj1ww/mqdefault.jpg"
+           alt="Viral 2026 Pop Hits: Official Spotify Playlist - Best Music Mix HD Watch Now" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling the $2 Million Modern Farmhouse: A 2-Acre Paradise of Luxury and Elegance</p>
+      <p>Viral 2026 Pop Hits: Official Spotify Playlist - Best Music Mix HD Watch Now</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8802/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8961/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/jqgDp_X97o8/mqdefault.jpg"
-           alt="Liverpool vs Crystal Palace Highlights: Dramatic Anfield Win HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/7gVFwEIrBYw/mqdefault.jpg"
+           alt="Transform Your Narrow Living Room: Expert Decorating Tips and Tricks" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Liverpool vs Crystal Palace Highlights: Dramatic Anfield Win HD</p>
+      <p>Transform Your Narrow Living Room: Expert Decorating Tips and Tricks</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9085/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9067/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/XTjiXs4oUQA/mqdefault.jpg"
-           alt="Transforming Tiny Spaces: Unveiling the Magic of Creative Apartment Design" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/vhpuFUpmO1Q/mqdefault.jpg"
+           alt="Discover the Hidden Gems of Paris: An Unforgettable Architectural Tour" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Transforming Tiny Spaces: Unveiling the Magic of Creative Apartment Design</p>
+      <p>Discover the Hidden Gems of Paris: An Unforgettable Architectural Tour</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8816/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/0fZ58S-7QP0/mqdefault.jpg"
+           alt="Scary Movie 2026 Trailer | The Wayans Brothers Return Official" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Scary Movie 2026 Trailer | The Wayans Brothers Return Official</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8862/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/V9PVRfjEBTI/mqdefault.jpg"
+           alt="VIRAL! Billie Eilish - BIRDS OF A FEATHER Official Music Video HD - Watch Now!" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>VIRAL! Billie Eilish - BIRDS OF A FEATHER Official Music Video HD - Watch Now!</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8942/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/oQdx8qMjinI/mqdefault.jpg"
+           alt="Elevate Your Living: Modern 1 Bedroom Apartments with a Touch of Elegance - 8 Stunning Units to Explore" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Elevate Your Living: Modern 1 Bedroom Apartments with a Touch of Elegance - 8 Stunning Units to Explore</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9004/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/DHTfz1d0N_k/mqdefault.jpg"
+           alt="Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9046/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/kEr_xlbCn0U/mqdefault.jpg"
+           alt="Unveiling the Opulence of Kenya's Most Luxurious Mansion: A Nairobi Masterpiece" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unveiling the Opulence of Kenya's Most Luxurious Mansion: A Nairobi Masterpiece</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8897/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/p5Q2bfe-iZI/mqdefault.jpg"
+           alt="Official TikTok Hits 2026: Top Spotify Playlist &amp; Viral Pop Songs Watch Now!" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Official TikTok Hits 2026: Top Spotify Playlist &amp; Viral Pop Songs Watch Now!</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8976/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/Ayg-NAo0RCc/mqdefault.jpg"
+           alt="Unleash the Power of Luxury: 100+ Breathtaking Modern Living Room Partition Wall Designs for 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unleash the Power of Luxury: 100+ Breathtaking Modern Living Room Partition Wall Designs for 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8839/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/cVuaamn_kwc/mqdefault.jpg"
+           alt="STOP! THAT! TRAIN! | Official Trailer | RuPaul 2026 Comedy" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>STOP! THAT! TRAIN! | Official Trailer | RuPaul 2026 Comedy</p>
     </a></div>
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
     </div>

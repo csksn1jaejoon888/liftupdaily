@@ -137,7 +137,6 @@
 
 
 <style>
-/* ── Wide Screen Badge ── */
 .ws-badge{
   display:inline-flex;align-items:center;gap:4px;
   background:#98FB98;color:#000;
@@ -151,8 +150,6 @@
 }
 .ws-badge:active{transform:scale(.96);}
 .ws-badge svg{flex-shrink:0;}
-
-/* ── Modal overlay ── */
 #ws-modal-overlay{
   display:none;position:fixed;inset:0;
   background:rgba(0,0,0,.75);z-index:99999;
@@ -163,11 +160,10 @@
   background:#1a1a1a;border-radius:18px 18px 0 0;
   padding:22px 20px 36px;width:100%;max-width:480px;
   border-top:3px solid #98FB98;
-  transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);
+  transform:translateY(100%);
+  transition:transform .32s cubic-bezier(.22,1,.36,1);
 }
 #ws-modal-overlay.show #ws-modal-box{transform:translateY(0);}
-
-/* ── Modal header ── */
 .ws-modal-header{
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:10px;
@@ -186,15 +182,11 @@
   font-size:.82rem;color:#aaa;margin-bottom:22px;line-height:1.5;
 }
 .ws-modal-subtitle strong{color:#fff;}
-
-/* ── Label open in browser ── */
 .ws-open-label{
   font-size:.7rem;font-weight:800;color:#555;
   text-transform:uppercase;letter-spacing:.1em;
   text-align:center;margin-bottom:12px;
 }
-
-/* ── Browser buttons ── */
 .ws-browser-btns{
   display:flex;gap:12px;justify-content:center;
 }
@@ -211,22 +203,22 @@
 }
 .ws-browser-btn:hover{
   background:rgba(152,251,152,.12);
-  border-color:#98FB98;
-  color:#98FB98;
+  border-color:#98FB98;color:#98FB98;
 }
 .ws-browser-btn:active{transform:scale(.97);}
 .ws-browser-btn img{
-  width:40px;height:40px;border-radius:10px;
-  object-fit:contain;
+  width:40px;height:40px;border-radius:10px;object-fit:contain;
 }
 </style>
 
-<!-- Modal HTML -->
 <div id="ws-modal-overlay" onclick="wsCloseModal(event)">
   <div id="ws-modal-box">
     <div class="ws-modal-header">
       <div class="ws-modal-title">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <polyline points="8 21 12 17 16 21"/>
+        </svg>
         Full Wide Screen
       </div>
       <button class="ws-modal-close" onclick="wsCloseModal(null)">✕</button>
@@ -239,39 +231,39 @@
 
 <script>
 (function(){
-  var PAGE_URL = 'https://trend4genz.fun/entertainment/9160/';
-  var ua  = navigator.userAgent || '';
-  var ref = document.referrer   || '';
-  var qs  = location.search     || '';
+  var PAGE_URL  = 'https://trend4genz.fun/entertainment/9160/';
+  var ua        = navigator.userAgent || '';
+  var ref       = document.referrer   || '';
+  var qs        = location.search     || '';
 
-  // ── Deteksi FB ──────────────────────────────────────────────
-  var isFB_UA  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua);
-  var isFB_REF = /facebook\.com|fb\.com|fb\.gg/i.test(ref);
-  var isFB_QS  = /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
-  var isFB     = isFB_UA || isFB_REF || isFB_QS;
+  // ── Deteksi platform ─────────────────────────────────────────
+  var isFB  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua)
+           || /facebook\.com|fb\.com|fb\.gg/i.test(ref)
+           || /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
 
-  // ── Deteksi X / Twitter ──────────────────────────────────────
-  var isX_UA   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua);
-  var isX_REF  = /twitter\.com|t\.co|x\.com/i.test(ref);
-  var isX_QS   = /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
-  var isX      = isX_UA || isX_REF || isX_QS;
+  var isX   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua)
+           || /twitter\.com|t\.co|x\.com/i.test(ref)
+           || /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
 
-  // ── Deteksi device ───────────────────────────────────────────
   var isAndroid = /Android/i.test(ua);
   var isIOS     = /iPhone|iPad|iPod/i.test(ua);
-  
-  var isInApp = true;
-  
-  // ── Inject badge ─────────────────────────────────────────────
+  var isInApp   = isFB || isX;
+
+  // ── Debug: hapus setelah confirmed work ──────────────────────
+  // var isInApp = true;
+
+  if (!isInApp) return;
+
+  // ── Inject badge ke h1 ───────────────────────────────────────
   function injectBadge() {
     var h1 = document.querySelector('.info-section h1');
-    alert('h1 found: ' + (h1 ? 'YES' : 'NO'));
     if (!h1) return;
-    var badge = document.createElement('button');
+    var badge       = document.createElement('button');
     badge.className = 'ws-badge';
-    badge.title = 'Open Full Wide Screen';
+    badge.title     = 'Open Full Wide Screen';
     badge.innerHTML =
-      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor"' +
+      ' stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
       '<polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>' +
       '<line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>' +
       '</svg>FULL WIDE SCREEN';
@@ -285,74 +277,59 @@
     injectBadge();
   }
 
-  // ── Handle klik badge → langsung tampil modal ────────────────
+  // ── Klik badge → tampil modal ─────────────────────────────────
   window.wsHandleClick = function() {
-    wsShowModal();
-  };
-
-  // ── Show modal ───────────────────────────────────────────────
-  window.wsShowModal = function() {
     var subtitle = document.getElementById('ws-modal-subtitle');
     var btnsWrap = document.getElementById('ws-browser-btns');
 
-    // Subtitle sesuai platform
-    var platform = isFB ? 'Facebook' : 'X (Twitter)';
-    subtitle.innerHTML =
-      'Your <strong>' + platform + '</strong> browser doesn't support full wide screen.';
+    subtitle.innerHTML = 'Your <strong>' + (isFB ? 'Facebook' : 'X (Twitter)') +
+      '</strong> browser doesn't support full wide screen.';
 
-    // Render tombol browser sesuai device
     btnsWrap.innerHTML = '';
 
-    // Chrome — Android atau unknown
+    // Tombol Chrome — Android atau tidak diketahui
     if (isAndroid || (!isAndroid && !isIOS)) {
-      var btnChrome = document.createElement('button');
-      btnChrome.className = 'ws-browser-btn';
-      btnChrome.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png" alt="Chrome"/>' +
-        'Chrome';
-      btnChrome.onclick = function() { wsOpenChrome(); };
-      btnsWrap.appendChild(btnChrome);
+      var btnC       = document.createElement('button');
+      btnC.className = 'ws-browser-btn';
+      btnC.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/' +
+        'Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png"' +
+        ' alt="Chrome"/>Chrome';
+      btnC.onclick   = wsOpenChrome;
+      btnsWrap.appendChild(btnC);
     }
 
-    // Safari — iOS atau unknown
+    // Tombol Safari — iOS atau tidak diketahui
     if (isIOS || (!isAndroid && !isIOS)) {
-      var btnSafari = document.createElement('button');
-      btnSafari.className = 'ws-browser-btn';
-      btnSafari.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png" alt="Safari"/>' +
-        'Safari';
-      btnSafari.onclick = function() { wsOpenSafari(); };
-      btnsWrap.appendChild(btnSafari);
+      var btnS       = document.createElement('button');
+      btnS.className = 'ws-browser-btn';
+      btnS.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/' +
+        'BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png"' +
+        ' alt="Safari"/>Safari';
+      btnS.onclick   = wsOpenSafari;
+      btnsWrap.appendChild(btnS);
     }
 
     document.getElementById('ws-modal-overlay').classList.add('show');
     document.body.style.overflow = 'hidden';
   };
 
-  // ── Buka Chrome via intent:// ────────────────────────────────
+  // ── Buka Chrome ───────────────────────────────────────────────
   window.wsOpenChrome = function() {
-    var encoded   = encodeURIComponent(PAGE_URL);
-    var intentUrl =
+    var encoded = encodeURIComponent(PAGE_URL);
+    window.location.href =
       'intent://' + PAGE_URL.replace(/^https?:\/\//, '') +
       '#Intent;scheme=https;package=com.android.chrome;' +
       'S.browser_fallback_url=' + encoded + ';end';
-    window.location.href = intentUrl;
   };
 
-  // ── Buka Safari via scheme ────────────────────────────────────
+  // ── Buka Safari ───────────────────────────────────────────────
   window.wsOpenSafari = function() {
-    // x-web-search tidak selalu work, pakai universal link safari
-    var safariUrl = PAGE_URL.replace(/^https?:\/\//, 'https://');
-    // Coba scheme safari dulu
-    var t = Date.now();
-    window.location.href = 'x-web-search://?q=' + encodeURIComponent(safariUrl);
-    // Fallback: buka langsung jika scheme gagal
-    setTimeout(function() {
-      if (Date.now() - t < 1500) window.location.href = safariUrl;
-    }, 800);
+    window.location.href = PAGE_URL;
   };
 
-  // ── Close modal ──────────────────────────────────────────────
+  // ── Tutup modal ───────────────────────────────────────────────
   window.wsCloseModal = function(e) {
     if (e && e.target !== document.getElementById('ws-modal-overlay')) return;
     document.getElementById('ws-modal-overlay').classList.remove('show');
@@ -434,40 +411,26 @@ As we wrap up this feature, we invite you to continue exploring more of our inno
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/gemma-4-drops-apache-2-license-google-s-open-ai-power-move/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
-           alt="Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/single-unit-container-house-design/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8857/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/Buh6UMT-IhA/mqdefault.jpg"
-           alt="Revolutionary Single Unit Container Homes: Affordable Luxury Beyond Your Wildest Dreams" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/Ypv_ZDgXYAo/mqdefault.jpg"
+           alt="Real Madrid vs Bayern Munich - German Giant Silence the Bernabeu! | Champions League 2026 HD" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Revolutionary Single Unit Container Homes: Affordable Luxury Beyond Your Wildest Dreams</p>
+      <p>Real Madrid vs Bayern Munich - German Giant Silence the Bernabeu! | Champions League 2026 HD</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9173/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9124/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/FAxFMP6eYiY/mqdefault.jpg"
-           alt="Unlock the Hottest Interior Design Trends of 2026: Expert Insights and Surprising Predictions" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/iYRzvoVD8IA/mqdefault.jpg"
+           alt="Unpacking Polly &amp; Rabea's SS26 Style Edit: The Ultimate Guide to Summer Fashion Trends" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unlock the Hottest Interior Design Trends of 2026: Expert Insights and Surprising Predictions</p>
+      <p>Unpacking Polly &amp; Rabea's SS26 Style Edit: The Ultimate Guide to Summer Fashion Trends</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9108/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9063/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/yT67sKe-hS8/mqdefault.jpg"
-           alt="Unpredictable Chaos Unfolds: Witness the Jaw-Dropping Normal Day Turned Upside Down" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/tVbC_8kLdso/mqdefault.jpg"
+           alt="Step Inside the Serene Japanese-Style Sanctuary of George Nakashima's Home and Workshop" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unpredictable Chaos Unfolds: Witness the Jaw-Dropping Normal Day Turned Upside Down</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9069/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/UT0xBbHl5Q4/mqdefault.jpg"
-           alt="The Psychology of Shopping Mall Design: How Architects Manipulate Your Mind" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>The Psychology of Shopping Mall Design: How Architects Manipulate Your Mind</p>
+      <p>Step Inside the Serene Japanese-Style Sanctuary of George Nakashima's Home and Workshop</p>
     </a>
     <a href="https://trend4genz.fun/entertainment/9064/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
@@ -476,19 +439,33 @@ As we wrap up this feature, we invite you to continue exploring more of our inno
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>Unlocking London's Hidden Treasures: A Pro Designer's Antique Shopping Spree</p>
     </a>
+    <a href="https://trend4genz.fun/entertainment/9082/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/X9bMYc9-2Eg/mqdefault.jpg"
+           alt="Unveiling the Opulence of Alison Victoria's Chicago Dream Home: An Exclusive House Tour" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Unveiling the Opulence of Alison Victoria's Chicago Dream Home: An Exclusive House Tour</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9079/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/9VreX0GJOHk/mqdefault.jpg"
+           alt="Step into Paradise: Explore the Breathtaking $2.829 Million Lake House on Royal Island" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Step into Paradise: Explore the Breathtaking $2.829 Million Lake House on Royal Island</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9119/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/emTfBLqtJug/mqdefault.jpg"
+           alt="Unveiling the Secrets of Ageless Beauty: Mango &amp; Toteme Summer Finds and the Truth About Botox" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Unveiling the Secrets of Ageless Beauty: Mango &amp; Toteme Summer Finds and the Truth About Botox</p>
+    </a>
     <a href="https://trend4genz.fun/entertainment/9099/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
       <img src="https://img.youtube.com/vi/zDwKIjzsKZ4/mqdefault.jpg"
            alt="Escape to Serenity: Mountain Craftsman Homes Design Ideas for the Ultimate Hillside Retreat" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
       <p>Escape to Serenity: Mountain Craftsman Homes Design Ideas for the Ultimate Hillside Retreat</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9097/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/6US8sF26mYc/mqdefault.jpg"
-           alt="Revolutionize Your Brand: Cutting-Edge Commercial Container Design Ideas" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Revolutionize Your Brand: Cutting-Edge Commercial Container Design Ideas</p>
     </a></div>
         </div>
       </div>
@@ -499,110 +476,19 @@ As we wrap up this feature, we invite you to continue exploring more of our inno
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/gemma-4-drops-apache-2-license-google-s-open-ai-power-move/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/5aqF1HVpjdc/mqdefault.jpg"
-           alt="Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Gemma 4 Drops Apache 2 License—Google’s Open AI Power Move</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/single-unit-container-house-design/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8857/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/Buh6UMT-IhA/mqdefault.jpg"
-           alt="Revolutionary Single Unit Container Homes: Affordable Luxury Beyond Your Wildest Dreams" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/Ypv_ZDgXYAo/mqdefault.jpg"
+           alt="Real Madrid vs Bayern Munich - German Giant Silence the Bernabeu! | Champions League 2026 HD" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Revolutionary Single Unit Container Homes: Affordable Luxury Beyond Your Wildest Dreams</p>
+      <p>Real Madrid vs Bayern Munich - German Giant Silence the Bernabeu! | Champions League 2026 HD</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9173/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9124/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/FAxFMP6eYiY/mqdefault.jpg"
-           alt="Unlock the Hottest Interior Design Trends of 2026: Expert Insights and Surprising Predictions" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/iYRzvoVD8IA/mqdefault.jpg"
+           alt="Unpacking Polly &amp; Rabea's SS26 Style Edit: The Ultimate Guide to Summer Fashion Trends" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlock the Hottest Interior Design Trends of 2026: Expert Insights and Surprising Predictions</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9108/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/yT67sKe-hS8/mqdefault.jpg"
-           alt="Unpredictable Chaos Unfolds: Witness the Jaw-Dropping Normal Day Turned Upside Down" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unpredictable Chaos Unfolds: Witness the Jaw-Dropping Normal Day Turned Upside Down</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9069/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/UT0xBbHl5Q4/mqdefault.jpg"
-           alt="The Psychology of Shopping Mall Design: How Architects Manipulate Your Mind" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The Psychology of Shopping Mall Design: How Architects Manipulate Your Mind</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9064/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/ewaUS2RScT0/mqdefault.jpg"
-           alt="Unlocking London's Hidden Treasures: A Pro Designer's Antique Shopping Spree" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlocking London's Hidden Treasures: A Pro Designer's Antique Shopping Spree</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9099/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/zDwKIjzsKZ4/mqdefault.jpg"
-           alt="Escape to Serenity: Mountain Craftsman Homes Design Ideas for the Ultimate Hillside Retreat" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Escape to Serenity: Mountain Craftsman Homes Design Ideas for the Ultimate Hillside Retreat</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9097/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/6US8sF26mYc/mqdefault.jpg"
-           alt="Revolutionize Your Brand: Cutting-Edge Commercial Container Design Ideas" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Revolutionize Your Brand: Cutting-Edge Commercial Container Design Ideas</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9119/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/emTfBLqtJug/mqdefault.jpg"
-           alt="Unveiling the Secrets of Ageless Beauty: Mango &amp; Toteme Summer Finds and the Truth About Botox" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling the Secrets of Ageless Beauty: Mango &amp; Toteme Summer Finds and the Truth About Botox</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/video-decorating-regrets/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/xJaCHlEl8wk/mqdefault.jpg"
-           alt="The Most Breathtaking Home Decor Mistakes I've Ever Made - And How I Fixed Them!" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The Most Breathtaking Home Decor Mistakes I've Ever Made - And How I Fixed Them!</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9107/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/Rrs6sd1PEZo/mqdefault.jpg"
-           alt="Unveiling the Intimate Truth: A Vulnerable Side of [Creator's Name]" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling the Intimate Truth: A Vulnerable Side of [Creator's Name]</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8959/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/G58h56vkhVk/mqdefault.jpg"
-           alt="Revamp Your Space: Expert Home Styling Tips After the Holiday Season" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Revamp Your Space: Expert Home Styling Tips After the Holiday Season</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8976/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/Ayg-NAo0RCc/mqdefault.jpg"
-           alt="Unleash the Power of Luxury: 100+ Breathtaking Modern Living Room Partition Wall Designs for 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unleash the Power of Luxury: 100+ Breathtaking Modern Living Room Partition Wall Designs for 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8947/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/iG-ky8gHe34/mqdefault.jpg"
-           alt="Revolutionizing Home Design: Exploring Diverse Roof Styles and Colors" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Revolutionizing Home Design: Exploring Diverse Roof Styles and Colors</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9006/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/KxeLBH8pg2c/mqdefault.jpg"
-           alt="Designing a Home Sanctuary: Expert Insights from Ome Dezin's Masterclass" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Designing a Home Sanctuary: Expert Insights from Ome Dezin's Masterclass</p>
+      <p>Unpacking Polly &amp; Rabea's SS26 Style Edit: The Ultimate Guide to Summer Fashion Trends</p>
     </a>
     <a href="https://trend4genz.fun/entertainment/9063/" class="side-slider-item"
        rel="nofollow noopener">
@@ -611,33 +497,124 @@ As we wrap up this feature, we invite you to continue exploring more of our inno
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Step Inside the Serene Japanese-Style Sanctuary of George Nakashima's Home and Workshop</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9111/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9064/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/732HRNW8vSw/mqdefault.jpg"
-           alt="Upgrade Your Home's Luxury on a Shoestring Budget: A Step-by-Step Interior Design Challenge" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/ewaUS2RScT0/mqdefault.jpg"
+           alt="Unlocking London's Hidden Treasures: A Pro Designer's Antique Shopping Spree" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Upgrade Your Home's Luxury on a Shoestring Budget: A Step-by-Step Interior Design Challenge</p>
+      <p>Unlocking London's Hidden Treasures: A Pro Designer's Antique Shopping Spree</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9116/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9082/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/-Vb4GpPB_gk/mqdefault.jpg"
-           alt="What Can We Learn from the Style of Gareth Southgate's Designer Label?" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/X9bMYc9-2Eg/mqdefault.jpg"
+           alt="Unveiling the Opulence of Alison Victoria's Chicago Dream Home: An Exclusive House Tour" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>What Can We Learn from the Style of Gareth Southgate's Designer Label?</p>
+      <p>Unveiling the Opulence of Alison Victoria's Chicago Dream Home: An Exclusive House Tour</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9074/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9079/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/P3bcyxe2YN0/mqdefault.jpg"
-           alt="Step Inside the Opulent $4.85 Million Oakville Home: A Masterclass in Luxury Design" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/9VreX0GJOHk/mqdefault.jpg"
+           alt="Step into Paradise: Explore the Breathtaking $2.829 Million Lake House on Royal Island" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Step Inside the Opulent $4.85 Million Oakville Home: A Masterclass in Luxury Design</p>
+      <p>Step into Paradise: Explore the Breathtaking $2.829 Million Lake House on Royal Island</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9033/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9119/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/P6WjRFWx88A/mqdefault.jpg"
-           alt="Unveiling the $3 Million Dallas Mansion That Rivals a $10 Million Luxury Estate: A Stunning Revelation" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/emTfBLqtJug/mqdefault.jpg"
+           alt="Unveiling the Secrets of Ageless Beauty: Mango &amp; Toteme Summer Finds and the Truth About Botox" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling the $3 Million Dallas Mansion That Rivals a $10 Million Luxury Estate: A Stunning Revelation</p>
+      <p>Unveiling the Secrets of Ageless Beauty: Mango &amp; Toteme Summer Finds and the Truth About Botox</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9099/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/zDwKIjzsKZ4/mqdefault.jpg"
+           alt="Escape to Serenity: Mountain Craftsman Homes Design Ideas for the Ultimate Hillside Retreat" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Escape to Serenity: Mountain Craftsman Homes Design Ideas for the Ultimate Hillside Retreat</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9094/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/uwxC-9ONU24/mqdefault.jpg"
+           alt="Step Inside a $3 Million Modern Luxury Home: A Gated Community Paradise" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step Inside a $3 Million Modern Luxury Home: A Gated Community Paradise</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9108/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/yT67sKe-hS8/mqdefault.jpg"
+           alt="Unpredictable Chaos Unfolds: Witness the Jaw-Dropping Normal Day Turned Upside Down" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unpredictable Chaos Unfolds: Witness the Jaw-Dropping Normal Day Turned Upside Down</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9095/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/3gZQEEJPRHw/mqdefault.jpg"
+           alt="Step Inside the Opulence: A $2.75M Luxury Home Tour Like No Other" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step Inside the Opulence: A $2.75M Luxury Home Tour Like No Other</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9067/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/vhpuFUpmO1Q/mqdefault.jpg"
+           alt="Discover the Hidden Gems of Paris: An Unforgettable Architectural Tour" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Discover the Hidden Gems of Paris: An Unforgettable Architectural Tour</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9114/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/mLfzs1WpAvA/mqdefault.jpg"
+           alt="11 Game-Changing Purchases That'll Change Your Life Forever" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>11 Game-Changing Purchases That'll Change Your Life Forever</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9104/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/JpOrraEFa_I/mqdefault.jpg"
+           alt="Revolutionize Your Home with L-Shaped Container Homes - Maximizing Space and Privacy Redefined" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Revolutionize Your Home with L-Shaped Container Homes - Maximizing Space and Privacy Redefined</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9151/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/7k3cLWelWF8/mqdefault.jpg"
+           alt="Ralph Lauren Dupes on Amazon: The Best Fashion Steals You Need to Know!" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Ralph Lauren Dupes on Amazon: The Best Fashion Steals You Need to Know!</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9176/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/s5Y_eZmEZ_w/mqdefault.jpg"
+           alt="Mastering Opulence: Unraveling the Secrets Behind Luxurious Design" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Mastering Opulence: Unraveling the Secrets Behind Luxurious Design</p>
+    </a>
+    <a href="https://trend4genz.fun/video/6-must-have-claude-skills-to-supercharge-your-coding-workflow/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/ZSvcxjNZdxk/mqdefault.jpg"
+           alt="6 Must-Have Claude Skills to Supercharge Your Coding Workflow" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>6 Must-Have Claude Skills to Supercharge Your Coding Workflow</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9135/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/sdsMFTZe-Cw/mqdefault.jpg"
+           alt="Elevate Your Home Cocktail Night: The Art of Food Styling with a Pro" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Elevate Your Home Cocktail Night: The Art of Food Styling with a Pro</p>
+    </a>
+    <a href="https://trend4genz.fun/video/china-s-ev-revolution-5-cars-redefining-automotive-tech-by-2026/" class="side-slider-item"
+       >
+      <img src="https://img.youtube.com/vi/wBKzg4-dYVM/mqdefault.jpg"
+           alt="China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>China’s EV Revolution: 5 Cars Redefining Automotive Tech by 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9062/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/eSc-twK8eDI/mqdefault.jpg"
+           alt="Step Inside David &amp; Isabela Grutman's Vibrant Brazil-Inspired Miami Oasis" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step Inside David &amp; Isabela Grutman's Vibrant Brazil-Inspired Miami Oasis</p>
     </a></div>
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
     </div>

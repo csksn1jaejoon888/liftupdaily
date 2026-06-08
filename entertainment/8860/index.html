@@ -137,7 +137,6 @@
 
 
 <style>
-/* ── Wide Screen Badge ── */
 .ws-badge{
   display:inline-flex;align-items:center;gap:4px;
   background:#98FB98;color:#000;
@@ -151,8 +150,6 @@
 }
 .ws-badge:active{transform:scale(.96);}
 .ws-badge svg{flex-shrink:0;}
-
-/* ── Modal overlay ── */
 #ws-modal-overlay{
   display:none;position:fixed;inset:0;
   background:rgba(0,0,0,.75);z-index:99999;
@@ -163,11 +160,10 @@
   background:#1a1a1a;border-radius:18px 18px 0 0;
   padding:22px 20px 36px;width:100%;max-width:480px;
   border-top:3px solid #98FB98;
-  transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);
+  transform:translateY(100%);
+  transition:transform .32s cubic-bezier(.22,1,.36,1);
 }
 #ws-modal-overlay.show #ws-modal-box{transform:translateY(0);}
-
-/* ── Modal header ── */
 .ws-modal-header{
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:10px;
@@ -186,15 +182,11 @@
   font-size:.82rem;color:#aaa;margin-bottom:22px;line-height:1.5;
 }
 .ws-modal-subtitle strong{color:#fff;}
-
-/* ── Label open in browser ── */
 .ws-open-label{
   font-size:.7rem;font-weight:800;color:#555;
   text-transform:uppercase;letter-spacing:.1em;
   text-align:center;margin-bottom:12px;
 }
-
-/* ── Browser buttons ── */
 .ws-browser-btns{
   display:flex;gap:12px;justify-content:center;
 }
@@ -211,22 +203,22 @@
 }
 .ws-browser-btn:hover{
   background:rgba(152,251,152,.12);
-  border-color:#98FB98;
-  color:#98FB98;
+  border-color:#98FB98;color:#98FB98;
 }
 .ws-browser-btn:active{transform:scale(.97);}
 .ws-browser-btn img{
-  width:40px;height:40px;border-radius:10px;
-  object-fit:contain;
+  width:40px;height:40px;border-radius:10px;object-fit:contain;
 }
 </style>
 
-<!-- Modal HTML -->
 <div id="ws-modal-overlay" onclick="wsCloseModal(event)">
   <div id="ws-modal-box">
     <div class="ws-modal-header">
       <div class="ws-modal-title">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <polyline points="8 21 12 17 16 21"/>
+        </svg>
         Full Wide Screen
       </div>
       <button class="ws-modal-close" onclick="wsCloseModal(null)">✕</button>
@@ -239,39 +231,39 @@
 
 <script>
 (function(){
-  var PAGE_URL = 'https://trend4genz.fun/entertainment/8860/';
-  var ua  = navigator.userAgent || '';
-  var ref = document.referrer   || '';
-  var qs  = location.search     || '';
+  var PAGE_URL  = 'https://trend4genz.fun/entertainment/8860/';
+  var ua        = navigator.userAgent || '';
+  var ref       = document.referrer   || '';
+  var qs        = location.search     || '';
 
-  // ── Deteksi FB ──────────────────────────────────────────────
-  var isFB_UA  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua);
-  var isFB_REF = /facebook\.com|fb\.com|fb\.gg/i.test(ref);
-  var isFB_QS  = /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
-  var isFB     = isFB_UA || isFB_REF || isFB_QS;
+  // ── Deteksi platform ─────────────────────────────────────────
+  var isFB  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua)
+           || /facebook\.com|fb\.com|fb\.gg/i.test(ref)
+           || /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
 
-  // ── Deteksi X / Twitter ──────────────────────────────────────
-  var isX_UA   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua);
-  var isX_REF  = /twitter\.com|t\.co|x\.com/i.test(ref);
-  var isX_QS   = /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
-  var isX      = isX_UA || isX_REF || isX_QS;
+  var isX   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua)
+           || /twitter\.com|t\.co|x\.com/i.test(ref)
+           || /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
 
-  // ── Deteksi device ───────────────────────────────────────────
   var isAndroid = /Android/i.test(ua);
   var isIOS     = /iPhone|iPad|iPod/i.test(ua);
-  
-  var isInApp = true;
-  
-  // ── Inject badge ─────────────────────────────────────────────
+  var isInApp   = isFB || isX;
+
+  // ── Debug: hapus setelah confirmed work ──────────────────────
+  // var isInApp = true;
+
+  if (!isInApp) return;
+
+  // ── Inject badge ke h1 ───────────────────────────────────────
   function injectBadge() {
     var h1 = document.querySelector('.info-section h1');
-    alert('h1 found: ' + (h1 ? 'YES' : 'NO'));
     if (!h1) return;
-    var badge = document.createElement('button');
+    var badge       = document.createElement('button');
     badge.className = 'ws-badge';
-    badge.title = 'Open Full Wide Screen';
+    badge.title     = 'Open Full Wide Screen';
     badge.innerHTML =
-      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor"' +
+      ' stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
       '<polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>' +
       '<line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>' +
       '</svg>FULL WIDE SCREEN';
@@ -285,74 +277,59 @@
     injectBadge();
   }
 
-  // ── Handle klik badge → langsung tampil modal ────────────────
+  // ── Klik badge → tampil modal ─────────────────────────────────
   window.wsHandleClick = function() {
-    wsShowModal();
-  };
-
-  // ── Show modal ───────────────────────────────────────────────
-  window.wsShowModal = function() {
     var subtitle = document.getElementById('ws-modal-subtitle');
     var btnsWrap = document.getElementById('ws-browser-btns');
 
-    // Subtitle sesuai platform
-    var platform = isFB ? 'Facebook' : 'X (Twitter)';
-    subtitle.innerHTML =
-      'Your <strong>' + platform + '</strong> browser doesn't support full wide screen.';
+    subtitle.innerHTML = 'Your <strong>' + (isFB ? 'Facebook' : 'X (Twitter)') +
+      '</strong> browser doesn't support full wide screen.';
 
-    // Render tombol browser sesuai device
     btnsWrap.innerHTML = '';
 
-    // Chrome — Android atau unknown
+    // Tombol Chrome — Android atau tidak diketahui
     if (isAndroid || (!isAndroid && !isIOS)) {
-      var btnChrome = document.createElement('button');
-      btnChrome.className = 'ws-browser-btn';
-      btnChrome.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png" alt="Chrome"/>' +
-        'Chrome';
-      btnChrome.onclick = function() { wsOpenChrome(); };
-      btnsWrap.appendChild(btnChrome);
+      var btnC       = document.createElement('button');
+      btnC.className = 'ws-browser-btn';
+      btnC.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/' +
+        'Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png"' +
+        ' alt="Chrome"/>Chrome';
+      btnC.onclick   = wsOpenChrome;
+      btnsWrap.appendChild(btnC);
     }
 
-    // Safari — iOS atau unknown
+    // Tombol Safari — iOS atau tidak diketahui
     if (isIOS || (!isAndroid && !isIOS)) {
-      var btnSafari = document.createElement('button');
-      btnSafari.className = 'ws-browser-btn';
-      btnSafari.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png" alt="Safari"/>' +
-        'Safari';
-      btnSafari.onclick = function() { wsOpenSafari(); };
-      btnsWrap.appendChild(btnSafari);
+      var btnS       = document.createElement('button');
+      btnS.className = 'ws-browser-btn';
+      btnS.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/' +
+        'BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png"' +
+        ' alt="Safari"/>Safari';
+      btnS.onclick   = wsOpenSafari;
+      btnsWrap.appendChild(btnS);
     }
 
     document.getElementById('ws-modal-overlay').classList.add('show');
     document.body.style.overflow = 'hidden';
   };
 
-  // ── Buka Chrome via intent:// ────────────────────────────────
+  // ── Buka Chrome ───────────────────────────────────────────────
   window.wsOpenChrome = function() {
-    var encoded   = encodeURIComponent(PAGE_URL);
-    var intentUrl =
+    var encoded = encodeURIComponent(PAGE_URL);
+    window.location.href =
       'intent://' + PAGE_URL.replace(/^https?:\/\//, '') +
       '#Intent;scheme=https;package=com.android.chrome;' +
       'S.browser_fallback_url=' + encoded + ';end';
-    window.location.href = intentUrl;
   };
 
-  // ── Buka Safari via scheme ────────────────────────────────────
+  // ── Buka Safari ───────────────────────────────────────────────
   window.wsOpenSafari = function() {
-    // x-web-search tidak selalu work, pakai universal link safari
-    var safariUrl = PAGE_URL.replace(/^https?:\/\//, 'https://');
-    // Coba scheme safari dulu
-    var t = Date.now();
-    window.location.href = 'x-web-search://?q=' + encodeURIComponent(safariUrl);
-    // Fallback: buka langsung jika scheme gagal
-    setTimeout(function() {
-      if (Date.now() - t < 1500) window.location.href = safariUrl;
-    }, 800);
+    window.location.href = PAGE_URL;
   };
 
-  // ── Close modal ──────────────────────────────────────────────
+  // ── Tutup modal ───────────────────────────────────────────────
   window.wsCloseModal = function(e) {
     if (e && e.target !== document.getElementById('ws-modal-overlay')) return;
     document.getElementById('ws-modal-overlay').classList.remove('show');
@@ -428,61 +405,61 @@ This content is sourced from the official broadcaster/international organization
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/entertainment/8995/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/M1NpSS6hNlA/mqdefault.jpg"
-           alt="Unveiling the Hottest Exterior Color Trends of 2026: Elevate Your Home's Curb Appeal" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unveiling the Hottest Exterior Color Trends of 2026: Elevate Your Home's Curb Appeal</p>
-    </a>
-    <a href="https://trend4genz.fun/video/7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/video/mcp-vs-adk-how-ai-agents-connect-work-together-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        >
-      <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
-           alt="7 Levels of AI Mastery: How to Build Systems That Work While You Sleep" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/BedAaB1RKgE/mqdefault.jpg"
+           alt="MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>7 Levels of AI Mastery: How to Build Systems That Work While You Sleep</p>
+      <p>MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-claude-co-work-tips-to-master-your-workspace-in-2026/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
-           alt="5 Claude Co-Work Tips to Master Your Workspace in 2026" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>5 Claude Co-Work Tips to Master Your Workspace in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
-           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8894/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8970/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/YcpMVsvK8pk/mqdefault.jpg"
-           alt="EXCLUSIVE: Madison Beer - bittersweet Official HD Video - Watch Now!" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/1ZA_7-84wqA/mqdefault.jpg"
+           alt="Elevate Your Space: Top 10 Luxury Living Room Color Trends to Follow in 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>EXCLUSIVE: Madison Beer - bittersweet Official HD Video - Watch Now!</p>
+      <p>Elevate Your Space: Top 10 Luxury Living Room Color Trends to Follow in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8867/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8844/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/nUsrYVxrDwI/mqdefault.jpg"
-           alt="VIRAL! Ella Langley - Choosin' Texas Official Music Video HD - Watch Now!" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/SczeivOMuUQ/mqdefault.jpg"
+           alt="Descendants: Wicked Wonderland First Look | Exclusive Disney Channel Reveal" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>VIRAL! Ella Langley - Choosin' Texas Official Music Video HD - Watch Now!</p>
+      <p>Descendants: Wicked Wonderland First Look | Exclusive Disney Channel Reveal</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8804/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8919/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/gictwC-KlTk/mqdefault.jpg"
-           alt="VALORANT Miks Agent Trailer: Exclusive Abilities &amp; Gameplay Leaks" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/Hk_FHtzDtz8/mqdefault.jpg"
+           alt="Rayo Vallecano - Vallecas Vibe! Rayo Edge Out Strasbourg in Intense Duel | Conference League 2026 HD" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>VALORANT Miks Agent Trailer: Exclusive Abilities &amp; Gameplay Leaks</p>
+      <p>Rayo Vallecano - Vallecas Vibe! Rayo Edge Out Strasbourg in Intense Duel | Conference League 2026 HD</p>
     </a>
-    <a href="https://trend4genz.fun/video/osek-vs-posix-in-automotive-why-your-car-runs-two-oses/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/wnb4WyHveCY/mqdefault.jpg"
-           alt="OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes" loading="lazy" width="160" height="90"
+    <a href="https://trend4genz.fun/entertainment/8839/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/cVuaamn_kwc/mqdefault.jpg"
+           alt="STOP! THAT! TRAIN! | Official Trailer | RuPaul 2026 Comedy" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes</p>
+      <p>STOP! THAT! TRAIN! | Official Trailer | RuPaul 2026 Comedy</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8909/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/11gcNa-TBRA/mqdefault.jpg"
+           alt="OFFICE ROMANCE Trailer: Jennifer Lopez &amp; Brett Goldstein's New Viral Comedy! Watch Now" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>OFFICE ROMANCE Trailer: Jennifer Lopez &amp; Brett Goldstein's New Viral Comedy! Watch Now</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8902/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/muUHETqh1So/mqdefault.jpg"
+           alt="Persijap vs Persija - MACAN KEMAYORAN TAMPIL DOMINAN! | BRI Super League 2026 HD" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Persijap vs Persija - MACAN KEMAYORAN TAMPIL DOMINAN! | BRI Super League 2026 HD</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8864/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/ekr2nIex040/mqdefault.jpg"
+           alt="EXCLUSIVE: ROSÉ &amp; Bruno Mars - APT. Official Music Video HD - Watch The Viral Sensation!" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>EXCLUSIVE: ROSÉ &amp; Bruno Mars - APT. Official Music Video HD - Watch The Viral Sensation!</p>
     </a></div>
         </div>
       </div>
@@ -493,61 +470,96 @@ This content is sourced from the official broadcaster/international organization
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/entertainment/8995/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/M1NpSS6hNlA/mqdefault.jpg"
-           alt="Unveiling the Hottest Exterior Color Trends of 2026: Elevate Your Home's Curb Appeal" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling the Hottest Exterior Color Trends of 2026: Elevate Your Home's Curb Appeal</p>
-    </a>
-    <a href="https://trend4genz.fun/video/7-levels-of-ai-mastery-how-to-build-systems-that-work-while-you-sleep/" class="side-slider-item"
+    <a href="https://trend4genz.fun/video/mcp-vs-adk-how-ai-agents-connect-work-together-in-2026/" class="side-slider-item"
        >
-      <img src="https://img.youtube.com/vi/JFO9TfZLnT8/mqdefault.jpg"
-           alt="7 Levels of AI Mastery: How to Build Systems That Work While You Sleep" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/BedAaB1RKgE/mqdefault.jpg"
+           alt="MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>7 Levels of AI Mastery: How to Build Systems That Work While You Sleep</p>
+      <p>MCP vs ADK: How AI Agents Connect &amp; Work Together in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/5-claude-co-work-tips-to-master-your-workspace-in-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/4wvLHFgnQZQ/mqdefault.jpg"
-           alt="5 Claude Co-Work Tips to Master Your Workspace in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>5 Claude Co-Work Tips to Master Your Workspace in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/grok-5-musk-s-agi-bet-reshapes-ai-what-you-need-to-know/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/0eza4bHvddE/mqdefault.jpg"
-           alt="Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Grok 5: Musk’s AGI Bet Reshapes AI—What You Need to Know</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8894/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8970/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/YcpMVsvK8pk/mqdefault.jpg"
-           alt="EXCLUSIVE: Madison Beer - bittersweet Official HD Video - Watch Now!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/1ZA_7-84wqA/mqdefault.jpg"
+           alt="Elevate Your Space: Top 10 Luxury Living Room Color Trends to Follow in 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>EXCLUSIVE: Madison Beer - bittersweet Official HD Video - Watch Now!</p>
+      <p>Elevate Your Space: Top 10 Luxury Living Room Color Trends to Follow in 2026</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8867/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8844/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/nUsrYVxrDwI/mqdefault.jpg"
-           alt="VIRAL! Ella Langley - Choosin' Texas Official Music Video HD - Watch Now!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/SczeivOMuUQ/mqdefault.jpg"
+           alt="Descendants: Wicked Wonderland First Look | Exclusive Disney Channel Reveal" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>VIRAL! Ella Langley - Choosin' Texas Official Music Video HD - Watch Now!</p>
+      <p>Descendants: Wicked Wonderland First Look | Exclusive Disney Channel Reveal</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8804/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8919/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/gictwC-KlTk/mqdefault.jpg"
-           alt="VALORANT Miks Agent Trailer: Exclusive Abilities &amp; Gameplay Leaks" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/Hk_FHtzDtz8/mqdefault.jpg"
+           alt="Rayo Vallecano - Vallecas Vibe! Rayo Edge Out Strasbourg in Intense Duel | Conference League 2026 HD" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>VALORANT Miks Agent Trailer: Exclusive Abilities &amp; Gameplay Leaks</p>
+      <p>Rayo Vallecano - Vallecas Vibe! Rayo Edge Out Strasbourg in Intense Duel | Conference League 2026 HD</p>
     </a>
-    <a href="https://trend4genz.fun/video/osek-vs-posix-in-automotive-why-your-car-runs-two-oses/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/wnb4WyHveCY/mqdefault.jpg"
-           alt="OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes" loading="lazy" width="108" height="60"
+    <a href="https://trend4genz.fun/entertainment/8839/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/cVuaamn_kwc/mqdefault.jpg"
+           alt="STOP! THAT! TRAIN! | Official Trailer | RuPaul 2026 Comedy" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>OSEK vs POSIX in Automotive: Why Your Car Runs Two OSes</p>
+      <p>STOP! THAT! TRAIN! | Official Trailer | RuPaul 2026 Comedy</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8909/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/11gcNa-TBRA/mqdefault.jpg"
+           alt="OFFICE ROMANCE Trailer: Jennifer Lopez &amp; Brett Goldstein's New Viral Comedy! Watch Now" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>OFFICE ROMANCE Trailer: Jennifer Lopez &amp; Brett Goldstein's New Viral Comedy! Watch Now</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8902/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/muUHETqh1So/mqdefault.jpg"
+           alt="Persijap vs Persija - MACAN KEMAYORAN TAMPIL DOMINAN! | BRI Super League 2026 HD" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Persijap vs Persija - MACAN KEMAYORAN TAMPIL DOMINAN! | BRI Super League 2026 HD</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8864/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/ekr2nIex040/mqdefault.jpg"
+           alt="EXCLUSIVE: ROSÉ &amp; Bruno Mars - APT. Official Music Video HD - Watch The Viral Sensation!" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>EXCLUSIVE: ROSÉ &amp; Bruno Mars - APT. Official Music Video HD - Watch The Viral Sensation!</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8843/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/n-NDYWPXpKg/mqdefault.jpg"
+           alt="GODZILLA MINUS ZERO First Look Teaser | Watch in IMAX High-Definition" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>GODZILLA MINUS ZERO First Look Teaser | Watch in IMAX High-Definition</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8905/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/y4Z4mg6ehmM/mqdefault.jpg"
+           alt="Arsenal vs Atlético de Madrid - The Gunners Secure Semi-Final Spot! | UEFA Champions League 2026 HD" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Arsenal vs Atlético de Madrid - The Gunners Secure Semi-Final Spot! | UEFA Champions League 2026 HD</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8868/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/lY5V4hSLWY8/mqdefault.jpg"
+           alt="EXCLUSIVE: Bruno Mars - Risk It All Official HD Video - Watch Now!" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>EXCLUSIVE: Bruno Mars - Risk It All Official HD Video - Watch Now!</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8859/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/vOJsHTCfls8/mqdefault.jpg"
+           alt="Barcelona vs Atletico Madrid - The Tactical Masterclass in Catalonia! | Champions League 2026 HD" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Barcelona vs Atletico Madrid - The Tactical Masterclass in Catalonia! | Champions League 2026 HD</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8813/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/-4ZVFspRn3M/mqdefault.jpg"
+           alt="Jack Ryan: Ghost War Trailer | Prime Video Action Spy Thriller" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Jack Ryan: Ghost War Trailer | Prime Video Action Spy Thriller</p>
     </a>
     <a href="https://trend4genz.fun/entertainment/8857/" class="side-slider-item"
        rel="nofollow noopener">
@@ -556,82 +568,47 @@ This content is sourced from the official broadcaster/international organization
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Real Madrid vs Bayern Munich - German Giant Silence the Bernabeu! | Champions League 2026 HD</p>
     </a>
-    <a href="https://trend4genz.fun/video/solar-evs-batteries-the-real-roi-in-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/Jh033yLRI1E/mqdefault.jpg"
-           alt="Solar + EVs + Batteries: The Real ROI in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Solar + EVs + Batteries: The Real ROI in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8842/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8882/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/Z1jcPlGXnMo/mqdefault.jpg"
-           alt="Lanterns Official Teaser HBO Max | DC Universe Green Lantern Reveal HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/I8rZ6TScT6k/mqdefault.jpg"
+           alt="VIRAL! Sabrina Carpenter - Manchild Official HD Music Video - Watch Now!" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Lanterns Official Teaser HBO Max | DC Universe Green Lantern Reveal HD</p>
+      <p>VIRAL! Sabrina Carpenter - Manchild Official HD Music Video - Watch Now!</p>
     </a>
-    <a href="https://trend4genz.fun/video/rag-explained-why-ai-s-memory-upgrade-changes-everything-in-2026/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/dDkynerzV-Q/mqdefault.jpg"
-           alt="RAG Explained: Why AI’s Memory Upgrade Changes Everything in 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>RAG Explained: Why AI’s Memory Upgrade Changes Everything in 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/video/test-time-compute-why-ai-pauses-to-think-before-answering/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/DAlC8mL5ZlI/mqdefault.jpg"
-           alt="Test Time Compute: Why AI Pauses to Think Before Answering" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Test Time Compute: Why AI Pauses to Think Before Answering</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8802/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8866/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/jqgDp_X97o8/mqdefault.jpg"
-           alt="Liverpool vs Crystal Palace Highlights: Dramatic Anfield Win HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/oIv_Y2RPQ_A/mqdefault.jpg"
+           alt="EXCLUSIVE: Olivia Dean - Man I Need Official HD Video - Watch Now!" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Liverpool vs Crystal Palace Highlights: Dramatic Anfield Win HD</p>
+      <p>EXCLUSIVE: Olivia Dean - Man I Need Official HD Video - Watch Now!</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8858/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8942/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/_PslZ6Jw7Jw/mqdefault.jpg"
-           alt="Atletico Madrid vs Barcelona - Gritty Battle for Aggregate Glory! | Champions League 2026 HD" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/oQdx8qMjinI/mqdefault.jpg"
+           alt="Elevate Your Living: Modern 1 Bedroom Apartments with a Touch of Elegance - 8 Stunning Units to Explore" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Atletico Madrid vs Barcelona - Gritty Battle for Aggregate Glory! | Champions League 2026 HD</p>
+      <p>Elevate Your Living: Modern 1 Bedroom Apartments with a Touch of Elegance - 8 Stunning Units to Explore</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8809/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8814/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/8TZMtslA3UY/mqdefault.jpg"
-           alt="Spider-Man: Brand New Day Official Trailer HD Watch Now 2026" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/pyZI5oM6hWk/mqdefault.jpg"
+           alt="The Sheep Detectives Trailer | Hugh Jackman Mystery Comedy 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Spider-Man: Brand New Day Official Trailer HD Watch Now 2026</p>
+      <p>The Sheep Detectives Trailer | Hugh Jackman Mystery Comedy 2026</p>
     </a>
-    <a href="https://trend4genz.fun/video/managed-deep-agents-the-missing-layer-for-production-ai/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/LdQpoK2TzSo/mqdefault.jpg"
-           alt="Managed Deep Agents: The Missing Layer for Production AI" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Managed Deep Agents: The Missing Layer for Production AI</p>
-    </a>
-    <a href="https://trend4genz.fun/video/turn-plain-english-into-stunning-videos-with-ai-in-minutes/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/oyWSdPYeQwQ/mqdefault.jpg"
-           alt="Turn Plain English into Stunning Videos with AI in Minutes" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Turn Plain English into Stunning Videos with AI in Minutes</p>
-    </a>
-    <a href="https://trend4genz.fun/video/the-ai-tech-stack-powering-2026-stability-over-hype/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/21_k2St8bBI/mqdefault.jpg"
-           alt="The AI Tech Stack Powering 2026: Stability Over Hype" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The AI Tech Stack Powering 2026: Stability Over Hype</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8812/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8910/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/X21JsHLHnY8/mqdefault.jpg"
-           alt="Masters of The Universe Official Trailer | Amazon MGM He-Man 2026" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/dSnichjB3-o/mqdefault.jpg"
+           alt="CAPE FEAR Official Teaser: Javier Bardem vs. Amy Adams! Watch the Exclusive Trailer" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Masters of The Universe Official Trailer | Amazon MGM He-Man 2026</p>
+      <p>CAPE FEAR Official Teaser: Javier Bardem vs. Amy Adams! Watch the Exclusive Trailer</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8874/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/ko70cExuzZM/mqdefault.jpg"
+           alt="WATCH NOW: Taylor Swift - The Fate of Ophelia Official HD Music Video - Viral Sensation!" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>WATCH NOW: Taylor Swift - The Fate of Ophelia Official HD Music Video - Viral Sensation!</p>
     </a></div>
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
     </div>

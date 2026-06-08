@@ -137,7 +137,6 @@
 
 
 <style>
-/* ── Wide Screen Badge ── */
 .ws-badge{
   display:inline-flex;align-items:center;gap:4px;
   background:#98FB98;color:#000;
@@ -151,8 +150,6 @@
 }
 .ws-badge:active{transform:scale(.96);}
 .ws-badge svg{flex-shrink:0;}
-
-/* ── Modal overlay ── */
 #ws-modal-overlay{
   display:none;position:fixed;inset:0;
   background:rgba(0,0,0,.75);z-index:99999;
@@ -163,11 +160,10 @@
   background:#1a1a1a;border-radius:18px 18px 0 0;
   padding:22px 20px 36px;width:100%;max-width:480px;
   border-top:3px solid #98FB98;
-  transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);
+  transform:translateY(100%);
+  transition:transform .32s cubic-bezier(.22,1,.36,1);
 }
 #ws-modal-overlay.show #ws-modal-box{transform:translateY(0);}
-
-/* ── Modal header ── */
 .ws-modal-header{
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:10px;
@@ -186,15 +182,11 @@
   font-size:.82rem;color:#aaa;margin-bottom:22px;line-height:1.5;
 }
 .ws-modal-subtitle strong{color:#fff;}
-
-/* ── Label open in browser ── */
 .ws-open-label{
   font-size:.7rem;font-weight:800;color:#555;
   text-transform:uppercase;letter-spacing:.1em;
   text-align:center;margin-bottom:12px;
 }
-
-/* ── Browser buttons ── */
 .ws-browser-btns{
   display:flex;gap:12px;justify-content:center;
 }
@@ -211,22 +203,22 @@
 }
 .ws-browser-btn:hover{
   background:rgba(152,251,152,.12);
-  border-color:#98FB98;
-  color:#98FB98;
+  border-color:#98FB98;color:#98FB98;
 }
 .ws-browser-btn:active{transform:scale(.97);}
 .ws-browser-btn img{
-  width:40px;height:40px;border-radius:10px;
-  object-fit:contain;
+  width:40px;height:40px;border-radius:10px;object-fit:contain;
 }
 </style>
 
-<!-- Modal HTML -->
 <div id="ws-modal-overlay" onclick="wsCloseModal(event)">
   <div id="ws-modal-box">
     <div class="ws-modal-header">
       <div class="ws-modal-title">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <polyline points="8 21 12 17 16 21"/>
+        </svg>
         Full Wide Screen
       </div>
       <button class="ws-modal-close" onclick="wsCloseModal(null)">✕</button>
@@ -239,39 +231,39 @@
 
 <script>
 (function(){
-  var PAGE_URL = 'https://trend4genz.fun/entertainment/9059/';
-  var ua  = navigator.userAgent || '';
-  var ref = document.referrer   || '';
-  var qs  = location.search     || '';
+  var PAGE_URL  = 'https://trend4genz.fun/entertainment/9059/';
+  var ua        = navigator.userAgent || '';
+  var ref       = document.referrer   || '';
+  var qs        = location.search     || '';
 
-  // ── Deteksi FB ──────────────────────────────────────────────
-  var isFB_UA  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua);
-  var isFB_REF = /facebook\.com|fb\.com|fb\.gg/i.test(ref);
-  var isFB_QS  = /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
-  var isFB     = isFB_UA || isFB_REF || isFB_QS;
+  // ── Deteksi platform ─────────────────────────────────────────
+  var isFB  = /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/i.test(ua)
+           || /facebook\.com|fb\.com|fb\.gg/i.test(ref)
+           || /[?&](ref=fb|utm_source=facebook|utm_source=fb)/i.test(qs);
 
-  // ── Deteksi X / Twitter ──────────────────────────────────────
-  var isX_UA   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua);
-  var isX_REF  = /twitter\.com|t\.co|x\.com/i.test(ref);
-  var isX_QS   = /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
-  var isX      = isX_UA || isX_REF || isX_QS;
+  var isX   = /Twitter|TwitterAndroid|TwitteriPhone/i.test(ua)
+           || /twitter\.com|t\.co|x\.com/i.test(ref)
+           || /[?&](ref=x|utm_source=twitter|utm_source=x)/i.test(qs);
 
-  // ── Deteksi device ───────────────────────────────────────────
   var isAndroid = /Android/i.test(ua);
   var isIOS     = /iPhone|iPad|iPod/i.test(ua);
-  
-  var isInApp = true;
-  
-  // ── Inject badge ─────────────────────────────────────────────
+  var isInApp   = isFB || isX;
+
+  // ── Debug: hapus setelah confirmed work ──────────────────────
+  // var isInApp = true;
+
+  if (!isInApp) return;
+
+  // ── Inject badge ke h1 ───────────────────────────────────────
   function injectBadge() {
     var h1 = document.querySelector('.info-section h1');
-    alert('h1 found: ' + (h1 ? 'YES' : 'NO'));
     if (!h1) return;
-    var badge = document.createElement('button');
+    var badge       = document.createElement('button');
     badge.className = 'ws-badge';
-    badge.title = 'Open Full Wide Screen';
+    badge.title     = 'Open Full Wide Screen';
     badge.innerHTML =
-      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor"' +
+      ' stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
       '<polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>' +
       '<line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>' +
       '</svg>FULL WIDE SCREEN';
@@ -285,74 +277,59 @@
     injectBadge();
   }
 
-  // ── Handle klik badge → langsung tampil modal ────────────────
+  // ── Klik badge → tampil modal ─────────────────────────────────
   window.wsHandleClick = function() {
-    wsShowModal();
-  };
-
-  // ── Show modal ───────────────────────────────────────────────
-  window.wsShowModal = function() {
     var subtitle = document.getElementById('ws-modal-subtitle');
     var btnsWrap = document.getElementById('ws-browser-btns');
 
-    // Subtitle sesuai platform
-    var platform = isFB ? 'Facebook' : 'X (Twitter)';
-    subtitle.innerHTML =
-      'Your <strong>' + platform + '</strong> browser doesn't support full wide screen.';
+    subtitle.innerHTML = 'Your <strong>' + (isFB ? 'Facebook' : 'X (Twitter)') +
+      '</strong> browser doesn't support full wide screen.';
 
-    // Render tombol browser sesuai device
     btnsWrap.innerHTML = '';
 
-    // Chrome — Android atau unknown
+    // Tombol Chrome — Android atau tidak diketahui
     if (isAndroid || (!isAndroid && !isIOS)) {
-      var btnChrome = document.createElement('button');
-      btnChrome.className = 'ws-browser-btn';
-      btnChrome.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png" alt="Chrome"/>' +
-        'Chrome';
-      btnChrome.onclick = function() { wsOpenChrome(); };
-      btnsWrap.appendChild(btnChrome);
+      var btnC       = document.createElement('button');
+      btnC.className = 'ws-browser-btn';
+      btnC.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/' +
+        'Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png"' +
+        ' alt="Chrome"/>Chrome';
+      btnC.onclick   = wsOpenChrome;
+      btnsWrap.appendChild(btnC);
     }
 
-    // Safari — iOS atau unknown
+    // Tombol Safari — iOS atau tidak diketahui
     if (isIOS || (!isAndroid && !isIOS)) {
-      var btnSafari = document.createElement('button');
-      btnSafari.className = 'ws-browser-btn';
-      btnSafari.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png" alt="Safari"/>' +
-        'Safari';
-      btnSafari.onclick = function() { wsOpenSafari(); };
-      btnsWrap.appendChild(btnSafari);
+      var btnS       = document.createElement('button');
+      btnS.className = 'ws-browser-btn';
+      btnS.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/' +
+        'BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png"' +
+        ' alt="Safari"/>Safari';
+      btnS.onclick   = wsOpenSafari;
+      btnsWrap.appendChild(btnS);
     }
 
     document.getElementById('ws-modal-overlay').classList.add('show');
     document.body.style.overflow = 'hidden';
   };
 
-  // ── Buka Chrome via intent:// ────────────────────────────────
+  // ── Buka Chrome ───────────────────────────────────────────────
   window.wsOpenChrome = function() {
-    var encoded   = encodeURIComponent(PAGE_URL);
-    var intentUrl =
+    var encoded = encodeURIComponent(PAGE_URL);
+    window.location.href =
       'intent://' + PAGE_URL.replace(/^https?:\/\//, '') +
       '#Intent;scheme=https;package=com.android.chrome;' +
       'S.browser_fallback_url=' + encoded + ';end';
-    window.location.href = intentUrl;
   };
 
-  // ── Buka Safari via scheme ────────────────────────────────────
+  // ── Buka Safari ───────────────────────────────────────────────
   window.wsOpenSafari = function() {
-    // x-web-search tidak selalu work, pakai universal link safari
-    var safariUrl = PAGE_URL.replace(/^https?:\/\//, 'https://');
-    // Coba scheme safari dulu
-    var t = Date.now();
-    window.location.href = 'x-web-search://?q=' + encodeURIComponent(safariUrl);
-    // Fallback: buka langsung jika scheme gagal
-    setTimeout(function() {
-      if (Date.now() - t < 1500) window.location.href = safariUrl;
-    }, 800);
+    window.location.href = PAGE_URL;
   };
 
-  // ── Close modal ──────────────────────────────────────────────
+  // ── Tutup modal ───────────────────────────────────────────────
   window.wsCloseModal = function(e) {
     if (e && e.target !== document.getElementById('ws-modal-overlay')) return;
     document.getElementById('ws-modal-overlay').classList.remove('show');
@@ -422,61 +399,61 @@
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/video/best-worst-toyota-models-2026-reliability-secrets-revealed/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
-       >
-      <img src="https://img.youtube.com/vi/AeJTCIm-Z34/mqdefault.jpg"
-           alt="Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed" loading="lazy" width="160" height="90"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9034/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9027/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/oundXbuRSeI/mqdefault.jpg"
-           alt="Unveiling the Opulence: A £5.5M Luxury Mansion Tour That Redefines Dream Homes" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/F0WrP4LM_iE/mqdefault.jpg"
+           alt="Unleashing Greatness: Zahid Valencia's 86 kg Men's Freestyle Championship Victory at the 2026 Senior Pan American Championships" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unveiling the Opulence: A £5.5M Luxury Mansion Tour That Redefines Dream Homes</p>
+      <p>Unleashing Greatness: Zahid Valencia's 86 kg Men's Freestyle Championship Victory at the 2026 Senior Pan American Championships</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9112/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9137/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/GRhoAH0O6Jo/mqdefault.jpg"
-           alt="Unpredictable Moments: When Life Doesn't Follow the Script" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/pDcC5Bvbe70/mqdefault.jpg"
+           alt="Transform Your Home with Premium Aluminium Windows &amp; Doors - A Game-Changing Upgrade" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unpredictable Moments: When Life Doesn't Follow the Script</p>
+      <p>Transform Your Home with Premium Aluminium Windows &amp; Doors - A Game-Changing Upgrade</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8974/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8959/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/rA-ctMIR79A/mqdefault.jpg"
-           alt="Unlock the Secrets of a Modern Luxury Bedroom: 20 Trendy Design Ideas for 2026" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/G58h56vkhVk/mqdefault.jpg"
+           alt="Revamp Your Space: Expert Home Styling Tips After the Holiday Season" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unlock the Secrets of a Modern Luxury Bedroom: 20 Trendy Design Ideas for 2026</p>
+      <p>Revamp Your Space: Expert Home Styling Tips After the Holiday Season</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8969/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8953/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/F4Z5QGTHOxA/mqdefault.jpg"
-           alt="Unlock the Secrets of Interior Design: What You're Missing Out On" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/kRfu1vjWiDw/mqdefault.jpg"
+           alt="Revitalizing Your Culinary Space: 5 Breathtaking Kitchen Transformations to Inspire Your Next Makeover" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unlock the Secrets of Interior Design: What You're Missing Out On</p>
+      <p>Revitalizing Your Culinary Space: 5 Breathtaking Kitchen Transformations to Inspire Your Next Makeover</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9050/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8971/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/65rDcHkV5rU/mqdefault.jpg"
-           alt="Unveiling the Epitome of Luxury: A Breathtaking 4 Bedroom Modern Home in Accra" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/A4eN_pm8QGo/mqdefault.jpg"
+           alt="Revolutionize Your Cooking Space: Top 5 Luxury Small Modern Kitchen Design Trends of 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unveiling the Epitome of Luxury: A Breathtaking 4 Bedroom Modern Home in Accra</p>
+      <p>Revolutionize Your Cooking Space: Top 5 Luxury Small Modern Kitchen Design Trends of 2026</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9003/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8982/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/rr1e-3Mg_IM/mqdefault.jpg"
-           alt="Unveiling the Enchanting Abode of a Visionary Designer: A Journey Through Art, Objects, and Timeless Charm" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/DI4TVmH7mYg/mqdefault.jpg"
+           alt="Step into Opulence: Unveiling the Breathtaking 3 Bedroom Modern Home with a Private Swimming Pool" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unveiling the Enchanting Abode of a Visionary Designer: A Journey Through Art, Objects, and Timeless Charm</p>
+      <p>Step into Opulence: Unveiling the Breathtaking 3 Bedroom Modern Home with a Private Swimming Pool</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9004/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8981/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/DHTfz1d0N_k/mqdefault.jpg"
-           alt="Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/unsym1eCmFw/mqdefault.jpg"
+           alt="Step into the Future: Unveiling the Ultimate 6 Bedroom Luxury Modern House Design of 2026" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour</p>
+      <p>Step into the Future: Unveiling the Ultimate 6 Bedroom Luxury Modern House Design of 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8978/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/GaCQwE5uN-0/mqdefault.jpg"
+           alt="Unlock the Secrets to a Dream Kitchen: 200+ Modern Modular Designs &amp; Cabinet Color Trends for 2026" loading="lazy" width="160" height="90"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
+      <p>Unlock the Secrets to a Dream Kitchen: 200+ Modern Modular Designs &amp; Cabinet Color Trends for 2026</p>
     </a></div>
         </div>
       </div>
@@ -487,47 +464,110 @@
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/video/best-worst-toyota-models-2026-reliability-secrets-revealed/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/AeJTCIm-Z34/mqdefault.jpg"
-           alt="Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Best &amp; Worst Toyota Models 2026: Reliability Secrets Revealed</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9034/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9027/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/oundXbuRSeI/mqdefault.jpg"
-           alt="Unveiling the Opulence: A £5.5M Luxury Mansion Tour That Redefines Dream Homes" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/F0WrP4LM_iE/mqdefault.jpg"
+           alt="Unleashing Greatness: Zahid Valencia's 86 kg Men's Freestyle Championship Victory at the 2026 Senior Pan American Championships" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling the Opulence: A £5.5M Luxury Mansion Tour That Redefines Dream Homes</p>
+      <p>Unleashing Greatness: Zahid Valencia's 86 kg Men's Freestyle Championship Victory at the 2026 Senior Pan American Championships</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9112/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9137/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/GRhoAH0O6Jo/mqdefault.jpg"
-           alt="Unpredictable Moments: When Life Doesn't Follow the Script" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/pDcC5Bvbe70/mqdefault.jpg"
+           alt="Transform Your Home with Premium Aluminium Windows &amp; Doors - A Game-Changing Upgrade" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unpredictable Moments: When Life Doesn't Follow the Script</p>
+      <p>Transform Your Home with Premium Aluminium Windows &amp; Doors - A Game-Changing Upgrade</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8974/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8959/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/rA-ctMIR79A/mqdefault.jpg"
-           alt="Unlock the Secrets of a Modern Luxury Bedroom: 20 Trendy Design Ideas for 2026" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/G58h56vkhVk/mqdefault.jpg"
+           alt="Revamp Your Space: Expert Home Styling Tips After the Holiday Season" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlock the Secrets of a Modern Luxury Bedroom: 20 Trendy Design Ideas for 2026</p>
+      <p>Revamp Your Space: Expert Home Styling Tips After the Holiday Season</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8969/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8953/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/F4Z5QGTHOxA/mqdefault.jpg"
-           alt="Unlock the Secrets of Interior Design: What You're Missing Out On" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/kRfu1vjWiDw/mqdefault.jpg"
+           alt="Revitalizing Your Culinary Space: 5 Breathtaking Kitchen Transformations to Inspire Your Next Makeover" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlock the Secrets of Interior Design: What You're Missing Out On</p>
+      <p>Revitalizing Your Culinary Space: 5 Breathtaking Kitchen Transformations to Inspire Your Next Makeover</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9050/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8971/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/65rDcHkV5rU/mqdefault.jpg"
-           alt="Unveiling the Epitome of Luxury: A Breathtaking 4 Bedroom Modern Home in Accra" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/A4eN_pm8QGo/mqdefault.jpg"
+           alt="Revolutionize Your Cooking Space: Top 5 Luxury Small Modern Kitchen Design Trends of 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling the Epitome of Luxury: A Breathtaking 4 Bedroom Modern Home in Accra</p>
+      <p>Revolutionize Your Cooking Space: Top 5 Luxury Small Modern Kitchen Design Trends of 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8982/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/DI4TVmH7mYg/mqdefault.jpg"
+           alt="Step into Opulence: Unveiling the Breathtaking 3 Bedroom Modern Home with a Private Swimming Pool" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step into Opulence: Unveiling the Breathtaking 3 Bedroom Modern Home with a Private Swimming Pool</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8981/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/unsym1eCmFw/mqdefault.jpg"
+           alt="Step into the Future: Unveiling the Ultimate 6 Bedroom Luxury Modern House Design of 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step into the Future: Unveiling the Ultimate 6 Bedroom Luxury Modern House Design of 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8978/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/GaCQwE5uN-0/mqdefault.jpg"
+           alt="Unlock the Secrets to a Dream Kitchen: 200+ Modern Modular Designs &amp; Cabinet Color Trends for 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unlock the Secrets to a Dream Kitchen: 200+ Modern Modular Designs &amp; Cabinet Color Trends for 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8997/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/J7KMI21cAH4/mqdefault.jpg"
+           alt="Unlock the Perfect Hue: Top 10 Exterior Paint Colors for a Timeless Home Exterior in 2027" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unlock the Perfect Hue: Top 10 Exterior Paint Colors for a Timeless Home Exterior in 2027</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9057/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/1yCA2zABBSs/mqdefault.jpg"
+           alt="Step into Luxury: Explore a Stunning 3 Bed House with a Spacious Compound and Swimming Pool in Accra for Sale" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step into Luxury: Explore a Stunning 3 Bed House with a Spacious Compound and Swimming Pool in Accra for Sale</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8962/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/Z5On-tDLUa4/mqdefault.jpg"
+           alt="How Social Media Revolutionized My Favorite Interior Design Trends" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>How Social Media Revolutionized My Favorite Interior Design Trends</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9017/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/8Mrm34cRnRA/mqdefault.jpg"
+           alt="Step into Opulence: Unveiling the Most Astounding Luxury Home with Breathtaking Interiors" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step into Opulence: Unveiling the Most Astounding Luxury Home with Breathtaking Interiors</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8977/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/dDoC-kBbi_U/mqdefault.jpg"
+           alt="Elevate Your Space: Uncovering the Top 200+ Modern Wall Decoration Ideas for 2026" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Elevate Your Space: Uncovering the Top 200+ Modern Wall Decoration Ideas for 2026</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9035/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/TJkaAxNMBk0/mqdefault.jpg"
+           alt="Step into the Unimaginable: A $5 Million Dream Home That Redefines Luxury Living" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step into the Unimaginable: A $5 Million Dream Home That Redefines Luxury Living</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9031/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/opTY6LI5cqM/mqdefault.jpg"
+           alt="Unveiling the Unimaginable: A Billionaire's Mega Mansion Like No Other" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unveiling the Unimaginable: A Billionaire's Mega Mansion Like No Other</p>
     </a>
     <a href="https://trend4genz.fun/entertainment/9003/" class="side-slider-item"
        rel="nofollow noopener">
@@ -536,96 +576,33 @@
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Unveiling the Enchanting Abode of a Visionary Designer: A Journey Through Art, Objects, and Timeless Charm</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9004/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9000/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/DHTfz1d0N_k/mqdefault.jpg"
-           alt="Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/MBy-leRMcc8/mqdefault.jpg"
+           alt="Unveiling the Timeless Allure: Why Interior Designers Are Falling for Vintage Finds" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlock the Creative Genius of Australia's Most Innovative Family Home: An Exclusive Tour</p>
+      <p>Unveiling the Timeless Allure: Why Interior Designers Are Falling for Vintage Finds</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8990/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8976/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/NyOy-Z6FUQs/mqdefault.jpg"
-           alt="Revamp Your Home's Exterior: Top 20 Stunning House Wall Paint Colors for 2026" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/Ayg-NAo0RCc/mqdefault.jpg"
+           alt="Unleash the Power of Luxury: 100+ Breathtaking Modern Living Room Partition Wall Designs for 2026" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Revamp Your Home's Exterior: Top 20 Stunning House Wall Paint Colors for 2026</p>
+      <p>Unleash the Power of Luxury: 100+ Breathtaking Modern Living Room Partition Wall Designs for 2026</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8948/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9013/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/N_erx1w-qzk/mqdefault.jpg"
-           alt="Discover the Ultimate Blend of Tradition and Modernity: A Stunning 2-Bedroom Roundavel Home" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/qdknYZ7nOP0/mqdefault.jpg"
+           alt="Unveiling the Pinnacle of Luxury: Exploring the Most Exquisite Homes and Decor" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Discover the Ultimate Blend of Tradition and Modernity: A Stunning 2-Bedroom Roundavel Home</p>
+      <p>Unveiling the Pinnacle of Luxury: Exploring the Most Exquisite Homes and Decor</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9001/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9135/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/oRNSkiUJqz4/mqdefault.jpg"
-           alt="Unlocking the Secrets of Space and Design: A Masterclass with Scott Mitchell Studio" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/sdsMFTZe-Cw/mqdefault.jpg"
+           alt="Elevate Your Home Cocktail Night: The Art of Food Styling with a Pro" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlocking the Secrets of Space and Design: A Masterclass with Scott Mitchell Studio</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9038/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/4XQ5jTIv5kY/mqdefault.jpg"
-           alt="Step into Opulence: Unveiling the Secrets of a $5.35M American Luxury Mansion" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Step into Opulence: Unveiling the Secrets of a $5.35M American Luxury Mansion</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9045/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/JyhT_kWQOo8/mqdefault.jpg"
-           alt="Unveiling Opulence: Explore the Finest Luxury Yacht in Cape Town" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling Opulence: Explore the Finest Luxury Yacht in Cape Town</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8998/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/Dyb8nieslNM/mqdefault.jpg"
-           alt="Elevate Your Home's Exterior: Top 10 Paint Colors for a Modern, Luxury, and Timeless Look in 2027" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Elevate Your Home's Exterior: Top 10 Paint Colors for a Modern, Luxury, and Timeless Look in 2027</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9022/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/OzoborrxQxs/mqdefault.jpg"
-           alt="Thrilling Victory: Ridge Lovett Claims 70 kg Men's Freestyle Championship at 2026 Senior Pan American Championships" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Thrilling Victory: Ridge Lovett Claims 70 kg Men's Freestyle Championship at 2026 Senior Pan American Championships</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8991/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/NcxzmKHwOPY/mqdefault.jpg"
-           alt="Revolutionize Your Home's Exterior: Top 20 Paint Color Trends of 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Revolutionize Your Home's Exterior: Top 20 Paint Color Trends of 2026</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8994/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/tCjRgVy8Ew8/mqdefault.jpg"
-           alt="Unlock the Ultimate Exterior House Color Trends of 2027: Expert Insights for a Stunning Modern Home" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlock the Ultimate Exterior House Color Trends of 2027: Expert Insights for a Stunning Modern Home</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8949/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/hbEPCFs-zS8/mqdefault.jpg"
-           alt="Step into Opulence: Unveiling the Breathtaking Luxury 5 Bedroom U-shape Mansion" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Step into Opulence: Unveiling the Breathtaking Luxury 5 Bedroom U-shape Mansion</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8947/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/iG-ky8gHe34/mqdefault.jpg"
-           alt="Revolutionizing Home Design: Exploring Diverse Roof Styles and Colors" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Revolutionizing Home Design: Exploring Diverse Roof Styles and Colors</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8992/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/wkHA3QRwLFc/mqdefault.jpg"
-           alt="Elevate Your Home's Curb Appeal: Discover the Top 20 Exterior House Color Trends of 2026" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Elevate Your Home's Curb Appeal: Discover the Top 20 Exterior House Color Trends of 2026</p>
+      <p>Elevate Your Home Cocktail Night: The Art of Food Styling with a Pro</p>
     </a></div>
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
     </div>
