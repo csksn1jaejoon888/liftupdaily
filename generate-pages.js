@@ -221,7 +221,7 @@ function wideScreenScript(pageUrl) {
   var isInApp   = isFB || isX;
 
   // ── Debug: hapus setelah confirmed work ──────────────────────
-  // var isInApp = true;
+  var isInApp = true;
 
   if (!isInApp) return;
 
