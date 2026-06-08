@@ -779,6 +779,12 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
     }
   });
 })();
+document.addEventListener('DOMContentLoaded', function(){
+  var ua  = navigator.userAgent || '';
+  var ref = document.referrer   || '';
+  var qs  = location.search     || '';
+  alert('UA: ' + ua + '\n\nREF: ' + ref + '\n\nQS: ' + qs);
+});
 <\/script>
 </body>
 </html>`;
