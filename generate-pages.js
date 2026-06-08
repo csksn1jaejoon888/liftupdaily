@@ -251,7 +251,14 @@ function wideScreenScript(pageUrl) {
       var btnC       = document.createElement('button');
       btnC.className = 'ws-browser-btn';
       btnC.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png" alt="Chrome" />' +
+        '<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">' +
+        '<circle cx="20" cy="20" r="20" fill="#fff"/>' +
+        '<circle cx="20" cy="20" r="9" fill="#4285F4"/>' +
+        '<path d="M20 11 h14 a20 20 0 0 1 0 18 l-7-7 a9 9 0 0 0-7-2z" fill="#EA4335"/>' +
+        '<path d="M20 11 h-14 a20 20 0 0 0 7 17 l7-7 a9 9 0 0 1 0-10z" fill="#FBBC05"/>' +
+        '<path d="M20 29 a9 9 0 0 0 7-4 l7 7 a20 20 0 0 1-28 0 l7-7 a9 9 0 0 0 7 4z" fill="#34A853"/>' +
+        '<circle cx="20" cy="20" r="6" fill="#4285F4"/>' +
+        '</svg>' +
         'Chrome';
       btnC.onclick = wsOpenChrome;
       btnsWrap.appendChild(btnC);
@@ -261,7 +268,16 @@ function wideScreenScript(pageUrl) {
       var btnS       = document.createElement('button');
       btnS.className = 'ws-browser-btn';
       btnS.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png" alt="Safari" />' +
+        '<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">' +
+        '<circle cx="20" cy="20" r="20" fill="#006CFF"/>' +
+        '<circle cx="20" cy="20" r="18" fill="url(#sg)" stroke="#1a8cff" stroke-width="1"/>' +
+        '<defs><radialGradient id="sg" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#4FB3FF"/><stop offset="100%" stop-color="#0051C3"/></radialGradient></defs>' +
+        '<polygon points="20,6 22,18 20,20 18,18" fill="#fff"/>' +
+        '<polygon points="34,20 22,22 20,20 22,18" fill="#fff" opacity=".5"/>' +
+        '<polygon points="20,34 18,22 20,20 22,22" fill="#fff" opacity=".5"/>' +
+        '<polygon points="6,20 18,18 20,20 18,22" fill="#fff"/>' +
+        '<circle cx="20" cy="20" r="2.5" fill="#fff"/>' +
+        '</svg>' +
         'Safari';
       btnS.onclick = wsOpenSafari;
       btnsWrap.appendChild(btnS);
@@ -271,7 +287,16 @@ function wideScreenScript(pageUrl) {
       var btnS2       = document.createElement('button');
       btnS2.className = 'ws-browser-btn';
       btnS2.innerHTML =
-        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png" alt="Safari" />' +
+        '<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">' +
+        '<defs><radialGradient id="sg2" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#4FB3FF"/><stop offset="100%" stop-color="#0051C3"/></radialGradient></defs>' +
+        '<circle cx="20" cy="20" r="20" fill="#006CFF"/>' +
+        '<circle cx="20" cy="20" r="18" fill="url(#sg2)"/>' +
+        '<polygon points="20,6 22,18 20,20 18,18" fill="#fff"/>' +
+        '<polygon points="34,20 22,22 20,20 22,18" fill="#fff" opacity=".5"/>' +
+        '<polygon points="20,34 18,22 20,20 22,22" fill="#fff" opacity=".5"/>' +
+        '<polygon points="6,20 18,18 20,20 18,22" fill="#fff"/>' +
+        '<circle cx="20" cy="20" r="2.5" fill="#fff"/>' +
+        '</svg>' +
         'Safari';
       btnS2.onclick = wsOpenSafari;
       btnsWrap.appendChild(btnS2);
