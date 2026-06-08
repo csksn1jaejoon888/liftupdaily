@@ -263,35 +263,31 @@ function wideScreenScript(pageUrl) {
       var btnS       = document.createElement('button');
       btnS.className = 'ws-browser-btn';
       btnS.innerHTML =
-        '<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">' +
-        '<circle cx="20" cy="20" r="20" fill="#006CFF"/>' +
-        '<circle cx="20" cy="20" r="18" fill="url(#sg)" stroke="#1a8cff" stroke-width="1"/>' +
-        '<defs><radialGradient id="sg" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#4FB3FF"/><stop offset="100%" stop-color="#0051C3"/></radialGradient></defs>' +
-        '<polygon points="20,6 22,18 20,20 18,18" fill="#fff"/>' +
-        '<polygon points="34,20 22,22 20,20 22,18" fill="#fff" opacity=".5"/>' +
-        '<polygon points="20,34 18,22 20,20 22,22" fill="#fff" opacity=".5"/>' +
-        '<polygon points="6,20 18,18 20,20 18,22" fill="#fff"/>' +
-        '<circle cx="20" cy="20" r="2.5" fill="#fff"/>' +
-        '</svg>' +
+        '<img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" ' +
+        'width="44" height="44" alt="Safari" ' +
+        'style="border-radius:10px;object-fit:contain;" />' +
         'Safari';
       btnS.onclick = wsOpenSafari;
       btnsWrap.appendChild(btnS);
     }
 
     if (!isAndroid && !isIOS) {
+      var btnC2       = document.createElement('button');
+      btnC2.className = 'ws-browser-btn';
+      btnC2.innerHTML =
+        '<img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" ' +
+        'width="44" height="44" alt="Chrome" ' +
+        'style="border-radius:10px;object-fit:contain;" />' +
+        'Chrome';
+      btnC2.onclick = wsOpenChrome;
+      btnsWrap.appendChild(btnC2);
+
       var btnS2       = document.createElement('button');
       btnS2.className = 'ws-browser-btn';
       btnS2.innerHTML =
-        '<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">' +
-        '<defs><radialGradient id="sg2" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#4FB3FF"/><stop offset="100%" stop-color="#0051C3"/></radialGradient></defs>' +
-        '<circle cx="20" cy="20" r="20" fill="#006CFF"/>' +
-        '<circle cx="20" cy="20" r="18" fill="url(#sg2)"/>' +
-        '<polygon points="20,6 22,18 20,20 18,18" fill="#fff"/>' +
-        '<polygon points="34,20 22,22 20,20 22,18" fill="#fff" opacity=".5"/>' +
-        '<polygon points="20,34 18,22 20,20 22,22" fill="#fff" opacity=".5"/>' +
-        '<polygon points="6,20 18,18 20,20 18,22" fill="#fff"/>' +
-        '<circle cx="20" cy="20" r="2.5" fill="#fff"/>' +
-        '</svg>' +
+        '<img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" ' +
+        'width="44" height="44" alt="Safari" ' +
+        'style="border-radius:10px;object-fit:contain;" />' +
         'Safari';
       btnS2.onclick = wsOpenSafari;
       btnsWrap.appendChild(btnS2);
