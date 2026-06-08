@@ -155,20 +155,22 @@
 /* ── Modal overlay ── */
 #ws-modal-overlay{
   display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,.72);z-index:99999;
+  background:rgba(0,0,0,.75);z-index:99999;
   align-items:flex-end;justify-content:center;
 }
 #ws-modal-overlay.show{display:flex;}
 #ws-modal-box{
   background:#1a1a1a;border-radius:18px 18px 0 0;
-  padding:22px 20px 32px;width:100%;max-width:480px;
+  padding:22px 20px 36px;width:100%;max-width:480px;
   border-top:3px solid #98FB98;
   transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);
 }
 #ws-modal-overlay.show #ws-modal-box{transform:translateY(0);}
+
+/* ── Modal header ── */
 .ws-modal-header{
   display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:14px;
+  margin-bottom:10px;
 }
 .ws-modal-title{
   font-size:1rem;font-weight:900;color:#98FB98;
@@ -178,40 +180,45 @@
   background:rgba(255,255,255,.1);border:none;color:#fff;
   width:28px;height:28px;border-radius:50%;font-size:14px;
   cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:background .15s;
 }
 .ws-modal-close:hover{background:rgba(255,255,255,.2);}
 .ws-modal-subtitle{
-  font-size:.82rem;color:#aaa;margin-bottom:18px;line-height:1.5;
+  font-size:.82rem;color:#aaa;margin-bottom:22px;line-height:1.5;
 }
 .ws-modal-subtitle strong{color:#fff;}
-.ws-steps{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:12px;}
-.ws-step{
-  display:flex;align-items:flex-start;gap:12px;
-  background:rgba(255,255,255,.05);border-radius:10px;padding:12px 14px;
+
+/* ── Label open in browser ── */
+.ws-open-label{
+  font-size:.7rem;font-weight:800;color:#555;
+  text-transform:uppercase;letter-spacing:.1em;
+  text-align:center;margin-bottom:12px;
 }
-.ws-step-num{
-  flex-shrink:0;width:26px;height:26px;border-radius:50%;
-  background:#98FB98;color:#000;font-size:.78rem;font-weight:900;
-  display:flex;align-items:center;justify-content:center;margin-top:1px;
+
+/* ── Browser buttons ── */
+.ws-browser-btns{
+  display:flex;gap:12px;justify-content:center;
 }
-.ws-step-text{font-size:.82rem;color:#ddd;line-height:1.5;}
-.ws-step-text strong{color:#fff;display:block;margin-bottom:2px;}
-.ws-step-icon{
-  display:inline-flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,.12);border-radius:5px;
-  padding:2px 6px;font-size:.78rem;font-weight:700;color:#fff;
-  margin:0 2px;vertical-align:middle;letter-spacing:.02em;
+.ws-browser-btn{
+  flex:1;max-width:160px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;padding:16px 10px;
+  background:rgba(255,255,255,.06);
+  border:2px solid rgba(255,255,255,.12);
+  border-radius:14px;cursor:pointer;
+  transition:background .15s,border-color .15s,transform .1s;
+  color:#fff;font-size:.82rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:.03em;
 }
-.ws-copy-btn{
-  width:100%;padding:13px;border-radius:10px;border:2px solid #98FB98;
-  background:transparent;color:#98FB98;font-size:.88rem;font-weight:800;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
-  transition:background .15s,color .15s;letter-spacing:.03em;
-  text-transform:uppercase;
+.ws-browser-btn:hover{
+  background:rgba(152,251,152,.12);
+  border-color:#98FB98;
+  color:#98FB98;
 }
-.ws-copy-btn:hover{background:#98FB98;color:#000;}
-.ws-copy-btn.copied{background:#98FB98;color:#000;border-color:#98FB98;}
+.ws-browser-btn:active{transform:scale(.97);}
+.ws-browser-btn img{
+  width:40px;height:40px;border-radius:10px;
+  object-fit:contain;
+}
 </style>
 
 <!-- Modal HTML -->
@@ -225,11 +232,8 @@
       <button class="ws-modal-close" onclick="wsCloseModal(null)">✕</button>
     </div>
     <p class="ws-modal-subtitle" id="ws-modal-subtitle"></p>
-    <ul class="ws-steps" id="ws-steps-list"></ul>
-    <button class="ws-copy-btn" id="ws-copy-btn" onclick="wsCopyLink()">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-      Copy Link
-    </button>
+    <p class="ws-open-label">Open in your browser</p>
+    <div class="ws-browser-btns" id="ws-browser-btns"></div>
   </div>
 </div>
 
@@ -256,7 +260,6 @@
   var isAndroid = /Android/i.test(ua);
   var isIOS     = /iPhone|iPad|iPod/i.test(ua);
 
-  // ── Hanya tampil jika dari FB atau X ─────────────────────────
   var isInApp = isFB || isX;
   if (!isInApp) return;
 
@@ -282,132 +285,79 @@
     injectBadge();
   }
 
-  // ── Handle klik badge ────────────────────────────────────────
+  // ── Handle klik badge → langsung tampil modal ────────────────
   window.wsHandleClick = function() {
-    if (isAndroid) {
-      var encoded    = encodeURIComponent(PAGE_URL);
-      var intentUrl  =
-        'intent://' + PAGE_URL.replace(/^https?:\/\//, '') +
-        '#Intent;scheme=https;package=com.android.chrome;' +
-        'S.browser_fallback_url=' + encoded + ';end';
-      var t = Date.now();
-      window.location.href = intentUrl;
-      setTimeout(function() {
-        if (Date.now() - t < 2000) {
-          wsShowModal(isFB ? 'android-fb' : 'android-x');
-        }
-      }, 1200);
-    } else {
-      // iOS atau lainnya → langsung modal
-      if (isIOS && isFB)     wsShowModal('ios-fb');
-      else if (isIOS && isX) wsShowModal('ios-x');
-      else if (isX)          wsShowModal('android-x');
-      else                   wsShowModal('android-fb');
-    }
+    wsShowModal();
   };
 
   // ── Show modal ───────────────────────────────────────────────
-  window.wsShowModal = function(type) {
-    var subtitle  = document.getElementById('ws-modal-subtitle');
-    var stepsList = document.getElementById('ws-steps-list');
-    var configs = {
-      'android-fb': {
-        sub: 'Your <strong>Facebook</strong> browser doesn\'t support full wide screen. Open this page in <strong>Chrome</strong>:',
-        steps: [
-          { title: 'Tap the menu icon',
-            desc:  'Find the <span class="ws-step-icon">⋮</span> icon at the <strong>top right</strong> of your Facebook browser.' },
-          { title: 'Select "Open in Chrome"',
-            desc:  'Tap <strong>"Open in Chrome"</strong> or <strong>"Open in external browser"</strong>.' },
-          { title: 'Done!',
-            desc:  'The page reloads in Chrome with <strong>full wide screen</strong> support.' }
-        ]
-      },
-      'ios-fb': {
-        sub: 'Your <strong>Facebook</strong> browser doesn\'t support full wide screen. Open this page in <strong>Safari</strong>:',
-        steps: [
-          { title: 'Tap the menu icon',
-            desc:  'Find the <span class="ws-step-icon">···</span> icon at the <strong>bottom</strong> of your Facebook browser.' },
-          { title: 'Select "Open in Safari"',
-            desc:  'Tap <strong>"Open in Safari"</strong> or <strong>"Open in Browser"</strong>.' },
-          { title: 'Done!',
-            desc:  'The page reloads in Safari with <strong>full wide screen</strong> support.' }
-        ]
-      },
-      'android-x': {
-        sub: 'Your <strong>X (Twitter)</strong> browser doesn\'t support full wide screen. Open this page in <strong>Chrome</strong>:',
-        steps: [
-          { title: 'Tap the menu icon',
-            desc:  'Find the <span class="ws-step-icon">⋮</span> icon at the <strong>top right</strong> of the X browser.' },
-          { title: 'Select "Open in browser"',
-            desc:  'Tap <strong>"Open in browser"</strong> or <strong>"Open in Chrome"</strong>.' },
-          { title: 'Done!',
-            desc:  'The page reloads in Chrome with <strong>full wide screen</strong> support.' }
-        ]
-      },
-      'ios-x': {
-        sub: 'Your <strong>X (Twitter)</strong> browser doesn\'t support full wide screen. Open this page in <strong>Safari</strong>:',
-        steps: [
-          { title: 'Tap the menu icon',
-            desc:  'Find the <span class="ws-step-icon">···</span> icon at the <strong>bottom</strong> of the X browser.' },
-          { title: 'Select "Open in Safari"',
-            desc:  'Tap <strong>"Open in Safari"</strong> or <strong>"Open in Browser"</strong>.' },
-          { title: 'Done!',
-            desc:  'The page reloads in Safari with <strong>full wide screen</strong> support.' }
-        ]
-      }
-    };
-    var cfg = configs[type] || configs['android-fb'];
-    subtitle.innerHTML = cfg.sub;
-    stepsList.innerHTML = cfg.steps.map(function(s, i) {
-      return '<li class="ws-step">' +
-        '<div class="ws-step-num">' + (i + 1) + '</div>' +
-        '<div class="ws-step-text"><strong>' + s.title + '</strong>' + s.desc + '</div>' +
-        '</li>';
-    }).join('');
+  window.wsShowModal = function() {
+    var subtitle = document.getElementById('ws-modal-subtitle');
+    var btnsWrap = document.getElementById('ws-browser-btns');
+
+    // Subtitle sesuai platform
+    var platform = isFB ? 'Facebook' : 'X (Twitter)';
+    subtitle.innerHTML =
+      'Your <strong>' + platform + '</strong> browser doesn't support full wide screen.';
+
+    // Render tombol browser sesuai device
+    btnsWrap.innerHTML = '';
+
+    // Chrome — Android atau unknown
+    if (isAndroid || (!isAndroid && !isIOS)) {
+      var btnChrome = document.createElement('button');
+      btnChrome.className = 'ws-browser-btn';
+      btnChrome.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/240px-Google_Chrome_icon_%28February_2022%29.svg.png" alt="Chrome"/>' +
+        'Chrome';
+      btnChrome.onclick = function() { wsOpenChrome(); };
+      btnsWrap.appendChild(btnChrome);
+    }
+
+    // Safari — iOS atau unknown
+    if (isIOS || (!isAndroid && !isIOS)) {
+      var btnSafari = document.createElement('button');
+      btnSafari.className = 'ws-browser-btn';
+      btnSafari.innerHTML =
+        '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/BNV_2019_Safari_icon.svg/240px-BNV_2019_Safari_icon.svg.png" alt="Safari"/>' +
+        'Safari';
+      btnSafari.onclick = function() { wsOpenSafari(); };
+      btnsWrap.appendChild(btnSafari);
+    }
+
     document.getElementById('ws-modal-overlay').classList.add('show');
     document.body.style.overflow = 'hidden';
   };
 
+  // ── Buka Chrome via intent:// ────────────────────────────────
+  window.wsOpenChrome = function() {
+    var encoded   = encodeURIComponent(PAGE_URL);
+    var intentUrl =
+      'intent://' + PAGE_URL.replace(/^https?:\/\//, '') +
+      '#Intent;scheme=https;package=com.android.chrome;' +
+      'S.browser_fallback_url=' + encoded + ';end';
+    window.location.href = intentUrl;
+  };
+
+  // ── Buka Safari via scheme ────────────────────────────────────
+  window.wsOpenSafari = function() {
+    // x-web-search tidak selalu work, pakai universal link safari
+    var safariUrl = PAGE_URL.replace(/^https?:\/\//, 'https://');
+    // Coba scheme safari dulu
+    var t = Date.now();
+    window.location.href = 'x-web-search://?q=' + encodeURIComponent(safariUrl);
+    // Fallback: buka langsung jika scheme gagal
+    setTimeout(function() {
+      if (Date.now() - t < 1500) window.location.href = safariUrl;
+    }, 800);
+  };
+
+  // ── Close modal ──────────────────────────────────────────────
   window.wsCloseModal = function(e) {
     if (e && e.target !== document.getElementById('ws-modal-overlay')) return;
     document.getElementById('ws-modal-overlay').classList.remove('show');
     document.body.style.overflow = '';
   };
-
-  window.wsCopyLink = function() {
-    var btn = document.getElementById('ws-copy-btn');
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(PAGE_URL).then(function() {
-        wsShowCopied(btn);
-      }).catch(function() { wsFallbackCopy(btn); });
-    } else {
-      wsFallbackCopy(btn);
-    }
-  };
-
-  function wsFallbackCopy(btn) {
-    var ta = document.createElement('textarea');
-    ta.value = PAGE_URL;
-    ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand('copy'); } catch(e) {}
-    document.body.removeChild(ta);
-    wsShowCopied(btn);
-  }
-
-  function wsShowCopied(btn) {
-    btn.classList.add('copied');
-    btn.innerHTML =
-      '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
-      'Copied!';
-    setTimeout(function() {
-      btn.classList.remove('copied');
-      btn.innerHTML =
-        '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>' +
-        'Copy Link';
-    }, 2000);
-  }
 
 })();
 </script>
@@ -478,61 +428,61 @@ Stay ahead of the curve and keep your hype levels at an all-time high by followi
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">
-    <a href="https://trend4genz.fun/entertainment/9125/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9124/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/xHaJz6UUY4s/mqdefault.jpg"
-           alt="Georgia Medley Unveils Secrets to Styling Naomi Campbell &amp; Thriving in the Luxury Fashion Industry" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/iYRzvoVD8IA/mqdefault.jpg"
+           alt="Unpacking Polly &amp; Rabea's SS26 Style Edit: The Ultimate Guide to Summer Fashion Trends" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Georgia Medley Unveils Secrets to Styling Naomi Campbell &amp; Thriving in the Luxury Fashion Industry</p>
+      <p>Unpacking Polly &amp; Rabea's SS26 Style Edit: The Ultimate Guide to Summer Fashion Trends</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9098/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9117/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/_5QdTfnjMB0/mqdefault.jpg"
-           alt="Escape to Serenity: Unveiling the Most Captivating Small Log Cabins Under 1,000 Square Feet" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/zfdBeOpVfoc/mqdefault.jpg"
+           alt="Dubai's Ultimate Home Makeover: Unveiling Luxury and Minimalism" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Escape to Serenity: Unveiling the Most Captivating Small Log Cabins Under 1,000 Square Feet</p>
+      <p>Dubai's Ultimate Home Makeover: Unveiling Luxury and Minimalism</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9093/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9128/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/EcdS-esl_EQ/mqdefault.jpg"
-           alt="Unveiling Opulence: Exploring Toll Brothers' Luxury Model Homes Valued at $1.1 Million Plus" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/BUfRVJYft1I/mqdefault.jpg"
+           alt="Simone Ashley Shares What Meryl Streep's Really Like &amp; The Devastating Truth About The Devil Wears Prada 2" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Unveiling Opulence: Exploring Toll Brothers' Luxury Model Homes Valued at $1.1 Million Plus</p>
+      <p>Simone Ashley Shares What Meryl Streep's Really Like &amp; The Devastating Truth About The Devil Wears Prada 2</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9100/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9140/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/nUNiGtc4TUM/mqdefault.jpg"
-           alt="Experience the Epitome of Luxury: High-End Prefab Homes That Rival Million-Dollar Mansions" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/7wlse-3lWWQ/mqdefault.jpg"
+           alt="Experience Modern Luxury: Contemporary Home Tour in Kerala | Malayalam Home Design Inspiration" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Experience the Epitome of Luxury: High-End Prefab Homes That Rival Million-Dollar Mansions</p>
+      <p>Experience Modern Luxury: Contemporary Home Tour in Kerala | Malayalam Home Design Inspiration</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9080/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8985/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/2-SodHwdkbQ/mqdefault.jpg"
-           alt="Step into the Vibrant World of Mrs. Dow Jones: An Exclusive Brooklyn Apartment Tour" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/2LY9J9FAwYo/mqdefault.jpg"
+           alt="Elevate Your Living: Explore the Breathtaking 4 Bedroom Modern House Design | 252 sqm" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Step into the Vibrant World of Mrs. Dow Jones: An Exclusive Brooklyn Apartment Tour</p>
+      <p>Elevate Your Living: Explore the Breathtaking 4 Bedroom Modern House Design | 252 sqm</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9104/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/8948/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/JpOrraEFa_I/mqdefault.jpg"
-           alt="Revolutionize Your Home with L-Shaped Container Homes - Maximizing Space and Privacy Redefined" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/N_erx1w-qzk/mqdefault.jpg"
+           alt="Discover the Ultimate Blend of Tradition and Modernity: A Stunning 2-Bedroom Roundavel Home" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Revolutionize Your Home with L-Shaped Container Homes - Maximizing Space and Privacy Redefined</p>
+      <p>Discover the Ultimate Blend of Tradition and Modernity: A Stunning 2-Bedroom Roundavel Home</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9105/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9008/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/7J3qWJ0hNIs/mqdefault.jpg"
-           alt="10 Mind-Blowing Small Urban House Designs to Maximize Your Tiny Lot: Expert Insights and Stunning Ideas" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/VLdlW9E6gFY/mqdefault.jpg"
+           alt="Unlock the Secrets of a Private Oasis: A Captivating Courtyard Home Tour" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>10 Mind-Blowing Small Urban House Designs to Maximize Your Tiny Lot: Expert Insights and Stunning Ideas</p>
+      <p>Unlock the Secrets of a Private Oasis: A Captivating Courtyard Home Tour</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9103/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
+    <a href="https://trend4genz.fun/entertainment/9134/" class="slider-item" style="text-decoration:none;color:inherit;display:block"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/sl1Yx5G9V2s/mqdefault.jpg"
-           alt="Revolutionize Modern Farm Living with Affordable Farmhouse Barn Duplex Design Inspiration" loading="lazy" width="160" height="90"
+      <img src="https://img.youtube.com/vi/VCypuvBnzNU/mqdefault.jpg"
+           alt="Mel C Opens Up About Exclusive Dress Design by Victoria Beckham - Unforgettable Fashion Encounter" loading="lazy" width="160" height="90"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/>
-      <p>Revolutionize Modern Farm Living with Affordable Farmhouse Barn Duplex Design Inspiration</p>
+      <p>Mel C Opens Up About Exclusive Dress Design by Victoria Beckham - Unforgettable Fashion Encounter</p>
     </a></div>
         </div>
       </div>
@@ -543,68 +493,19 @@ Stay ahead of the curve and keep your hype levels at an all-time high by followi
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-1d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">
-    <a href="https://trend4genz.fun/entertainment/9125/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9124/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/xHaJz6UUY4s/mqdefault.jpg"
-           alt="Georgia Medley Unveils Secrets to Styling Naomi Campbell &amp; Thriving in the Luxury Fashion Industry" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/iYRzvoVD8IA/mqdefault.jpg"
+           alt="Unpacking Polly &amp; Rabea's SS26 Style Edit: The Ultimate Guide to Summer Fashion Trends" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Georgia Medley Unveils Secrets to Styling Naomi Campbell &amp; Thriving in the Luxury Fashion Industry</p>
+      <p>Unpacking Polly &amp; Rabea's SS26 Style Edit: The Ultimate Guide to Summer Fashion Trends</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9098/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9117/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/_5QdTfnjMB0/mqdefault.jpg"
-           alt="Escape to Serenity: Unveiling the Most Captivating Small Log Cabins Under 1,000 Square Feet" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/zfdBeOpVfoc/mqdefault.jpg"
+           alt="Dubai's Ultimate Home Makeover: Unveiling Luxury and Minimalism" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Escape to Serenity: Unveiling the Most Captivating Small Log Cabins Under 1,000 Square Feet</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9093/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/EcdS-esl_EQ/mqdefault.jpg"
-           alt="Unveiling Opulence: Exploring Toll Brothers' Luxury Model Homes Valued at $1.1 Million Plus" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling Opulence: Exploring Toll Brothers' Luxury Model Homes Valued at $1.1 Million Plus</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9100/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/nUNiGtc4TUM/mqdefault.jpg"
-           alt="Experience the Epitome of Luxury: High-End Prefab Homes That Rival Million-Dollar Mansions" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Experience the Epitome of Luxury: High-End Prefab Homes That Rival Million-Dollar Mansions</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9080/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/2-SodHwdkbQ/mqdefault.jpg"
-           alt="Step into the Vibrant World of Mrs. Dow Jones: An Exclusive Brooklyn Apartment Tour" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Step into the Vibrant World of Mrs. Dow Jones: An Exclusive Brooklyn Apartment Tour</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9104/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/JpOrraEFa_I/mqdefault.jpg"
-           alt="Revolutionize Your Home with L-Shaped Container Homes - Maximizing Space and Privacy Redefined" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Revolutionize Your Home with L-Shaped Container Homes - Maximizing Space and Privacy Redefined</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9105/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/7J3qWJ0hNIs/mqdefault.jpg"
-           alt="10 Mind-Blowing Small Urban House Designs to Maximize Your Tiny Lot: Expert Insights and Stunning Ideas" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>10 Mind-Blowing Small Urban House Designs to Maximize Your Tiny Lot: Expert Insights and Stunning Ideas</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9103/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/sl1Yx5G9V2s/mqdefault.jpg"
-           alt="Revolutionize Modern Farm Living with Affordable Farmhouse Barn Duplex Design Inspiration" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Revolutionize Modern Farm Living with Affordable Farmhouse Barn Duplex Design Inspiration</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/9172/" class="side-slider-item"
-       rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/N0NsVXvUbRU/mqdefault.jpg"
-           alt="The Items I'd Rebuy If I Were Starting From Scratch: A Game-Changing Home Edition" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The Items I'd Rebuy If I Were Starting From Scratch: A Game-Changing Home Edition</p>
+      <p>Dubai's Ultimate Home Makeover: Unveiling Luxury and Minimalism</p>
     </a>
     <a href="https://trend4genz.fun/entertainment/9128/" class="side-slider-item"
        rel="nofollow noopener">
@@ -613,75 +514,124 @@ Stay ahead of the curve and keep your hype levels at an all-time high by followi
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
       <p>Simone Ashley Shares What Meryl Streep's Really Like &amp; The Devastating Truth About The Devil Wears Prada 2</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9161/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9140/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/qo8r1oFke00/mqdefault.jpg"
-           alt="Step Inside This Jaw-Dropping Modern Luxury Villa in Chiang Mai" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/7wlse-3lWWQ/mqdefault.jpg"
+           alt="Experience Modern Luxury: Contemporary Home Tour in Kerala | Malayalam Home Design Inspiration" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Step Inside This Jaw-Dropping Modern Luxury Villa in Chiang Mai</p>
+      <p>Experience Modern Luxury: Contemporary Home Tour in Kerala | Malayalam Home Design Inspiration</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8966/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8985/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/At-_B9rFYSw/mqdefault.jpg"
-           alt="Unlock the Secrets to a Stunning Home: Break Free from These Common Design Mistakes" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/2LY9J9FAwYo/mqdefault.jpg"
+           alt="Elevate Your Living: Explore the Breathtaking 4 Bedroom Modern House Design | 252 sqm" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unlock the Secrets to a Stunning Home: Break Free from These Common Design Mistakes</p>
+      <p>Elevate Your Living: Explore the Breathtaking 4 Bedroom Modern House Design | 252 sqm</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8888/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8948/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/4NRXx6U8ABQ/mqdefault.jpg"
-           alt="EXCLUSIVE: The Weeknd - Blinding Lights Official HD Video - Watch Now!" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/N_erx1w-qzk/mqdefault.jpg"
+           alt="Discover the Ultimate Blend of Tradition and Modernity: A Stunning 2-Bedroom Roundavel Home" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>EXCLUSIVE: The Weeknd - Blinding Lights Official HD Video - Watch Now!</p>
+      <p>Discover the Ultimate Blend of Tradition and Modernity: A Stunning 2-Bedroom Roundavel Home</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/beautiful-rental-rooms-design/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9008/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/UvJJa81IM0k/mqdefault.jpg"
-           alt="Unveiling the Ultimate Bachelor Pad: 5 Stunning Rental Room Designs to Inspire Your Modern Apartment" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/VLdlW9E6gFY/mqdefault.jpg"
+           alt="Unlock the Secrets of a Private Oasis: A Captivating Courtyard Home Tour" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Unveiling the Ultimate Bachelor Pad: 5 Stunning Rental Room Designs to Inspire Your Modern Apartment</p>
+      <p>Unlock the Secrets of a Private Oasis: A Captivating Courtyard Home Tour</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8820/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9134/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/tlSDDuWxO_0/mqdefault.jpg"
-           alt="The Death of Robin Hood | Official Trailer HD | A24 Exclusive 2026" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/VCypuvBnzNU/mqdefault.jpg"
+           alt="Mel C Opens Up About Exclusive Dress Design by Victoria Beckham - Unforgettable Fashion Encounter" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>The Death of Robin Hood | Official Trailer HD | A24 Exclusive 2026</p>
+      <p>Mel C Opens Up About Exclusive Dress Design by Victoria Beckham - Unforgettable Fashion Encounter</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9176/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/luxury-living/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/s5Y_eZmEZ_w/mqdefault.jpg"
-           alt="Mastering Opulence: Unraveling the Secrets Behind Luxurious Design" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/TXnY_OfkbFc/mqdefault.jpg"
+           alt="Unveiling the Pinnacle of Luxury: Inside the World's Most Stunning Homes and Decor" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Mastering Opulence: Unraveling the Secrets Behind Luxurious Design</p>
+      <p>Unveiling the Pinnacle of Luxury: Inside the World's Most Stunning Homes and Decor</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/8982/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/8952/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/DI4TVmH7mYg/mqdefault.jpg"
-           alt="Step into Opulence: Unveiling the Breathtaking 3 Bedroom Modern Home with a Private Swimming Pool" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/uzpJsYLOZlA/mqdefault.jpg"
+           alt="Unveiling the Hidden World of Paint Colour Undertones: A Crucial Guide for a Flawless Finish" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Step into Opulence: Unveiling the Breathtaking 3 Bedroom Modern Home with a Private Swimming Pool</p>
+      <p>Unveiling the Hidden World of Paint Colour Undertones: A Crucial Guide for a Flawless Finish</p>
     </a>
-    <a href="https://trend4genz.fun/video/boost-ai-agent-memory-with-obsidian-step-by-step-guide/" class="side-slider-item"
-       >
-      <img src="https://img.youtube.com/vi/6V-b073qhPA/mqdefault.jpg"
-           alt="Boost AI Agent Memory with Obsidian: Step-by-Step Guide" loading="lazy" width="108" height="60"
-           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Boost AI Agent Memory with Obsidian: Step-by-Step Guide</p>
-    </a>
-    <a href="https://trend4genz.fun/entertainment/8809/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/9112/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/8TZMtslA3UY/mqdefault.jpg"
-           alt="Spider-Man: Brand New Day Official Trailer HD Watch Now 2026" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/GRhoAH0O6Jo/mqdefault.jpg"
+           alt="Unpredictable Moments: When Life Doesn't Follow the Script" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Spider-Man: Brand New Day Official Trailer HD Watch Now 2026</p>
+      <p>Unpredictable Moments: When Life Doesn't Follow the Script</p>
     </a>
-    <a href="https://trend4genz.fun/entertainment/9136/" class="side-slider-item"
+    <a href="https://trend4genz.fun/entertainment/1239/" class="side-slider-item"
        rel="nofollow noopener">
-      <img src="https://img.youtube.com/vi/v6shYUF2YRc/mqdefault.jpg"
-           alt="Enchanting 3BHK Home Interior Design in a Spacious 1200 Sqft Residence" loading="lazy" width="108" height="60"
+      <img src="https://img.youtube.com/vi/Y_alQ3JP3dY/mqdefault.jpg"
+           alt="Step into Luxury: Unveiling the Breathtaking 5-Bedroom Modern Mansion" loading="lazy" width="108" height="60"
            onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
-      <p>Enchanting 3BHK Home Interior Design in a Spacious 1200 Sqft Residence</p>
+      <p>Step into Luxury: Unveiling the Breathtaking 5-Bedroom Modern Mansion</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9123/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/1l3MaTOnBoQ/mqdefault.jpg"
+           alt="Victoria Beckham x Gap Collab: Unveiling the Hottest Trends + TV Faves &amp; Beach-Ready Secrets | SheerLuxe Podcast" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Victoria Beckham x Gap Collab: Unveiling the Hottest Trends + TV Faves &amp; Beach-Ready Secrets | SheerLuxe Podcast</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9049/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/xxhYFC5Eyoc/mqdefault.jpg"
+           alt="Step into Opulence: Unveiling the Breathtaking 'Inside a BRAND NEW DREAM HOME in Seasons Lifestyle Estate' Luxury Home Tour" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step into Opulence: Unveiling the Breathtaking 'Inside a BRAND NEW DREAM HOME in Seasons Lifestyle Estate' Luxury Home Tour</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8979/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/9XaB7aCujjA/mqdefault.jpg"
+           alt="Unlock 200+ Breathtaking Modern Pergola Designs for the Ultimate Luxury Backyard, Patio, and Rooftop Oasis" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Unlock 200+ Breathtaking Modern Pergola Designs for the Ultimate Luxury Backyard, Patio, and Rooftop Oasis</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8961/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/7gVFwEIrBYw/mqdefault.jpg"
+           alt="Transform Your Narrow Living Room: Expert Decorating Tips and Tricks" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Transform Your Narrow Living Room: Expert Decorating Tips and Tricks</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/8953/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/kRfu1vjWiDw/mqdefault.jpg"
+           alt="Revitalizing Your Culinary Space: 5 Breathtaking Kitchen Transformations to Inspire Your Next Makeover" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Revitalizing Your Culinary Space: 5 Breathtaking Kitchen Transformations to Inspire Your Next Makeover</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9156/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/M8x9X0fKGuk/mqdefault.jpg"
+           alt="A Modern Oasis: Unveiling the Ultimate Family Home with Breathtaking Amenities" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>A Modern Oasis: Unveiling the Ultimate Family Home with Breathtaking Amenities</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9079/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/9VreX0GJOHk/mqdefault.jpg"
+           alt="Step into Paradise: Explore the Breathtaking $2.829 Million Lake House on Royal Island" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step into Paradise: Explore the Breathtaking $2.829 Million Lake House on Royal Island</p>
+    </a>
+    <a href="https://trend4genz.fun/entertainment/9043/" class="side-slider-item"
+       rel="nofollow noopener">
+      <img src="https://img.youtube.com/vi/ldHK1TflIas/mqdefault.jpg"
+           alt="Step Inside a $10 Million Modern Oasis: A Breathtaking Hartbeespoort Home Tour with Unparalleled Views" loading="lazy" width="108" height="60"
+           onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/>
+      <p>Step Inside a $10 Million Modern Oasis: A Breathtaking Hartbeespoort Home Tour with Unparalleled Views</p>
     </a></div>
       <div class="side-nb-block"><div class="native-banner-wrap" id="nb-2d"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner"><div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div></div></div></div>
     </div>
