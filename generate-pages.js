@@ -1066,9 +1066,10 @@ function main() {
   });
   console.log(`✅ ${createdEN} halaman /video/ selesai`);
 
+  console.log('\n🗑️  Hapus /entertainment/ lama...');
+  rmDir(ENTERTAIN_DIR);
+
   if (dbID.length) {
-    console.log('\n🗑️  Hapus /entertainment/ lama...');
-    rmDir(ENTERTAIN_DIR);
     fs.mkdirSync(ENTERTAIN_DIR, {recursive:true});
     console.log('📄 Generate halaman statis db-id → /entertainment/...');
     let createdID = 0;
