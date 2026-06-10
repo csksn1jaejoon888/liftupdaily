@@ -126,7 +126,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Can I really build a business with Claude if I have zero e-commerce experience?",
+          "name": "Can I really build a business with Claude if I have zero e commerce experience?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Yes. Claude handles product selection, website setup, and ad creation—no prior experience needed. Focus on strategy, not execution."
