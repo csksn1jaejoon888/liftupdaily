@@ -64,43 +64,27 @@ const STATIC_AD = {
 // ════════════════════════════════════════════════════════════════
 const FOOTER_CATEGORIES = [
   {
-    key: 'AI_ML_RESEARCH', label: 'AI & ML Research', icon: '✨',
-    keywords: ['ai', 'ml', 'machine-learning', 'machinelearning', 'artificial-intelligence',
-               'artificialintelligence', 'deep-learning', 'deeplearning', 'llm', 'gpt',
-               'neural', 'ai-research', 'research', 'openai', 'gemini', 'claude', 'model']
+    key: 'SELF_IMPROVEMENT', label: 'Self Improvement', icon: '🚀',
+    keywords: ['self-improvement', 'habit', 'productivity', 'discipline', 'mindset',
+               'morning-routine', 'routine', 'focus', 'procrastination', 'motivation',
+               'consistency', 'willpower', 'stoic', 'deep-work', 'time-management',
+               'journaling', 'gratitude', 'growth', 'atomic', 'dopamine']
   },
   {
-    key: 'TUTORIAL_HOWTO', label: 'Tutorial & How-To', icon: '💻',
-    keywords: ['tutorial', 'how-to', 'howto', 'guide', 'learn', 'course', 'coding',
-               'code', 'programming', 'developer', 'dev', 'python', 'javascript',
-               'beginner', 'step-by-step', 'tips', 'tricks', 'walkthrough']
+    key: 'PERSONAL_FINANCE', label: 'Personal Finance', icon: '💵',
+    keywords: ['budget', 'budgeting', 'saving', 'save-money', 'debt', 'paycheck',
+               'emergency-fund', 'financial', 'frugal', 'net-worth', 'payoff',
+               'credit', 'broke', 'wealth', 'cash-flow', 'zero-based', 'sinking-fund',
+               'no-spend', 'financial-freedom', 'fire', 'passive-income', 'afford']
   },
   {
-    key: 'TECH_REVIEW', label: 'Tech Review', icon: '📊',
-    keywords: ['review', 'tech', 'technology', 'gadget', 'hardware', 'software',
-               'product', 'comparison', 'best', 'vs', 'unboxing', 'test', 'benchmark',
-               'specs', 'iphone', 'android', 'laptop', 'phone', 'device', 'app']
-  },
-  {
-    key: 'FINANCE_CRYPTO', label: 'Finance & Crypto', icon: '💰',
-    keywords: ['finance', 'crypto', 'bitcoin', 'ethereum', 'blockchain', 'investment',
-               'investing', 'stock', 'trading', 'money', 'wealth', 'defi', 'nft',
-               'economy', 'market', 'passive-income', 'income', 'earn', 'profit']
-  },
-  {
-    key: 'SCIENCE_EXPLAINER', label: 'Science Explainer', icon: '🔬',
-    keywords: ['science', 'physics', 'biology', 'chemistry', 'space', 'nasa', 'quantum',
-               'explained', 'explainer', 'how', 'why', 'what', 'facts', 'discovery',
-               'research', 'experiment', 'nature', 'universe', 'brain', 'health']
-  },
-  {
-    key: 'BUSINESS_STRATEGY', label: 'Business Strategy', icon: '📈',
-    keywords: ['business', 'strategy', 'startup', 'entrepreneur', 'marketing', 'growth',
-               'productivity', 'leadership', 'management', 'career', 'success', 'mindset',
-               'ecommerce', 'saas', 'brand', 'sales', 'customer', 'company', 'ceo', 'founder']
+    key: 'MENTAL_HEALTH', label: 'Mental Health', icon: '🧘',
+    keywords: ['anxiety', 'overthinking', 'stress', 'mental-health', 'depression',
+               'therapy', 'journaling', 'meditation', 'mindfulness', 'burnout',
+               'loneliness', 'self-talk', 'confidence', 'emotion', 'healing',
+               'nervous-system', 'coping', 'calm', 'inner-peace', 'intrusive']
   },
 ];
-
 // ════════════════════════════════════════════════════════════════
 //  WIDE SCREEN BADGE + MODAL SCRIPT
 //  Di-inject sekali per halaman video (static, inline)
@@ -461,7 +445,7 @@ function buildVideoPage(v, allVideos, isNoIndex) {
     @media(max-width:768px){.search-suggestions{width:240px}}
 
     /* ── Wrapper utama ── */
-    .video-page-container{width:100%;max-width:800px;margin:0 auto;padding:15px}
+    .video-page-container{width:100%;max-width:960px;margin:0 auto;padding:15px}
     @media(max-width:600px){.video-page-container{padding:0}}
 
     /* ═══════════════════════════════════════════════
@@ -512,8 +496,10 @@ function buildVideoPage(v, allVideos, isNoIndex) {
     .home-split-btn:hover{background:#7ddb7d;transform:translateY(-2px)}
     .offer-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;color:#fff;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#ff416c,#ff4b2b);animation:pulse-offer 2s infinite}
     @keyframes pulse-offer{0%,100%{box-shadow:0 0 14px rgba(255,65,108,.5)}50%{box-shadow:0 0 24px rgba(255,65,108,.85)}}
-    .summary-box{background:rgba(255,255,255,.05);padding:20px;border-radius:12px;border-left:4px solid var(--green)}
-    .summary-text{font-size:.9rem;line-height:1.5;color:#ddd}
+    .summary-box{background:rgba(255,255,255,.05);padding:24px 28px;border-radius:12px;border-left:4px solid var(--green)}
+    .summary-text{font-size:1rem;line-height:1.7;color:#ddd}
+    @media(max-width:600px){
+    .summary-text{font-size:.92rem;line-height:1.65}
     .summary-text h2{font-size:1.1rem;font-weight:700;margin:20px 0 8px;color:#fff}
     .summary-text h3{font-size:1.0rem;font-weight:600;margin:16px 0 6px;color:#fff}
     .summary-text p{font-size:.9rem;line-height:1.5;margin-bottom:12px;color:#ddd}
