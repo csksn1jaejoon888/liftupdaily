@@ -1,30 +1,39 @@
 // ══════════════════════════════════════════════════════════════════
-//  generate-pages.js  v11
-//  Perubahan dari v10:
-//    1. Badge "FULL WIDE SCREEN" di pojok kanan bawah judul
-//       → hanya muncul jika pengunjung dari FB / X in-app browser
-//    2. Klik badge:
-//       - Android → intent:// buka URL sama di Chrome
-//       - Intent gagal / iOS / lainnya → modal instruksi slide-up
-//    3. Modal per-platform (FB Android, FB iOS, X/Twitter)
-//       dengan tombol "Copy Link" → "✅ Copied!" 2 detik
+//  generate-pages.js  v12  — ExplainedVault edition
+//
+//  PERUBAHAN dari v11:
+//    1. SITE_NAME / BASE_URL — switch di bagian CONFIG
+//    2. Navbar halaman video: hamburger + nama web kecil + search
+//       (konsisten dengan index_base.html)
+//    3. Summary box: background #000 rata, tanpa border kiri
+//    4. Footer: profesional 3-kolom (brand, kategori, site links)
+//       menggantikan footer-cat lama
+//    5. FOOTER_CATEGORIES diganti 3 kategori baru:
+//       THE CASE / HISTORY VAULT / DECODED
+//    6. Halaman kategori statis: navbar hamburger + footer baru
+//    7. buildHomepage: APP_END pattern diperbarui agar cocok
+//       dengan index_base.html baru
+//    8. WideScreen badge dipertahankan
 // ══════════════════════════════════════════════════════════════════
 'use strict';
 
 const fs   = require('fs');
 const path = require('path');
 
-// ── Config ─────────────────────────────────────────────────────
-const DB_FILE_EN      = path.join(__dirname, 'db-en.json');
-const DB_FILE_ID      = path.join(__dirname, 'db-id.json');
-const BASE_TMPL       = path.join(__dirname, 'index_base.html');
-const INDEX_FILE      = path.join(__dirname, 'index.html');
-const VIDEO_DIR       = path.join(__dirname, 'video');
-const ENTERTAIN_DIR   = path.join(__dirname, 'entertainment');
-const BASE_URL        = 'https://trend4genz.fun';
-const SITE_NAME       = 'Trend4GenZ';
-const DESC_DEF        = 'Streaming video terbaru — teknologi, AI, lifestyle, dan tren global.';
-const HOMEPAGE_CARDS  = 20;
+// ════════════════════════════════════════════════════════════════
+//  ★ CONFIG — SWITCH SEMUA NAMA WEB DI SINI ★
+// ════════════════════════════════════════════════════════════════
+const BASE_URL   = 'https://www.explainedvault.com';   // ← ganti
+const SITE_NAME  = 'ExplainedVault';                   // ← ganti
+const DESC_DEF   = 'Explore true crime cases, historical events, and science mysteries — explained in depth.';
+
+const DB_FILE_EN     = path.join(__dirname, 'db-en.json');
+const DB_FILE_ID     = path.join(__dirname, 'db-id.json');
+const BASE_TMPL      = path.join(__dirname, 'index_base.html');
+const INDEX_FILE     = path.join(__dirname, 'index.html');
+const VIDEO_DIR      = path.join(__dirname, 'video');
+const ENTERTAIN_DIR  = path.join(__dirname, 'entertainment');
+const HOMEPAGE_CARDS = 20;
 
 // ── Helpers ────────────────────────────────────────────────────
 function esc(s='') {
@@ -36,7 +45,6 @@ function trunc(s,n=160)  { const t=stripHtml(s); return t.length<=n?t:t.slice(0,
 function rmDir(dir)      { if(fs.existsSync(dir)) fs.rmSync(dir,{recursive:true,force:true}); }
 function shuffle(arr)    { return [...arr].sort(()=>0.5-Math.random()); }
 
-// ── URL helper ─────────────────────────────────────────────────
 function videoUrl(v) {
   return v.source === 'nofollow'
     ? `${BASE_URL}/entertainment/${v.slug}/`
@@ -47,122 +55,285 @@ function videoUrl(v) {
 //  KONFIGURASI ADS
 // ════════════════════════════════════════════════════════════════
 const STATIC_AD = {
-  allAds: true,
-  useDirect:  true,
-  directUrl:  'https://translate.google.com',
+  allAds: false,
+  useDirect:        true,
+  directUrl:        'https://google.com',
   usePlayAds:       true,
   playAdsUrl:       'https://google.com',
   playAdsStartFrom: 2,
   useNativeBanner1: true,
-  nativeBanner1HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 1 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#c00;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
+  nativeBanner1HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#c00,#e00,#f52);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">NATIVE BANNER 1</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan Anda di sini</div></div></div>`,
   useNativeBanner2: false,
-  nativeBanner2HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-shrink:0;color:#ffdd00;font-size:11px;font-weight:800;line-height:1.2">CONTOH<br>IKLAN</div><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">IKLAN NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan native 2 Anda di sini</div></div><div style="flex-shrink:0;background:#ffdd00;color:#003580;font-size:11px;font-weight:900;padding:6px 10px;border-radius:6px;text-transform:uppercase">PELAJARI</div></div>`,
+  nativeBanner2HTML: `<div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#003580,#0057d8,#1a8cff);padding:14px 40px 14px 14px;border-radius:10px;min-height:90px;cursor:pointer;width:100%;" onclick="window.open('https://google.com','_blank')"><div style="flex-grow:1"><div style="color:#fff;font-size:18px;font-weight:900;text-transform:uppercase">NATIVE BANNER 2</div><div style="color:rgba(255,255,255,.85);font-size:12px;margin-top:4px">Pasang kode iklan Anda di sini</div></div></div>`,
 };
 
 // ════════════════════════════════════════════════════════════════
-//  KONFIGURASI KATEGORI FOOTER SEO
+//  KATEGORI — 3 kategori baru ExplainedVault
 // ════════════════════════════════════════════════════════════════
 const FOOTER_CATEGORIES = [
   {
-    key: 'SELF_IMPROVEMENT', label: 'Self Improvement', icon: '🚀',
-    keywords: ['self-improvement', 'habit', 'productivity', 'discipline', 'mindset',
-               'morning-routine', 'routine', 'focus', 'procrastination', 'motivation',
-               'consistency', 'willpower', 'stoic', 'deep-work', 'time-management',
-               'journaling', 'gratitude', 'growth', 'atomic', 'dopamine']
+    key: 'THE_CASE', label: 'The Case', icon: '🔍',
+    slug: 'the-case',
+    keywords: ['crime','murder','killer','serial','cold case','mystery','investigation',
+               'detective','criminal','victim','unsolved','missing','case','suspect',
+               'trial','convicted','sentence','prison','forensic','evidence']
   },
   {
-    key: 'PERSONAL_FINANCE', label: 'Personal Finance', icon: '💵',
-    keywords: ['budget', 'budgeting', 'saving', 'save-money', 'debt', 'paycheck',
-               'emergency-fund', 'financial', 'frugal', 'net-worth', 'payoff',
-               'credit', 'broke', 'wealth', 'cash-flow', 'zero-based', 'sinking-fund',
-               'no-spend', 'financial-freedom', 'fire', 'passive-income', 'afford']
+    key: 'HISTORY_VAULT', label: 'History Vault', icon: '📜',
+    slug: 'history-vault',
+    keywords: ['history','historical','war','ancient','civilization','empire','dynasty',
+               'documentary','world war','revolution','medieval','colonial','battle',
+               'discovery','explorer','artifact','archaeology','forgotten','century','era']
   },
   {
-    key: 'MENTAL_HEALTH', label: 'Mental Health', icon: '🧘',
-    keywords: ['anxiety', 'overthinking', 'stress', 'mental-health', 'depression',
-               'therapy', 'journaling', 'meditation', 'mindfulness', 'burnout',
-               'loneliness', 'self-talk', 'confidence', 'emotion', 'healing',
-               'nervous-system', 'coping', 'calm', 'inner-peace', 'intrusive']
+    key: 'DECODED', label: 'Decoded', icon: '🔬',
+    slug: 'decoded',
+    keywords: ['science','space','nasa','physics','biology','chemistry','quantum',
+               'explained','explainer','universe','brain','psychology','nature',
+               'technology','ai','experiment','discovery','research','how','why']
   },
 ];
+
 // ════════════════════════════════════════════════════════════════
-//  WIDE SCREEN BADGE + MODAL SCRIPT
-//  Di-inject sekali per halaman video (static, inline)
+//  SHARED STYLES — dipakai di halaman video statis & kategori
+// ════════════════════════════════════════════════════════════════
+function sharedNavbarCSS() {
+  return `
+    /* ── Navbar hamburger ── */
+    :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a;--nav-h-mobile:48px;--nav-h-desktop:60px;--nav-h:var(--nav-h-mobile)}
+    @media(min-width:768px){:root{--nav-h:var(--nav-h-desktop)}}
+    .navbar-custom{background:#000;height:var(--nav-h-mobile);padding:0 14px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--green)}
+    @media(min-width:768px){.navbar-custom{height:var(--nav-h-desktop);padding:0 20px;gap:16px}}
+    .nav-hamburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:6px;flex-shrink:0}
+    .nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .25s}
+    @media(min-width:768px){.nav-hamburger span{width:26px;height:2.5px}}
+    .nav-hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-hamburger.active span:nth-child(2){opacity:0}
+    .nav-hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-brand{color:#fff;font-weight:900;font-size:.95rem;letter-spacing:-.02em;text-transform:uppercase;text-decoration:none;flex-shrink:0}
+    .nav-brand span{color:var(--green)}
+    @media(min-width:768px){.nav-brand{font-size:1.15rem}}
+    .navbar-right-group{display:flex;align-items:center;margin-left:auto;gap:8px}
+    .search-wrapper{position:relative;display:flex;align-items:center;z-index:9999}
+    .search-container{display:flex;align-items:center;gap:6px;background:#1a1a1a;border-radius:20px;padding:5px 10px;border:1px solid #333;transition:border-color .2s}
+    .search-container:focus-within{border-color:var(--green)}
+    .search-container input{background:transparent;border:none;color:#fff;outline:none;font-size:.8rem;width:45px;transition:.3s;font-family:inherit}
+    .search-container input:focus{width:90px}
+    @media(min-width:768px){.search-container input{width:70px}.search-container input:focus{width:140px}}
+    .search-icon-btn{background:none;border:none;cursor:pointer;display:flex;align-items:center;padding:0;flex-shrink:0}
+    .search-suggestions{position:absolute;top:calc(100% + 6px);right:0;width:260px;background:#1a1a1a;border:1px solid var(--green);border-radius:10px;overflow:hidden;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.7);display:none}
+    @media(min-width:600px){.search-suggestions{width:300px}}
+    .search-suggestions.show{display:block}
+    .suggestion-item{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(255,255,255,.05)}
+    .suggestion-item:last-child{border-bottom:none}
+    .suggestion-item:hover,.suggestion-item.active{background:rgba(152,251,152,.1)}
+    .suggestion-item img{width:52px;height:30px;object-fit:cover;border-radius:4px;flex-shrink:0}
+    .suggestion-item span{font-size:.75rem;color:#f1f1f1;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+    .suggestion-item span em{color:var(--green);font-style:normal;font-weight:bold}
+    .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
+    @media(max-width:768px){.search-suggestions{width:240px}}
+
+    /* ── Hamburger drawer ── */
+    .ham-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1998;opacity:0;pointer-events:none;transition:opacity .25s}
+    .ham-overlay.show{opacity:1;pointer-events:all}
+    .ham-drawer{position:fixed;top:0;left:0;width:min(280px,82vw);height:100vh;background:#0a0a0a;z-index:1999;transform:translateX(-100%);transition:transform .28s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;border-right:1px solid #1e1e1e;overflow-y:auto}
+    .ham-drawer.show{transform:translateX(0)}
+    .ham-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #1a1a1a;flex-shrink:0}
+    .ham-brand{font-size:1rem;font-weight:900;color:#fff;letter-spacing:-.02em;text-transform:uppercase}
+    .ham-brand span{color:var(--green)}
+    .ham-close{background:none;border:none;color:#888;font-size:1.3rem;cursor:pointer;line-height:1;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .15s,color .15s}
+    .ham-close:hover{background:#1a1a1a;color:#fff}
+    .ham-search{padding:14px 18px;border-bottom:1px solid #1a1a1a;flex-shrink:0}
+    .ham-search-inner{display:flex;align-items:center;gap:8px;background:#1a1a1a;border-radius:8px;padding:8px 12px;border:1px solid #2a2a2a}
+    .ham-search-inner:focus-within{border-color:var(--green)}
+    .ham-search-inner input{flex:1;background:transparent;border:none;color:#fff;outline:none;font-size:.85rem;font-family:inherit}
+    .ham-search-inner input::placeholder{color:#555}
+    .ham-nav{flex:1;padding:10px 0}
+    .ham-nav-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;color:#444;text-transform:uppercase;padding:14px 18px 6px}
+    .ham-nav-item{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;cursor:pointer;color:#ccc;font-size:.9rem;font-weight:600;text-decoration:none;border-left:3px solid transparent;transition:all .15s}
+    .ham-nav-item:hover,.ham-nav-item.active{background:rgba(152,251,152,.07);color:#fff;border-left-color:var(--green)}
+    .ham-nav-item-icon{font-size:1rem;width:22px;flex-shrink:0}
+    .ham-nav-item-label{flex:1;margin-left:10px}
+    .ham-nav-item-arrow{font-size:.7rem;color:#444;transition:transform .15s}
+    .ham-nav-item:hover .ham-nav-item-arrow{transform:translateX(3px);color:var(--green)}
+    .ham-divider{height:1px;background:#1a1a1a;margin:8px 0}
+  `;
+}
+
+function sharedFooterCSS() {
+  return `
+    /* ── Footer profesional ── */
+    .site-footer{margin-top:60px;background:#000;border-top:1px solid #1a1a1a}
+    .footer-inner{max-width:1200px;margin:0 auto;padding:32px 20px 24px}
+    .footer-top{display:grid;gap:28px;grid-template-columns:1fr;margin-bottom:28px}
+    @media(min-width:600px){.footer-top{grid-template-columns:1.5fr 1fr 1fr}}
+    .footer-brand{font-size:1.05rem;font-weight:900;color:#fff;letter-spacing:-.02em;text-transform:uppercase;display:inline-block;margin-bottom:10px}
+    .footer-brand span{color:var(--green)}
+    .footer-tagline{font-size:.8rem;color:#555;line-height:1.6;max-width:220px}
+    .footer-col-title{font-size:.65rem;font-weight:700;letter-spacing:.12em;color:#444;text-transform:uppercase;margin-bottom:12px}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+    .footer-links a{font-size:.82rem;color:#666;text-decoration:none;transition:color .15s;display:flex;align-items:center;gap:6px}
+    .footer-links a:hover{color:var(--green)}
+    .footer-links a::before{content:'›';color:#333}
+    .footer-bottom{padding-top:20px;border-top:1px solid #1a1a1a;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+    .footer-copy{font-size:.72rem;color:#333;letter-spacing:.04em}
+    .footer-legal{display:flex;gap:16px}
+    .footer-legal a{font-size:.72rem;color:#333;text-decoration:none;transition:color .15s}
+    .footer-legal a:hover{color:var(--green)}
+  `;
+}
+
+function sharedNavbarHTML(activeCategory='') {
+  const cats = FOOTER_CATEGORIES;
+  const navItems = cats.map(c =>
+    `<a href="${BASE_URL}/category/${c.slug}/" class="ham-nav-item${activeCategory===c.slug?' active':''}" onclick="closeHamMenu()">
+      <span class="ham-nav-item-icon">${c.icon}</span>
+      <span class="ham-nav-item-label">${c.label}</span>
+      <span class="ham-nav-item-arrow">›</span>
+    </a>`
+  ).join('');
+
+  return `
+<div class="ham-overlay" id="ham-overlay" onclick="closeHamMenu()"></div>
+<div class="ham-drawer" id="ham-drawer">
+  <div class="ham-header">
+    <div class="ham-brand">${SITE_NAME.replace(/([A-Z][a-z]+)([A-Z])/, '$1<span>$2')}</span></div>
+    <button class="ham-close" onclick="closeHamMenu()">&#x2715;</button>
+  </div>
+  <div class="ham-search">
+    <div class="ham-search-inner">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#555" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="hamSearchInput" placeholder="Search..." type="text" autocomplete="off"/>
+    </div>
+  </div>
+  <nav class="ham-nav">
+    <div class="ham-nav-label">Browse</div>
+    <a href="${BASE_URL}/" class="ham-nav-item" onclick="closeHamMenu()">
+      <span class="ham-nav-item-icon">🏠</span>
+      <span class="ham-nav-item-label">Home</span>
+      <span class="ham-nav-item-arrow">›</span>
+    </a>
+    <div class="ham-divider"></div>
+    <div class="ham-nav-label">Categories</div>
+    ${navItems}
+  </nav>
+</div>
+
+<nav class="navbar-custom">
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleHamMenu()" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="${BASE_URL}/" class="nav-brand">${SITE_NAME.replace(/([A-Z][a-z]+)([A-Z])/, '$1<span>$2')}</span></a>
+  <div class="navbar-right-group">
+    <div class="search-wrapper">
+      <div class="search-container">
+        <input id="searchInput" placeholder="Search..." type="text" autocomplete="off"/>
+        <button class="search-icon-btn" id="searchBtn" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+  </div>
+</nav>`;
+}
+
+function sharedFooterHTML(isNoIndex) {
+  const year = new Date().getFullYear();
+  const brandParts = SITE_NAME.match(/([A-Z][a-z]+)/g) || [SITE_NAME];
+  const brandHtml = brandParts.length >= 2
+    ? brandParts[0] + '<span>' + brandParts.slice(1).join('') + '</span>'
+    : SITE_NAME;
+
+  if (isNoIndex) {
+    return `<footer class="site-footer"><div class="footer-inner"><div class="footer-bottom"><p class="footer-copy">© ${year} ${SITE_NAME}. All rights reserved.</p></div></div></footer>`;
+  }
+
+  const catLinks = FOOTER_CATEGORIES.map(c =>
+    `<li><a href="${BASE_URL}/category/${c.slug}/">${c.icon} ${c.label}</a></li>`
+  ).join('');
+
+  return `
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">${brandHtml}</div>
+        <p class="footer-tagline">Watch, read, and understand the world's most compelling stories — crime, history, and science in depth.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Categories</div>
+        <ul class="footer-links">${catLinks}</ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Site</div>
+        <ul class="footer-links">
+          <li><a href="${BASE_URL}/">Home</a></li>
+          <li><a href="${BASE_URL}/about/">About</a></li>
+          <li><a href="${BASE_URL}/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="${BASE_URL}/contact/">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© ${year} ${SITE_NAME}. All rights reserved.</p>
+      <nav class="footer-legal">
+        <a href="${BASE_URL}/privacy-policy/">Privacy</a>
+        <a href="${BASE_URL}/terms/">Terms</a>
+        <a href="${BASE_URL}/sitemap.xml">Sitemap</a>
+      </nav>
+    </div>
+  </div>
+</footer>`;
+}
+
+function sharedHamJS(dbJsonVar='_db') {
+  return `
+function toggleHamMenu(){
+  var d=document.getElementById('ham-drawer'),o=document.getElementById('ham-overlay'),b=document.getElementById('nav-hamburger');
+  var open=d.classList.contains('show');
+  if(open){closeHamMenu();}else{d.classList.add('show');o.classList.add('show');b.classList.add('active');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+}
+function closeHamMenu(){
+  document.getElementById('ham-drawer').classList.remove('show');
+  document.getElementById('ham-overlay').classList.remove('show');
+  document.getElementById('nav-hamburger').classList.remove('active');
+  document.getElementById('nav-hamburger').setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
+}
+(function(){
+  var hi=document.getElementById('hamSearchInput');
+  if(!hi)return;
+  hi.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){var v=this.value.trim();if(v){closeHamMenu();window.location.href='${BASE_URL}/?search='+encodeURIComponent(v);}}
+  });
+})();
+`;
+}
+
+// ════════════════════════════════════════════════════════════════
+//  WIDE SCREEN BADGE + MODAL
 // ════════════════════════════════════════════════════════════════
 function wideScreenScript(pageUrl) {
   return `
 <style>
-.ws-badge{
-  display:inline-flex;align-items:center;gap:4px;
-  background:#98FB98;color:#000;
-  font-size:10px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;
-  padding:3px 8px;border-radius:5px;cursor:pointer;
-  vertical-align:middle;white-space:nowrap;
-  border:none;outline:none;
-  transition:background .15s,transform .1s;
-  float:right;margin-left:8px;margin-top:2px;
-  line-height:1.4;
-}
-.ws-badge:active{transform:scale(.96);}
-.ws-badge svg{flex-shrink:0;}
-#ws-modal-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,.75);z-index:99999;
-  align-items:flex-end;justify-content:center;
-}
-#ws-modal-overlay.show{display:flex;}
-#ws-modal-box{
-  background:#1a1a1a;border-radius:18px 18px 0 0;
-  padding:22px 20px 36px;width:100%;max-width:480px;
-  border-top:3px solid #98FB98;
-  transform:translateY(100%);
-  transition:transform .32s cubic-bezier(.22,1,.36,1);
-}
-#ws-modal-overlay.show #ws-modal-box{transform:translateY(0);}
-.ws-modal-header{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:10px;
-}
-.ws-modal-title{
-  font-size:1rem;font-weight:900;color:#98FB98;
-  display:flex;align-items:center;gap:7px;
-}
-.ws-modal-close{
-  background:rgba(255,255,255,.1);border:none;color:#fff;
-  width:28px;height:28px;border-radius:50%;font-size:14px;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-}
-.ws-modal-subtitle{
-  font-size:.82rem;color:#aaa;margin-bottom:22px;line-height:1.5;
-}
-.ws-modal-subtitle strong{color:#fff;}
-.ws-open-label{
-  font-size:.7rem;font-weight:800;color:#555;
-  text-transform:uppercase;letter-spacing:.1em;
-  text-align:center;margin-bottom:12px;
-}
-.ws-browser-btns{
-  display:flex;gap:12px;justify-content:center;
-}
-.ws-browser-btn{
-  flex:1;max-width:160px;
-  display:flex;flex-direction:column;align-items:center;
-  gap:8px;padding:16px 10px;
-  background:rgba(255,255,255,.06);
-  border:2px solid rgba(255,255,255,.12);
-  border-radius:14px;cursor:pointer;
-  transition:background .15s,border-color .15s,transform .1s;
-  color:#fff;font-size:.82rem;font-weight:800;
-  text-transform:uppercase;
-}
-.ws-browser-btn:hover{
-  background:rgba(152,251,152,.12);
-  border-color:#98FB98;color:#98FB98;
-}
-.ws-browser-btn:active{transform:scale(.97);}
-.ws-browser-btn img{
-  width:40px;height:40px;border-radius:10px;object-fit:contain;
-}
+.ws-badge{display:inline-flex;align-items:center;gap:4px;background:#98FB98;color:#000;font-size:10px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:5px;cursor:pointer;vertical-align:middle;white-space:nowrap;border:none;outline:none;transition:background .15s,transform .1s;float:right;margin-left:8px;margin-top:2px;line-height:1.4}
+.ws-badge:active{transform:scale(.96)}
+#ws-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:99999;align-items:flex-end;justify-content:center}
+#ws-modal-overlay.show{display:flex}
+#ws-modal-box{background:#1a1a1a;border-radius:18px 18px 0 0;padding:22px 20px 36px;width:100%;max-width:480px;border-top:3px solid #98FB98;transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1)}
+#ws-modal-overlay.show #ws-modal-box{transform:translateY(0)}
+.ws-modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ws-modal-title{font-size:1rem;font-weight:900;color:#98FB98;display:flex;align-items:center;gap:7px}
+.ws-modal-close{background:rgba(255,255,255,.1);border:none;color:#fff;width:28px;height:28px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.ws-modal-subtitle{font-size:.82rem;color:#aaa;margin-bottom:22px;line-height:1.5}
+.ws-modal-subtitle strong{color:#fff}
+.ws-open-label{font-size:.7rem;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.1em;text-align:center;margin-bottom:12px}
+.ws-browser-btns{display:flex;gap:12px;justify-content:center}
+.ws-browser-btn{flex:1;max-width:160px;display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 10px;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.12);border-radius:14px;cursor:pointer;transition:background .15s,border-color .15s,transform .1s;color:#fff;font-size:.82rem;font-weight:800;text-transform:uppercase}
+.ws-browser-btn:hover{background:rgba(152,251,152,.12);border-color:#98FB98;color:#98FB98}
+.ws-browser-btn:active{transform:scale(.97)}
+.ws-browser-btn img{width:40px;height:40px;border-radius:10px;object-fit:contain}
 </style>
 
 <div id="ws-modal-overlay" onclick="wsCloseModal(event)">
@@ -182,124 +353,26 @@ function wideScreenScript(pageUrl) {
 
 <script>
 (function(){
-  var PAGE_URL  = '${pageUrl}';
-  var ua        = navigator.userAgent || '';
-  var ref       = document.referrer   || '';
-  var qs        = location.search     || '';
-
-  var isFB = (
-    /FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|FBLC|FBCR|FBSV|Instagram/.test(ua) ||
-    /facebook/.test(ref) ||
-    /ref=fb|utm_source=facebook/.test(qs)
-  );
-
-  var isX = (
-    /Twitter|TwitterAndroid|TwitteriPhone/.test(ua) ||
-    /twitter|t\.co|x\.com/.test(ref) ||
-    /ref=x|utm_source=twitter|utm_source=x/.test(qs)
-  );
-
-  var isAndroid = /Android/.test(ua);
-  var isIOS     = /iPhone|iPad|iPod/.test(ua);
-  var isInApp   = isFB || isX;
-
-  if (!isInApp) return;
-
-  function injectBadge() {
-    var h1 = document.querySelector('.info-section h1');
-    if (!h1) return;
-    var badge       = document.createElement('button');
-    badge.className = 'ws-badge';
-    badge.innerHTML = 'FULL WIDE SCREEN';
-    badge.onclick   = wsHandleClick;
-    h1.insertBefore(badge, h1.firstChild);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', injectBadge);
-  } else {
-    injectBadge();
-  }
-
-  window.wsHandleClick = function() {
-    var subtitle = document.getElementById('ws-modal-subtitle');
-    var btnsWrap = document.getElementById('ws-browser-btns');
-
-    subtitle.innerHTML = 'Your <strong>' +
-      (isFB ? 'Facebook' : 'X (Twitter)') +
-      '</strong> browser does not support full wide screen.';
-
-    btnsWrap.innerHTML = '';
-
-    if (!isIOS) {
-      var btnC       = document.createElement('button');
-      btnC.className = 'ws-browser-btn';
-      btnC.innerHTML =
-        '<img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" ' +
-        'width="40" height="40" alt="Chrome" ' +
-        'style="border-radius:8px;object-fit:contain;" />' +
-        'Chrome';
-      btnC.onclick = wsOpenChrome;
-      btnsWrap.appendChild(btnC);
-    }
-
-    if (isIOS) {
-      var btnS       = document.createElement('button');
-      btnS.className = 'ws-browser-btn';
-      btnS.innerHTML =
-        '<img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" ' +
-        'width="44" height="44" alt="Safari" ' +
-        'style="border-radius:10px;object-fit:contain;" />' +
-        'Safari';
-      btnS.onclick = wsOpenSafari;
-      btnsWrap.appendChild(btnS);
-    }
-
-    if (!isAndroid && !isIOS) {
-      var btnC2       = document.createElement('button');
-      btnC2.className = 'ws-browser-btn';
-      btnC2.innerHTML =
-        '<img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" ' +
-        'width="44" height="44" alt="Chrome" ' +
-        'style="border-radius:10px;object-fit:contain;" />' +
-        'Chrome';
-      btnC2.onclick = wsOpenChrome;
-      btnsWrap.appendChild(btnC2);
-
-      var btnS2       = document.createElement('button');
-      btnS2.className = 'ws-browser-btn';
-      btnS2.innerHTML =
-        '<img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" ' +
-        'width="44" height="44" alt="Safari" ' +
-        'style="border-radius:10px;object-fit:contain;" />' +
-        'Safari';
-      btnS2.onclick = wsOpenSafari;
-      btnsWrap.appendChild(btnS2);
-    }
-
-    document.getElementById('ws-modal-overlay').classList.add('show');
-    document.body.style.overflow = 'hidden';
+  var PAGE_URL='${pageUrl}';
+  var ua=navigator.userAgent||'',ref=document.referrer||'',qs=location.search||'';
+  var isFB=(/FBAN|FBAV|FB_IAB|FBIOS|FBANDROID|Instagram/.test(ua)||/facebook/.test(ref)||/ref=fb|utm_source=facebook/.test(qs));
+  var isX=(/Twitter|TwitterAndroid|TwitteriPhone/.test(ua)||/twitter|t\.co|x\.com/.test(ref)||/ref=x|utm_source=twitter|utm_source=x/.test(qs));
+  var isAndroid=/Android/.test(ua),isIOS=/iPhone|iPad|iPod/.test(ua);
+  if(!isFB&&!isX)return;
+  function injectBadge(){var h1=document.querySelector('.info-section h1');if(!h1)return;var b=document.createElement('button');b.className='ws-badge';b.textContent='FULL WIDE SCREEN';b.onclick=wsHandleClick;h1.insertBefore(b,h1.firstChild);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',injectBadge);else injectBadge();
+  window.wsHandleClick=function(){
+    var sub=document.getElementById('ws-modal-subtitle'),bw=document.getElementById('ws-browser-btns');
+    sub.innerHTML='Your <strong>'+(isFB?'Facebook':'X (Twitter)')+'</strong> browser does not support full wide screen.';
+    bw.innerHTML='';
+    if(!isIOS){var bc=document.createElement('button');bc.className='ws-browser-btn';bc.innerHTML='<img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" width="40" height="40" alt="Chrome"/>Chrome';bc.onclick=wsOpenChrome;bw.appendChild(bc);}
+    if(isIOS){var bs=document.createElement('button');bs.className='ws-browser-btn';bs.innerHTML='<img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" width="44" height="44" alt="Safari"/>Safari';bs.onclick=wsOpenSafari;bw.appendChild(bs);}
+    if(!isAndroid&&!isIOS){var bc2=document.createElement('button');bc2.className='ws-browser-btn';bc2.innerHTML='<img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" width="44" height="44" alt="Chrome"/>Chrome';bc2.onclick=wsOpenChrome;bw.appendChild(bc2);var bs2=document.createElement('button');bs2.className='ws-browser-btn';bs2.innerHTML='<img src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" width="44" height="44" alt="Safari"/>Safari';bs2.onclick=wsOpenSafari;bw.appendChild(bs2);}
+    document.getElementById('ws-modal-overlay').classList.add('show');document.body.style.overflow='hidden';
   };
-
-  window.wsOpenChrome = function() {
-    var host = PAGE_URL.replace('https://', '').replace('http://', '');
-    var enc  = encodeURIComponent(PAGE_URL);
-    window.location.href =
-      'intent://' + host +
-      '#Intent;scheme=https;package=com.android.chrome;' +
-      'S.browser_fallback_url=' + enc + ';end';
-  };
-
-  window.wsOpenSafari = function() {
-    window.location.href = PAGE_URL;
-  };
-
-  window.wsCloseModal = function(e) {
-    if (e && e.target !== document.getElementById('ws-modal-overlay')) return;
-    document.getElementById('ws-modal-overlay').classList.remove('show');
-    document.body.style.overflow = '';
-  };
-
+  window.wsOpenChrome=function(){var h=PAGE_URL.replace('https://','').replace('http://','');window.location.href='intent://'+h+'#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(PAGE_URL)+';end';};
+  window.wsOpenSafari=function(){window.location.href=PAGE_URL;};
+  window.wsCloseModal=function(e){if(e&&e.target!==document.getElementById('ws-modal-overlay'))return;document.getElementById('ws-modal-overlay').classList.remove('show');document.body.style.overflow='';};
 })();
 <\/script>`;
 }
@@ -308,7 +381,6 @@ function wideScreenScript(pageUrl) {
 //  HALAMAN VIDEO STATIS
 // ════════════════════════════════════════════════════════════════
 function buildVideoPage(v, allVideos, isNoIndex) {
-
   const canonical  = videoUrl(v);
   const thumb      = `https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg`;
   const thumbOg    = `https://img.youtube.com/vi/${v.youtubeId}/maxresdefault.jpg`;
@@ -318,13 +390,8 @@ function buildVideoPage(v, allVideos, isNoIndex) {
 
   const related = shuffle(allVideos.filter(r => r.slug !== v.slug)).slice(0, 30);
 
-  const robotsContent = isNoIndex
-    ? 'noindex, nofollow, noarchive, noimageindex'
-    : 'index, follow';
-
-  const canonicalTag = isNoIndex
-    ? '<!-- noindex: canonical dihapus -->'
-    : `<link rel="canonical" href="${canonical}"/>`;
+  const robotsContent = isNoIndex ? 'noindex, nofollow, noarchive, noimageindex' : 'index, follow';
+  const canonicalTag  = isNoIndex ? '' : `<link rel="canonical" href="${canonical}"/>`;
 
   const jsonLdTag = isNoIndex ? '' : `
   <script type="application/ld+json">${JSON.stringify({
@@ -333,7 +400,7 @@ function buildVideoPage(v, allVideos, isNoIndex) {
     'uploadDate':uploadDate,
     'embedUrl':`https://www.youtube.com/embed/${v.youtubeId}`,
     'url':canonical,
-    'publisher':{'@type':'Organization','name':SITE_NAME,'url':BASE_URL}
+    'publisher':{'@type':'Organization','name':SITE_NAME,'url':BASE_URL,'logo':{'@type':'ImageObject','url':BASE_URL+'/logo.png'}}
   })}<\/script>`;
 
   const faqTag = (!isNoIndex && v.faqSchema)
@@ -367,33 +434,18 @@ function buildVideoPage(v, allVideos, isNoIndex) {
     </a>`).join('');
 
   const sliderDataJson = JSON.stringify(
-    allVideos
-      .filter(r => r.slug !== v.slug)
-      .map(r => ({
-        slug:     r.slug,
-        youtubeId:r.youtubeId,
-        title:    r.title,
-        source:   r.source || 'seo'
-      }))
+    allVideos.filter(r => r.slug !== v.slug)
+      .map(r => ({slug:r.slug, youtubeId:r.youtubeId, title:r.title, source:r.source||'seo'}))
   );
 
   function makeBanner(uid, htmlContent) {
-    return `<div class="native-banner-wrap" id="nb-${uid}">` +
-      `<div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div>` +
-      `<div class="native-banner-inner">${htmlContent}</div>` +
-      `</div>`;
+    return `<div class="native-banner-wrap" id="nb-${uid}"><div class="close-btn" onclick="this.closest('.native-banner-wrap').style.display='none'">✕</div><div class="native-banner-inner">${htmlContent}</div></div>`;
   }
   const nb1Mobile  = STATIC_AD.allAds && STATIC_AD.useNativeBanner1 ? makeBanner('1m', STATIC_AD.nativeBanner1HTML) : '';
   const nb2Mobile  = STATIC_AD.allAds && STATIC_AD.useNativeBanner2 ? makeBanner('2m', STATIC_AD.nativeBanner2HTML) : '';
   const nb1Desktop = STATIC_AD.allAds && STATIC_AD.useNativeBanner1 ? makeBanner('1d', STATIC_AD.nativeBanner1HTML) : '';
   const nb2Desktop = STATIC_AD.allAds && STATIC_AD.useNativeBanner2 ? makeBanner('2d', STATIC_AD.nativeBanner2HTML) : '';
 
-  const footerCatHtml = FOOTER_CATEGORIES.map(cat =>
-    `<a href="${BASE_URL}/category/${cat.key.toLowerCase().replace(/_/g,'-')}/" class="footer-cat-link">` +
-    `<span>${cat.icon}</span><span>${cat.label}</span></a>`
-  ).join('');
-
-  // ── Wide Screen badge + modal (di-inject per halaman) ────────
   const wsBlock = wideScreenScript(canonical);
 
   return `<!DOCTYPE html>
@@ -406,12 +458,12 @@ function buildVideoPage(v, allVideos, isNoIndex) {
   <meta name="robots" content="${robotsContent}"/>
   ${canonicalTag}
   <link rel="icon" href="${BASE_URL}/logo.png" sizes="96x96" type="image/png"/>
-  <meta property="og:type"        content="video.other"/>
-  <meta property="og:title"       content="${esc(v.title)}"/>
-  <meta property="og:description" content="${esc(desc)}"/>
-  <meta property="og:url"         content="${canonical}"/>
-  <meta property="og:image"       content="${thumbOg}"/>
-  <meta property="og:site_name"   content="${SITE_NAME}"/>
+  <meta property="og:type"         content="video.other"/>
+  <meta property="og:title"        content="${esc(v.title)}"/>
+  <meta property="og:description"  content="${esc(desc)}"/>
+  <meta property="og:url"          content="${canonical}"/>
+  <meta property="og:image"        content="${thumbOg}"/>
+  <meta property="og:site_name"    content="${SITE_NAME}"/>
   <meta name="twitter:card"        content="summary_large_image"/>
   <meta name="twitter:title"       content="${esc(v.title)}"/>
   <meta name="twitter:description" content="${esc(desc)}"/>
@@ -422,49 +474,30 @@ function buildVideoPage(v, allVideos, isNoIndex) {
   <link rel="preconnect" href="https://img.youtube.com"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--green:#98FB98;--red:#ff032d;--dark:#1a1a1a;--nav-h:52px}
-    body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
+    body{background:#111112;color:#f1f1f1;font-family:'Inter','Segoe UI',sans-serif;overflow-x:hidden}
     html,body{overflow-x:hidden;max-width:100%}
 
-    /* ── Navbar ── */
-    .navbar-custom{background:#000;padding:8px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;border-bottom:0}
-    .navbar-right-group{display:flex;align-items:center;margin-left:auto}
-    .search-wrapper{position:relative;display:flex;align-items:center;z-index:9999}
-    .search-container{display:flex;align-items:center;background:var(--dark);border-radius:20px;padding:5px 12px;border:1px solid var(--green)}
-    .search-container input{background:transparent;border:none;color:#fff;outline:none;font-size:.85rem;width:45px;transition:.3s}
-    .search-container input:focus{width:65px}
-    .search-suggestions{position:absolute;top:calc(100% + 6px);right:0;width:280px;background:var(--dark);border:1px solid var(--green);border-radius:10px;overflow:hidden;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.6);display:none}
-    .search-suggestions.show{display:block}
-    .suggestion-item{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(255,255,255,.05)}
-    .suggestion-item:last-child{border-bottom:none}
-    .suggestion-item:hover{background:rgba(152,251,152,.12)}
-    .suggestion-item img{width:52px;height:30px;object-fit:cover;border-radius:4px;flex-shrink:0}
-    .suggestion-item span{font-size:.75rem;color:#f1f1f1;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-    .suggestion-item span em{color:var(--green);font-style:normal;font-weight:bold}
-    .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
-    @media(max-width:768px){.search-suggestions{width:240px}}
+    ${sharedNavbarCSS()}
+    ${sharedFooterCSS()}
 
     /* ── Wrapper utama ── */
-    .video-page-container{width:100%;max-width:960px;margin:0 auto;padding:15px}
+    .video-page-container{width:100%;max-width:860px;margin:0 auto;padding:14px}
     @media(max-width:600px){.video-page-container{padding:0}}
 
-    /* ═══════════════════════════════════════════════
-       DESKTOP 2-KOLOM (≥992px)
-    ═══════════════════════════════════════════════ */
+    /* ── Desktop 2-kolom ── */
     @media(min-width:992px){
-      .video-page-container{max-width:1100px}
-      .video-desktop-layout{display:flex;gap:20px;align-items:flex-start}
+      .video-page-container{max-width:1200px}
+      .video-desktop-layout{display:flex;gap:22px;align-items:flex-start}
       .video-main-col{flex:1 1 0;min-width:0}
-      .video-side-col{width:280px;flex-shrink:0;position:sticky;top:calc(var(--nav-h) + 10px);display:flex;flex-direction:column;gap:0}
-      .side-related-label{color:var(--green);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:8px 0 8px;flex-shrink:0}
-      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h) - 220px);overflow-y:auto;scrollbar-width:none;flex-shrink:0}
+      .video-side-col{width:290px;flex-shrink:0;position:sticky;top:calc(var(--nav-h-desktop) + 10px);display:flex;flex-direction:column;gap:0}
+      .side-related-label{color:var(--green);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 0;flex-shrink:0}
+      .side-slider{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - var(--nav-h-desktop) - 220px);overflow-y:auto;scrollbar-width:none;flex-shrink:0}
       .side-slider::-webkit-scrollbar{display:none}
       .side-slider-item{display:flex;gap:8px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;border:1px solid transparent;transition:.2s;flex-shrink:0}
       .side-slider-item:hover{border-color:var(--green)}
       .side-slider-item img{width:108px;height:60px;object-fit:cover;flex-shrink:0}
-      .side-slider-item p{font-size:.72rem;padding:6px 8px;margin:0;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:#f1f1f1}
+      .side-slider-item p{font-size:.72rem;padding:6px 8px;margin:0;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:#ccc}
       .side-nb-block{width:100%;flex-shrink:0;margin:8px 0}
-      .side-nb-block .native-banner-wrap{margin:0;border-radius:10px}
       .nb-mobile-only{display:none}
       .recommendation-slider-wrap{display:none}
     }
@@ -474,90 +507,73 @@ function buildVideoPage(v, allVideos, isNoIndex) {
     }
 
     /* ── Player ── */
-    .player-container{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
+    .player-container{position:relative;width:100%;background:#000;border-radius:12px;overflow:hidden;aspect-ratio:16/9}
     @media(max-width:600px){.player-container{border-radius:0}}
     .player-container iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1}
     .player-container>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
     .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;cursor:pointer;gap:10px}
-    .play-btn-svg{width:72px;height:72px;filter:drop-shadow(0 0 12px rgba(255,3,45,.7));transition:transform .15s}
+    .play-btn-svg{width:68px;height:68px;filter:drop-shadow(0 0 12px rgba(255,3,45,.7));transition:transform .15s}
     .play-overlay:hover .play-btn-svg{transform:scale(1.1)}
     .play-overlay-label{font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.08em;text-shadow:0 2px 8px rgba(0,0,0,.8)}
     .video-mask{position:absolute;z-index:99999;background:transparent;pointer-events:all;touch-action:none}
     .mask-top{top:0;left:0;width:55%;height:94px}
     .mask-bottom{bottom:0;left:40%;width:100%;height:43px}
-    .btn-fs-custom{position:absolute;bottom:18px;right:18px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;box-shadow:0 0 20px var(--green);border:2px solid var(--green)}
+    .btn-fs-custom{position:absolute;bottom:16px;right:16px;z-index:2147483647;cursor:pointer;background:transparent;color:#fff;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:50%;box-shadow:0 0 16px var(--green);border:2px solid var(--green)}
     #player-box:fullscreen .video-mask,#player-box:-webkit-full-screen .video-mask{display:block!important}
 
     /* ── Info section ── */
-    .info-section{padding:15px}
-    h1{font-size:1.2rem;font-weight:800;line-height:1.4;margin:15px 0;overflow:hidden}
-    .dual-action-wrap{display:flex;gap:10px;margin-bottom:18px}
-    .home-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;background:var(--green);color:#000;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
+    .info-section{padding:14px}
+    .info-section h1{font-size:1.15rem;font-weight:800;line-height:1.4;margin:12px 0}
+    @media(min-width:768px){.info-section h1{font-size:1.3rem}}
+    .dual-action-wrap{display:flex;gap:10px;margin-bottom:16px}
+    .home-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;background:var(--green);color:#000;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;font-family:inherit}
     .home-split-btn:hover{background:#7ddb7d;transform:translateY(-2px)}
-    .offer-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;color:#fff;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#ff416c,#ff4b2b);animation:pulse-offer 2s infinite}
+    .offer-split-btn{width:50%;border:none;padding:10px 6px;border-radius:10px;font-weight:800;color:#fff;font-size:.8rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#ff416c,#ff4b2b);animation:pulse-offer 2s infinite;font-family:inherit}
     @keyframes pulse-offer{0%,100%{box-shadow:0 0 14px rgba(255,65,108,.5)}50%{box-shadow:0 0 24px rgba(255,65,108,.85)}}
-    .summary-box{background:rgba(255,255,255,.05);padding:24px 28px;border-radius:12px;border-left:4px solid var(--green)}
-    .summary-text{font-size:1rem;line-height:1.7;color:#ddd}
-    @media(max-width:600px){
-    .summary-text{font-size:.92rem;line-height:1.65}
-    .summary-text h2{font-size:1.1rem;font-weight:700;margin:20px 0 8px;color:#fff}
-    .summary-text h3{font-size:1.0rem;font-weight:600;margin:16px 0 6px;color:#fff}
-    .summary-text p{font-size:.9rem;line-height:1.5;margin-bottom:12px;color:#ddd}
-    .summary-text ul{margin-bottom:12px;padding-left:20px}
-    .summary-text li{font-size:.9rem;line-height:1.4;margin-bottom:5px;color:#ddd}
-    .summary-text strong{color:#fff}
-    .seo-tags-container{margin-top:15px;padding-top:15px;border-top:1px solid #222;display:flex;flex-wrap:wrap;gap:6px}
-    .seo-tag-badge{background:#111;color:#00ff66;border:1px solid #333;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:500;text-decoration:none;transition:.15s;display:inline-block}
-    .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
-    .more-videos-label{color:#98FB98;margin:24px 0 12px;font-size:.85rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 
-    /* ── Mobile horizontal slider ── */
-    .recommendation-slider{display:flex;overflow-x:auto;gap:10px;padding-bottom:8px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+    /* ── Summary box — hitam rata, tanpa border ── */
+    .summary-box{background:#000;padding:20px;border-radius:10px}
+    .summary-text{font-size:.9rem;line-height:1.6;color:#ccc}
+    .summary-text h2{font-size:1.05rem;font-weight:700;margin:20px 0 8px;color:#fff}
+    .summary-text h3{font-size:.95rem;font-weight:600;margin:16px 0 6px;color:#fff}
+    .summary-text p{font-size:.9rem;line-height:1.6;margin-bottom:12px;color:#ccc}
+    .summary-text ul{margin-bottom:12px;padding-left:20px}
+    .summary-text li{font-size:.9rem;line-height:1.5;margin-bottom:5px;color:#ccc}
+    .summary-text strong{color:#fff}
+
+    /* ── Tags ── */
+    .seo-tags-container{margin-top:15px;padding-top:14px;border-top:1px solid #1e1e1e;display:flex;flex-wrap:wrap;gap:6px}
+    .seo-tag-badge{background:#111;color:var(--green);border:1px solid #2a2a2a;padding:4px 10px;border-radius:4px;font-size:.75rem;font-weight:500;text-decoration:none;transition:.15s;display:inline-block}
+    .seo-tag-badge:hover{background:#1a1a1a;border-color:var(--green);color:#fff}
+    .more-videos-label{color:var(--green);margin:20px 0 10px;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+
+    /* ── Mobile slider ── */
+    .recommendation-slider{display:flex;overflow-x:auto;gap:10px;padding-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
     .recommendation-slider::-webkit-scrollbar{display:none}
-    .slider-item{min-width:160px;max-width:160px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent;text-decoration:none;color:inherit;display:block}
+    .slider-item{min-width:150px;max-width:150px;background:var(--dark);border-radius:8px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:.2s;border:1px solid transparent;text-decoration:none;color:inherit;display:block}
     .slider-item:hover{border-color:var(--green);transform:translateY(-2px)}
     .slider-item img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
-    .slider-item p{font-size:.72rem;padding:6px 8px 8px;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35;min-height:42px;color:#f1f1f1}
+    .slider-item p{font-size:.7rem;padding:6px 8px 8px;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35;min-height:42px;color:#ccc}
 
     /* ── Native Banner ── */
     .native-banner-wrap{position:relative;width:100%;margin:10px 0;border-radius:10px;overflow:hidden;min-height:90px}
     .native-banner-wrap .close-btn{position:absolute;top:6px;right:6px;width:26px;height:26px;background:rgba(0,0,0,.65);color:#fff;border:2px solid #fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;cursor:pointer;z-index:10}
     .native-banner-inner{width:100%;min-height:90px;display:flex;flex-direction:column;justify-content:center}
-
-    /* ── Footer SEO ── */
-    .footer-seo{margin-top:60px;padding:24px 16px 28px;background:#0d0d0d;border-top:1px solid #1e1e1e}
-    .footer-seo-title{color:#555;font-size:10px;letter-spacing:2px;font-weight:700;text-transform:uppercase;text-align:center;margin-bottom:14px}
-    .footer-cat-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:18px}
-    .footer-cat-link{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border:1px solid #2a2a2a;border-radius:20px;text-decoration:none;color:#888;font-size:11px;font-weight:600;background:#111;transition:.2s;white-space:nowrap}
-    .footer-cat-link:hover{color:var(--green);border-color:#3a3a3a;background:#161616}
-    .footer-copy{color:#333;font-size:10px;text-align:center;letter-spacing:.5px}
   </style>
 </head>
 <body>
 
 ${wsBlock}
 
-<nav class="navbar-custom">
-  <div class="navbar-right-group">
-    <div class="search-wrapper">
-      <div class="search-container">
-        <input id="searchInput" placeholder="Cari..." type="text" autocomplete="off"/>
-        <svg id="searchBtn" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#98FB98" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="cursor:pointer;flex-shrink:0"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      </div>
-      <div class="search-suggestions" id="searchSuggestions"></div>
-    </div>
-  </div>
-</nav>
+${sharedNavbarHTML()}
 
 <main>
 <div class="video-page-container">
   <div class="video-desktop-layout">
-
-    <!-- ═══════════════════════════ KOLOM KIRI ═══════════════════════════ -->
+    <!-- KOLOM KIRI -->
     <div class="video-main-col">
       <div class="player-container" id="player-box">
-        <img src="${thumb}" alt="${esc(v.title)}" width="480" height="270"
-             fetchpriority="high" decoding="sync"/>
+        <img src="${thumb}" alt="${esc(v.title)}" width="480" height="270" fetchpriority="high" decoding="sync"/>
         <div class="play-overlay" onclick="startPlay()">
           <svg class="play-btn-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
             <circle cx="40" cy="40" r="38" fill="rgba(0,0,0,.55)" stroke="#ff032d" stroke-width="3"/>
@@ -578,11 +594,10 @@ ${wsBlock}
           </button>
           <button class="offer-split-btn" onclick="handleMoreInfo()">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            More Info
+            More Info 🔥
           </button>
         </div>
 
-        <!-- Native Banner 1 — MOBILE ONLY -->
         <div class="nb-mobile-only">${nb1Mobile}</div>
 
         <div class="summary-box">
@@ -590,10 +605,8 @@ ${wsBlock}
           ${tagsHtml}
         </div>
 
-        <!-- Native Banner 2 — MOBILE ONLY -->
         <div class="nb-mobile-only">${nb2Mobile}</div>
 
-        <!-- Mobile horizontal slider -->
         <div class="recommendation-slider-wrap">
           <p class="more-videos-label">MORE VIDEOS</p>
           <div class="recommendation-slider" id="rec-slider">${mobileRelatedHtml}</div>
@@ -601,114 +614,57 @@ ${wsBlock}
       </div>
     </div>
 
-    <!-- ═══════════════════════════ KOLOM KANAN DESKTOP ══════════════════ -->
+    <!-- KOLOM KANAN DESKTOP -->
     <div class="video-side-col">
       ${nb1Desktop ? `<div class="side-nb-block">${nb1Desktop}</div>` : ''}
       <div class="side-related-label">🎬 Related Videos</div>
       <div class="side-slider" id="side-slider-desktop">${sideRelatedHtml}</div>
       ${nb2Desktop ? `<div class="side-nb-block">${nb2Desktop}</div>` : ''}
     </div>
-
   </div>
 </div>
 </main>
 
-${isNoIndex ? `
-<footer class="footer-seo">
-  <p class="footer-copy">© 2026 ${SITE_NAME}. All rights reserved.</p>
-</footer>` : `
-<footer class="footer-seo">
-  <p class="footer-seo-title">Jelajahi Kategori</p>
-  <nav class="footer-cat-grid" aria-label="Kategori konten">
-    ${footerCatHtml}
-  </nav>
-  <p class="footer-copy">© 2026 ${SITE_NAME}. All rights reserved.</p>
-</footer>`}
+${sharedFooterHTML(isNoIndex)}
 
 <script>
-// ── Ads config ────────────────────────────────────────────────
-var STATIC_AD = {
-  allAds:          ${STATIC_AD.allAds},
-  useDirect:       ${STATIC_AD.useDirect},
-  directUrl:       '${STATIC_AD.directUrl}',
-  usePlayAds:      ${STATIC_AD.usePlayAds},
-  playAdsUrl:      '${STATIC_AD.playAdsUrl}',
-  playAdsStartFrom:${STATIC_AD.playAdsStartFrom}
-};
-var _playCount = 0;
-
-function handleMoreInfo() {
-  if (STATIC_AD.allAds && STATIC_AD.useDirect) window.open(STATIC_AD.directUrl,'_blank');
-}
-
-function startPlay() {
+var STATIC_AD={allAds:${STATIC_AD.allAds},useDirect:${STATIC_AD.useDirect},directUrl:'${STATIC_AD.directUrl}',usePlayAds:${STATIC_AD.usePlayAds},playAdsUrl:'${STATIC_AD.playAdsUrl}',playAdsStartFrom:${STATIC_AD.playAdsStartFrom}};
+var _playCount=0;
+function handleMoreInfo(){if(STATIC_AD.allAds&&STATIC_AD.useDirect)window.open(STATIC_AD.directUrl,'_blank');}
+function startPlay(){
   _playCount++;
-  if (STATIC_AD.allAds && STATIC_AD.usePlayAds && _playCount >= STATIC_AD.playAdsStartFrom) {
-    window.open(STATIC_AD.playAdsUrl,'_blank');
-  }
-  var pb = document.getElementById('player-box');
-  pb.innerHTML =
-    '<iframe src="https://www.youtube.com/embed/${v.youtubeId}?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1"' +
-    ' allow="autoplay;encrypted-media;fullscreen" allowfullscreen' +
-    ' style="position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1"></iframe>' +
-    '<div class="video-mask mask-top"></div>' +
-    '<div class="video-mask mask-bottom"></div>' +
-    '<div id="fs-btn" class="btn-fs-custom" onclick="toggleFS()" title="Fullscreen">' +
-    '<svg id="fs-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
-    '<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/>' +
-    '<polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>' +
-    '</svg></div>';
+  if(STATIC_AD.allAds&&STATIC_AD.usePlayAds&&_playCount>=STATIC_AD.playAdsStartFrom)window.open(STATIC_AD.playAdsUrl,'_blank');
+  var pb=document.getElementById('player-box');
+  pb.innerHTML='<iframe src="https://www.youtube.com/embed/${v.youtubeId}?autoplay=1&rel=0&modestbranding=1&fs=0&controls=1&playsinline=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1"></iframe><div class="video-mask mask-top"></div><div class="video-mask mask-bottom"></div><div id="fs-btn" class="btn-fs-custom" onclick="toggleFS()"><svg id="fs-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/><polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/></svg></div>';
 }
+function toggleFS(){var el=document.getElementById('player-box'),svg=document.getElementById('fs-icon');if(!document.fullscreenElement&&!document.webkitFullscreenElement){(el.requestFullscreen||el.webkitRequestFullscreen).call(el);if(svg)svg.innerHTML='<polyline points="8 3 3 3 3 8"/><line x1="3" y1="3" x2="10" y2="10"/><polyline points="21 8 21 3 16 3"/><line x1="21" y1="3" x2="14" y2="10"/><polyline points="3 16 3 21 8 21"/><line x1="3" y1="21" x2="10" y2="14"/><polyline points="16 21 21 21 21 16"/><line x1="21" y1="21" x2="14" y2="14"/>';}else{(document.exitFullscreen||document.webkitExitFullscreen).call(document);if(svg)svg.innerHTML='<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/><polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>'; }}
 
-function toggleFS() {
-  var el=document.getElementById('player-box'), svg=document.getElementById('fs-icon');
-  if (!document.fullscreenElement&&!document.webkitFullscreenElement) {
-    (el.requestFullscreen||el.webkitRequestFullscreen).call(el);
-    if(svg) svg.innerHTML='<polyline points="8 3 3 3 3 8"/><line x1="3" y1="3" x2="10" y2="10"/><polyline points="21 8 21 3 16 3"/><line x1="21" y1="3" x2="14" y2="10"/><polyline points="3 16 3 21 8 21"/><line x1="3" y1="21" x2="10" y2="14"/><polyline points="16 21 21 21 21 16"/><line x1="21" y1="21" x2="14" y2="14"/>';
-  } else {
-    (document.exitFullscreen||document.webkitExitFullscreen).call(document);
-    if(svg) svg.innerHTML='<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/><polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>';
-  }
-}
+${sharedHamJS()}
 
-// ── Search ─────────────────────────────────────────────────────
-var _db = ${sliderDataJson};
+// ── Search ────────────────────────────────────────────────────
+var _db=${sliderDataJson};
 (function(){
-  var inp=document.getElementById('searchInput'),
-      btn=document.getElementById('searchBtn'),
-      sug=document.getElementById('searchSuggestions'),
-      ai=-1;
-  function hl(t,q){
-    var e=q.replace(/[.*+?^$\\x7B\\x7D()|[\\]\\\\]/g,'\\\\$&');
-    return t.replace(new RegExp('('+e+')','gi'),'<em>$1</em>');
-  }
+  var inp=document.getElementById('searchInput'),btn=document.getElementById('searchBtn'),sug=document.getElementById('searchSuggestions'),ai=-1;
+  function hl(t,q){return t.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<em>$1</em>');}
   function hide(){sug.classList.remove('show');sug.innerHTML='';ai=-1;}
-  function getUrl(v){return v.source==='nofollow'?'${BASE_URL}/entertainment/'+v.slug+'/':'${BASE_URL}/video/'+v.slug+'/';}
+  function getUrl(r){return r.source==='nofollow'?'${BASE_URL}/entertainment/'+r.slug+'/':'${BASE_URL}/video/'+r.slug+'/';}
+  function upA(items){items.forEach(function(el,i){el.classList.toggle('active',i===ai);});}
   inp.addEventListener('input',function(){
     var val=inp.value.trim().toLowerCase();ai=-1;
     if(!val){hide();return;}
-    var m=_db.filter(function(v){return v.title.toLowerCase().indexOf(val)!==-1;}).slice(0,7);
+    var m=_db.filter(function(r){return r.title.toLowerCase().indexOf(val)!==-1;}).slice(0,7);
     if(!m.length){sug.innerHTML='<div class="suggestion-empty">No results for "<b>'+val+'</b>"</div>';sug.classList.add('show');return;}
-    sug.innerHTML=m.map(function(v){
-      return '<div class="suggestion-item" data-url="'+getUrl(v)+'">'+
-        '<img src="https://img.youtube.com/vi/'+v.youtubeId+'/mqdefault.jpg" loading="lazy" alt=""/>'+
-        '<span>'+hl(v.title,val)+'</span></div>';
-    }).join('');
+    sug.innerHTML=m.map(function(r){return '<div class="suggestion-item" data-url="'+getUrl(r)+'"><img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" alt=""/><span>'+hl(r.title,val)+'</span></div>';}).join('');
     sug.classList.add('show');
-    sug.querySelectorAll('.suggestion-item').forEach(function(el){
-      el.addEventListener('mousedown',function(e){e.preventDefault();window.location.href=el.dataset.url;});
-    });
+    sug.querySelectorAll('.suggestion-item').forEach(function(el){el.addEventListener('mousedown',function(e){e.preventDefault();window.location.href=el.dataset.url;});});
   });
   inp.addEventListener('keydown',function(e){
     var items=sug.querySelectorAll('.suggestion-item');
     if(e.key==='ArrowDown'){e.preventDefault();ai=Math.min(ai+1,items.length-1);upA(items);}
     else if(e.key==='ArrowUp'){e.preventDefault();ai=Math.max(ai-1,-1);upA(items);}
-    else if(e.key==='Enter'){
-      if(ai>=0&&items[ai])window.location.href=items[ai].dataset.url;
-      else{var q=inp.value.trim();if(q)window.location.href='${BASE_URL}/?search='+encodeURIComponent(q);}
-    }else if(e.key==='Escape'){hide();inp.blur();}
+    else if(e.key==='Enter'){if(ai>=0&&items[ai])window.location.href=items[ai].dataset.url;else{var q=inp.value.trim();if(q)window.location.href='${BASE_URL}/?search='+encodeURIComponent(q);}}
+    else if(e.key==='Escape'){hide();inp.blur();}
   });
-  function upA(items){items.forEach(function(el,i){el.classList.toggle('active',i===ai);});}
   btn.addEventListener('click',function(){var q=inp.value.trim();if(q)window.location.href='${BASE_URL}/?search='+encodeURIComponent(q);});
   document.addEventListener('click',function(e){if(!e.target.closest('.search-wrapper'))hide();});
 })();
@@ -721,8 +677,7 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
     if(!next.length){_loaded=0;next=_db.slice(0,8);}
     next.forEach(function(r){
       var url=r.source==='nofollow'?'${BASE_URL}/entertainment/'+r.slug+'/':'${BASE_URL}/video/'+r.slug+'/';
-      var a=document.createElement('a');
-      a.className='slider-item';a.href=url;a.setAttribute('rel',r.source==='nofollow'?'nofollow noopener':'');
+      var a=document.createElement('a');a.className='slider-item';a.href=url;if(r.source==='nofollow')a.setAttribute('rel','nofollow noopener');
       a.style.cssText='text-decoration:none;color:inherit;display:block';
       a.innerHTML='<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" width="160" height="90" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><p>'+r.title.replace(/</g,'&lt;')+'</p>';
       document.getElementById('rec-slider').appendChild(a);
@@ -733,8 +688,7 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
 
 // ── Infinite scroll desktop sidebar ──────────────────────────
 (function(){
-  var side=document.getElementById('side-slider-desktop');
-  if(!side)return;
+  var side=document.getElementById('side-slider-desktop');if(!side)return;
   var sideLoaded=20;
   side.addEventListener('scroll',function(){
     if(this.scrollTop+this.clientHeight>=this.scrollHeight-100){
@@ -742,9 +696,7 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
       if(!next.length){sideLoaded=0;next=_db.slice(0,10);}
       next.forEach(function(r){
         var url=r.source==='nofollow'?'${BASE_URL}/entertainment/'+r.slug+'/':'${BASE_URL}/video/'+r.slug+'/';
-        var a=document.createElement('a');
-        a.className='side-slider-item';a.href=url;
-        if(r.source==='nofollow')a.setAttribute('rel','nofollow noopener');
+        var a=document.createElement('a');a.className='side-slider-item';a.href=url;if(r.source==='nofollow')a.setAttribute('rel','nofollow noopener');
         a.innerHTML='<img src="https://img.youtube.com/vi/'+r.youtubeId+'/mqdefault.jpg" loading="lazy" width="108" height="60" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;width:108px;height:60px;object-fit:cover;flex-shrink:0"/><p>'+r.title.replace(/</g,'&lt;')+'</p>';
         side.appendChild(a);
       });
@@ -752,7 +704,6 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
     }
   });
 })();
-
 <\/script>
 </body>
 </html>`;
@@ -762,37 +713,32 @@ document.getElementById('rec-slider').addEventListener('scroll',function(){
 //  HOMEPAGE STATIS
 // ════════════════════════════════════════════════════════════════
 function buildHomepage(dbEN, dbID) {
-  const allVideos = [...dbEN, ...dbID];
-  const featured       = shuffle(allVideos).slice(0, HOMEPAGE_CARDS);
+  const allVideos  = [...dbEN, ...dbID];
+  const featured   = shuffle(allVideos).slice(0, HOMEPAGE_CARDS);
   const hardcodedSlugs = JSON.stringify(featured.map(v => v.slug));
-  const allVideosMini = JSON.stringify(
-    allVideos.map(v => ({
-      slug:     v.slug,
-      youtubeId:v.youtubeId,
-      title:    v.title,
-      tags:     v.tags || [],
-      source:   v.source || 'seo'
-    }))
+  const allVideosMini  = JSON.stringify(
+    allVideos.map(v => ({slug:v.slug, youtubeId:v.youtubeId, title:v.title, tags:v.tags||[], source:v.source||'seo'}))
   );
 
-  let html = fs.readFileSync(BASE_TMPL, 'utf8').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  let html = fs.readFileSync(BASE_TMPL,'utf8').replace(/\r\n/g,'\n').replace(/\r/g,'\n');
 
-  const APP_START = '  <div class="main-content" id="app">';
-  const APP_END   = '  </div>\n  </main>\n\n<script>';
+  // Cari blok #app di index_base.html
+  const APP_START = '    <div class="main-content" id="app">';
+  const APP_END   = '  </main>';
   const startIdx  = html.indexOf(APP_START);
   let   endIdx    = html.indexOf(APP_END);
-  if (endIdx === -1) endIdx = html.indexOf('  </div>\n\n<script>');
+
   if (startIdx === -1 || endIdx === -1) {
-    console.error('❌ Tidak bisa menemukan #app block di template!');
+    console.error('❌ Tidak bisa menemukan #app block di template! Pastikan index_base.html punya:');
+    console.error('   <div class="main-content" id="app">');
+    console.error('   </main>');
     process.exit(1);
   }
 
   function cardHtml(v, idx) {
     const loading = idx < 4 ? 'eager' : 'lazy';
     const fp      = idx < 4 ? ' fetchpriority="high"' : '';
-    const href    = v.source === 'nofollow'
-      ? `/entertainment/${v.slug}/`
-      : `/video/${v.slug}/`;
+    const href    = v.source === 'nofollow' ? `/entertainment/${v.slug}/` : `/video/${v.slug}/`;
     const rel     = v.source === 'nofollow' ? ' rel="nofollow noopener"' : '';
     return `<a href="${href}"${rel} class="video-card-link" style="text-decoration:none;color:inherit">
   <div class="video-card">
@@ -809,27 +755,23 @@ function buildHomepage(dbEN, dbID) {
 
   const cardsHtml = featured.map((v, i) => cardHtml(v, i)).join('\n');
 
-  const newApp = `${APP_START}
-    <h5 id="grid-label" style="color:#98FB98;margin-bottom:12px">🔥 TRENDING VIDEO</h5>
-    <div class="video-grid" id="video-grid-inner">
+  const newApp = `    <div class="main-content" id="app">
+      <p class="section-label">🔥 Trending Now</p>
+      <div class="video-grid" id="video-grid-inner">
 ${cardsHtml}
+      </div>
+      <div class="load-more-wrap">
+        <button class="btn-load-more" id="btn-load-more" onclick="loadMore()">Load More</button>
+      </div>
     </div>
-    <div class="load-more-wrap">
-      <button class="btn-load-more" id="btn-load-more" onclick="loadMore()">Load More</button>
-    </div>
-  </div>\n  </main>\n\n<script>`;
+  </main>`;
 
   html = html.slice(0, startIdx) + newApp + html.slice(endIdx + APP_END.length);
 
-  const footerHtml = `
-<footer style="margin-top:60px;padding:20px 16px;background:#0d0d0d;border-top:1px solid #1e1e1e;text-align:center">
-  <p style="color:#333;font-size:10px;letter-spacing:.5px">© 2026 Trend4GenZ. All rights reserved.</p>
-</footer>`;
-  html = html.replace('</body>', footerHtml + '\n</body>');
-
+  // Patch script — inject data sebelum <script> utama
   const patchScript = `
 // ══════════════════════════════════════════════════════════════════
-//  PATCH v11
+//  HOMEPAGE PATCH — data injected by generate-pages.js
 // ══════════════════════════════════════════════════════════════════
 var _ALL_VIDEOS  = ${allVideosMini};
 var _SHOWN_SLUGS = new Set(${hardcodedSlugs});
@@ -837,11 +779,9 @@ var _SHOWN_SLUGS = new Set(${hardcodedSlugs});
 window._navigateTo_override = function(slug) {
   var video = _ALL_VIDEOS.find(function(v){ return v.slug === slug; });
   if(!video) return;
-  if(video.source === 'nofollow') {
-    window.location.href = '/entertainment/' + video.slug + '/';
-  } else {
-    window.location.href = '/video/' + video.slug + '/';
-  }
+  window.location.href = video.source === 'nofollow'
+    ? '/entertainment/' + video.slug + '/'
+    : '/video/' + video.slug + '/';
 };
 
 (function() {
@@ -849,22 +789,12 @@ window._navigateTo_override = function(slug) {
   window.addEventListener = function(type, fn, opts) {
     if (type === 'load') {
       _origAEL('load', async function() {
-        videoDatabaseEN = _ALL_VIDEOS
-          .filter(function(v){ return v.source !== 'nofollow'; })
-          .map(function(v){ return {slug:v.slug,youtubeId:v.youtubeId,title:v.title,tags:v.tags||[],source:'seo'}; });
-        videoDatabaseID = _ALL_VIDEOS
-          .filter(function(v){ return v.source === 'nofollow'; })
-          .map(function(v){ return {slug:v.slug,youtubeId:v.youtubeId,title:v.title,tags:v.tags||[],source:'nofollow'}; });
-        videoDatabaseALL = _ALL_VIDEOS.map(function(v){
-          return {slug:v.slug,youtubeId:v.youtubeId,title:v.title,tags:v.tags||[],source:v.source||'seo'};
-        });
-        currentData = videoDatabaseALL.filter(function(v){
-          return !_SHOWN_SLUGS.has(v.slug);
-        });
+        videoDatabaseEN  = _ALL_VIDEOS.filter(function(v){ return v.source !== 'nofollow'; });
+        videoDatabaseID  = _ALL_VIDEOS.filter(function(v){ return v.source === 'nofollow'; });
+        videoDatabaseALL = _ALL_VIDEOS.slice();
+        currentData = videoDatabaseALL.filter(function(v){ return !_SHOWN_SLUGS.has(v.slug); });
         currentPage = 0;
-        if (typeof navigateTo === 'function') {
-          window.navigateTo = window._navigateTo_override;
-        }
+        if (typeof navigateTo === 'function') window.navigateTo = window._navigateTo_override;
         if (typeof initSearch === 'function') initSearch();
         var params = new URLSearchParams(location.search);
         if (params.get('tag') || params.get('search')) {
@@ -878,6 +808,7 @@ window._navigateTo_override = function(slug) {
 })();
 `;
 
+  // Sisipkan patch sebelum <script> utama di index_base.html
   const TMPL_SCRIPT_START = '\n<script>\n';
   const afterMain = html.indexOf('</main>');
   const scriptPos = html.indexOf(TMPL_SCRIPT_START, afterMain);
@@ -887,7 +818,8 @@ window._navigateTo_override = function(slug) {
            '\n<script>\n' + patchScript + '\n<\/script>' +
            html.slice(scriptPos);
   } else {
-    html = html.replace('<script>\n// ════', '<script>\n' + patchScript + '\n// ════');
+    console.warn('⚠️  Tidak menemukan posisi <script> setelah </main> — patch disisipkan di akhir body');
+    html = html.replace('</body>', '<script>\n' + patchScript + '\n<\/script>\n</body>');
   }
 
   return html;
@@ -897,10 +829,10 @@ window._navigateTo_override = function(slug) {
 //  HALAMAN KATEGORI STATIS
 // ════════════════════════════════════════════════════════════════
 function buildCategoryPage(cat, videos) {
-  const catSlug    = cat.key.toLowerCase().replace(/_/g, '-');
-  const canonical  = `${BASE_URL}/category/${catSlug}/`;
-  const pageTitle  = `${cat.label} — ${SITE_NAME}`;
-  const pageDesc   = `Kumpulan video ${cat.label} terbaru — teknologi, AI, lifestyle, dan tren global di ${SITE_NAME}.`;
+  const catSlug   = cat.slug;
+  const canonical = `${BASE_URL}/category/${catSlug}/`;
+  const pageTitle = `${cat.label} — ${SITE_NAME}`;
+  const pageDesc  = `Explore ${cat.label} — ${videos.length} in-depth videos about ${cat.keywords.slice(0,4).join(', ')} and more at ${SITE_NAME}.`;
 
   const breadcrumbLd = JSON.stringify({
     '@context':'https://schema.org','@type':'BreadcrumbList',
@@ -918,16 +850,10 @@ function buildCategoryPage(cat, videos) {
     }))
   });
 
-  const footerCatHtml = FOOTER_CATEGORIES.map(c => {
-    const cSlug  = c.key.toLowerCase().replace(/_/g,'-');
-    const active = cSlug === catSlug;
-    return `<a href="${BASE_URL}/category/${cSlug}/" class="footer-cat-link${active?' active':''}">${c.icon} ${c.label}</a>`;
-  }).join('');
-
   const cardsHtml = videos.length
     ? videos.map((v,i)=>{
-        const loading = i<6?'eager':'lazy';
-        const fp      = i<6?' fetchpriority="high"':'';
+        const loading = i<6 ? 'eager' : 'lazy';
+        const fp      = i<6 ? ' fetchpriority="high"' : '';
         return `<a href="${BASE_URL}/video/${v.slug}/" class="cat-card">
   <div class="cat-thumb">
     <img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg"
@@ -939,7 +865,7 @@ function buildCategoryPage(cat, videos) {
   <div class="cat-title">${esc(v.title)}</div>
 </a>`;
       }).join('\n')
-    : `<div class="cat-empty">Belum ada video untuk kategori ini.</div>`;
+    : `<div class="cat-empty">No videos found for this category yet.</div>`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -955,59 +881,65 @@ function buildCategoryPage(cat, videos) {
   <script type="application/ld+json">${itemListLd}<\/script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--green:#98FB98;--dark:#1a1a1a}
-    body{background:#212122;color:#f1f1f1;font-family:'Segoe UI',sans-serif;overflow-x:hidden}
-    .navbar-custom{background:#000;padding:8px 15px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;gap:12px}
-    .nav-home-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1px solid var(--green);color:var(--green);text-decoration:none;font-size:.8rem;font-weight:700;white-space:nowrap;transition:.2s}
-    .nav-home-btn:hover{background:rgba(152,251,152,.1)}
-    .nav-title{color:#fff;font-size:.9rem;font-weight:700;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;flex:1}
-    .cat-page{max-width:1100px;margin:0 auto;padding:20px 15px}
-    .breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:18px;font-size:.78rem;color:#666;flex-wrap:wrap}
-    .breadcrumb a{color:#888;text-decoration:none;transition:.15s}
+    body{background:#111112;color:#f1f1f1;font-family:'Inter','Segoe UI',sans-serif;overflow-x:hidden}
+    ${sharedNavbarCSS()}
+    ${sharedFooterCSS()}
+
+    /* ── Category page ── */
+    .cat-page{max-width:1200px;margin:0 auto;padding:20px 16px}
+    .breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:18px;font-size:.78rem;color:#555;flex-wrap:wrap}
+    .breadcrumb a{color:#777;text-decoration:none;transition:.15s}
     .breadcrumb a:hover{color:var(--green)}
-    .breadcrumb-sep{color:#444}
-    .cat-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #2a2a2a}
-    .cat-icon-big{font-size:1.8rem;line-height:1}
-    .cat-header-text h1{font-size:1.25rem;font-weight:800;color:#fff}
-    .cat-header-text p{font-size:.8rem;color:#888;margin-top:4px}
+    .breadcrumb-sep{color:#333}
+    .cat-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid #1e1e1e}
+    .cat-icon-big{font-size:2rem;line-height:1}
+    .cat-header-text h1{font-size:1.3rem;font-weight:900;color:#fff}
+    .cat-header-text p{font-size:.8rem;color:#666;margin-top:4px}
     .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
     @media(min-width:600px){.cat-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}}
     @media(min-width:900px){.cat-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
-    .cat-card{display:block;text-decoration:none;color:inherit;background:var(--dark);border-radius:10px;overflow:hidden;border:1px solid transparent;transition:.2s}
+    .cat-card{display:block;text-decoration:none;color:inherit;background:#1a1a1a;border-radius:10px;overflow:hidden;border:1px solid transparent;transition:.2s}
     .cat-card:hover{border-color:var(--green);transform:translateY(-2px)}
     .cat-thumb{width:100%;aspect-ratio:16/9;background:#111;overflow:hidden}
     .cat-thumb img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .3s}
-    .cat-title{font-size:.75rem;font-weight:600;padding:8px 10px 10px;line-height:1.35;color:#e0e0e0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .cat-empty{color:#555;font-size:.9rem;padding:40px;text-align:center;grid-column:1/-1}
-    .footer-seo{margin-top:60px;padding:24px 16px 28px;background:#0d0d0d;border-top:1px solid #1e1e1e}
-    .footer-seo-title{color:#555;font-size:10px;letter-spacing:2px;font-weight:700;text-transform:uppercase;text-align:center;margin-bottom:14px}
-    .footer-cat-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:18px}
-    .footer-cat-link{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border:1px solid #2a2a2a;border-radius:20px;text-decoration:none;color:#888;font-size:11px;font-weight:600;background:#111;transition:.2s;white-space:nowrap}
-    .footer-cat-link:hover,.footer-cat-link.active{color:var(--green);border-color:#3a3a3a;background:#161616}
-    .footer-copy{color:#333;font-size:10px;text-align:center;letter-spacing:.5px}
+    .cat-title{font-size:.75rem;font-weight:600;padding:8px 10px 10px;line-height:1.4;color:#e0e0e0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .cat-empty{color:#555;font-size:.9rem;padding:60px;text-align:center;grid-column:1/-1}
   </style>
 </head>
 <body>
-<nav class="navbar-custom">
-  <a href="${BASE_URL}/" class="nav-home-btn">
-    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    HOME
-  </a>
-  <span class="nav-title">${cat.icon} ${esc(cat.label)}</span>
-</nav>
-<main class="cat-page">
-  <nav class="breadcrumb"><a href="${BASE_URL}/">Home</a><span class="breadcrumb-sep">›</span><span>${esc(cat.label)}</span></nav>
+
+${sharedNavbarHTML(catSlug)}
+
+<main>
+<div class="cat-page">
+  <nav class="breadcrumb">
+    <a href="${BASE_URL}/">Home</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>${esc(cat.label)}</span>
+  </nav>
   <div class="cat-header">
     <div class="cat-icon-big">${cat.icon}</div>
-    <div class="cat-header-text"><h1>${esc(cat.label)}</h1><p>${videos.length} video ditemukan</p></div>
+    <div class="cat-header-text">
+      <h1>${esc(cat.label)}</h1>
+      <p>${videos.length} videos</p>
+    </div>
   </div>
   <div class="cat-grid">${cardsHtml}</div>
+</div>
 </main>
-<footer class="footer-seo">
-  <p class="footer-seo-title">Jelajahi Kategori</p>
-  <nav class="footer-cat-grid">${footerCatHtml}</nav>
-  <p class="footer-copy">© 2026 ${SITE_NAME}. All rights reserved.</p>
-</footer>
+
+${sharedFooterHTML(false)}
+
+<script>
+${sharedHamJS()}
+// Ham search → redirect to homepage search
+(function(){
+  var inp=document.getElementById('searchInput'),btn=document.getElementById('searchBtn');
+  function doSearch(){var q=inp.value.trim();if(q)window.location.href='${BASE_URL}/?search='+encodeURIComponent(q);}
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')doSearch();});
+  btn.addEventListener('click',doSearch);
+})();
+<\/script>
 </body>
 </html>`;
 }
@@ -1019,7 +951,7 @@ function main() {
   if (!fs.existsSync(DB_FILE_EN)) { console.error('❌ db-en.json tidak ditemukan!'); process.exit(1); }
   if (!fs.existsSync(BASE_TMPL)) {
     if (!fs.existsSync(INDEX_FILE)) { console.error('❌ index.html dan index_base.html keduanya tidak ada!'); process.exit(1); }
-    console.log('⚠️  index_base.html tidak ada → membuat dari index.html...');
+    console.log('⚠️  index_base.html tidak ada → copy dari index.html...');
     fs.copyFileSync(INDEX_FILE, BASE_TMPL);
   }
 
@@ -1038,6 +970,7 @@ function main() {
 
   const allVideos = [...dbEN, ...dbID];
 
+  // Generate halaman video (db-en → /video/)
   console.log('\n🗑️  Hapus /video/ lama...');
   rmDir(VIDEO_DIR);
   fs.mkdirSync(VIDEO_DIR, {recursive:true});
@@ -1052,10 +985,10 @@ function main() {
   });
   console.log(`✅ ${createdEN} halaman /video/ selesai`);
 
-  console.log('\n🗑️  Hapus /entertainment/ lama...');
-  rmDir(ENTERTAIN_DIR);
-
+  // Generate halaman entertainment (db-id → /entertainment/)
   if (dbID.length) {
+    console.log('\n🗑️  Hapus /entertainment/ lama...');
+    rmDir(ENTERTAIN_DIR);
     fs.mkdirSync(ENTERTAIN_DIR, {recursive:true});
     console.log('📄 Generate halaman statis db-id → /entertainment/...');
     let createdID = 0;
@@ -1069,32 +1002,34 @@ function main() {
     console.log(`✅ ${createdID} halaman /entertainment/ selesai (noindex)`);
   }
 
-  console.log('\n📂 Generate halaman kategori dari db-en.json...');
+  // Generate halaman kategori
+  console.log('\n📂 Generate halaman kategori...');
   const CAT_DIR = path.join(__dirname, 'category');
   rmDir(CAT_DIR);
   fs.mkdirSync(CAT_DIR, {recursive:true});
+
   const normalize = s => s.toLowerCase().replace(/[\s_\-]/g,'');
   FOOTER_CATEGORIES.forEach(cat => {
-    const catSlug = cat.key.toLowerCase().replace(/_/g,'-');
     const kws = cat.keywords.map(k => normalize(k));
     const matchTag   = t => { const nt=normalize(t); return kws.some(k=>nt===k||nt.includes(k)||k.includes(nt)); };
     const matchTitle = title => { const nt=title.toLowerCase(); return cat.keywords.some(k=>nt.includes(k.replace(/-/g,' '))); };
-    const catVideos = dbEN.filter(v => {
+    const catVideos  = dbEN.filter(v => {
       if (v.tags && v.tags.length) return v.tags.some(t => matchTag(t));
       return matchTitle(v.title);
     });
-    const dir = path.join(CAT_DIR, catSlug);
+    const dir = path.join(CAT_DIR, cat.slug);
     fs.mkdirSync(dir, {recursive:true});
     fs.writeFileSync(path.join(dir,'index.html'), buildCategoryPage(cat, catVideos), 'utf8');
-    console.log(`  📁 /category/${catSlug}/ — ${catVideos.length} video`);
+    console.log(`  📁 /category/${cat.slug}/ — ${catVideos.length} video`);
   });
   console.log(`✅ ${FOOTER_CATEGORIES.length} halaman kategori selesai`);
 
+  // Generate index.html
   console.log('\n🏠 Update index.html...');
   fs.writeFileSync(INDEX_FILE, buildHomepage(dbEN, dbID), 'utf8');
   console.log('✅ index.html diperbarui');
 
-  console.log(`\n🎉 Selesai!`);
+  console.log(`\n🎉 Selesai! Summary:`);
   console.log(`   /video/         : ${createdEN} halaman (index, follow)`);
   if (dbID.length) console.log(`   /entertainment/ : ${dbID.length} halaman (noindex, nofollow)`);
   console.log(`   /category/      : ${FOOTER_CATEGORIES.length} halaman`);
@@ -1102,8 +1037,8 @@ function main() {
   console.log(`   User-agent: *`);
   console.log(`   Allow: /`);
   console.log(`   Disallow: /entertainment/`);
-  console.log(`   Sitemap: https://www.trend4genz.fun/sitemap.xml`);
-  console.log(`\n📋 Status Ads (STATIC_AD):`);
+  console.log(`   Sitemap: ${BASE_URL}/sitemap.xml`);
+  console.log(`\n📋 Ads status:`);
   console.log(`   allAds           : ${STATIC_AD.allAds}`);
   console.log(`   useDirect        : ${STATIC_AD.useDirect}`);
   console.log(`   usePlayAds       : ${STATIC_AD.usePlayAds}  (mulai tap ke-${STATIC_AD.playAdsStartFrom})`);
