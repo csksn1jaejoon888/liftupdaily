@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Home Design Videos — LiftUpDaily</title>
+  <meta name="description" content="Interior design, home decor, renovation ideas, and architecture inspiration for your space."/>
+  <meta name="robots" content="index,follow"/>
+  <link rel="canonical" href="https://www.liftupdaily.com/category/home-design/"/>
+  <link rel="icon" href="https://www.liftupdaily.com/logo.png" sizes="96x96" type="image/png"/>
+  <!-- Pinterest -->
+  <meta name="pinterest:description" content="Interior design, home decor, renovation ideas, and architecture inspiration for your space."/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.liftupdaily.com/"},{"@type":"ListItem","position":2,"name":"Home Design","item":"https://www.liftupdaily.com/category/home-design/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Home Design","url":"https://www.liftupdaily.com/category/home-design/","numberOfItems":0,"itemListElement":[]}</script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:#0d0d0d;color:#f1f1f1;font-family:'Inter','Segoe UI',sans-serif;overflow-x:hidden}
+    
+    :root{--accent:#F5A623;--accent2:#E8724A;--bg:#0d0d0d;--dark:#1c1c1e;--nav-h-mobile:48px;--nav-h-desktop:60px;--nav-h:var(--nav-h-mobile)}
+    @media(min-width:768px){:root{--nav-h:var(--nav-h-desktop)}}
+    .navbar-custom{background:#0d0d0d;height:var(--nav-h-mobile);padding:0 14px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--accent)}
+    @media(min-width:768px){.navbar-custom{height:var(--nav-h-desktop);padding:0 22px;gap:16px}}
+    .nav-hamburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:6px;flex-shrink:0}
+    .nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .25s}
+    @media(min-width:768px){.nav-hamburger span{width:26px}}
+    .nav-hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-hamburger.active span:nth-child(2){opacity:0}
+    .nav-hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-brand{font-weight:900;font-size:.95rem;letter-spacing:-.02em;text-decoration:none;flex-shrink:0}
+    @media(min-width:768px){.nav-brand{font-size:1.18rem}}
+    .navbar-right-group{display:flex;align-items:center;margin-left:auto;gap:8px}
+    .search-wrapper{position:relative;display:flex;align-items:center;z-index:9999}
+    .search-container{display:flex;align-items:center;gap:6px;background:#1c1c1e;border-radius:20px;padding:5px 10px;border:1px solid #2a2a2a;transition:border-color .2s}
+    .search-container:focus-within{border-color:var(--accent)}
+    .search-container input{background:transparent;border:none;color:#fff;outline:none;font-size:.8rem;width:45px;transition:.3s;font-family:inherit}
+    .search-container input:focus{width:100px}
+    @media(min-width:768px){.search-container input{width:70px}.search-container input:focus{width:140px}}
+    .search-icon-btn{background:none;border:none;cursor:pointer;display:flex;align-items:center;padding:0;flex-shrink:0}
+    .search-suggestions{position:absolute;top:calc(100% + 6px);right:0;width:265px;background:#1c1c1e;border:1px solid var(--accent);border-radius:10px;overflow:hidden;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.7);display:none}
+    .search-suggestions.show{display:block}
+    .suggestion-item{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(255,255,255,.05)}
+    .suggestion-item:last-child{border-bottom:none}
+    .suggestion-item:hover,.suggestion-item.active{background:rgba(245,166,35,.1)}
+    .suggestion-item img{width:52px;height:30px;object-fit:cover;border-radius:4px;flex-shrink:0}
+    .suggestion-item span{font-size:.75rem;color:#f1f1f1;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+    .suggestion-item span em{color:var(--accent);font-style:normal;font-weight:bold}
+    .suggestion-empty{padding:12px;text-align:center;font-size:.75rem;color:#888}
+    /* Drawer */
+    .ham-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1998;opacity:0;pointer-events:none;transition:opacity .25s}
+    .ham-overlay.show{opacity:1;pointer-events:all}
+    .ham-drawer{position:fixed;top:0;left:0;width:min(290px,84vw);height:100vh;background:#111;z-index:1999;transform:translateX(-100%);transition:transform .28s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;border-right:1px solid #1e1e1e;overflow-y:auto}
+    .ham-drawer.show{transform:translateX(0)}
+    .ham-header{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid #1e1e1e;flex-shrink:0}
+    .ham-brand{font-size:1rem;font-weight:900;letter-spacing:-.02em}
+    .ham-close{background:none;border:none;color:#666;font-size:1.3rem;cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .15s,color .15s}
+    .ham-close:hover{background:#1e1e1e;color:#fff}
+    .ham-search{padding:14px 18px;border-bottom:1px solid #1e1e1e;flex-shrink:0}
+    .ham-search-inner{display:flex;align-items:center;gap:8px;background:#1c1c1e;border-radius:8px;padding:8px 12px;border:1px solid #2a2a2a}
+    .ham-search-inner:focus-within{border-color:var(--accent)}
+    .ham-search-inner input{flex:1;background:transparent;border:none;color:#fff;outline:none;font-size:.85rem;font-family:inherit}
+    .ham-search-inner input::placeholder{color:#555}
+    .ham-nav{flex:1;padding:10px 0}
+    .ham-nav-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;color:#444;text-transform:uppercase;padding:14px 18px 6px}
+    .ham-nav-item{display:flex;align-items:center;padding:13px 18px;cursor:pointer;color:#bbb;font-size:.88rem;font-weight:600;text-decoration:none;border-left:3px solid transparent;transition:all .15s}
+    .ham-nav-item:hover,.ham-nav-item.active{background:rgba(245,166,35,.08);color:#fff;border-left-color:var(--accent)}
+    .ham-nav-item-icon{font-size:1.05rem;width:24px;flex-shrink:0}
+    .ham-nav-item-label{flex:1;margin-left:10px}
+    .ham-nav-item-arrow{font-size:.7rem;color:#333;transition:transform .15s}
+    .ham-nav-item:hover .ham-nav-item-arrow{transform:translateX(3px);color:var(--accent)}
+    .ham-divider{height:1px;background:#1e1e1e;margin:6px 0}
+  
+    
+    .site-footer{margin-top:60px;background:#000;border-top:1px solid #1a1a1a}
+    .footer-inner{max-width:1200px;margin:0 auto;padding:32px 20px 24px}
+    .footer-top{display:grid;gap:28px;grid-template-columns:1fr;margin-bottom:28px}
+    @media(min-width:600px){.footer-top{grid-template-columns:1.5fr 1fr 1fr}}
+    .footer-brand{font-size:1.05rem;font-weight:900;letter-spacing:-.02em;display:inline-block;margin-bottom:10px}
+    .footer-tagline{font-size:.8rem;color:#555;line-height:1.6;max-width:230px}
+    .footer-col-title{font-size:.65rem;font-weight:700;letter-spacing:.12em;color:#444;text-transform:uppercase;margin-bottom:12px}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+    .footer-links a{font-size:.82rem;color:#666;text-decoration:none;transition:color .15s;display:flex;align-items:center;gap:6px}
+    .footer-links a:hover{color:var(--accent)}
+    .footer-links a::before{content:'›';color:#333}
+    .footer-bottom{padding-top:20px;border-top:1px solid #1a1a1a;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+    .footer-copy{font-size:.72rem;color:#333;letter-spacing:.04em}
+    .footer-legal{display:flex;gap:16px}
+    .footer-legal a{font-size:.72rem;color:#333;text-decoration:none;transition:color .15s}
+    .footer-legal a:hover{color:var(--accent)}
+  
+    .cat-page{max-width:1200px;margin:0 auto;padding:20px 16px}
+    .breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:18px;font-size:.78rem;color:#555;flex-wrap:wrap}
+    .breadcrumb a{color:#777;text-decoration:none;transition:.15s}
+    .breadcrumb a:hover{color:var(--accent)}
+    .breadcrumb-sep{color:#333}
+    .cat-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid #1e1e1e}
+    .cat-icon-big{font-size:2.2rem;line-height:1}
+    .cat-header-text h1{font-size:1.3rem;font-weight:900;color:#fff}
+    .cat-header-text p{font-size:.8rem;color:#666;margin-top:4px}
+    .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+    @media(min-width:600px){.cat-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}}
+    @media(min-width:900px){.cat-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
+    .cat-card{display:block;text-decoration:none;color:inherit;background:#1c1c1e;border-radius:10px;overflow:hidden;border:1px solid transparent;transition:.2s}
+    .cat-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+    .cat-thumb{width:100%;aspect-ratio:16/9;background:#111;overflow:hidden}
+    .cat-thumb img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .3s}
+    .cat-title{font-size:.75rem;font-weight:600;padding:8px 10px 10px;line-height:1.4;color:#e0e0e0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .cat-empty{color:#555;font-size:.9rem;padding:60px;text-align:center;grid-column:1/-1}
+  </style>
+</head>
+<body>
+
+<div class="ham-overlay" id="ham-overlay" onclick="closeHamMenu()"></div>
+<div class="ham-drawer" id="ham-drawer">
+  <div class="ham-header">
+    <div class="ham-brand"><span style="color:#F5A623">LiftUp</span><span style="color:#fff">Daily</span></div>
+    <button class="ham-close" onclick="closeHamMenu()">&#x2715;</button>
+  </div>
+  <div class="ham-search">
+    <div class="ham-search-inner">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#555" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="hamSearchInput" placeholder="Search topics..." type="text" autocomplete="off"/>
+    </div>
+  </div>
+  <nav class="ham-nav">
+    <div class="ham-nav-label">Browse</div>
+    <a href="https://www.liftupdaily.com/" class="ham-nav-item" onclick="closeHamMenu()">
+      <span class="ham-nav-item-icon">🏠</span>
+      <span class="ham-nav-item-label">Home</span>
+      <span class="ham-nav-item-arrow">›</span>
+    </a>
+    <div class="ham-divider"></div>
+    <div class="ham-nav-label">Categories</div>
+    <a href="https://www.liftupdaily.com/category/personal-growth/" class="ham-nav-item" onclick="closeHamMenu()">
+      <span class="ham-nav-item-icon">🌱</span>
+      <span class="ham-nav-item-label">Personal Growth</span>
+      <span class="ham-nav-item-arrow">›</span>
+    </a><a href="https://www.liftupdaily.com/category/business-growth/" class="ham-nav-item" onclick="closeHamMenu()">
+      <span class="ham-nav-item-icon">📈</span>
+      <span class="ham-nav-item-label">Business Growth</span>
+      <span class="ham-nav-item-arrow">›</span>
+    </a><a href="https://www.liftupdaily.com/category/home-design/" class="ham-nav-item active" onclick="closeHamMenu()">
+      <span class="ham-nav-item-icon">🏡</span>
+      <span class="ham-nav-item-label">Home Design</span>
+      <span class="ham-nav-item-arrow">›</span>
+    </a>
+  </nav>
+</div>
+<nav class="navbar-custom">
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleHamMenu()" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="https://www.liftupdaily.com/" class="nav-brand"><span style="color:#F5A623">LiftUp</span><span style="color:#fff">Daily</span></a>
+  <div class="navbar-right-group">
+    <div class="search-wrapper">
+      <div class="search-container">
+        <input id="searchInput" placeholder="Search..." type="text" autocomplete="off"/>
+        <button class="search-icon-btn" id="searchBtn" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="cat-page">
+  <nav class="breadcrumb">
+    <a href="https://www.liftupdaily.com/">Home</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Home Design</span>
+  </nav>
+  <div class="cat-header">
+    <div class="cat-icon-big">🏡</div>
+    <div class="cat-header-text">
+      <h1>Home Design</h1>
+      <p>0 videos</p>
+    </div>
+  </div>
+  <div class="cat-grid"><div class="cat-empty">No videos found for this category yet. Check back soon!</div></div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><span style="color:#F5A623">LiftUp</span><span style="color:#fff">Daily</span></div>
+        <p class="footer-tagline">Daily inspiration on personal growth, business strategies, and home design. Watch and level up every day.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Categories</div>
+        <ul class="footer-links"><li><a href="https://www.liftupdaily.com/category/personal-growth/">🌱 Personal Growth</a></li><li><a href="https://www.liftupdaily.com/category/business-growth/">📈 Business Growth</a></li><li><a href="https://www.liftupdaily.com/category/home-design/">🏡 Home Design</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Site</div>
+        <ul class="footer-links">
+          <li><a href="https://www.liftupdaily.com/">Home</a></li>
+          <li><a href="https://www.liftupdaily.com/about/">About</a></li>
+          <li><a href="https://www.liftupdaily.com/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="https://www.liftupdaily.com/contact/">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 LiftUpDaily. All rights reserved.</p>
+      <nav class="footer-legal">
+        <a href="https://www.liftupdaily.com/privacy-policy/">Privacy</a>
+        <a href="https://www.liftupdaily.com/terms/">Terms</a>
+        <a href="https://www.liftupdaily.com/sitemap.xml">Sitemap</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script>
+
+function toggleHamMenu(){
+  var d=document.getElementById('ham-drawer'),o=document.getElementById('ham-overlay'),b=document.getElementById('nav-hamburger');
+  if(d.classList.contains('show')){closeHamMenu();}
+  else{d.classList.add('show');o.classList.add('show');b.classList.add('active');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+}
+function closeHamMenu(){
+  document.getElementById('ham-drawer').classList.remove('show');
+  document.getElementById('ham-overlay').classList.remove('show');
+  document.getElementById('nav-hamburger').classList.remove('active');
+  document.getElementById('nav-hamburger').setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
+}
+(function(){
+  var hi=document.getElementById('hamSearchInput');if(!hi)return;
+  hi.addEventListener('keydown',function(e){if(e.key==='Enter'){var v=this.value.trim();if(v){closeHamMenu();window.location.href='https://www.liftupdaily.com/?search='+encodeURIComponent(v);}}});
+})();
+(function(){
+  var inp=document.getElementById('searchInput'),btn=document.getElementById('searchBtn');
+  function doSearch(){var q=inp.value.trim();if(q)window.location.href='https://www.liftupdaily.com/?search='+encodeURIComponent(q);}
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')doSearch();});
+  btn.addEventListener('click',doSearch);
+})();
+</script>
+</body>
+</html>
