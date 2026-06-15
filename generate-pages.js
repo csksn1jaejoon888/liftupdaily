@@ -183,7 +183,7 @@ function sharedFooterCSS(){
 
 function sharedNavbarHTML(activeCatSlug=''){
   const navItems = CATEGORIES.map(c =>
-    `<a href="${BASE_URL}/category/${c.slug}/" class="ham-nav-item${activeCatSlug===c.slug?' active':''}" onclick="closeHamMenu()">
+    `<a href="/category/${c.slug}/" class="ham-nav-item${activeCatSlug===c.slug?' active':''}" onclick="closeHamMenu()">
       <span class="ham-nav-item-icon">${c.icon}</span>
       <span class="ham-nav-item-label">${c.label}</span>
       <span class="ham-nav-item-arrow">›</span>
@@ -205,7 +205,7 @@ function sharedNavbarHTML(activeCatSlug=''){
   </div>
   <nav class="ham-nav">
     <div class="ham-nav-label">Browse</div>
-    <a href="${BASE_URL}/" class="ham-nav-item" onclick="closeHamMenu()">
+    <a href="/" class="ham-nav-item" onclick="closeHamMenu()">
       <span class="ham-nav-item-icon">🏠</span>
       <span class="ham-nav-item-label">Home</span>
       <span class="ham-nav-item-arrow">›</span>
@@ -240,7 +240,7 @@ function sharedFooterHTML(isNoIndex){
     return `<footer class="site-footer"><div class="footer-inner"><div class="footer-bottom"><p class="footer-copy">© ${year} ${SITE_NAME}. All rights reserved.</p></div></div></footer>`;
   }
   const catLinks = CATEGORIES.map(c =>
-    `<li><a href="${BASE_URL}/category/${c.slug}/">${c.icon} ${c.label}</a></li>`
+    `<li><a href="/category/${c.slug}/">${c.icon} ${c.label}</a></li>`
   ).join('');
   return `
 <footer class="site-footer">
@@ -258,8 +258,8 @@ function sharedFooterHTML(isNoIndex){
         <div class="footer-col-title">Site</div>
         <ul class="footer-links">
           <li><a href="${BASE_URL}/">Home</a></li>
-          <li><a href="${BASE_URL}/about/">About</a></li>
-          <li><a href="${BASE_URL}/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
           <li><a href="${BASE_URL}/contact/">Contact</a></li>
         </ul>
       </div>
@@ -267,7 +267,7 @@ function sharedFooterHTML(isNoIndex){
     <div class="footer-bottom">
       <p class="footer-copy">© ${year} ${SITE_NAME}. All rights reserved.</p>
       <nav class="footer-legal">
-        <a href="${BASE_URL}/privacy-policy/">Privacy</a>
+        <a href="/privacy-policy/">Privacy</a>
         <a href="${BASE_URL}/terms/">Terms</a>
         <a href="${BASE_URL}/sitemap.xml">Sitemap</a>
       </nav>
@@ -292,7 +292,7 @@ function closeHamMenu(){
 }
 (function(){
   var hi=document.getElementById('hamSearchInput');if(!hi)return;
-  hi.addEventListener('keydown',function(e){if(e.key==='Enter'){var v=this.value.trim();if(v){closeHamMenu();window.location.href='${BASE_URL}/?search='+encodeURIComponent(v);}}});
+  hi.addEventListener('keydown',function(e){if(e.key==='Enter'){var v=this.value.trim();if(v){closeHamMenu();window.location.href='/?search='+encodeURIComponent(v);}}});
 })();`;
 }
 
