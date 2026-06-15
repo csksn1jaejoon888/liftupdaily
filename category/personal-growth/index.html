@@ -123,22 +123,22 @@
   </div>
   <nav class="ham-nav">
     <div class="ham-nav-label">Browse</div>
-    <a href="https://www.liftupdaily.com/" class="ham-nav-item" onclick="closeHamMenu()">
+    <a href="/" class="ham-nav-item" onclick="closeHamMenu()">
       <span class="ham-nav-item-icon">🏠</span>
       <span class="ham-nav-item-label">Home</span>
       <span class="ham-nav-item-arrow">›</span>
     </a>
     <div class="ham-divider"></div>
     <div class="ham-nav-label">Categories</div>
-    <a href="https://www.liftupdaily.com/category/personal-growth/" class="ham-nav-item active" onclick="closeHamMenu()">
+    <a href="/category/personal-growth/" class="ham-nav-item active" onclick="closeHamMenu()">
       <span class="ham-nav-item-icon">🌱</span>
       <span class="ham-nav-item-label">Personal Growth</span>
       <span class="ham-nav-item-arrow">›</span>
-    </a><a href="https://www.liftupdaily.com/category/business-growth/" class="ham-nav-item" onclick="closeHamMenu()">
+    </a><a href="/category/business-growth/" class="ham-nav-item" onclick="closeHamMenu()">
       <span class="ham-nav-item-icon">📈</span>
       <span class="ham-nav-item-label">Business Growth</span>
       <span class="ham-nav-item-arrow">›</span>
-    </a><a href="https://www.liftupdaily.com/category/home-design/" class="ham-nav-item" onclick="closeHamMenu()">
+    </a><a href="/category/home-design/" class="ham-nav-item" onclick="closeHamMenu()">
       <span class="ham-nav-item-icon">🏡</span>
       <span class="ham-nav-item-label">Home Design</span>
       <span class="ham-nav-item-arrow">›</span>
@@ -191,14 +191,14 @@
       </div>
       <div>
         <div class="footer-col-title">Categories</div>
-        <ul class="footer-links"><li><a href="https://www.liftupdaily.com/category/personal-growth/">🌱 Personal Growth</a></li><li><a href="https://www.liftupdaily.com/category/business-growth/">📈 Business Growth</a></li><li><a href="https://www.liftupdaily.com/category/home-design/">🏡 Home Design</a></li></ul>
+        <ul class="footer-links"><li><a href="/category/personal-growth/">🌱 Personal Growth</a></li><li><a href="/category/business-growth/">📈 Business Growth</a></li><li><a href="/category/home-design/">🏡 Home Design</a></li></ul>
       </div>
       <div>
         <div class="footer-col-title">Site</div>
         <ul class="footer-links">
           <li><a href="https://www.liftupdaily.com/">Home</a></li>
-          <li><a href="https://www.liftupdaily.com/about/">About</a></li>
-          <li><a href="https://www.liftupdaily.com/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
           <li><a href="https://www.liftupdaily.com/contact/">Contact</a></li>
         </ul>
       </div>
@@ -206,7 +206,7 @@
     <div class="footer-bottom">
       <p class="footer-copy">© 2026 LiftUpDaily. All rights reserved.</p>
       <nav class="footer-legal">
-        <a href="https://www.liftupdaily.com/privacy-policy/">Privacy</a>
+        <a href="/privacy-policy/">Privacy</a>
         <a href="https://www.liftupdaily.com/terms/">Terms</a>
         <a href="https://www.liftupdaily.com/sitemap.xml">Sitemap</a>
       </nav>
@@ -229,7 +229,7 @@ function closeHamMenu(){
 }
 (function(){
   var hi=document.getElementById('hamSearchInput');if(!hi)return;
-  hi.addEventListener('keydown',function(e){if(e.key==='Enter'){var v=this.value.trim();if(v){closeHamMenu();window.location.href='https://www.liftupdaily.com/?search='+encodeURIComponent(v);}}});
+  hi.addEventListener('keydown',function(e){if(e.key==='Enter'){var v=this.value.trim();if(v){closeHamMenu();window.location.href='/?search='+encodeURIComponent(v);}}});
 })();
 (function(){
   var inp=document.getElementById('searchInput'),btn=document.getElementById('searchBtn');
