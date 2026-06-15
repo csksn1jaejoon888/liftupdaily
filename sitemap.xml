@@ -1,108 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- ═══════════════════════════════════════ -->
-  <!--  HOMEPAGE                              -->
-  <!-- ═══════════════════════════════════════ -->
   <url>
     <loc>https://www.liftupdaily.xyz/</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- ═══════════════════════════════════════ -->
-  <!--  HALAMAN STATIS                        -->
-  <!-- ═══════════════════════════════════════ -->
-  <url>
-    <loc>https://www.liftupdaily.xyz/about/</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.liftupdaily.xyz/contact/</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.liftupdaily.xyz/privacy-policy/</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.liftupdaily.xyz/terms/</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- ═══════════════════════════════════════ -->
-  <!--  HALAMAN KATEGORI                      -->
-  <!-- ═══════════════════════════════════════ -->
   <url>
     <loc>https://www.liftupdaily.xyz/category/personal-growth/</loc>
     <lastmod>2026-06-15</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.liftupdaily.xyz/category/business-growth/</loc>
     <lastmod>2026-06-15</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.liftupdaily.xyz/category/home-design/</loc>
     <lastmod>2026-06-15</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- ═══════════════════════════════════════ -->
-  <!--  HALAMAN VIDEO — BUSINESS GROWTH (3)   -->
-  <!-- ═══════════════════════════════════════ -->
   <url>
     <loc>https://www.liftupdaily.xyz/video/10-claude-ai-side-hustles-that-replace-your-9-5-paycheck/</loc>
     <lastmod>2026-06-15</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.liftupdaily.xyz/video/12-online-businesses-tested-what-actually-made-1m/</loc>
     <lastmod>2026-06-15</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.liftupdaily.xyz/video/7-side-hustles-students-can-start-with-0-in-2026/</loc>
     <lastmod>2026-06-15</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- ═══════════════════════════════════════ -->
-  <!--  HALAMAN VIDEO — PERSONAL GROWTH (3)   -->
-  <!-- ═══════════════════════════════════════ -->
   <url>
     <loc>https://www.liftupdaily.xyz/video/7-silent-habits-eroding-your-mental-health-fix-them-today/</loc>
     <lastmod>2026-06-15</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.liftupdaily.xyz/video/how-to-earn-10k-month-without-a-degree-the-mindset-shift/</loc>
     <lastmod>2026-06-15</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.liftupdaily.xyz/video/how-to-reset-your-finances-in-90-days-without-willpower/</loc>
     <lastmod>2026-06-15</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
 </urlset>
