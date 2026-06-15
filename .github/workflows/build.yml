@@ -28,21 +28,30 @@ jobs:
         with:
           node-version: '24'
 
-      - name : Clean DB — hapus video mati + dedup + hashtag
+      - name: Clean DB — hapus video mati + dedup + hashtag
         run: node clean-db.js
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-          
+
       - name: Generate static pages
-        run: node generate-pages.js   
+        run: node generate-pages.js
 
       - name: Commit & push hasil
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git add db-en.json db-id.json sitemap.xml index.html
-          git add video/
-          git add category/
-          git add entertainment/
+
+          # video/ — selalu ada kalau db-en.json tidak kosong
+          git add video/ || true
+
+          # category/ — dibuat oleh generate-pages.js
+          git add category/ || true
+
+          # entertainment/ — hanya ada kalau db-id.json berisi data
+          # || true mencegah error kalau folder tidak ada
+          git add entertainment/ || true
+
           git diff --staged --quiet || git commit -m "auto: clean + sitemap + static pages [skip ci]"
           git push
