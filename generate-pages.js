@@ -16,7 +16,7 @@ const path = require('path');
 // ════════════════════════════════════════════════════════════════
 //  ★ CONFIG — SWITCH NAMA WEB DI SINI ★
 // ════════════════════════════════════════════════════════════════
-const BASE_URL   = 'https://www.liftupdaily.com';   // ← ganti
+const BASE_URL   = 'https://www.liftupdaily.xyz';   // ← ganti
 const SITE_NAME  = 'LiftUpDaily';                   // ← ganti
 const BRAND_HTML = '<span style="color:#F5A623">LiftUp</span><span style="color:#fff">Daily</span>';
 const ACCENT     = '#F5A623';
