@@ -52,7 +52,7 @@
         },
         {
           "@type": "Question",
-          "name": "Do I need a website or social media to succeed with these?",
+          "name": "Do I need a website or social-media to succeed with these?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "No. Start with a simple Google Doc or Canva portfolio. (One founder made $10K/month using only LinkedIn DMs and a $20/month Claude subscription.)"
